@@ -1,197 +1,147 @@
 "use strict";
 var navigations = require('../models/navigation');
 
+var retCode, retDesc, uName;
+
 /* GET navigation page. */
 exports.page=function(req, res, next) {
-	var uName=req.session.user.username;
-	var errorTip;
+	uName=req.session.user.username;
 	navigations.findByUname(uName,function(err, results){
-        if(err){
-        	errorTip="用户的资源导航查找失败!";
-            console.log(errorTip);
-            res.redirect('myError');    
+        if(err){ 
+			retDesc="用户的资源导航查找失败!";
+          	res.redirect('myError?retDesc='+retDesc);
         }else{
-        	if(results.length>1){
-	                errorTip="数据被多次插入，应禁止多次创建，数据库设计唯一或者后端检测!";
-	                console.log(errorTip);
-	                res.redirect('myError');
-	                return;
-	        }else{
-	          	if(results.length==0){
-	          		errorTip="数据未初始化!";
-	                console.log(errorTip);
-	          		res.render('navigation', { title: '资源导航',allNavgition:false});
-	          	}else{
-	          		var resultFin=results[0];
-		        	for(var k=0;k<resultFin.models.length;k++){
-		        		for(var s=0;s<resultFin.models[k].modelsuns.length;s++){
-		        			resultFin.models[k].modelsuns.sort(getSortFun('asc', 'sunSque'));
-		        		}
-		        		resultFin.models.sort(getSortFun('asc', 'sque'));
-		        	}
-		        	res.render('navigation', { title: '资源导航',allNavgition:resultFin});
-	          	} 
-	        }
+        	if(results){
+	        	for(var k=0;k<results.models.length;k++){
+	        		for(var s=0;s<results.models[k].modelsuns.length;s++){
+	        			results.models[k].modelsuns.sort(getSortFun('asc', 'sunSque'));
+	        		}
+	        		results.models.sort(getSortFun('asc', 'sque'));
+	        	}
+	        	res.render('navigation', { title: '资源导航',allNavgition:results});
+        	}else{
+				retDesc="数据未初始化!";
+	          	res.redirect('myError?retDesc='+retDesc); 
+        	}
         }
 	});
 }
+
 function getSortFun(order, sortBy) {
     var ordAlpah = (order == 'asc') ? '>' : '<';
     var sortFun = new Function('a', 'b', 'return a.' + sortBy + ordAlpah + 'b.' + sortBy + '?1:-1');
     return sortFun;
 }
 
-//暂不需要
-exports.getList=function(req, res, next){
-	navigations.findByUname("zoujiahua@173.com",function(err, result){
-        if(err){
-            console.log("用户名查找出现问题！");
-            //return res.render('/', {title: '用户名查找出现问题！'});   //这些无措处理，以及信息提示的待后期处理
-        }
-        if(result.length>0){
-        	console.log(result);
-        }else{
-        	console.log("no data!");
-        }
-	});
-}
-
 //删除大标题
 exports.listDel=function(req, res, next){
-	var uName=req.session.user.username;
-	var modelName=req.body.navName;
-	var errorTip;
+	uName = req.session.user.username;
+	var modelName = req.body.navName;
 	navigations.findByUname(uName,function(err, results){
         if(err){
-        	errorTip="用户数据查找出现问题!";
-            console.log(errorTip);
-            res.redirect('myError'); 
+        	retDesc='用户数据查找出现问题';
+        	return res.send({retCode:400, retDesc:retDesc});   
         }else{
-        	if(results.length>1){
-	                errorTip="数据被多次插入，应禁止多次创建，数据库设计唯一或者后端检测!";
-	                console.log(errorTip);
-	                res.redirect('myError');
-	        }else{
-	          	if(results.length==0){
-	          		errorTip="数据未初始化!";
-	                console.log(errorTip);
-	          		res.render('navigation', { title: '资源导航',allNavgition:false});
-	          	}else{
-	          		var resultFin=results[0];
-		        	for(var k=0;k<resultFin.models.length;k++){
-		        		if(resultFin.models[k].modelsName==modelName){
-		        			resultFin.models.splice(k,1);
-		        			navigations.modify({author:uName},{models:resultFin.models},function(err){
-				        		if(err){
-				        			res.send({code:'400'});   //res.jsonp()   res.write()
-						 			res.end();
-				        		}else{
-					        		res.send({code:'200',modelName:modelName});
-							 		res.end();
-				        		}
-				        	});
-		        		}
-		        	}
-	          	}
-	        }
+        	if(results){
+	        	for(var k=0;k<results.models.length;k++){
+	        		if(results.models[k].modelsName==modelName){
+	        			results.models.splice(k,1);
+	        			navigations.modify({author:uName},{models:results.models},function(err){
+			        		if(err){
+			        			retDesc='用户数据更新出现问题';
+			        			return res.send({retCode:400, retDesc:retDesc});
+			        		}else{
+						 		return res.send({retCode:200});
+			        		}
+			        	});
+	        		}
+	        	}
+        	}else{
+        		retDesc='数据未初始化';
+        		return res.send({retCode:400, retDesc:retDesc});  
+        	}
         }
     });     
 }
 
 //添加大标题
 exports.listAdd=function(req, res, next){
-	var uName=req.session.user.username;
+	uName=req.session.user.username;
 	var modelName=req.body.navName;
-	var errorTip;
 	navigations.findByUname(uName,function(err, results){
         if(err){
-        	errorTip="用户数据查找出现问题!";
-            console.log(errorTip);
-            res.redirect('myError'); 
-         }else{
-         	if(results.length>1){
-                errorTip="数据被多次插入，应禁止多次创建，数据库设计唯一或者后端检测!";
-                console.log(errorTip);
-                res.redirect('myError');
-	        }else{
-	          	if(results.length==0){
-	          		errorTip="数据未初始化!";
-	                console.log(errorTip);
-	          		res.render('navigation', { title: '资源导航',allNavgition:false});
-	          	}else{
-	          		var resultFin=results[0];
-		        	for(var k=0;k<resultFin.models.length;k++){
-		        		if(resultFin.models[k].modelsName==modelName){
-		        			console.log("已存在该分类");
-		        			res.send(false);   //res.jsonp()   res.write()
-						 	res.end();
-						 	return;
-		        		}
-		        	}
-		        	var newModel={
-		        		modelsName:modelName,
-		        		sque:k+1,
-		        		modelsuns:[]
-		        	};
-		        	resultFin.models.push(newModel);
-		        	navigations.modify({author:uName},{models:resultFin.models},function(err){
-		        		if(err){
-		        			console.log("添加失败");
-		        			res.send(false);   //res.jsonp()   res.write()
-				 			res.end();
-		        		}else{
-			        		res.send(true);   //res.jsonp()   res.write()
-					 		res.end();
-		        		}
-		        	});
-	          	} 
-	        }
-         }
+        	retDesc='用户数据查找出现问题';
+        	return res.send({retCode:400, retDesc:retDesc});  
+        }else{
+         	if(results){
+	        	for(var k=0;k<results.models.length;k++){
+	        		if(results.models[k].modelsName==modelName){
+					 	retDesc='已存在该分类';
+					 	return res.send({retCode:400, retDesc:retDesc}); 
+	        		}
+	        	}
+	        	var newModel={
+	        		modelsName:modelName,
+	        		sque:k+1,
+	        		modelsuns:[]
+	        	};
+	        	results.models.push(newModel);
+	        	navigations.modify({author:uName},{models:results.models},function(err){
+	        		if(err){
+			 			retDesc='添加失败';
+			 			return res.send({retCode:400, retDesc:retDesc});  
+	        		}else{
+				 		return res.send({retCode:200}); 
+	        		}
+	        	});
+         	}else{
+         		retDesc='数据未初始化';
+         		return res.send({retCode:400, retDesc:retDesc});  
+         	}
+        }
 	});
 }
 
 //添加小链接元素
 exports.listAdd2=function(req, res, next){
-	navigations.findByUname("zoujiahua@173.com",function(err, result){
+	uName=req.session.user.username;
+	navigations.findByUname(uName,function(err, result){
         if(err){
-            console.log("用户名查找出现问题！");
-            //return res.render('/', {title: '用户名查找出现问题！'});   //这些无措处理，以及信息提示的待后期处理
-        }
-        if(result.length>0){
-    		var resultFin=result[0];
-        	for(var k=0;k<resultFin.modelsNum;k++){
-        		if(resultFin.models[k].modelsName==req.body.parentName){
-        			var newSunSque= resultFin.models[k].modelsunNum+1;
-    				var newModelSun={
-		        		sunName:req.body.parentName+"是1",
-		        		sunDesc:"速度加愤怒的时间仿佛热热身",
-		        		sunSque:newSunSque,
-		        		sunUrl:"http://www.baidu.com"
-        			};
-        			resultFin.models[k].modelsuns.push(newModelSun);
-        			console.log(resultFin.models[k].modelsuns);
-        			resultFin.models[k].modelsunNum=resultFin.models[k].modelsunNum+1;
-		        	navigations.modify({author:"zoujiahua@173.com"},{models:resultFin.models},function(err){
-		        		if(err){
-		        			console.log("you cuo wu");
-		        			res.send("false");   //res.jsonp()   res.write()
-				 			res.end();
-		        		}else{
-		        			console.log("ok");
-			        		res.send("true");   //res.jsonp()   res.write()
-					 		res.end();
-		        		}
-		        	});
-        		}
-        	}
+        	retDesc='用户名查找出现问题！';
+        	return res.send({retCode:400, retDesc:retDesc}); 
         }else{
-        	console.log("no data!");
+        	if(result){
+	        	for(var k=0;k<result.modelsNum;k++){
+	        		if(result.models[k].modelsName==req.body.parentName){
+	        			var newSunSque= result.models[k].modelsunNum+1;
+	    				var newModelSun={
+			        		sunName:req.body.parentName+"是1",
+			        		sunDesc:"速度加愤怒的时间仿佛热热身",
+			        		sunSque:newSunSque,
+			        		sunUrl:"http://www.baidu.com"
+	        			};
+	        			result.models[k].modelsuns.push(newModelSun);
+	        			result.models[k].modelsunNum=result.models[k].modelsunNum+1;
+			        	navigations.modify({author:"zoujiahua@173.com"},{models:result.models},function(err){
+			        		if(err){
+			        			retDesc='有错误！';
+			        			return res.send({retCode:400, retDesc:retDesc}); 
+			        		}else{
+			        			return res.send({retCode:200}); 
+			        		}
+			        	});
+	        		}
+	        	}
+        	}else{
+        		retDesc='没有数据！';
+        		return res.send({retCode:400, retDesc:retDesc}); 
+        	}
         }
 	});
 }
 
 exports.listInit=function(req, res, next){
-	var uName=req.session.user.username;
+	uName=req.session.user.username;
 	var newNavigation = new navigations.Navigation({
         author: uName,
 	    modelsNum:3,
@@ -318,11 +268,10 @@ exports.listInit=function(req, res, next){
 
   	navigations.create(newNavigation,function(err){
         if(err){
-	         res.send("false");   //res.jsonp()   res.write()
-			 res.end();
+        	retDesc='有错误哦~';
+        	return res.send({retCode:400, retDesc:retDesc}); 
 	 	 }else{
-        	 res.send("true");   //res.jsonp()   res.write()
-			 res.end();
+	 	 	return res.send({retCode:200}); 
         }
 	});
 }

@@ -35,11 +35,11 @@ function priSetingInit(uName,callback){
         },  
         dataType:'json',      
         success:function(data){    
-           if(data.retCode!=200){
+            if(data.retCode!=200){
                 callback(data.retDesc);
-           }else{
+            }else{
                 callback(null);
-           }
+            }
         },
         error : function(err) {   
             callback(err);    
@@ -48,7 +48,7 @@ function priSetingInit(uName,callback){
 }
 
 //navigation的数据初始化
-function navInit(uName){
+function navInit(uName, callback){
     $.ajax({    
         type:'post',        
         url:'/navigationListInit', 
@@ -57,10 +57,14 @@ function navInit(uName){
         },   
         dataType:'json',    
         success:function(data){    
-           callback(null);
+            if(data.retCode!=200){
+                callback(data.retDesc);
+            }else{
+                callback(null);
+            }
         },
         error : function(err) {   
-           callback(err);      
+            callback(err);      
         }        
     }); 
 }

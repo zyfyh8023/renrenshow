@@ -1,5 +1,4 @@
 $(document).ready(function(){ 
-	
 	/**
 	 * myheader页面的js
 	 */
@@ -34,9 +33,9 @@ $(document).ready(function(){
 	    }
 	});
 
-	/**
-	 * seting页面的js
-	 */
+	/********************
+	 **seting页面的js
+	 *********************/
 	//seting页面保存事件
 	$('#zy-setting').delegate('button', 'click', function(event) {
 	    var setingArr=[];
@@ -153,69 +152,106 @@ $(document).ready(function(){
 		}
 	});
 
+	/**
+	 * introduction页面的js
+	 */
+	$('#my-specialinstr').delegate('#inputFile', 'change', function(event) {
+		$('.imgtip','#my-specialinstr').html($('#inputFile','#my-specialinstr').val());
+	});
+
+	$('#my-specialinstr').delegate('#upload', 'click', function(event) {
+        $('#specialInstruc','#my-specialinstr').ajaxForm({
+            url: $('#specialInstruc','#my-specialinstr').attr('action'),
+            type: 'POST',
+            success: function (res, status, xhr, $form) {
+            	if(res.retCode!=200){
+					alertOpnFn(rs.retDesc);
+            	}else{
+            		location.reload();
+            	}
+                $('#specialInstruc','#my-specialinstr').clearForm();
+            },
+            error: function (res, status, e) {
+            	alertOpnFn('err');
+                $('#specialInstruc','#my-specialinstr').clearForm();
+            }
+        });
+    })
+
+	/**
+	 * navigation页面的js
+	 */
 	//navigation的左侧列表的动态删除
-	$(".delmodelNameA-btn").click(function(){ 
-	    $.ajax({    
-	        type:'post',        
-	        url:'/navigationListDel',  
-	        data: {
-	                navName:$("#addmodelNameD").val()
-	              },    
-	        dataType:'json',    
-	        success:function(data){  
-	          console.log(data);
-	          if(data.code==200){
-	            $(".zy-navTitle-list li").each(function(){
-	              if($(this).find("span").text()==data.modelName){
-	                $(this).remove();
-	              }
-	            });
-	            $(".zy-navigation-list .zy-navigation-nav").each(function(){
-	              if($(this).find("button").text()==data.modelName){
-	                $($(this).next()).remove();
-	                $(this).remove();
-	              }
-	            });
-	            $("#addmodelNameD option").each(function(){
-	              if($(this).text()==data.modelName){
-	                $(this).remove();
-	              }
-	            });
-	            $("#my-removemodel").modal('close');
-	          } else{
-	             console.log(data+"navigation的左侧列表的动态删除失败！");  
-	          }
-	        },
-	        error : function() {   
-	          console.log("navigation的左侧列表的动态删除失败！");    
-	       }        
-	    });  
+	var $removenavmodel = $('#my-removenavmodel');
+	$removenavmodel.delegate('button', 'click', function(event) {
+		//console.log('1111111111111111111');
+		//return;
+	    // $.ajax({    
+	    //     type:'post',        
+	    //     url:'/navigationListDel',  	
+	    //     data: {
+	    //             navName:$(".addmodelNameD", $removenavmodel).val()
+	    //           },    
+	    //     dataType:'json',    
+	    //     success:function(data){  
+	    //       	if(data.retCode == 200){
+	    //         	$(".zy-navTitle-list li").each(function(){
+	    //           		if($(this).find("span").text()==data.modelName){
+		   //              		$(this).remove();
+	    //           		}
+	    //         	});
+		   //          $(".zy-navigation-list .zy-navigation-nav").each(function(){
+		   //            	if($(this).find("button").text()==data.modelName){
+		   //              	$($(this).next()).remove();
+		   //              	$(this).remove();
+		   //            	}
+		   //          });
+		   //          $(".addmodelNameD option", $removenavmodel).each(function(){
+		   //            	if($(this).text()==data.modelName){
+		   //              	$(this).remove();
+		   //            	}
+		   //          });
+		   //          $("#my-removenavmodel").modal('close');
+	    //       	}else{
+	    //       		warnOpnFn('navigation的左侧列表的动态删除失败！');
+	    //       	}
+	    //     },
+	    //     error : function() {  
+	    //     	alertOpnFn('navigation的左侧列表的动态删除失败！');
+	    //     }        
+	    // });  
 	});
 
 	//navigation的左侧列表的动态插入
-	$(".addmodelNameA-btn").click(function(){ 
-	    $.ajax({    
-	        type:'post',        
-	        url:'/navigationListAdd',  
-	        data: {
-	                navName:$("#addmodelNameA").val()
-	              },    
-	        dataType:'json',    
-	        success:function(data){   
-	          if(data!=false) {
-	            $("<li><a href='#''><span>"+$("#addmodelNameA").val()+"</span>（0）</a></li>").appendTo($(".zy-navTitle-list"));
-	            $("<div class='col-sm-12 am-u-sm-12 zy-navigation-nav'><button class='am-btn am-btn-primary am-btn-xl'>"+$("#addmodelNameA").val()+"</button></div><div class='col-md-4 am-u-md-4 col-sm-6 am-u-sm-6 zy-navigation-item zy-navigation-add-ele am-u-end addBtn'><div><button type='button' data-am-modal='{target: '#my-popup'}'><img src='/images/add.jpg'></button></div></div>").appendTo(".zy-navigation-list");
-	            $("<option value="+$("#addmodelNameA").val()+">"+$("#addmodelNameA").val()+"</option>").appendTo($("#addmodelNameD"));
-	            $("#my-addmodel").modal('close');
-	          }else{
-	            console.log("navigation的左侧列表的动态插入失败！"); 
-	          }
-	        },
-	        error : function() {   
-	          console.log("navigation的左侧列表的动态插入失败！");    
-	       }        
-	    });  
+	var $addnavmodel=$('#my-addnavmodel');
+	$addnavmodel.delegate('button', 'click', function(event) {
+		// console.log('22222222222222');
+	 //    $.ajax({    
+	 //        type:'post',        
+	 //        url:'/navigationListAdd',  
+	 //        data: {
+	 //                navName:$(".addmodelNameA", $addnavmodel).val()
+	 //              },    
+	 //        dataType:'json',    
+	 //        success:function(data){   
+	 //          	if(data.retCode == 200) {
+		//             $("<li><a href='#''><span>"+$(".addmodelNameA").val()+"</span>（0）</a></li>").appendTo($(".zy-navTitle-list"));
+		//             $("<div class='col-sm-12 am-u-sm-12 zy-navigation-nav'><button class='am-btn am-btn-primary am-btn-xl'>"+$(".addmodelNameA").val()+"</button></div><div class='col-md-4 am-u-md-4 col-sm-6 am-u-sm-6 zy-navigation-item zy-navigation-add-ele am-u-end addBtn'><div><button type='button' data-am-modal='{target: '#my-popup'}'><img src='/images/add.jpg'></button></div></div>").appendTo(".zy-navigation-list");
+		//             $("<option value="+$(".addmodelNameA").val()+">"+$(".addmodelNameA").val()+"</option>").appendTo($("#addmodelNameD"));
+		//             $("#my-addnavmodel").modal('close');
+	 //          	}else{
+	 //            	warnOpnFn('navigation的左侧列表的动态插入失败！');
+	 //          	}
+	 //        },
+	 //        error : function() {   
+	 //          	alertOpnFn('navigation的左侧列表的动态插入失败！');  
+	 //       }        
+	 //    });  
 	});
+
+
+
+
 
 	//experience发布
 	$(".experienceFB").click(function(){
@@ -305,14 +341,6 @@ $(document).ready(function(){
 
 	
     
-
-
-
-
-
-
-
-
 
 
 });

@@ -145,7 +145,6 @@ app.post('/introduction', introduction.doPage);
 app.use('/resource', resource);
 
 app.get('/navigation', navigation.page);
-app.post('/navigationList', navigation.getList);
 app.post('/navigationListInit', navigation.listInit);
 app.post('/navigationListAdd', navigation.listAdd);
 app.post('/navigationListDel', navigation.listDel);

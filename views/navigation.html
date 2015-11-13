@@ -1,190 +1,196 @@
 <% include myheader.html %>
-	<% include nav.html %>
-	<div class="am-g am-u-lg-9 am-u-md-12  am-u-sm-centered">
-		<% include pos.html %>
-		<div class="col-lg-3 am-u-lg-3 am-show-lg-only zy-show-lg-nav">
-			<div data-am-sticky>
-				<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default zy-titlebar-nomargin">
-				  	<h2 class="am-titlebar-title">快速导航</h2>
-				</div>
-				<div>
-					<ul class="am-list am-list-border zy-navTitle-list">
-						<% if (allNavgition) { %> 
-					    	<% for(var i=0; i<allNavgition.models.length; i++) {%>
-								<li><a href="#"><span><%= allNavgition.models[i].modelsName %></span>（<%= allNavgition.models[i].modelsuns.length %>）</a></li>
-							<% } %>
-						<% } else { %>
-							<div style="font-size:20px;">数据未初始化</div>
+<% include nav.html %>
+
+<div class="am-g am-u-lg-9 am-u-md-12  am-u-sm-centered">
+	<% include pos.html %>
+	<div class="col-lg-3 am-u-lg-3 am-show-lg-only zy-show-lg-nav">
+		<div data-am-sticky>
+			<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default zy-titlebar-nomargin">
+			  	<h2 class="am-titlebar-title">快速导航</h2>
+			</div>
+			<div>
+				<ul class="am-list am-list-border zy-navTitle-list">
+					<% if (allNavgition) { %> 
+				    	<% for(var i=0; i<allNavgition.models.length; i++) {%>
+							<li><a href="#"><span><%= allNavgition.models[i].modelsName %></span>（<%= allNavgition.models[i].modelsuns.length %>）</a></li>
 						<% } %>
-					</ul>
-				</div>
-				<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default zy-titlebar-nomargin">
-				 	<h2 class="am-titlebar-title">编辑模块</h2>
-				</div>
-				<div>
-					<ul class="am-list am-list-border">
-					  	<li>
-					  		<a href="javascript:;" data-am-modal="{target: '#my-addmodel'}">添加模块</a>
-					  	</li>
-					  	<li>
-					  		<a href="javascript:;" data-am-modal="{target: '#my-removemodel'}">删除模块</a>
-					  	</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-       <!-- 添加模块 -->
-		<div class="am-modal-actions" id="my-addmodel">
-		  	<div class="am-modal-actions-group">
-		    	<ul class="am-list">
-		      		<li class="am-modal-actions-danger">
-		        	<br>
-			    	<div class="am-u-lg-6 am-u-md-8  am-u-sm-centered">
-			      		<form class="am-form am-form-horizontal" method="post" action="/navigation/addmodel">
-							<div class="am-form-group">
-								<label for="addmodelNameA" class="am-u-sm-2 am-form-label">模块名称：</label>
-								<div class="am-u-sm-10">
-									<input type="text" id="addmodelNameA" required name="addmodelNameA" placeholder="请输入模块名称">
-								</div>
-							</div>
-							<div class="am-form-group">
-							  <div class="am-u-sm-12">
-							     <button type="button" class="addmodelNameA-btn am-btn am-btn-primary"> 确认添加 </button>
-							  </div>
-							</div>
-						</form>
-					</div>
-		      		</li>
-		    	</ul>
-			</div>
-		 	<div class="am-modal-actions-group">
-		    	<button class="am-btn am-btn-danger am-btn-block" data-am-modal-close>关闭</button>
-		  	</div>
-		</div>
-		 <!-- 删除模块 -->
-		<div class="am-modal-actions" id="my-removemodel">
-		  	<div class="am-modal-actions-group">
-		    	<ul class="am-list">
-		      		<li class="am-modal-actions-danger">
-		        	<br>
-			    	<div class="am-u-lg-6 am-u-md-8  am-u-sm-centered">
-			      		<form class="am-form am-form-horizontal" method="post" action="/navigation/removemodel">
-							<div class="am-form-group">
-							 	<label for="removemodelname" class="am-u-sm-2 am-form-label">模块名称：</label>
-							 	<div class="am-u-sm-10">
-						      		<select id="addmodelNameD" name="addmodelNameD" required>
-								        <% if (allNavgition) { %> 
-									    	<% for(var i=0; i<allNavgition.models.length; i++) {%>
-												<option value="<%= allNavgition.models[i].modelsName %>"><%= allNavgition.models[i].modelsName %></option>
-											<% } %>
-										<% } else { %>
-											<option value="">无可删除选项。。。</option>
-										<% } %>
-						      		</select>
-						      		<span class="am-form-caret"></span>
-						      	</div>
-					  	 	</div>
-							<div class="am-form-group">
-							  <div class="am-u-sm-12">
-							    <button type="button" class="delmodelNameA-btn am-btn am-btn-primary"> 确认删除 </button>
-							  </div>
-							</div>
-						</form>
-					</div>
-		      		</li>
-		    	</ul>
-			</div>
-		 	<div class="am-modal-actions-group">
-		    	<button class="am-btn am-btn-danger am-btn-block" data-am-modal-close>关闭</button>
-		  	</div>
-		</div>
-		<div class="col-lg-9 am-u-lg-9 zy-show-lg-content">
-			<div class="am-show-md-only">
-				<ul class="am-nav am-nav-tabs">
-				  <li class="am-active"><a href="#">首页</a></li>
-				  <li><a href="#">项目</a></li>
-				  <li class="am-dropdown" data-am-dropdown>
-				    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-				      菜单 <span class="am-icon-caret-down"></span>
-				    </a>
-				    <ul class="am-dropdown-content">
-			            <li><a href="#">1. 一行代码，简单快捷</a></li>
-			            <li class="am-active"><a href="#">2. 网址不变且唯一</a></li>
-			            <li><a href="#">3. 内容实时同步更新</a></li>
-				    </ul>
-				  </li>
+					<% } else { %>
+						<div style="font-size:10px;">数据未初始化</div>
+					<% } %>
 				</ul>
 			</div>
-			<div id="amz-offcanvas" class="am-offcanvas">
-				<section class="amz-sidebar am-offcanvas-bar">
-					<ul class="am-list am-list-border">
-					  	<li><a href="#">基本样式1</a></li>
-					  	<li><a href="#">基本样式1</a></li>
-					  	<li><a href="#">基本样式1</a></li>
-					  	<li><a href="#">基本样式1</a></li>
-					  	<li><a href="#">基本样式1</a></li>
-					</ul>
-				</section>
+			<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default zy-titlebar-nomargin">
+			 	<h2 class="am-titlebar-title">模块编辑</h2>
 			</div>
-			<div class="zy-navigation-list">
-				<% if (allNavgition) { %> 
-				    	<% for(var i=0; i<allNavgition.models.length; i++) {%>
-			    			<div class="col-sm-12 am-u-sm-12 zy-navigation-nav">
-								<button class="am-btn am-btn-primary am-btn-xl"><%= allNavgition.models[i].modelsName %></button>
-							</div>
-		    				<% for(var j=0; j<allNavgition.models[i].modelsuns.length; j++) {%>
-		    					<div class="col-md-4 am-u-md-4 col-sm-6 am-u-sm-6 zy-navigation-item">
-									<div><a href="<%= allNavgition.models[i].modelsuns[j].sunUrl %>"><%= allNavgition.models[i].modelsuns[j].sunName %></a><br><%= allNavgition.models[i].modelsuns[j].sunDesc %></div>
-								</div>
-		    				<% } %>
-		    				<div class="col-md-4 am-u-md-4 col-sm-6 am-u-sm-6 zy-navigation-item zy-navigation-add-ele am-u-end"><div>
-		    					<button type="button" data-am-modal="{target: '#my-popup'}"><img src="/images/add.jpg"></button>
-		    				</div></div>
-						<% } %>
-				<% } else { %>
-					<div style="font-size:50px;text-align:center;">数据未初始化! </div>
-				<% } %>
+			<div>
+				<ul class="am-list am-list-border">
+				  	<li>
+				  		<a href="javascript:;" data-am-modal="{target: '#my-addnavmodel'}">添加模块</a>
+				  	</li>
+				  	<li>
+				  		<a href="javascript:;" data-am-modal="{target: '#my-removenavmodel'}">删除模块</a>
+				  	</li>
+				</ul>
 			</div>
 		</div>
 	</div>
-
-
-<div class="am-popup" id="my-popup">
-  <div class="am-popup-inner">
-    <div class="am-popup-hd">
-      <h4 class="am-popup-title">资源导航模块添加</h4>
-      <span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
-    </div>
-    <div class="am-u-lg-8 am-u-sm-centered am-popup-bd">
-    	<br><br><br>
-      	<form class="am-form am-form-horizontal" method="post" action="" data-am-validator>
-			  <div class="am-form-group">
-			    <label for="address" class="am-u-sm-2 am-form-label">模块名称：</label>
-			    <div class="am-u-sm-10">
-			      <input type="text" id="address" required name="address" placeholder="请输入您的通信地址"  >
-			    </div>
-			  </div>
-			  <div class="am-form-group">
-			    <label for="identity" class="am-u-sm-2 am-form-label">模块说明：</label>
-			    <div class="am-u-sm-10">
-			      <textarea placeholder="请输入您的户口地址" required class="" id="identity" name="identity" rows="5"></textarea>
-			    </div>
-			  </div>
-			  <div class="am-form-group">
-			    <label for="phone" class="am-u-sm-2 am-form-label">模块链接：</label>
-			    <div class="am-u-sm-10">
-			      <input type="text" id="phone" name="phone" required placeholder="请输入您的电话号码">
-			    </div>
-			  </div><br>
-			  <div class="am-form-group">
-			    <div class="am-u-sm-10 am-u-sm-offset-2">
-			      <button type="submit" class="am-btn am-btn-warning">提交确认</button>
-			    </div>
-			  </div>
-		</form>  
-    </div>
-  </div>
+   
+	<div class="col-lg-9 am-u-lg-9 zy-show-lg-content">
+	<!-- 	<div class="am-show-md-only">
+			<ul class="am-nav am-nav-tabs">
+			  <li class="am-active"><a href="#">首页</a></li>
+			  <li><a href="#">项目</a></li>
+			  <li class="am-dropdown" data-am-dropdown>
+			    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+			      菜单 <span class="am-icon-caret-down"></span>
+			    </a>
+			    <ul class="am-dropdown-content">
+		            <li><a href="#">1. 一行代码，简单快捷</a></li>
+		            <li class="am-active"><a href="#">2. 网址不变且唯一</a></li>
+		            <li><a href="#">3. 内容实时同步更新</a></li>
+			    </ul>
+			  </li>
+			</ul>
+		</div>
+		<div id="amz-offcanvas" class="am-offcanvas">
+			<section class="amz-sidebar am-offcanvas-bar">
+				<ul class="am-list am-list-border">
+				  	<li><a href="#">基本样式1</a></li>
+				  	<li><a href="#">基本样式1</a></li>
+				  	<li><a href="#">基本样式1</a></li>
+				  	<li><a href="#">基本样式1</a></li>
+				  	<li><a href="#">基本样式1</a></li>
+				</ul>
+			</section>
+		</div> -->
+		<div class="zy-navigation-list">
+			<% if (allNavgition) { %> 
+			    	<% for(var i=0; i<allNavgition.models.length; i++) {%>
+		    			<div class="col-sm-12 am-u-sm-12 zy-navigation-nav">
+							<button class="am-btn am-btn-primary am-btn-xl"><%= allNavgition.models[i].modelsName %></button>
+						</div>
+	    				<% for(var j=0; j<allNavgition.models[i].modelsuns.length; j++) {%>
+	    					<div class="col-md-4 am-u-md-4 col-sm-6 am-u-sm-6 zy-navigation-item">
+								<div><a href="<%= allNavgition.models[i].modelsuns[j].sunUrl %>"><%= allNavgition.models[i].modelsuns[j].sunName %></a><br><%= allNavgition.models[i].modelsuns[j].sunDesc %></div>
+							</div>
+	    				<% } %>
+	    				<div class="col-md-4 am-u-md-4 col-sm-6 am-u-sm-6 zy-navigation-item zy-navigation-add-ele am-u-end"><div>
+	    					<button type="button" data-am-modal="{target: '#my-navpopup'}"><img src="/images/add.jpg"></button>
+	    				</div></div>
+					<% } %>
+			<% } else { %>
+				<div style="font-size:20px;text-align:center;">数据未初始化! </div>
+			<% } %>
+		</div>
+	</div>
 </div>
 
+
+<!-- 添加模块 -->
+<div class="am-modal-actions" id="my-addnavmodel">
+  	<div class="am-modal-actions-group">
+    	<ul class="am-list">
+      		<li class="am-modal-actions-danger">
+        	<br>
+	    	<div class="am-u-lg-6 am-u-md-8  am-u-sm-centered">
+	      		<form class="am-form am-form-horizontal" method="post">
+					<div class="am-form-group">
+						<label class="am-u-sm-2 am-form-label">模块名称：</label>
+						<div class="am-u-sm-10">
+							<input type="text" required class="addmodelNameA" placeholder="请输入模块名称">
+						</div>
+					</div>
+					<div class="am-form-group">
+					  	<div class="am-u-sm-12">
+					     	<button class="addmodelNameA-btn am-btn am-btn-primary"> 确认添加 </button>
+					  	</div>
+					</div>
+				</form>
+			</div>
+      		</li>
+    	</ul>
+	</div>
+ 	<!-- <div class="am-modal-actions-group">
+    	<button class="am-btn am-btn-danger am-btn-block" data-am-modal-close>关闭</button>
+  	</div> -->
+</div>
+
+
+<!-- 删除模块 -->
+<div class="am-modal-actions" id="my-removenavmodel">
+  	<div class="am-modal-actions-group">
+    	<ul class="am-list">
+      		<li class="am-modal-actions-danger">
+        	<br>
+	    	<div class="am-u-lg-6 am-u-md-8  am-u-sm-centered">
+	      		<form class="am-form am-form-horizontal" method="post">
+					<div class="am-form-group">
+					 	<label class="am-u-sm-2 am-form-label">模块名称：</label>
+					 	<div class="am-u-sm-10">
+				      		<select class="addmodelNameD" required>
+						        <% if (allNavgition) { %> 
+							    	<% for(var i=0; i<allNavgition.models.length; i++) {%>
+										<option value="<%= allNavgition.models[i].modelsName %>"><%= allNavgition.models[i].modelsName %></option>
+									<% } %>
+								<% } else { %>
+									<option value="">无可删除选项。。。</option>
+								<% } %>
+				      		</select>
+				      		<span class="am-form-caret"></span>
+				      	</div>
+			  	 	</div>
+					<div class="am-form-group">
+					  	<div class="am-u-sm-12">
+					    	<button class="delmodelNameA-btn am-btn am-btn-primary"> 确认删除 </button>
+					  	</div>
+					</div>
+				</form>
+			</div>
+      		</li>
+    	</ul>
+	</div>
+ 	<!-- <div class="am-modal-actions-group">
+    	<button class="am-btn am-btn-danger am-btn-block" data-am-modal-close>关闭</button>
+  	</div> -->
+</div>
+
+
+<div class="am-popup" id="my-navpopup">
+  	<div class="am-popup-inner">
+    	<div class="am-popup-hd">
+      		<h4 class="am-popup-title">资源导航模块添加</h4>
+      		<span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
+    	</div>
+	    <div class="am-u-lg-12 am-u-sm-centered am-popup-bd">
+	    	<br><br><br>
+	      	<form class="am-form am-form-horizontal" method="post" data-am-validator>
+			  	<div class="am-form-group">
+				    <label class="am-u-sm-3 am-form-label">模块名称：</label>
+				    <div class="am-u-sm-9">
+				      	<input type="text" required class="address" placeholder="请输入您的通信地址"  >
+				    </div>
+			  	</div>
+			  	<div class="am-form-group">
+			    	<label class="am-u-sm-3 am-form-label">模块说明：</label>
+			    	<div class="am-u-sm-9">
+			      		<textarea placeholder="请输入您的户口地址" required class="identity" rows="5"></textarea>
+				    </div>
+			  	</div>
+			  	<div class="am-form-group">
+				    <label class="am-u-sm-3 am-form-label">模块链接：</label>
+				    <div class="am-u-sm-9">
+				      	<input type="text" class="phone" required placeholder="请输入您的电话号码">
+				    </div>
+			  	</div>
+			  	<br>
+			  	<div class="am-form-group">
+				    <div class="am-u-sm-9 am-u-sm-offset-3">
+				      	<button class="am-btn am-btn-warning">提交确认</button>
+				    </div>
+			  	</div>
+			</form>  
+	    </div>
+	</div>
+</div>
 
 <% include myfooter.html %>

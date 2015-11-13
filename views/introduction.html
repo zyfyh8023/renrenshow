@@ -1,6 +1,6 @@
-
 <% include myheader.html %>
 <% include nav.html %>
+
 <div class="am-g am-u-lg-9 am-u-md-12  am-u-sm-centered zy-introduction">
     <div data-am-widget="intro" class="am-intro am-cf am-intro-default">
         <div class="am-intro-hd">
@@ -57,35 +57,5 @@
         </div>
     </div>
 </div>
+
 <% include myfooter.html %>
-
-<script type="text/javascript">
-    $(document).ready(function(){
-
-        $('#inputFile').change(function(){
-            $('.imgtip').html($('#inputFile').val());
-        })
-
-        $('#upload').click(function(){
-            $('#specialInstruc').ajaxForm({
-                url: $('#specialInstruc').attr('action'),
-                type: 'POST',
-                success: function (res, status, xhr, $form) {
-                    var tp;
-                    if (res == '1') tp = '异常错误！可能不支持该格式的图片。';
-                    else if (res == '2') tp = '图片大小不得超过2m！';
-                    else if (res == '3') tp = '文件类型必须是图片！';
-                    else if (res == '4') tp = 'rename err';
-                    else if (res == '5') {
-                        location.reload();
-                    }
-                    $('#specialInstruc').clearForm();
-                },
-                error: function (res, status, e) {
-                    $('#specialInstruc').clearForm();
-                }
-            });
-        })
-
-    });
-</script>

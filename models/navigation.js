@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 //定义Navigation对象模型
 var NavigationSchema = new Schema({
-    author: String,
+    author: { type:String, unique: true },
     modelsNum: { type: Number, default: 0 },
     models:[{
         modelsName:String,
@@ -43,7 +43,7 @@ exports.create = function(obj,callback) {
 
 //根据用户名查找   
 exports.findByUname = function(author,callback) {
-     Navigation.find({author:author},function(err,result){
+     Navigation.findOne({author:author},function(err,result){
         if(err){
             callback(err,null);
         }else
