@@ -1,0 +1,99 @@
+<% include header.html %>
+
+<section class="zy-register" id="zy-register">
+    <div class="am-g am-u-lg-8 am-u-md-12  am-u-sm-centered">
+        <form class="am-form am-form-horizontal" class="registerForm" method="post" data-am-validator>
+            <div class="am-form-group">
+                <label class="am-u-md-2 am-form-label">用户名:</label>
+                <div class="am-u-md-5">
+                    <input class="am-radius am-input-lg username" type="email" required placeholder="请输入你的用户名吧">
+                </div>
+                <div class="am-u-md-5 zy-font zy-font-add">请输入您的邮箱</div>
+            </div>
+          <div class="am-form-group">
+              <label class="am-u-md-2 am-form-label">密码:</label>
+              <div class="am-u-md-5">
+                  <input class="am-radius am-input-lg password" type="password" required placeholder="请输入你的密码吧">
+              </div>
+              <div class="am-u-md-5 zy-font zy-font-add">请使用6~16个英文字母、符号或数字</div>
+          </div>
+          <div class="am-form-group">
+              <label class="am-u-md-2 am-form-label">确认密码:</label>
+              <div class="am-u-md-5">
+                  <input class="am-radius am-input-lg repassword" type="password" required placeholder="请输入你的密码吧">
+              </div>
+              <div class="am-u-md-5 zy-font zy-font-add">请再次输入上面的密码</div>
+          </div>
+          <div class="am-form-group">
+              <div class="am-u-md-offset-2 am-u-md-10">
+                  <label class="zy-font">
+                      <input type="checkbox" minchecked="1" required class="myconfirm" name="myconfirm"> 我同意遵守用户协议和隐私政策
+                  </label>  
+              </div>
+          </div>
+          <div class="am-form-group">
+              <div class="am-u-md-offset-2 am-u-md-10">
+                  <button type="button" class="am-btn am-btn-primary am-radius"> 提交注册信息 </button>
+              </div>
+          </div>
+          <div class="am-form-group">
+              <div class="am-u-md-offset-2 am-u-md-10">
+                  <a class="am-btn am-btn-link zy-font" href="/login">如果你已拥有帐号,请在此登录</a>
+              </div>
+          </div>
+        </form>
+    </div> 
+</section>
+
+<% include footer.html %>
+
+<script>
+$(document).ready(function(){   
+    //Dom缓存
+    var $zyRegister=$('#zy-register');
+    //注册提交
+    $zyRegister.delegate('button', 'click', function(event) {
+      warnClsFn();
+      var username=$.trim($(".username", $zyRegister).val()),
+          password=$.trim($('.password', $zyRegister).val()),
+          repassword=$.trim($('.repassword', $zyRegister).val());
+      if($('.myconfirm', $zyRegister).prop('checked') && username && password && repassword){
+          $.ajax({    
+              type:'post',        
+              url:'/register',  
+              data: {
+                  username:username,
+                  password:password,
+                  repassword:repassword
+              },    
+              dataType:'json',    
+              success:function(data){  
+                  if(data.retCode!=200){
+                      warnOpnFn(data.retDesc);
+                  }else{
+                    setingInit(username, function(err){
+                        if(err){
+                              alertOpnFn('setingInit失败，请稍后再试！');
+                        }else{
+                            priSetingInit(username, function(err){
+                                if(err){
+                                      alertOpnFn('priSetingInit失败，请稍后再试！');
+                                }else{
+                                    location.href='/login';
+                                }
+                            })
+                        }
+                    })
+                  }
+              },
+              error : function(err) {   
+                 alertOpnFn('err');
+              }        
+          }); 
+        }else{
+          warnOpnFn('请把表单的内容填写完整哦~');
+        }
+    });
+
+});
+</script>

@@ -1,0 +1,77 @@
+<% include myheader.html %>
+
+<section id="zy-setting">
+    <% include nav.html %>
+	<div class="am-g am-u-lg-9 am-u-md-12  am-u-sm-centered">
+		<% include pos.html %>
+		<% include setingNav.html %>
+		<div class="col-lg-9 am-u-lg-9 zy-show-lg-content">
+			<!-- <div class="am-show-md-only">
+				<ul class="am-nav am-nav-tabs">
+					<li class="am-active">
+						<a href="#">首页</a>
+					</li>
+					<li>
+						<a href="#">项目</a>
+					</li>
+					<li class="am-dropdown" data-am-dropdown>
+						<a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+						      菜单 <span class="am-icon-caret-down"></span>
+						</a>
+						<ul class="am-dropdown-content">
+					        <li><a href="#">1. 一行代码，简单快捷</a></li>
+					        <li class="am-active"><a href="#">2. 网址不变且唯一</a></li>
+					        <li><a href="#">3. 内容实时同步更新</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div id="amz-offcanvas" class="am-offcanvas">
+				<section class="amz-sidebar am-offcanvas-bar">
+					<ul class="am-list am-list-border">
+					  	<li><a href="#">基本样式1</a></li>
+					  	<li><a href="#">基本样式1</a></li>
+					  	<li><a href="#">基本样式1</a></li>
+					  	<li><a href="#">基本样式1</a></li>
+					  	<li><a href="#">基本样式1</a></li>
+					</ul>
+				</section>
+			</div> -->
+				<% for(var i=0; i<results.allModels.length; i++) { %>
+					<div class="zy-public-title">
+						<span class="am-badge am-badge-secondary am-round am-text-xl"><%=i+1 %></span> <span class="titleName am-badge am-badge-secondary am-text-xl"><%=results.allModels[i].modelNam %></span>
+					</div>
+					<div class="zy-public-content zy-change-content">
+					<% for(var j=0; j<results.allModels[i].sunModels.length; j++) { %>
+						<% if(results.allModels[i].modelNam =='个性简介') { %>
+							<% if(results.allModels[i].sunModels[j].sunYesNo ==1) { %>
+								<a class="zy-div-radio am-badge am-badge-success am-text-lg"><%=results.allModels[i].sunModels[j].sunNam %></a>
+							<% } else { %>
+								<a class="zy-div-radio am-badge am-text-lg"><%=results.allModels[i].sunModels[j].sunNam %></a>
+							<% } %>
+						<% } else{ %>
+							<% if(results.allModels[i].sunModels[j].sunYesNo ==1) { %>
+								<a class="zy-div-checkbox am-badge am-badge-success am-text-lg"><%=results.allModels[i].sunModels[j].sunNam %></a>
+							<% } else { %>
+								<a class="zy-div-checkbox am-badge am-text-lg"><%=results.allModels[i].sunModels[j].sunNam %></a>
+							<% } %>
+						<% }%>
+					<% }%>
+					</div>
+				<% } %>
+			<!-- <div class="zy-public-title">
+				<span class="am-badge am-badge-secondary am-round am-text-xl">5</span> <span class="am-badge am-badge-secondary am-text-xl">公开链接</span>
+			</div>
+			<div class="zy-public-content">
+				<span class="am-badge am-badge-warning am-text-lg">http://localhost:3000/seting</span>
+			</div> -->
+			<div style="margin-left:5rem;">
+				<button class="am-btn am-btn-warning am-text-lg"> 保存设置 </button>
+			</div>
+		</div>	
+	</div>
+</section>	
+
+	<!-- <a class="am-icon-btn am-icon-bars am-show-sm-only amz-sidebar-toggle" data-am-offcanvas="" href="#amz-offcanvas"><span class="am-sr-only">侧栏导航</span></a> -->
+
+<% include myfooter.html %>

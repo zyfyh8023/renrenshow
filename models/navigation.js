@@ -1,0 +1,93 @@
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+
+//定义Navigation对象模型
+var NavigationSchema = new Schema({
+    author: String,
+    modelsNum: { type: Number, default: 0 },
+    models:[{
+        modelsName:String,
+        createTime: { type: Date, default: Date.now },  
+        updateTime: { type: Date, default: Date.now },  
+        sque: { type: Number, default: 0 },
+        modelsunNum: { type: Number, default: 0 },
+        modelsuns:[{
+            sunSque: { type: Number, default: 0 },
+            sunDesc:String,
+            sunName:String,
+            sunUrl:String,     
+            cTime:{ type: Date, default: Date.now },  
+            uTime:{ type: Date, default: Date.now }
+        }]
+    }],
+    changeTime: { type: Date, default: Date.now }
+});
+
+//访问User对象模型
+mongoose.model('Navigation', NavigationSchema);
+var Navigation = mongoose.model('Navigation');   //作用是什么？   下面所有的new User 既是如此
+exports.Navigation=Navigation;
+
+//添加功能
+exports.create = function(obj,callback) {
+    var newNavigation = obj;
+    newNavigation.save(function(err){
+        if(err){
+            callback(err);
+        }else{
+            callback(null);
+        }
+    });
+}
+
+//根据用户名查找   
+exports.findByUname = function(author,callback) {
+     Navigation.find({author:author},function(err,result){
+        if(err){
+            callback(err,null);
+        }else
+        {
+            callback(null,result);
+        }
+     });
+}
+
+//条件查找所有   结果集
+exports.findAll = function(object,callback) {
+     Navigation.find(object,function(err,result){
+        if(err){
+            callback(err);
+        }else
+        {
+            callback(null,result);
+        }
+     });
+}
+
+//删除操作
+exports.delete = function(object,callback) {
+     Navigation.remove(object,function(err){
+        if(err){
+            callback(err);
+        }else
+        {
+            callback(null);
+        }
+     });
+}
+
+//更新操作
+exports.modify = function(conditions,updates,options,callback) {
+     Navigation.update(conditions,updates,options,function(err){
+        if(err){
+            callback(err);
+        }else
+        {
+            callback(null);
+        }
+     });
+}
+
+
+

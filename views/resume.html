@@ -1,0 +1,2071 @@
+<% include myheader.html %>
+      <!-- <div class="am-progress am-progress-striped am-active">
+          <div class="am-progress-bar" style="width: 65%">65%</div>
+          <div class="am-progress-bar am-progress-bar-warning" style="width: 35%">35%</div>
+      </div> -->
+      <a data-am-offcanvas="{target: '#doc-oc-demo2',effect: 'push'}">编辑</a>
+      <div id="doc-oc-demo2" class="am-offcanvas">
+        <div class="am-offcanvas-bar">
+          <div class="am-offcanvas-content">
+
+          </div>
+        </div>
+      </div>
+
+      <div class="zy-resume-img">
+         <!--  <img src="/images/title_bg_d.jpg" class="am-img-responsive" alt=""/> -->
+          <i class="zy-resume-img-bg"></i>
+      </div>
+      <div class="am-g am-u-lg-9 am-u-md-12  am-u-sm-centered zy-resume">
+          <div class="zy-resume-myimg-poi">
+            <img  src="<%= rs.headimg %>" />
+          </div>
+          <div class="am-animation-slide-left">
+            <h2 style="color:#555;">我的网页版简历</h2>
+            <h5>愿以我的努力、激情和真诚，能为您带来新的活力！</h5>
+          </div>
+      </div>
+
+      <br><br><br><br><br><br>
+      <div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
+        <div class="am-alert am-alert-secondary">
+            <button type="button" class="am-close" data-am-modal="{target: '#my-baseinfo'}"><i class="am-icon-pencil"></i></button>
+            <div style="font-size:30px;text-align:center;">基本信息</div>
+        </div>
+      </div>
+      <div class="am-g am-u-lg-6 am-u-md-12  am-u-sm-centered">
+          <ul class="am-list">
+              <li><a href="javascript:;"><i style="display:inline-block;margin-right:30px;" class="am-icon-user am-icon-sm am-icon-fw"></i>
+                姓名：<%= rs.baseInfo1.uname %></a></li>
+              <li><a  href="javascript:;"> <i style="display:inline-block;margin-right:30px;" class="am-icon-transgender am-icon-sm am-icon-fw"></i>
+                性别：<% if (rs.baseInfo1.gender == '1') { %>男
+                      <% }else{ %>女
+                      <% } %>
+                </a></li>
+              <li><a href="javascript:;"><i style="display:inline-block;margin-right:30px;" class="am-icon-user-secret am-icon-sm am-icon-fw"></i>
+                年龄：<%= rs.baseInfo1.age %>岁</a></li>
+              <li><a href="javascript:;"><i style="display:inline-block;margin-right:30px;" class="am-icon-flag-checkered am-icon-sm am-icon-fw"></i>
+                政治面貌：<%= rs.baseInfo1.identity %></a></li>
+              <li><a href="javascript:;"><i style="display:inline-block;margin-right:30px;" class="am-icon-mortar-board am-icon-sm am-icon-fw"></i>
+                学历：<% if(rs.baseInfo1.education=='1'){ %>高中
+                      <% }else if(rs.baseInfo1.education=='2'){ %>大专
+                      <% }else if(rs.baseInfo1.education=='3'){ %>本科
+                      <% }else if(rs.baseInfo1.education=='4'){ %>硕士
+                      <% }else{ %>博士
+                      <% } %>
+                </a></li>
+              <li><a href="javascript:;"><i style="display:inline-block;margin-right:30px;" class="am-icon-university am-icon-sm am-icon-fw"></i>
+                毕业院校：<%= rs.baseInfo1.school %></a></li>
+              <li><a href="javascript:;"><i style="display:inline-block;margin-right:30px;" class="am-icon-certificate am-icon-sm am-icon-fw"></i>
+                专业：<%= rs.baseInfo1.major %></a></li>
+          </ul>
+      </div>
+
+
+      <div class="am-popup" id="my-baseinfo">
+      <div class="am-popup-inner">
+        <div class="am-popup-hd">
+          <h4 class="am-popup-title">基本信息编辑</h4>
+          <span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
+        </div>
+        <div class="am-popup-bd"> 
+        <form class="am-form am-form-horizontal" action="/resume/baseinfo" data-am-validator method='post' id="specialInstruc" enctype='multipart/form-data'> 
+          <div class="am-form-group">
+            <label for="uname" class="am-u-sm-3 am-form-label">姓名：</label>
+            <div class="am-u-sm-9">
+              <input type="text" name="uname" class="uname" placeholder="请输入您的姓名" required />
+            </div>
+          </div>
+          <div class="am-form-group">
+            <label for="age" class="am-u-sm-3 am-form-label">年龄：</label>
+            <div class="am-u-sm-9">
+              <input type="number" name="age" class="age" placeholder="请输入您的年龄 1-120" min="1" max="120" required />
+              </div>
+          </div>
+          <div class="am-form-group">
+            <label class="am-u-sm-3 am-form-label">性别：</label>
+            <div class="am-u-sm-9">
+              <label class="am-radio-inline">
+                 <input type="radio" name="sex" value="1" required /> 男
+              </label>
+              <label class="am-radio-inline">
+                 <input type="radio" name="sex" value="2"> 女
+              </label>
+            </div>
+          </div>
+          <div class="am-form-group">
+            <label for="istatus" class="am-u-sm-3 am-form-label">政治面貌：</label>
+            <div class="am-u-sm-9">
+              <input type="text" class="istatus" name="istatus" placeholder="输入您的政治面貌" />
+            </div>
+          </div>
+          <div class="am-form-group">
+          <label for="ieducation" class="am-u-sm-3 am-form-label">学历：</label>
+          <div class="am-u-sm-9">
+                <select class="ieducation" name="ieducation" required>
+                  <option value="">请选择一项</option>
+                  <option value="1">高中</option>
+                  <option value="2">大专</option>
+                  <option value="3">本科</option>
+                  <option value="4">硕士</option>
+                  <option value="5">博士</option>
+                </select>
+                <span class="am-form-caret"></span>
+              </div>
+            </div>
+          <div class="am-form-group">
+            <label for="ischool" class="am-u-sm-3 am-form-label">毕业院校：</label>
+            <div class="am-u-sm-9">
+              <input type="text" class="ischool" name="ischool" placeholder="请输入您的院校" required />
+            </div>
+          </div>
+          <div class="am-form-group">
+            <label for="imajor" class="am-u-sm-3 am-form-label">专业：</label>
+            <div class="am-u-sm-9">
+              <input type="text" class="imajor" name="imajor" placeholder="请输入您的专业" required />
+            </div>
+          </div>
+          <div class="am-form-group am-form-file">
+             <label class="am-u-sm-3 am-form-label">我的头像：</label>
+               <div class="am-u-sm-9">
+                  <button type="button" class="am-btn am-btn-default am-btn-sm">
+                  <i class="am-icon-cloud-upload"></i> 上传头像</button>
+                  <input type="file" id="inputFile"  name="inputFile" required>
+                  <div class="imgtip"></div>
+               </div>
+          </div>
+          <br>
+          <div class="am-form-group">
+            <div class="am-u-sm-9 am-u-sm-offset-3">
+              <button id="upload" class="am-btn am-btn-warning my-baseinfo-btn"> 提交确认</button>
+            </div>
+          </div>
+        </form> 
+        </div>
+      </div>
+      </div>
+
+
+      <br><br><br><br><br><br>
+      <div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
+          <div class="am-alert am-alert-secondary">
+              <button type="button" class="am-close" data-am-modal="{target: '#my-contactinfo'}"><i class="am-icon-pencil"></i></button>
+              <div style="font-size:30px;text-align:center;">联系方式</div>
+          </div>
+      </div>
+      <div class="am-g am-u-lg-10 am-u-md-12  am-u-sm-centered">
+          <div class="col-lg-3 am-u-lg-3">
+              <div class="am-panel am-panel-default">
+                  <div class="am-panel-hd">手机电话</div>
+                  <div class="am-panel-bd">
+                    手机：<%= rs.contact2.mPhone %><br>
+                    电话：<%= rs.contact2.phoneNum %>
+                  </div>
+              </div>
+          </div>
+           <div class="col-lg-6 am-u-lg-6">
+              <div class="am-panel am-panel-default">
+                  <div class="am-panel-hd">通信地址</div>
+                  <div class="am-panel-bd">
+                    户口地址：<%= rs.contact2.populationAddr %><br>
+                    常住地址：<%= rs.contact2.permanentAddr %>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 am-u-lg-3">
+              <div class="am-panel am-panel-default">
+                  <div class="am-panel-hd">邮箱QQ</div>
+                  <div class="am-panel-bd">
+                    邮箱：<%= rs.contact2.email %><br>
+                    QQ：<%= rs.contact2.qqNum %>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+      <div class="am-popup" id="my-contactinfo">
+        <div class="am-popup-inner">
+          <div class="am-popup-hd">
+            <h4 class="am-popup-title">联系方式</h4>
+            <span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
+          </div>
+          <div class="am-popup-bd">
+            <br>
+          <form class="am-form am-form-horizontal" method="post" data-am-validator>
+            <div class="am-form-group">
+              <label for="mphone" class="am-u-sm-3 am-form-label">手机号码：</label>
+              <div class="am-u-sm-9">
+                <input type="number" class="mphone" name="mphone" placeholder="请输入您的手机号码" required>
+              </div>
+            </div>
+            <div class="am-form-group">
+              <label for="phone" class="am-u-sm-3 am-form-label">电话号码：</label>
+              <div class="am-u-sm-9">
+                <input type="text" class="phone" name="phone" placeholder="请输入您的电话号码">
+              </div>
+            </div>
+            <div class="am-form-group">
+              <label for="address" class="am-u-sm-3 am-form-label">通信地址：</label>
+              <div class="am-u-sm-9">
+                <input type="text" class="address" required name="address" placeholder="请输入您的通信地址"  >
+              </div>
+            </div>
+            <div class="am-form-group">
+              <label for="identity" class="am-u-sm-3 am-form-label">户口地址：</label>
+              <div class="am-u-sm-9">
+                <input type="text" class="identity" name="identity" placeholder="请输入您的户口地址">
+              </div>
+            </div>
+            <div class="am-form-group">
+              <label for="email" class="am-u-sm-3 am-form-label">邮箱：</label>
+              <div class="am-u-sm-9">
+                <input type="email" class="email" name="email" placeholder="请输入您的邮箱" required>
+              </div>
+            </div>
+            <div class="am-form-group">
+              <label for="qqnum" class="am-u-sm-3 am-form-label">QQ账号：</label>
+              <div class="am-u-sm-9">
+                <input type="number" class="qqnum" name="qqnum" placeholder="请输入您的QQ账号">
+              </div>
+            </div>
+            <br>
+            <div class="am-form-group">
+              <div class="am-u-sm-9 am-u-sm-offset-3">
+                <button type="button" class="am-btn am-btn-warning my-contactinfo-btn">提交确认</button>
+              </div>
+            </div>
+          </form>  
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <br><br><br><br><br><br>
+      <div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
+          <div class="am-alert am-alert-secondary">
+              <button type="button" class="am-close" data-am-modal="{target: '#my-education'}"><i class="am-icon-pencil"></i></button>
+              <div style="font-size:30px;text-align:center;">教育经历</div>
+          </div>
+      </div>
+
+      <div class="am-g am-u-lg-10 am-u-md-12  am-u-sm-centered">
+      <div class="col-lg-4 am-u-lg-4">
+      <div data-am-widget="list_news" class="am-list-news am-list-news-default" >
+          <div class="am-list-news-bd">
+              <ul class="am-list">
+               <!--缩略图在标题左边-->
+                <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+                  <div class="am-u-sm-4 am-list-thumb">
+                    <a href="http://www.douban.com/online/11614662/" class="">
+                      <img class="am-img-thumbnail am-circle" src="http://img5.douban.com/lpic/o636459.jpg" alt=""/>
+                    </a>
+                  </div>
+                  <div class=" am-u-sm-8 am-list-main">
+                      <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11614662/" class="">宿羊山高级中学</a></h3>
+                      <div class="am-list-item-text">囧人囧事囧照，人在囧途，越囧越萌。标记《带你出发，陪我回家》http://book.douban.com/subject/25711202/为“想读”“在读”或“读过”，有机会获得此书本活动进行3个月，每月送出三本书。会有不定期bonus！</div>
+                  </div>
+                </li>
+              </ul>
+          </div>
+      </div>
+      </div>
+      <div class="col-lg-4 am-u-lg-4">
+        <div data-am-widget="list_news" class="am-list-news am-list-news-default" >
+        <div class="am-list-news-bd">
+        <ul class="am-list">
+           <!--缩略图在标题左边-->
+            <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+              <div class="am-u-sm-4 am-list-thumb">
+                <a href="http://www.douban.com/online/11614662/" class="">
+                  <img class="am-img-thumbnail am-circle" src="http://img5.douban.com/lpic/o636459.jpg" alt=" "/>
+                </a>
+              </div>
+              <div class=" am-u-sm-8 am-list-main">
+                  <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11614662/" class="">江苏大学</a></h3>
+                  <div class="am-list-item-text">囧人囧事囧照，人在囧途，越囧越萌。标记《带你出发，陪我回家》http://book.douban.com/subject/25711202/为“想读”“在读”或“读过”，有机会获得此书本活动进行3个月，每月送出三本书。会有不定期bonus！</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      </div>
+      <div class="col-lg-4 am-u-lg-4">
+       <div data-am-widget="list_news" class="am-list-news am-list-news-default" >
+        <div class="am-list-news-bd">
+        <ul class="am-list">
+           <!--缩略图在标题左边-->
+            <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+              <div class="am-u-sm-4 am-list-thumb">
+                <a href="http://www.douban.com/online/11614662/" class="">
+                  <img class="am-img-thumbnail am-circle" src="http://img5.douban.com/lpic/o636459.jpg" alt=""/>
+                </a>
+              </div>
+              <div class=" am-u-sm-8 am-list-main">
+                  <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11614662/" class="">东南大学</a></h3>
+                  <div class="am-list-item-text">囧人囧事囧照，人在囧途，越囧越萌。标记《带你出发，陪我回家》http://book.douban.com/subject/257人囧途，越囧越萌。标记《带你出发，陪我回家》http://book.douban.com/subject/25711202/为“想读”“在读”或“读过”，会获得此书本活动进行3个月，每月送出三本书。会有不定期bonus！</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      </div>
+      </div>
+
+
+
+      <div class="am-popup" id="my-education">
+          <div class="am-popup-inner">
+            <div class="am-popup-hd">
+                <h4 class="am-popup-title">教育经历操作</h4>
+                <span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
+            </div>
+            <div class="am-popup-bd">
+            <br>
+            <form class="am-form am-form-horizontal" method="post" data-am-validator>
+
+              <div class="am-form-group">
+                <label for="educationtype" class="am-u-sm-3 am-form-label">操作方式选择：</label>
+                  <div class="am-u-sm-9">
+                        <select class="educationtype" name="educationtype" required>
+                          <option value=""  selected = "selected">请选择操作哪项？</option>
+                          <option value="1">添加操作</option>
+                          <option value="2">修改操作</option>
+                          <option value="3">删除操作</option>
+                        </select>
+                        <span class="am-form-caret"></span>
+                  </div> 
+              </div>
+              <br><br>
+
+               <div class="delModule" style="display:none">
+                  <div class="am-form-group">
+                    <label for="educationtype3" class="am-u-sm-3 am-form-label">删除选项：</label>
+                    <div class="am-u-sm-9">
+                          <select class="educationtype3" name="educationtype3" required>
+                            <option value="">请选择删除哪项？</option>
+                            <option value="1">高中阶段</option>
+                            <option value="2">大专阶段</option>
+                            <option value="3">本科阶段</option>
+                            <option value="4">硕士阶段</option>
+                            <option value="5">博士阶段</option>
+                          </select>
+                          <span class="am-form-caret"></span>
+                      </div>  
+                  </div>
+                  <div class="am-form-group">
+                    <div class="am-u-sm-9 am-u-sm-offset-3">
+                        <button type="button" class="am-btn am-btn-warning my-education3-btn"> 确定删除 </button>
+                    </div>
+                  </div>
+               </div>
+
+               <div class="changeModule" style="display:none">
+                  <div class="am-form-group">
+                    <label for="educationtype21" class="am-u-sm-3 am-form-label">修改选项：</label>
+                    <div class="am-u-sm-9">
+                          <select class="educationtype21" name="educationtype21" required>
+                            <option value="">请选择删除哪项？</option>
+                            <option value="1">高中阶段</option>
+                            <option value="2">大专阶段</option>
+                            <option value="3">本科阶段</option>
+                            <option value="4">硕士阶段</option>
+                            <option value="5">博士阶段</option>
+                          </select>
+                          <span class="am-form-caret"></span>
+                      </div>  
+                  </div>
+                  <br>
+                  <div class="educationPart" style="display:none">
+                  <div class="am-form-group">
+                    <label for="school2" class="am-u-sm-3 am-form-label">院校名称：</label>
+                    <div class="am-u-sm-9">
+                      <input type="text" class="school2" required name="school2" placeholder="请输入您的院校">
+                    </div>
+                  </div>
+                  <div class="am-form-group">
+                    <label for="sdatetime2" class="am-u-sm-3 am-form-label">开始日期：</label>
+                    <div class="am-u-sm-9">
+                        <input type="text" name="sdatetime2" class="am-form-field sdatetime2" placeholder="请输入开始日期" data-am-datepicker readonly/>
+                    </div>
+                  </div>
+                  <div class="am-form-group">
+                    <label for="edatetime2" class="am-u-sm-3 am-form-label">结束日期：</label>
+                    <div class="am-u-sm-9">
+                      <input type="text" name="edatetime2" class="am-form-field edatetime2" placeholder="请输入结束日期" data-am-datepicker readonly/>
+                    </div>
+                  </div>
+                  <div class="am-form-group">
+                    <label for="major2" class="am-u-sm-3 am-form-label">所学专业：</label>
+                    <div class="am-u-sm-9">
+                        <input type="text" required name="major2" class="am-form-field major2" placeholder="请输入您的专业" />
+                    </div>
+                  </div>
+                  <div class="am-form-group">
+                    <label for="majorinstr2" class="am-u-sm-3 am-form-label">专业介绍：</label>
+                    <div class="am-u-sm-9">
+                        <textarea rows="3" placeholder="所在学校+主修课程+研究方向+专业简介等" required class="majorinstr2" name="majorinstr2"></textarea>
+                    </div>
+                  </div>
+                  <div class="am-form-group">
+                    <div class="am-u-sm-9 am-u-sm-offset-3">
+                        <button type="button" class="am-btn am-btn-warning my-education2-btn"> 提交修改 </button>
+                    </div>
+                  </div>
+                  </div>
+               </div> 
+
+               <div class="addModule" style="display:none">
+                  <div class="am-form-group">
+                    <label for="school1" class="am-u-sm-3 am-form-label">院校名称：</label>
+                    <div class="am-u-sm-9">
+                      <input type="text" class="school1" required name="school1" placeholder="请输入您的院校">
+                    </div>
+                  </div>
+                  <div class="am-form-group">
+                    <label for="educationtype1" class="am-u-sm-3 am-form-label">学历：</label>
+                    <div class="am-u-sm-9">
+                          <select class="educationtype1" name="educationtype1" required>
+                            <option value="">请选择一项</option>
+                            <option value="1">高中</option>
+                            <option value="2">大专</option>
+                            <option value="3">本科</option>
+                            <option value="4">硕士</option>
+                            <option value="5">博士</option>
+                          </select>
+                          <span class="am-form-caret"></span>
+                      </div>  
+                    </div>
+                  <div class="am-form-group">
+                    <label for="sdatetime1" class="am-u-sm-3 am-form-label">开始日期：</label>
+                    <div class="am-u-sm-9">
+                        <input type="text" name="sdatetime1" class="am-form-field sdatetime1" placeholder="请输入开始日期" data-am-datepicker readonly/>
+                    </div>
+                  </div>
+                  <div class="am-form-group">
+                    <label for="edatetime1" class="am-u-sm-3 am-form-label">结束日期：</label>
+                    <div class="am-u-sm-9">
+                      <input type="text" name="edatetime1" class="am-form-field edatetime1" placeholder="请输入结束日期" data-am-datepicker readonly />
+                    </div>
+                  </div>
+                  <div class="am-form-group">
+                    <label for="major1" class="am-u-sm-3 am-form-label">所学专业：</label>
+                    <div class="am-u-sm-9">
+                        <input type="text" required name="major1" class="am-form-field major1" placeholder="请输入您的专业" />
+                    </div>
+                  </div>
+                  <div class="am-form-group">
+                    <label for="majorinstr1" class="am-u-sm-3 am-form-label">专业介绍：</label>
+                    <div class="am-u-sm-9">
+                        <textarea rows="3" placeholder="所在学校+主修课程+研究方向+专业简介等" required class="majorinstr1" name="majorinstr1"></textarea>
+                    </div>
+                  </div>
+                  <div class="am-form-group">
+                    <div class="am-u-sm-9 am-u-sm-offset-3">
+                        <button type="button" class="am-btn am-btn-warning my-education1-btn"> 提交信息 </button>
+                    </div>
+                  </div>
+                </div>  
+            </form> 
+            </div>
+          </div>
+      </div>
+
+
+    
+
+
+       <br><br><br><br><br><br>
+      <div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
+          <div class="am-alert am-alert-secondary">
+              <button type="button" class="am-close" data-am-modal="{target: '#my-repractice'}"><i class="am-icon-pencil"></i></button>
+              <div style="font-size:30px;text-align:center;">实习经历</div>
+          </div>
+      </div>
+
+      <div class="am-g am-u-lg-10 am-u-md-12  am-u-sm-centered">
+      <div class="col-lg-4 am-u-lg-4">
+      <div data-am-widget="list_news" class="am-list-news am-list-news-default" >
+        <div class="am-list-news-bd">
+        <ul class="am-list">
+           <!--缩略图在标题左边-->
+            <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+              <div class="am-u-sm-4 am-list-thumb">
+                <a href="http://www.douban.com/online/11614662/" class="">
+                  <img src="http://img5.douban.com/lpic/o636459.jpg" alt=""/>
+                </a>
+              </div>
+              <div class=" am-u-sm-8 am-list-main">
+                  <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11614662/" class="">网易</a></h3>
+                  <div class="am-list-item-text">囧人囧事囧照，人在囧途，越囧越萌。标记《带你出发，陪我回家》http://book.douban.com/subject/25711202/为“想读”“在读”或“读过”，有机会获得此书本活动进行3个月，每月送出三本书。会有不定期bonus！</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      </div>
+      <div class="col-lg-4 am-u-lg-4">
+        <div data-am-widget="list_news" class="am-list-news am-list-news-default" >
+        <div class="am-list-news-bd">
+        <ul class="am-list">
+           <!--缩略图在标题左边-->
+            <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+              <div class="am-u-sm-4 am-list-thumb">
+                <a href="http://www.douban.com/online/11614662/" class="">
+                  <img src="http://img5.douban.com/lpic/o636459.jpg" alt=""/>
+                </a>
+              </div>
+              <div class=" am-u-sm-8 am-list-main">
+                  <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11614662/" class="">阿里巴巴集团</a></h3>
+                  <div class="am-list-item-text">囧人囧事囧照，人在囧途，越囧越萌。标记《带你出发，陪我回家》http://book.douban.com/subject/25711202/为“想读”“在读”或“读过”，有机会获得此书本活动进行3个月，每月送出三本书。会有不定期bonus！</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      </div>
+      <div class="col-lg-4 am-u-lg-4">
+        <div data-am-widget="list_news" class="am-list-news am-list-news-default" >
+        <div class="am-list-news-bd">
+        <ul class="am-list">
+           <!--缩略图在标题左边-->
+            <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+              <div class="am-u-sm-4 am-list-thumb">
+                <a href="http://www.douban.com/online/11614662/" class="">
+                  <img src="http://img5.douban.com/lpic/o636459.jpg" alt=""/>
+                </a>
+              </div>
+              <div class=" am-u-sm-8 am-list-main">
+                  <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11614662/" class="">中国科学院</a></h3>
+                  <div class="am-list-item-text">囧人囧事囧照，人在囧途，越囧越萌。标记《</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      </div>
+      </div>
+
+
+    <div class="am-popup" id="my-repractice">
+        <div class="am-popup-inner">
+          <div class="am-popup-hd">
+              <h4 class="am-popup-title">实习经历</h4>
+              <span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
+          </div>
+          <div class="am-popup-bd">
+          <br>
+          <form class="am-form am-form-horizontal" method="post" data-am-validator>
+
+            <div class="am-form-group">
+               <label class="am-u-sm-3 am-form-label">操作方式选择：</label>
+                 <div class="am-u-sm-9">
+                     <select class="operaType" required>
+                       <option value=""  selected = "selected">请选择操作哪项？</option>
+                       <option value="1">添加操作</option>
+                       <option value="2">修改操作</option>
+                       <option value="3">删除操作</option>
+                     </select>
+                     <span class="am-form-caret"></span>
+                 </div> 
+            </div>
+            <br><br>
+          
+          <div class="deleModule" style="display:none">
+            <div class="am-form-group">
+              <label class="am-u-sm-3 am-form-label">公司名称：</label>
+              <div class="am-u-sm-9">
+                    <select class="compType" required>
+                      <option value="" selected = "selected">请选择一项</option>
+                      <option value="comp1">comp1</option>
+                      <option value="comp2">comp2</option>
+                      <option value="comp3">comp3</option>
+                      <option value="comp4">comp4</option>
+                      <option value="comp5">comp5</option>
+                    </select>
+                    <span class="am-form-caret"></span>
+                </div>  
+            </div>
+            <div class="am-form-group">
+              <div class="am-u-sm-9 am-u-sm-offset-3">
+                  <button type="button" class="am-btn am-btn-warning my-repractice1-btn"> 提交信息 </button>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="changeModule" style="display:none">
+            <div class="am-form-group">
+              <label class="am-u-sm-3 am-form-label">公司名称：</label>
+              <div class="am-u-sm-9">
+                    <select class="compChangeType" required>
+                      <option value="" selected = "selected">请选择一项</option>
+                      <option value="comp1">comp1</option>
+                      <option value="comp2">comp2</option>
+                      <option value="comp3">comp3</option>
+                      <option value="comp4">comp4</option>
+                      <option value="comp5">comp5</option>
+                    </select>
+                    <span class="am-form-caret"></span>
+                </div>  
+            </div>
+            <br>
+            <div class="compPart" style="display:none;">
+            <div class="am-form-group">
+              <label class="am-u-sm-3 am-form-label">开始日期：</label>
+              <div class="am-u-sm-9">
+                  <input type="text" class="am-form-field spracticetime2" placeholder="请输入开始日期" data-am-datepicker readonly/>
+              </div>
+            </div>
+            <div class="am-form-group">
+              <label class="am-u-sm-3 am-form-label">结束日期：</label>
+              <div class="am-u-sm-9">
+                <input type="text" class="am-form-field epracticetime2" placeholder="请输入结束日期" data-am-datepicker readonly/>
+              </div>
+            </div>
+            <div class="am-form-group">
+              <label class="am-u-sm-3 am-form-label">职位：</label>
+              <div class="am-u-sm-9">
+                  <input type="text" required class="am-form-field practiceposition2" placeholder="请输入您的专业" />
+              </div>
+            </div>
+            <div class="am-form-group">
+              <label class="am-u-sm-3 am-form-label">工作介绍：</label>
+              <div class="am-u-sm-9">
+                  <textarea rows="3 " placeholder="所在部门+主要工作+薪资待遇等" required class="practiceinstr2"></textarea>
+              </div>
+            </div>
+            <div class="am-form-group">
+              <div class="am-u-sm-9 am-u-sm-offset-3">
+                  <button type="button" class="am-btn am-btn-warning my-repractice2-btn"> 提交信息 </button>
+              </div>
+            </div>
+          </div>
+          </div>
+
+
+            <div class="addModule" style="display:none">
+              <div class="am-form-group">
+                <label class="am-u-sm-3 am-form-label">公司名称：</label>
+                <div class="am-u-sm-9">
+                  <input type="text" class="practice" required placeholder="请输入您的院校">
+                </div>
+              </div>
+              <div class="am-form-group">
+                <label class="am-u-sm-3 am-form-label">开始日期：</label>
+                <div class="am-u-sm-9">
+                    <input type="text" class="am-form-field spracticetime" placeholder="请输入开始日期" data-am-datepicker readonly/>
+                </div>
+              </div>
+              <div class="am-form-group">
+                <label class="am-u-sm-3 am-form-label">结束日期：</label>
+                <div class="am-u-sm-9">
+                  <input type="text" class="am-form-field epracticetime" placeholder="请输入结束日期" data-am-datepicker readonly/>
+                </div>
+              </div>
+              <div class="am-form-group">
+                <label class="am-u-sm-3 am-form-label">职位：</label>
+                <div class="am-u-sm-9">
+                    <input type="text" required class="am-form-field practiceposition" placeholder="请输入您的专业" />
+                </div>
+              </div>
+              <div class="am-form-group">
+                <label class="am-u-sm-3 am-form-label">工作介绍：</label>
+                <div class="am-u-sm-9">
+                    <textarea rows="3 " placeholder="所在部门+主要工作+薪资待遇等" required class="practiceinstr"></textarea>
+                </div>
+              </div>
+              <div class="am-form-group">
+                <div class="am-u-sm-9 am-u-sm-offset-3">
+                    <button type="button" class="am-btn am-btn-warning my-repractice3-btn"> 提交信息 </button>
+                </div>
+              </div>
+            </div>
+
+
+          </form> 
+          </div>
+        </div>
+    </div>
+
+
+
+
+      <br><br><br><br><br><br>
+      <div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
+          <div class="am-alert am-alert-secondary" >
+              <button type="button" class="am-close" data-am-modal="{target: '#my-practice'}"><i class="am-icon-pencil"></i></button>
+              <div style="font-size:30px;text-align:center;">工作经历</div>
+          </div>
+      </div>
+
+      <div class="am-g am-u-lg-10 am-u-md-12  am-u-sm-centered">
+      <div class="col-lg-4 am-u-lg-4">
+      <div data-am-widget="list_news" class="am-list-news am-list-news-default" >
+        <div class="am-list-news-bd">
+        <ul class="am-list">
+           <!--缩略图在标题左边-->
+            <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+              <div class="am-u-sm-4 am-list-thumb">
+                <a href="http://www.douban.com/online/11614662/" class="">
+                  <img src="http://img5.douban.com/lpic/o636459.jpg" alt=""/>
+                </a>
+              </div>
+              <div class=" am-u-sm-8 am-list-main">
+                  <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11614662/" class="">网易</a></h3>
+                  <div class="am-list-item-text">囧人囧事囧照，人在囧途，越囧越萌。标记《带你出发，陪我回家》http://book.douban.com/subject/25711202/为“想读”“在读”或“读过”，有机会获得此书本活动进行3个月，每月送出三本书。会有不定期bonus！</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      </div>
+      <div class="col-lg-4 am-u-lg-4">
+        <div data-am-widget="list_news" class="am-list-news am-list-news-default" >
+        <div class="am-list-news-bd">
+        <ul class="am-list">
+           <!--缩略图在标题左边-->
+            <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+              <div class="am-u-sm-4 am-list-thumb">
+                <a href="http://www.douban.com/online/11614662/" class="">
+                  <img src="http://img5.douban.com/lpic/o636459.jpg" alt=""/>
+                </a>
+              </div>
+              <div class=" am-u-sm-8 am-list-main">
+                  <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11614662/" class="">阿里巴巴集团</a></h3>
+                  <div class="am-list-item-text">囧人囧事囧照，人在囧途，越囧越萌。标记《带你出发，陪我回家》http://book.douban.com/subject/25711202/为“想读”“在读”或“读过”，有机会获得此书本活动进行3个月，每月送出三本书。会有不定期bonus！</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      </div>
+      <div class="col-lg-4 am-u-lg-4">
+        <div data-am-widget="list_news" class="am-list-news am-list-news-default" >
+        <div class="am-list-news-bd">
+        <ul class="am-list">
+           <!--缩略图在标题左边-->
+            <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+              <div class="am-u-sm-4 am-list-thumb">
+                <a href="http://www.douban.com/online/11614662/" class="">
+                  <img src="http://img5.douban.com/lpic/o636459.jpg" alt=""/>
+                </a>
+              </div>
+              <div class=" am-u-sm-8 am-list-main">
+                  <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11614662/" class="">中国科学院</a></h3>
+                  <div class="am-list-item-text">囧人囧事囧照，人在囧途，越囧越萌。标记《带你出发，陪我回家》http://book.douban.com/subject/25711202/为“想读”“在读”或“读过”，有机会获得此书本活动进行3个月，每月送出三本书。会有不定期bonus！</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      </div>
+      </div>
+
+
+
+       <div class="am-popup" id="my-practice">
+           <div class="am-popup-inner">
+             <div class="am-popup-hd">
+                 <h4 class="am-popup-title">工作经历</h4>
+                 <span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
+             </div>
+             <div class="am-popup-bd">
+             <br>
+             <form class="am-form am-form-horizontal" method="post" data-am-validator>
+
+               <div class="am-form-group">
+                  <label class="am-u-sm-3 am-form-label">操作方式选择：</label>
+                    <div class="am-u-sm-9">
+                        <select class="operaType" required>
+                          <option value="0"  selected = "selected">请选择操作哪项？</option>
+                          <option value="1">添加操作</option>
+                          <option value="2">修改操作</option>
+                          <option value="3">删除操作</option>
+                        </select>
+                        <span class="am-form-caret"></span>
+                    </div> 
+               </div>
+               <br><br>
+             
+             <div class="deleModule" style="display:none">
+               <div class="am-form-group">
+                 <label class="am-u-sm-3 am-form-label">公司名称：</label>
+                 <div class="am-u-sm-9">
+                       <select class="compType" required>
+                         <option value="" selected = "selected">请选择一项</option>
+                         <option value="comp1">comp1</option>
+                         <option value="comp2">comp2</option>
+                         <option value="comp3">comp3</option>
+                         <option value="comp4">comp4</option>
+                         <option value="comp5">comp5</option>
+                       </select>
+                       <span class="am-form-caret"></span>
+                   </div>  
+               </div>
+               <div class="am-form-group">
+                 <div class="am-u-sm-9 am-u-sm-offset-3">
+                     <button type="button" class="am-btn am-btn-warning my-practice1-btn"> 提交信息 </button>
+                 </div>
+               </div>
+             </div>
+
+
+             <div class="changeModule" style="display:none">
+               <div class="am-form-group">
+                 <label class="am-u-sm-3 am-form-label">公司名称：</label>
+                 <div class="am-u-sm-9">
+                       <select class="compChangeType" required>
+                         <option value="" selected = "selected">请选择一项</option>
+                         <option value="comp1">comp1</option>
+                         <option value="comp2">comp2</option>
+                         <option value="comp3">comp3</option>
+                         <option value="comp4">comp4</option>
+                         <option value="comp5">comp5</option>
+                       </select>
+                       <span class="am-form-caret"></span>
+                   </div>  
+               </div>
+               <br>
+               <div class="compPart" style="display:none;">
+               <div class="am-form-group">
+                 <label class="am-u-sm-3 am-form-label">开始日期：</label>
+                 <div class="am-u-sm-9">
+                     <input type="text" class="am-form-field spracticetime2" placeholder="请输入开始日期" data-am-datepicker readonly/>
+                 </div>
+               </div>
+               <div class="am-form-group">
+                 <label class="am-u-sm-3 am-form-label">结束日期：</label>
+                 <div class="am-u-sm-9">
+                   <input type="text" class="am-form-field epracticetime2" placeholder="请输入结束日期" data-am-datepicker readonly/>
+                 </div>
+               </div>
+               <div class="am-form-group">
+                 <label class="am-u-sm-3 am-form-label">职位：</label>
+                 <div class="am-u-sm-9">
+                     <input type="text" required class="am-form-field practiceposition2" placeholder="请输入您的专业" />
+                 </div>
+               </div>
+               <div class="am-form-group">
+                 <label class="am-u-sm-3 am-form-label">工作介绍：</label>
+                 <div class="am-u-sm-9">
+                     <textarea rows="3 " placeholder="所在部门+主要工作+薪资待遇等" required class="practiceinstr2"></textarea>
+                 </div>
+               </div>
+               <div class="am-form-group">
+                 <div class="am-u-sm-9 am-u-sm-offset-3">
+                     <button type="button" class="am-btn am-btn-warning my-practice2-btn"> 提交信息 </button>
+                 </div>
+               </div>
+             </div>
+             </div>
+
+
+               <div class="addModule" style="display:none">
+                 <div class="am-form-group">
+                   <label class="am-u-sm-3 am-form-label">公司名称：</label>
+                   <div class="am-u-sm-9">
+                     <input type="text" class="practice" required placeholder="请输入您的院校">
+                   </div>
+                 </div>
+                 <div class="am-form-group">
+                   <label class="am-u-sm-3 am-form-label">开始日期：</label>
+                   <div class="am-u-sm-9">
+                       <input type="text" class="am-form-field spracticetime" placeholder="请输入开始日期" data-am-datepicker readonly/>
+                   </div>
+                 </div>
+                 <div class="am-form-group">
+                   <label class="am-u-sm-3 am-form-label">结束日期：</label>
+                   <div class="am-u-sm-9">
+                     <input type="text" class="am-form-field epracticetime" placeholder="请输入结束日期" data-am-datepicker readonly/>
+                   </div>
+                 </div>
+                 <div class="am-form-group">
+                   <label class="am-u-sm-3 am-form-label">职位：</label>
+                   <div class="am-u-sm-9">
+                       <input type="text" required class="am-form-field practiceposition" placeholder="请输入您的专业" />
+                   </div>
+                 </div>
+                 <div class="am-form-group">
+                   <label class="am-u-sm-3 am-form-label">工作介绍：</label>
+                   <div class="am-u-sm-9">
+                       <textarea rows="3 " placeholder="所在部门+主要工作+薪资待遇等" required class="practiceinstr"></textarea>
+                   </div>
+                 </div>
+                 <div class="am-form-group">
+                   <div class="am-u-sm-9 am-u-sm-offset-3">
+                       <button type="button" class="am-btn am-btn-warning my-practice3-btn"> 提交信息 </button>
+                   </div>
+                 </div>
+               </div>
+
+
+             </form> 
+             </div>
+           </div>
+       </div>
+
+
+
+
+      <br><br><br><br><br><br>
+      <div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
+          <div class="am-alert am-alert-secondary">
+              <button type="button" class="am-close" data-am-modal="{target: '#my-certificate'}"><i class="am-icon-pencil"></i></button>
+              <div style="font-size:30px;text-align:center;">荣誉证书</div>
+          </div>
+      </div>
+
+      <div class="am-g am-u-lg-10 am-u-md-12  am-u-sm-centered">
+        <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2
+        am-avg-md-3 am-avg-lg-4 am-gallery-imgbordered" data-am-gallery="{  }" >
+            <li>
+              <div class="am-gallery-item">
+                  <a href="http://s.amazeui.org/media/i/demos/bing-1.jpg" class="">
+                    <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg" alt=""/>
+                      <h3 class="am-gallery-title">江苏大学一等奖学金</h3>
+                      <div class="am-gallery-desc">2375-09-26</div>
+                  </a>
+              </div>
+            </li>
+            <li>
+              <div class="am-gallery-item">
+                  <a href="http://s.amazeui.org/media/i/demos/bing-2.jpg" class="">
+                    <img src="http://s.amazeui.org/media/i/demos/bing-2.jpg" alt=""/>
+                      <h3 class="am-gallery-title">第一节电子技术设计大赛二等奖</h3>
+                      <div class="am-gallery-desc">2375-09-26</div>
+                  </a>
+              </div>
+            </li>
+            <li>
+              <div class="am-gallery-item">
+                  <a href="http://s.amazeui.org/media/i/demos/bing-3.jpg" class="">
+                    <img src="http://s.amazeui.org/media/i/demos/bing-3.jpg" alt=""/>
+                      <h3 class="am-gallery-title">全国大学生英语六级证书</h3>
+                      <div class="am-gallery-desc">2375-09-26</div>
+                  </a>
+              </div>
+            </li>
+            <li>
+              <div class="am-gallery-item">
+                  <a href="http://s.amazeui.org/media/i/demos/bing-4.jpg" class="">
+                    <img src="http://s.amazeui.org/media/i/demos/bing-4.jpg" alt=""/>
+                      <h3 class="am-gallery-title">全国计算机等级考试三级</h3>
+                      <div class="am-gallery-desc">2375-09-26</div>
+                  </a>
+              </div>
+            </li>
+        </ul>
+      </div>
+
+
+
+    <div class="am-popup" id="my-certificate">
+        <div class="am-popup-inner">
+          <div class="am-popup-hd">
+              <h4 class="am-popup-title">荣誉证书</h4>
+              <span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
+          </div>
+          <div class="am-popup-bd">
+          <br>
+          <form class="am-form am-form-horizontal" method="post" data-am-validator>
+            <div class="am-form-group">
+              <label for="certificatename" class="am-u-sm-3 am-form-label">证书名称：</label>
+              <div class="am-u-sm-9">
+                  <input type="text" name="certificatename" required class="certificatename" placeholder="请输入证书名称">
+              </div>
+            </div>
+            <div class="am-form-group">
+              <label for="gettime" class="am-u-sm-3 am-form-label">获得日期：</label>
+              <div class="am-u-sm-9">
+                  <input type="text" name="gettime" class="am-form-field gettime" placeholder="请输入获得日期" data-am-datepicker readonly/>
+              </div>
+            </div>
+            <div class="am-form-group">
+              <label for="cgrade" class="am-u-sm-3 am-form-label">证书等级：</label>
+              <div class="am-u-sm-9">
+                    <select class="cgrade" name="cgrade" required>
+                      <option value="">请选择一项</option>
+                      <option value="1">班级</option>
+                      <option value="2">院级</option>
+                      <option value="3">校级</option>
+                      <option value="4">市级</option>
+                      <option value="5">省级</option>
+                      <option value="6">国级</option>
+                      <option value="7">国际</option>
+                    </select>
+                    <span class="am-form-caret"></span>
+                  </div>
+              </div>
+            <div class="am-form-group">
+                <label for="certificateinstr" class="am-u-sm-3 am-form-label">证书介绍：</label>
+                <div class="am-u-sm-9">
+                  <textarea class="certificateinstr" required name="certificateinstr" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="am-form-group am-form-file">
+                 <label for="cimages" class="am-u-sm-3 am-form-label">证书图片：</label>
+                 <div class="am-u-sm-9">
+                  <button type="button" class="am-btn am-btn-default am-btn-sm">
+                  <i class="am-icon-cloud-upload"></i> 上传图片(可同时上传多张)</button>
+                  <input type="file" multiple class="cimages" name="cimages">
+               </div>
+            </div>
+            <div class="am-form-group">
+                <div class="am-u-sm-9 am-u-sm-offset-3">
+                    <button type="button" class="am-btn am-btn-warning my-certificate-btn"> 提交信息 </button>
+                </div>
+            </div>
+          </form> 
+          </div>
+        </div>
+    </div>
+
+
+
+
+      <br><br><br><br><br><br>
+      <div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
+          <div class="am-alert am-alert-secondary">
+              <button type="button" class="am-close" data-am-modal="{target: '#my-works'}"><i class="am-icon-pencil"></i></button>
+              <div style="font-size:30px;text-align:center;">个人作品</div>
+          </div>
+      </div>
+
+      <div class="am-g am-u-lg-10 am-u-md-12  am-u-sm-centered">
+       <div class="col-lg-4 am-u-lg-4">
+        <div data-am-widget="slider" class="am-slider am-slider-d2" data-am-slider='{"directionNav":false}' >
+            <ul class="am-slides">
+                <li>
+                    <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg">
+                    <div class="am-slider-desc"><div class="am-slider-content"><h2 class="am-slider-title">远方 有一个地方 那里种有我们的梦想</h2><p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内</p></div><a class="am-slider-more">了解更多</a></div>
+                </li>
+                <li>
+                    <img src="http://s.amazeui.org/media/i/demos/bing-2.jpg">
+                    <div class="am-slider-desc"><div class="am-slider-content"><h2 class="am-slider-title">某天 也许会相遇 相遇在这个好地方</h2><p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内</p></div><a class="am-slider-more">了解更多</a></div>
+                </li>
+                <li>
+                    <img src="http://s.amazeui.org/media/i/demos/bing-3.jpg">
+                    <div class="am-slider-desc"><div class="am-slider-content"><h2 class="am-slider-title">不要太担心 只因为我相信 终会走过这条遥远的道路</h2><p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内</p></div><a class="am-slider-more">了解更多</a></div>
+                </li>
+                <li>
+                    <img src="http://s.amazeui.org/media/i/demos/bing-4.jpg">
+                    <div class="am-slider-desc"><div class="am-slider-content"><h2 class="am-slider-title">OH PARA PARADISE 是否那么重要 你是否那么地遥远</h2><p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内</p></div><a class="am-slider-more">了解更多</a></div>
+                </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-4 am-u-lg-4">
+        <div data-am-widget="slider" class="am-slider am-slider-d2" data-am-slider='{"directionNav":false}' >
+            <ul class="am-slides">
+                <li>
+                    <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg">
+                    <div class="am-slider-desc"><div class="am-slider-content"><h2 class="am-slider-title">远方 有一个地方 那里种有我们的梦想</h2><p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内</p></div><a class="am-slider-more">了解更多</a></div>
+                </li>
+                <li>
+                    <img src="http://s.amazeui.org/media/i/demos/bing-2.jpg">
+                    <div class="am-slider-desc"><div class="am-slider-content"><h2 class="am-slider-title">某天 也许会相遇 相遇在这个好地方</h2><p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内</p></div><a class="am-slider-more">了解更多</a></div>
+                </li>
+                <li>
+                    <img src="http://s.amazeui.org/media/i/demos/bing-3.jpg">
+                    <div class="am-slider-desc"><div class="am-slider-content"><h2 class="am-slider-title">不要太担心 只因为我相信 终会走过这条遥远的道路</h2><p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内</p></div><a class="am-slider-more">了解更多</a></div>
+                </li>
+                <li>
+                    <img src="http://s.amazeui.org/media/i/demos/bing-4.jpg">
+                    <div class="am-slider-desc"><div class="am-slider-content"><h2 class="am-slider-title">OH PARA PARADISE 是否那么重要 你是否那么地遥远</h2><p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内</p></div><a class="am-slider-more">了解更多</a></div>
+                </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-4 am-u-lg-4">
+        <div data-am-widget="slider" class="am-slider am-slider-d2" data-am-slider='{"directionNav":false}' >
+            <ul class="am-slides">
+                <li>
+                    <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg">
+                    <div class="am-slider-desc"><div class="am-slider-content"><h2 class="am-slider-title">远方 有一个地方 那里种有我们的梦想</h2><p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内</p></div><a class="am-slider-more">了解更多</a></div>
+                </li>
+                <li>
+                    <img src="http://s.amazeui.org/media/i/demos/bing-2.jpg">
+                    <div class="am-slider-desc"><div class="am-slider-content"><h2 class="am-slider-title">某天 也许会相遇 相遇在这个好地方</h2><p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内</p></div><a class="am-slider-more">了解更多</a></div>
+                </li>
+                <li>
+                    <img src="http://s.amazeui.org/media/i/demos/bing-3.jpg">
+                    <div class="am-slider-desc"><div class="am-slider-content"><h2 class="am-slider-title">不要太担心 只因为我相信 终会走过这条遥远的道路</h2><p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内</p></div><a class="am-slider-more">了解更多</a></div>
+                </li>
+                <li>
+                    <img src="http://s.amazeui.org/media/i/demos/bing-4.jpg">
+                    <div class="am-slider-desc"><div class="am-slider-content"><h2 class="am-slider-title">OH PARA PARADISE 是否那么重要 你是否那么地遥远</h2><p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内</p></div><a class="am-slider-more">了解更多</a></div>
+                </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="am-popup" id="my-works">
+          <div class="am-popup-inner">
+            <div class="am-popup-hd">
+                <h4 class="am-popup-title">我的作品</h4>
+                <span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
+            </div>
+            <div class="am-popup-bd">
+            <br>
+            <form class="am-form am-form-horizontal" method="post" data-am-validator> 
+                <div class="am-form-group">
+                  <label for="workname" class="am-u-sm-3 am-form-label">作品名称：</label>
+                  <div class="am-u-sm-9">
+                      <input type="text" required name="workname" class="workname" placeholder="输入作品名称">
+                  </div>
+                </div>
+                <div class="am-form-group">
+                  <label for="worktime" class="am-u-sm-3 am-form-label">作品日期：</label>
+                  <div class="am-u-sm-9">
+                    <input type="text" name="worktime" class="am-form-field worktime" placeholder="请选择作品日期" data-am-datepicker readonly/>
+                  </div>
+                </div> 
+                <div class="am-form-group">
+                  <label for="workduty" class="am-u-sm-3 am-form-label">我的职责：</label>
+                  <div class="am-u-sm-9">
+                      <input type="text" name="workduty" class="workduty" placeholder="输入你的职责">
+                  </div>
+               </div>
+                 <div class="am-form-group">
+                  <label for="showink" class="am-u-sm-3 am-form-label">作品展示链接：</label>
+                  <div class="am-u-sm-9">
+                      <input type="url" name="showink" class="showink" placeholder="输入作品展示链接">
+                  </div>
+                </div>
+                <div class="am-form-group">
+                  <label for="codelink" class="am-u-sm-3 am-form-label">作品源码链接：</label>
+                  <div class="am-u-sm-9">
+                      <input type="url" name="codelink" class="codelink" placeholder="输入作品源码链接">
+                  </div>
+                </div>
+                <div class="am-form-group">
+                  <label for="workdes" class="am-u-sm-3 am-form-label">作品介绍：</label>
+                  <div class="am-u-sm-9">
+                    <textarea rows="5" name="workdes" class="workdes" required></textarea>
+                  </div>
+                </div>
+                <div class="am-form-group am-form-file">
+                  <label for="workimg" class="am-u-sm-3 am-form-label">作品图片：</label>
+                   <div class="am-u-sm-9">
+                    <button type="button" class="am-btn am-btn-default am-btn-sm">
+                    <i class="am-icon-cloud-upload"></i> 上传作品图片(可同时上传多张)</button>
+                    <input type="file" class="workimg" name="workimg" multiple>
+                 </div>
+                </div>
+                <br>
+                <div class="am-form-group">
+                  <div class="am-u-sm-9 am-u-sm-offset-3">
+                      <button type="button" class="am-btn am-btn-warning my-works-btn"> 提交信息 </button>
+                  </div>
+                </div>
+            </form> 
+            </div>
+          </div>
+      </div>
+
+
+
+
+
+
+      <br><br><br><br><br><br>
+      <div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
+          <div class="am-alert am-alert-secondary" data-am-alert>
+              <button type="button" class="am-close" data-am-modal="{target: '#my-projects'}"><i class="am-icon-pencil"></i></button>
+              <div style="font-size:30px;text-align:center;">项目经历</div>
+          </div>
+      </div>
+
+       <div class="am-g am-u-lg-10 am-u-md-12  am-u-sm-centered">
+        <div data-am-widget="tabs" class="am-tabs am-tabs-d2">
+            <ul class="am-tabs-nav am-cf">
+                <li class="am-active"><a href="[data-tab-panel-0]">项目一</a></li>
+                <li class=""><a href="[data-tab-panel-1]">项目二</a></li>
+                <li class=""><a href="[data-tab-panel-1]">项目三</a></li>
+            </ul>
+            <div class="am-tabs-bd">
+                <div data-tab-panel-0 class="am-tab-panel am-active">
+                 【青春】那时候有多好，任雨打湿裙角。忍不住哼起，心爱的旋律。绿油油的树叶，自由地在说笑。燕子忙归巢，风铃在舞蹈。经过青【青春】那时候有多好，任雨打湿裙角。忍不住哼起，心爱的旋律。绿油油的树叶，自由地在说笑。燕子忙归巢，风铃在舞蹈。经过青春的草地，彩虹忽然升起。即使视线渐渐模糊，它也在我心里。【青春】那时候有多好，任雨打湿裙角。忍不住哼起，心爱的旋律。绿油油的树叶，自由地在说笑。燕子忙归巢，风铃在舞蹈。经过青春的草地，彩虹忽然升起。即使视线渐渐模糊，它也在我心里。就像爱过的旋律，没人能抹去。因为生命存在失望，歌唱，所以才要歌唱。就像爱过的旋律，没人能抹去。因为生命存在失望，歌唱，所以才要歌唱。春的草地，彩虹忽然升起。即使视线渐渐模糊，它也在我心里。就像爱过的旋律，没人能抹去。因为生命存在失望，歌唱，所以才要歌唱。
+                </div>
+                <div data-tab-panel-1 class="am-tab-panel ">
+                  【彩虹】那时候有多好，任雨打湿裙角。忍不住哼起，心爱的旋律。绿油油的树叶，自由地在说笑。燕子忙归巢，风铃在舞蹈。经【青春】那时候有多好，任雨打湿裙角。忍不住哼起，心爱的旋律。绿油油的树叶，自由地在说笑。燕子忙归巢，风铃在舞蹈。经过青春的草地，彩虹忽然升起。即使视线渐渐模糊，它也在我心里。就像爱过的旋律，没人能抹去。因为生命存在失望，歌唱，所以才要歌唱。【青春】那时候有多好，任雨打湿裙角。忍不住哼起，心爱的旋律。绿油油的树叶，自由地在说笑。燕子忙归巢，风铃在舞蹈。经过青春的草地，彩虹忽然升起。即使视线渐渐模糊，它也在我心里。就像爱过的旋律，没人能抹去。因为生命存在失望，歌唱，所以才要歌唱。过青春的草地，彩虹忽然升起。即使视线渐渐模糊，它也在我心里。就像爱过的旋律，没人能抹去。因为生命存在失望，歌唱，所以才要歌唱。
+                </div>
+                <div data-tab-panel-2 class="am-tab-panel ">
+                  【彩虹】那时候有多好，任雨打湿裙角。忍不住哼起，心爱的旋律。绿油油的树叶，自由地在说笑。燕子忙归巢，风铃在舞蹈。经过【青春】那时候有多好，任雨打湿裙角。忍不住哼起，心爱的旋律。绿油油的树叶，自由地在说笑。燕子忙归巢，风铃在舞蹈。经过青春的草地，彩虹忽然升起。即使视线渐渐模糊，它也在我心里【青春】那时候有多好，任雨打湿裙角。忍不住哼起，心爱的旋律。绿油油的树叶，自由地在说笑。燕子忙归巢，风铃在舞蹈。经过青春的草地，彩虹忽然升起。即使视线渐渐模糊，它也在我心里。就像爱过的旋律，没人能抹去。因为生命存在失望，歌唱，所以才要歌唱。。就像爱过的旋律，没人能抹去。因为生命存在失望，歌唱，所以才要歌唱。青春的草地，彩虹忽然升起。即使视线渐渐模糊，它也在我心里。就像爱过的旋律，没人能抹去。因为生命存在失望，歌唱，所以才要歌唱。
+                </div>
+            </div>
+      </div>
+      </div>
+
+
+      <div class="am-popup" id="my-projects">
+          <div class="am-popup-inner">
+            <div class="am-popup-hd">
+                <h4 class="am-popup-title">项目经历</h4>
+                <span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
+            </div>
+            <div class="am-popup-bd">
+            <br>
+            <form class="am-form am-form-horizontal" method="post" data-am-validator>
+              <div class="am-form-group">
+                <label for="pname" class="am-u-sm-3 am-form-label">项目名称：</label>
+                <div class="am-u-sm-9">
+                  <input type="text" class="pname" required name="pname" placeholder="请输入项目名称">
+                </div>
+              </div>
+              <div class="am-form-group">
+                <label for="ptime" class="am-u-sm-3 am-form-label">日期：</label>
+                <div class="am-u-sm-9">
+                    <input type="text" name="ptime" class="am-form-field ptime" placeholder="请选择日期" data-am-datepicker readonly />
+                </div>
+              </div>
+              <div class="am-form-group">
+                <label for="paddt" class="am-u-sm-3 am-form-label">补充说明：</label>
+                <div class="am-u-sm-9">
+                    <textarea rows="3 " class="paddt" name="paddt"></textarea>
+                </div>
+              </div>
+              <div class="am-form-group">
+                <div class="am-u-sm-9 am-u-sm-offset-3">
+                    <button type="button" class="am-btn am-btn-warning my-projects-btn"> 提交信息 </button>
+                </div>
+              </div>
+            </form> 
+            </div>
+          </div>
+      </div>
+
+
+
+      <br><br><br><br><br><br>
+      <div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
+          <div class="am-alert am-alert-secondary">
+              <button type="button" class="am-close" data-am-modal="{target: '#my-undergo'}"><i class="am-icon-pencil"></i></button>
+              <div style="font-size:30px;text-align:center;">实践经历</div>
+          </div>
+      </div>
+
+      <div class="am-g am-u-lg-10 am-u-md-12  am-u-sm-centered">
+        <div data-am-widget="tabs" class="am-tabs am-tabs-d2">
+            <ul class="am-tabs-nav am-cf">
+                <li class="am-active"><a href="[data-tab-panel-0]">校园活动</a></li>
+                <li class=""><a href="[data-tab-panel-1]">社会实践</a></li>
+            </ul>
+            <div class="am-tabs-bd">
+                <div data-tab-panel-0 class="am-tab-panel am-active">
+                  【青春】那时候有多好，任雨打湿裙角。忍不住哼起，心爱的旋律。绿油油的树叶，自由地在说笑。燕子忙归巢，风铃在舞蹈。经过青春的草地，彩虹忽 【青春】那时候有多好，任雨打湿裙角。忍不住哼起，心爱的旋律。绿油油的树叶，自由地在说笑。燕子忙归巢，风铃在舞蹈。经过青春的草地，彩虹忽然升起。即使视线渐渐模糊，它也在我心里。就像爱过的旋律，没人能抹去。因为生命存在失望，歌唱，所以才要歌唱。然升起。即使视线渐渐模糊，它也在我心里。就像爱过的旋律，没人能抹去。因为生命存在失望，歌唱，所以才要歌唱。
+                </div>
+                <div data-tab-panel-1 class="am-tab-panel ">
+                  【彩虹】那时候有多好，任雨打湿裙角。忍不住哼起，心爱的旋律。绿油油的树叶，自由地在说笑。燕子忙归巢，风铃在舞蹈。经过青春的草地，彩虹忽 【青春】那时候有多好，任雨打湿裙角。忍不住哼起，心爱的旋律。绿油油的树叶，自由地在说笑。燕子忙归巢，风铃在舞蹈。经过青春的草地，彩虹忽然升起。即使视线渐渐模糊，它也在我心里。就像爱过的旋律，没人能抹去。因为生命存在失望，歌唱，所以才要歌唱。 【青春】那时候有多好，任雨打湿裙角。忍不住哼起，心爱的旋律。绿油油的树叶，自由地在说笑。燕子忙归巢，风铃在舞蹈。经过青春的草地，彩虹忽然升起。即使视线渐渐模糊，它也在我心里。就像爱过的旋律，没人能抹去。因为生命存在失望，歌唱，所以才要歌唱。然升起。即使视线渐渐模糊，它也在我心里。就像爱过的旋律，没人能抹去。因为生命存在失望，歌唱，所以才要歌唱。
+                </div>
+            </div>
+      </div>
+      </div>
+
+
+
+
+      <div class="am-popup" id="my-undergo">
+          <div class="am-popup-inner">
+            <div class="am-popup-hd">
+                <h4 class="am-popup-title">校园社会活动</h4>
+                <span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
+            </div>
+            <div class="am-popup-bd">
+            <br>
+            <form class="am-form am-form-horizontal" method="post" data-am-validator>
+              <div class="am-form-group">
+                <label for="undergoname" class="am-u-sm-3 am-form-label">活动名称：</label>
+                <div class="am-u-sm-9">
+                  <input type="text" class="undergoname" required name="undergoname" placeholder="请输入名称">
+                </div>
+              </div>
+              <div class="am-form-group">
+                <label for="undergotype" class="am-u-sm-3 am-form-label">类型：</label>
+                <div class="am-u-sm-9">
+                      <select class="undergotype" name="undergotype" required>
+                        <option value="">请选择一项</option>
+                        <option value="1">校园经历</option>
+                        <option value="2">社会经历</option>
+                      </select>
+                      <span class="am-form-caret"></span>
+                    </div>
+                </div>
+              <div class="am-form-group">
+                <label for="undergotime" class="am-u-sm-3 am-form-label">日期：</label>
+                <div class="am-u-sm-9">
+                    <input type="text" name="undergotime" class="am-form-field undergotime" placeholder="请输入日期" data-am-datepicker readonly />
+                </div>
+              </div>
+              <div class="am-form-group">
+                <label for="majorinstr" class="am-u-sm-3 am-form-label">补充说明：</label>
+                <div class="am-u-sm-9">
+                    <textarea rows="3 " class="undergoinstr" name="undergoinstr"></textarea>
+                </div>
+              </div>
+              <div class="am-form-group">
+                <div class="am-u-sm-9 am-u-sm-offset-3">
+                    <button type="button" class="am-btn am-btn-warning my-undergo-btn"> 提交信息 </button>
+                </div>
+              </div>
+            </form> 
+            </div>
+          </div>
+      </div>
+
+
+
+
+      <br><br><br><br><br><br>
+      <div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
+          <div class="am-alert am-alert-secondary">
+              <button type="button" class="am-close" data-am-modal="{target: '#my-paper'}"><i class="am-icon-pencil"></i></button>
+              <div style="font-size:30px;text-align:center;">论文专利</div>
+          </div>
+      </div>
+
+      <div class="am-g am-u-lg-10 am-u-md-12  am-u-sm-centered">
+        <div data-am-widget="tabs" class="am-tabs am-tabs-d2">
+            <ul class="am-tabs-nav am-cf">
+                <li class="am-active"><a href="[data-tab-panel-0]">论文发表</a></li>
+                <li class=""><a href="[data-tab-panel-1]">专利申请</a></li>
+            </ul>
+            <div class="am-tabs-bd">
+                <div data-tab-panel-0 class="am-tab-panel am-active">
+                            <section data-am-widget="accordion" class="am-accordion am-accordion-gapped" data-am-accordion='{  }'>
+                      <dl class="am-accordion-item">
+                        <dt class="am-accordion-title">
+                          <!-- <i class="am-icon-flag am-icon-md"></i> --> 
+                          <i class="am-icon-mortar-board am-icon-md"></i> 帕金森病研究取得进展
+                        </dt>
+                        <dd class="am-accordion-bd am-collapse">
+                          <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
+                          <div class="am-accordion-content">
+                            置身人群中 <br/> 你只需要被淹没 享受 沉默 <br/> 退到人群后 <br/> 你只需给予双手 微笑 等候
+                          </div>
+                        </dd>
+                      </dl>
+                      <dl class="am-accordion-item">
+                        <dt class="am-accordion-title">
+                          <i class="am-icon-mortar-board am-icon-md"></i> 全球气候变化对中国自然地理环境的影响
+                        </dt>
+                        <dd class="am-accordion-bd am-collapse ">
+                          <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
+                          <div class="am-accordion-content">
+                            走在忠孝东路 <br/> 徘徊在茫然中 <br/> 在我的人生旅途 <br/> 选择了多少错误 <br/> 
+                          </div>
+                        </dd>
+                      </dl>
+                      <dl class="am-accordion-item">
+                        <dt class="am-accordion-title">
+                          <i class="am-icon-mortar-board am-icon-md"></i> 我国帕金森病发病率增长迅速-健康论文
+                        </dt>
+                        <dd class="am-accordion-bd am-collapse ">
+                          <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
+                          <div class="am-accordion-content">
+                            我就这样告别山下的家，我实在不愿轻易让眼泪留下。我以为我并不差不会害怕，我就这样自己照顾自己长大。我不想因为现实把头低下，我以为我并不差能学会虚假。怎样才能够看穿面具里的谎话？别让我的真心散的像沙。如果有一天我变得更复杂，还能不能唱出歌声里的那幅画？
+                          </div>
+                        </dd>
+                      </dl>
+                  </section>
+                </div>
+                <div data-tab-panel-1 class="am-tab-panel ">
+                    <section data-am-widget="accordion" class="am-accordion am-accordion-basic" data-am-accordion='{  }'>
+                        <dl class="am-accordion-item am-active">
+                          <dt class="am-accordion-title">
+                            就这样恣意的活着
+                          </dt>
+                          <dd class="am-accordion-bd am-collapse am-in">
+                            <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
+                            <div class="am-accordion-content">
+                              置身人群中 <br/> 你只需要被淹没 享受 沉默 <br/> 退到人群后 <br/> 你只需给予双手 微笑 等候
+                            </div>
+                          </dd>
+                        </dl>
+                        <dl class="am-accordion-item">
+                          <dt class="am-accordion-title">
+                            让生命去等候，去等候，去等候，去等候
+                          </dt>
+                          <dd class="am-accordion-bd am-collapse ">
+                            <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
+                            <div class="am-accordion-content">
+                              走在忠孝东路 <br/> 徘徊在茫然中 <br/> 在我的人生旅途 <br/> 选择了多少错误 <br/> 我在睡梦中惊醒 <br/> 感叹悔言无尽 <br/> 恨我不能说服自己 <br/> 接受一切教训 <br/> 让生命去等候 <br/> 等候下一个漂流 <br/> 让生命去等候 <br/>等候下一个伤口
+                            </div>
+                          </dd>
+                        </dl>
+                        <dl class="am-accordion-item">
+                          <dt class="am-accordion-title">
+                            我就这样告别山下的家
+                          </dt>
+                          <dd class="am-accordion-bd am-collapse ">
+                            <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
+                            <div class="am-accordion-content">
+                              我就这样告别山下的家，我实在不愿轻易让眼泪留下。我以为我并不差不会害怕，我就这样自己照顾自己长大。我不想因为现实把头低下，我以为我并不差能学会虚假。怎样才能够看穿面具里的谎话？别让我的真心散的像沙。如果有一天我变得更复杂，还能不能唱出歌声里的那幅画？
+                            </div>
+                          </dd>
+                        </dl>
+                    </section>
+                </div>
+            </div>
+      </div>
+      </div>
+
+
+
+      <div class="am-popup" id="my-paper">
+          <div class="am-popup-inner">
+            <div class="am-popup-hd">
+                <h4 class="am-popup-title">论文专利</h4>
+                <span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
+            </div>
+            <div class="am-popup-bd">
+            <br>
+            <form class="am-form am-form-horizontal" method="post" data-am-validator>
+              <div class="am-form-group">
+                <label for="papername" class="am-u-sm-3 am-form-label">名称：</label>
+                <div class="am-u-sm-9">
+                  <input type="text" class="papername" required name="papername" placeholder="请输入名称">
+                </div>
+              </div>
+              <div class="am-form-group">
+                <label for="papertype" class="am-u-sm-3 am-form-label">类型：</label>
+                <div class="am-u-sm-9">
+                      <select class="papertype" name="papertype" required>
+                        <option value="">请选择一项</option>
+                        <option value="1">论文</option>
+                        <option value="2">专利</option>
+                      </select>
+                      <span class="am-form-caret"></span>
+                    </div>
+                </div>
+              <div class="am-form-group">
+                <label for="papertime" class="am-u-sm-3 am-form-label">发表日期：</label>
+                <div class="am-u-sm-9">
+                    <input type="text" class="papertime" name="papertime" class="am-form-field" placeholder="请输入发表日期" data-am-datepicker readonly/>
+                </div>
+              </div>
+              <div class="am-form-group">
+                <label for="paperinstr" class="am-u-sm-3 am-form-label">补充说明：</label>
+                <div class="am-u-sm-9">
+                    <textarea rows="3 " class="paperinstr" name="paperinstr"></textarea>
+                </div>
+              </div>
+              <div class="am-form-group">
+                <div class="am-u-sm-9 am-u-sm-offset-3">
+                    <button type="button" class="am-btn am-btn-warning my-paper-btn"> 提交信息 </button>
+                </div>
+              </div>
+            </form> 
+            </div>
+          </div>
+      </div>
+
+
+
+      <br><br><br><br><br><br>
+      <div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
+      <div class="am-alert am-alert-secondary">
+        <button type="button" class="am-close" data-am-modal="{target: '#my-description'}"><i class="am-icon-pencil"></i></button>
+        <div style="font-size:30px;text-align:center;">核心技能</div>
+      </div>
+      </div>
+
+      <div class="am-g am-u-lg-10 am-u-md-12  am-u-sm-centered">
+         <div class="am-panel am-panel-default">
+            <div class="am-panel-hd">
+              <h3 class="am-panel-title">个人核心技能</h3>
+            </div>
+           <!--  <div class="am-panel-bd">
+              个人核心技能模块主要是对个人的常用技术能力进行阐述，可包括所会使用的工具，语言等......
+              如下所示：
+            </div> -->
+            <ul class="am-list am-list-static">
+              <ul class="am-list">
+              <li><a href="javascript:;"><span class="am-badge am-badge-success am-radius">1</span>&nbsp;
+              能运用 javascript，JQuery，Json，Ajax，CSS + Div 布局迚行网站开发</a>
+              </li>
+              <li><a href="javascript:;"><span class="am-badge am-badge-success am-radius">2</span>&nbsp;
+              熟悉 LESS，SASS，HTML5，CSS3，BootStrap 等网站前端开发技术</a>
+              </li>
+              <li><a href="javascript:;"><span class="am-badge am-badge-success am-radius">3</span>&nbsp;
+              掌握面向对象和多线程编程的思想，具有扎实的 JAVA，C++和 MFC 编程功底</a>
+              </li>
+              <li><a href="javascript:;"><span class="am-badge am-badge-success am-radius">4</span>&nbsp;
+              熟练 Eclipse，MyEclipse，visual studio 等开发工具</a>
+              </li>
+              <li><a href="javascript:;"><span class="am-badge am-badge-success am-radius">5</span>&nbsp;
+              掌握常用画图软件，如 PhotoShop、3DMAX、Flash、MicroSoft Visio、Power Designer</a>
+              </li>
+              <li><a href="javascript:;"><span class="am-badge am-badge-success am-radius">6</span>&nbsp;
+              熟练掌握 J2EE、Servlet、JDBC、HTML、XML 等 JSP 网站开发技术</a>
+              </li>
+              <li><a href="javascript:;"><span class="am-badge am-badge-success am-radius">7</span>&nbsp;
+              熟练掌握 Struts2、Hibernate3、Spring2 开源框架，熟悉 MVC 模式下的 JAVA WEB 开发</a>
+              </li>
+              <li><a href="javascript:;"><span class="am-badge am-badge-success am-radius">8</span>&nbsp;
+              具备良好的英语听说读写能力，日语能力良好</a>
+              </li>
+              <li><a href="javascript:;"><span class="am-badge am-badge-success am-radius">10</span>&nbsp;
+              掌握会声会影视频制作软件，幵做过相关视频</a>
+              </li>
+            </ul>
+          </div>
+      </div>
+
+      <div class="am-modal-actions" id="my-description">
+          <div class="am-modal-actions-group">
+            <ul class="am-list">
+              <li class="am-modal-actions-danger">
+                <br>
+                <div class="am-u-lg-6 am-u-md-8  am-u-sm-centered">
+                  <form class="am-form am-form-horizontal" method="post">
+                    <div class="am-form-group">
+                      <label for="descriptioncon"class="am-u-sm-2 am-form-label">核心技能：</label>
+                      <div class="am-u-sm-10">
+                      <textarea class="descriptioncon" rows="2" name="descriptioncon" placeholder="每次添加一条技能"></textarea>
+                      </div>
+                    </div>
+                    <div class="am-form-group">
+                      <div class="am-u-sm-12">
+                        <button type="button" class="am-btn am-btn-warning  my-description-btn"> 提交信息 </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </li>
+            </ul>
+        </div>
+       <!--  <div class="am-modal-actions-group">
+            <button class="am-btn am-btn-danger am-btn-block" data-am-modal-close>关闭</button>
+          </div> -->
+      </div>
+
+<% include myfooter.html %>
+<!-- 添加其他，比如其他的网络空间，网站，论坛 -->
+
+<script>
+  $(document).ready(function(){               
+      //baseInfo
+      $('#inputFile', '#my-baseinfo').change(function(){
+          $('.imgtip', '#my-baseinfo').html($('#inputFile', '#my-baseinfo').val());
+      })
+      $('#upload').click(function(){
+          $('#specialInstruc', '#my-baseinfo').ajaxForm({
+              url: $('#specialInstruc', '#my-baseinfo').attr('action'),
+              type: 'POST',
+              success: function (res, status, xhr, $form) {
+                  var tp;
+                  if (res == '1') tp = '异常错误！可能不支持该格式的图片。';
+                  else if (res == '2') tp = '图片大小不得超过2m！';
+                  else if (res == '3') tp = '文件类型必须是图片！';
+                  else if (res == '4') tp = 'rename err';
+                  else if (res == '5') {
+                      location.reload();
+                  }
+                  $('#specialInstruc', '#my-baseinfo').clearForm();
+              },
+              error: function (res, status, e) {
+                  $('#specialInstruc', '#my-baseinfo').clearForm();
+              }
+          });
+      })
+
+      //contactinfo
+      $('.my-contactinfo-btn').click(function(){
+            $.ajax({    
+              type:'post',        
+              url:'/resume/contactinfo',   
+              data: {
+                mphone:$(".mphone", '#my-contactinfo').val(),
+                phone:$(".phone", '#my-contactinfo').val(),
+                address:$(".address",'#my-contactinfo').val(),
+                identity:$(".identity", '#my-contactinfo').val(),
+                email:$(".email", '#my-contactinfo').val(),
+                qqnum:$(".qqnum", '#my-contactinfo').val()
+              },  
+              dataType:'json',      
+              success:function(data){    
+                  console.log(data);
+                  $("#my-contactinfo").modal('close');
+                  location.reload();
+              },
+              error : function(err) {   
+                  console.log(err);    
+              }        
+          }); 
+      });
+
+      //education-add
+      $('.my-education1-btn').click(function(){
+            $.ajax({    
+              type:'post',        
+              url:'/resume/education/add',   
+              data: {
+                school:$(".school1", '#my-education').val(),
+                educationtype:$(".educationtype1", '#my-education').val(),
+                sdatetime:$(".sdatetime1",'#my-education').val(),
+                edatetime:$(".edatetime1", '#my-education').val(),
+                major:$(".major1", '#my-education').val(),
+                majorinstr:$(".majorinstr1", '#my-education').val()
+              },  
+              dataType:'json',      
+              success:function(data){    
+                  console.log(data);
+                  $("#my-education").modal('close');
+                  location.reload();
+              },
+              error : function(err) {   
+                  console.log(err);    
+              }        
+          }); 
+      });   
+
+      //education-change
+      $('.my-education2-btn').click(function(){
+            $.ajax({    
+              type:'post',        
+              url:'/resume/education/change',   
+              data: {
+                educationtypeA:$(".educationtype21", '#my-education').val(),
+                school:$(".school2", '#my-education').val(),
+                sdatetime:$(".sdatetime2",'#my-education').val(),
+                edatetime:$(".edatetime2", '#my-education').val(),
+                major:$(".major2", '#my-education').val(),
+                majorinstr:$(".majorinstr2", '#my-education').val()
+              },  
+              dataType:'json',      
+              success:function(data){    
+                  console.log(data);
+                  $("#my-education").modal('close');
+                  location.reload();
+              },
+              error : function(err) {   
+                  console.log(err);    
+              }        
+          }); 
+      });   
+
+      //education-del
+      $('.my-education3-btn').click(function(){
+            $.ajax({    
+              type:'post',        
+              url:'/resume/education/dele',   
+              data: {
+                educationtype:$(".educationtype", '#my-education').val()
+              },  
+              dataType:'json',      
+              success:function(data){    
+                  console.log(data);
+                  $("#my-education").modal('close');
+                  location.reload();
+              },
+              error : function(err) {   
+                  console.log(err);    
+              }        
+          }); 
+      });   
+      
+      //education-changeType
+      $('.educationtype21','#my-education').change(function(){
+          $.ajax({    
+                  type:'post',        
+                  url:'/resume/education/changeType',   
+                  data: {
+                    educationtype:$(".educationtype21", '#my-education').val()
+                  },  
+                  dataType:'json',      
+                  success:function(data){    
+                    $('.educationPart', '#my-education').show();
+                    $(".school2", '#my-education').val(data.school);
+                    $(".sdatetime2",'#my-education').val(data.sdatetime);
+                    $(".edatetime2", '#my-education').val(data.edatetime);
+                    $(".major2", '#my-education').val(data.major);
+                    $(".majorinstr2", '#my-education').val(data.majorinstr);
+                  },
+                  error : function(err) {   
+                      console.log(err);    
+                  }        
+          }); 
+      });
+
+      $('.educationtype','#my-education').change(function(){
+          if($(this).children('option:selected').val()==1){
+            $('.delModule', '#my-education').hide();
+            $('.changeModule', '#my-education').hide();
+            $('.addModule', '#my-education').show();
+          }else if($(this).children('option:selected').val()==2){
+            $('.delModule', '#my-education').hide();
+            $('.changeModule', '#my-education').show();
+            $('.addModule', '#my-education').hide();
+          }else if($(this).children('option:selected').val()==3){
+            $('.delModule', '#my-education').show();
+            $('.changeModule', '#my-education').hide();
+            $('.addModule', '#my-education').hide();
+          }else{
+            $('.delModule', '#my-education').hide();
+            $('.changeModule', '#my-education').hide();
+            $('.addModule', '#my-education').hide();
+          }
+      });
+      
+      /*
+        实习经历相关操作
+       */
+      //repractice-add
+      $('.my-repractice3-btn').click(function(){
+            $.ajax({    
+              type:'post',        
+              url:'/resume/repractice/add',   
+              data: {
+                practice:$(".practice", '#my-repractice').val(),
+                spracticetime:$(".spracticetime", '#my-repractice').val(),
+                epracticetime:$(".epracticetime",'#my-repractice').val(),
+                practiceposition:$(".practiceposition", '#my-repractice').val(),
+                practiceinstr:$(".practiceinstr", '#my-repractice').val()
+              },  
+              dataType:'json',      
+              success:function(data){    
+                  console.log(data);
+                  $("#my-repractice").modal('close');
+                  location.reload();
+              },
+              error : function(err) {   
+                  console.log(err);    
+              }        
+          }); 
+      });
+      //repractice-change
+      $('.my-repractice2-btn').click(function(){
+            $.ajax({    
+              type:'post',        
+              url:'/resume/repractice/change',   
+              data: {
+                compChangeType:$(".compChangeType", '#my-repractice').val(),
+                spracticetime:$(".spracticetime2", '#my-repractice').val(),
+                epracticetime:$(".epracticetime2",'#my-repractice').val(),
+                practiceposition:$(".practiceposition2", '#my-repractice').val(),
+                practiceinstr:$(".practiceinstr2", '#my-repractice').val()
+              },  
+              dataType:'json',      
+              success:function(data){    
+                  console.log(data);
+                  $("#my-repractice").modal('close');
+                  location.reload();
+              },
+              error : function(err) {   
+                  console.log(err);    
+              }        
+          }); 
+      });   
+      //repractice-del
+      $('.my-repractice1-btn').click(function(){
+            $.ajax({    
+              type:'post',        
+              url:'/resume/repractice/dele',   
+              data: {
+                compType:$(".compType", '#my-repractice').val()
+              },  
+              dataType:'json',      
+              success:function(data){    
+                  console.log(data);
+                  $("#my-repractice").modal('close');
+                  location.reload();
+              },
+              error : function(err) {   
+                  console.log(err);    
+              }        
+          }); 
+      });   
+      $('.operaType','#my-repractice').change(function(){
+          if($(this).children('option:selected').val()==1){
+              $('.deleModule', '#my-repractice').hide();
+              $('.changeModule', '#my-repractice').hide();
+              $('.addModule', '#my-repractice').show();
+          }else if($(this).children('option:selected').val()==2){
+              $('.deleModule', '#my-repractice').hide();
+              $('.changeModule', '#my-repractice').show();
+              $('.addModule', '#my-repractice').hide();
+          }else if($(this).children('option:selected').val()==3){
+              $('.deleModule', '#my-repractice').show();
+              $('.changeModule', '#my-repractice').hide();
+              $('.addModule', '#my-repractice').hide();
+          }else{
+              $('.deleModule', '#my-repractice').hide();
+              $('.changeModule', '#my-repractice').hide();
+              $('.addModule', '#my-repractice').hide();
+          }
+      });
+      //repractice-changeType
+      $('.compChangeType','#my-repractice').change(function(){
+          $.ajax({    
+                  type:'post',        
+                  url:'/resume/repractice/changeType',   
+                  data: {
+                    compChangeType:$(".compChangeType", '#my-repractice').val()
+                  },  
+                  dataType:'json',      
+                  success:function(data){    
+                    $(".spracticetime2", '#my-repractice').val(data.spracticetime);
+                    $(".epracticetime2",'#my-repractice').val(data.epracticetime);
+                    $(".practiceposition2", '#my-repractice').val(data.practiceposition);
+                    $(".practiceinstr2", '#my-repractice').val(data.practiceinstr);
+                    $('.compPart', '#my-repractice').show();
+                  },
+                  error : function(err) {   
+                      console.log(err);    
+                  }        
+          }); 
+      });
+
+      /*
+        gz经历相关操作
+       */
+      //practice-add
+      $('.my-practice3-btn').click(function(){
+            $.ajax({    
+              type:'post',        
+              url:'/resume/practice/add',   
+              data: {
+                practice:$(".practice", '#my-practice').val(),
+                spracticetime:$(".spracticetime", '#my-practice').val(),
+                epracticetime:$(".epracticetime",'#my-practice').val(),
+                practiceposition:$(".practiceposition", '#my-practice').val(),
+                practiceinstr:$(".practiceinstr", '#my-practice').val()
+              },  
+              dataType:'json',      
+              success:function(data){    
+                  console.log(data);
+                  $("#my-practice").modal('close');
+                  location.reload();
+              },
+              error : function(err) {   
+                  console.log(err);    
+              }        
+          }); 
+      });
+      //practice-change
+      $('.my-practice2-btn').click(function(){
+            $.ajax({    
+              type:'post',        
+              url:'/resume/practice/change',   
+              data: {
+                compChangeType:$(".compChangeType", '#my-practice').val(),
+                spracticetime:$(".spracticetime2", '#my-practice').val(),
+                epracticetime:$(".epracticetime2",'#my-practice').val(),
+                practiceposition:$(".practiceposition2", '#my-practice').val(),
+                practiceinstr:$(".practiceinstr2", '#my-practice').val()
+              },  
+              dataType:'json',      
+              success:function(data){    
+                  console.log(data);
+                  $("#my-practice").modal('close');
+                  location.reload();
+              },
+              error : function(err) {   
+                  console.log(err);    
+              }        
+          }); 
+      });   
+      //practice-del
+      $('.my-practice1-btn').click(function(){
+            $.ajax({    
+              type:'post',        
+              url:'/resume/practice/dele',   
+              data: {
+                compType:$(".compType", '#my-practice').val()
+              },  
+              dataType:'json',      
+              success:function(data){    
+                  console.log(data);
+                  $("#my-practice").modal('close');
+                  location.reload();
+              },
+              error : function(err) {   
+                  console.log(err);    
+              }        
+          }); 
+      });   
+      $('.operaType','#my-practice').change(function(){
+          if($(this).children('option:selected').val()==1){
+              $('.deleModule', '#my-practice').hide();
+              $('.changeModule', '#my-practice').hide();
+              $('.addModule', '#my-practice').show();
+          }else if($(this).children('option:selected').val()==2){
+              $('.deleModule', '#my-practice').hide();
+              $('.changeModule', '#my-practice').show();
+              $('.addModule', '#my-practice').hide();
+          }else if($(this).children('option:selected').val()==3){
+              $('.deleModule', '#my-practice').show();
+              $('.changeModule', '#my-practice').hide();
+              $('.addModule', '#my-practice').hide();
+          }else{
+              $('.deleModule', '#my-practice').hide();
+              $('.changeModule', '#my-practice').hide();
+              $('.addModule', '#my-practice').hide();
+          }
+      });
+      //practice-changeType
+      $('.compChangeType','#my-practice').change(function(){
+          $.ajax({    
+                  type:'post',        
+                  url:'/resume/practice/changeType',   
+                  data: {
+                    compChangeType:$(".compChangeType", '#my-practice').val()
+                  },  
+                  dataType:'json',      
+                  success:function(data){    
+                    $(".spracticetime2", '#my-practice').val(data.spracticetime);
+                    $(".epracticetime2",'#my-practice').val(data.epracticetime);
+                    $(".practiceposition2", '#my-practice').val(data.practiceposition);
+                    $(".practiceinstr2", '#my-practice').val(data.practiceinstr);
+                    $('.compPart', '#my-practice').show();
+                  },
+                  error : function(err) {   
+                      console.log(err);    
+                  }        
+          }); 
+      });
+
+
+
+      //荣誉证书
+      $('.my-certificate-btn').click(function(){
+            $.ajax({    
+              type:'post',        
+              url:'/resume/certificate',   
+              data: {
+                certificatename:$(".certificatename", '#my-certificate').val(),
+                gettime:$(".gettime", '#my-certificate').val(),
+                cgrade:$(".cgrade", '#my-certificate').val(),
+                certificateinstr:$(".certificateinstr", '#my-certificate').val(),
+                cimages:$(".cimages", '#my-certificate').val()
+              },  
+              dataType:'json',      
+              success:function(data){    
+                  console.log(data);
+                  $("#my-certificate").modal('close');
+              },
+              error : function(err) {   
+                  console.log(err);    
+              }        
+          }); 
+      });
+
+      //实践经历
+      $('.my-works-btn').click(function(){
+            $.ajax({    
+              type:'post',        
+              url:'/resume/works',   
+              data: {
+                workname:$(".workname", '#my-works').val(),
+                worktime:$(".worktime", '#my-works').val(),
+                workduty:$(".workduty", '#my-works').val(),
+                showink:$(".showink", '#my-works').val(),
+                codelink:$(".codelink", '#my-works').val(),
+                workdes:$(".workdes", '#my-works').val(),
+                workimg:$(".workimg", '#my-works').val()
+              },  
+              dataType:'json',      
+              success:function(data){    
+                  console.log(data);
+                  $("#my-works").modal('close');
+              },
+              error : function(err) {   
+                  console.log(err);    
+              }        
+          }); 
+      });
+
+      //项目经历
+      $('.my-projects-btn').click(function(){
+            $.ajax({    
+              type:'post',        
+              url:'/resume/projects',   
+              data: {
+                pname:$(".pname", '#my-projects').val(),
+                ptime:$(".ptime", '#my-projects').val(),
+                paddt:$(".paddt", '#my-projects').val()
+              },  
+              dataType:'json',      
+              success:function(data){    
+                  console.log(data);
+                  $("#my-projects").modal('close');
+              },
+              error : function(err) {   
+                  console.log(err);    
+              }        
+          }); 
+      });
+
+      //实践经历
+      $('.my-undergo-btn').click(function(){
+            $.ajax({    
+              type:'post',        
+              url:'/resume/undergo',   
+              data: {
+                undergoname:$(".undergoname", '#my-undergo').val(),
+                undergotype:$(".undergotype", '#my-undergo').val(),
+                undergotime:$(".undergotime", '#my-undergo').val(),
+                undergoinstr:$(".undergoinstr", '#my-undergo').val()
+              },  
+              dataType:'json',      
+              success:function(data){    
+                  console.log(data);
+                  $("#my-undergo").modal('close');
+              },
+              error : function(err) {   
+                  console.log(err);    
+              }        
+          }); 
+      });
+
+      //论文专利
+      $('.my-paper-btn').click(function(){
+            $.ajax({    
+              type:'post',        
+              url:'/resume/paper',   
+              data: {
+                papername:$(".papername", '#my-paper').val(),
+                papertype:$(".papertype", '#my-paper').val(),
+                papertime:$(".papertime", '#my-paper').val(),
+                paperinstr:$(".paperinstr", '#my-paper').val()
+              },  
+              dataType:'json',      
+              success:function(data){    
+                  console.log(data);
+                  $("#my-paper").modal('close');
+              },
+              error : function(err) {   
+                  console.log(err);    
+              }        
+          }); 
+      });
+
+      //核心技能
+      $('.my-description-btn').click(function(){
+            $.ajax({    
+              type:'post',        
+              url:'/resume/desc',   
+              data: {
+                desCon:$(".descriptioncon", '#my-description').val()
+              },  
+              dataType:'json',      
+              success:function(data){    
+                  console.log(data);
+                  $("#my-description").modal('close');
+              },
+              error : function(err) {   
+                  console.log(err);    
+              }        
+          }); 
+      });
+
+
+  }); 
+</script>

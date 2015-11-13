@@ -1,0 +1,85 @@
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+//定义Article对象模型
+var ArticleSchema = new Schema({
+    author: String,
+    articleTitle:String,
+    articleKeyword:String,
+    articleAbstract:String,
+    articleCont:String,
+    articleImgs:String,
+    articleType:Number,
+    articleTag:Number,
+    articleLink:String,
+    cTime: { type: Date, default: Date.now },
+    uTime: { type: Date, default: Date.now }
+});
+
+//访问User对象模型
+mongoose.model('Article', ArticleSchema);
+var Article = mongoose.model('Article');   //作用是什么？   下面所有的new User 既是如此
+exports.Article=Article;
+
+//添加功能
+exports.create = function(obj,callback) {
+    var newArticle = obj;
+    newArticle.save(function(err){
+        if(err){
+            callback(err);
+        }else{
+            callback(null);
+        }
+    });
+}
+
+//根据用户名查找   
+exports.findByUname = function(author,callback) {
+     Article.find({author:author},function(err,result){
+        if(err){
+            callback(err,null);
+        }else
+        {
+            callback(null,result);
+        }
+     });
+}
+
+//条件查找所有   结果集
+exports.findAll = function(object,callback) {
+     Article.find(object,function(err,result){
+        if(err){
+            callback(err);
+        }else
+        {
+            callback(null,result);
+        }
+     });
+}
+
+//删除操作
+exports.delete = function(object,callback) {
+     Article.remove(object,function(err){
+        if(err){
+            callback(err);
+        }else
+        {
+            callback(null);
+        }
+     });
+}
+
+//更新操作
+exports.modify = function(conditions,updates,options,callback) {
+     Article.update(conditions,updates,options,function(err){
+        if(err){
+            callback(err);
+        }else
+        {
+            callback(null);
+        }
+     });
+}
+
+
+

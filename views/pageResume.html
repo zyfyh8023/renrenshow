@@ -1,0 +1,75 @@
+<% include myheader.html %>
+
+    <section>
+
+		<% include nav.html %>
+
+			<div class="am-g am-u-lg-9 am-u-md-12  am-u-sm-centered">
+
+				<% include pos.html %>
+
+				<div class="col-lg-2 am-u-lg-2 am-show-lg-only zy-show-lg-nav">
+					<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default zy-titlebar-nomargin">
+					  <h2 class="am-titlebar-title ">简历管理</h2>
+					</div>
+					<div>
+						<ul class="am-list am-list-border">
+						  	<li><a href="#">编辑</a></li>
+						  	<li><a href="#">预览</a></li>
+						  	<li><a href="#">导出</a></li>
+						  	<li><a href="#">发送</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="col-lg-10 am-u-lg-10 zy-show-lg-content">
+					<div class="am-show-md-only">
+						<ul class="am-nav am-nav-tabs">
+						  <li class="am-active"><a href="#">首页</a></li>
+						  <li><a href="#">项目</a></li>
+						  <li class="am-dropdown" data-am-dropdown>
+						    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+						      菜单 <span class="am-icon-caret-down"></span>
+						    </a>
+						    <ul class="am-dropdown-content">
+					            <li><a href="#">1. 一行代码，简单快捷</a></li>
+					            <li class="am-active"><a href="#">2. 网址不变且唯一</a></li>
+					            <li><a href="#">3. 内容实时同步更新</a></li>
+						    </ul>
+						  </li>
+						</ul>
+					</div>
+
+					<div id="amz-offcanvas" class="am-offcanvas">
+						<section class="amz-sidebar am-offcanvas-bar">
+							<ul class="am-list am-list-border">
+							  	<li><a href="#">基本样式1</a></li>
+							  	<li><a href="#">基本样式1</a></li>
+							  	<li><a href="#">基本样式1</a></li>
+							  	<li><a href="#">基本样式1</a></li>
+							  	<li><a href="#">基本样式1</a></li>
+							</ul>
+						</section>
+					</div>
+
+					<form class="am-form" method="post" enctype='multipart/form-data'>
+						<div class="am-form-group am-form-file">
+						  <button type="button" class="am-btn am-btn-danger am-btn-sm">
+						    <i class="am-icon-cloud-upload"></i> 选择要上传的文件</button>
+						  <input id="fulAvatar"  name="fulAvatar" type="file" multiple>
+						</div>
+						<div id="file-listzy"></div>
+					   <p><button type="submit" class="am-btn am-btn-default">提交</button></p>
+					</form>
+
+
+				</div>	
+			</div>
+
+	</section>	
+
+	<a class="am-icon-btn am-icon-bars am-show-sm-only amz-sidebar-toggle" data-am-offcanvas="" href="#amz-offcanvas">
+		<span class="am-sr-only">侧栏导航</span>
+	</a>
+    
+<% include myfooter.html %>

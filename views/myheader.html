@@ -1,0 +1,72 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title><%= title %></title>
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <link rel="icon" type="image/png" href="/images/website-icon.png">
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="/images/website-icon.png">
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon-precomposed" href="/images/website-icon.png">
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="/images/website-icon.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+  <link rel="stylesheet" href="/stylesheets/amazeui.min.css">
+  <link rel="stylesheet" href="/stylesheets/app.css">
+</head>
+<body>
+  
+  <header class="am-topbar zy-am-topbar">
+    <div class="am-u-lg-9 am-u-md-12  am-u-sm-centered">
+      <h1 class="am-topbar-brand zy-am-topbar-brand">
+          <a href="/myindex"><img src="/images/logo.png"></a>
+      </h1>
+
+      <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-primary  am-show-sm-only" data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+
+      <div class="am-collapse am-topbar-collapse zy-am-topbar-collapse" id="doc-topbar-collapse">
+        <ul class="am-nav am-nav-pills am-topbar-nav zy-am-topbar-nav">
+          <li class="am-active"><a href="/myindex">首页</a></li>
+          <li><a href="/introduction">简介</a></li>
+          <li><a href="/resume">简历</a></li>
+         <!--  <li class="am-dropdown" data-am-dropdown>
+            <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+              简历<span class="am-icon-caret-down"></span>
+            </a>
+            <ul class="am-dropdown-content">
+              <li class="am-dropdown-header">简历分类操作</li>
+              <li class="am-active"><a href="/resume">1. 网页版简历编辑</a></li>
+              <li class="am-divider"></li>
+              <li class="am-disabled"><a href="/pageResume">2. 纸质版简历编辑</a></li>
+            </ul>
+          </li> -->
+          <li><a href="/navigation">资源</a></li>
+          <li><a href="/managearticle">博文</a></li>
+          <li><a href="/seting">设置</a></li>
+        </ul>
+
+        <div class="am-topbar-right">
+          <div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
+            <button class="am-btn am-btn-primary  am-topbar-btn am-btn-sm am-dropdown-toggle am-radius" data-am-dropdown-toggle>其他 <span class="am-icon-caret-down"></span></button>
+            <ul class="am-dropdown-content">
+              <li><a href="/resource">资源库</a></li>
+              <li><a href="/talentpool">人才库</a></li>
+              <li><a  id="zy-loginOut" href="javaScript:;">退出登录</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
