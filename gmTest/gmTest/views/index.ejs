@@ -1,0 +1,18 @@
+<!--<html>-->
+<div class="w bread">
+  <div class="avatar_setting">
+    <% files.forEach(function(path){ %>
+    <div class="avatar">
+      <img src="images/user/<%= path %>"/>
+    </div>
+    <% }); %>
+  </div>
+  <div id="choosebox" class="ellipsis">点击选择图片</div>
+  <form class="form-horizontal" id="image_form" action="/imgUpload" method="post" enctype="multipart/form-data">
+    <input class="hide" type="file" id="file" name="img" />
+    <div class="form-actions">
+      <button class="btn" id="upload">上传头像</button>
+      <span id="imgerr"></span><img class="hide" id="imgload" height="14px" width="14px" src="/images/loading.gif">
+    </div>
+  </form>
+</div>
