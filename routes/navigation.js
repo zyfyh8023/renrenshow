@@ -1,11 +1,14 @@
 "use strict";
 var navigations = require('../models/navigation');
 
-var retCode, retDesc, uName;
+var retCode, retDesc, uName, navTitle, navDesc;
 
 /* GET navigation page. */
 exports.page=function(req, res, next) {
 	uName=req.session.user.username;
+	navTitle="私人资源导航定制";
+  	navDesc="资源导航为童鞋们提供学习方向、学习途径、和业界最新消息、最新资料等。编程工具、"+
+  			"国外牛人、国内牛人、JS框架、UI框架、JS库、CSS库。每周更新及时。";
 	navigations.findByUname(uName,function(err, results){
         if(err){ 
 			retDesc="用户的资源导航查找失败!";
@@ -18,7 +21,11 @@ exports.page=function(req, res, next) {
 	        		}
 	        		results.models.sort(getSortFun('asc', 'sque'));
 	        	}
-	        	res.render('navigation', { title: '资源导航',allNavgition:results});
+	        	res.render('navigation', { 
+	        		title: '资源导航',
+	        		navTitle: navTitle,
+	        		navDesc: navDesc,
+	        		allNavgition:results});
         	}else{
 				retDesc="数据未初始化!";
 	          	res.redirect('myError?retDesc='+retDesc); 
@@ -104,27 +111,30 @@ exports.listAdd=function(req, res, next){
 
 //添加小链接元素
 exports.listAdd2=function(req, res, next){
-	uName=req.session.user.username;
+	uName = req.session.user.username;
+	var moduleName = req.body.moduleName,
+		moduleInfo = req.body.moduleInfo,
+		moduleLink = req.body.moduleLink,
+		thisPar = thisPar;
 	navigations.findByUname(uName,function(err, result){
         if(err){
         	retDesc='用户名查找出现问题！';
         	return res.send({retCode:400, retDesc:retDesc}); 
         }else{
         	if(result){
-	        	for(var k=0;k<result.modelsNum;k++){
-	        		if(result.models[k].modelsName==req.body.parentName){
-	        			var newSunSque= result.models[k].modelsunNum+1;
+	        	for(var k=0;k<result.models.length;k++){
+	        		if(result.models[k].modelsName==thisPar){
+	        			var newSunSque= result.models[k].modelsuns.length+1;
 	    				var newModelSun={
-			        		sunName:req.body.parentName+"是1",
-			        		sunDesc:"速度加愤怒的时间仿佛热热身",
-			        		sunSque:newSunSque,
-			        		sunUrl:"http://www.baidu.com"
+			        		sunName: moduleName,
+			        		sunDesc: moduleInfo,
+			        		sunSque: newSunSque,
+			        		sunUrl: moduleLink
 	        			};
 	        			result.models[k].modelsuns.push(newModelSun);
-	        			result.models[k].modelsunNum=result.models[k].modelsunNum+1;
-			        	navigations.modify({author:"zoujiahua@173.com"},{models:result.models},function(err){
+			        	navigations.modify({author:uName},{models:result.models},function(err){
 			        		if(err){
-			        			retDesc='有错误！';
+			        			retDesc='系统出现错误，请稍后再试！';
 			        			return res.send({retCode:400, retDesc:retDesc}); 
 			        		}else{
 			        			return res.send({retCode:200}); 
@@ -133,7 +143,7 @@ exports.listAdd2=function(req, res, next){
 	        		}
 	        	}
         	}else{
-        		retDesc='没有数据！';
+        		retDesc='没有找到数据！';
         		return res.send({retCode:400, retDesc:retDesc}); 
         	}
         }
@@ -141,39 +151,14 @@ exports.listAdd2=function(req, res, next){
 }
 
 exports.listInit=function(req, res, next){
-	uName=req.session.user.username;
+	uName=req.body.uName;
 	var newNavigation = new navigations.Navigation({
         author: uName,
-	    modelsNum:3,
 	    models:[
 		    {
 		        modelsName:"前端开发资源", 
 		        sque:3,
-		        modelsunNum:8,
-		        modelsuns:[{
-		            sunSque:8,
-		            sunDesc:"视频资源大视视频视频资源大汇总3资源大视频资源大汇总3汇总3",
-		            sunName:"大前端",
-		            sunUrl:"http://www.baidu.com"
-		        },
-		        {
-		            sunSque:7,
-		            sunDesc:"视频资源大视视频视频资源大汇总3资源大视频资源大汇总3汇总3",
-		            sunName:"大前端",
-		            sunUrl:"http://www.baidu.com"
-		        },
-		        {
-		            sunSque:6,
-		            sunDesc:"视频资源大视视频视频资源大汇总3资源大视频资源大汇总3汇总3",
-		            sunName:"大前端",
-		            sunUrl:"http://www.baidu.com"
-		        },
-		        {
-		            sunSque:5,
-		            sunDesc:"视频资源大视视频视频资源大汇总3资源大视频资源大汇总3汇总3",
-		            sunName:"大前端",
-		            sunUrl:"http://www.baidu.com"
-		        },
+		        modelsuns:[
 		        {
 		            sunSque:4,
 		            sunDesc:"视频资源大视视频视频资源大汇总3资源大视频资源大汇总3汇总3",
@@ -202,7 +187,6 @@ exports.listInit=function(req, res, next){
 		    {
 		        modelsName:"后端开发资源", 
 		        sque:2,
-		        modelsunNum:5,
 		        modelsuns:[{
 		            sunSque:1,
 		            sunDesc:"视频资源大视视频视频资源大汇总3资源大视频资源大汇总3汇总3",
@@ -226,18 +210,11 @@ exports.listInit=function(req, res, next){
 		            sunDesc:"视频资源大视视频视频资源大汇总3资源大视频资源大汇总3汇总3",
 		            sunName:"大后端",
 		            sunUrl:"http://www.baidu.com"
-		        },
-		        {
-		            sunSque:5,
-		            sunDesc:"视频资源大视视频视频资源大汇总3资源大视频资源大汇总3汇总3",
-		            sunName:"大后端",
-		            sunUrl:"http://www.baidu.com"
 		        }]
 	    	},
 	    	{
 		        modelsName:"客户端开发资源", 
 		        sque:1,
-		        modelsunNum:4,
 		        modelsuns:[{
 		            sunSque:1,
 		            sunDesc:"视频资源大视视频视频资源大汇总3资源大视频资源大汇总3汇总3",
@@ -270,7 +247,7 @@ exports.listInit=function(req, res, next){
         if(err){
         	retDesc='有错误哦~';
         	return res.send({retCode:400, retDesc:retDesc}); 
-	 	 }else{
+	 	}else{
 	 	 	return res.send({retCode:200}); 
         }
 	});

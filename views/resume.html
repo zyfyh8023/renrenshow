@@ -1,247 +1,233 @@
 <% include myheader.html %>
-      <!-- <div class="am-progress am-progress-striped am-active">
-          <div class="am-progress-bar" style="width: 65%">65%</div>
-          <div class="am-progress-bar am-progress-bar-warning" style="width: 35%">35%</div>
-      </div> -->
-      <a data-am-offcanvas="{target: '#doc-oc-demo2',effect: 'push'}">编辑</a>
-      <div id="doc-oc-demo2" class="am-offcanvas">
+
+    <!-- <div class="am-progress am-progress-striped am-active">
+        <div class="am-progress-bar" style="width: 65%">65%</div>
+        <div class="am-progress-bar am-progress-bar-warning" style="width: 35%">35%</div>
+    </div> -->
+
+    <!-- <a data-am-offcanvas="{target: '#doc-oc-demo2',effect: 'push'}">编辑</a>
+    <div id="doc-oc-demo2" class="am-offcanvas">
         <div class="am-offcanvas-bar">
-          <div class="am-offcanvas-content">
+            <div class="am-offcanvas-content">
 
-          </div>
+            </div>
         </div>
-      </div>
+    </div> -->
 
-      <div class="zy-resume-img">
-         <!--  <img src="/images/title_bg_d.jpg" class="am-img-responsive" alt=""/> -->
-          <i class="zy-resume-img-bg"></i>
-      </div>
-      <div class="am-g am-u-lg-9 am-u-md-12  am-u-sm-centered zy-resume">
-          <div class="zy-resume-myimg-poi">
+    <div class="zy-resume-img">
+        <!--  <img src="/images/title_bg_d.jpg" class="am-img-responsive" alt=""/> -->
+        <i class="zy-resume-img-bg"></i>
+    </div>
+
+    <div class="am-g am-u-lg-9 am-u-md-12  am-u-sm-centered zy-resume">
+        <div class="zy-resume-myimg-poi">
             <img  src="<%= rs.headimg %>" />
-          </div>
-          <div class="am-animation-slide-left">
+        </div>
+        <div class="am-animation-slide-left">
             <h2 style="color:#555;">我的网页版简历</h2>
             <h5>愿以我的努力、激情和真诚，能为您带来新的活力！</h5>
-          </div>
-      </div>
+        </div>
+    </div>
 
-      <br><br><br><br><br><br>
-      <div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
+    <br><br><br><br><br><br>
+    <div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
         <div class="am-alert am-alert-secondary">
             <button type="button" class="am-close" data-am-modal="{target: '#my-baseinfo'}"><i class="am-icon-pencil"></i></button>
             <div style="font-size:30px;text-align:center;">基本信息</div>
         </div>
-      </div>
-      <div class="am-g am-u-lg-6 am-u-md-12  am-u-sm-centered">
-          <ul class="am-list">
-              <li><a href="javascript:;"><i style="display:inline-block;margin-right:30px;" class="am-icon-user am-icon-sm am-icon-fw"></i>
-                姓名：<%= rs.baseInfo1.uname %></a></li>
-              <li><a  href="javascript:;"> <i style="display:inline-block;margin-right:30px;" class="am-icon-transgender am-icon-sm am-icon-fw"></i>
-                性别：<% if (rs.baseInfo1.gender == '1') { %>男
-                      <% }else{ %>女
-                      <% } %>
-                </a></li>
-              <li><a href="javascript:;"><i style="display:inline-block;margin-right:30px;" class="am-icon-user-secret am-icon-sm am-icon-fw"></i>
-                年龄：<%= rs.baseInfo1.age %>岁</a></li>
-              <li><a href="javascript:;"><i style="display:inline-block;margin-right:30px;" class="am-icon-flag-checkered am-icon-sm am-icon-fw"></i>
-                政治面貌：<%= rs.baseInfo1.identity %></a></li>
-              <li><a href="javascript:;"><i style="display:inline-block;margin-right:30px;" class="am-icon-mortar-board am-icon-sm am-icon-fw"></i>
-                学历：<% if(rs.baseInfo1.education=='1'){ %>高中
+    </div>
+    <div class="am-g am-u-lg-6 am-u-md-12  am-u-sm-centered">
+        <ul class="am-list">
+            <li><a href="javascript:;"><i style="display:inline-block;margin-right:30px;" class="am-icon-user am-icon-sm am-icon-fw"></i>姓名：<%= rs.baseInfo1.uname %></a></li>
+            <li><a  href="javascript:;"> <i style="display:inline-block;margin-right:30px;" class="am-icon-transgender am-icon-sm am-icon-fw"></i>性别：<% if (rs.baseInfo1.gender == '1') { %>男<% }else if(rs.baseInfo1.gender == '2'){ %>女<% } %></a></li>
+            <li><a href="javascript:;"><i style="display:inline-block;margin-right:30px;" class="am-icon-user-secret am-icon-sm am-icon-fw"></i>年龄：<% if (rs.baseInfo1.age) { %><%= rs.baseInfo1.age %>岁<% } %></a></li>
+            <li><a href="javascript:;"><i style="display:inline-block;margin-right:30px;" class="am-icon-flag-checkered am-icon-sm am-icon-fw"></i>政治面貌：<%= rs.baseInfo1.identity %></a></li>
+            <li><a href="javascript:;"><i style="display:inline-block;margin-right:30px;" class="am-icon-mortar-board am-icon-sm am-icon-fw"></i>学历：<% if(rs.baseInfo1.education=='1'){ %>高中
                       <% }else if(rs.baseInfo1.education=='2'){ %>大专
                       <% }else if(rs.baseInfo1.education=='3'){ %>本科
                       <% }else if(rs.baseInfo1.education=='4'){ %>硕士
-                      <% }else{ %>博士
-                      <% } %>
-                </a></li>
-              <li><a href="javascript:;"><i style="display:inline-block;margin-right:30px;" class="am-icon-university am-icon-sm am-icon-fw"></i>
-                毕业院校：<%= rs.baseInfo1.school %></a></li>
-              <li><a href="javascript:;"><i style="display:inline-block;margin-right:30px;" class="am-icon-certificate am-icon-sm am-icon-fw"></i>
-                专业：<%= rs.baseInfo1.major %></a></li>
-          </ul>
-      </div>
+                      <% }else if(rs.baseInfo1.education== '5'){ %>博士
+                      <% } %></a></li>
+            <li><a href="javascript:;"><i style="display:inline-block;margin-right:30px;" class="am-icon-university am-icon-sm am-icon-fw"></i>毕业院校：<%= rs.baseInfo1.school %></a></li>
+            <li><a href="javascript:;"><i style="display:inline-block;margin-right:30px;" class="am-icon-certificate am-icon-sm am-icon-fw"></i>专业：<%= rs.baseInfo1.major %></a></li>
+        </ul>
+    </div>
 
-
-      <div class="am-popup" id="my-baseinfo">
-      <div class="am-popup-inner">
+    <div class="am-popup" id="my-baseinfo">
+        <div class="am-popup-inner">
         <div class="am-popup-hd">
-          <h4 class="am-popup-title">基本信息编辑</h4>
-          <span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
+            <h4 class="am-popup-title">基本信息编辑</h4>
+            <span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
         </div>
         <div class="am-popup-bd"> 
         <form class="am-form am-form-horizontal" action="/resume/baseinfo" data-am-validator method='post' id="specialInstruc" enctype='multipart/form-data'> 
-          <div class="am-form-group">
-            <label for="uname" class="am-u-sm-3 am-form-label">姓名：</label>
-            <div class="am-u-sm-9">
-              <input type="text" name="uname" class="uname" placeholder="请输入您的姓名" required />
+            <div class="am-form-group">
+                <label class="am-u-sm-3 am-form-label">姓名：</label>
+                <div class="am-u-sm-9">
+                    <input type="text" name="uname" placeholder="请输入您的姓名" required />
+                </div>
             </div>
-          </div>
-          <div class="am-form-group">
-            <label for="age" class="am-u-sm-3 am-form-label">年龄：</label>
-            <div class="am-u-sm-9">
-              <input type="number" name="age" class="age" placeholder="请输入您的年龄 1-120" min="1" max="120" required />
-              </div>
-          </div>
-          <div class="am-form-group">
-            <label class="am-u-sm-3 am-form-label">性别：</label>
-            <div class="am-u-sm-9">
-              <label class="am-radio-inline">
-                 <input type="radio" name="sex" value="1" required /> 男
-              </label>
-              <label class="am-radio-inline">
-                 <input type="radio" name="sex" value="2"> 女
-              </label>
+            <div class="am-form-group">
+                <label class="am-u-sm-3 am-form-label">年龄：</label>
+                <div class="am-u-sm-9">
+                    <input type="number" name="age" placeholder="请输入您的年龄 1-120" min="1" max="120" required />
+                </div>
             </div>
-          </div>
-          <div class="am-form-group">
-            <label for="istatus" class="am-u-sm-3 am-form-label">政治面貌：</label>
-            <div class="am-u-sm-9">
-              <input type="text" class="istatus" name="istatus" placeholder="输入您的政治面貌" />
+            <div class="am-form-group">
+                <label class="am-u-sm-3 am-form-label">性别：</label>
+                <div class="am-u-sm-9">
+                    <label class="am-radio-inline">
+                        <input type="radio" name="sex" value="1" required /> 男
+                    </label>
+                    <label class="am-radio-inline">
+                        <input type="radio" name="sex" value="2"> 女
+                    </label>
+                </div>
             </div>
-          </div>
-          <div class="am-form-group">
-          <label for="ieducation" class="am-u-sm-3 am-form-label">学历：</label>
-          <div class="am-u-sm-9">
-                <select class="ieducation" name="ieducation" required>
-                  <option value="">请选择一项</option>
-                  <option value="1">高中</option>
-                  <option value="2">大专</option>
-                  <option value="3">本科</option>
-                  <option value="4">硕士</option>
-                  <option value="5">博士</option>
-                </select>
-                <span class="am-form-caret"></span>
-              </div>
+            <div class="am-form-group">
+                <label class="am-u-sm-3 am-form-label">政治面貌：</label>
+                <div class="am-u-sm-9">
+                    <input type="text" name="istatus" placeholder="输入您的政治面貌" />
+                </div>
             </div>
-          <div class="am-form-group">
-            <label for="ischool" class="am-u-sm-3 am-form-label">毕业院校：</label>
-            <div class="am-u-sm-9">
-              <input type="text" class="ischool" name="ischool" placeholder="请输入您的院校" required />
+            <div class="am-form-group">
+                <label class="am-u-sm-3 am-form-label">学历：</label>
+                <div class="am-u-sm-9">
+                    <select name="ieducation" required>
+                        <option value="">请选择一项</option>
+                        <option value="1">高中</option>
+                        <option value="2">大专</option>
+                        <option value="3">本科</option>
+                        <option value="4">硕士</option>
+                        <option value="5">博士</option>
+                    </select>
+                    <span class="am-form-caret"></span>
+                </div>
             </div>
-          </div>
-          <div class="am-form-group">
-            <label for="imajor" class="am-u-sm-3 am-form-label">专业：</label>
-            <div class="am-u-sm-9">
-              <input type="text" class="imajor" name="imajor" placeholder="请输入您的专业" required />
+            <div class="am-form-group">
+                <label class="am-u-sm-3 am-form-label">毕业院校：</label>
+                <div class="am-u-sm-9">
+                    <input type="text" name="ischool" placeholder="请输入您的院校" required />
+                </div>
             </div>
-          </div>
-          <div class="am-form-group am-form-file">
-             <label class="am-u-sm-3 am-form-label">我的头像：</label>
-               <div class="am-u-sm-9">
-                  <button type="button" class="am-btn am-btn-default am-btn-sm">
-                  <i class="am-icon-cloud-upload"></i> 上传头像</button>
-                  <input type="file" id="inputFile"  name="inputFile" required>
-                  <div class="imgtip"></div>
-               </div>
-          </div>
-          <br>
-          <div class="am-form-group">
+            <div class="am-form-group">
+                <label class="am-u-sm-3 am-form-label">专业：</label>
+                <div class="am-u-sm-9">
+                    <input type="text" name="imajor" placeholder="请输入您的专业" required />
+                </div>
+            </div>
+            <div class="am-form-group am-form-file">
+                <label class="am-u-sm-3 am-form-label">我的头像：</label>
+                <div class="am-u-sm-9">
+                <button type="button" class="am-btn am-btn-default am-btn-sm">
+                <i class="am-icon-cloud-upload"></i> 上传头像</button>
+                <input type="file" id="inputFile"  name="inputFile" required>
+                <div class="imgtip"></div>
+                </div>
+            </div>
+            <br>
+            <div class="am-form-group">
             <div class="am-u-sm-9 am-u-sm-offset-3">
-              <button id="upload" class="am-btn am-btn-warning my-baseinfo-btn"> 提交确认</button>
+                <button id="upload" class="am-btn am-btn-warning my-baseinfo-btn"> 提交确认</button>
             </div>
-          </div>
+            </div>
         </form> 
         </div>
-      </div>
-      </div>
+    </div>
+    </div>
 
-
-      <br><br><br><br><br><br>
-      <div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
-          <div class="am-alert am-alert-secondary">
-              <button type="button" class="am-close" data-am-modal="{target: '#my-contactinfo'}"><i class="am-icon-pencil"></i></button>
-              <div style="font-size:30px;text-align:center;">联系方式</div>
-          </div>
-      </div>
-      <div class="am-g am-u-lg-10 am-u-md-12  am-u-sm-centered">
-          <div class="col-lg-3 am-u-lg-3">
-              <div class="am-panel am-panel-default">
-                  <div class="am-panel-hd">手机电话</div>
-                  <div class="am-panel-bd">
+    <br><br><br><br><br><br>
+    <div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
+        <div class="am-alert am-alert-secondary">
+            <button type="button" class="am-close" data-am-modal="{target: '#my-contactinfo'}"><i class="am-icon-pencil"></i></button>
+            <div style="font-size:30px;text-align:center;">联系方式</div>
+        </div>
+    </div>
+    <div class="am-g am-u-lg-10 am-u-md-12  am-u-sm-centered">
+        <div class="col-lg-3 am-u-lg-3">
+            <div class="am-panel am-panel-default">
+                <div class="am-panel-hd">手机电话</div>
+                <div class="am-panel-bd">
                     手机：<%= rs.contact2.mPhone %><br>
                     电话：<%= rs.contact2.phoneNum %>
-                  </div>
-              </div>
-          </div>
-           <div class="col-lg-6 am-u-lg-6">
-              <div class="am-panel am-panel-default">
-                  <div class="am-panel-hd">通信地址</div>
-                  <div class="am-panel-bd">
-                    户口地址：<%= rs.contact2.populationAddr %><br>
-                    常住地址：<%= rs.contact2.permanentAddr %>
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-3 am-u-lg-3">
-              <div class="am-panel am-panel-default">
-                  <div class="am-panel-hd">邮箱QQ</div>
-                  <div class="am-panel-bd">
-                    邮箱：<%= rs.contact2.email %><br>
-                    QQ：<%= rs.contact2.qqNum %>
-                  </div>
-              </div>
-          </div>
-      </div>
-
-
-      <div class="am-popup" id="my-contactinfo">
-        <div class="am-popup-inner">
-          <div class="am-popup-hd">
-            <h4 class="am-popup-title">联系方式</h4>
-            <span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
-          </div>
-          <div class="am-popup-bd">
-            <br>
-          <form class="am-form am-form-horizontal" method="post" data-am-validator>
-            <div class="am-form-group">
-              <label for="mphone" class="am-u-sm-3 am-form-label">手机号码：</label>
-              <div class="am-u-sm-9">
-                <input type="number" class="mphone" name="mphone" placeholder="请输入您的手机号码" required>
-              </div>
+                </div>
             </div>
-            <div class="am-form-group">
-              <label for="phone" class="am-u-sm-3 am-form-label">电话号码：</label>
-              <div class="am-u-sm-9">
-                <input type="text" class="phone" name="phone" placeholder="请输入您的电话号码">
-              </div>
+        </div>
+        <div class="col-lg-6 am-u-lg-6">
+            <div class="am-panel am-panel-default">
+                <div class="am-panel-hd">通信地址</div>
+                <div class="am-panel-bd">
+                  户口地址：<%= rs.contact2.populationAddr %><br>
+                  常住地址：<%= rs.contact2.permanentAddr %>
+                </div>
             </div>
-            <div class="am-form-group">
-              <label for="address" class="am-u-sm-3 am-form-label">通信地址：</label>
-              <div class="am-u-sm-9">
-                <input type="text" class="address" required name="address" placeholder="请输入您的通信地址"  >
-              </div>
+        </div>
+        <div class="col-lg-3 am-u-lg-3">
+            <div class="am-panel am-panel-default">
+                <div class="am-panel-hd">邮箱QQ</div>
+                <div class="am-panel-bd">
+                  邮箱：<%= rs.contact2.email %><br>
+                  QQ：<%= rs.contact2.qqNum %>
+                </div>
             </div>
-            <div class="am-form-group">
-              <label for="identity" class="am-u-sm-3 am-form-label">户口地址：</label>
-              <div class="am-u-sm-9">
-                <input type="text" class="identity" name="identity" placeholder="请输入您的户口地址">
-              </div>
-            </div>
-            <div class="am-form-group">
-              <label for="email" class="am-u-sm-3 am-form-label">邮箱：</label>
-              <div class="am-u-sm-9">
-                <input type="email" class="email" name="email" placeholder="请输入您的邮箱" required>
-              </div>
-            </div>
-            <div class="am-form-group">
-              <label for="qqnum" class="am-u-sm-3 am-form-label">QQ账号：</label>
-              <div class="am-u-sm-9">
-                <input type="number" class="qqnum" name="qqnum" placeholder="请输入您的QQ账号">
-              </div>
-            </div>
-            <br>
-            <div class="am-form-group">
-              <div class="am-u-sm-9 am-u-sm-offset-3">
-                <button type="button" class="am-btn am-btn-warning my-contactinfo-btn">提交确认</button>
-              </div>
-            </div>
-          </form>  
-          </div>
         </div>
       </div>
 
-
-
+      <div class="am-popup" id="my-contactinfo">
+          <div class="am-popup-inner">
+          <div class="am-popup-hd">
+              <h4 class="am-popup-title">联系方式</h4>
+              <span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
+          </div>
+          <div class="am-popup-bd">
+          <br>
+          <form class="am-form am-form-horizontal" method="post" data-am-validator>
+              <div class="am-form-group">
+              <label class="am-u-sm-3 am-form-label">手机号码：</label>
+              <div class="am-u-sm-9">
+                  <input type="number" class="mphone" placeholder="请输入您的手机号码" required>
+              </div>
+              </div>
+              <div class="am-form-group">
+              <label class="am-u-sm-3 am-form-label">电话号码：</label>
+              <div class="am-u-sm-9">
+                  <input type="text" class="phone" placeholder="请输入您的电话号码">
+              </div>
+              </div>
+              <div class="am-form-group">
+              <label class="am-u-sm-3 am-form-label">通信地址：</label>
+              <div class="am-u-sm-9">
+                  <input type="text" class="address" required placeholder="请输入您的通信地址"  >
+              </div>
+              </div>
+              <div class="am-form-group">
+              <label class="am-u-sm-3 am-form-label">户口地址：</label>
+              <div class="am-u-sm-9">
+                  <input type="text" class="identity" placeholder="请输入您的户口地址">
+              </div>
+              </div>
+              <div class="am-form-group">
+              <label class="am-u-sm-3 am-form-label">邮箱：</label>
+              <div class="am-u-sm-9">
+                  <input type="email" class="email" placeholder="请输入您的邮箱" required>
+              </div>
+              </div>
+              <div class="am-form-group">
+              <label class="am-u-sm-3 am-form-label">QQ账号：</label>
+              <div class="am-u-sm-9">
+                  <input type="number" class="qqnum" placeholder="请输入您的QQ账号">
+              </div>
+              </div>
+              <br>
+              <div class="am-form-group">
+              <div class="am-u-sm-9 am-u-sm-offset-3">
+                  <button type="button" class="am-btn am-btn-warning my-contactinfo-btn">提交确认</button>
+              </div>
+              </div>
+          </form>  
+          </div>
+      </div>
+      </div>
 
       <br><br><br><br><br><br>
       <div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
@@ -256,17 +242,17 @@
       <div data-am-widget="list_news" class="am-list-news am-list-news-default" >
           <div class="am-list-news-bd">
               <ul class="am-list">
-               <!--缩略图在标题左边-->
+                <!--缩略图在标题左边-->
                 <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-                  <div class="am-u-sm-4 am-list-thumb">
+                    <div class="am-u-sm-4 am-list-thumb">
                     <a href="http://www.douban.com/online/11614662/" class="">
-                      <img class="am-img-thumbnail am-circle" src="http://img5.douban.com/lpic/o636459.jpg" alt=""/>
+                        <img class="am-img-thumbnail am-circle" src="http://img5.douban.com/lpic/o636459.jpg" alt=""/>
                     </a>
-                  </div>
-                  <div class=" am-u-sm-8 am-list-main">
-                      <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11614662/" class="">宿羊山高级中学</a></h3>
-                      <div class="am-list-item-text">囧人囧事囧照，人在囧途，越囧越萌。标记《带你出发，陪我回家》http://book.douban.com/subject/25711202/为“想读”“在读”或“读过”，有机会获得此书本活动进行3个月，每月送出三本书。会有不定期bonus！</div>
-                  </div>
+                    </div>
+                    <div class=" am-u-sm-8 am-list-main">
+                        <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11614662/" class="">宿羊山高级中学</a></h3>
+                        <div class="am-list-item-text">囧人囧事囧照，人在囧途，越囧越萌。标记《带你出发，陪我回家》http://book.douban.com/subject/25711202/为“想读”“在读”或“读过”，有机会获得此书本活动进行3个月，每月送出三本书。会有不定期bonus！</div>
+                    </div>
                 </li>
               </ul>
           </div>
@@ -325,9 +311,8 @@
             <div class="am-popup-bd">
             <br>
             <form class="am-form am-form-horizontal" method="post" data-am-validator>
-
               <div class="am-form-group">
-                <label for="educationtype" class="am-u-sm-3 am-form-label">操作方式选择：</label>
+                <label class="am-u-sm-3 am-form-label">操作方式选择：</label>
                   <div class="am-u-sm-9">
                         <select class="educationtype" name="educationtype" required>
                           <option value=""  selected = "selected">请选择操作哪项？</option>
@@ -342,7 +327,7 @@
 
                <div class="delModule" style="display:none">
                   <div class="am-form-group">
-                    <label for="educationtype3" class="am-u-sm-3 am-form-label">删除选项：</label>
+                    <label class="am-u-sm-3 am-form-label">删除选项：</label>
                     <div class="am-u-sm-9">
                           <select class="educationtype3" name="educationtype3" required>
                             <option value="">请选择删除哪项？</option>
@@ -364,7 +349,7 @@
 
                <div class="changeModule" style="display:none">
                   <div class="am-form-group">
-                    <label for="educationtype21" class="am-u-sm-3 am-form-label">修改选项：</label>
+                    <label class="am-u-sm-3 am-form-label">修改选项：</label>
                     <div class="am-u-sm-9">
                           <select class="educationtype21" name="educationtype21" required>
                             <option value="">请选择删除哪项？</option>
@@ -380,33 +365,33 @@
                   <br>
                   <div class="educationPart" style="display:none">
                   <div class="am-form-group">
-                    <label for="school2" class="am-u-sm-3 am-form-label">院校名称：</label>
+                    <label class="am-u-sm-3 am-form-label">院校名称：</label>
                     <div class="am-u-sm-9">
-                      <input type="text" class="school2" required name="school2" placeholder="请输入您的院校">
+                      <input type="text" class="school2" required placeholder="请输入您的院校">
                     </div>
                   </div>
                   <div class="am-form-group">
-                    <label for="sdatetime2" class="am-u-sm-3 am-form-label">开始日期：</label>
+                    <label class="am-u-sm-3 am-form-label">开始日期：</label>
                     <div class="am-u-sm-9">
-                        <input type="text" name="sdatetime2" class="am-form-field sdatetime2" placeholder="请输入开始日期" data-am-datepicker readonly/>
+                        <input type="text" class="am-form-field sdatetime2" placeholder="请输入开始日期" data-am-datepicker readonly/>
                     </div>
                   </div>
                   <div class="am-form-group">
-                    <label for="edatetime2" class="am-u-sm-3 am-form-label">结束日期：</label>
+                    <label class="am-u-sm-3 am-form-label">结束日期：</label>
                     <div class="am-u-sm-9">
-                      <input type="text" name="edatetime2" class="am-form-field edatetime2" placeholder="请输入结束日期" data-am-datepicker readonly/>
+                      <input type="text" class="am-form-field edatetime2" placeholder="请输入结束日期" data-am-datepicker readonly/>
                     </div>
                   </div>
                   <div class="am-form-group">
-                    <label for="major2" class="am-u-sm-3 am-form-label">所学专业：</label>
+                    <label class="am-u-sm-3 am-form-label">所学专业：</label>
                     <div class="am-u-sm-9">
-                        <input type="text" required name="major2" class="am-form-field major2" placeholder="请输入您的专业" />
+                        <input type="text" required class="am-form-field major2" placeholder="请输入您的专业" />
                     </div>
                   </div>
                   <div class="am-form-group">
                     <label for="majorinstr2" class="am-u-sm-3 am-form-label">专业介绍：</label>
                     <div class="am-u-sm-9">
-                        <textarea rows="3" placeholder="所在学校+主修课程+研究方向+专业简介等" required class="majorinstr2" name="majorinstr2"></textarea>
+                        <textarea rows="3" placeholder="所在学校+主修课程+研究方向+专业简介等" required class="majorinstr2" ></textarea>
                     </div>
                   </div>
                   <div class="am-form-group">
@@ -419,13 +404,13 @@
 
                <div class="addModule" style="display:none">
                   <div class="am-form-group">
-                    <label for="school1" class="am-u-sm-3 am-form-label">院校名称：</label>
+                    <label class="am-u-sm-3 am-form-label">院校名称：</label>
                     <div class="am-u-sm-9">
-                      <input type="text" class="school1" required name="school1" placeholder="请输入您的院校">
+                      <input type="text" class="school1" required placeholder="请输入您的院校">
                     </div>
                   </div>
                   <div class="am-form-group">
-                    <label for="educationtype1" class="am-u-sm-3 am-form-label">学历：</label>
+                    <label class="am-u-sm-3 am-form-label">学历：</label>
                     <div class="am-u-sm-9">
                           <select class="educationtype1" name="educationtype1" required>
                             <option value="">请选择一项</option>
@@ -439,27 +424,27 @@
                       </div>  
                     </div>
                   <div class="am-form-group">
-                    <label for="sdatetime1" class="am-u-sm-3 am-form-label">开始日期：</label>
+                    <label class="am-u-sm-3 am-form-label">开始日期：</label>
                     <div class="am-u-sm-9">
-                        <input type="text" name="sdatetime1" class="am-form-field sdatetime1" placeholder="请输入开始日期" data-am-datepicker readonly/>
+                        <input type="text" class="am-form-field sdatetime1" placeholder="请输入开始日期" data-am-datepicker readonly/>
                     </div>
                   </div>
                   <div class="am-form-group">
-                    <label for="edatetime1" class="am-u-sm-3 am-form-label">结束日期：</label>
+                    <label class="am-u-sm-3 am-form-label">结束日期：</label>
                     <div class="am-u-sm-9">
-                      <input type="text" name="edatetime1" class="am-form-field edatetime1" placeholder="请输入结束日期" data-am-datepicker readonly />
+                      <input type="text" class="am-form-field edatetime1" placeholder="请输入结束日期" data-am-datepicker readonly />
                     </div>
                   </div>
                   <div class="am-form-group">
-                    <label for="major1" class="am-u-sm-3 am-form-label">所学专业：</label>
+                    <label class="am-u-sm-3 am-form-label">所学专业：</label>
                     <div class="am-u-sm-9">
-                        <input type="text" required name="major1" class="am-form-field major1" placeholder="请输入您的专业" />
+                        <input type="text" required class="am-form-field major1" placeholder="请输入您的专业" />
                     </div>
                   </div>
                   <div class="am-form-group">
-                    <label for="majorinstr1" class="am-u-sm-3 am-form-label">专业介绍：</label>
+                    <label class="am-u-sm-3 am-form-label">专业介绍：</label>
                     <div class="am-u-sm-9">
-                        <textarea rows="3" placeholder="所在学校+主修课程+研究方向+专业简介等" required class="majorinstr1" name="majorinstr1"></textarea>
+                        <textarea rows="3" placeholder="所在学校+主修课程+研究方向+专业简介等" required class="majorinstr1" ></textarea>
                     </div>
                   </div>
                   <div class="am-form-group">
@@ -1550,170 +1535,7 @@
 <!-- 添加其他，比如其他的网络空间，网站，论坛 -->
 
 <script>
-  $(document).ready(function(){               
-      //baseInfo
-      $('#inputFile', '#my-baseinfo').change(function(){
-          $('.imgtip', '#my-baseinfo').html($('#inputFile', '#my-baseinfo').val());
-      })
-      $('#upload').click(function(){
-          $('#specialInstruc', '#my-baseinfo').ajaxForm({
-              url: $('#specialInstruc', '#my-baseinfo').attr('action'),
-              type: 'POST',
-              success: function (res, status, xhr, $form) {
-                  var tp;
-                  if (res == '1') tp = '异常错误！可能不支持该格式的图片。';
-                  else if (res == '2') tp = '图片大小不得超过2m！';
-                  else if (res == '3') tp = '文件类型必须是图片！';
-                  else if (res == '4') tp = 'rename err';
-                  else if (res == '5') {
-                      location.reload();
-                  }
-                  $('#specialInstruc', '#my-baseinfo').clearForm();
-              },
-              error: function (res, status, e) {
-                  $('#specialInstruc', '#my-baseinfo').clearForm();
-              }
-          });
-      })
-
-      //contactinfo
-      $('.my-contactinfo-btn').click(function(){
-            $.ajax({    
-              type:'post',        
-              url:'/resume/contactinfo',   
-              data: {
-                mphone:$(".mphone", '#my-contactinfo').val(),
-                phone:$(".phone", '#my-contactinfo').val(),
-                address:$(".address",'#my-contactinfo').val(),
-                identity:$(".identity", '#my-contactinfo').val(),
-                email:$(".email", '#my-contactinfo').val(),
-                qqnum:$(".qqnum", '#my-contactinfo').val()
-              },  
-              dataType:'json',      
-              success:function(data){    
-                  console.log(data);
-                  $("#my-contactinfo").modal('close');
-                  location.reload();
-              },
-              error : function(err) {   
-                  console.log(err);    
-              }        
-          }); 
-      });
-
-      //education-add
-      $('.my-education1-btn').click(function(){
-            $.ajax({    
-              type:'post',        
-              url:'/resume/education/add',   
-              data: {
-                school:$(".school1", '#my-education').val(),
-                educationtype:$(".educationtype1", '#my-education').val(),
-                sdatetime:$(".sdatetime1",'#my-education').val(),
-                edatetime:$(".edatetime1", '#my-education').val(),
-                major:$(".major1", '#my-education').val(),
-                majorinstr:$(".majorinstr1", '#my-education').val()
-              },  
-              dataType:'json',      
-              success:function(data){    
-                  console.log(data);
-                  $("#my-education").modal('close');
-                  location.reload();
-              },
-              error : function(err) {   
-                  console.log(err);    
-              }        
-          }); 
-      });   
-
-      //education-change
-      $('.my-education2-btn').click(function(){
-            $.ajax({    
-              type:'post',        
-              url:'/resume/education/change',   
-              data: {
-                educationtypeA:$(".educationtype21", '#my-education').val(),
-                school:$(".school2", '#my-education').val(),
-                sdatetime:$(".sdatetime2",'#my-education').val(),
-                edatetime:$(".edatetime2", '#my-education').val(),
-                major:$(".major2", '#my-education').val(),
-                majorinstr:$(".majorinstr2", '#my-education').val()
-              },  
-              dataType:'json',      
-              success:function(data){    
-                  console.log(data);
-                  $("#my-education").modal('close');
-                  location.reload();
-              },
-              error : function(err) {   
-                  console.log(err);    
-              }        
-          }); 
-      });   
-
-      //education-del
-      $('.my-education3-btn').click(function(){
-            $.ajax({    
-              type:'post',        
-              url:'/resume/education/dele',   
-              data: {
-                educationtype:$(".educationtype", '#my-education').val()
-              },  
-              dataType:'json',      
-              success:function(data){    
-                  console.log(data);
-                  $("#my-education").modal('close');
-                  location.reload();
-              },
-              error : function(err) {   
-                  console.log(err);    
-              }        
-          }); 
-      });   
-      
-      //education-changeType
-      $('.educationtype21','#my-education').change(function(){
-          $.ajax({    
-                  type:'post',        
-                  url:'/resume/education/changeType',   
-                  data: {
-                    educationtype:$(".educationtype21", '#my-education').val()
-                  },  
-                  dataType:'json',      
-                  success:function(data){    
-                    $('.educationPart', '#my-education').show();
-                    $(".school2", '#my-education').val(data.school);
-                    $(".sdatetime2",'#my-education').val(data.sdatetime);
-                    $(".edatetime2", '#my-education').val(data.edatetime);
-                    $(".major2", '#my-education').val(data.major);
-                    $(".majorinstr2", '#my-education').val(data.majorinstr);
-                  },
-                  error : function(err) {   
-                      console.log(err);    
-                  }        
-          }); 
-      });
-
-      $('.educationtype','#my-education').change(function(){
-          if($(this).children('option:selected').val()==1){
-            $('.delModule', '#my-education').hide();
-            $('.changeModule', '#my-education').hide();
-            $('.addModule', '#my-education').show();
-          }else if($(this).children('option:selected').val()==2){
-            $('.delModule', '#my-education').hide();
-            $('.changeModule', '#my-education').show();
-            $('.addModule', '#my-education').hide();
-          }else if($(this).children('option:selected').val()==3){
-            $('.delModule', '#my-education').show();
-            $('.changeModule', '#my-education').hide();
-            $('.addModule', '#my-education').hide();
-          }else{
-            $('.delModule', '#my-education').hide();
-            $('.changeModule', '#my-education').hide();
-            $('.addModule', '#my-education').hide();
-          }
-      });
-      
+$(document).ready(function(){               
       /*
         实习经历相关操作
        */

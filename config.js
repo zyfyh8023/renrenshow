@@ -10,7 +10,7 @@ exports.session_secret = '';
 exports.db = 'mongodb://localhost:27017/renrenxiuDB';
 
 exports.dbSession =  { 
-  cookieSecret: 'renrenshow', 
-  db: 'renrenxiuDB', 
-  host: 'localhost'
+	cookieSecret: 'renrenshow', 
+	db: 'renrenxiuDB', 
+	host: 'localhost'
 };

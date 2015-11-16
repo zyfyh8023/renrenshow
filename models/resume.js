@@ -1,10 +1,9 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-
 //定义User对象模型
 var ResumeScheme = new Schema({
-    author: String,
+    author: { type:String, unique: true },
     headimg:String,
     baseInfo1:{
         uname: String,
@@ -94,16 +93,13 @@ var ResumeScheme = new Schema({
     update_date:{type:Date,default:Date.now}
 });
 
-
 //访问User对象模型
 mongoose.model('Resume', ResumeScheme);
-var Resume = mongoose.model('Resume');   //作用是什么？   下面所有的new User 既是如此
-
+var Resume = mongoose.model('Resume');   
 exports.Resume=Resume;
 
 //添加功能
 exports.create = function(obj,callback) {
-
     var newResume = obj;
     newResume.save(function(err){
         if(err){
@@ -116,54 +112,46 @@ exports.create = function(obj,callback) {
 
 //根据用户名查找   
 exports.findByUname = function(author,callback) {
-
-     Resume.find({author:author},function(err,result){
+    Resume.findOne({author:author},function(err,result){
         if(err){
             callback(err,null);
-        }else
-        {
+        }else{
             callback(null,result);
         }
-     });
+    });
 }
 
-//条件查找所有   结果集
+//条件查找所有结果集
 exports.findAll = function(object,callback) {
-
-     Resume.find(object,function(err,result){
+    Resume.find(object,function(err,result){
         if(err){
             callback(err);
-        }else
-        {
+        }else{
             callback(null,result);
         }
-     });
+    });
 }
 
 //删除操作
 exports.delete = function(object,callback) {
-
-     Resume.remove(object,function(err){
+    Resume.remove(object,function(err){
         if(err){
             callback(err);
-        }else
-        {
+        }else{
             callback(null);
         }
-     });
+    });
 }
 
 //更新操作
 exports.modify = function(conditions,updates,options,callback) {
-
-     Resume.update(conditions,updates,options,function(err){
+    Resume.update(conditions,updates,options,function(err){
         if(err){
             callback(err);
-        }else
-        {
+        }else{
             callback(null);
         }
-     });
+    });
 }
 
 

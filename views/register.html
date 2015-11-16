@@ -71,19 +71,31 @@ $(document).ready(function(){
                   if(data.retCode!=200){
                       warnOpnFn(data.retDesc);
                   }else{
-                    setingInit(username, function(err){
-                        if(err){
+                      setingInit(username, function(err){
+                          if(err){
                               alertOpnFn('setingInit失败，请稍后再试！');
-                        }else{
-                            priSetingInit(username, function(err){
-                                if(err){
+                          }else{
+                              priSetingInit(username, function(err){
+                                  if(err){
                                       alertOpnFn('priSetingInit失败，请稍后再试！');
-                                }else{
-                                    location.href='/login';
-                                }
-                            })
-                        }
-                    })
+                                  }else{
+                                      navInit(username, function(err){
+                                          if(err){
+                                              alertOpnFn('navInit失败，请稍后再试！');
+                                          }else{
+                                              resumeInit(username, function(err){
+                                                  if(err){
+                                                      alertOpnFn('resumeInit失败，请稍后再试！');
+                                                  }else{
+                                                      location.href='/login';
+                                                  }
+                                              })
+                                          }
+                                      })
+                                  }
+                              })
+                          }
+                      })
                   }
               },
               error : function(err) {   

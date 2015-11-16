@@ -3,6 +3,8 @@ var resume = require('../models/resume');
 var fs = require('fs')
     , multiparty = require('multiparty');
 
+var retCode, retDesc, uName;
+
 function getDate(date) {
     var Y = date.getFullYear();
     var M = date.getMonth()+1;
@@ -20,69 +22,81 @@ function getDate(date) {
 
 /* GET Seting page. */
 exports.page=function(req, res, next) {
-	var uName=req.session.user.username;
+	uName=req.session.user.username;
 	resume.findByUname(uName,function(err,rs){
 		if(err){
- 			res.redirect('/');
+ 			retDesc="个人简历数据加载失败!";
+          	res.redirect('myError?retDesc='+retDesc);
 		}else{
-			console.log(rs[0]);
- 			res.render('resume', { title: '我的简历',rs: rs[0]});
+			if(rs){
+				res.render('resume', { title: '我的简历',rs: rs});
+			}else{
+				retDesc="没有数据，数据未初始化!";
+                res.redirect('myError?retDesc='+retDesc);
+			}
 		}
 	});
 };
 
 //baseInfo -change
 exports.baseinfo=function(req, res, next) {
-	var uName=req.session.user.username;
+	uName=req.session.user.username;
 	var form = new multiparty.Form({uploadDir: './public/avatar/'});
 	form.parse(req, function(err, fields, files) {
 	    var filesTmp = JSON.stringify(files,null,2);
-	        if(err){
-	            res.end('1');
-	        } else {
-	            var inputFile = files.inputFile[0];
-	            var uploadedPath = inputFile.path;
-	            var dstPath = './public/avatar/' + inputFile.originalFilename;
-	            var imgSize=inputFile.size;
-	            if (imgSize > 2*1024*1024) { res.end('2'); }
-	            var imgType=inputFile.headers['content-type'];
-	            if(imgType.split('/')[0]!='image'){ res.end('3'); }
-	            //重命名为真实文件名
-	            if(!uName){ res.end('1'); }
-	            var imgPath='./public/avatar/'+uName+'headImg.jpg',
-	                imgSrc='/avatar/'+uName+'headImg.jpg';
-	            fs.rename(uploadedPath, imgPath, function(err) {
-	                if(err){ 
-	                	res.end('4');
-	                } else {
-                        var newResume = new resume.Resume({
-                      		baseInfo1:{
-                      			uname: fields.uname[0],
-                      			gender: fields.sex[0],
-                      			age: fields.age[0],
-                      			identity: fields.istatus[0],
-                      			education: fields.ieducation[0],
-                      			school: fields.ischool[0],
-                      			major: fields.imajor[0]
-                      		}
-                      	});
-                    	resume.modify({author:uName},{headimg:imgSrc, baseInfo1:newResume.baseInfo1},function(err){
-                    		if(err){
-                    			res.end('1');
-                    		}else{
-                    			res.end('5');
-                    		}
-                    	});
-	                }
-	            });
-	        }
+        if(err){
+            retDesc='系统出现故障，请稍后再试！';
+    		return res.send({retCode:400, retDesc:retDesc});
+        } else {
+            var inputFile = files.inputFile[0];
+            var uploadedPath = inputFile.path;
+            var dstPath = './public/avatar/' + inputFile.originalFilename;
+            var imgSize=inputFile.size;
+            if (imgSize > 2*1024*1024) { 
+            	retDesc='图片的尺寸过大！';
+    			return res.send({retCode:400, retDesc:retDesc});
+            }
+            var imgType=inputFile.headers['content-type'];
+            if(imgType.split('/')[0]!='image'){ 
+            	retDesc='只允许上传图片哦~';
+    			return res.send({retCode:400, retDesc:retDesc});
+            }
+            //重命名为真实文件名
+            var imgPath='./public/avatar/'+uName+'headImg.jpg',
+                imgSrc='/avatar/'+uName+'headImg.jpg';
+            fs.rename(uploadedPath, imgPath, function(err) {
+                if(err){ 
+                	retDesc='图片重名了出现问题，请稍后再试！';
+    				return res.send({retCode:400, retDesc:retDesc});
+                } else {
+                    var newResume = new resume.Resume({
+                  		baseInfo1:{
+                  			uname: fields.uname[0],
+                  			gender: fields.sex[0],
+                  			age: fields.age[0],
+                  			identity: fields.istatus[0],
+                  			education: fields.ieducation[0],
+                  			school: fields.ischool[0],
+                  			major: fields.imajor[0]
+                  		}
+                  	});
+                	resume.modify({author:uName},{headimg:imgSrc, baseInfo1:newResume.baseInfo1},function(err){
+                		if(err){
+                			retDesc='信息更新失败！';
+    						return res.send({retCode:400, retDesc:retDesc});
+                		}else{
+    						return res.send({retCode:200});
+                		}
+                	});
+                }
+            });
+        }
 	});
-
 };
 
 //contactinfo
 exports.contactinfo=function(req, res, next) {
-	var uName=req.session.user.username;
+	uName=req.session.user.username;
 	var newResume = new resume.Resume({
 		contact2:{
 			mPhone: req.body.mphone,
@@ -95,23 +109,23 @@ exports.contactinfo=function(req, res, next) {
 	});
   	resume.modify({author:uName},{contact2:newResume.contact2},function(err){
 		if(err){
-			res.send(false);   //res.jsonp()   res.write()
- 			res.end();
+			retDesc='信息更新失败！';
+    		return res.send({retCode:400, retDesc:retDesc});
 		}else{
-			res.send(true);   //res.jsonp()   res.write()
- 			res.end();
+			return res.send({retCode:200});
 		}
 	});
 };
 
 //education -add
 exports.education1=function(req, res, next) {
-	var uName=req.session.user.username;
+	uName=req.session.user.username;
 	resume.findByUname(uName,function(err,rs){
 		if(err){
- 			res.redirect('/');
+ 			retDesc='信息更新失败！';
+    		return res.send({retCode:400, retDesc:retDesc});
 		}else{
- 			var resultFin=rs[0];
+ 			var resultFin=rs;
  			var schools3={
  				school: req.body.school,
  				educationtype: req.body.educationtype,
@@ -123,11 +137,10 @@ exports.education1=function(req, res, next) {
  			resultFin.schools3.push(schools3);
 		  	resume.modify({author:uName},{schools3:resultFin.schools3},function(err){
 				if(err){
-					res.send(false);   //res.jsonp()   res.write()
-		 			res.end();
+					retDesc='信息更新失败！';
+		    		return res.send({retCode:400, retDesc:retDesc});
 				}else{
-					res.send(true);   //res.jsonp()   res.write()
-		 			res.end();
+					return res.send({retCode:200});
 				}
 			});
 		}
@@ -137,13 +150,14 @@ exports.education1=function(req, res, next) {
 
 //education -change
 exports.education2=function(req, res, next) {
-	var uName=req.session.user.username;
+	uName=req.session.user.username;
 	var educationtypeA=req.body.educationtypeA;
 	resume.findByUname(uName,function(err,rs){
 		if(err){
- 			res.redirect('/');
+ 			retDesc='信息更新失败！';
+    		return res.send({retCode:400, retDesc:retDesc});
 		}else{
- 			var resultFin=rs[0];
+ 			var resultFin=rs;
  			for(var i=0, len=resultFin.schools3.length; i<len; i++){
  				if(resultFin.schools3[i].educationtype == educationtypeA){
  					resultFin.schools3[i].school=req.body.school;
@@ -156,11 +170,10 @@ exports.education2=function(req, res, next) {
  			}
 		  	resume.modify({author:uName},{schools3:resultFin.schools3},function(err){
 				if(err){
-					res.send(false);   //res.jsonp()   res.write()
-		 			res.end();
+					retDesc='信息更新失败！';
+		    		return res.send({retCode:400, retDesc:retDesc});
 				}else{
-					res.send(true);   //res.jsonp()   res.write()
-		 			res.end();
+					return res.send({retCode:200});
 				}
 			});
 		}
@@ -170,13 +183,13 @@ exports.education2=function(req, res, next) {
 //education -changeType
 exports.education4=function(req, res, next) {
     var educationtype=req.body.educationtype;
-	var uName=req.session.user.username;
-	
+	uName=req.session.user.username;
 	resume.findByUname(uName,function(err,rs){
 		if(err){
-			res.redirect('/');
+			retDesc='信息更新失败！';
+    		return res.send({retCode:400, retDesc:retDesc});
 		}else{
-			var resultFin=rs[0];
+			var resultFin=rs;
 			var schoolInfo={};
 			for(var i=0, len=resultFin.schools3.length; i<len; i++){
 				if(resultFin.schools3[i].educationtype == educationtype){
@@ -193,13 +206,13 @@ exports.education4=function(req, res, next) {
 //education -del
 exports.education3=function(req, res, next) {
     var educationtype=req.body.educationtype;
-	var uName=req.session.user.username;
-
+	uName=req.session.user.username;
 	resume.findByUname(uName,function(err,rs){
 		if(err){
-			res.redirect('/');
+			retDesc='信息更新失败！';
+    		return res.send({retCode:400, retDesc:retDesc});
 		}else{
-			var resultFin=rs[0];
+			var resultFin=rs;
 			for(var i=0, len=resultFin.schools3.length; i<len; i++){
 				if(resultFin.schools3[i].educationtype == educationtype){
 					resultFin.schools3.splice(i,1);
@@ -208,11 +221,10 @@ exports.education3=function(req, res, next) {
 			}
 		  	resume.modify({author:uName},{schools3:resultFin.schools3},function(err){
 				if(err){
-					res.send(false);   //res.jsonp()   res.write()
-		 			res.end();
+					retDesc='信息更新失败！';
+		    		return res.send({retCode:400, retDesc:retDesc});
 				}else{
-					res.send(true);   //res.jsonp()   res.write()
-		 			res.end();
+					return res.send({retCode:200});
 				}
 			});
 		}
@@ -558,6 +570,23 @@ exports.desc=function(req, res, next) {
 		}else{
 			res.send(true);   //res.jsonp()   res.write()
  			res.end();
+		}
+	});
+};
+
+exports.resumeInit=function(req, res, next){
+	uName=req.body.uName;
+	var newResume = new resume.Resume({
+      	author: uName,
+      	headimg:'/images/624-34 1-1.jpg'
+      });
+	   
+	resume.create(newResume,function(err){
+		if(err){
+	        retDesc="保存失败,请稍后再试!";
+            return res.send({retCode:400, retDesc:retDesc});
+		}else{
+			return res.send({retCode:200});
 		}
 	});
 };

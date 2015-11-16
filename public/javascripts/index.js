@@ -17,7 +17,6 @@ $(document).ready(function(){
 
 });
 
-
 //warn的opn和cls
 function warnOpnFn(message){
 	if(message){

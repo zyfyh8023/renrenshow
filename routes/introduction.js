@@ -3,7 +3,7 @@ var users = require('../models/users');
 var fs = require('fs'),
     multiparty = require('multiparty');
 
-var retCode, retDesc, uName;
+var retCode, retDesc, uName, navTitle, navDesc;
 
 function getDate(date) {
     var Y = date.getFullYear();
@@ -22,12 +22,20 @@ function getDate(date) {
 
 exports.page=function(req, res, next) {
     uName=req.session.user.username;
+    navTitle="个性自我介绍";
+    navDesc="自我介绍是向别人展示你自己的一个重要手段，也是日常工作中与陌生人建立关系、"+
+            "打开局面的一种非常重要的手段，本文为大家带来关于有经验的保安队长自我介绍。";
     users.findByUname(uName,function(err, result){
         if(err){
             retDesc="用户查找失败！";
             return res.send({retCode:400, retDesc:retDesc});
         }else{
-            res.render('introduction', { title: '自我介绍',rs: result});
+            res.render('introduction', { 
+                title: '自我介绍',
+                navTitle: navTitle,
+                navDesc: navDesc,
+                rs: result
+            });
         }
     });
 };

@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var ejs = require('ejs');
 var ueditor = require("ueditor");
-var session    = require('express-session');
+var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 
 var config = require('./config');
@@ -52,13 +52,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
-        resave: false,  
-        saveUninitialized: true,  
-        cookie: {maxAge:null}, 
-        secret: config.dbSession.cookieSecret,
-        store: new MongoStore({
-          db : config.dbSession.db,
-        })
+      resave: false,  
+      saveUninitialized: true,  
+      cookie: {maxAge:null}, 
+      secret: config.dbSession.cookieSecret,
+      store: new MongoStore({
+        db : config.dbSession.db,
+      })
 }));
 
 
@@ -107,6 +107,8 @@ app.post('/resume/works', resume.works);
 app.post('/resume/projects', resume.projects);
 app.post('/resume/certificate', resume.certificate);
 
+
+app.post('/resumeInit', resume.resumeInit); 
 app.post('/resume/baseinfo', resume.baseinfo); //基本信息
 app.post('/resume/contactinfo', resume.contactinfo); //联系方式
 app.post('/resume/repractice/add', resume.repractice1); //实习经历-add
@@ -185,32 +187,32 @@ app.on('close', function(errno) {
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
 // error handlers    mongod --dbpath F:\Mongodb\db
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
+    app.use(function(err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            error: err
+        });
     });
-  });
 }
 
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
+    res.status(err.status || 500);
+    res.render('error', {
+        message: err.message,
+        error: {}
+    });
 });
 
 module.exports = app;

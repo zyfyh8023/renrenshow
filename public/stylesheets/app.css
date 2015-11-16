@@ -6,77 +6,77 @@
     padding-bottom: 30px;
  }
  #zy-warning, #my-alert{
-  z-index: 100000;
+    z-index: 100000;
  }
 /*header*/
 .zy-am-topbar{
-   background: #fff none repeat scroll 0 0;
-   border-color: #0e90d2;
-   border-style: solid;
-   border-width: 0 0 4px;
+    background: #fff none repeat scroll 0 0;
+    border-color: #0e90d2;
+    border-style: solid;
+    border-width: 0 0 4px;
 }
 .zy-am-topbar-brand{
-  height: 59px;
-  line-height: 53px;
+    height: 59px;
+    line-height: 53px;
 }
 .zy-am-topbar-brand img{
     height: 59px;
 }
 .zy-am-topbar-collapse{
-  margin-top: 11px;
+    margin-top: 11px;
 }
 .zy-am-topbar-nav > li > a::after {
-  bottom: -9px;
+    bottom: -9px;
 }
 .zy-am-topbar {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 /*多处用到login register就用到了*/
 .zy-font{
-  padding:0.5em 0;
-  font-size:80%;
-  color:#aaa;
+    padding:0.5em 0;
+    font-size:80%;
+    color:#aaa;
 }
 .zy-font-add{
-  padding-left: 1rem;
+    padding-left: 1rem;
 }
 .zy-changepadding{
-  padding-left: 0;
-  padding-right: 0;
+    padding-left: 0;
+    padding-right: 0;
 }
 .zy-helloword{
-  text-align: center;
+    text-align: center;
 }
 .zy-loginright .am-u-sm-centered{
-  margin-left: auto;
-  margin-right:1px;
-  margin-top: 160px;
-  margin-bottom: 60px;
+    margin-left: auto;
+    margin-right:1px;
+    margin-top: 160px;
+    margin-bottom: 60px;
 }
 /*index*/
 .zy-section-nav{
-  margin-top:50px;
-  margin-bottom: 50px;
-  text-align: center;
+    margin-top:50px;
+    margin-bottom: 50px;
+    text-align: center;
 }
 .zy-section-imgs{
-  padding-top: 200px;
-  padding-bottom: 200px;
+    padding-top: 200px;
+    padding-bottom: 200px;
 }
 .zy-section-nav .am-figure-default img {
     border: none;
 }
 .zy-section-nav-img{
-  margin:10px auto;
+    margin:10px auto;
 }
 .zy-changecolor{
-  background:#eef1f2; 
+    background:#eef1f2; 
 }
 .zy-composotions{
-  padding: 10px;
+    padding: 10px;
 }
 .zy-composotions li{
-  padding: 10px;
+    padding: 10px;
 }
 /*重定义*/
 .am-figure-zoomable::after {
@@ -92,13 +92,12 @@
 .am-table > tbody > tr > td{
     border-top: 0;
 }
-
 /*简历页面*/
 .zy-resume-img{
-  position: fixed;
-  left:0; 
-  top:0; 
-  z-index: -1;
+    position: fixed;
+    left:0; 
+    top:0; 
+    z-index: -1;
 }
 .zy-resume-img-bg{
     background: rgba(30, 30, 30, 0.6) none repeat scroll 0 0;
@@ -109,46 +108,45 @@
     height:100%; 
 }
 .zy-resume{
-  text-align: center;
+    text-align: center;
 }
 .zy-resume-myimg-poi{
-  border: 5px solid #777;
-  margin:50px auto;
-  width:200px;
-  height:200px;
-  border-radius: 100px;
-  background: #fff;
-  overflow:hidden; 
+    border: 5px solid #777;
+    margin:50px auto;
+    width:200px;
+    height:200px;
+    border-radius: 100px;
+    background: #fff;
+    overflow:hidden; 
 }
 .zy-resume h2{
-  color: #fff;
-  font-size: 2em; 
+    color: #fff;
+    font-size: 2em; 
 }
 .zy-resume h5{
-  color: #888;
-  font-size: 12px;
-  letter-spacing: 5px;
+    color: #888;
+    font-size: 12px;
+    letter-spacing: 5px;
 }
 .zy-resume-title{
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 80px;
-  margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 80px;
+    margin-top: 100px;
 }
 .zy-resume-content{
-  text-align: left;
-  font-size: 2rem;
+    text-align: left;
+    font-size: 2rem;
 }
 .zy-resume-content .am-list > li {
-  background: rgba(30, 30, 30, 0.6) none repeat scroll 0 0;
-  background-color: transparent;
+    background: rgba(30, 30, 30, 0.6) none repeat scroll 0 0;
+    background-color: transparent;
 }
 .zy-resume-link .am-list > li{
     background: rgba(30, 30, 30, 0.6) none repeat scroll 0 0;
     background-color: transparent;
     border: 0;
 }
-
 /*我的首页的大图片的amzeui部分功能的覆盖*/
 .zy-myindex-pageimg .am-figure-default img {
     border: 0;
@@ -189,80 +187,74 @@
     margin-left: 10px;
 }
 .zy-special-edit:hover{
-      position: relative;
-      top:1px;
-      left:1px;
-      text-decoration: underline;
+    position: relative;
+    top:1px;
+    left:1px;
+    text-decoration: underline;
 }
 /*文章分类管理页面的自定义样式及amazeui的覆盖*/
 .zy-titlebar-nomargin{
-  margin-left:0;
-  margin-right:0;
-  border-bottom: 0;
+    margin-left:0;
+    margin-right:0;
+    border-bottom: 0;
 }
 .zy-show-lg-nav .am-list > li {
-  border-style: none;
+    border-style: none;
 }
 .zy-show-lg-content{
-  padding-top:30px;
+    padding-top:30px;
 }
-
 /*权利设置页面的样式*/
 .zy-public-title{
-  margin-bottom:10px;
+    margin-bottom:10px;
 }
 .zy-public-content{
-  margin-bottom:20px;
-  margin-left:50px;
+    margin-bottom:20px;
+    margin-left:50px;
 }
 .zy-public-content .am-badge {
-  margin-top:10px;
+    margin-top:10px;
 }
 /*人才页面的样式*/
-.zy-talentpool-search{
-  margin-top: 80px;
-}
 .zy-talentpool-result{
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
 }
 .zy-talent-name h3{
-  text-align: center;
+    text-align: center;
 }
 /*footer页面的样式*/
 .zy-weblink{
-  background: #eee;
-  margin-top:40px;
-  margin-bottom: 50px;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  font-size: 15px;
+    background: #eee;
+    margin-top:40px;
+    margin-bottom: 50px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    font-size: 15px;
 }
 /*注册页面的样式*/
 .zy-register{
-  margin-top:150px;
+    margin-top:150px;
 }
-
 /*需要用到的页面都具有的导航标题     其他页面试着使用*/
 .zy-banner{
-  background: #f3f3f3 url(/images/barbg.png) repeat scroll left top;
+    background: #f3f3f3 url(/images/barbg.png) repeat scroll left top;
 }
 .zy-banner div{
-  padding-top: 25px;
-  padding-bottom: 25px;
+    padding-top: 25px;
+    padding-bottom: 25px;
 }
 .zy-banner h1{
-  font-size: 30px;
-  font-weight: 300;
+    font-size: 30px;
+    font-weight: 300;
 }
 .zy-banner p{
-  color:#555;
-  margin-top: 20px;
-  font-size: 15px;
-  letter-spacing: 5px;
+    color:#999;
+    margin-top: 20px;
+    font-size: 15px;
+    letter-spacing: 1px;
 }
-
 /*资源导航页的导航部分*/
 .zy-navigation-item div{
     background-color: #eee;
@@ -272,13 +264,13 @@
     margin:6px;
 }
 .zy-navigation-item{
-  padding-left: 0;
-  padding-right: 0;
+    padding-left: 0;
+    padding-right: 0;
 }
 .zy-navigation-nav{
-  margin-bottom: 10px;
-  margin-top: 10px;
-  margin-left: -1.0rem;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: -1.0rem;
 }
 .zy-navigation-item a{
     font-size: 14px;
@@ -301,43 +293,35 @@
     width:100%;
     height:100px;
 }
-
-
-
-
 /*faq页面*/
 .zy-accordion-content{
     padding: 0.8rem 2rem 1.2rem;
 }
 /*my footer 页面*/
 .zy-myfooter{
-  margin-top:50px;
+    margin-top:50px;
 }
 
 
-
-
-
-
- .am-tabs-nav li {
+.am-tabs-nav li {
     position: relative;
     z-index: 1;
-  }
-  .am-tabs-nav .am-icon-close {
+}
+.am-tabs-nav .am-icon-close {
     position: absolute;
     top: 0;
     right: 10px;
     color: #888;
     cursor: pointer;
     z-index: 100;
-  }
-  .am-tabs-nav .am-icon-close:hover {
+}
+.am-tabs-nav .am-icon-close:hover {
     color: #333;
-  }
-  .am-tabs-nav .am-icon-close ~ a {
+}
+.am-tabs-nav .am-icon-close ~ a {
     padding-right: 25px!important;
-  }
-  .am-popup-bd {
+}
+.am-popup-bd {
     background: #fff;
 }
 .am-popup-hd {

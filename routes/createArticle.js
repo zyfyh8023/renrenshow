@@ -2,44 +2,39 @@
 
 var articles = require('../models/article');
 
+var retDesc, retCode, uName;
+
 /* GET createarticle page. */
 exports.page=function(req, res, next) {
-  res.render('createarticle', { title: '新建博文' });
+    res.render('createarticle', { title: '新建博文' });
 };
 
 /* POST createarticle page. */
 exports.doPage=function(req, res, next) {
-    var author = req.session.user.username,    //session的时间问题
-        articleTitle = req.body.articleTitle || '',
-        articleKeyword = req.body.articleKeyword || '',
-        articleAbstract = req.body.articleAbstract || '',
-        articleCont = req.body.articleCont || '',
-        articleImgs = req.body.articleImgs || '',
-        articleType = req.body.articleType || '',
-        articleLink = req.body.articleLink || '',
+    uName = req.session.user.username;  
+    var articleTitle = req.body.articleTitle.trim() || '',
+        articleKeyword = req.body.articleKeyword.trim() || '',
+        articleCont = req.body.articleCont.trim() || '',
+        articleType = req.body.articleType.trim() || '',
+        articleLink = req.body.articleLink.trim() || '',
         articleTag = req.body.tags || 0;
 
     var newArticle = new articles.Article({
-        author: author,
+        author: uName,
         articleTitle: articleTitle,
         articleKeyword: articleKeyword,
-        articleAbstract: articleAbstract,
         articleCont: articleCont,
-        articleImgs: articleImgs,
         articleType: articleType,
         articleTag: articleTag,
         articleLink: articleLink
     });
 
     articles.create(newArticle,function (err) {
-        if (err) {
-            errorTip="博文新建失败!";
-            console.log(errorTip);
-            res.redirect('myError');
+        if(err){
+                retDesc="保存失败,请稍后再试!";
+                return res.send({retCode:400, retDesc:retDesc});
         }else{
-            console.log(newArticle);
-            res.render('createArticle', { title: '新建博文' });
+            return res.send({retCode:200});
         }
     });
-
 }

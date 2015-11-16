@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+    //mongod --dbpath E:\renrenShow\Mongodb\data
 
 });
 
@@ -52,6 +53,28 @@ function navInit(uName, callback){
     $.ajax({    
         type:'post',        
         url:'/navigationListInit', 
+        data:{
+            uName:uName
+        },   
+        dataType:'json',    
+        success:function(data){    
+            if(data.retCode!=200){
+                callback(data.retDesc);
+            }else{
+                callback(null);
+            }
+        },
+        error : function(err) {   
+            callback(err);      
+        }        
+    }); 
+}
+
+//resumeInit的数据初始化
+function resumeInit(uName, callback){
+    $.ajax({    
+        type:'post',        
+        url:'/resumeInit', 
         data:{
             uName:uName
         },   

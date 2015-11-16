@@ -1,11 +1,12 @@
 <% include myheader.html %>
+
     <section>
 	    <% include nav.html %>
 		<div class="am-g am-u-lg-9 am-u-md-12  am-u-sm-centered zy-manage-article">
 			<% include pos.html %>
 			<% include articleNav.html %>
 			<div class="col-lg-9 am-u-lg-9 zy-show-lg-content">
-				<div class="am-show-md-only">
+				<!-- <div class="am-show-md-only">
 					<ul class="am-nav am-nav-tabs">
 					  <li class="am-active"><a href="#">首页</a></li>
 					  <li><a href="#">项目</a></li>
@@ -31,7 +32,7 @@
 						  	<li><a href="#">基本样式1</a></li>
 						</ul>
 					</section>
-				</div>
+				</div> -->
 				<table class="am-table am-table-striped am-table-hover am-table-centered">
 						<% if (allArticles.length>0) { %> 
 						    <thead>
@@ -56,19 +57,22 @@
 							<div style="font-size:60px;text-align:center;">暂无数据! </div>
 						<% } %>
 				</table>
+
 				<div>
 					<ul class="am-pagination am-pagination-right">
-					  <li class="am-disabled"><a href="#">&laquo;</a></li>
-					  <li class="am-active"><a href="#">1</a></li>
-					  <li><a href="#">2</a></li>
-					  <li><a href="#">3</a></li>
-					  <li><a href="#">4</a></li>
-					  <li><a href="#">5</a></li>
-					  <li><a href="#">&raquo;</a></li>
+						<li class="am-disabled"><a href="#">&laquo;</a></li>
+						<li class="am-active"><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">5</a></li>
+						<li><a href="#">&raquo;</a></li>
 					</ul>
 			    </div>
 			</div>
 		</div>
 	</section>	
-	<a class="am-icon-btn am-icon-bars am-show-sm-only amz-sidebar-toggle" data-am-offcanvas="" href="#amz-offcanvas"><span class="am-sr-only">侧栏导航</span></a>
+
+	<!-- <a class="am-icon-btn am-icon-bars am-show-sm-only amz-sidebar-toggle" data-am-offcanvas="" href="#amz-offcanvas"><span class="am-sr-only">侧栏导航</span></a> -->
+	
 <% include myfooter.html %>

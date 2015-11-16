@@ -21,7 +21,7 @@ var SettingSchema = new Schema({
 
 //访问User对象模型
 mongoose.model('Setting', SettingSchema);
-var Setting = mongoose.model('Setting');   //作用是什么？   下面所有的new User 既是如此
+var Setting = mongoose.model('Setting');   
 exports.Setting=Setting;
 
 //添加功能
@@ -41,20 +41,18 @@ exports.findByUname = function(author,callback) {
     Setting.findOne({author:author},function(err,result){
         if(err){
             callback(err,null);
-        }else
-        {
+        }else{
             callback(null,result);
         }
     });
 }
 
-//条件查找所有   结果集
+//条件查找所有结果集
 exports.findAll = function(object,callback) {
     Setting.find(object,function(err,result){
         if(err){
             callback(err);
-        }else
-        {
+        }else{
             callback(null,result);
         }
     });
@@ -65,8 +63,7 @@ exports.delete = function(object,callback) {
     Setting.remove(object,function(err){
         if(err){
             callback(err);
-        }else
-        {
+        }else{
             callback(null);
         }
     });
@@ -77,8 +74,7 @@ exports.modify = function(conditions,updates,options,callback) {
     Setting.update(conditions,updates,options,function(err){
         if(err){
             callback(err);
-        }else
-        {
+        }else{
             callback(null);
         }
     });
