@@ -29,7 +29,11 @@ exports.page=function(req, res, next) {
           	res.redirect('myError?retDesc='+retDesc);
 		}else{
 			if(rs){
-				res.render('resume', { title: '我的简历',rs: rs});
+				res.render('resume', { 
+					title: '我的简历',
+					uName: uName,
+					rs: rs
+				});
 			}else{
 				retDesc="没有数据，数据未初始化!";
                 res.redirect('myError?retDesc='+retDesc);

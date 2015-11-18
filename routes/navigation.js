@@ -23,9 +23,11 @@ exports.page=function(req, res, next) {
 	        	}
 	        	res.render('navigation', { 
 	        		title: '资源导航',
+	        		uName: uName,
 	        		navTitle: navTitle,
 	        		navDesc: navDesc,
-	        		allNavgition:results});
+	        		allNavgition:results
+	        	});
         	}else{
 				retDesc="数据未初始化!";
 	          	res.redirect('myError?retDesc='+retDesc); 

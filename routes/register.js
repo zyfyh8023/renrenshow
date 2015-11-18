@@ -7,7 +7,11 @@ var retDesc, uName, retCode;
 
 //GET register page. 
 exports.page=function(req, res, next){
-	res.render('register', { title: '注册' });
+    uName=req.session.user.username;
+	res.render('register', { 
+        uName: uName,
+        title: '注册' 
+    });
 }
 
 //POST register page 

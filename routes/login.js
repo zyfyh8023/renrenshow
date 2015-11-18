@@ -7,13 +7,18 @@ var retCode, retDesc, uName;
 
 /* GET login page. */
 exports.page=function(req, res, next) {
-  res.render('login', { title: '登录' });
+    uName=req.session.user.username;
+
+    res.render('login', { 
+        title: '登录' ,
+        uName: uName
+    });
 };
 
 /* GET loginOut page. */
 exports.loginOut=function(req, res, next) {
-  req.session.user = null;
-  return res.send({retCode:200});
+    req.session.user = null;
+    return res.send({retCode:200});
 };
 
 //POST login page

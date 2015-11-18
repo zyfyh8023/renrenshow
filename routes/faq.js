@@ -1,9 +1,15 @@
-var express = require('express');
-var router = express.Router();
+"use strict";
+
+var uName, retCode, retDesc;
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('faq', { title: '功能介绍' });
+exports.page=function(req, res, next) {
+	uName=req.session.user.username;
+
+	res.render('faq', { 
+		uName: uName,
+		title: '功能介绍' 
+	});
 });
 
-module.exports = router;
+

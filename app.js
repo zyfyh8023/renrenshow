@@ -86,11 +86,11 @@ app.use(router);
 
 //公共页——首页-问答中心-资源中心-人才中心
 app.use('/', routes);
-app.use('/faq', faq);
-app.use('/resource', resource);
-app.use('/talentpool', talentpool);
-app.use('/allarticle', allarticle);
-app.use('/article', article);
+app.get('/faq', faq.page);
+app.get('/resource', resource.page);
+app.get('/talentpool', talentpool.page);
+app.get('/allarticle', allarticle.page);
+app.get('/article', article,page);
 
 //登录过了进入登录页面的自动首页跳转
 app.get('/login', checkState.checkNotLogin);
@@ -106,7 +106,7 @@ app.get('/register', register.page);
 app.post('/register', register.doRegister);
 
 //个人中心——首页
-app.use('/myindex', myindex);
+app.get('/myindex', myindex.page);
 //个人中心——个性介绍
 app.get('/introduction', introduction.page);
 app.post('/introduction', introduction.doPage);
