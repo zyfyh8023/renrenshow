@@ -12,7 +12,6 @@ var MongoStore = require('connect-mongo')(session);
 var config = require('./config');
 var MongodbAPI = require('./models/dbserver');
 var routes = require('./routes/index');
-var users = require('./routes/users');
 var login = require('./routes/login');
 var register = require('./routes/register');
 var faq = require('./routes/faq');
@@ -82,23 +81,36 @@ app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), function(req, res
     }
 }));
 
-
 var router = express.Router();
 app.use(router); 
-app.use('/', routes);
-app.use('/users', users);
-// app.get('/login', checkState.checkNotLogin);
-app.get('/login', login.page);
-// app.post('/login', checkState.checkNotLogin);
-app.post('/login', login.doLogin);
-app.post('/loginOut', login.loginOut);
-// app.get('/register', checkState.checkNotLogin);
-app.get('/register', register.page);
-// app.post('/register', checkState.checkNotLogin);
-app.post('/register', register.doRegister);
-app.use('/faq', faq);
-app.use('/myindex', myindex);
 
+//公共页——首页-问答中心-资源中心-人才中心
+app.use('/', routes);
+app.use('/faq', faq);
+app.use('/resource', resource);
+app.use('/talentpool', talentpool);
+app.use('/allarticle', allarticle);
+app.use('/article', article);
+
+//登录过了进入登录页面的自动首页跳转
+app.get('/login', checkState.checkNotLogin);
+app.get('/login', login.page);
+//登录过了提交登录的自动首页跳转
+app.post('/login', checkState.checkNotLogin);
+app.post('/login', login.doLogin);
+//没登录的情况下提交退出
+app.post('/loginOut', checkState.checkLogin);
+app.post('/loginOut', login.loginOut);
+//注册页面不需要限制
+app.get('/register', register.page);
+app.post('/register', register.doRegister);
+
+//个人中心——首页
+app.use('/myindex', myindex);
+//个人中心——个性介绍
+app.get('/introduction', introduction.page);
+app.post('/introduction', introduction.doPage);
+//个人中心——网页简历
 app.get('/resume', resume.page);
 app.post('/resume/desc', resume.desc);
 app.post('/resume/paper', resume.paper);
@@ -106,7 +118,6 @@ app.post('/resume/undergo', resume.undergo);
 app.post('/resume/works', resume.works);
 app.post('/resume/projects', resume.projects);
 app.post('/resume/certificate', resume.certificate);
-
 
 app.post('/resumeInit', resume.resumeInit); 
 app.post('/resume/baseinfo', resume.baseinfo); //基本信息
@@ -123,50 +134,41 @@ app.post('/resume/practice/add', resume.practice1); //工作经历-add
 app.post('/resume/practice/change', resume.practice2);  //工作经历-change
 app.post('/resume/practice/dele', resume.practice3);  //工作经历-dele
 app.post('/resume/practice/changeType', resume.practice4);  //工作经历-changeType
-
-
+//纸质简历
 app.get('/pageResume', pageResume.page);
 app.post('/pageResume', pageResume.doPage);
-
+//博文管理
+app.get('/createarticle', createarticle.page);
+app.post('/createarticle', createarticle.doPage);
 app.get('/managearticle', managearticle.page);
 app.get('/noPublicBW', managearticle.noPublicBW);
 app.get('/relatedMeBW', managearticle.relatedMeBW);
+//面试经验
+app.get('/createExperience', createExperience.page);
+app.post('/createExperience', createExperience.doPage);
 app.get('/manageExperience', manageExperience.page);
 app.get('/noPublicMJ', manageExperience.noPublicMJ);
 app.get('/relatedMeMJ', manageExperience.relatedMeMJ);
-
-app.get('/createarticle', createarticle.page);
-app.post('/createarticle', createarticle.doPage);
-app.get('/createExperience', createExperience.page);
-app.post('/createExperience', createExperience.doPage);
-
-app.use('/allarticle', allarticle);
-app.use('/article', article);
-app.get('/introduction', introduction.page);
-app.post('/introduction', introduction.doPage);
-app.use('/resource', resource);
-
+//资源导航
 app.get('/navigation', navigation.page);
 app.post('/navigationListInit', navigation.listInit);
 app.post('/navigationListAdd', navigation.listAdd);
 app.post('/navigationListDel', navigation.listDel);
 app.post('/navigationListAddsun', navigation.listAdd2);
-
-app.use('/talentpool', talentpool);
-
+//公开设置
 app.get('/seting', seting.page);
 app.post('/seting', seting.doPage);
 app.post('/setingInit', seting.createInit);
-
+//私人设置
 app.get('/privateSeting', privateSeting.page);
 app.post('/privateSeting', privateSeting.doPage);
 app.post('/privateSetingInit', privateSeting.createInit);
-
+//密码修改
 app.get('/changePassword', changePassword.page);
 app.post('/changePassword', changePassword.doPage);
-
+//错误页面
 app.get('/myError', myError.page);
-
+//测试页面
 app.get('/demo', demo.page);
 app.post('/demo/descriptioncon', demo.descriptionPage);
 app.post('/demo/undergo', demo.undergoPage);
