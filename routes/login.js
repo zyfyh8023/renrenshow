@@ -3,15 +3,13 @@
 var crypto = require('crypto'); //crypto是Node.js 的一个核心模块，用它生成散列值来加密密码。
 var users = require('../models/users');
 
-var retCode, retDesc, uName;
+var retCode, retDesc;
 
 /* GET login page. */
 exports.page=function(req, res, next) {
-    uName=req.session.user.username;
 
     res.render('login', { 
-        title: '登录' ,
-        uName: uName
+        title: '登录' 
     });
 };
 

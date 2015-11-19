@@ -10,4 +10,4 @@ exports.page=function(req, res, next) {
 		uName: uName,
 		title: '个人主页' 
 	});
-});
+};

@@ -955,23 +955,23 @@
           </div>
           <div class="am-popup-bd">
           <br>
-          <form class="am-form am-form-horizontal" method="post" data-am-validator>
+          <form class="am-form am-form-horizontal" id="specialInstruc3" enctype='multipart/form-data'action="/resume/certificate"  method="post" data-am-validator>
             <div class="am-form-group">
-              <label for="certificatename" class="am-u-sm-3 am-form-label">证书名称：</label>
+              <label class="am-u-sm-3 am-form-label">证书名称：</label>
               <div class="am-u-sm-9">
-                  <input type="text" name="certificatename" required class="certificatename" placeholder="请输入证书名称">
+                  <input type="text" name="certificatename" required placeholder="请输入证书名称">
               </div>
             </div>
             <div class="am-form-group">
-              <label for="gettime" class="am-u-sm-3 am-form-label">获得日期：</label>
+              <label class="am-u-sm-3 am-form-label">获得日期：</label>
               <div class="am-u-sm-9">
-                  <input type="text" name="gettime" class="am-form-field gettime" placeholder="请输入获得日期" data-am-datepicker readonly/>
+                  <input type="text" name="gettime" class="am-form-field" placeholder="请输入获得日期" data-am-datepicker readonly/>
               </div>
             </div>
             <div class="am-form-group">
-              <label for="cgrade" class="am-u-sm-3 am-form-label">证书等级：</label>
+              <label class="am-u-sm-3 am-form-label">证书等级：</label>
               <div class="am-u-sm-9">
-                    <select class="cgrade" name="cgrade" required>
+                    <select name="cgrade" required>
                       <option value="">请选择一项</option>
                       <option value="1">班级</option>
                       <option value="2">院级</option>
@@ -985,22 +985,22 @@
                   </div>
               </div>
             <div class="am-form-group">
-                <label for="certificateinstr" class="am-u-sm-3 am-form-label">证书介绍：</label>
+                <label class="am-u-sm-3 am-form-label">证书介绍：</label>
                 <div class="am-u-sm-9">
-                  <textarea class="certificateinstr" required name="certificateinstr" rows="3"></textarea>
+                  <textarea required name="certificateinstr" rows="3"></textarea>
                 </div>
             </div>
             <div class="am-form-group am-form-file">
-                 <label for="cimages" class="am-u-sm-3 am-form-label">证书图片：</label>
+                 <label class="am-u-sm-3 am-form-label">证书图片：</label>
                  <div class="am-u-sm-9">
                   <button type="button" class="am-btn am-btn-default am-btn-sm">
-                  <i class="am-icon-cloud-upload"></i> 上传图片(可同时上传多张)</button>
-                  <input type="file" multiple class="cimages" name="cimages">
+                  <i class="am-icon-cloud-upload"></i> 上传图片</button>
+                  <input type="file"  id="inputFile3"  name="inputFile3">
                </div>
             </div>
             <div class="am-form-group">
                 <div class="am-u-sm-9 am-u-sm-offset-3">
-                    <button type="button" class="am-btn am-btn-warning my-certificate-btn"> 提交信息 </button>
+                    <button id="upload3" class="am-btn am-btn-warning my-certificate-btn"> 提交信息 </button>
                 </div>
             </div>
           </form> 
@@ -1098,55 +1098,56 @@
             </div>
             <div class="am-popup-bd">
             <br>
-            <form class="am-form am-form-horizontal" method="post" data-am-validator> 
+            <form class="am-form am-form-horizontal"   id="specialInstruc2" enctype='multipart/form-data' action="/resume/works" method="post" data-am-validator> 
                 <div class="am-form-group">
-                  <label for="workname" class="am-u-sm-3 am-form-label">作品名称：</label>
+                  <label class="am-u-sm-3 am-form-label">作品名称：</label>
                   <div class="am-u-sm-9">
                       <input type="text" required name="workname" class="workname" placeholder="输入作品名称">
                   </div>
                 </div>
                 <div class="am-form-group">
-                  <label for="worktime" class="am-u-sm-3 am-form-label">作品日期：</label>
+                  <label class="am-u-sm-3 am-form-label">作品日期：</label>
                   <div class="am-u-sm-9">
                     <input type="text" name="worktime" class="am-form-field worktime" placeholder="请选择作品日期" data-am-datepicker readonly/>
                   </div>
                 </div> 
                 <div class="am-form-group">
-                  <label for="workduty" class="am-u-sm-3 am-form-label">我的职责：</label>
+                  <label class="am-u-sm-3 am-form-label">我的职责：</label>
                   <div class="am-u-sm-9">
                       <input type="text" name="workduty" class="workduty" placeholder="输入你的职责">
                   </div>
                </div>
                  <div class="am-form-group">
-                  <label for="showink" class="am-u-sm-3 am-form-label">作品展示链接：</label>
+                  <label class="am-u-sm-3 am-form-label">作品展示链接：</label>
                   <div class="am-u-sm-9">
                       <input type="url" name="showink" class="showink" placeholder="输入作品展示链接">
                   </div>
                 </div>
                 <div class="am-form-group">
-                  <label for="codelink" class="am-u-sm-3 am-form-label">作品源码链接：</label>
+                  <label class="am-u-sm-3 am-form-label">作品源码链接：</label>
                   <div class="am-u-sm-9">
                       <input type="url" name="codelink" class="codelink" placeholder="输入作品源码链接">
                   </div>
                 </div>
                 <div class="am-form-group">
-                  <label for="workdes" class="am-u-sm-3 am-form-label">作品介绍：</label>
+                  <label class="am-u-sm-3 am-form-label">作品介绍：</label>
                   <div class="am-u-sm-9">
                     <textarea rows="5" name="workdes" class="workdes" required></textarea>
                   </div>
                 </div>
                 <div class="am-form-group am-form-file">
-                  <label for="workimg" class="am-u-sm-3 am-form-label">作品图片：</label>
+                  <label class="am-u-sm-3 am-form-label">作品图片：</label>
                    <div class="am-u-sm-9">
                     <button type="button" class="am-btn am-btn-default am-btn-sm">
                     <i class="am-icon-cloud-upload"></i> 上传作品图片(可同时上传多张)</button>
-                    <input type="file" class="workimg" name="workimg" multiple>
+                    <input type="file"  id="inputFile2"  name="inputFile2" multiple>
+                    <div class="imgtip"></div>
                  </div>
                 </div>
                 <br>
                 <div class="am-form-group">
                   <div class="am-u-sm-9 am-u-sm-offset-3">
-                      <button type="button" class="am-btn am-btn-warning my-works-btn"> 提交信息 </button>
+                      <button id="upload2" class="am-btn am-btn-warning my-works-btn"> 提交信息 </button>
                   </div>
                 </div>
             </form> 
@@ -1199,21 +1200,21 @@
             <br>
             <form class="am-form am-form-horizontal" method="post" data-am-validator>
               <div class="am-form-group">
-                <label for="pname" class="am-u-sm-3 am-form-label">项目名称：</label>
+                <label class="am-u-sm-3 am-form-label">项目名称：</label>
                 <div class="am-u-sm-9">
-                  <input type="text" class="pname" required name="pname" placeholder="请输入项目名称">
+                  <input type="text" class="pname" required placeholder="请输入项目名称">
                 </div>
               </div>
               <div class="am-form-group">
-                <label for="ptime" class="am-u-sm-3 am-form-label">日期：</label>
+                <label class="am-u-sm-3 am-form-label">日期：</label>
                 <div class="am-u-sm-9">
-                    <input type="text" name="ptime" class="am-form-field ptime" placeholder="请选择日期" data-am-datepicker readonly />
+                    <input type="text" class="am-form-field ptime" placeholder="请选择日期" data-am-datepicker readonly />
                 </div>
               </div>
               <div class="am-form-group">
-                <label for="paddt" class="am-u-sm-3 am-form-label">补充说明：</label>
+                <label class="am-u-sm-3 am-form-label">补充说明：</label>
                 <div class="am-u-sm-9">
-                    <textarea rows="3 " class="paddt" name="paddt"></textarea>
+                    <textarea rows="3 " class="paddt" ></textarea>
                 </div>
               </div>
               <div class="am-form-group">
@@ -1266,13 +1267,13 @@
             <br>
             <form class="am-form am-form-horizontal" method="post" data-am-validator>
               <div class="am-form-group">
-                <label for="undergoname" class="am-u-sm-3 am-form-label">活动名称：</label>
+                <label class="am-u-sm-3 am-form-label">活动名称：</label>
                 <div class="am-u-sm-9">
-                  <input type="text" class="undergoname" required name="undergoname" placeholder="请输入名称">
+                  <input type="text" class="undergoname" required placeholder="请输入名称">
                 </div>
               </div>
               <div class="am-form-group">
-                <label for="undergotype" class="am-u-sm-3 am-form-label">类型：</label>
+                <label class="am-u-sm-3 am-form-label">类型：</label>
                 <div class="am-u-sm-9">
                       <select class="undergotype" name="undergotype" required>
                         <option value="">请选择一项</option>
@@ -1283,15 +1284,15 @@
                     </div>
                 </div>
               <div class="am-form-group">
-                <label for="undergotime" class="am-u-sm-3 am-form-label">日期：</label>
+                <label class="am-u-sm-3 am-form-label">日期：</label>
                 <div class="am-u-sm-9">
-                    <input type="text" name="undergotime" class="am-form-field undergotime" placeholder="请输入日期" data-am-datepicker readonly />
+                    <input type="text" class="am-form-field undergotime" placeholder="请输入日期" data-am-datepicker readonly />
                 </div>
               </div>
               <div class="am-form-group">
-                <label for="majorinstr" class="am-u-sm-3 am-form-label">补充说明：</label>
+                <label class="am-u-sm-3 am-form-label">补充说明：</label>
                 <div class="am-u-sm-9">
-                    <textarea rows="3 " class="undergoinstr" name="undergoinstr"></textarea>
+                    <textarea rows="3 " class="undergoinstr" ></textarea>
                 </div>
               </div>
               <div class="am-form-group">
@@ -1405,21 +1406,21 @@
 
       <div class="am-popup" id="my-paper">
           <div class="am-popup-inner">
-            <div class="am-popup-hd">
-                <h4 class="am-popup-title">论文专利</h4>
-                <span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
-            </div>
-            <div class="am-popup-bd">
-            <br>
-            <form class="am-form am-form-horizontal" method="post" data-am-validator>
-              <div class="am-form-group">
-                <label for="papername" class="am-u-sm-3 am-form-label">名称：</label>
-                <div class="am-u-sm-9">
-                  <input type="text" class="papername" required name="papername" placeholder="请输入名称">
-                </div>
+              <div class="am-popup-hd">
+                  <h4 class="am-popup-title">论文专利</h4>
+                  <span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
               </div>
+              <div class="am-popup-bd">
+              <br>
+              <form class="am-form am-form-horizontal" method="post" data-am-validator>
+                <div class="am-form-group">
+                  <label class="am-u-sm-3 am-form-label">名称：</label>
+                  <div class="am-u-sm-9">
+                      <input type="text" class="papername" required placeholder="请输入名称">
+                  </div>
+                </div>
               <div class="am-form-group">
-                <label for="papertype" class="am-u-sm-3 am-form-label">类型：</label>
+                <label class="am-u-sm-3 am-form-label">类型：</label>
                 <div class="am-u-sm-9">
                       <select class="papertype" name="papertype" required>
                         <option value="">请选择一项</option>
@@ -1430,15 +1431,15 @@
                     </div>
                 </div>
               <div class="am-form-group">
-                <label for="papertime" class="am-u-sm-3 am-form-label">发表日期：</label>
+                <label class="am-u-sm-3 am-form-label">发表日期：</label>
                 <div class="am-u-sm-9">
-                    <input type="text" class="papertime" name="papertime" class="am-form-field" placeholder="请输入发表日期" data-am-datepicker readonly/>
+                    <input type="text" class="papertime am-form-field" placeholder="请输入发表日期" data-am-datepicker readonly/>
                 </div>
               </div>
               <div class="am-form-group">
-                <label for="paperinstr" class="am-u-sm-3 am-form-label">补充说明：</label>
+                <label class="am-u-sm-3 am-form-label">补充说明：</label>
                 <div class="am-u-sm-9">
-                    <textarea rows="3 " class="paperinstr" name="paperinstr"></textarea>
+                    <textarea rows="3 " class="paperinstr"></textarea>
                 </div>
               </div>
               <div class="am-form-group">
@@ -1511,9 +1512,9 @@
                 <div class="am-u-lg-6 am-u-md-8  am-u-sm-centered">
                   <form class="am-form am-form-horizontal" method="post">
                     <div class="am-form-group">
-                      <label for="descriptioncon"class="am-u-sm-2 am-form-label">核心技能：</label>
+                      <label class="am-u-sm-2 am-form-label">核心技能：</label>
                       <div class="am-u-sm-10">
-                      <textarea class="descriptioncon" rows="2" name="descriptioncon" placeholder="每次添加一条技能"></textarea>
+                        <textarea class="descriptioncon" rows="2" placeholder="每次添加一条技能"></textarea>
                       </div>
                     </div>
                     <div class="am-form-group">
@@ -1533,361 +1534,3 @@
 
 <% include myfooter.html %>
 <!-- 添加其他，比如其他的网络空间，网站，论坛 -->
-
-<script>
-$(document).ready(function(){               
-      /*
-        实习经历相关操作
-       */
-      //repractice-add
-      $('.my-repractice3-btn').click(function(){
-            $.ajax({    
-              type:'post',        
-              url:'/resume/repractice/add',   
-              data: {
-                practice:$(".practice", '#my-repractice').val(),
-                spracticetime:$(".spracticetime", '#my-repractice').val(),
-                epracticetime:$(".epracticetime",'#my-repractice').val(),
-                practiceposition:$(".practiceposition", '#my-repractice').val(),
-                practiceinstr:$(".practiceinstr", '#my-repractice').val()
-              },  
-              dataType:'json',      
-              success:function(data){    
-                  console.log(data);
-                  $("#my-repractice").modal('close');
-                  location.reload();
-              },
-              error : function(err) {   
-                  console.log(err);    
-              }        
-          }); 
-      });
-      //repractice-change
-      $('.my-repractice2-btn').click(function(){
-            $.ajax({    
-              type:'post',        
-              url:'/resume/repractice/change',   
-              data: {
-                compChangeType:$(".compChangeType", '#my-repractice').val(),
-                spracticetime:$(".spracticetime2", '#my-repractice').val(),
-                epracticetime:$(".epracticetime2",'#my-repractice').val(),
-                practiceposition:$(".practiceposition2", '#my-repractice').val(),
-                practiceinstr:$(".practiceinstr2", '#my-repractice').val()
-              },  
-              dataType:'json',      
-              success:function(data){    
-                  console.log(data);
-                  $("#my-repractice").modal('close');
-                  location.reload();
-              },
-              error : function(err) {   
-                  console.log(err);    
-              }        
-          }); 
-      });   
-      //repractice-del
-      $('.my-repractice1-btn').click(function(){
-            $.ajax({    
-              type:'post',        
-              url:'/resume/repractice/dele',   
-              data: {
-                compType:$(".compType", '#my-repractice').val()
-              },  
-              dataType:'json',      
-              success:function(data){    
-                  console.log(data);
-                  $("#my-repractice").modal('close');
-                  location.reload();
-              },
-              error : function(err) {   
-                  console.log(err);    
-              }        
-          }); 
-      });   
-      $('.operaType','#my-repractice').change(function(){
-          if($(this).children('option:selected').val()==1){
-              $('.deleModule', '#my-repractice').hide();
-              $('.changeModule', '#my-repractice').hide();
-              $('.addModule', '#my-repractice').show();
-          }else if($(this).children('option:selected').val()==2){
-              $('.deleModule', '#my-repractice').hide();
-              $('.changeModule', '#my-repractice').show();
-              $('.addModule', '#my-repractice').hide();
-          }else if($(this).children('option:selected').val()==3){
-              $('.deleModule', '#my-repractice').show();
-              $('.changeModule', '#my-repractice').hide();
-              $('.addModule', '#my-repractice').hide();
-          }else{
-              $('.deleModule', '#my-repractice').hide();
-              $('.changeModule', '#my-repractice').hide();
-              $('.addModule', '#my-repractice').hide();
-          }
-      });
-      //repractice-changeType
-      $('.compChangeType','#my-repractice').change(function(){
-          $.ajax({    
-                  type:'post',        
-                  url:'/resume/repractice/changeType',   
-                  data: {
-                    compChangeType:$(".compChangeType", '#my-repractice').val()
-                  },  
-                  dataType:'json',      
-                  success:function(data){    
-                    $(".spracticetime2", '#my-repractice').val(data.spracticetime);
-                    $(".epracticetime2",'#my-repractice').val(data.epracticetime);
-                    $(".practiceposition2", '#my-repractice').val(data.practiceposition);
-                    $(".practiceinstr2", '#my-repractice').val(data.practiceinstr);
-                    $('.compPart', '#my-repractice').show();
-                  },
-                  error : function(err) {   
-                      console.log(err);    
-                  }        
-          }); 
-      });
-
-      /*
-        gz经历相关操作
-       */
-      //practice-add
-      $('.my-practice3-btn').click(function(){
-            $.ajax({    
-              type:'post',        
-              url:'/resume/practice/add',   
-              data: {
-                practice:$(".practice", '#my-practice').val(),
-                spracticetime:$(".spracticetime", '#my-practice').val(),
-                epracticetime:$(".epracticetime",'#my-practice').val(),
-                practiceposition:$(".practiceposition", '#my-practice').val(),
-                practiceinstr:$(".practiceinstr", '#my-practice').val()
-              },  
-              dataType:'json',      
-              success:function(data){    
-                  console.log(data);
-                  $("#my-practice").modal('close');
-                  location.reload();
-              },
-              error : function(err) {   
-                  console.log(err);    
-              }        
-          }); 
-      });
-      //practice-change
-      $('.my-practice2-btn').click(function(){
-            $.ajax({    
-              type:'post',        
-              url:'/resume/practice/change',   
-              data: {
-                compChangeType:$(".compChangeType", '#my-practice').val(),
-                spracticetime:$(".spracticetime2", '#my-practice').val(),
-                epracticetime:$(".epracticetime2",'#my-practice').val(),
-                practiceposition:$(".practiceposition2", '#my-practice').val(),
-                practiceinstr:$(".practiceinstr2", '#my-practice').val()
-              },  
-              dataType:'json',      
-              success:function(data){    
-                  console.log(data);
-                  $("#my-practice").modal('close');
-                  location.reload();
-              },
-              error : function(err) {   
-                  console.log(err);    
-              }        
-          }); 
-      });   
-      //practice-del
-      $('.my-practice1-btn').click(function(){
-            $.ajax({    
-              type:'post',        
-              url:'/resume/practice/dele',   
-              data: {
-                compType:$(".compType", '#my-practice').val()
-              },  
-              dataType:'json',      
-              success:function(data){    
-                  console.log(data);
-                  $("#my-practice").modal('close');
-                  location.reload();
-              },
-              error : function(err) {   
-                  console.log(err);    
-              }        
-          }); 
-      });   
-      $('.operaType','#my-practice').change(function(){
-          if($(this).children('option:selected').val()==1){
-              $('.deleModule', '#my-practice').hide();
-              $('.changeModule', '#my-practice').hide();
-              $('.addModule', '#my-practice').show();
-          }else if($(this).children('option:selected').val()==2){
-              $('.deleModule', '#my-practice').hide();
-              $('.changeModule', '#my-practice').show();
-              $('.addModule', '#my-practice').hide();
-          }else if($(this).children('option:selected').val()==3){
-              $('.deleModule', '#my-practice').show();
-              $('.changeModule', '#my-practice').hide();
-              $('.addModule', '#my-practice').hide();
-          }else{
-              $('.deleModule', '#my-practice').hide();
-              $('.changeModule', '#my-practice').hide();
-              $('.addModule', '#my-practice').hide();
-          }
-      });
-      //practice-changeType
-      $('.compChangeType','#my-practice').change(function(){
-          $.ajax({    
-                  type:'post',        
-                  url:'/resume/practice/changeType',   
-                  data: {
-                    compChangeType:$(".compChangeType", '#my-practice').val()
-                  },  
-                  dataType:'json',      
-                  success:function(data){    
-                    $(".spracticetime2", '#my-practice').val(data.spracticetime);
-                    $(".epracticetime2",'#my-practice').val(data.epracticetime);
-                    $(".practiceposition2", '#my-practice').val(data.practiceposition);
-                    $(".practiceinstr2", '#my-practice').val(data.practiceinstr);
-                    $('.compPart', '#my-practice').show();
-                  },
-                  error : function(err) {   
-                      console.log(err);    
-                  }        
-          }); 
-      });
-
-
-
-      //荣誉证书
-      $('.my-certificate-btn').click(function(){
-            $.ajax({    
-              type:'post',        
-              url:'/resume/certificate',   
-              data: {
-                certificatename:$(".certificatename", '#my-certificate').val(),
-                gettime:$(".gettime", '#my-certificate').val(),
-                cgrade:$(".cgrade", '#my-certificate').val(),
-                certificateinstr:$(".certificateinstr", '#my-certificate').val(),
-                cimages:$(".cimages", '#my-certificate').val()
-              },  
-              dataType:'json',      
-              success:function(data){    
-                  console.log(data);
-                  $("#my-certificate").modal('close');
-              },
-              error : function(err) {   
-                  console.log(err);    
-              }        
-          }); 
-      });
-
-      //实践经历
-      $('.my-works-btn').click(function(){
-            $.ajax({    
-              type:'post',        
-              url:'/resume/works',   
-              data: {
-                workname:$(".workname", '#my-works').val(),
-                worktime:$(".worktime", '#my-works').val(),
-                workduty:$(".workduty", '#my-works').val(),
-                showink:$(".showink", '#my-works').val(),
-                codelink:$(".codelink", '#my-works').val(),
-                workdes:$(".workdes", '#my-works').val(),
-                workimg:$(".workimg", '#my-works').val()
-              },  
-              dataType:'json',      
-              success:function(data){    
-                  console.log(data);
-                  $("#my-works").modal('close');
-              },
-              error : function(err) {   
-                  console.log(err);    
-              }        
-          }); 
-      });
-
-      //项目经历
-      $('.my-projects-btn').click(function(){
-            $.ajax({    
-              type:'post',        
-              url:'/resume/projects',   
-              data: {
-                pname:$(".pname", '#my-projects').val(),
-                ptime:$(".ptime", '#my-projects').val(),
-                paddt:$(".paddt", '#my-projects').val()
-              },  
-              dataType:'json',      
-              success:function(data){    
-                  console.log(data);
-                  $("#my-projects").modal('close');
-              },
-              error : function(err) {   
-                  console.log(err);    
-              }        
-          }); 
-      });
-
-      //实践经历
-      $('.my-undergo-btn').click(function(){
-            $.ajax({    
-              type:'post',        
-              url:'/resume/undergo',   
-              data: {
-                undergoname:$(".undergoname", '#my-undergo').val(),
-                undergotype:$(".undergotype", '#my-undergo').val(),
-                undergotime:$(".undergotime", '#my-undergo').val(),
-                undergoinstr:$(".undergoinstr", '#my-undergo').val()
-              },  
-              dataType:'json',      
-              success:function(data){    
-                  console.log(data);
-                  $("#my-undergo").modal('close');
-              },
-              error : function(err) {   
-                  console.log(err);    
-              }        
-          }); 
-      });
-
-      //论文专利
-      $('.my-paper-btn').click(function(){
-            $.ajax({    
-              type:'post',        
-              url:'/resume/paper',   
-              data: {
-                papername:$(".papername", '#my-paper').val(),
-                papertype:$(".papertype", '#my-paper').val(),
-                papertime:$(".papertime", '#my-paper').val(),
-                paperinstr:$(".paperinstr", '#my-paper').val()
-              },  
-              dataType:'json',      
-              success:function(data){    
-                  console.log(data);
-                  $("#my-paper").modal('close');
-              },
-              error : function(err) {   
-                  console.log(err);    
-              }        
-          }); 
-      });
-
-      //核心技能
-      $('.my-description-btn').click(function(){
-            $.ajax({    
-              type:'post',        
-              url:'/resume/desc',   
-              data: {
-                desCon:$(".descriptioncon", '#my-description').val()
-              },  
-              dataType:'json',      
-              success:function(data){    
-                  console.log(data);
-                  $("#my-description").modal('close');
-              },
-              error : function(err) {   
-                  console.log(err);    
-              }        
-          }); 
-      });
-
-
-  }); 
-</script>

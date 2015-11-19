@@ -90,7 +90,7 @@ app.get('/faq', faq.page);
 app.get('/resource', resource.page);
 app.get('/talentpool', talentpool.page);
 app.get('/allarticle', allarticle.page);
-app.get('/article', article,page);
+app.get('/article', article.page);
 
 //登录过了进入登录页面的自动首页跳转
 app.get('/login', checkState.checkNotLogin);
@@ -112,8 +112,8 @@ app.get('/introduction', introduction.page);
 app.post('/introduction', introduction.doPage);
 //个人中心——网页简历
 app.get('/resume', resume.page);
-app.post('/resume/desc', resume.desc);
-app.post('/resume/paper', resume.paper);
+app.post('/resume/desc', resume.desc); //核心技能
+app.post('/resume/paper', resume.paper); //论文专利
 app.post('/resume/undergo', resume.undergo);
 app.post('/resume/works', resume.works);
 app.post('/resume/projects', resume.projects);

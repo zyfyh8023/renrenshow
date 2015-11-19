@@ -1,14 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
-var uName, retCode, retDesc;
+var retCode, retDesc;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	uName=req.session.user.username;
 
 	res.render('index', { 
-		uName: uName,
 		title: '首页' 
 	});
 });

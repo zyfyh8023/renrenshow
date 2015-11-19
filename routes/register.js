@@ -3,13 +3,11 @@
 var crypto = require('crypto');  
 var users = require('../models/users');
 
-var retDesc, uName, retCode;
+var retDesc, retCode;
 
 //GET register page. 
 exports.page=function(req, res, next){
-    uName=req.session.user.username;
 	res.render('register', { 
-        uName: uName,
         title: '注册' 
     });
 }

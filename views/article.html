@@ -93,7 +93,19 @@
 </div>
 
 <div class="am-g am-g-fixed">
-    在这里面在放一个评论的输入框就可以了！
+   <form class="am-form am-form-horizontal" method="post" data-am-validator>
+     <div class="am-form-group">
+       <label for="paperinstr" class="am-u-sm-2 am-form-label">补充说明：</label>
+       <div class="am-u-sm-9">
+           <textarea rows="4 " class="paperinstr" name="paperinstr"></textarea>
+       </div>
+     </div>
+     <div class="am-form-group">
+       <div class="am-u-sm-9 am-u-sm-offset-2">
+           <button type="button" class="am-btn am-btn-warning my-paper-btn"> 提交信息 </button>
+       </div>
+     </div>
+   </form> 
 </div>
 
 <% include myfooter.html %>

@@ -29,6 +29,7 @@ exports.page=function(req, res, next) {
           	res.redirect('myError?retDesc='+retDesc);
 		}else{
 			if(rs){
+				console.log(rs);
 				res.render('resume', { 
 					title: '我的简历',
 					uName: uName,
@@ -461,123 +462,256 @@ exports.practice3=function(req, res, next) {
 
 //荣誉证书
 exports.certificate=function(req, res, next) {
-    var certificatename=req.body.certificatename,
-    	gettime=req.body.gettime,
-    	cgrade=req.body.cgrade,
-    	certificateinstr=req.body.certificateinstr,
-    	cimages=req.body.cimages;
-  	var uName=req.session.user.username;
+	uName=req.session.user.username;
 
-  	console.log(certificatename+gettime+cgrade+certificateinstr+cimages);
-	resume.findByUname(uName,function(err){
-		if(err){
-			res.send(false);   //res.jsonp()   res.write()
- 			res.end();
-		}else{
-			res.send(true);   //res.jsonp()   res.write()
- 			res.end();
-		}
+	var form = new multiparty.Form({uploadDir: './public/works/'});
+	form.parse(req, function(err, fields, files) {
+	    var filesTmp = JSON.stringify(files,null,2);
+        if(err){
+            retDesc='系统出现故障，请稍后再试哦！';
+    		return res.send({retCode:400, retDesc:retDesc});
+        } else {
+    		resume.findByUname(uName,function(err,rs){
+    	  		if(err){
+    				retDesc='信息查找失败！';
+    	    		return res.send({retCode:400, retDesc:retDesc});
+    	  		}else{
+		            	var inputFile = files.inputFile3[0];
+		            	var uploadedPath = inputFile.path;
+		            	var dstPath = './public/works/' + inputFile.originalFilename;
+		            	var imgSize=inputFile.size;
+			            if (imgSize > 2*1024*1024) { 
+			            	retDesc='图片的尺寸过大！';
+			    			return res.send({retCode:400, retDesc:retDesc});
+			            }
+			            var imgType=inputFile.headers['content-type'];
+			            if(imgType.split('/')[0]!='image'){ 
+			            	retDesc='只允许上传图片哦~';
+			    			return res.send({retCode:400, retDesc:retDesc});
+			            }
+		            	var cTimeStr=new Date().getTime();
+		            		cTimeStr=cTimeStr.toString();
+			            var imgPath='./public/works/'+uName+'certificateImg'+cTimeStr+'.jpg',
+			                imgSrc='/works/'+uName+'certificateImg'+cTimeStr+'.jpg';
+			            fs.rename(uploadedPath, imgPath, function(err) {
+			                if(err){ 
+			                	retDesc='图片重名了出现问题，请稍后再试！';
+			    				return res.send({retCode:400, retDesc:retDesc});
+			                }else{
+        							var newCertificate6={
+        								certificatename: fields.certificatename[0],
+        		              			gettime: fields.gettime[0],
+        		              			cgrade: fields.cgrade[0],
+        		              			certificateinstr: fields.certificateinstr[0],
+        		              			cimages: imgSrc
+        							}
+        							rs.Certificate6.push(newCertificate6);
+        		                	resume.modify({author:uName},{Certificate6:rs.Certificate6},function(err){
+        		                		if(err){
+        		                			retDesc='信息更新失败！';
+        		    						return res.send({retCode:400, retDesc:retDesc});
+        		                		}else{
+        		    						return res.send({retCode:200});
+        		                		}
+        		                	});
+			                	}
+			            });
+			        }
+    	  	});
+        }
 	});
 };
 
 //我的作品
 exports.works=function(req, res, next) {
-    var workname=req.body.workname,
-    	worktime=req.body.worktime,
-    	workduty=req.body.workduty,
-    	showink=req.body.showink,
-    	codelink=req.body.codelink,
-    	workdes=req.body.workdes,
-    	workimg=req.body.workimg;
-  	var uName=req.session.user.username;
+	uName=req.session.user.username;
 
-  	console.log(workname+worktime+workduty+showink+codelink+workdes+workimg);
-	resume.findByUname(uName,function(err){
-		if(err){
-			res.send(false);   //res.jsonp()   res.write()
- 			res.end();
-		}else{
-			res.send(true);   //res.jsonp()   res.write()
- 			res.end();
-		}
+	var form = new multiparty.Form({uploadDir: './public/works/'});
+	form.parse(req, function(err, fields, files) {
+	    var filesTmp = JSON.stringify(files,null,2);
+        if(err){
+            retDesc='系统出现故障，请稍后再试哦！';
+    		return res.send({retCode:400, retDesc:retDesc});
+        } else {
+    		resume.findByUname(uName,function(err,rs){
+    	  		if(err){
+    				retDesc='信息查找失败！';
+    	    		return res.send({retCode:400, retDesc:retDesc});
+    	  		}else{
+    	  			var imgArr=[];
+    	  			var num=0;
+		        	for(var k=0,len=files.inputFile2.length;k<len;k++){
+		            	var inputFile = files.inputFile2[k];
+		            	var uploadedPath = inputFile.path;
+		            	var dstPath = './public/works/' + inputFile.originalFilename;
+		            	var imgSize=inputFile.size;
+			            if (imgSize > 2*1024*1024) { 
+			            	retDesc='图片的尺寸过大！';
+			    			return res.send({retCode:400, retDesc:retDesc});
+			            }
+			            var imgType=inputFile.headers['content-type'];
+			            if(imgType.split('/')[0]!='image'){ 
+			            	retDesc='只允许上传图片哦~';
+			    			return res.send({retCode:400, retDesc:retDesc});
+			            }
+		            	var cTimeStr=new Date().getTime();
+		            		cTimeStr=cTimeStr.toString();
+			            var imgPath='./public/works/'+uName+'workImg'+cTimeStr+k+'.jpg',
+			                imgSrc='/works/'+uName+'workImg'+cTimeStr+k+'.jpg';
+			                imgArr.push(imgSrc);
+			            fs.rename(uploadedPath, imgPath, function(err) {
+			                if(err){ 
+			                	retDesc='图片重名了出现问题，请稍后再试！';
+			    				return res.send({retCode:400, retDesc:retDesc});
+			                }else{
+			                	num++;
+			                	if(num==len){
+        							var newpWorks7={
+        								workname: fields.workname[0],
+        		              			worktime: fields.worktime[0],
+        		              			workduty: fields.workduty[0],
+        		              			showink: fields.showink[0],
+        		              			codelink: fields.codelink[0],
+        		              			workdes: fields.workdes[0],
+        		              			workimg: imgArr
+        							}
+        							rs.pWorks7.push(newpWorks7);
+        		                	resume.modify({author:uName},{pWorks7:rs.pWorks7},function(err){
+        		                		if(err){
+        		                			retDesc='信息更新失败！';
+        		    						return res.send({retCode:400, retDesc:retDesc});
+        		                		}else{
+        		    						return res.send({retCode:200});
+        		                		}
+        		                	});
+			                	}
+			                }
+			            });
+			        }
+    	  		}
+    	  	});
+        }
 	});
 };
 
 //项目经历
 exports.projects=function(req, res, next) {
-    var pname=req.body.pname,
-    	ptime=req.body.ptime,
-    	paddt=req.body.paddt;
-  	var uName=req.session.user.username;
+    var pname=req.body.pname.trim(),
+    	ptime=req.body.ptime.trim(),
+    	paddt=req.body.paddt.trim();
+  	uName=req.session.user.username;
 
-  	console.log(pname+ptime+paddt);
-	resume.findByUname(uName,function(err){
-		if(err){
-			res.send(false);   //res.jsonp()   res.write()
- 			res.end();
-		}else{
-			res.send(true);   //res.jsonp()   res.write()
- 			res.end();
-		}
-	});
+	resume.findByUname(uName,function(err,rs){
+  		if(err){
+			retDesc='信息查找失败！';
+    		return res.send({retCode:400, retDesc:retDesc});
+  		}else{
+  			var newprojects8= {
+		           	pName: pname,
+       	            pTime: ptime,
+       	            addt: paddt
+	        	};
+  			rs.projects8.push(newprojects8);
+		  	resume.modify({author:uName},{projects8:rs.projects8},function(err){
+				if(err){
+					retDesc='信息添加失败！';
+		    		return res.send({retCode:400, retDesc:retDesc});
+				}else{
+					return res.send({retCode:200});
+				}
+			});
+  		}
+  	});
 };
 
 //实践经历
 exports.undergo=function(req, res, next) {
-    var undergoname=req.body.undergoname,
-    	undergotype=req.body.undergotype,
-    	undergotime=req.body.undergotime,
-    	undergoinstr=req.body.undergoinstr;
-  	var uName=req.session.user.username;
+    var undergoname=req.body.undergoname.trim(),
+    	undergotype=req.body.undergotype.trim(),
+    	undergotime=req.body.undergotime.trim(),
+    	undergoinstr=req.body.undergoinstr.trim();
+  	uName=req.session.user.username;
 
-  	console.log(undergoname+undergotype+undergotime+undergoinstr);
-	resume.findByUname(uName,function(err){
-		if(err){
-			res.send(false);   //res.jsonp()   res.write()
- 			res.end();
-		}else{
-			res.send(true);   //res.jsonp()   res.write()
- 			res.end();
-		}
-	});
+	resume.findByUname(uName,function(err,rs){
+  		if(err){
+			retDesc='信息查找失败！';
+    		return res.send({retCode:400, retDesc:retDesc});
+  		}else{
+  			var newtrys9= {
+		           	tName: undergoname,
+                  	tTime: undergotype,
+                  	tType: undergotime,
+                  	addt: undergoinstr
+	        	};
+  			rs.trys9.push(newtrys9);
+		  	resume.modify({author:uName},{trys9:rs.trys9},function(err){
+				if(err){
+					retDesc='信息添加失败！';
+		    		return res.send({retCode:400, retDesc:retDesc});
+				}else{
+					return res.send({retCode:200});
+				}
+			});
+  		}
+  	});
 };
 
-//核心技能
+//论文专利
 exports.paper=function(req, res, next) {
-    var papername=req.body.papername,
-    	papertype=req.body.papertype,
-    	papertime=req.body.papertime,
-    	paperinstr=req.body.paperinstr;
-  	var uName=req.session.user.username;
+    var papername=req.body.papername.trim(),
+    	papertype=req.body.papertype.trim(),
+    	papertime=req.body.papertime.trim(),
+    	paperinstr=req.body.paperinstr.trim();
+  	uName=req.session.user.username;
 
-  	console.log(papername+papertype+papertime+paperinstr);
-	resume.findByUname(uName,function(err){
-		if(err){
-			res.send(false);   //res.jsonp()   res.write()
- 			res.end();
-		}else{
-			res.send(true);   //res.jsonp()   res.write()
- 			res.end();
-		}
-	});
+	resume.findByUname(uName,function(err,rs){
+  		if(err){
+			retDesc='信息查找失败！';
+    		return res.send({retCode:400, retDesc:retDesc});
+  		}else{
+  			var newPatentPaper10= {
+		            ppName: papername,
+		            ppTime: papertype,
+		            ppType: papertime,
+		            addt: paperinstr
+	        	};
+  			rs.PatentPaper10.push(newPatentPaper10);
+		  	resume.modify({author:uName},{PatentPaper10:rs.PatentPaper10},function(err){
+				if(err){
+					retDesc='信息添加失败！';
+		    		return res.send({retCode:400, retDesc:retDesc});
+				}else{
+					return res.send({retCode:200});
+				}
+			});
+  		}
+  	});
 };
 
 //核心技能
 exports.desc=function(req, res, next) {
-    var desCon=req.body.desCon;
-  	var uName=req.session.user.username;
+    var desCon=req.body.desCon.trim();
+  	uName=req.session.user.username;
 
-	resume.findByUname(uName,function(err){
-		if(err){
-			res.send(false);   //res.jsonp()   res.write()
- 			res.end();
-		}else{
-			res.send(true);   //res.jsonp()   res.write()
- 			res.end();
-		}
-	});
+  	resume.findByUname(uName,function(err,rs){
+  		if(err){
+			retDesc='信息查找失败！';
+    		return res.send({retCode:400, retDesc:retDesc});
+  		}else{
+  			rs.Technology11.push(desCon);
+		  	resume.modify({author:uName},{Technology11:rs.Technology11},function(err){
+				if(err){
+					retDesc='信息添加失败！';
+		    		return res.send({retCode:400, retDesc:retDesc});
+				}else{
+					return res.send({retCode:200});
+				}
+			});
+  		}
+  	});
 };
 
+//初始化
 exports.resumeInit=function(req, res, next){
 	uName=req.body.uName;
 	var newResume = new resume.Resume({

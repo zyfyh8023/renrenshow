@@ -53,16 +53,22 @@ var ResumeScheme = new Schema({
     ],
     Certificate6:[
         {
-            bName: String,
-            bTime: String,
-            addt: String
+            certificatename:String,
+            gettime:String,
+            cgrade:String,
+            certificateinstr:String,
+            cimages:String
         }
     ],
     pWorks7:[
         {
-            wName: String,
-            wTime: String,
-            addt: String
+            workname: String,
+            worktime: String,
+            workduty: String,
+            showink: String,
+            codelink: String,
+            workdes: String,
+            workimg: []
         }
     ],
     projects8:[
