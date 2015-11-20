@@ -93,12 +93,12 @@ exports.modify = function(conditions,updates,options,callback) {
 exports.allNum = function(uName, callFn) {
     async.series([
             function(callback){
-                Article.find({author:uName,articleType:1},function(err,result){
+                Article.find({author:uName,articleTag:1},function(err,result){
                     callback(err,result.length);
                 });
             },
             function(callback){
-                Article.find({author:uName,articleType:2},function(err,result){
+                Article.find({author:uName,articleTag:2},function(err,result){
                     callback(err,result.length);
                 });
             },

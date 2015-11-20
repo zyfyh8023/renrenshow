@@ -56,7 +56,7 @@
 					    </tbody>
 					<% } %>
 				</table>
-				<div id="pageShow" style="display:none;">
+				<div id="pageShow" style="<% if(allArticles.length<=1) { %>display:none;<% } %>">
 					<ul class="am-pagination am-pagination-right">
 						<li class="am-disabled"><a href="#">&laquo;</a></li>
 						<li class="am-active"><a href="#">1</a></li>

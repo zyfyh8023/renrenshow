@@ -1094,7 +1094,4 @@ $(document).ready(function(){
   	});
 
 
-
-
-
-});
+);

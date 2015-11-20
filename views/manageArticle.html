@@ -67,7 +67,7 @@
 					    </tbody>
 					<% } %>
 				</table>
-				<div id="pageShow" style="display:none;">
+				<div id="pageShow" style="<% if(allArticles.length<=1) { %>display:none;<% } %>">
 					<ul class="am-pagination am-pagination-right">
 						<li class="am-disabled"><a href="#">&laquo;</a></li>
 						<li class="am-active"><a href="#">1</a></li>
@@ -85,3 +85,4 @@
 	<!-- <a class="am-icon-btn am-icon-bars am-show-sm-only amz-sidebar-toggle" data-am-offcanvas="" href="#amz-offcanvas"><span class="am-sr-only">侧栏导航</span></a> -->
 	
 <% include myfooter.html %>
+

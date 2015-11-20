@@ -116,12 +116,12 @@ exports.relatedMeBW=function(req, res, next) {
 function getArtExpNum(uName, callFn) {
     async.series([
             function(callback){
-                experiences.allNum(uName, function (err, results) {
+                articles.allNum(uName, function (err, results) {
                     callback(err,results);
                 });
             },
             function(callback){
-                articles.allNum(uName, function (err, results) {
+                experiences.allNum(uName, function (err, results) {
                     callback(err,results);
                 });
             }

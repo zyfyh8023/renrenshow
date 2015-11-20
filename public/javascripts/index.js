@@ -15,6 +15,7 @@ $(document).ready(function(){
 	    $("#zy-warning").addClass('zy-display-none');
 	});
 
+
 });
 
 //warn的opn和cls
