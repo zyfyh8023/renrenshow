@@ -14,8 +14,6 @@
 				    	<% for(var i=0; i<allNavgition.models.length; i++) {%>
 							<li><a href="#"><span><%= allNavgition.models[i].modelsName %></span>（<%= allNavgition.models[i].modelsuns.length %>）</a></li>
 						<% } %>
-					<% } else { %>
-						<div style="font-size:10px;">数据未初始化</div>
 					<% } %>
 				</ul>
 			</div>
@@ -78,8 +76,6 @@
 	    					<button type="button" data-am-modal="{target: '#my-navpopup'}"><img style="width:8.4rem;" src="/images/add.jpg"></button>
 	    				</div></div>
 					<% } %>
-			<% } else { %>
-				<div style="font-size:20px;text-align:center;">数据未初始化! </div>
 			<% } %>
 		</div>
 	</div>
@@ -132,8 +128,6 @@
 							    	<% for(var i=0; i<allNavgition.models.length; i++) {%>
 										<option value="<%= allNavgition.models[i].modelsName %>"><%= allNavgition.models[i].modelsName %></option>
 									<% } %>
-								<% } else { %>
-									<option value="">无可删除选项。。。</option>
 								<% } %>
 				      		</select>
 				      		<span class="am-form-caret"></span>
@@ -153,7 +147,6 @@
     	<button class="am-btn am-btn-danger am-btn-block" data-am-modal-close>关闭</button>
   	</div> -->
 </div>
-
 
 <div class="am-popup" id="my-navpopup">
   	<div class="am-popup-inner">

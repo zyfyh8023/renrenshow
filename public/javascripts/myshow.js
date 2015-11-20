@@ -818,107 +818,138 @@ $(document).ready(function(){
   	  实习经历相关操作
   	 */
   	//repractice-add
-  	$('.my-repractice3-btn').click(function(){
-  	      $.ajax({    
-  	        type:'post',        
-  	        url:'/resume/repractice/add',   
-  	        data: {
-  	          practice:$(".practice", '#my-repractice').val(),
-  	          spracticetime:$(".spracticetime", '#my-repractice').val(),
-  	          epracticetime:$(".epracticetime",'#my-repractice').val(),
-  	          practiceposition:$(".practiceposition", '#my-repractice').val(),
-  	          practiceinstr:$(".practiceinstr", '#my-repractice').val()
-  	        },  
-  	        dataType:'json',      
-  	        success:function(data){    
-  	            console.log(data);
-  	            $("#my-repractice").modal('close');
-  	            location.reload();
-  	        },
-  	        error : function(err) {   
-  	            console.log(err);    
-  	        }        
-  	    }); 
+  	var $myRepractice=$('#my-repractice');
+  	$myRepractice.delegate('.my-repractice-btn', 'click', function(event) {
+  		var practice=$.trim($(".practice", $myRepractice).val()),
+  			spracticetime=$.trim($(".spracticetime", $myRepractice).val()),
+  			epracticetime=$.trim($(".epracticetime", $myRepractice).val()),
+  			practiceposition=$.trim($(".practiceposition", $myRepractice).val()),
+  			practiceinstr=$.trim($(".practiceinstr", $myRepractice).val());
+  		if(practice && spracticetime && epracticetime && practiceposition && practiceinstr){
+  	      	$.ajax({    
+	  	        type:'post',        
+	  	        url:'/resume/repractice/add',   
+	  	        data: {
+					practice:practice,
+					spracticetime:spracticetime,
+					epracticetime:epracticetime,
+					practiceposition:practiceposition,
+					practiceinstr:practiceinstr
+	  	        },  
+	  	        dataType:'json',      
+	  	        success:function(data){    
+	  	            if(data.retCode==200){
+    					location.reload();
+    				}else{
+    					warnOpnFn(data.retDesc);
+    				}
+	  	        },
+	  	        error : function(err) {   
+	  	            alertOpnFn('err');        
+	  	        }        
+  	    	}); 
+      	}else{
+      		warnOpnFn('请填写完整!');
+      	}
   	});
   	//repractice-change
-  	$('.my-repractice2-btn').click(function(){
-  	      $.ajax({    
-  	        type:'post',        
-  	        url:'/resume/repractice/change',   
-  	        data: {
-  	          compChangeType:$(".compChangeType", '#my-repractice').val(),
-  	          spracticetime:$(".spracticetime2", '#my-repractice').val(),
-  	          epracticetime:$(".epracticetime2",'#my-repractice').val(),
-  	          practiceposition:$(".practiceposition2", '#my-repractice').val(),
-  	          practiceinstr:$(".practiceinstr2", '#my-repractice').val()
-  	        },  
-  	        dataType:'json',      
-  	        success:function(data){    
-  	            console.log(data);
-  	            $("#my-repractice").modal('close');
-  	            location.reload();
-  	        },
-  	        error : function(err) {   
-  	            console.log(err);    
-  	        }        
-  	    }); 
+  	$myRepractice.delegate('.my-repractice2-btn', 'click', function(event) {
+  		var compChangeType=$.trim($(".compChangeType", $myRepractice).val()),
+  			spracticetime=$.trim($(".spracticetime2", $myRepractice).val()),
+  			epracticetime=$.trim($(".epracticetime2", $myRepractice).val()),
+  			practiceposition=$.trim($(".practiceposition2", $myRepractice).val()),
+  			practiceinstr=$.trim($(".practiceinstr2", $myRepractice).val());
+  		if(compChangeType && spracticetime && epracticetime && practiceposition && practiceinstr){
+  	      	$.ajax({    
+	  	        type:'post',        
+	  	        url:'/resume/repractice/change',   
+	  	        data: {
+	  	          compChangeType:compChangeType,
+	  	          spracticetime:spracticetime,
+	  	          epracticetime:epracticetime,
+	  	          practiceposition:practiceposition,
+	  	          practiceinstr:practiceinstr
+	  	        },  
+	  	        dataType:'json',      
+	  	        success:function(data){    
+	  	           if(data.retCode==200){
+       					location.reload();
+       				}else{
+       					warnOpnFn(data.retDesc);
+       				}
+	  	        },
+	  	        error : function(err) {   
+	  	            alertOpnFn('err');   
+	  	        }        
+  	    	}); 
+  	 	 }else{
+  	 	 	warnOpnFn('请填写完整!');
+  	  	}
   	});   
   	//repractice-del
-  	$('.my-repractice1-btn').click(function(){
-  	      $.ajax({    
-  	        type:'post',        
-  	        url:'/resume/repractice/dele',   
-  	        data: {
-  	          compType:$(".compType", '#my-repractice').val()
-  	        },  
-  	        dataType:'json',      
-  	        success:function(data){    
-  	            console.log(data);
-  	            $("#my-repractice").modal('close');
-  	            location.reload();
-  	        },
-  	        error : function(err) {   
-  	            console.log(err);    
-  	        }        
-  	    }); 
+  	$myRepractice.delegate('.my-repractice1-btn', 'click', function(event) {
+  		var compType=$.trim($(".compType", $myRepractice).val());
+  		if(compType){
+  	      	$.ajax({    
+	  	        type:'post',        
+	  	        url:'/resume/repractice/dele',   
+	  	        data: {
+	  	          compType:compType
+	  	        },  
+	  	        dataType:'json',      
+	  	        success:function(data){    
+	  	            if(data.retCode==200){
+       					location.reload();
+       				}else{
+       					warnOpnFn(data.retDesc);
+       				}
+	  	        },
+	  	        error : function(err) {   
+	  	           alertOpnFn('err');   
+	  	        }        
+  	    	}); 
+      	}else{
+      		warnOpnFn('请填写完整!');
+      	}
   	});   
-  	$('.operaType','#my-repractice').change(function(){
+  	$('.operaType', $myRepractice).change(function(){
   	    if($(this).children('option:selected').val()==1){
-  	        $('.deleModule', '#my-repractice').hide();
-  	        $('.changeModule', '#my-repractice').hide();
-  	        $('.addModule', '#my-repractice').show();
+  	        $('.deleModule', $myRepractice).hide();
+  	        $('.changeModule', $myRepractice).hide();
+  	        $('.addModule', $myRepractice).show();
   	    }else if($(this).children('option:selected').val()==2){
-  	        $('.deleModule', '#my-repractice').hide();
-  	        $('.changeModule', '#my-repractice').show();
-  	        $('.addModule', '#my-repractice').hide();
+  	        $('.deleModule', $myRepractice).hide();
+  	        $('.changeModule', $myRepractice).show();
+  	        $('.addModule', $myRepractice).hide();
   	    }else if($(this).children('option:selected').val()==3){
-  	        $('.deleModule', '#my-repractice').show();
-  	        $('.changeModule', '#my-repractice').hide();
-  	        $('.addModule', '#my-repractice').hide();
+  	        $('.deleModule', $myRepractice).show();
+  	        $('.changeModule', $myRepractice).hide();
+  	        $('.addModule', $myRepractice).hide();
   	    }else{
-  	        $('.deleModule', '#my-repractice').hide();
-  	        $('.changeModule', '#my-repractice').hide();
-  	        $('.addModule', '#my-repractice').hide();
+  	        $('.deleModule', $myRepractice).hide();
+  	        $('.changeModule', $myRepractice).hide();
+  	        $('.addModule', $myRepractice).hide();
   	    }
   	});
   	//repractice-changeType
-  	$('.compChangeType','#my-repractice').change(function(){
+  	$myRepractice.delegate('.my-repractice', 'change', function(event) {
+  		var compChangeType=$.trim($(".compChangeType", $myRepractice).val());
   	    $.ajax({    
   	            type:'post',        
   	            url:'/resume/repractice/changeType',   
   	            data: {
-  	              compChangeType:$(".compChangeType", '#my-repractice').val()
+  	              compChangeType: compChangeType
   	            },  
   	            dataType:'json',      
   	            success:function(data){    
-  	              $(".spracticetime2", '#my-repractice').val(data.spracticetime);
-  	              $(".epracticetime2",'#my-repractice').val(data.epracticetime);
-  	              $(".practiceposition2", '#my-repractice').val(data.practiceposition);
-  	              $(".practiceinstr2", '#my-repractice').val(data.practiceinstr);
-  	              $('.compPart', '#my-repractice').show();
+					$(".spracticetime2", $myRepractice).val(data.spracticetime);
+					$(".epracticetime2",$myRepractice).val(data.epracticetime);
+					$(".practiceposition2", $myRepractice).val(data.practiceposition);
+					$(".practiceinstr2", $myRepractice).val(data.practiceinstr);
+					$('.compPart', $myRepractice).show();
   	            },
   	            error : function(err) {   
-  	                console.log(err);    
+  	                alertOpnFn('err');        
   	            }        
   	    }); 
   	});
@@ -927,107 +958,137 @@ $(document).ready(function(){
   	  gz经历相关操作
   	 */
   	//practice-add
-  	$('.my-practice3-btn').click(function(){
-  	      $.ajax({    
-  	        type:'post',        
-  	        url:'/resume/practice/add',   
-  	        data: {
-  	          practice:$(".practice", '#my-practice').val(),
-  	          spracticetime:$(".spracticetime", '#my-practice').val(),
-  	          epracticetime:$(".epracticetime",'#my-practice').val(),
-  	          practiceposition:$(".practiceposition", '#my-practice').val(),
-  	          practiceinstr:$(".practiceinstr", '#my-practice').val()
-  	        },  
-  	        dataType:'json',      
-  	        success:function(data){    
-  	            console.log(data);
-  	            $("#my-practice").modal('close');
-  	            location.reload();
-  	        },
-  	        error : function(err) {   
-  	            console.log(err);    
-  	        }        
-  	    }); 
+  	$myPractice=$('#my-practice');
+  	$myPractice.delegate('.my-practice3-btn', 'click', function(event) {
+  		var practice=$.trim($(".practice", $myPractice).val()),
+  			spracticetime=$.trim($(".spracticetime", $myPractice).val()),
+  			epracticetime=$.trim($(".epracticetime", $myPractice).val()),
+  			practiceposition=$.trim($(".practiceposition", $myPractice).val()),
+  			practiceinstr=$.trim($(".practiceinstr", $myPractice).val());
+  		if(practice && spracticetime && epracticetime && practiceposition && practiceinstr){
+	  	    $.ajax({    
+	  	        type:'post',        
+	  	        url:'/resume/practice/add',   
+	  	        data: {
+	  	          practice: practice,
+	  	          spracticetime: spracticetime,
+	  	          epracticetime: epracticetime,
+	  	          practiceposition: practiceposition,
+	  	          practiceinstr: practiceinstr
+	  	        },  
+	  	        dataType:'json',      
+	  	        success:function(data){    
+	  	            if(data.retCode==200){
+                        location.reload();
+                    }else{
+                        warnOpnFn(data.retDesc);
+                    }
+	  	        },
+	  	        error : function(err) {   
+	  	            alertOpnFn('err');     
+	  	        }        
+	  	    }); 
+	  	}else{
+	  		warnOpnFn('内容不能为空哦~');
+	  	}
   	});
   	//practice-change
-  	$('.my-practice2-btn').click(function(){
-  	      $.ajax({    
-  	        type:'post',        
-  	        url:'/resume/practice/change',   
-  	        data: {
-  	          compChangeType:$(".compChangeType", '#my-practice').val(),
-  	          spracticetime:$(".spracticetime2", '#my-practice').val(),
-  	          epracticetime:$(".epracticetime2",'#my-practice').val(),
-  	          practiceposition:$(".practiceposition2", '#my-practice').val(),
-  	          practiceinstr:$(".practiceinstr2", '#my-practice').val()
-  	        },  
-  	        dataType:'json',      
-  	        success:function(data){    
-  	            console.log(data);
-  	            $("#my-practice").modal('close');
-  	            location.reload();
-  	        },
-  	        error : function(err) {   
-  	            console.log(err);    
-  	        }        
-  	    }); 
+  	$myPractice.delegate('.my-practice2-btn', 'click', function(event) {
+  		var compChangeType=$.trim($(".compChangeType", $myPractice).val()),
+  			spracticetime=$.trim($(".spracticetime2", $myPractice).val()),
+			epracticetime=$.trim($(".epracticetime2", $myPractice).val()),
+			practiceposition=$.trim($(".practiceposition2", $myPractice).val()),
+			practiceinstr=$.trim($(".practiceinstr2", $myPractice).val());
+		if(compChangeType && spracticetime && epracticetime && practiceposition && practiceinstr){
+  	      	$.ajax({    
+	  	        type:'post',        
+	  	        url:'/resume/practice/change',   
+	  	        data: {
+	  	          compChangeType:compChangeType,
+	  	          spracticetime:spracticetime,
+	  	          epracticetime:epracticetime,
+	  	          practiceposition:practiceposition,
+	  	          practiceinstr:practiceinstr
+	  	        },  
+	  	        dataType:'json',      
+	  	        success:function(data){    
+	  	           if(data.retCode==200){
+                       location.reload();
+                   }else{
+                       warnOpnFn(data.retDesc);
+                   }
+	  	        },
+	  	        error : function(err) {   
+	  	            alertOpnFn('err');   
+	  	        }        
+  	    	}); 
+  	  	}else{
+  	  		warnOpnFn('内容不能为空哦~');
+  	  	}
   	});   
   	//practice-del
-  	$('.my-practice1-btn').click(function(){
-  	      $.ajax({    
-  	        type:'post',        
-  	        url:'/resume/practice/dele',   
-  	        data: {
-  	          compType:$(".compType", '#my-practice').val()
-  	        },  
-  	        dataType:'json',      
-  	        success:function(data){    
-  	            console.log(data);
-  	            $("#my-practice").modal('close');
-  	            location.reload();
-  	        },
-  	        error : function(err) {   
-  	            console.log(err);    
-  	        }        
-  	    }); 
+  	$myPractice.delegate('.my-practice1-btn', 'click', function(event) {
+  		var  compType=$.trim($(".compType", $myPractice).val());
+  		if(compType){
+  	      	$.ajax({    
+	  	        type:'post',        
+	  	        url:'/resume/practice/dele',   
+	  	        data: {
+	  	          compType:compType
+	  	        },  
+	  	        dataType:'json',      
+	  	        success:function(data){    
+	  	            if(data.retCode==200){
+                       location.reload();
+                   }else{
+                       warnOpnFn(data.retDesc);
+                   }
+	  	        },
+	  	        error : function(err) {   
+	  	            alertOpnFn('err');   
+	  	        }        
+  	    	}); 
+  	  	}else{
+  	  		warnOpnFn('内容不能为空哦~');
+  	  	}
   	});   
-  	$('.operaType','#my-practice').change(function(){
+  	$myPractice.delegate('.operaType', 'change', function(event) {
   	    if($(this).children('option:selected').val()==1){
-  	        $('.deleModule', '#my-practice').hide();
-  	        $('.changeModule', '#my-practice').hide();
-  	        $('.addModule', '#my-practice').show();
+  	        $('.deleModule', $myPractice).hide();
+  	        $('.changeModule', $myPractice).hide();
+  	        $('.addModule', $myPractice).show();
   	    }else if($(this).children('option:selected').val()==2){
-  	        $('.deleModule', '#my-practice').hide();
-  	        $('.changeModule', '#my-practice').show();
-  	        $('.addModule', '#my-practice').hide();
+  	        $('.deleModule', $myPractice).hide();
+  	        $('.changeModule', $myPractice).show();
+  	        $('.addModule', $myPractice).hide();
   	    }else if($(this).children('option:selected').val()==3){
-  	        $('.deleModule', '#my-practice').show();
-  	        $('.changeModule', '#my-practice').hide();
-  	        $('.addModule', '#my-practice').hide();
+  	        $('.deleModule', $myPractice).show();
+  	        $('.changeModule', $myPractice).hide();
+  	        $('.addModule', $myPractice).hide();
   	    }else{
-  	        $('.deleModule', '#my-practice').hide();
-  	        $('.changeModule', '#my-practice').hide();
-  	        $('.addModule', '#my-practice').hide();
+  	        $('.deleModule', $myPractice).hide();
+  	        $('.changeModule', $myPractice).hide();
+  	        $('.addModule', $myPractice).hide();
   	    }
   	});
   	//practice-changeType
-  	$('.compChangeType','#my-practice').change(function(){
+  	$myPractice.delegate('.compChangeType', 'change', function(event) {
   	    $.ajax({    
   	            type:'post',        
   	            url:'/resume/practice/changeType',   
   	            data: {
-  	              compChangeType:$(".compChangeType", '#my-practice').val()
+  	              compChangeType:$(".compChangeType", $myPractice).val()
   	            },  
   	            dataType:'json',      
   	            success:function(data){    
-  	              $(".spracticetime2", '#my-practice').val(data.spracticetime);
-  	              $(".epracticetime2",'#my-practice').val(data.epracticetime);
-  	              $(".practiceposition2", '#my-practice').val(data.practiceposition);
-  	              $(".practiceinstr2", '#my-practice').val(data.practiceinstr);
-  	              $('.compPart', '#my-practice').show();
+					$(".spracticetime2", $myPractice).val(data.spracticetime);
+					$(".epracticetime2",$myPractice).val(data.epracticetime);
+					$(".practiceposition2", $myPractice).val(data.practiceposition);
+					$(".practiceinstr2", $myPractice).val(data.practiceinstr);
+					$('.compPart', $myPractice).show();
   	            },
   	            error : function(err) {   
-  	                console.log(err);    
+  	                alertOpnFn('err');    
   	            }        
   	    }); 
   	});
@@ -1035,5 +1096,5 @@ $(document).ready(function(){
 
 
 
-  	
+
 });

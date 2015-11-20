@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var async = require('async');
 
 //定义Article对象模型
 var ArticleSchema = new Schema({
@@ -55,6 +56,17 @@ exports.findAll = function(object,callback) {
     });
 }
 
+//条件查找所有结果集
+exports.findAll2 = function(object, start, pageSize, callback) {
+    Article.find(object).skip(start).limit(pageSize).exex(function(err,datas){  
+        if(err){
+            callback(err);
+        }else{
+            callback(null,datas);
+        }
+    });  
+}
+
 //删除操作
 exports.delete = function(object,callback) {
     Article.remove(object,function(err){
@@ -77,5 +89,32 @@ exports.modify = function(conditions,updates,options,callback) {
     });
 }
 
-
+//
+exports.allNum = function(uName, callFn) {
+    async.series([
+            function(callback){
+                Article.find({author:uName,articleType:1},function(err,result){
+                    callback(err,result.length);
+                });
+            },
+            function(callback){
+                Article.find({author:uName,articleType:2},function(err,result){
+                    callback(err,result.length);
+                });
+            },
+            function(callback){
+                Article.find({author:uName},function(err,result){
+                    callback(err,result.length);
+                });
+            }
+        ],
+        function(error,result) {
+            if(error) {
+               callFn(err,null);
+            }else {
+               callFn(null,result);
+            }
+        }
+    );
+}
 

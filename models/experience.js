@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var async = require('async');
 
 //定义Experience对象模型
 var ExperienceSchema = new Schema({
@@ -72,4 +73,33 @@ exports.modify = function(conditions,updates,options,callback) {
             callback(null);
         }
     });
+}
+
+//
+exports.allNum = function(uName, callFn) {
+    async.series([
+            function(callback){
+                Experience.find({author:uName,experienceTag:1},function(err,result){
+                    callback(err,result.length);
+                });
+            },
+            function(callback){
+                Experience.find({author:uName,experienceTag:2},function(err,result){
+                    callback(err,result.length);
+                });
+            },
+            function(callback){
+                Experience.find({author:uName},function(err,result){
+                    callback(err,result.length);
+                });
+            }
+        ],
+        function(error,result) {
+            if(error) {
+               callFn(err,null);
+            }else {
+               callFn(null,result);
+            }
+        }
+    );
 }

@@ -765,7 +765,7 @@
                   <label class="am-u-sm-3 am-form-label">操作方式选择：</label>
                     <div class="am-u-sm-9">
                         <select class="operaType" required>
-                          <option value="0"  selected = "selected">请选择操作哪项？</option>
+                          <option value=""  selected = "selected">请选择操作哪项？</option>
                           <option value="1">添加操作</option>
                           <option value="2">修改操作</option>
                           <option value="3">删除操作</option>
@@ -1456,72 +1456,52 @@
 
       <br><br><br><br><br><br>
       <div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
-      <div class="am-alert am-alert-secondary">
-        <button type="button" class="am-close" data-am-modal="{target: '#my-description'}"><i class="am-icon-pencil"></i></button>
-        <div style="font-size:30px;text-align:center;">核心技能</div>
+          <div class="am-alert am-alert-secondary">
+              <button type="button" class="am-close" data-am-modal="{target: '#my-description'}"><i class="am-icon-pencil"></i></button>
+              <div style="font-size:30px;text-align:center;">核心技能</div>
+          </div>
       </div>
-      </div>
-
       <div class="am-g am-u-lg-10 am-u-md-12  am-u-sm-centered">
          <div class="am-panel am-panel-default">
-            <div class="am-panel-hd">
-              <h3 class="am-panel-title">个人核心技能</h3>
-            </div>
-           <!--  <div class="am-panel-bd">
-              个人核心技能模块主要是对个人的常用技术能力进行阐述，可包括所会使用的工具，语言等......
-              如下所示：
-            </div> -->
-            <ul class="am-list am-list-static">
-              <ul class="am-list">
-              <li><a href="javascript:;"><span class="am-badge am-badge-success am-radius">1</span>&nbsp;
-              能运用 javascript，JQuery，Json，Ajax，CSS + Div 布局迚行网站开发</a>
-              </li>
-              <li><a href="javascript:;"><span class="am-badge am-badge-success am-radius">2</span>&nbsp;
-              熟悉 LESS，SASS，HTML5，CSS3，BootStrap 等网站前端开发技术</a>
-              </li>
-              <li><a href="javascript:;"><span class="am-badge am-badge-success am-radius">3</span>&nbsp;
-              掌握面向对象和多线程编程的思想，具有扎实的 JAVA，C++和 MFC 编程功底</a>
-              </li>
-              <li><a href="javascript:;"><span class="am-badge am-badge-success am-radius">4</span>&nbsp;
-              熟练 Eclipse，MyEclipse，visual studio 等开发工具</a>
-              </li>
-              <li><a href="javascript:;"><span class="am-badge am-badge-success am-radius">5</span>&nbsp;
-              掌握常用画图软件，如 PhotoShop、3DMAX、Flash、MicroSoft Visio、Power Designer</a>
-              </li>
-              <li><a href="javascript:;"><span class="am-badge am-badge-success am-radius">6</span>&nbsp;
-              熟练掌握 J2EE、Servlet、JDBC、HTML、XML 等 JSP 网站开发技术</a>
-              </li>
-              <li><a href="javascript:;"><span class="am-badge am-badge-success am-radius">7</span>&nbsp;
-              熟练掌握 Struts2、Hibernate3、Spring2 开源框架，熟悉 MVC 模式下的 JAVA WEB 开发</a>
-              </li>
-              <li><a href="javascript:;"><span class="am-badge am-badge-success am-radius">8</span>&nbsp;
-              具备良好的英语听说读写能力，日语能力良好</a>
-              </li>
-              <li><a href="javascript:;"><span class="am-badge am-badge-success am-radius">10</span>&nbsp;
-              掌握会声会影视频制作软件，幵做过相关视频</a>
-              </li>
-            </ul>
+              <div class="am-panel-hd">
+                  <h3 class="am-panel-title">个人核心技能</h3>
+              </div>
+              <!-- <div class="am-panel-bd">
+                个人核心技能模块主要是对个人的常用技术能力进行阐述，可包括所会使用的工具，语言等......
+                如下所示：
+              </div> -->
+              <ul class="am-list am-list-static">
+                  <% if(rs.Technology11) { %>
+                    <% for(var i=0; i<rs.Technology11.length; i++) {%>
+                          <li>
+                            <a href="javascript:;"><span class="am-badge am-badge-success am-radius"><%=i+1%></span>&nbsp; <%=rs.Technology11[i]%></a>
+                          </li>
+                    <% } %>
+                  <% } %>
+              </ul>
           </div>
       </div>
 
       <div class="am-modal-actions" id="my-description">
           <div class="am-modal-actions-group">
-            <ul class="am-list">
-              <li class="am-modal-actions-danger">
-                <br>
-                <div class="am-u-lg-6 am-u-md-8  am-u-sm-centered">
+              <ul class="am-list">
+                  <li class="am-modal-actions-danger">
+                  <br>
+                  <div class="am-u-lg-6 am-u-md-8  am-u-sm-centered">
+
                   <form class="am-form am-form-horizontal" method="post">
-                    <div class="am-form-group">
-                      <label class="am-u-sm-2 am-form-label">核心技能：</label>
-                      <div class="am-u-sm-10">
-                        <textarea class="descriptioncon" rows="2" placeholder="每次添加一条技能"></textarea>
+                      <div class="am-form-group">
+                          <label class="am-u-sm-2 am-form-label">核心技能：</label>
+                          <div class="am-u-sm-10">
+                              <textarea class="descriptioncon" rows="2" placeholder="每次添加一条技能"></textarea>
+                          </div>
                       </div>
-                    </div>
-                    <div class="am-form-group">
-                      <div class="am-u-sm-12">
-                        <button type="button" class="am-btn am-btn-warning  my-description-btn"> 提交信息 </button>
+                      <div class="am-form-group">
+                          <div class="am-u-sm-12">
+                              <button type="button" class="am-btn am-btn-warning  my-description-btn"> 提交信息 </button>
+                          </div>
                       </div>
-                    </div>
+                      
                   </form>
                 </div>
               </li>

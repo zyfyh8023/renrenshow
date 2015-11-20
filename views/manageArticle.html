@@ -34,31 +34,40 @@
 					</section>
 				</div> -->
 				<table class="am-table am-table-striped am-table-hover am-table-centered">
-						<% if (allArticles.length>0) { %> 
-						    <thead>
-						        <tr class="am-primary">
-						            <th>名称</th>
-						            <th>状态</th>
-						            <th>创建时间</th>
-						            <th>操作</th>
-						        </tr>
-						    </thead>
-						    <tbody>
-						    	<% for(var i=0; i<allArticles.length; i++) {%>
-						    			<tr>
-						    			  <td><%= allArticles[i].articleTitle %></td>  
-						    			  <td><%= allArticles[i].articleType %></td> 
-						    			  <td><%= allArticles[i].cTime %></td> 
-						    			  <td><a href="#">删除</a>&nbsp&nbsp&nbsp&nbsp<a href="#">操作</a></td> 
-						    			</tr>
-								<% } %>
-						    </tbody>
-						<% } else { %>
-							<div style="font-size:60px;text-align:center;">暂无数据! </div>
-						<% } %>
+					<% if (allArticles.length>0) { %> 
+					    <thead>
+					        <tr class="am-primary">
+					        	<th>序号</th>
+					            <th>博文名称</th>
+					            <th>博文类型</th>
+					            <th>创建时间</th>
+					            <th>操作</th>
+					        </tr>
+					    </thead>
+					    <tbody>
+					    	<% for(var i=0; i<allArticles.length; i++) {%>
+					    			<tr>
+					    			  <td><%= i+1 %></td>  
+					    			  <td><%= allArticles[i].articleTitle %></td>  
+					    			  <td>
+					    			  	<% if(allArticles[i].articleType=='1') { %>
+					    			  		技术博客
+					    			  	<% } else if(allArticles[i].articleType=='2'){ %>
+					    			  		行业远瞻
+					    			  	<% }else { %>
+					    			  		乱七八糟
+					    			  	<% } %>
+					    			  </td> 
+					    			  <td>
+					    			  	<%= allArticles[i].cTime.getFullYear()+'-'+allArticles[i].cTime.getMonth()+'-'+allArticles[i].cTime.getDate()+' '+allArticles[i].cTime.getHours()+':'+allArticles[i].cTime.getMinutes()+':'+allArticles[i].cTime.getSeconds() %>
+				    			  	  </td> 
+					    			  <td><a href="#">删除</a>&nbsp&nbsp&nbsp&nbsp<a href="#">操作</a></td> 
+					    			</tr>
+							<% } %>
+					    </tbody>
+					<% } %>
 				</table>
-
-				<div>
+				<div id="pageShow" style="display:none;">
 					<ul class="am-pagination am-pagination-right">
 						<li class="am-disabled"><a href="#">&laquo;</a></li>
 						<li class="am-active"><a href="#">1</a></li>

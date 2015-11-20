@@ -1,5 +1,7 @@
 "use strict";
 var articles = require('../models/article');
+var experiences = require('../models/experience');
+var async = require('async');
 
 var retCode, retDesc, uName, navTitle, navDesc;
 
@@ -16,12 +18,21 @@ exports.page=function(req, res, next) {
             res.redirect('myError?retDesc='+retDesc);
         }else{
             if(results){
-                res.render('managearticle', { 
-                    title: '博文管理', 
-                    uName: uName,
-                    navTitle: navTitle,
-                    navDesc: navDesc,
-                    allArticles: results});
+                getArtExpNum(uName, function(err, resu){
+                    if(err){
+                        retDesc="数据查找失败!";
+                        res.redirect('myError?retDesc='+retDesc);
+                    }else{
+                        res.render('managearticle', { 
+                            title: '博文管理', 
+                            uName: uName,
+                            navTitle: navTitle,
+                            allNum: resu,
+                            navDesc: navDesc,
+                            allArticles: results
+                        });
+                    }
+                });
             }else{
                 retDesc="用户的博文查找失败!";
                 res.redirect('myError?retDesc='+retDesc);
@@ -43,12 +54,20 @@ exports.noPublicBW=function(req, res, next) {
             res.redirect('myError?retDesc='+retDesc);
         }else{
             if(results){
-                res.render('managearticle', { 
-                    title: '博文管理', 
-                    uName: uName,
-                    navTitle: navTitle,
-                    navDesc: navDesc,
-                    allArticles: results
+                getArtExpNum(uName, function(err, resu){
+                    if(err){
+                        retDesc="数据查找失败!";
+                        res.redirect('myError?retDesc='+retDesc);
+                    }else{
+                        res.render('managearticle', { 
+                            title: '博文管理', 
+                            uName: uName,
+                            navTitle: navTitle,
+                            allNum: resu,
+                            navDesc: navDesc,
+                            allArticles: results
+                        });
+                    }
                 });
             }else{
                 retDesc="用户的博文查找失败!";
@@ -71,12 +90,20 @@ exports.relatedMeBW=function(req, res, next) {
             res.redirect('myError?retDesc='+retDesc);
         }else{
             if(results){
-                res.render('managearticle', { 
-                    title: '博文管理', 
-                    uName: uName,
-                    navTitle: navTitle,
-                    navDesc: navDesc,
-                    allArticles: results
+                getArtExpNum(uName, function(err, resu){
+                    if(err){
+                        retDesc="数据查找失败!";
+                        res.redirect('myError?retDesc='+retDesc);
+                    }else{
+                        res.render('managearticle', { 
+                            title: '博文管理', 
+                            uName: uName,
+                            navTitle: navTitle,
+                            allNum: resu,
+                            navDesc: navDesc,
+                            allArticles: results
+                        });
+                    }
                 });
             }else{
                 retDesc="用户的博文查找失败!";
@@ -85,3 +112,26 @@ exports.relatedMeBW=function(req, res, next) {
         }
     });
 };
+
+function getArtExpNum(uName, callFn) {
+    async.series([
+            function(callback){
+                experiences.allNum(uName, function (err, results) {
+                    callback(err,results);
+                });
+            },
+            function(callback){
+                articles.allNum(uName, function (err, results) {
+                    callback(err,results);
+                });
+            }
+        ],
+        function(error,result) {
+            if(error) {
+                callFn(error, null);
+            }else {
+                callFn(null, result);
+            }
+        }
+    );
+}

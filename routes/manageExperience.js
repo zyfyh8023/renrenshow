@@ -1,5 +1,7 @@
 "use strict";
 var experiences = require('../models/experience');
+var articles = require('../models/article');
+var async = require('async');
 
 var retCode, retDesc, uName, navTitle, navDesc;
 
@@ -17,12 +19,20 @@ exports.page=function(req, res, next) {
             res.redirect('myError?retDesc='+retDesc);
         }else{
             if(results){
-                res.render('manageExperience', { 
-                    title: '面经管理', 
-                    uName: uName,
-                    navTitle: navTitle,
-                    navDesc: navDesc,
-                    allArticles: results
+                getArtExpNum(uName, function(err, resu){
+                    if(err){
+                        retDesc="数据查找失败!";
+                        res.redirect('myError?retDesc='+retDesc);
+                    }else{
+                        res.render('manageExperience', { 
+                            title: '面经管理', 
+                            uName: uName,
+                            navTitle: navTitle,
+                            allNum: resu,
+                            navDesc: navDesc,
+                            allArticles: results
+                        });
+                    }
                 });
             }else{
                 retDesc="用户的面经查找失败!";
@@ -46,12 +56,20 @@ exports.noPublicMJ=function(req, res, next) {
             res.redirect('myError?retDesc='+retDesc);
         }else{
             if(results){
-                res.render('manageExperience', { 
-                    title: '面经管理', 
-                    uName: uName,
-                    navTitle: navTitle,
-                    navDesc: navDesc,
-                    allArticles: results
+                getArtExpNum(uName, function(err, resu){
+                    if(err){
+                        retDesc="数据查找失败!";
+                        res.redirect('myError?retDesc='+retDesc);
+                    }else{
+                        res.render('manageExperience', { 
+                            title: '面经管理', 
+                            uName: uName,
+                            navTitle: navTitle,
+                            allNum: resu,
+                            navDesc: navDesc,
+                            allArticles: results
+                        });
+                    }
                 });
             }else{
                 retDesc="用户的面经查找失败!";
@@ -75,12 +93,20 @@ exports.relatedMeMJ=function(req, res, next) {
             res.redirect('myError?retDesc='+retDesc);
         }else{
             if(results){
-                res.render('manageExperience', { 
-                    title: '面经管理', 
-                    uName: uName,
-                    navTitle: navTitle,
-                    navDesc: navDesc,
-                    allArticles: results
+                getArtExpNum(uName, function(err, resu){
+                    if(err){
+                        retDesc="数据查找失败!";
+                        res.redirect('myError?retDesc='+retDesc);
+                    }else{
+                        res.render('manageExperience', { 
+                            title: '面经管理', 
+                            uName: uName,
+                            navTitle: navTitle,
+                            allNum: resu,
+                            navDesc: navDesc,
+                            allArticles: results
+                        });
+                    }
                 });
             }else{
                 retDesc="用户的面经查找失败!";
@@ -89,3 +115,26 @@ exports.relatedMeMJ=function(req, res, next) {
         }
     });
 };
+
+function getArtExpNum(uName, callFn) {
+    async.series([
+            function(callback){
+                experiences.allNum(uName, function (err, results) {
+                    callback(err,results);
+                });
+            },
+            function(callback){
+                articles.allNum(uName, function (err, results) {
+                    callback(err,results);
+                });
+            }
+        ],
+        function(error,result) {
+            if(error) {
+                callFn(error, null);
+            }else {
+                callFn(null, result);
+            }
+        }
+    );
+}

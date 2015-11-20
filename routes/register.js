@@ -31,7 +31,7 @@ exports.doRegister= function (req, res, next) {
     var newUser = new users.User({
         username: username,
         password: password,
-        uimg: '/avatar/zyfyh8023@163.comspecialImg.jpg',
+        uimg: '/images/seximg.jpg',
         uinstrc:    '<p>杨青，女，一个80后草根女站长！09年入行，从业已经有三四年。从搬砖一样的生活方式换成了现在有“单”而居的日子。'+
                     '当然这个单不是单身的单，跟我的职业相比，爱情脱单并不是问题！虽然极尽苛刻的征婚条件但也远不及客户千奇百怪的要求。'+
                     '告别了朝九晚五，躲过了风吹日晒，虽然不再有阶梯式的工资，但是偶尔可以给自己放放假，挽着老公，一起轻装旅行。</p>'+

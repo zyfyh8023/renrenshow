@@ -5,20 +5,20 @@ var fs = require('fs')
 
 var retCode, retDesc, uName;
 
-function getDate(date) {
-    var Y = date.getFullYear();
-    var M = date.getMonth()+1;
-    if (M < 10) M = '0' + M;
-    var D = date.getDate();
-    if (D < 10) D = '0' + D;
-    var h = date.getHours();
-    if (h < 10) h = '0' + h;
-    var m = date.getMinutes();
-    if (m < 10) m = '0' + m;
-    var s = date.getSeconds();
-    if (s < 10) s = '0' + s;
-    return (Y+'-'+M+'-'+D+' '+h+':'+m+':'+s);
-}
+// function getDate(date) {
+//     var Y = date.getFullYear();
+//     var M = date.getMonth()+1;
+//     if (M < 10) M = '0' + M;
+//     var D = date.getDate();
+//     if (D < 10) D = '0' + D;
+//     var h = date.getHours();
+//     if (h < 10) h = '0' + h;
+//     var m = date.getMinutes();
+//     if (m < 10) m = '0' + m;
+//     var s = date.getSeconds();
+//     if (s < 10) s = '0' + s;
+//     return (Y+'-'+M+'-'+D+' '+h+':'+m+':'+s);
+// }
 
 /* GET Seting page. */
 exports.page=function(req, res, next) {
@@ -239,26 +239,27 @@ exports.education3=function(req, res, next) {
 //repractice-add
 exports.repractice1=function(req, res, next) {
 	var uName=req.session.user.username;
+
 	resume.findByUname(uName,function(err,rs){
 		if(err){
- 			res.redirect('/');
+ 			retDesc='系统出现故障，请稍后再试哦！';
+ 			return res.send({retCode:400, retDesc:retDesc});
 		}else{
- 			var resultFin=rs[0];
+ 			var resultFin=rs;
  			var experience4={
- 				practice: req.body.practice,
- 				spracticetime: req.body.spracticetime,
- 				epracticetime: req.body.epracticetime,
- 				practiceposition: req.body.practiceposition,
- 				practiceinstr: req.body.practiceinstr
+ 				practice: req.body.practice.trim(),
+ 				spracticetime: req.body.spracticetime.trim(),
+ 				epracticetime: req.body.epracticetime.trim(),
+ 				practiceposition: req.body.practiceposition.trim(),
+ 				practiceinstr: req.body.practiceinstr.trim()
  			};
  			resultFin.experience4.push(experience4);
 		  	resume.modify({author:uName},{experience4:resultFin.experience4},function(err){
 				if(err){
-					res.send(false);   //res.jsonp()   res.write()
-		 			res.end();
+					retDesc='信息更新失败！';
+					return res.send({retCode:400, retDesc:retDesc});
 				}else{
-					res.send(true);   //res.jsonp()   res.write()
-		 			res.end();
+					return res.send({retCode:200});
 				}
 			});
 		}
@@ -268,29 +269,30 @@ exports.repractice1=function(req, res, next) {
 
 //repractice -change
 exports.repractice2=function(req, res, next) {
-	var uName=req.session.user.username;
-	var compChangeType=req.body.compChangeType;
+	uName=req.session.user.username;
+	var compChangeType=req.body.compChangeType.trim();
+
 	resume.findByUname(uName,function(err,rs){
 		if(err){
- 			res.redirect('/');
+ 			retDesc='系统出现故障，请稍后再试哦！';
+ 			return res.send({retCode:400, retDesc:retDesc});
 		}else{
- 			var resultFin=rs[0];
+ 			var resultFin=rs;
  			for(var i=0, len=resultFin.experience4.length; i<len; i++){
  				if(resultFin.experience4[i].practice == compChangeType){
- 					resultFin.experience4[i].spracticetime=req.body.spracticetime;
- 					resultFin.experience4[i].epracticetime=req.body.epracticetime;
- 					resultFin.experience4[i].practiceposition=req.body.practiceposition;
- 					resultFin.experience4[i].practiceinstr=req.body.practiceinstr;
+ 					resultFin.experience4[i].spracticetime=req.body.spracticetime.trim();
+ 					resultFin.experience4[i].epracticetime=req.body.epracticetime.trim();
+ 					resultFin.experience4[i].practiceposition=req.body.practiceposition.trim();
+ 					resultFin.experience4[i].practiceinstr=req.body.practiceinstr.trim();
  					break;
  				}
  			}
 		  	resume.modify({author:uName},{experience4:resultFin.experience4},function(err){
 				if(err){
-					res.send(false);   //res.jsonp()   res.write()
-		 			res.end();
+					retDesc='信息更新失败！';
+					return res.send({retCode:400, retDesc:retDesc});
 				}else{
-					res.send(true);   //res.jsonp()   res.write()
-		 			res.end();
+					return res.send({retCode:200});
 				}
 			});
 		}
@@ -299,14 +301,15 @@ exports.repractice2=function(req, res, next) {
 
 //repractice -changeType
 exports.repractice4=function(req, res, next) {
-    var compChangeType=req.body.compChangeType;
-	var uName=req.session.user.username;
+    var compChangeType=req.body.compChangeType.trim();
+	uName=req.session.user.username;
 	
 	resume.findByUname(uName,function(err,rs){
 		if(err){
-			res.redirect('/');
+			retDesc='系统出现故障，请稍后再试哦！';
+			return res.send({retCode:400, retDesc:retDesc});
 		}else{
-			var resultFin=rs[0];
+			var resultFin=rs;
 			var repracticeInfo={};
 			for(var i=0, len=resultFin.experience4.length; i<len; i++){
 				if(resultFin.experience4[i].practice == compChangeType){
@@ -314,22 +317,22 @@ exports.repractice4=function(req, res, next) {
 					break;
 				}
 			}
-			res.send(repracticeInfo);   //res.jsonp()   res.write()
- 			res.end();
+ 			return res.send({retCode:200,repracticeInfo:repracticeInfo});
 		}
 	});
 };
 
 //repractice -del
 exports.repractice3=function(req, res, next) {
-    var compType=req.body.compType;
-	var uName=req.session.user.username;
+    var compType=req.body.compType.trim();
+	uName=req.session.user.username;
 
 	resume.findByUname(uName,function(err,rs){
 		if(err){
-			res.redirect('/');
+			retDesc='系统出现故障，请稍后再试哦！';
+			return res.send({retCode:400, retDesc:retDesc});
 		}else{
-			var resultFin=rs[0];
+			var resultFin=rs;
 			for(var i=0, len=resultFin.experience4.length; i<len; i++){
 				if(resultFin.experience4[i].practice == compType){
 					resultFin.experience4.splice(i,1);
@@ -338,11 +341,10 @@ exports.repractice3=function(req, res, next) {
 			}
 		  	resume.modify({author:uName},{experience4:resultFin.experience4},function(err){
 				if(err){
-					res.send(false);   //res.jsonp()   res.write()
-		 			res.end();
+					retDesc='信息更新失败！';
+					return res.send({retCode:400, retDesc:retDesc});
 				}else{
-					res.send(true);   //res.jsonp()   res.write()
-		 			res.end();
+					return res.send({retCode:200});
 				}
 			});
 		}
@@ -352,27 +354,27 @@ exports.repractice3=function(req, res, next) {
 
 //practice-add
 exports.practice1=function(req, res, next) {
-	var uName=req.session.user.username;
+	uName=req.session.user.username;
+
 	resume.findByUname(uName,function(err,rs){
 		if(err){
- 			res.redirect('/');
+ 			retDesc='系统出现故障，请稍后再试哦！';
+ 			return res.send({retCode:400, retDesc:retDesc});
 		}else{
- 			var resultFin=rs[0];
  			var work5={
- 				practice: req.body.practice,
- 				spracticetime: req.body.spracticetime,
- 				epracticetime: req.body.epracticetime,
- 				practiceposition: req.body.practiceposition,
- 				practiceinstr: req.body.practiceinstr
+ 				practice: req.body.practice.trim(),
+ 				spracticetime: req.body.spracticetime.trim(),
+ 				epracticetime: req.body.epracticetime.trim(),
+ 				practiceposition: req.body.practiceposition.trim(),
+ 				practiceinstr: req.body.practiceinstr.trim()
  			};
- 			resultFin.work5.push(work5);
-		  	resume.modify({author:uName},{work5:resultFin.work5},function(err){
+ 			rs.work5.push(work5);
+		  	resume.modify({author:uName},{work5:rs.work5},function(err){
 				if(err){
-					res.send(false);   //res.jsonp()   res.write()
-		 			res.end();
+					retDesc='信息更新失败！';
+					return res.send({retCode:400, retDesc:retDesc});
 				}else{
-					res.send(true);   //res.jsonp()   res.write()
-		 			res.end();
+					return res.send({retCode:200});
 				}
 			});
 		}
@@ -381,29 +383,30 @@ exports.practice1=function(req, res, next) {
 };
 //practice -change
 exports.practice2=function(req, res, next) {
-	var uName=req.session.user.username;
-	var compChangeType=req.body.compChangeType;
+	uName=req.session.user.username;
+	var compChangeType=req.body.compChangeType.trim();
+
 	resume.findByUname(uName,function(err,rs){
 		if(err){
- 			res.redirect('/');
+ 			retDesc='系统出现故障，请稍后再试哦！';
+ 			return res.send({retCode:400, retDesc:retDesc});
 		}else{
- 			var resultFin=rs[0];
+ 			var resultFin=rs;
  			for(var i=0, len=resultFin.work5.length; i<len; i++){
  				if(resultFin.work5[i].practice == compChangeType){
- 					resultFin.work5[i].spracticetime=req.body.spracticetime;
- 					resultFin.work5[i].epracticetime=req.body.epracticetime;
- 					resultFin.work5[i].practiceposition=req.body.practiceposition;
- 					resultFin.work5[i].practiceinstr=req.body.practiceinstr;
+ 					resultFin.work5[i].spracticetime=req.body.spracticetime.trim();
+ 					resultFin.work5[i].epracticetime=req.body.epracticetime.trim();
+ 					resultFin.work5[i].practiceposition=req.body.practiceposition.trim();
+ 					resultFin.work5[i].practiceinstr=req.body.practiceinstr.trim();
  					break;
  				}
  			}
 		  	resume.modify({author:uName},{work5:resultFin.work5},function(err){
 				if(err){
-					res.send(false);   //res.jsonp()   res.write()
-		 			res.end();
+					retDesc='信息更新失败！';
+					return res.send({retCode:400, retDesc:retDesc});
 				}else{
-					res.send(true);   //res.jsonp()   res.write()
-		 			res.end();
+					return res.send({retCode:200});
 				}
 			});
 		}
@@ -411,14 +414,15 @@ exports.practice2=function(req, res, next) {
 };
 //practice -changeType
 exports.practice4=function(req, res, next) {
-    var compChangeType=req.body.compChangeType;
-	var uName=req.session.user.username;
+    var compChangeType=req.body.compChangeType.trim();
+	uName=req.session.user.username;
 	
 	resume.findByUname(uName,function(err,rs){
 		if(err){
-			res.redirect('/');
+			retDesc='系统出现故障，请稍后再试哦！';
+			return res.send({retCode:400, retDesc:retDesc});
 		}else{
-			var resultFin=rs[0];
+			var resultFin=rs;
 			var practiceInfo={};
 			for(var i=0, len=resultFin.work5.length; i<len; i++){
 				if(resultFin.work5[i].practice == compChangeType){
@@ -426,21 +430,21 @@ exports.practice4=function(req, res, next) {
 					break;
 				}
 			}
-			res.send(practiceInfo);   //res.jsonp()   res.write()
- 			res.end();
+ 			return res.send({retCode:200,practiceInfo:practiceInfo});
 		}
 	});
 };
 //practice -del
 exports.practice3=function(req, res, next) {
-    var compType=req.body.compType;
-	var uName=req.session.user.username;
+    var compType=req.body.compType.trim();
+	uName=req.session.user.username;
 
 	resume.findByUname(uName,function(err,rs){
 		if(err){
-			res.redirect('/');
+			retDesc='系统出现故障，请稍后再试哦！';
+			return res.send({retCode:400, retDesc:retDesc});
 		}else{
-			var resultFin=rs[0];
+			var resultFin=rs;
 			for(var i=0, len=resultFin.work5.length; i<len; i++){
 				if(resultFin.work5[i].practice == compType){
 					resultFin.work5.splice(i,1);
@@ -449,11 +453,10 @@ exports.practice3=function(req, res, next) {
 			}
 		  	resume.modify({author:uName},{work5:resultFin.work5},function(err){
 				if(err){
-					res.send(false);   //res.jsonp()   res.write()
-		 			res.end();
+					retDesc='信息更新失败！';
+					return res.send({retCode:400, retDesc:retDesc});
 				}else{
-					res.send(true);   //res.jsonp()   res.write()
-		 			res.end();
+					return res.send({retCode:200});
 				}
 			});
 		}
@@ -716,7 +719,18 @@ exports.resumeInit=function(req, res, next){
 	uName=req.body.uName;
 	var newResume = new resume.Resume({
       	author: uName,
-      	headimg:'/images/624-34 1-1.jpg'
+      	headimg:'/images/headimg.jpg',
+      	Technology11:[
+      		'能运用 javascript，JQuery，Json，Ajax，CSS + Div 布局迚行网站开发',
+      		'熟悉 LESS，SASS，HTML5，CSS3，BootStrap 等网站前端开发技术',
+      		'掌握面向对象和多线程编程的思想，具有扎实的 JAVA，C++和 MFC 编程功底',
+      		'熟练 Eclipse，MyEclipse，visual studio 等开发工具',
+      		'掌握常用画图软件，如 PhotoShop、3DMAX、Flash、MicroSoft Visio、Power Designer',
+      		'熟练掌握 J2EE、Servlet、JDBC、HTML、XML 等 JSP 网站开发技术',
+      		'熟练掌握 Struts2、Hibernate3、Spring2 开源框架，熟悉 MVC 模式下的 JAVA WEB 开发',
+      		'具备良好的英语听说读写能力，日语能力良好',
+      		'掌握会声会影视频制作软件，幵做过相关视频'
+      	]
       });
 	   
 	resume.create(newResume,function(err){
