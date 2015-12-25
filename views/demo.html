@@ -1,820 +1,720 @@
 <% include header.html %>
-
-    <section> 
-	  
-
-	    <button type="button" class="am-btn am-btn-primary" data-am-modal="{target: '#my-baseinfo'}">基本信息</button>
+	<section>
+		<button type="button" class="am-btn am-btn-primary" data-am-modal="{target: '#my-baseinfo'}">基本信息</button>
 		<div class="am-popup" id="my-baseinfo">
-		  <div class="am-popup-inner">
-		    <div class="am-popup-hd">
-		      <h4 class="am-popup-title">基本信息</h4>
-		      <span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
-		    </div>
-		    <div class="am-popup-bd">
-		    	<br>
-		 		<form class="am-form am-form-horizontal " method="post" action="/demo/baseinfo" data-am-validator> 
-				  <div class="am-form-group">
-				    <label for="uname" class="am-u-sm-2 am-form-label">姓名：</label>
-				    <div class="am-u-sm-10">
-				      <input type="text" name="uname" id="uname" placeholder="请输入您的姓名" required />
-				    </div>
-				  </div>
-				  <div class="am-form-group">
-				    <label for="age" class="am-u-sm-2 am-form-label">年龄：</label>
-				    <div class="am-u-sm-10">
-				      <input type="number" name="age" id="age" placeholder="请输入您的年龄  1-120" min="1" max="120" required />
-			      	</div>
-				  </div>
-				  <div class="am-form-group">
-				  	<label class="am-u-sm-2 am-form-label">性别：</label>
-				  	<div class="am-u-sm-10">
-					    <label class="am-radio-inline">
-					       <input type="radio" name="sex" required /> 男
-					    </label>
-					    <label class="am-radio-inline">
-					       <input type="radio" name="sex"> 女
-					    </label>
-				    </div>
-				  </div>
-				  <div class="am-form-group">
-				    <label for="istatus" class="am-u-sm-2 am-form-label">政治面貌：</label>
-				    <div class="am-u-sm-10">
-				      <input type="text" id="istatus" name="istatus" placeholder="输入您的政治面貌" />
-				    </div>
-				  </div>
-				  <div class="am-form-group">
-				 	<label for="ieducation" class="am-u-sm-2 am-form-label">学历：</label>
-				 	<div class="am-u-sm-10">
-			      		<select id="ieducation" name="ieducation" required>
-					        <option value="">请选择一项</option>
-					        <option value="1">高中</option>
-					        <option value="2">大专</option>
-					        <option value="3">本科</option>
-					        <option value="4">硕士</option>
-					        <option value="5">博士</option>
-			      		</select>
-			      		<span class="am-form-caret"></span>
-			      	</div>
-			  	  </div>
-				  <div class="am-form-group">
-				    <label for="ischool" class="am-u-sm-2 am-form-label">毕业院校：</label>
-				    <div class="am-u-sm-10">
-				      <input type="text" id="ischool" name="ischool" placeholder="请输入您的院校" required />
-				    </div>
-				  </div>
-				  <div class="am-form-group">
-				    <label for="imajor" class="am-u-sm-2 am-form-label">专业：</label>
-				    <div class="am-u-sm-10">
-				      <input type="text" id="imajor" name="imajor" placeholder="请输入您的专业" required />
-				    </div>
-				  </div>
-				  <br>
-				  <div class="am-form-group">
-				    <div class="am-u-sm-10 am-u-sm-offset-2">
-				      <button type="submit" class="am-btn am-btn-warning"> 提交确认</button>
-				    </div>
-				  </div>
-				</form>     
-		    </div>
-		  </div>
+			<div class="am-popup-inner">
+				<div class="am-popup-hd">
+					<h4 class="am-popup-title">基本信息</h4>
+					<span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
+				</div>
+				<div class="am-popup-bd">
+					<br>
+					<form class="am-form am-form-horizontal " method="post" action="/demo/baseinfo" data-am-validator>
+						<div class="am-form-group">
+							<label for="uname" class="am-u-sm-2 am-form-label">姓名：</label>
+							<div class="am-u-sm-10">
+								<input type="text" name="uname" id="uname" placeholder="请输入您的姓名" required />
+							</div>
+						</div>
+						<div class="am-form-group">
+							<label for="age" class="am-u-sm-2 am-form-label">年龄：</label>
+							<div class="am-u-sm-10">
+								<input type="number" name="age" id="age" placeholder="请输入您的年龄  1-120" min="1" max="120" required />
+							</div>
+						</div>
+						<div class="am-form-group">
+							<label class="am-u-sm-2 am-form-label">性别：</label>
+							<div class="am-u-sm-10">
+								<label class="am-radio-inline">
+									<input type="radio" name="sex" required /> 男
+								</label>
+								<label class="am-radio-inline">
+									<input type="radio" name="sex"> 女
+								</label>
+							</div>
+						</div>
+						<div class="am-form-group">
+							<label for="istatus" class="am-u-sm-2 am-form-label">政治面貌：</label>
+							<div class="am-u-sm-10">
+								<input type="text" id="istatus" name="istatus" placeholder="输入您的政治面貌" />
+							</div>
+						</div>
+						<div class="am-form-group">
+							<label for="ieducation" class="am-u-sm-2 am-form-label">学历：</label>
+							<div class="am-u-sm-10">
+								<select id="ieducation" name="ieducation" required>
+									<option value="">请选择一项</option>
+									<option value="1">高中</option>
+									<option value="2">大专</option>
+									<option value="3">本科</option>
+									<option value="4">硕士</option>
+									<option value="5">博士</option>
+								</select>
+								<span class="am-form-caret"></span>
+							</div>
+						</div>
+						<div class="am-form-group">
+							<label for="ischool" class="am-u-sm-2 am-form-label">毕业院校：</label>
+							<div class="am-u-sm-10">
+								<input type="text" id="ischool" name="ischool" placeholder="请输入您的院校" required />
+							</div>
+						</div>
+						<div class="am-form-group">
+							<label for="imajor" class="am-u-sm-2 am-form-label">专业：</label>
+							<div class="am-u-sm-10">
+								<input type="text" id="imajor" name="imajor" placeholder="请输入您的专业" required />
+							</div>
+						</div>
+						<br>
+						<div class="am-form-group">
+							<div class="am-u-sm-10 am-u-sm-offset-2">
+								<button type="submit" class="am-btn am-btn-warning"> 提交确认</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
-
-
-
 		<button type="button" class="am-btn am-btn-primary" data-am-modal="{target: '#my-contactinfo'}">联系方式</button>
 		<div class="am-popup" id="my-contactinfo">
-		  <div class="am-popup-inner">
-		    <div class="am-popup-hd">
-		      <h4 class="am-popup-title">联系方式</h4>
-		      <span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
-		    </div>
-		    <div class="am-popup-bd">
-		    	<br>
-		 		<form class="am-form am-form-horizontal" method="post" action="/demo/contactinfo" data-am-validator>
-				  <div class="am-form-group">
-				    <label for="address" class="am-u-sm-2 am-form-label">通信地址：</label>
-				    <div class="am-u-sm-10">
-				      <input type="text" id="address" required name="address" placeholder="请输入您的通信地址"  >
-				    </div>
-				  </div>
-				  <div class="am-form-group">
-				    <label for="identity" class="am-u-sm-2 am-form-label">户口地址：</label>
-				    <div class="am-u-sm-10">
-				      <input type="text" id="identity" name="identity" placeholder="请输入您的户口地址">
-				    </div>
-				  </div>
-				  <div class="am-form-group">
-				    <label for="mphone" class="am-u-sm-2 am-form-label">手机号码：</label>
-				    <div class="am-u-sm-10">
-				      <input type="number" id="mphone" name="mphone" placeholder="请输入您的手机号码" required>
-				    </div>
-				  </div>
-				  <div class="am-form-group">
-				    <label for="phone" class="am-u-sm-2 am-form-label">电话号码：</label>
-				    <div class="am-u-sm-10">
-				      <input type="text" id="phone" name="phone" placeholder="请输入您的电话号码">
-				    </div>
-				  </div>
-				  <div class="am-form-group">
-				    <label for="email" class="am-u-sm-2 am-form-label">邮箱：</label>
-				    <div class="am-u-sm-10">
-				      <input type="email" id="email" name="email" placeholder="请输入您的邮箱" required>
-				    </div>
-				  </div>
-				  <div class="am-form-group">
-				    <label for="qqnum" class="am-u-sm-2 am-form-label">QQ账号：</label>
-				    <div class="am-u-sm-10">
-				      <input type="number" id="qqnum" name="qqnum" placeholder="请输入您的QQ账号">
-				    </div>
-				  </div>
-				  <div class="am-form-group">
-				    <label for="weixin" class="am-u-sm-2 am-form-label">微信：</label>
-				    <div class="am-u-sm-10">
-				      <input type="text" id="weixin" name="weixin" placeholder="请输入您的微信账号">
-				    </div>
-				  </div>
-				  <br>
-				  <div class="am-form-group">
-				    <div class="am-u-sm-10 am-u-sm-offset-2">
-				      <button type="submit" class="am-btn am-btn-warning">提交确认</button>
-				    </div>
-				  </div>
-				</form>  
-		    </div>
-		  </div>
+			<div class="am-popup-inner">
+				<div class="am-popup-hd">
+					<h4 class="am-popup-title">联系方式</h4>
+					<span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
+				</div>
+				<div class="am-popup-bd">
+					<br>
+					<form class="am-form am-form-horizontal" method="post" action="/demo/contactinfo" data-am-validator>
+						<div class="am-form-group">
+							<label for="address" class="am-u-sm-2 am-form-label">通信地址：</label>
+							<div class="am-u-sm-10">
+								<input type="text" id="address" required name="address" placeholder="请输入您的通信地址">
+							</div>
+						</div>
+						<div class="am-form-group">
+							<label for="identity" class="am-u-sm-2 am-form-label">户口地址：</label>
+							<div class="am-u-sm-10">
+								<input type="text" id="identity" name="identity" placeholder="请输入您的户口地址">
+							</div>
+						</div>
+						<div class="am-form-group">
+							<label for="mphone" class="am-u-sm-2 am-form-label">手机号码：</label>
+							<div class="am-u-sm-10">
+								<input type="number" id="mphone" name="mphone" placeholder="请输入您的手机号码" required>
+							</div>
+						</div>
+						<div class="am-form-group">
+							<label for="phone" class="am-u-sm-2 am-form-label">电话号码：</label>
+							<div class="am-u-sm-10">
+								<input type="text" id="phone" name="phone" placeholder="请输入您的电话号码">
+							</div>
+						</div>
+						<div class="am-form-group">
+							<label for="email" class="am-u-sm-2 am-form-label">邮箱：</label>
+							<div class="am-u-sm-10">
+								<input type="email" id="email" name="email" placeholder="请输入您的邮箱" required>
+							</div>
+						</div>
+						<div class="am-form-group">
+							<label for="qqnum" class="am-u-sm-2 am-form-label">QQ账号：</label>
+							<div class="am-u-sm-10">
+								<input type="number" id="qqnum" name="qqnum" placeholder="请输入您的QQ账号">
+							</div>
+						</div>
+						<div class="am-form-group">
+							<label for="weixin" class="am-u-sm-2 am-form-label">微信：</label>
+							<div class="am-u-sm-10">
+								<input type="text" id="weixin" name="weixin" placeholder="请输入您的微信账号">
+							</div>
+						</div>
+						<br>
+						<div class="am-form-group">
+							<div class="am-u-sm-10 am-u-sm-offset-2">
+								<button type="submit" class="am-btn am-btn-warning">提交确认</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
-
-
-
-	<button type="button" class="am-btn am-btn-primary" data-am-modal="{target: '#my-education'}">教育经历</button>
-	<div class="am-popup" id="my-education">
-	  	<div class="am-popup-inner">
-		    <div class="am-popup-hd">
-		      	<h4 class="am-popup-title">教育经历</h4>
-		      	<span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
-		    </div>
-		    <div class="am-popup-bd">
-				<br>
-		 		<form class="am-form am-form-horizontal" action="/demo/education" method="post" data-am-validator>
-					<div class="am-form-group">
-						<label for="school" class="am-u-sm-2 am-form-label">院校名称：</label>
-						<div class="am-u-sm-10">
-							<input type="text" id="school" required name="school" placeholder="请输入您的院校">
+		<button type="button" class="am-btn am-btn-primary" data-am-modal="{target: '#my-education'}">教育经历</button>
+		<div class="am-popup" id="my-education">
+			<div class="am-popup-inner">
+				<div class="am-popup-hd">
+					<h4 class="am-popup-title">教育经历</h4>
+					<span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
+				</div>
+				<div class="am-popup-bd">
+					<br>
+					<form class="am-form am-form-horizontal" action="/demo/education" method="post" data-am-validator>
+						<div class="am-form-group">
+							<label for="school" class="am-u-sm-2 am-form-label">院校名称：</label>
+							<div class="am-u-sm-10">
+								<input type="text" id="school" required name="school" placeholder="请输入您的院校">
+							</div>
 						</div>
-					</div>
-					<div class="am-form-group">
-					 	<label for="educationtype" class="am-u-sm-2 am-form-label">学历：</label>
-					 	<div class="am-u-sm-10">
-				      		<select id="educationtype" name="educationtype" required>
-						        <option value="">请选择一项</option>
-						        <option value="1">高中</option>
-						        <option value="2">大专</option>
-						        <option value="3">本科</option>
-						        <option value="4">硕士</option>
-						        <option value="5">博士</option>
-						        <option value="6">其他</option>
-				      		</select>
-				      		<span class="am-form-caret"></span>
-				      	</div>
-			  	 	</div>
-					<div class="am-form-group">
-						<label for="sdatetime" class="am-u-sm-2 am-form-label">开始日期：</label>
-						<div class="am-u-sm-10">
-						  	<input type="text" id="sdatetime"  name="sdatetime" class="am-form-field" placeholder="请输入开始日期" data-am-datepicker readonly/>
+						<div class="am-form-group">
+							<label for="educationtype" class="am-u-sm-2 am-form-label">学历：</label>
+							<div class="am-u-sm-10">
+								<select id="educationtype" name="educationtype" required>
+									<option value="">请选择一项</option>
+									<option value="1">高中</option>
+									<option value="2">大专</option>
+									<option value="3">本科</option>
+									<option value="4">硕士</option>
+									<option value="5">博士</option>
+									<option value="6">其他</option>
+								</select>
+								<span class="am-form-caret"></span>
+							</div>
 						</div>
-					</div>
-					<div class="am-form-group">
-						<label for="edatetime" class="am-u-sm-2 am-form-label">结束日期：</label>
-						<div class="am-u-sm-10">
-						 	<input type="text" id="edatetime"  name="edatetime" class="am-form-field" placeholder="请输入结束日期" data-am-datepicker readonly/>
+						<div class="am-form-group">
+							<label for="sdatetime" class="am-u-sm-2 am-form-label">开始日期：</label>
+							<div class="am-u-sm-10">
+								<input type="text" id="sdatetime" name="sdatetime" class="am-form-field" placeholder="请输入开始日期" data-am-datepicker readonly/>
+							</div>
 						</div>
-					</div>
-					<div class="am-form-group">
-						<label for="major" class="am-u-sm-2 am-form-label">所学专业：</label>
-						<div class="am-u-sm-10">
-					  		<input type="text" id="major" required name="major" class="am-form-field" placeholder="请输入您的专业" />
+						<div class="am-form-group">
+							<label for="edatetime" class="am-u-sm-2 am-form-label">结束日期：</label>
+							<div class="am-u-sm-10">
+								<input type="text" id="edatetime" name="edatetime" class="am-form-field" placeholder="请输入结束日期" data-am-datepicker readonly/>
+							</div>
 						</div>
-					</div>
-					<div class="am-form-group">
-						<label for="majorinstr" class="am-u-sm-2 am-form-label">专业介绍：</label>
-						<div class="am-u-sm-10">
-						    <textarea class="" rows="3 " required id="majorinstr" name="majorinstr">简要介绍+主修课程</textarea>
+						<div class="am-form-group">
+							<label for="major" class="am-u-sm-2 am-form-label">所学专业：</label>
+							<div class="am-u-sm-10">
+								<input type="text" id="major" required name="major" class="am-form-field" placeholder="请输入您的专业" />
+							</div>
 						</div>
-					</div>
-					<div class="am-form-group">
-						<div class="am-u-sm-10 am-u-sm-offset-2">
-						  	<button type="submit" class="am-btn am-btn-warning"> 提交信息 </button>
+						<div class="am-form-group">
+							<label for="majorinstr" class="am-u-sm-2 am-form-label">专业介绍：</label>
+							<div class="am-u-sm-10">
+								<textarea class="" rows="3 " required id="majorinstr" name="majorinstr">简要介绍+主修课程</textarea>
+							</div>
 						</div>
-					</div>
-				</form> 
-		    </div>
-	  	</div>
-	</div>
-
-
-
-	<button type="button" class="am-btn am-btn-primary" data-am-modal="{target: '#my-practice'}">实习工作经历</button>
-	<div class="am-popup" id="my-practice">
-	  	<div class="am-popup-inner">
-		    <div class="am-popup-hd">
-		      	<h4 class="am-popup-title">实习工作经历</h4>
-		      	<span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
-		    </div>
-		    <div class="am-popup-bd">
-				<br>
-		 		<form class="am-form am-form-horizontal" action="/demo/practice" method="post" data-am-validator>
-					<div class="am-form-group">
-						<label for="practice" class="am-u-sm-2 am-form-label">公司名称：</label>
-						<div class="am-u-sm-10">
-							<input type="text" id="practice" required name="practice" placeholder="请输入您的院校">
+						<div class="am-form-group">
+							<div class="am-u-sm-10 am-u-sm-offset-2">
+								<button type="submit" class="am-btn am-btn-warning"> 提交信息 </button>
+							</div>
 						</div>
-					</div>
-					<div class="am-form-group">
-					 	<label for="practicetype" class="am-u-sm-2 am-form-label">类型：</label>
-					 	<div class="am-u-sm-10">
-				      		<select id="practicetype" name="practicetype" required>
-						        <option value="">请选择一项</option>
-						        <option value="1">实习生</option>
-						        <option value="2">正式工作</option>
-				      		</select>
-				      		<span class="am-form-caret"></span>
-				      	</div>
-			  	 	</div>
-					<div class="am-form-group">
-						<label for="spracticetime" class="am-u-sm-2 am-form-label">开始日期：</label>
-						<div class="am-u-sm-10">
-						  	<input type="text" id="spracticetime"  name="spracticetime" class="am-form-field" placeholder="请输入开始日期" data-am-datepicker readonly/>
+					</form>
+				</div>
+			</div>
+		</div>
+		<button type="button" class="am-btn am-btn-primary" data-am-modal="{target: '#my-practice'}">实习工作经历</button>
+		<div class="am-popup" id="my-practice">
+			<div class="am-popup-inner">
+				<div class="am-popup-hd">
+					<h4 class="am-popup-title">实习工作经历</h4>
+					<span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
+				</div>
+				<div class="am-popup-bd">
+					<br>
+					<form class="am-form am-form-horizontal" action="/demo/practice" method="post" data-am-validator>
+						<div class="am-form-group">
+							<label for="practice" class="am-u-sm-2 am-form-label">公司名称：</label>
+							<div class="am-u-sm-10">
+								<input type="text" id="practice" required name="practice" placeholder="请输入您的院校">
+							</div>
 						</div>
-					</div>
-					<div class="am-form-group">
-						<label for="epracticetime" class="am-u-sm-2 am-form-label">结束日期：</label>
-						<div class="am-u-sm-10">
-						 	<input type="text" id="epracticetime"  name="epracticetime" class="am-form-field" placeholder="请输入结束日期" data-am-datepicker readonly/>
+						<div class="am-form-group">
+							<label for="practicetype" class="am-u-sm-2 am-form-label">类型：</label>
+							<div class="am-u-sm-10">
+								<select id="practicetype" name="practicetype" required>
+									<option value="">请选择一项</option>
+									<option value="1">实习生</option>
+									<option value="2">正式工作</option>
+								</select>
+								<span class="am-form-caret"></span>
+							</div>
 						</div>
-					</div>
-					<div class="am-form-group">
-						<label for="practiceposition" class="am-u-sm-2 am-form-label">职位</label>
-						<div class="am-u-sm-10">
-					  		<input type="text" id="practiceposition" required name="practiceposition" class="am-form-field" placeholder="请输入您的专业" />
+						<div class="am-form-group">
+							<label for="spracticetime" class="am-u-sm-2 am-form-label">开始日期：</label>
+							<div class="am-u-sm-10">
+								<input type="text" id="spracticetime" name="spracticetime" class="am-form-field" placeholder="请输入开始日期" data-am-datepicker readonly/>
+							</div>
 						</div>
-					</div>
-					<div class="am-form-group">
-						<label for="practiceinstr" class="am-u-sm-2 am-form-label">工作介绍：</label>
-						<div class="am-u-sm-10">
-						    <textarea class="" rows="3 " required id="practiceinstr" name="practiceinstr">简要介绍+主修课程</textarea>
+						<div class="am-form-group">
+							<label for="epracticetime" class="am-u-sm-2 am-form-label">结束日期：</label>
+							<div class="am-u-sm-10">
+								<input type="text" id="epracticetime" name="epracticetime" class="am-form-field" placeholder="请输入结束日期" data-am-datepicker readonly/>
+							</div>
 						</div>
-					</div>
-					<div class="am-form-group">
-						<div class="am-u-sm-10 am-u-sm-offset-2">
-						  	<button type="submit" class="am-btn am-btn-warning"> 提交信息 </button>
+						<div class="am-form-group">
+							<label for="practiceposition" class="am-u-sm-2 am-form-label">职位</label>
+							<div class="am-u-sm-10">
+								<input type="text" id="practiceposition" required name="practiceposition" class="am-form-field" placeholder="请输入您的专业" />
+							</div>
 						</div>
-					</div>
-				</form> 
-		    </div>
-	  	</div>
-	</div>
-
-
-
+						<div class="am-form-group">
+							<label for="practiceinstr" class="am-u-sm-2 am-form-label">工作介绍：</label>
+							<div class="am-u-sm-10">
+								<textarea class="" rows="3 " required id="practiceinstr" name="practiceinstr">简要介绍+主修课程</textarea>
+							</div>
+						</div>
+						<div class="am-form-group">
+							<div class="am-u-sm-10 am-u-sm-offset-2">
+								<button type="submit" class="am-btn am-btn-warning"> 提交信息 </button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
 		<button type="button" class="am-btn am-btn-primary" data-am-modal="{target: '#my-works'}">作品添加</button>
 		<div class="am-popup" id="my-works">
-		  	<div class="am-popup-inner">
-		    	<div class="am-popup-hd">
-		      		<h4 class="am-popup-title">我的作品</h4>
-		      		<span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
-		    	</div>
-		    	<div class="am-popup-bd">
-		    		<br>
-		 			<form class="am-form am-form-horizontal" method="post" action="/demo/works" data-am-validator> 
-					  	<div class="am-form-group">
-					    	<label for="workname" class="am-u-sm-2 am-form-label">作品名称：</label>
-					   	 	<div class="am-u-sm-10">
-					      		<input type="text" required name="workname" id="workname" placeholder="输入作品名称">
-					    	</div>
-					  	</div>
-				   		<div class="am-form-group">
-				    		<label for="worktime" class="am-u-sm-2 am-form-label">作品日期：</label>
-				    		<div class="am-u-sm-10">
-				     			<input type="text" id="worktime" name="worktime" class="am-form-field" placeholder="请选择作品日期" data-am-datepicker readonly/>
-				    		</div>
-				  		</div>
-					  	<div class="am-form-group">
-						    <label for="workduty" class="am-u-sm-2 am-form-label">职责：</label>
-						    <div class="am-u-sm-10">
-						      	<input type="text" name="workduty" id="workduty" placeholder="输入你的职责">
-						    </div>
-					 	 </div>
-					  	 <div class="am-form-group">
-					    	<label for="showink" class="am-u-sm-2 am-form-label">作品展示链接：</label>
-						    <div class="am-u-sm-10">
-						      	<input type="url" name="showink" id="showink" placeholder="输入作品展示链接">
-						    </div>
-					    </div>
-					    <div class="am-form-group">
-					    	<label for="codelink" class="am-u-sm-2 am-form-label">作品源码链接：</label>
-						    <div class="am-u-sm-10">
-						      	<input type="url" name="codelink" id="codelink" placeholder="输入作品源码链接">
-						    </div>
-					    </div>
-					  	<div class="am-form-group">
-					    	<label for="workdes" class="am-u-sm-2 am-form-label">作品介绍：</label>
-						    <div class="am-u-sm-10">
-							    <textarea rows="5" name="workdes" id="workdes" required></textarea>
-						    </div>
-					  	</div>
-					  	<div class="am-form-group am-form-file">
-					  	 	<label for="workimg" class="am-u-sm-2 am-form-label">作品图片：</label>
-						  	 <div class="am-u-sm-10">
-						  		<button type="button" class="am-btn am-btn-default am-btn-sm">
-							    <i class="am-icon-cloud-upload"></i> 上传作品图片(可同时上传多张)</button>
-							    <input type="file" id="workimg" name="workimg" multiple>
-							 </div>
-					  	</div>
-				  		<br>
-					  	<div class="am-form-group">
-						    <div class="am-u-sm-10 am-u-sm-offset-2">
-						      	<button type="submit" class="am-btn am-btn-warning"> 提交信息 </button>
-						    </div>
-					  	</div>
-					</form> 
-		    	</div>
-		  	</div>
+			<div class="am-popup-inner">
+				<div class="am-popup-hd">
+					<h4 class="am-popup-title">我的作品</h4>
+					<span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
+				</div>
+				<div class="am-popup-bd">
+					<br>
+					<form class="am-form am-form-horizontal" method="post" action="/demo/works" data-am-validator>
+						<div class="am-form-group">
+							<label for="workname" class="am-u-sm-2 am-form-label">作品名称：</label>
+							<div class="am-u-sm-10">
+								<input type="text" required name="workname" id="workname" placeholder="输入作品名称">
+							</div>
+						</div>
+						<div class="am-form-group">
+							<label for="worktime" class="am-u-sm-2 am-form-label">作品日期：</label>
+							<div class="am-u-sm-10">
+								<input type="text" id="worktime" name="worktime" class="am-form-field" placeholder="请选择作品日期" data-am-datepicker readonly/>
+							</div>
+						</div>
+						<div class="am-form-group">
+							<label for="workduty" class="am-u-sm-2 am-form-label">职责：</label>
+							<div class="am-u-sm-10">
+								<input type="text" name="workduty" id="workduty" placeholder="输入你的职责">
+							</div>
+						</div>
+						<div class="am-form-group">
+							<label for="showink" class="am-u-sm-2 am-form-label">作品展示链接：</label>
+							<div class="am-u-sm-10">
+								<input type="url" name="showink" id="showink" placeholder="输入作品展示链接">
+							</div>
+						</div>
+						<div class="am-form-group">
+							<label for="codelink" class="am-u-sm-2 am-form-label">作品源码链接：</label>
+							<div class="am-u-sm-10">
+								<input type="url" name="codelink" id="codelink" placeholder="输入作品源码链接">
+							</div>
+						</div>
+						<div class="am-form-group">
+							<label for="workdes" class="am-u-sm-2 am-form-label">作品介绍：</label>
+							<div class="am-u-sm-10">
+								<textarea rows="5" name="workdes" id="workdes" required></textarea>
+							</div>
+						</div>
+						<div class="am-form-group am-form-file">
+							<label for="workimg" class="am-u-sm-2 am-form-label">作品图片：</label>
+							<div class="am-u-sm-10">
+								<button type="button" class="am-btn am-btn-default am-btn-sm">
+									<i class="am-icon-cloud-upload"></i> 上传作品图片(可同时上传多张)</button>
+								<input type="file" id="workimg" name="workimg" multiple>
+							</div>
+						</div>
+						<br>
+						<div class="am-form-group">
+							<div class="am-u-sm-10 am-u-sm-offset-2">
+								<button type="submit" class="am-btn am-btn-warning"> 提交信息 </button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
-
-
-
 		<button type="button" class="am-btn am-btn-primary" data-am-modal="{target: '#my-certificate'}">证书添加</button>
 		<div class="am-popup" id="my-certificate">
-		  	<div class="am-popup-inner">
-			    <div class="am-popup-hd">
-			      	<h4 class="am-popup-title">我的证书</h4>
-			      	<span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
-			    </div>
-		    	<div class="am-popup-bd">
+			<div class="am-popup-inner">
+				<div class="am-popup-hd">
+					<h4 class="am-popup-title">我的证书</h4>
+					<span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
+				</div>
+				<div class="am-popup-bd">
 					<br>
-		 			<form class="am-form am-form-horizontal" method="post" action="/demo/certificate" data-am-validator>
+					<form class="am-form am-form-horizontal" method="post" action="/demo/certificate" data-am-validator>
 						<div class="am-form-group">
 							<label for="certificatename" class="am-u-sm-2 am-form-label">证书名称：</label>
 							<div class="am-u-sm-10">
-							  	<input type="text" name="certificatename" required id="certificatename" placeholder="请输入证书名称">
+								<input type="text" name="certificatename" required id="certificatename" placeholder="请输入证书名称">
 							</div>
 						</div>
 						<div class="am-form-group">
 							<label for="gettime" class="am-u-sm-2 am-form-label">获得日期：</label>
 							<div class="am-u-sm-10">
-							  	<input type="text" id="gettime" name="gettime" class="am-form-field" placeholder="请输入获得日期" data-am-datepicker readonly/>
+								<input type="text" id="gettime" name="gettime" class="am-form-field" placeholder="请输入获得日期" data-am-datepicker readonly/>
 							</div>
 						</div>
 						<div class="am-form-group">
-						 	<label for="cgrade" class="am-u-sm-2 am-form-label">证书等级：</label>
-						 	<div class="am-u-sm-10">
-					      		<select id="cgrade" name="cgrade" required>
-							        <option value="">请选择一项</option>
-							        <option value="1">班级</option>
-							        <option value="2">院级</option>
-							        <option value="3">校级</option>
-							        <option value="4">市级</option>
-							        <option value="5">省级</option>
-							        <option value="6">国级</option>
-							        <option value="7">国际</option>
-					      		</select>
-					      		<span class="am-form-caret"></span>
-					      	</div>
-					  	</div>
+							<label for="cgrade" class="am-u-sm-2 am-form-label">证书等级：</label>
+							<div class="am-u-sm-10">
+								<select id="cgrade" name="cgrade" required>
+									<option value="">请选择一项</option>
+									<option value="1">班级</option>
+									<option value="2">院级</option>
+									<option value="3">校级</option>
+									<option value="4">市级</option>
+									<option value="5">省级</option>
+									<option value="6">国级</option>
+									<option value="7">国际</option>
+								</select>
+								<span class="am-form-caret"></span>
+							</div>
+						</div>
 						<div class="am-form-group">
-						    <label for="certificateinstr" class="am-u-sm-2 am-form-label">证书介绍：</label>
-						    <div class="am-u-sm-10">
-							    <textarea id="certificateinstr" required name="certificateinstr" rows="3"></textarea>
-						    </div>
+							<label for="certificateinstr" class="am-u-sm-2 am-form-label">证书介绍：</label>
+							<div class="am-u-sm-10">
+								<textarea id="certificateinstr" required name="certificateinstr" rows="3"></textarea>
+							</div>
 						</div>
 						<div class="am-form-group am-form-file">
-						  	 <label for="cimages" class="am-u-sm-2 am-form-label">证书图片：</label>
-						  	 <div class="am-u-sm-10">
-						  		<button type="button" class="am-btn am-btn-default am-btn-sm">
-							    <i class="am-icon-cloud-upload"></i> 上传图片(可同时上传多张)</button>
-							    <input type="file" multiple id="cimages" name="cimages">
-							 </div>
+							<label for="cimages" class="am-u-sm-2 am-form-label">证书图片：</label>
+							<div class="am-u-sm-10">
+								<button type="button" class="am-btn am-btn-default am-btn-sm">
+									<i class="am-icon-cloud-upload"></i> 上传图片(可同时上传多张)</button>
+								<input type="file" multiple id="cimages" name="cimages">
+							</div>
 						</div>
 						<div class="am-form-group">
-						    <div class="am-u-sm-10 am-u-sm-offset-2">
-						        <button type="submit" class="am-btn am-btn-warning"> 提交信息 </button>
-						    </div>
+							<div class="am-u-sm-10 am-u-sm-offset-2">
+								<button type="submit" class="am-btn am-btn-warning"> 提交信息 </button>
+							</div>
 						</div>
-					</form> 
-		    	</div>
-		    </div>
+					</form>
+				</div>
+			</div>
 		</div>
-
-
-	<button type="button" class="am-btn am-btn-primary" data-am-modal="{target: '#my-paper'}">论文专利</button>
-	<div class="am-popup" id="my-paper">
-	  	<div class="am-popup-inner">
-		    <div class="am-popup-hd">
-		      	<h4 class="am-popup-title">论文专利</h4>
-		      	<span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
-		    </div>
-		    <div class="am-popup-bd">
-				<br>
-		 		<form class="am-form am-form-horizontal" method="post" action="/demo/paper" data-am-validator>
-					<div class="am-form-group">
-						<label for="papername" class="am-u-sm-2 am-form-label">名称：</label>
-						<div class="am-u-sm-10">
-							<input type="text" id="papername" required name="papername" placeholder="请输入名称">
+		<button type="button" class="am-btn am-btn-primary" data-am-modal="{target: '#my-paper'}">论文专利</button>
+		<div class="am-popup" id="my-paper">
+			<div class="am-popup-inner">
+				<div class="am-popup-hd">
+					<h4 class="am-popup-title">论文专利</h4>
+					<span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
+				</div>
+				<div class="am-popup-bd">
+					<br>
+					<form class="am-form am-form-horizontal" method="post" action="/demo/paper" data-am-validator>
+						<div class="am-form-group">
+							<label for="papername" class="am-u-sm-2 am-form-label">名称：</label>
+							<div class="am-u-sm-10">
+								<input type="text" id="papername" required name="papername" placeholder="请输入名称">
+							</div>
 						</div>
-					</div>
-					<div class="am-form-group">
-					 	<label for="papertype" class="am-u-sm-2 am-form-label">类型：</label>
-					 	<div class="am-u-sm-10">
-				      		<select id="papertype" name="papertype" required>
-						        <option value="">请选择一项</option>
-						        <option value="1">论文</option>
-						        <option value="2">专利</option>
-				      		</select>
-				      		<span class="am-form-caret"></span>
-				      	</div>
-			  	 	</div>
-					<div class="am-form-group">
-						<label for="papertime" class="am-u-sm-2 am-form-label">发表日期：</label>
-						<div class="am-u-sm-10">
-						  	<input type="text" id="papertime" name="papertime" class="am-form-field" placeholder="请输入发表日期" data-am-datepicker readonly/>
+						<div class="am-form-group">
+							<label for="papertype" class="am-u-sm-2 am-form-label">类型：</label>
+							<div class="am-u-sm-10">
+								<select id="papertype" name="papertype" required>
+									<option value="">请选择一项</option>
+									<option value="1">论文</option>
+									<option value="2">专利</option>
+								</select>
+								<span class="am-form-caret"></span>
+							</div>
 						</div>
-					</div>
-					<div class="am-form-group">
-						<label for="paperinstr" class="am-u-sm-2 am-form-label">补充说明：</label>
-						<div class="am-u-sm-10">
-						    <textarea class="" rows="3 " id="paperinstr" name="paperinstr"></textarea>
+						<div class="am-form-group">
+							<label for="papertime" class="am-u-sm-2 am-form-label">发表日期：</label>
+							<div class="am-u-sm-10">
+								<input type="text" id="papertime" name="papertime" class="am-form-field" placeholder="请输入发表日期" data-am-datepicker readonly/>
+							</div>
 						</div>
-					</div>
-					<div class="am-form-group">
-						<div class="am-u-sm-10 am-u-sm-offset-2">
-						  	<button type="submit" class="am-btn am-btn-warning"> 提交信息 </button>
+						<div class="am-form-group">
+							<label for="paperinstr" class="am-u-sm-2 am-form-label">补充说明：</label>
+							<div class="am-u-sm-10">
+								<textarea class="" rows="3 " id="paperinstr" name="paperinstr"></textarea>
+							</div>
 						</div>
-					</div>
-				</form> 
-		    </div>
-	  	</div>
-	</div>
-
-
-
-	<button type="button" class="am-btn am-btn-primary" data-am-modal="{target: '#my-undergo'}">校园社会活动</button>
-	<div class="am-popup" id="my-undergo">
-	  	<div class="am-popup-inner">
-		    <div class="am-popup-hd">
-		      	<h4 class="am-popup-title">校园社会活动</h4>
-		      	<span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
-		    </div>
-		    <div class="am-popup-bd">
-				<br>
-		 		<form class="am-form am-form-horizontal" method="post" action="/demo/undergo" data-am-validator>
-					<div class="am-form-group">
-						<label for="undergoname" class="am-u-sm-2 am-form-label">活动名称：</label>
-						<div class="am-u-sm-10">
-							<input type="text" id="undergoname" required name="undergoname" placeholder="请输入名称">
+						<div class="am-form-group">
+							<div class="am-u-sm-10 am-u-sm-offset-2">
+								<button type="submit" class="am-btn am-btn-warning"> 提交信息 </button>
+							</div>
 						</div>
-					</div>
-					<div class="am-form-group">
-					 	<label for="undergotype" class="am-u-sm-2 am-form-label">类型：</label>
-					 	<div class="am-u-sm-10">
-				      		<select id="undergotype" name="undergotype" required>
-						        <option value="">请选择一项</option>
-						        <option value="1">校园经历</option>
-						        <option value="2">社会经历</option>
-				      		</select>
-				      		<span class="am-form-caret"></span>
-				      	</div>
-			  	 	</div>
-					<div class="am-form-group">
-						<label for="undergotime" class="am-u-sm-2 am-form-label">日期：</label>
-						<div class="am-u-sm-10">
-						  	<input type="text" id="undergotime" name="undergotime" class="am-form-field" placeholder="请输入日期" data-am-datepicker readonly/>
+					</form>
+				</div>
+			</div>
+		</div>
+		<button type="button" class="am-btn am-btn-primary" data-am-modal="{target: '#my-undergo'}">校园社会活动</button>
+		<div class="am-popup" id="my-undergo">
+			<div class="am-popup-inner">
+				<div class="am-popup-hd">
+					<h4 class="am-popup-title">校园社会活动</h4>
+					<span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
+				</div>
+				<div class="am-popup-bd">
+					<br>
+					<form class="am-form am-form-horizontal" method="post" action="/demo/undergo" data-am-validator>
+						<div class="am-form-group">
+							<label for="undergoname" class="am-u-sm-2 am-form-label">活动名称：</label>
+							<div class="am-u-sm-10">
+								<input type="text" id="undergoname" required name="undergoname" placeholder="请输入名称">
+							</div>
 						</div>
-					</div>
-					<div class="am-form-group">
-						<label for="majorinstr" class="am-u-sm-2 am-form-label">补充说明：</label>
-						<div class="am-u-sm-10">
-						    <textarea class="" rows="3 " id="undergoinstr" name="undergoinstr"></textarea>
+						<div class="am-form-group">
+							<label for="undergotype" class="am-u-sm-2 am-form-label">类型：</label>
+							<div class="am-u-sm-10">
+								<select id="undergotype" name="undergotype" required>
+									<option value="">请选择一项</option>
+									<option value="1">校园经历</option>
+									<option value="2">社会经历</option>
+								</select>
+								<span class="am-form-caret"></span>
+							</div>
 						</div>
-					</div>
-					<div class="am-form-group">
-						<div class="am-u-sm-10 am-u-sm-offset-2">
-						  	<button type="submit" class="am-btn am-btn-warning"> 提交信息 </button>
+						<div class="am-form-group">
+							<label for="undergotime" class="am-u-sm-2 am-form-label">日期：</label>
+							<div class="am-u-sm-10">
+								<input type="text" id="undergotime" name="undergotime" class="am-form-field" placeholder="请输入日期" data-am-datepicker readonly/>
+							</div>
 						</div>
-					</div>
-				</form> 
-		    </div>
-	  	</div>
-	</div>
-
-
-
-		<button type="button"class="am-btn am-btn-primary"data-am-modal="{target: '#my-description'}">
+						<div class="am-form-group">
+							<label for="majorinstr" class="am-u-sm-2 am-form-label">补充说明：</label>
+							<div class="am-u-sm-10">
+								<textarea class="" rows="3 " id="undergoinstr" name="undergoinstr"></textarea>
+							</div>
+						</div>
+						<div class="am-form-group">
+							<div class="am-u-sm-10 am-u-sm-offset-2">
+								<button type="submit" class="am-btn am-btn-warning"> 提交信息 </button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<button type="button" class="am-btn am-btn-primary" data-am-modal="{target: '#my-description'}">
 			<span class="am-icon-home am-icon-plus-square"></span>
 		</button>
 		<div class="am-modal-actions" id="my-description">
-		  	<div class="am-modal-actions-group">
-		    	<ul class="am-list">
-		      		<li class="am-modal-actions-danger">
-		        	<br>
-			    	<div class="am-u-lg-6 am-u-md-8  am-u-sm-centered">
-			      		<form class="am-form am-form-horizontal" method="post" action="/demo/descriptioncon">
-							<div class="am-form-group">
-						      <label for="descriptioncon"class="am-u-sm-2 am-form-label">补充说明</label>
-						      <div class="am-u-sm-10">
-						      <textarea class="" rows="4" name="descriptioncon" id="descriptioncon">核心技能等</textarea>
-						      </div>
-						    </div>
-							<div class="am-form-group">
-							  <div class="am-u-sm-12">
-							    <button type="submit" class="am-btn am-btn-primary"> 提交信息 </button>
-							  </div>
-							</div>
-						</form>
-					</div>
-		      		</li>
-		    	</ul>
+			<div class="am-modal-actions-group">
+				<ul class="am-list">
+					<li class="am-modal-actions-danger">
+						<br>
+						<div class="am-u-lg-6 am-u-md-8  am-u-sm-centered">
+							<form class="am-form am-form-horizontal" method="post" action="/demo/descriptioncon">
+								<div class="am-form-group">
+									<label for="descriptioncon" class="am-u-sm-2 am-form-label">补充说明</label>
+									<div class="am-u-sm-10">
+										<textarea class="" rows="4" name="descriptioncon" id="descriptioncon">核心技能等</textarea>
+									</div>
+								</div>
+								<div class="am-form-group">
+									<div class="am-u-sm-12">
+										<button type="submit" class="am-btn am-btn-primary"> 提交信息 </button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</li>
+				</ul>
 			</div>
-		 	<div class="am-modal-actions-group">
-		    	<button class="am-btn am-btn-danger am-btn-block" data-am-modal-close>关闭</button>
-		  	</div>
+			<div class="am-modal-actions-group">
+				<button class="am-btn am-btn-danger am-btn-block" data-am-modal-close>关闭</button>
+			</div>
 		</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<br><br><br><br><br>
-
-
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
 		<button type="button" class="am-btn am-btn-danger" data-am-modal="{target: '#my-specialinstr'}">个性自我介绍</button>
 		<div class="am-popup" id="my-specialinstr">
-		  	<div class="am-popup-inner">
-		    	<div class="am-popup-hd">
-		      		<h4 class="am-popup-title">个性自我介绍</h4>
-		      		<span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
-		    	</div>
-		    	<div class="am-popup-bd">
-		    		<br>
-		 			<form class="am-form am-form-horizontal" data-am-validator> 
-					  	<div class="am-form-group">
-						      <label for="specialcon"class="am-u-sm-2 am-form-label">个性介绍</label>
-						      <div class="am-u-sm-10">
-						      		<textarea rows="8" name="specialcon" required id="specialcon">特长、爱好等</textarea>
-						      </div>
-						    </div>
-					  	<div class="am-form-group am-form-file">
-					  	 	<label for="specialimg" class="am-u-sm-2 am-form-label">个性图片：</label>
-						  	 <div class="am-u-sm-10">
-						  		<button type="button" class="am-btn am-btn-default am-btn-sm">
-							    <i class="am-icon-cloud-upload"></i> 上传图片</button>
-							    <input type="file" id="specialimg"  name="specialimg">
-							 </div>
-					  	</div>
-				  		<br>
-					  	<div class="am-form-group">
-						    <div class="am-u-sm-10 am-u-sm-offset-2">
-						      	<button type="submit" class="am-btn am-btn-warning"> 提交信息 </button>
-						    </div>
-					  	</div>
-					</form> 
-		    	</div>
-		  	</div>
+			<div class="am-popup-inner">
+				<div class="am-popup-hd">
+					<h4 class="am-popup-title">个性自我介绍</h4>
+					<span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
+				</div>
+				<div class="am-popup-bd">
+					<br>
+					<form class="am-form am-form-horizontal" data-am-validator>
+						<div class="am-form-group">
+							<label for="specialcon" class="am-u-sm-2 am-form-label">个性介绍</label>
+							<div class="am-u-sm-10">
+								<textarea rows="8" name="specialcon" required id="specialcon">特长、爱好等</textarea>
+							</div>
+						</div>
+						<div class="am-form-group am-form-file">
+							<label for="specialimg" class="am-u-sm-2 am-form-label">个性图片：</label>
+							<div class="am-u-sm-10">
+								<button type="button" class="am-btn am-btn-default am-btn-sm">
+									<i class="am-icon-cloud-upload"></i> 上传图片</button>
+								<input type="file" id="specialimg" name="specialimg">
+							</div>
+						</div>
+						<br>
+						<div class="am-form-group">
+							<div class="am-u-sm-10 am-u-sm-offset-2">
+								<button type="submit" class="am-btn am-btn-warning"> 提交信息 </button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
-
-
-
-
-<button type="button" class="am-btn am-btn-danger" data-am-modal="{target: '#my-popup3'}">作品编辑</button>
+		<button type="button" class="am-btn am-btn-danger" data-am-modal="{target: '#my-popup3'}">作品编辑</button>
 		<div class="am-popup" id="my-popup3">
-		  <div class="am-popup-inner">
-		    <div class="am-popup-hd">
-		      <h4 class="am-popup-title">我的作品</h4>
-		      <span data-am-modal-close class="am-close">&times;</span>
-		    </div>
-		    <div class="am-popup-bd">
-
-
-<div data-am-widget="tabs" class="am-tabs am-tabs-d2">
-  <ul class="am-tabs-nav am-cf">
-    <li class="am-active">
-      <a href="[data-tab-panel-0]">青春</a>
-    </li>
-    <li class="">
-      <a href="[data-tab-panel-1]">彩虹</a>
-    </li>
-    <li class="">
-      <a href="[data-tab-panel-2]">歌唱</a>
-    </li>
-  </ul>
-  <div class="am-tabs-bd">
-    <div data-tab-panel-0 class="am-tab-panel am-active">【青春】那时候有多好，任雨打湿裙角。忍不住哼起，心爱的旋律。绿油油的树叶，自由地在说笑。燕子忙归巢，风铃在舞蹈。经过青春的草地，彩虹忽然升起。即使视线渐渐模糊，它也在我心里。就像爱过的旋律，没人能抹去。因为生命存在失望，歌唱，所以才要歌唱。</div>
-    <div
-    data-tab-panel-1 class="am-tab-panel ">【彩虹】那时候有多好，任雨打湿裙角。忍不住哼起，心爱的旋律。绿油油的树叶，自由地在说笑。燕子忙归巢，风铃在舞蹈。经过青春的草地，彩虹忽然升起。即使视线渐渐模糊，它也在我心里。就像爱过的旋律，没人能抹去。因为生命存在失望，歌唱，所以才要歌唱。</div>
-  <div
-  data-tab-panel-2 class="am-tab-panel ">【歌唱】那时候有多好，任雨打湿裙角。忍不住哼起，心爱的旋律。绿油油的树叶，自由地在说笑。燕子忙归巢，风铃在舞蹈。经过青春的草地，彩虹忽然升起。即使视线渐渐模糊，它也在我心里。就像爱过的旋律，没人能抹去。因为生命存在失望，歌唱，所以才要歌唱。</div>
-</div>
-</div>
-
-		    </div>
-		  </div>
+			<div class="am-popup-inner">
+				<div class="am-popup-hd">
+					<h4 class="am-popup-title">我的作品</h4>
+					<span data-am-modal-close class="am-close">&times;</span>
+				</div>
+				<div class="am-popup-bd">
+					<div data-am-widget="tabs" class="am-tabs am-tabs-d2">
+						<ul class="am-tabs-nav am-cf">
+							<li class="am-active">
+								<a href="[data-tab-panel-0]">青春</a>
+							</li>
+							<li class="">
+								<a href="[data-tab-panel-1]">彩虹</a>
+							</li>
+							<li class="">
+								<a href="[data-tab-panel-2]">歌唱</a>
+							</li>
+						</ul>
+						<div class="am-tabs-bd">
+							<div data-tab-panel-0 class="am-tab-panel am-active">【青春】那时候有多好，任雨打湿裙角。忍不住哼起，心爱的旋律。绿油油的树叶，自由地在说笑。燕子忙归巢，风铃在舞蹈。经过青春的草地，彩虹忽然升起。即使视线渐渐模糊，它也在我心里。就像爱过的旋律，没人能抹去。因为生命存在失望，歌唱，所以才要歌唱。</div>
+							<div data-tab-panel-1 class="am-tab-panel ">【彩虹】那时候有多好，任雨打湿裙角。忍不住哼起，心爱的旋律。绿油油的树叶，自由地在说笑。燕子忙归巢，风铃在舞蹈。经过青春的草地，彩虹忽然升起。即使视线渐渐模糊，它也在我心里。就像爱过的旋律，没人能抹去。因为生命存在失望，歌唱，所以才要歌唱。</div>
+							<div data-tab-panel-2 class="am-tab-panel ">【歌唱】那时候有多好，任雨打湿裙角。忍不住哼起，心爱的旋律。绿油油的树叶，自由地在说笑。燕子忙归巢，风铃在舞蹈。经过青春的草地，彩虹忽然升起。即使视线渐渐模糊，它也在我心里。就像爱过的旋律，没人能抹去。因为生命存在失望，歌唱，所以才要歌唱。</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-
-
-
-
-
-
-		
-
-
-
-<button
-		  type="button"class="am-btn am-btn-secondary"data-am-modal="{target: '#my-actions2'}">
-		  添加自定义模块
+		<button type="button" class="am-btn am-btn-secondary" data-am-modal="{target: '#my-actions2'}">
+			添加自定义模块
 		</button>
 		<div class="am-modal-actions" id="my-actions2">
-		  <div class="am-modal-actions-group">
-		    <ul class="am-list">
-		      <li class="am-modal-actions-danger">
-		        <br>
-			    <div class="am-u-lg-6 am-u-md-8  am-u-sm-centered">
-			   
-
-<div class="am-tabs" data-am-tabs="{noSwipe: 1}" id="doc-tab-demo-1">
-  <ul class="am-tabs-nav am-nav am-nav-tabs">
-  	<li><button type="button" class="am-btn am-btn-primary js-append-tab">添加模块</button></li>
-    <li class="am-active"><a href="javascript: void(0)">固有模块</a></li>
-  </ul>
-  <div class="am-tabs-bd">
-    <div class="am-tab-panel am-active">
-   
-      					<form class="am-form am-form-horizontal" action="http://www.baidu.com">
-						 <div class="am-form-group">
-						    <label for="doc-ipt-26" class="am-u-sm-3 am-form-label">模块名称：</label>
-						    <div class="am-u-sm-9">
-						      <input type="url" id="doc-ipt-26" placeholder="请输入自定义模块的名称">
-						    </div>
-						  </div>
-						  <div class="am-form-group">
-						    <label for="doc-ipt-23" class="am-u-sm-3 am-form-label">模块介绍：</label>
-						    <div class="am-u-sm-9">
-							    <textarea class="" rows="3 " value="横着排列也可以，响应式效果" id="doc-ta-1"></textarea>
-						    </div>
-						  </div>
-						 <div class="am-form-group">
-						    <div class="am-u-sm-12">
-						      <button type="submit" class="am-btn am-btn-primary"> 保存信息 </button>
-						    </div>
-						  </div>
-					</form> 
-
-   
-    </div>
-  </div>
-</div>
-
-
-				</div>
-		      </li>
-		    </ul>
-		  </div>
-		  <div class="am-modal-actions-group">
-		    <button class="am-btn am-btn-warning am-btn-block" data-am-modal-close>关闭</button>
-		  </div>
+			<div class="am-modal-actions-group">
+				<ul class="am-list">
+					<li class="am-modal-actions-danger">
+						<br>
+						<div class="am-u-lg-6 am-u-md-8  am-u-sm-centered">
+							<div class="am-tabs" data-am-tabs="{noSwipe: 1}" id="doc-tab-demo-1">
+								<ul class="am-tabs-nav am-nav am-nav-tabs">
+									<li>
+										<button type="button" class="am-btn am-btn-primary js-append-tab">添加模块</button>
+									</li>
+									<li class="am-active"><a href="javascript: void(0)">固有模块</a></li>
+								</ul>
+								<div class="am-tabs-bd">
+									<div class="am-tab-panel am-active">
+										<form class="am-form am-form-horizontal" action="http://www.baidu.com">
+											<div class="am-form-group">
+												<label for="doc-ipt-26" class="am-u-sm-3 am-form-label">模块名称：</label>
+												<div class="am-u-sm-9">
+													<input type="url" id="doc-ipt-26" placeholder="请输入自定义模块的名称">
+												</div>
+											</div>
+											<div class="am-form-group">
+												<label for="doc-ipt-23" class="am-u-sm-3 am-form-label">模块介绍：</label>
+												<div class="am-u-sm-9">
+													<textarea class="" rows="3 " value="横着排列也可以，响应式效果" id="doc-ta-1"></textarea>
+												</div>
+											</div>
+											<div class="am-form-group">
+												<div class="am-u-sm-12">
+													<button type="submit" class="am-btn am-btn-primary"> 保存信息 </button>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="am-modal-actions-group">
+				<button class="am-btn am-btn-warning am-btn-block" data-am-modal-close>关闭</button>
+			</div>
 		</div>
-
-
-
-
-
-<!-- 按钮触发器， 需要指定 target -->
+		<!-- 按钮触发器， 需要指定 target -->
 		<button class="am-btn am-btn-success" data-am-offcanvas="{target: '#doc-oc-demo2'}">右侧显示边栏</button>
 		<!-- 侧边栏内容 -->
 		<div id="doc-oc-demo2" class="am-offcanvas">
-		  <div class="am-offcanvas-bar am-offcanvas-bar-flip">
-		    <div class="am-offcanvas-content">
-		      
-
-<div data-am-widget="tabs" class="am-tabs am-tabs-d2">
-  <ul class="am-tabs-nav am-cf">
-    <li class="am-active">
-      <a href="[data-tab-panel-0]">模块选择</a>
-    </li>
-    <li class="">
-      <a href="[data-tab-panel-1]">主题选择</a>
-    </li>
-  </ul>
-  <div class="am-tabs-bd">
-    <div data-tab-panel-0 class="am-tab-panel am-active">
-<form class="am-form">
-  <div class="am-form-group">
-    <h3>简历模块</h3>
-    <label class="am-checkbox">
-      <input type="checkbox" name="cbx" value="ip" data-am-ucheck> iPhone
-    </label>
-    <label class="am-checkbox">
-      <input type="checkbox" name="cbx" value="im" data-am-ucheck> iMac
-    </label>
-    <label class="am-checkbox">
-      <input type="checkbox" name="cbx" value="mbp" data-am-ucheck> Macbook Pro
-    </label>
-    <label class="am-checkbox">
-      <input type="checkbox" name="cbx" value="sf" data-am-ucheck> 苏菲·麻索
-    </label>
-    <label class="am-checkbox">
-      <input type="checkbox" name="cbx" value="sur" data-am-ucheck> Surface
-    </label>
-    <label class="am-checkbox">
-      <input type="checkbox" name="cbx" value="rb" data-am-ucheck> Razer Blade
-    </label>
-    <label class="am-checkbox">
-      <input type="checkbox" name="cbx" value="ip" data-am-ucheck> iPhone
-    </label>
-    <label class="am-checkbox">
-      <input type="checkbox" name="cbx" value="im" data-am-ucheck> iMac
-    </label>
-    <label class="am-checkbox">
-      <input type="checkbox" name="cbx" value="mbp" data-am-ucheck> Macbook Pro
-    </label>
-  </div>
- <div><button type="submit" class="am-btn am-btn-xs am-btn-primary">提交</button></div>
-</form>
-    </div>
-    <div data-tab-panel-1 class="am-tab-panel ">
-
-<div class="am-form-group">
-	<form class="am-form">
-    <div class="am-form-group">
-    <h3>主题类型</h3>
-    <label class="am-radio">
-      <input type="radio" name="radio10" value="male" data-am-ucheck> red
-    </label>
-    <label class="am-radio">
-      <input type="radio" name="radio10" value="female" data-am-ucheck> blue
-    </label>
-    <label class="am-radio">
-      <input type="radio" name="radio10" value="pig" data-am-ucheck> gray
-    </label>
-    <label class="am-radio">
-      <input type="radio" name="radio10" value="male" data-am-ucheck> red
-    </label>
-    <label class="am-radio">
-      <input type="radio" name="radio10" value="female" data-am-ucheck> blue
-    </label>
-    <label class="am-radio">
-      <input type="radio" name="radio10" value="pig" data-am-ucheck> gray
-    </label>
-    <div>
-      <div><button type="submit" class="am-btn am-btn-xs am-btn-primary">提交</button></div>
-</form>
-
-
-    </div>
-</div>
-</div>
-
-
-		    </div>
-		  </div>
-		</div>
-	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </section>
-<% include footer.html %>
-
+			<div class="am-offcanvas-bar am-offcanvas-bar-flip">
+				<div class="am-offcanvas-content">
+					<div data-am-widget="tabs" class="am-tabs am-tabs-d2">
+						<ul class="am-tabs-nav am-cf">
+							<li class="am-active">
+								<a href="[data-tab-panel-0]">模块选择</a>
+							</li>
+							<li class="">
+								<a href="[data-tab-panel-1]">主题选择</a>
+							</li>
+						</ul>
+						<div class="am-tabs-bd">
+							<div data-tab-panel-0 class="am-tab-panel am-active">
+								<form class="am-form">
+									<div class="am-form-group">
+										<h3>简历模块</h3>
+										<label class="am-checkbox">
+											<input type="checkbox" name="cbx" value="ip" data-am-ucheck> iPhone
+										</label>
+										<label class="am-checkbox">
+											<input type="checkbox" name="cbx" value="im" data-am-ucheck> iMac
+										</label>
+										<label class="am-checkbox">
+											<input type="checkbox" name="cbx" value="mbp" data-am-ucheck> Macbook Pro
+										</label>
+										<label class="am-checkbox">
+											<input type="checkbox" name="cbx" value="sf" data-am-ucheck> 苏菲·麻索
+										</label>
+										<label class="am-checkbox">
+											<input type="checkbox" name="cbx" value="sur" data-am-ucheck> Surface
+										</label>
+										<label class="am-checkbox">
+											<input type="checkbox" name="cbx" value="rb" data-am-ucheck> Razer Blade
+										</label>
+										<label class="am-checkbox">
+											<input type="checkbox" name="cbx" value="ip" data-am-ucheck> iPhone
+										</label>
+										<label class="am-checkbox">
+											<input type="checkbox" name="cbx" value="im" data-am-ucheck> iMac
+										</label>
+										<label class="am-checkbox">
+											<input type="checkbox" name="cbx" value="mbp" data-am-ucheck> Macbook Pro
+										</label>
+									</div>
+									<div>
+										<button type="submit" class="am-btn am-btn-xs am-btn-primary">提交</button>
+									</div>
+								</form>
+							</div>
+							<div data-tab-panel-1 class="am-tab-panel ">
+								<div class="am-form-group">
+									<form class="am-form">
+										<div class="am-form-group">
+											<h3>主题类型</h3>
+											<label class="am-radio">
+												<input type="radio" name="radio10" value="male" data-am-ucheck> red
+											</label>
+											<label class="am-radio">
+												<input type="radio" name="radio10" value="female" data-am-ucheck> blue
+											</label>
+											<label class="am-radio">
+												<input type="radio" name="radio10" value="pig" data-am-ucheck> gray
+											</label>
+											<label class="am-radio">
+												<input type="radio" name="radio10" value="male" data-am-ucheck> red
+											</label>
+											<label class="am-radio">
+												<input type="radio" name="radio10" value="female" data-am-ucheck> blue
+											</label>
+											<label class="am-radio">
+												<input type="radio" name="radio10" value="pig" data-am-ucheck> gray
+											</label>
+											<div>
+												<div>
+													<button type="submit" class="am-btn am-btn-xs am-btn-primary">提交</button>
+												</div>
+									</form>
+									</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+	</section>
+	<% include footer.html %>

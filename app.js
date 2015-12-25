@@ -32,7 +32,7 @@ var seting = require('./routes/seting');
 var privateSeting = require('./routes/privateSeting');
 var changePassword = require('./routes/changePassword');
 var checkState = require('./routes/checkState');
-var myError=require('./routes/myError');
+var myError = require('./routes/myError');
 var demo = require('./routes/demo');
 
 
@@ -47,17 +47,21 @@ app.set('view engine', 'html');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
-      resave: false,  
-      saveUninitialized: true,  
-      cookie: {maxAge:null}, 
-      secret: config.dbSession.cookieSecret,
-      store: new MongoStore({
-        db : config.dbSession.db,
-      })
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        maxAge: null
+    },
+    secret: config.dbSession.cookieSecret,
+    store: new MongoStore({
+        db: config.dbSession.db,
+    })
 }));
 
 
@@ -66,7 +70,7 @@ app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), function(req, res
     if (req.query.action === 'uploadimage') {
         var foo = req.ueditor;
         var imgname = req.ueditor.filename;
-        var img_url = '/images/ueditor/' ;
+        var img_url = '/images/ueditor/';
         res.ue_up(img_url); //你只要输入要保存的地址 。保存操作交给ueditor来做
     }
     //  客户端发起图片列表请求
@@ -82,7 +86,7 @@ app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), function(req, res
 }));
 
 var router = express.Router();
-app.use(router); 
+app.use(router);
 
 //公共页——首页-问答中心-资源中心-人才中心
 app.use('/', routes);
@@ -119,21 +123,21 @@ app.post('/resume/works', resume.works);
 app.post('/resume/projects', resume.projects);
 app.post('/resume/certificate', resume.certificate);
 
-app.post('/resumeInit', resume.resumeInit); 
+app.post('/resumeInit', resume.resumeInit);
 app.post('/resume/baseinfo', resume.baseinfo); //基本信息
 app.post('/resume/contactinfo', resume.contactinfo); //联系方式
 app.post('/resume/repractice/add', resume.repractice1); //实习经历-add
-app.post('/resume/repractice/change', resume.repractice2);  //实习经历-change
-app.post('/resume/repractice/dele', resume.repractice3);  //实习经历-dele
-app.post('/resume/repractice/changeType', resume.repractice4);  //实习经历-changeType
+app.post('/resume/repractice/change', resume.repractice2); //实习经历-change
+app.post('/resume/repractice/dele', resume.repractice3); //实习经历-dele
+app.post('/resume/repractice/changeType', resume.repractice4); //实习经历-changeType
 app.post('/resume/education/add', resume.education1); //教育经历-add
 app.post('/resume/education/change', resume.education2); //教育经历-change
 app.post('/resume/education/dele', resume.education3); //教育经历-dele
 app.post('/resume/education/changeType', resume.education4); //教育经历-changeType
 app.post('/resume/practice/add', resume.practice1); //工作经历-add
-app.post('/resume/practice/change', resume.practice2);  //工作经历-change
-app.post('/resume/practice/dele', resume.practice3);  //工作经历-dele
-app.post('/resume/practice/changeType', resume.practice4);  //工作经历-changeType
+app.post('/resume/practice/change', resume.practice2); //工作经历-change
+app.post('/resume/practice/dele', resume.practice3); //工作经历-dele
+app.post('/resume/practice/changeType', resume.practice4); //工作经历-changeType
 //纸质简历
 app.get('/pageResume', pageResume.page);
 app.post('/pageResume', pageResume.doPage);
@@ -180,11 +184,11 @@ app.post('/demo/education', demo.educationPage);
 app.post('/demo/contactinfo', demo.contactinfoPage);
 app.post('/demo/baseinfo', demo.baseinfoPage);
 
-MongodbAPI.connect(function(error){
+MongodbAPI.connect(function(error) {
     if (error) throw error;
 });
 app.on('close', function(errno) {
-    MongodbAPI.disconnect(function(err) { });
+    MongodbAPI.disconnect(function(err) {});
 });
 
 // catch 404 and forward to error handler

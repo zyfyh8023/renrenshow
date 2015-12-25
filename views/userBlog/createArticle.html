@@ -1,15 +1,13 @@
 <% include ../myheader.html %>
-
-<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js"></script>
-<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.all.min.js"></script>
-<script type="text/javascript" charset="utf-8" src="/ueditor/lang/zh-cn/zh-cn.js"></script>
-
-<section id="zy-createArticle">
-	<% include ../nav.html %>
-	<div class="am-g am-u-lg-9 am-u-md-12  am-u-sm-centered zy-manage-article">
-		<% include articleNav.html %>
-		<div class="col-lg-9 am-u-lg-9 zy-show-lg-content">
-			<!-- <div class="am-show-md-only">
+	<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.all.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/ueditor/lang/zh-cn/zh-cn.js"></script>
+	<section id="zy-createArticle">
+		<% include ../nav.html %>
+			<div class="am-g am-u-lg-9 am-u-md-12  am-u-sm-centered zy-manage-article">
+				<% include articleNav.html %>
+					<div class="col-lg-9 am-u-lg-9 zy-show-lg-content">
+						<!-- <div class="am-show-md-only">
 				<ul class="am-nav am-nav-tabs">
 				  <li class="am-active"><a href="#">首页</a></li>
 				  <li><a href="#">项目</a></li>
@@ -36,56 +34,53 @@
 					</ul>
 				</section>
 			</div> -->
-			<form class="am-form" method="post" data-am-validator>
-			  	<fieldset>
-			    <div class="am-form-group">
-			      	<label>文章标题</label>
-			      	<input type="text" class="articleTitle" placeholder="输入文章标题" required>
-			    </div>
-			    <div class="am-form-group">
-			      	<label>关键词</label>
-			      	<input type="text" class="articleKeyword" placeholder="输入文章关键词" required>
-			    </div>
-			    <div class="am-form-group">
-			      	<label>文章类型</label>
-			      	<select class="articleType" required>
-				      	<option value="">请选择一个选项</option>
-				        <option value="1">技术博客</option>
-				        <option value="2">行业远瞻</option>
-				        <option value="3">乱七八糟</option>
-			      	</select>
-			      	<span class="am-form-caret"></span>
-			    </div>
-			    <div class="am-form-group">
-			      	<label>文章内容</label>
-			       	<script class="articleCont" id="articleCont" type="text/plain" style="width:100%;height:400px">
-			       	</script>
-			    </div>
-			    <div class="am-form-group">
-			      	<label>原文链接</label>
-			      	<input type="url" class="articleLink" placeholder="原创文章不需要填写！">
-			    </div>
-			    <br>
-			    <div class="am-form-group">
-			     	<div class="am-u-sm-6 zy-changepadding">
-			     		<a href="javascript:;" class="articleFB am-btn am-btn-warning"> 发布吧 </a>
-			     	</div>
-			     	<div class="am-u-sm-6 zy-changepadding">
-			     		<a href="javascript:;" class="articleCG am-btn am-btn-warning"> 存草稿 </a>
-			     	</div>
-			    </div>
-			  </fieldset>
-			</form>
-		</div>
-	</div>
-</section>
-
-<!-- <a class="am-icon-btn am-icon-bars am-show-sm-only amz-sidebar-toggle" data-am-offcanvas="" href="#amz-offcanvas">
+						<form class="am-form" method="post" data-am-validator>
+							<fieldset>
+								<div class="am-form-group">
+									<label>文章标题</label>
+									<input type="text" class="articleTitle" placeholder="输入文章标题" required>
+								</div>
+								<div class="am-form-group">
+									<label>关键词</label>
+									<input type="text" class="articleKeyword" placeholder="输入文章关键词" required>
+								</div>
+								<div class="am-form-group">
+									<label>文章类型</label>
+									<select class="articleType" required>
+										<option value="">请选择一个选项</option>
+										<option value="1">技术博客</option>
+										<option value="2">行业远瞻</option>
+										<option value="3">乱七八糟</option>
+									</select>
+									<span class="am-form-caret"></span>
+								</div>
+								<div class="am-form-group">
+									<label>文章内容</label>
+									<script class="articleCont" id="articleCont" type="text/plain" style="width:100%;height:400px">
+									</script>
+								</div>
+								<div class="am-form-group">
+									<label>原文链接</label>
+									<input type="url" class="articleLink" placeholder="原创文章不需要填写！">
+								</div>
+								<br>
+								<div class="am-form-group">
+									<div class="am-u-sm-6 zy-changepadding">
+										<a href="javascript:;" class="articleFB am-btn am-btn-warning"> 发布吧 </a>
+									</div>
+									<div class="am-u-sm-6 zy-changepadding">
+										<a href="javascript:;" class="articleCG am-btn am-btn-warning"> 存草稿 </a>
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+			</div>
+	</section>
+	<!-- <a class="am-icon-btn am-icon-bars am-show-sm-only amz-sidebar-toggle" data-am-offcanvas="" href="#amz-offcanvas">
 	<span class="am-sr-only">侧栏导航</span>
 </a> -->
-
-<script type="text/javascript">
-    var ue = UE.getEditor('articleCont');
-</script>
-	
-<% include ../myfooter.html %>
+	<script type="text/javascript">
+	var ue = UE.getEditor('articleCont');
+	</script>
+	<% include ../myfooter.html %>

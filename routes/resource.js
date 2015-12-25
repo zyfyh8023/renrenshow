@@ -3,10 +3,9 @@
 var retCode, retDesc;
 
 /* GET home page. */
-exports.page=function(req, res, next) {
+exports.page = function(req, res, next) {
 
-	res.render('resource', { 
-		title: '资源库' 
+	res.render('resource', {
+		title: '资源库'
 	});
 };
-
