@@ -1,0 +1,125 @@
+
+<br><br><br><br><br><br>
+
+<div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
+    <div class="am-alert am-alert-secondary">
+        <button type="button" class="am-close" data-am-modal="{target: '#my-baseinfo'}"><i class="am-icon-pencil"></i></button>
+        <div style="font-size:30px;text-align:center;">基本信息</div>
+    </div>
+</div>
+
+<div class="am-g am-u-lg-6 am-u-md-12  am-u-sm-centered">
+    <ul class="am-list">
+        <li>
+            <a href="javascript:;"><i style="display:inline-block;margin-right:30px;" class="am-icon-user am-icon-sm am-icon-fw"></i>姓名：<%= rs.baseInfo1.uname %></a>
+        </li>
+        <li>
+            <a  href="javascript:;"> <i style="display:inline-block;margin-right:30px;" class="am-icon-transgender am-icon-sm am-icon-fw"></i>性别：<% if (rs.baseInfo1.gender == '1') { %>男<% }else if(rs.baseInfo1.gender == '2'){ %>女<% } %></a>
+        </li>
+        <li>
+            <a href="javascript:;"><i style="display:inline-block;margin-right:30px;" class="am-icon-user-secret am-icon-sm am-icon-fw"></i>年龄：<% if (rs.baseInfo1.age) { %><%= rs.baseInfo1.age %>岁<% } %></a>
+        </li>
+        <li>
+            <a href="javascript:;"><i style="display:inline-block;margin-right:30px;" class="am-icon-flag-checkered am-icon-sm am-icon-fw"></i>政治面貌：<%= rs.baseInfo1.identity %></a>
+        </li>
+        <li>
+            <a href="javascript:;"><i style="display:inline-block;margin-right:30px;" class="am-icon-mortar-board am-icon-sm am-icon-fw"></i>学历：<% if(rs.baseInfo1.education=='1'){ %>高中
+                  <% }else if(rs.baseInfo1.education=='2'){ %>大专
+                  <% }else if(rs.baseInfo1.education=='3'){ %>本科
+                  <% }else if(rs.baseInfo1.education=='4'){ %>硕士
+                  <% }else if(rs.baseInfo1.education== '5'){ %>博士
+                  <% } %>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:;"><i style="display:inline-block;margin-right:30px;" class="am-icon-university am-icon-sm am-icon-fw"></i>毕业院校：<%= rs.baseInfo1.school %></a>
+        </li>
+        <li>
+            <a href="javascript:;"><i style="display:inline-block;margin-right:30px;" class="am-icon-certificate am-icon-sm am-icon-fw"></i>专业：<%= rs.baseInfo1.major %></a>
+        </li>
+    </ul>
+</div>
+
+<div class="am-popup" id="my-baseinfo">
+    <div class="am-popup-inner">
+        <div class="am-popup-hd">
+            <h4 class="am-popup-title">基本信息编辑</h4>
+            <span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
+        </div>
+
+        <div class="am-popup-bd"> 
+            <form class="am-form am-form-horizontal" action="/resume/baseinfo" data-am-validator method='post' id="specialInstruc" enctype='multipart/form-data'> 
+                <div class="am-form-group">
+                    <label class="am-u-sm-3 am-form-label">姓名：</label>
+                    <div class="am-u-sm-9">
+                        <input type="text" name="uname" placeholder="请输入您的姓名" required />
+                    </div>
+                </div>
+                <div class="am-form-group">
+                    <label class="am-u-sm-3 am-form-label">年龄：</label>
+                    <div class="am-u-sm-9">
+                        <input type="number" name="age" placeholder="请输入您的年龄 1-120" min="1" max="120" required />
+                    </div>
+                </div>
+                <div class="am-form-group">
+                    <label class="am-u-sm-3 am-form-label">性别：</label>
+                    <div class="am-u-sm-9">
+                        <label class="am-radio-inline">
+                            <input type="radio" name="sex" value="1" required /> 男
+                        </label>
+                        <label class="am-radio-inline">
+                            <input type="radio" name="sex" value="2"> 女
+                        </label>
+                    </div>
+                </div>
+                <div class="am-form-group">
+                    <label class="am-u-sm-3 am-form-label">政治面貌：</label>
+                    <div class="am-u-sm-9">
+                        <input type="text" name="istatus" placeholder="输入您的政治面貌" />
+                    </div>
+                </div>
+                <div class="am-form-group">
+                    <label class="am-u-sm-3 am-form-label">学历：</label>
+                    <div class="am-u-sm-9">
+                        <select name="ieducation" required>
+                            <option value="">请选择一项</option>
+                            <option value="1">高中</option>
+                            <option value="2">大专</option>
+                            <option value="3">本科</option>
+                            <option value="4">硕士</option>
+                            <option value="5">博士</option>
+                        </select>
+                        <span class="am-form-caret"></span>
+                    </div>
+                </div>
+                <div class="am-form-group">
+                    <label class="am-u-sm-3 am-form-label">毕业院校：</label>
+                    <div class="am-u-sm-9">
+                        <input type="text" name="ischool" placeholder="请输入您的院校" required />
+                    </div>
+                </div>
+                <div class="am-form-group">
+                    <label class="am-u-sm-3 am-form-label">专业：</label>
+                    <div class="am-u-sm-9">
+                        <input type="text" name="imajor" placeholder="请输入您的专业" required />
+                    </div>
+                </div>
+                <div class="am-form-group am-form-file">
+                    <label class="am-u-sm-3 am-form-label">我的头像：</label>
+                    <div class="am-u-sm-9">
+                    <button type="button" class="am-btn am-btn-default am-btn-sm">
+                    <i class="am-icon-cloud-upload"></i> 上传头像</button>
+                    <input type="file" id="inputFile"  name="inputFile" required>
+                    <div class="imgtip"></div>
+                    </div>
+                </div>
+                <br>
+                <div class="am-form-group">
+                <div class="am-u-sm-9 am-u-sm-offset-3">
+                    <button id="upload" class="am-btn am-btn-warning my-baseinfo-btn"> 提交确认</button>
+                </div>
+                </div>
+            </form> 
+        </div>
+    </div>
+</div>

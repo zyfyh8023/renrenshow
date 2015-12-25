@@ -174,7 +174,7 @@ $(document).ready(function(){
                 $('#specialInstruc','#my-specialinstr').clearForm();
             }
         });
-    })
+    });
 
 	/**
 	 * navigation页面的js
@@ -1094,4 +1094,4 @@ $(document).ready(function(){
   	});
 
 
-);
+});

@@ -18,7 +18,7 @@ exports.page=function(req, res, next) {
                   res.redirect('myError?retDesc='+retDesc);
 		}else{
                   if(results){
-                        res.render('privateSeting', { 
+                        res.render('./userSet/privateSeting', { 
                               title: '私人设置',
                               uName: uName,
                               navTitle: navTitle,

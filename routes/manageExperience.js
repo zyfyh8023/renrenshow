@@ -24,7 +24,7 @@ exports.page=function(req, res, next) {
                         retDesc="数据查找失败!";
                         res.redirect('myError?retDesc='+retDesc);
                     }else{
-                        res.render('manageExperience', { 
+                        res.render('./userBlog/manageExperience', { 
                             title: '面经管理', 
                             uName: uName,
                             navTitle: navTitle,
@@ -61,7 +61,7 @@ exports.noPublicMJ=function(req, res, next) {
                         retDesc="数据查找失败!";
                         res.redirect('myError?retDesc='+retDesc);
                     }else{
-                        res.render('manageExperience', { 
+                        res.render('./userBlog/manageExperience', { 
                             title: '面经管理', 
                             uName: uName,
                             navTitle: navTitle,
@@ -98,7 +98,7 @@ exports.relatedMeMJ=function(req, res, next) {
                         retDesc="数据查找失败!";
                         res.redirect('myError?retDesc='+retDesc);
                     }else{
-                        res.render('manageExperience', { 
+                        res.render('./userBlog/manageExperience', { 
                             title: '面经管理', 
                             uName: uName,
                             navTitle: navTitle,

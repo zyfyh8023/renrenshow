@@ -30,7 +30,7 @@ exports.page=function(req, res, next) {
 		}else{
 			if(rs){
 				console.log(rs);
-				res.render('resume', { 
+				res.render('./userResume/resume', { 
 					title: '我的简历',
 					uName: uName,
 					rs: rs

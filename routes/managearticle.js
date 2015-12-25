@@ -23,7 +23,7 @@ exports.page=function(req, res, next) {
                         retDesc="数据查找失败!";
                         res.redirect('myError?retDesc='+retDesc);
                     }else{
-                        res.render('managearticle', { 
+                        res.render('./userBlog/managearticle', { 
                             title: '博文管理', 
                             uName: uName,
                             navTitle: navTitle,
@@ -59,7 +59,7 @@ exports.noPublicBW=function(req, res, next) {
                         retDesc="数据查找失败!";
                         res.redirect('myError?retDesc='+retDesc);
                     }else{
-                        res.render('managearticle', { 
+                        res.render('./userBlog/managearticle', { 
                             title: '博文管理', 
                             uName: uName,
                             navTitle: navTitle,
@@ -95,7 +95,7 @@ exports.relatedMeBW=function(req, res, next) {
                         retDesc="数据查找失败!";
                         res.redirect('myError?retDesc='+retDesc);
                     }else{
-                        res.render('managearticle', { 
+                        res.render('./userBlog/managearticle', { 
                             title: '博文管理', 
                             uName: uName,
                             navTitle: navTitle,

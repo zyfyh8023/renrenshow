@@ -21,7 +21,7 @@ exports.page=function(req, res, next) {
 	        		}
 	        		results.models.sort(getSortFun('asc', 'sque'));
 	        	}
-	        	res.render('navigation', { 
+	        	res.render('./userNav/navigation', { 
 	        		title: '资源导航',
 	        		uName: uName,
 	        		navTitle: navTitle,

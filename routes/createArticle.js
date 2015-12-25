@@ -19,7 +19,7 @@ exports.page=function(req, res, next) {
             retDesc="数据查找失败!";
             res.redirect('myError?retDesc='+retDesc);
         }else{
-            res.render('createarticle', { 
+            res.render('./userBlog/createarticle', { 
                 title: '新建博文', 
                 uName: uName,
                 navTitle: navTitle,

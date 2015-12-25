@@ -19,7 +19,7 @@ exports.page=function(req, res, next) {
             retDesc="数据查找失败!";
             res.redirect('myError?retDesc='+retDesc);
         }else{
-            res.render('createExperience', { 
+            res.render('./userBlog/createExperience', { 
                 title: '写面经', 
                 uName: uName,
                 navTitle: navTitle,

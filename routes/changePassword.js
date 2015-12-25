@@ -13,7 +13,7 @@ exports.page=function(req, res, next) {
 	        "与的项目的动态，方便对工作的全局掌握。个人中心是系统个性化的设置入口，支持"+
 	        "设置与个人相关的个性化配置，帮助用户更好的制定一个符合自己使用习惯的系统环境。";
 
-  	res.render('changePassword', { 
+  	res.render('./userSet/changePassword', { 
   		uName: uName,
   		navTitle: navTitle,
   		navDesc: navDesc,

@@ -2,7 +2,7 @@
 
 exports.debug = true;
 exports.port = 3000;
-exports.email = 'zouya@corp.netease.com';
+exports.email = 'zyfyh8023@163.com';
 exports.site_name = '';
 exports.site_desc = '';
 exports.session_secret = '';
