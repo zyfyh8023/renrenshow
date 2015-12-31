@@ -150,7 +150,8 @@ exports.listAdd2 = function(req, res, next) {
 	var moduleName = req.body.moduleName,
 		moduleInfo = req.body.moduleInfo,
 		moduleLink = req.body.moduleLink,
-		thisPar = thisPar;
+		moduleParent = req.body.moduleParent;
+
 	navigations.findByUname(uName, function(err, result) {
 		if (err) {
 			retDesc = '用户名查找出现问题！';
@@ -161,7 +162,7 @@ exports.listAdd2 = function(req, res, next) {
 		} else {
 			if (result) {
 				for (var k = 0; k < result.models.length; k++) {
-					if (result.models[k].modelsName == thisPar) {
+					if (result.models[k].modelsName == moduleParent) {
 						var newSunSque = result.models[k].modelsuns.length + 1;
 						var newModelSun = {
 							sunName: moduleName,
@@ -191,6 +192,60 @@ exports.listAdd2 = function(req, res, next) {
 				}
 			} else {
 				retDesc = '没有找到数据！';
+				return res.send({
+					retCode: 400,
+					retDesc: retDesc
+				});
+			}
+		}
+	});
+}
+
+//删除小标题
+exports.listDel2 = function(req, res, next) {
+	uName = req.session.user.username;
+	var modelName = req.body.navName,
+		moduleParent = req.body.moduleParent;
+
+	navigations.findByUname(uName, function(err, results) {
+		if (err) {
+			retDesc = '用户数据查找出现问题';
+			return res.send({
+				retCode: 400,
+				retDesc: retDesc
+			});
+		} else {
+			if (results) {
+				for (var k = 0; k < results.models.length; k++) {
+					if (results.models[k].modelsName == moduleParent) {
+
+						for(var h = 0; h < results.models[k].modelsuns.length; h++){
+							if(results.models[k].modelsuns[h].sunName == modelName){
+								results.models[k].modelsuns.splice(h, 1);
+								navigations.modify({
+									author: uName
+								}, {
+									models: results.models
+								}, function(err) {
+									if (err) {
+										retDesc = '用户数据更新出现问题';
+										return res.send({
+											retCode: 400,
+											retDesc: retDesc
+										});
+									} else {
+										return res.send({
+											retCode: 200
+										});
+									}
+								});
+							}
+						}
+
+					}
+				}
+			} else {
+				retDesc = '数据未初始化';
 				return res.send({
 					retCode: 400,
 					retDesc: retDesc

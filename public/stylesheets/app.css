@@ -350,9 +350,10 @@
 
 
 /*资源导航页的导航部分*/
-
-.zy-navigation-item div {
-    background-color: #eee;
+.zy-navigation-add-ele{
+    cursor: pointer;
+}
+.zy-navigation-item .am-alert {
     font-size: 12px;
     color: #aaa;
     padding: 10px;
@@ -370,7 +371,7 @@
     margin-left: -1.0rem;
 }
 
-.zy-navigation-item a {
+/*.zy-navigation-itema {
     font-size: 14px;
     border-bottom: 2px solid transparent;
     font-weight: bold;
@@ -380,7 +381,7 @@
     color: #fd8c84;
     border-bottom-color: #fd8c84;
     text-decoration: underline;
-}
+}*/
 
 
 /*pageresume*/

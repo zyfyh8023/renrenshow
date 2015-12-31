@@ -182,10 +182,11 @@ $(document).ready(function() {
 	/**
 	 * navigation页面的js
 	 */
-	//navigation的左侧列表的动态删除
-	var $removenavmodel = $('#my-removenavmodel');
+	//左侧列表的动态删除
+	var $navgation=$("#zy-navgation");
+	var $removenavmodel = $('#my-removenavmodel', $navgation);
 	$removenavmodel.delegate('button', 'click', function(event) {
-		var navName = $(".addmodelNameD", $removenavmodel).val();
+		var navName = $.trim($(".addmodelNameD", $removenavmodel).val());
 		if (navName != '') {
 			$.ajax({
 				type: 'post',
@@ -196,23 +197,7 @@ $(document).ready(function() {
 				dataType: 'json',
 				success: function(data) {
 					if (data.retCode == 200) {
-						$(".zy-navTitle-list li").each(function() {
-							if ($(this).find("span").text() == navName) {
-								$(this).remove();
-							}
-						});
-						$(".zy-navigation-list .zy-navigation-nav").each(function() {
-							if ($(this).find("button").text() == navName) {
-								$($(this).next()).remove();
-								$(this).remove();
-							}
-						});
-						$(".addmodelNameD option", $removenavmodel).each(function() {
-							if ($(this).text() == navName) {
-								$(this).remove();
-							}
-						});
-						$removenavmodel.modal('close');
+						location.reload();
 					} else {
 						warnOpnFn(data.retDesc);
 					}
@@ -226,8 +211,8 @@ $(document).ready(function() {
 		}
 	});
 
-	//navigation的左侧列表的动态插入
-	var $addnavmodel = $('#my-addnavmodel');
+	//左侧列表的动态插入
+	var $addnavmodel = $('#my-addnavmodel', $navgation);
 	$addnavmodel.delegate('button', 'click', function(event) {
 		var navName = $.trim($(".addmodelNameA", $addnavmodel).val());
 		if (navName != '') {
@@ -240,48 +225,6 @@ $(document).ready(function() {
 				dataType: 'json',
 				success: function(data) {
 					if (data.retCode == 200) {
-						var tpl1 = "<li><a href='javascript:;'><span>" + navName + "</span>（0）</a></li>";
-						$(tpl1).appendTo($(".zy-navTitle-list"));
-						var tpl2 = "<div class='col-sm-12 am-u-sm-12 zy-navigation-nav'><button class='am-btn am-btn-primary am-btn-xl'>" + navName + "</button>" +
-							"</div><div class='col-md-4 am-u-md-4 col-sm-6 am-u-sm-6 zy-navigation-item zy-navigation-add-ele am-u-end addBtn'>" +
-							"<div><button type='button' data-am-modal='{target: '#my-navpopup'}'><img style='width:8.4rem;' src='/images/add.jpg'></button></div></div>";
-						$(tpl2).appendTo(".zy-navigation-list");
-						$("<option value=" + navName + ">" + navName + "</option>").appendTo($(".addmodelNameD", '#my-removenavmodel'));
-						$addnavmodel.modal('close');
-					} else {
-						warnOpnFn(data.retDesc);
-					}
-				},
-				error: function() {
-					alertOpnFn('err');
-				}
-			});
-		} else {
-			warnOpnFn('内容不能为空哦~');
-		}
-	});
-
-	//navigation的新链接元素的添加
-	var $navpopup = $('#my-navpopup');
-	$navpopup.delegate('button', 'click', function(event) {
-		var moduleName = $.trim($(".moduleName", $navpopup).val()),
-			moduleInfo = $.trim($(".moduleInfo", $navpopup).val()),
-			moduleLink = $.trim($(".moduleLink", $navpopup).val());
-		thisPar = $(this).closest('.am-u-end').prev(".zy-navigation-nav").find('button').text();
-		if (moduleName != '') {
-			$.ajax({
-				type: 'post',
-				url: '/navigationListAddsun',
-				data: {
-					thisPar: thisPar,
-					moduleName: moduleName,
-					moduleInfo: moduleInfo,
-					moduleLink: moduleLink
-				},
-				dataType: 'json',
-				success: function(data) {
-					if (data.retCode == 200) {
-						$navpopup.modal('close');
 						location.reload();
 					} else {
 						warnOpnFn(data.retDesc);
@@ -295,6 +238,90 @@ $(document).ready(function() {
 			warnOpnFn('内容不能为空哦~');
 		}
 	});
+
+	//新链接元素的添加
+	var navModulePar="";
+	var $navpopup = $('#my-navpopup', $navgation);
+	$navgation.delegate('.J_zy-datamodal', 'click', function(event) {
+		$navpopup.modal();
+		navModulePar=$(this).closest('.zy-module-container').find(".zy-navigation-nav button").text();
+	});
+	$navpopup.delegate('button', 'click', function(event) {
+		var moduleName = $.trim($(".moduleName", $navpopup).val()),
+			moduleInfo = $.trim($(".moduleInfo", $navpopup).val()),
+			moduleLink = $.trim($(".moduleLink", $navpopup).val())
+			moduleParent = $.trim(navModulePar);
+
+		if (moduleName!='' && moduleInfo!="" && moduleLink!="") {
+			$.ajax({
+				type: 'post',
+				url: '/navigationListAddsun',
+				data: {
+					moduleParent: moduleParent,
+					moduleName: moduleName,
+					moduleInfo: moduleInfo,
+					moduleLink: moduleLink
+				},
+				dataType: 'json',
+				success: function(data) {
+					if (data.retCode == 200) {
+						location.reload();
+					} else {
+						warnOpnFn(data.retDesc);
+					}
+				},
+				error: function() {
+					alertOpnFn('err');
+				}
+			});
+		} else {
+			warnOpnFn('内容不能为空哦~');
+		}
+	});
+
+	//小链接元素的删除
+	var navModulePar="";
+	var $navpopup = $('#my-navpopup', $navgation);
+	$navgation.delegate('.J_zy-datamodal', 'click', function(event) {
+		$navpopup.modal("open");
+		navModulePar=$(this).closest('.zy-module-container').find(".zy-navigation-nav button").text();
+	});
+	$navpopup.delegate('.J_zy-module-close', 'click', function(event) {
+		console.log('11111111111111111');
+		console.log($(this).next());
+		// var moduleName = $.trim($(".moduleName", $navpopup).val()),
+		// 	moduleInfo = $.trim($(".moduleInfo", $navpopup).val()),
+		// 	moduleLink = $.trim($(".moduleLink", $navpopup).val())
+		// 	moduleParent = $.trim(navModulePar);
+
+		// if (moduleName!='' && moduleInfo!="" && moduleLink!="") {
+		// 	$.ajax({
+		// 		type: 'post',
+		// 		url: '/navigationListDelsun',
+		// 		data: {
+		// 			moduleParent: moduleParent,
+		// 			moduleName: moduleName,
+		// 			moduleInfo: moduleInfo,
+		// 			moduleLink: moduleLink
+		// 		},
+		// 		dataType: 'json',
+		// 		success: function(data) {
+		// 			if (data.retCode == 200) {
+		// 				location.reload();
+		// 			} else {
+		// 				warnOpnFn(data.retDesc);
+		// 			}
+		// 		},
+		// 		error: function() {
+		// 			alertOpnFn('err');
+		// 		}
+		// 	});
+		// } else {
+		// 	warnOpnFn('内容不能为空哦~');
+		// }
+	});
+
+
 
 	//experience发布
 	var $createExperience = $('#zy-createExperience');

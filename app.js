@@ -159,6 +159,7 @@ app.post('/navigationListInit', navigation.listInit);
 app.post('/navigationListAdd', navigation.listAdd);
 app.post('/navigationListDel', navigation.listDel);
 app.post('/navigationListAddsun', navigation.listAdd2);
+app.post('/navigationListDelsun', navigation.listDel2);
 //公开设置
 app.get('/seting', seting.page);
 app.post('/seting', seting.doPage);
