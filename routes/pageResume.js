@@ -5,7 +5,7 @@ var formidable = require('formidable'),
 
 /* GET pageResume page. */
 exports.page = function(req, res, next) {
-    res.render('pageResume', {
+    res.render('./userResume/pageResume', {
         title: 'pageResume'
     });
 };
