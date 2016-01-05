@@ -6,6 +6,6 @@ var retCode, retDesc;
 exports.page = function(req, res, next) {
 
 	res.render('faq', {
-		title: '功能介绍'
+		title: '功能介绍-人人秀'
 	});
 };

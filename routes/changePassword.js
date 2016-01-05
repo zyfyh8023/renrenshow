@@ -24,9 +24,10 @@ exports.page = function(req, res, next) {
 //POST changePassword page
 exports.doPage = function(req, res, next) {
 	uName = req.session.user.username;
-	var oldpassword = req.body.oldpassword.trim() || '',
-		newpassword = req.body.newpassword.trim() || '',
-		newpassword2 = req.body.newpassword2.trim() || '';
+	var oldpassword = req.body.oldpassword || '',
+		newpassword = req.body.newpassword || '',
+		newpassword2 = req.body.newpassword2 || '';
+		
 	if (oldpassword == "" || newpassword == "" || newpassword2 == "") {
 		retDesc = "原始密码、新密码输入框均不能为空！";
 		return res.send({

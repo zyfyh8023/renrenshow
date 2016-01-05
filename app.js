@@ -8,6 +8,15 @@ var ejs = require('ejs');
 var ueditor = require("ueditor");
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
+// var moment = require('moment');
+
+// ejs.filters.dateformat = function(obj, format) {
+//     if (format == undefined) {
+//         format = 'YYYY-MM-DD HH:mm:ss';
+//     }
+//     var ret = moment(obj).format(format);
+//     return ret == 'Invalid date' ? '0000-00-00 00:00:00' : ret;
+// };
 
 var config = require('./config');
 var MongodbAPI = require('./models/dbserver');
@@ -147,12 +156,14 @@ app.post('/createarticle', createarticle.doPage);
 app.get('/managearticle', managearticle.page);
 app.get('/noPublicBW', managearticle.noPublicBW);
 app.get('/relatedMeBW', managearticle.relatedMeBW);
+app.post('/artPageSearch', managearticle.pageSearch);
 //面试经验
 app.get('/createExperience', createExperience.page);
 app.post('/createExperience', createExperience.doPage);
 app.get('/manageExperience', manageExperience.page);
 app.get('/noPublicMJ', manageExperience.noPublicMJ);
 app.get('/relatedMeMJ', manageExperience.relatedMeMJ);
+app.post('/expPageSearch', manageExperience.pageSearch);
 //资源导航
 app.get('/navigation', navigation.page);
 app.post('/navigationListInit', navigation.listInit);

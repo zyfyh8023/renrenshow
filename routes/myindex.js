@@ -6,8 +6,8 @@ var uName, retCode, retDesc;
 exports.page = function(req, res, next) {
 	uName = req.session.user.username;
 
-	res.render('myindex', {
+	res.render('./userIndex/myindex', {
 		uName: uName,
-		title: '个人主页'
+		title: '我的网站首页'
 	});
 };

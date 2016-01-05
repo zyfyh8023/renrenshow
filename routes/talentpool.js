@@ -6,6 +6,6 @@ var retCode, retDesc;
 exports.page = function(req, res, next) {
 
 	res.render('talentpool', {
-		title: '人才库'
+		title: '人才库-人人秀'
 	});
 };

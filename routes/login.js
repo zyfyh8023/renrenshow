@@ -9,7 +9,7 @@ var retCode, retDesc;
 exports.page = function(req, res, next) {
 
 	res.render('login', {
-		title: '登录'
+		title: '登录-人人秀'
 	});
 };
 

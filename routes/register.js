@@ -8,7 +8,7 @@ var retDesc, retCode;
 //GET register page. 
 exports.page = function(req, res, next) {
     res.render('register', {
-        title: '注册'
+        title: '注册-人人秀'
     });
 }
 

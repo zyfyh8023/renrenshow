@@ -14,7 +14,8 @@
             <a href="javascript:;"><i style="display:inline-block;margin-right:30px;" class="am-icon-user am-icon-sm am-icon-fw"></i>姓名：<%= rs.baseInfo1.uname %></a>
         </li>
         <li>
-            <a  href="javascript:;"> <i style="display:inline-block;margin-right:30px;" class="am-icon-transgender am-icon-sm am-icon-fw"></i>性别：<% if (rs.baseInfo1.gender == '1') { %>男<% }else if(rs.baseInfo1.gender == '2'){ %>女<% } %></a>
+            <a  href="javascript:;"> <i style="display:inline-block;margin-right:30px;" class="am-icon-transgender am-icon-sm am-icon-fw"></i>性别：<% if (rs.baseInfo1.gender == '1') { %>男<% }
+                else if(rs.baseInfo1.gender == '2'){ %>女<% } %></a>
         </li>
         <li>
             <a href="javascript:;"><i style="display:inline-block;margin-right:30px;" class="am-icon-user-secret am-icon-sm am-icon-fw"></i>年龄：<% if (rs.baseInfo1.age) { %><%= rs.baseInfo1.age %>岁<% } %></a>
@@ -52,13 +53,13 @@
                 <div class="am-form-group">
                     <label class="am-u-sm-3 am-form-label">姓名：</label>
                     <div class="am-u-sm-9">
-                        <input type="text" name="uname" placeholder="请输入您的姓名" required />
+                        <input type="text" name="uname" value="<%= rs.baseInfo1.uname %>" placeholder="请输入您的姓名" required />
                     </div>
                 </div>
                 <div class="am-form-group">
                     <label class="am-u-sm-3 am-form-label">年龄：</label>
                     <div class="am-u-sm-9">
-                        <input type="number" name="age" placeholder="请输入您的年龄 1-120" min="1" max="120" required />
+                        <input type="number" name="age" value="<%= rs.baseInfo1.age %>" placeholder="请输入您的年龄 1-120" min="1" max="120" required />
                     </div>
                 </div>
                 <div class="am-form-group">
@@ -75,7 +76,7 @@
                 <div class="am-form-group">
                     <label class="am-u-sm-3 am-form-label">政治面貌：</label>
                     <div class="am-u-sm-9">
-                        <input type="text" name="istatus" placeholder="输入您的政治面貌" />
+                        <input type="text" value="<%= rs.baseInfo1.identity %>" name="istatus" placeholder="输入您的政治面貌" />
                     </div>
                 </div>
                 <div class="am-form-group">
@@ -95,28 +96,29 @@
                 <div class="am-form-group">
                     <label class="am-u-sm-3 am-form-label">毕业院校：</label>
                     <div class="am-u-sm-9">
-                        <input type="text" name="ischool" placeholder="请输入您的院校" required />
+                        <input type="text" value="<%= rs.baseInfo1.school %>" name="ischool" placeholder="请输入您的院校" required />
                     </div>
                 </div>
                 <div class="am-form-group">
                     <label class="am-u-sm-3 am-form-label">专业：</label>
                     <div class="am-u-sm-9">
-                        <input type="text" name="imajor" placeholder="请输入您的专业" required />
+                        <input type="text" value="<%= rs.baseInfo1.major %>" name="imajor" placeholder="请输入您的专业" required />
                     </div>
                 </div>
                 <div class="am-form-group am-form-file">
                     <label class="am-u-sm-3 am-form-label">我的头像：</label>
                     <div class="am-u-sm-9">
-                    <button type="button" class="am-btn am-btn-default am-btn-sm">
-                    <i class="am-icon-cloud-upload"></i> 上传头像</button>
-                    <input type="file" id="inputFile"  name="inputFile" required>
-                    <div class="imgtip"></div>
+                        <button type="button" class="am-btn am-btn-default am-btn-sm">
+                            <i class="am-icon-cloud-upload"></i> 上传头像
+                        </button>
+                        <input type="file" id="inputFile"  name="inputFile">
+                        <div class="imgtip"></div>
                     </div>
                 </div>
                 <br>
                 <div class="am-form-group">
                 <div class="am-u-sm-9 am-u-sm-offset-3">
-                    <button id="upload" class="am-btn am-btn-warning my-baseinfo-btn"> 提交确认</button>
+                    <button id="upload" class="am-btn am-btn-primary my-baseinfo-btn"> 提交确认</button>
                 </div>
                 </div>
             </form> 

@@ -1,5 +1,22 @@
 $(document).ready(function() {
 	/**
+	 * myindex页面的js
+	 */
+	var $input = $('#doc-qr-text', "#zy-myindex"),
+		$qr = $('#doc-qrcode', "#zy-myindex");
+	function makeCode(text) {
+		$qr.empty().qrcode(text);
+	}
+	$input.val(location.href);
+	makeCode(location.href);
+	$('#zy-myindex').delegate('#doc-gen-qr', 'click', function(){
+		makeCode($input.val());
+	});
+	$input.on('focusout', function() {
+		makeCode($input.val());
+	});
+
+	/**
 	 * myheader页面的js
 	 */
 	$('#zy-loginOut').click(function() {
@@ -286,42 +303,72 @@ $(document).ready(function() {
 		$navpopup.modal("open");
 		navModulePar=$(this).closest('.zy-module-container').find(".zy-navigation-nav button").text();
 	});
-	$navpopup.delegate('.J_zy-module-close', 'click', function(event) {
-		console.log('11111111111111111');
-		console.log($(this).next());
-		// var moduleName = $.trim($(".moduleName", $navpopup).val()),
-		// 	moduleInfo = $.trim($(".moduleInfo", $navpopup).val()),
-		// 	moduleLink = $.trim($(".moduleLink", $navpopup).val())
-		// 	moduleParent = $.trim(navModulePar);
-
-		// if (moduleName!='' && moduleInfo!="" && moduleLink!="") {
-		// 	$.ajax({
-		// 		type: 'post',
-		// 		url: '/navigationListDelsun',
-		// 		data: {
-		// 			moduleParent: moduleParent,
-		// 			moduleName: moduleName,
-		// 			moduleInfo: moduleInfo,
-		// 			moduleLink: moduleLink
-		// 		},
-		// 		dataType: 'json',
-		// 		success: function(data) {
-		// 			if (data.retCode == 200) {
-		// 				location.reload();
-		// 			} else {
-		// 				warnOpnFn(data.retDesc);
-		// 			}
-		// 		},
-		// 		error: function() {
-		// 			alertOpnFn('err');
-		// 		}
-		// 	});
-		// } else {
-		// 	warnOpnFn('内容不能为空哦~');
-		// }
+	$navgation.delegate('.J_zy-module-close', 'click', function(event) {
+		var moduleName = $.trim($(this).next(".zy-module-con").find("a").text()),
+			moduleParent = $.trim($(this).closest('.zy-module-container').find(".zy-navigation-nav button").text());
+		if (moduleName!='' && moduleParent!="") {
+			$.ajax({
+				type: 'post',
+				url: '/navigationListDelsun',
+				data: {
+					moduleParent: moduleParent,
+					moduleName: moduleName
+				},
+				dataType: 'json',
+				success: function(data) {
+					if (data.retCode == 200) {
+						location.reload();
+					} else {
+						warnOpnFn(data.retDesc);
+					}
+				},
+				error: function() {
+					alertOpnFn('err');
+				}
+			});
+		} else {
+			warnOpnFn('内容不能为空哦~');
+		}
 	});
 
-
+	/**
+	 * experience页面的js
+	 */
+	//分页事件
+	var $manageExperience=$("#zy-manageExperience");
+	$manageExperience.delegate('#pageShow li', 'click', function() {
+		var pagenum =pageStep($(this));
+		if(pagenum!=0){
+			$.ajax({    
+			    type:'post',        
+			    url:'/expPageSearch',   
+			    data:{
+			    	curstep: pagenum,
+			    	uName: __data.uName,
+			    	experienceTag: __data.experienceTag
+			    },
+			    dataType:'json',    
+			    success: function(data){
+			    	var htmls=[];
+			    	for(var i=0, len=data.allArticles.length;i<len;i++){
+			    		htmls+=[
+			    			'<tr>',
+			    			'<td>'+(((pagenum-1)*10)+(i+1))+'</td>',
+			    			'<td>'+data.allArticles[i].experienceTitle+'</td>',
+			    			'<td>'+data.allArticles[i].experienceCompany+'</td>',
+			    			'<td>'+data.allArticles[i].cTime+'</td>',
+			    			'<td><a href="javascript:;">删除</a>&nbsp&nbsp&nbsp&nbsp<a href="javascript:;">操作</a></td>',
+			    			'</tr>'
+			    		].join('');
+			    	}    
+			        $manageExperience.find("tbody").html(htmls);
+			    },
+			    error : function() {   
+			        alert('err');    	
+			   }        
+			});  
+		}
+	});
 
 	//experience发布
 	var $createExperience = $('#zy-createExperience');
@@ -390,6 +437,45 @@ $(document).ready(function() {
 			});
 		} else {
 			warnOpnFn('内容不能为空哦~');
+		}
+	});
+
+	/**
+	 * Article页面的js
+	 */
+	//分页事件
+	var $manageArticle=$("#zy-manageArticle");
+	$manageArticle.delegate('#pageShow li', 'click', function() {
+		var pagenum =pageStep($(this));
+		if(pagenum!=0){
+			$.ajax({    
+			    type:'post',        
+			    url:'/artPageSearch',   
+			    data:{
+			    	curstep: pagenum,
+			    	uName: __data.uName,
+			    	articleTag: __data.articleTag
+			    },
+			    dataType:'json',    
+			    success: function(data){
+			    	var htmls=[];
+			    	for(var i=0, len=data.allArticles.length;i<len;i++){
+			    		htmls+=[
+			    			'<tr>',
+			    			'<td>'+(((pagenum-1)*10)+(i+1))+'</td>',
+			    			'<td>'+data.allArticles[i].articleTitle+'</td>',
+			    			'<td>'+data.allArticles[i].articleType+'</td>',
+			    			'<td>'+data.allArticles[i].cTime+'</td>',
+			    			'<td><a href="javascript:;">删除</a>&nbsp&nbsp&nbsp&nbsp<a href="javascript:;">操作</a></td>',
+			    			'</tr>'
+			    		].join('');
+			    	}    
+			        $manageArticle.find("tbody").html(htmls);
+			    },
+			    error : function() {   
+			        alert('err');    	
+			   }        
+			});  
 		}
 	});
 
@@ -469,7 +555,7 @@ $(document).ready(function() {
 
 
 	/***
-	简历页面的js代码
+		简历页面的js代码
 	**/
 	//个人基本信息
 	var $myBaseinfo = $('#my-baseinfo');
@@ -1125,3 +1211,103 @@ $(document).ready(function() {
 
 
 });
+
+//分页模块
+function pageStep(clickobj){
+	var pagenum;
+
+	pagenum = clickPagebtn($(clickobj));
+	if(pagenum != 0){
+		pageChange(pagenum);
+		return pagenum;
+	}else{
+		return 0;
+	}
+}
+
+function pageChange(clickNum){
+	var pagetipHtml='共'+__data.allpage+'页&nbsp;';
+
+	if(__data.allpage != __data.showpagetip){
+		pagetipHtml+='<li class="J_pre-page"><a href="javascript:;">&laquo;</a></li>';
+		pagetipHtml+= pagebtnShow(clickNum);
+		pagetipHtml+='<li class="J_next-page"><a href="javascript:;">&raquo;</a></li>';
+	}else{
+		pagetipHtml+='<li class="J_pre-page"><a href="javascript:;">&laquo;</a></li>';
+		for(var i=1; i<=__data.allpage; i++){
+			pagetipHtml+=comCon(i, clickNum);
+		}
+		pagetipHtml+='<li class="J_next-page"><a href="javascript:;">&raquo;</a></li>';
+	}
+
+	$("#pageShow ul").html(pagetipHtml);
+}
+
+function pagebtnShow(clickNum){
+	var pagetipHtml="";
+	var curNum=clickNum;
+	var	nextNumDeta=__data.allpage-curNum;
+	var	preNumDeta=curNum-4;
+
+	if(nextNumDeta>=4 && preNumDeta>0){
+		for(var i=curNum-4;i<=curNum+4;i++){
+			pagetipHtml+=comCon(i, clickNum);
+		}
+	}else if(preNumDeta<=0){
+		for(var i=1;i<=curNum+5-preNumDeta;i++){
+			pagetipHtml+=comCon(i, clickNum);
+		}
+	}else{
+		for(var i=curNum-4-(4-nextNumDeta);i<=__data.allpage;i++){
+			pagetipHtml+=comCon(i, clickNum);
+		}
+	}
+
+	return pagetipHtml;
+}
+
+function comCon(i, clickNum){
+	var htmlS="";
+	if(i==clickNum){
+		htmlS='<li class="am-active"><a href="javascript:;">'+i+'</a></li>';
+	}else{
+		htmlS='<li><a href="javascript:;">'+i+'</a></li>';
+	}
+
+	return htmlS;
+}
+
+function clickPagebtn(clickobj){
+	var pagenum=0;
+	var contain=$(clickobj).closest("#pageShow");
+	var pagenum=$(contain).find(".am-active").text();
+
+	if(isPrepage(clickobj) || isNextpage(clickobj)){
+		if(isPrepage(clickobj) && parseInt(pagenum) != 1){
+			pagenum = parseInt(pagenum) - 1;
+		}
+		if(isNextpage(clickobj) && parseInt(pagenum) != __data.allpage){
+			pagenum = parseInt(pagenum) + 1;
+		}
+	}else{
+		pagenum = parseInt($(clickobj).find("a").text());
+	}
+
+	return pagenum;
+}
+
+function isPrepage(clickobj){
+	if($(clickobj).hasClass('J_pre-page')){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+function isNextpage(clickobj){
+	if($(clickobj).hasClass('J_next-page')){
+		return true;
+	}else{
+		return false;
+	}
+}

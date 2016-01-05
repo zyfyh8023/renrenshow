@@ -7,7 +7,7 @@ var retCode, retDesc;
 router.get('/', function(req, res, next) {
 
 	res.render('index', {
-		title: '首页'
+		title: '首页-人人秀'
 	});
 });
 

@@ -12,16 +12,23 @@ exports.page = function(req, res, next) {
     navDesc = "可以作为自己的个人文集，把自己的写的文章按照一定的时间顺序、目录或者标签发表到自己的博客上" +
         "这是博客最初的最基本的功能，就是发表个人网络日志。";
 
-    articles.findAll({
-        author: uName,
-        articleTag: 1
-    }, function(err, results) {
-        if (err) {
+    articles.findAllByCon({
+            author: uName,
+            articleTag: 1
+        },10,0,function(err, results, nums){
+        if(err){
             retDesc = "系统出现故障，请稍后再试!";
             res.redirect('myError?retDesc=' + retDesc);
-        } else {
+        }else{
             if (results) {
-                getArtExpNum(uName, function(err, resu) {
+                var showpagetip, allpage;
+                allpage=Math.ceil(nums/10);
+                if(allpage>9){
+                    showpagetip=9;
+                }else{
+                    showpagetip=allpage;
+                }
+                 getArtExpNum(uName, function(err, resu) {
                     if (err) {
                         retDesc = "数据查找失败!";
                         res.redirect('myError?retDesc=' + retDesc);
@@ -32,7 +39,11 @@ exports.page = function(req, res, next) {
                             navTitle: navTitle,
                             allNum: resu,
                             navDesc: navDesc,
-                            allArticles: results
+                            nums: nums,
+                            allArticles: results,
+                            showpagetip: showpagetip, 
+                            allpage: allpage,
+                            articleTag:1
                         });
                     }
                 });
@@ -42,6 +53,36 @@ exports.page = function(req, res, next) {
             }
         }
     });
+    
+};
+
+exports.pageSearch = function(req, res){
+    var curstep=req.body.curstep-1,
+        pagenum=10,
+        skipstep=curstep*pagenum,
+        articleTag=req.body.articleTag,
+        uName=req.body.uName,
+        object={};
+    if(articleTag == 11)
+    {
+        object={
+            author: uName
+        };
+    }else{
+        object={
+            articleTag: articleTag,
+            author: uName
+        };
+    }
+    
+    articles.findAllByCon(object,pagenum,skipstep,function(err, results, nums){
+        if(err){
+            console.log('err');
+        }else{
+            res.send({allArticles: results, nums: nums}); 
+        }
+    })
+    
 };
 
 /* GET noPublicBW page. */
@@ -51,16 +92,23 @@ exports.noPublicBW = function(req, res, next) {
     navDesc = "可以作为自己的个人文集，把自己的写的文章按照一定的时间顺序、目录或者标签发表到自己的博客上" +
         "这是博客最初的最基本的功能，就是发表个人网络日志。";
 
-    articles.findAll({
-        author: uName,
-        articleTag: 2
-    }, function(err, results) {
-        if (err) {
+    articles.findAllByCon({
+            author: uName,
+            articleTag: 2
+        },10,0,function(err, results, nums){
+        if(err){
             retDesc = "系统出现故障，请稍后再试!";
             res.redirect('myError?retDesc=' + retDesc);
-        } else {
+        }else{
             if (results) {
-                getArtExpNum(uName, function(err, resu) {
+                var showpagetip, allpage;
+                allpage=Math.ceil(nums/10);
+                if(allpage>9){
+                    showpagetip=9;
+                }else{
+                    showpagetip=allpage;
+                }
+                 getArtExpNum(uName, function(err, resu) {
                     if (err) {
                         retDesc = "数据查找失败!";
                         res.redirect('myError?retDesc=' + retDesc);
@@ -71,7 +119,11 @@ exports.noPublicBW = function(req, res, next) {
                             navTitle: navTitle,
                             allNum: resu,
                             navDesc: navDesc,
-                            allArticles: results
+                            nums: nums,
+                            allArticles: results,
+                            showpagetip: showpagetip, 
+                            allpage: allpage,
+                            articleTag:2
                         });
                     }
                 });
@@ -81,6 +133,7 @@ exports.noPublicBW = function(req, res, next) {
             }
         }
     });
+    
 };
 
 /* GET relatedMeBW page. */
@@ -90,15 +143,22 @@ exports.relatedMeBW = function(req, res, next) {
     navDesc = "可以作为自己的个人文集，把自己的写的文章按照一定的时间顺序、目录或者标签发表到自己的博客上" +
         "这是博客最初的最基本的功能，就是发表个人网络日志。";
 
-    articles.findAll({
-        author: uName
-    }, function(err, results) {
-        if (err) {
+    articles.findAllByCon({
+            author: uName
+        },10,0,function(err, results, nums){
+        if(err){
             retDesc = "系统出现故障，请稍后再试!";
             res.redirect('myError?retDesc=' + retDesc);
-        } else {
+        }else{
             if (results) {
-                getArtExpNum(uName, function(err, resu) {
+                var showpagetip, allpage;
+                allpage=Math.ceil(nums/10);
+                if(allpage>9){
+                    showpagetip=9;
+                }else{
+                    showpagetip=allpage;
+                }
+                 getArtExpNum(uName, function(err, resu) {
                     if (err) {
                         retDesc = "数据查找失败!";
                         res.redirect('myError?retDesc=' + retDesc);
@@ -109,7 +169,10 @@ exports.relatedMeBW = function(req, res, next) {
                             navTitle: navTitle,
                             allNum: resu,
                             navDesc: navDesc,
-                            allArticles: results
+                            nums: nums,
+                            allArticles: results,
+                            showpagetip: showpagetip, 
+                            allpage: allpage
                         });
                     }
                 });
@@ -119,6 +182,7 @@ exports.relatedMeBW = function(req, res, next) {
             }
         }
     });
+    
 };
 
 function getArtExpNum(uName, callFn) {

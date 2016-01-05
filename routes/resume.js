@@ -5,21 +5,6 @@ var fs = require('fs'),
 
 var retCode, retDesc, uName;
 
-// function getDate(date) {
-//     var Y = date.getFullYear();
-//     var M = date.getMonth()+1;
-//     if (M < 10) M = '0' + M;
-//     var D = date.getDate();
-//     if (D < 10) D = '0' + D;
-//     var h = date.getHours();
-//     if (h < 10) h = '0' + h;
-//     var m = date.getMinutes();
-//     if (m < 10) m = '0' + m;
-//     var s = date.getSeconds();
-//     if (s < 10) s = '0' + s;
-//     return (Y+'-'+M+'-'+D+' '+h+':'+m+':'+s);
-// }
-
 /* GET Seting page. */
 exports.page = function(req, res, next) {
 	uName = req.session.user.username;
@@ -47,7 +32,7 @@ exports.page = function(req, res, next) {
 exports.baseinfo = function(req, res, next) {
 	uName = req.session.user.username;
 	var form = new multiparty.Form({
-		uploadDir: './public/avatar/'
+		uploadDir: './../public/avatar/'
 	});
 	form.parse(req, function(err, fields, files) {
 		var filesTmp = JSON.stringify(files, null, 2);
@@ -60,7 +45,7 @@ exports.baseinfo = function(req, res, next) {
 		} else {
 			var inputFile = files.inputFile[0];
 			var uploadedPath = inputFile.path;
-			var dstPath = './public/avatar/' + inputFile.originalFilename;
+			var dstPath = './../public/avatar/' + inputFile.originalFilename;
 			var imgSize = inputFile.size;
 			if (imgSize > 2 * 1024 * 1024) {
 				retDesc = '图片的尺寸过大！';
@@ -78,8 +63,8 @@ exports.baseinfo = function(req, res, next) {
 				});
 			}
 			//重命名为真实文件名
-			var imgPath = './public/avatar/' + uName + 'headImg.jpg',
-				imgSrc = '/avatar/' + uName + 'headImg.jpg';
+			var imgPath = './../public/avatar/' + uName + 'headImg.jpg',
+				imgSrc = '/../avatar/' + uName + 'headImg.jpg';
 			fs.rename(uploadedPath, imgPath, function(err) {
 				if (err) {
 					retDesc = '图片重名了出现问题，请稍后再试！';

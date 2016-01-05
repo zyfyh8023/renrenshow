@@ -1,0 +1,14 @@
+/**
+* myindex页面的css
+*/
+.zy-titleList a {
+	font-size: 14px;
+	color: #444;
+}
+.zy-titleList a:hover {
+	color: #0e90d2;
+}
+.zy-qrcode{
+	padding:1rem;
+	color:#0e90d2;
+}

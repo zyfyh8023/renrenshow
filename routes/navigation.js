@@ -204,7 +204,7 @@ exports.listAdd2 = function(req, res, next) {
 //删除小标题
 exports.listDel2 = function(req, res, next) {
 	uName = req.session.user.username;
-	var modelName = req.body.navName,
+	var moduleName = req.body.moduleName,
 		moduleParent = req.body.moduleParent;
 
 	navigations.findByUname(uName, function(err, results) {
@@ -220,7 +220,7 @@ exports.listDel2 = function(req, res, next) {
 					if (results.models[k].modelsName == moduleParent) {
 
 						for(var h = 0; h < results.models[k].modelsuns.length; h++){
-							if(results.models[k].modelsuns[h].sunName == modelName){
+							if(results.models[k].modelsuns[h].sunName == moduleName){
 								results.models[k].modelsuns.splice(h, 1);
 								navigations.modify({
 									author: uName

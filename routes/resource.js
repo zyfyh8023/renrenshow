@@ -6,6 +6,6 @@ var retCode, retDesc;
 exports.page = function(req, res, next) {
 
 	res.render('resource', {
-		title: '资源库'
+		title: '资源库-人人秀'
 	});
 };

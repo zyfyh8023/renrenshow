@@ -133,3 +133,23 @@ exports.allNum = function(uName, callFn) {
         }
     );
 }
+
+//分页条件查找所有结果集
+exports.findAllByCon = function(object,pagenum,skipstep,callback) {
+    
+    Article.count(object,function(err, nums){
+        if(err){
+            callback(err, null, null);
+        }else{
+            var query = Article.find(object).skip(skipstep).limit(pagenum).sort('-uTime');
+            query.exec(function(err, result) {
+                if(err){
+                    callback(err, null, null);
+                }else{
+                    callback(null, result, nums);
+                }
+            });
+        }
+    });
+    
+}

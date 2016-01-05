@@ -5,21 +5,6 @@ var fs = require('fs'),
 
 var retCode, retDesc, uName, navTitle, navDesc;
 
-// function getDate(date) {
-//     var Y = date.getFullYear();
-//     var M = date.getMonth()+1;
-//     if (M < 10) M = '0' + M;
-//     var D = date.getDate();
-//     if (D < 10) D = '0' + D;
-//     var h = date.getHours();
-//     if (h < 10) h = '0' + h;
-//     var m = date.getMinutes();
-//     if (m < 10) m = '0' + m;
-//     var s = date.getSeconds();
-//     if (s < 10) s = '0' + s;
-//     return (Y+'-'+M+'-'+D+' '+h+':'+m+':'+s);
-// }
-
 exports.page = function(req, res, next) {
     uName = req.session.user.username;
     navTitle = "个性自我介绍";
@@ -34,7 +19,7 @@ exports.page = function(req, res, next) {
                 retDesc: retDesc
             });
         } else {
-            res.render('introduction', {
+            res.render('./userIntroduc/introduction', {
                 title: '自我介绍',
                 uName: uName,
                 navTitle: navTitle,

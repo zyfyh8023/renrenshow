@@ -1,8 +1,13 @@
 /* GET demo page. */
 exports.page = function(req, res) {
-	res.render('demo', {
-		title: 'demo'
+	// res.render('demo', {
+	// 	title: 'demo'
+	// });
+	
+	res.render('demo2', {
+		title: 'demo2'
 	});
+
 };
 
 
