@@ -1,9 +1,5 @@
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+<br><br><br><br><br><br>
+
 <div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
 	<div class="am-alert am-alert-secondary">
 		<button type="button" class="am-close" data-am-modal="{target: '#my-undergo'}"><i class="am-icon-pencil"></i></button>
@@ -17,11 +13,66 @@
 			<li class=""><a href="[data-tab-panel-1]">社会实践</a></li>
 		</ul>
 		<div class="am-tabs-bd">
+
 			<div data-tab-panel-0 class="am-tab-panel am-active">
-				【青春】那时候有多好，任雨打湿裙角。忍不住哼起，心爱的旋律。绿油油的树叶，自由地在说笑。燕子忙归巢，风铃在舞蹈。经过青春的草地，彩虹忽 【青春】那时候有多好，任雨打湿裙角。忍不住哼起，心爱的旋律。绿油油的树叶，自由地在说笑。燕子忙归巢，风铃在舞蹈。经过青春的草地，彩虹忽然升起。即使视线渐渐模糊，它也在我心里。就像爱过的旋律，没人能抹去。因为生命存在失望，歌唱，所以才要歌唱。然升起。即使视线渐渐模糊，它也在我心里。就像爱过的旋律，没人能抹去。因为生命存在失望，歌唱，所以才要歌唱。
+				<section data-am-widget="accordion" class="am-accordion am-accordion-basic" data-am-accordion='{  }'>
+					<% if(rs. trys9.length>=0) { %>
+						<% for(var i=0,k=0; i<rs. trys9.length; i++) { %>
+							<% if(rs. trys9[i].tTime=='1') { k++; %>
+								<% if(k==1){ %>
+									<dl class="am-accordion-item am-active">
+										<dt class="am-accordion-title">
+											<%=rs. trys9[i].tName %>
+										</dt>
+										<dd class="am-accordion-bd am-collapse am-in">
+								<% }else{ %>
+									<dl class="am-accordion-item">
+										<dt class="am-accordion-title">
+											<%=rs. trys9[i].tName %>
+										</dt>
+										<dd class="am-accordion-bd am-collapse">
+								<% } %>
+										<div class="am-accordion-content">
+											<font style="color:#666;font-weight:bold">发表时间：<%=rs. trys9[i].tType %></font>
+											<br><font style="color:#666;font-weight:bold">简要介绍：</font><br>
+											<%=rs. trys9[i].addt %>
+										</div>
+									</dd>
+								</dl>
+							<% } %>
+						<% } %>
+					<% } %>
+				</section>
 			</div>
 			<div data-tab-panel-1 class="am-tab-panel ">
-				【彩虹】那时候有多好，任雨打湿裙角。忍不住哼起，心爱的旋律。绿油油的树叶，自由地在说笑。燕子忙归巢，风铃在舞蹈。经过青春的草地，彩虹忽 【青春】那时候有多好，任雨打湿裙角。忍不住哼起，心爱的旋律。绿油油的树叶，自由地在说笑。燕子忙归巢，风铃在舞蹈。经过青春的草地，彩虹忽然升起。即使视线渐渐模糊，它也在我心里。就像爱过的旋律，没人能抹去。因为生命存在失望，歌唱，所以才要歌唱。 【青春】那时候有多好，任雨打湿裙角。忍不住哼起，心爱的旋律。绿油油的树叶，自由地在说笑。燕子忙归巢，风铃在舞蹈。经过青春的草地，彩虹忽然升起。即使视线渐渐模糊，它也在我心里。就像爱过的旋律，没人能抹去。因为生命存在失望，歌唱，所以才要歌唱。然升起。即使视线渐渐模糊，它也在我心里。就像爱过的旋律，没人能抹去。因为生命存在失望，歌唱，所以才要歌唱。
+				<section data-am-widget="accordion" class="am-accordion am-accordion-basic" data-am-accordion='{  }'>
+					<% if(rs. trys9.length>=0) { %>
+						<% for(var i=0,k=0; i<rs. trys9.length; i++) { %>
+							<% if(rs. trys9[i].tTime=='2') { k++; %>
+								<% if(k==1){ %>
+									<dl class="am-accordion-item am-active">
+										<dt class="am-accordion-title">
+											<%=rs. trys9[i].tName %>
+										</dt>
+										<dd class="am-accordion-bd am-collapse am-in">
+								<% }else{ %>
+									<dl class="am-accordion-item">
+										<dt class="am-accordion-title">
+											<%=rs. trys9[i].tName %>
+										</dt>
+										<dd class="am-accordion-bd am-collapse">
+								<% } %>
+										<div class="am-accordion-content">
+											<font style="color:#666;font-weight:bold">发表时间：<%=rs. trys9[i].tType %></font>
+											<br><font style="color:#666;font-weight:bold">简要介绍：</font><br>
+											<%=rs. trys9[i].addt %>
+										</div>
+									</dd>
+								</dl>
+							<% } %>
+						<% } %>
+					<% } %>
+				</section>
 			</div>
 		</div>
 	</div>
@@ -66,7 +117,7 @@
 				</div>
 				<div class="am-form-group">
 					<div class="am-u-sm-9 am-u-sm-offset-3">
-						<button type="button" class="am-btn am-btn-warning my-undergo-btn"> 提交信息 </button>
+						<button type="button" class="am-btn am-btn-primary my-undergo-btn"> 提交信息 </button>
 					</div>
 				</div>
 			</form>

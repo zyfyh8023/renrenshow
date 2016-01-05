@@ -8,15 +8,7 @@ var ejs = require('ejs');
 var ueditor = require("ueditor");
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
-// var moment = require('moment');
-
-// ejs.filters.dateformat = function(obj, format) {
-//     if (format == undefined) {
-//         format = 'YYYY-MM-DD HH:mm:ss';
-//     }
-//     var ret = moment(obj).format(format);
-//     return ret == 'Invalid date' ? '0000-00-00 00:00:00' : ret;
-// };
+var moment = require('moment');
 
 var config = require('./config');
 var MongodbAPI = require('./models/dbserver');
@@ -195,6 +187,14 @@ app.post('/demo/practice', demo.practicePage);
 app.post('/demo/education', demo.educationPage);
 app.post('/demo/contactinfo', demo.contactinfoPage);
 app.post('/demo/baseinfo', demo.baseinfoPage);
+
+// ejs.filters.dateformat = function(obj, format) {
+//     if (format == undefined) {
+//         format = 'YYYY-MM-DD HH:mm:ss';
+//     }
+//     var ret = moment(obj).format(format);
+//     return ret == 'Invalid date' ? '0000-00-00 00:00:00' : ret;
+// };
 
 MongodbAPI.connect(function(error) {
     if (error) throw error;

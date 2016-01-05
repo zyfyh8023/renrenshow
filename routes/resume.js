@@ -32,7 +32,7 @@ exports.page = function(req, res, next) {
 exports.baseinfo = function(req, res, next) {
 	uName = req.session.user.username;
 	var form = new multiparty.Form({
-		uploadDir: './../public/avatar/'
+		uploadDir: './public/avatar/'
 	});
 	form.parse(req, function(err, fields, files) {
 		var filesTmp = JSON.stringify(files, null, 2);
@@ -45,7 +45,7 @@ exports.baseinfo = function(req, res, next) {
 		} else {
 			var inputFile = files.inputFile[0];
 			var uploadedPath = inputFile.path;
-			var dstPath = './../public/avatar/' + inputFile.originalFilename;
+			var dstPath = './public/avatar/' + inputFile.originalFilename;
 			var imgSize = inputFile.size;
 			if (imgSize > 2 * 1024 * 1024) {
 				retDesc = '图片的尺寸过大！';
@@ -63,8 +63,8 @@ exports.baseinfo = function(req, res, next) {
 				});
 			}
 			//重命名为真实文件名
-			var imgPath = './../public/avatar/' + uName + 'headImg.jpg',
-				imgSrc = '/../avatar/' + uName + 'headImg.jpg';
+			var imgPath = './public/avatar/' + uName + 'headImg.jpg',
+				imgSrc = '/avatar/' + uName + 'headImg.jpg';
 			fs.rename(uploadedPath, imgPath, function(err) {
 				if (err) {
 					retDesc = '图片重名了出现问题，请稍后再试！';
