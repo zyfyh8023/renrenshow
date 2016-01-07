@@ -117,28 +117,33 @@ app.get('/introduction', introduction.page);
 app.post('/introduction', introduction.doPage);
 //个人中心——网页简历
 app.get('/resume', resume.page);
-app.post('/resume/desc', resume.desc); //核心技能
-app.post('/resume/paper', resume.paper); //论文专利
-app.post('/resume/undergo', resume.undergo);
-app.post('/resume/works', resume.works);
-app.post('/resume/projects', resume.projects);
-app.post('/resume/certificate', resume.certificate);
+app.post('/resume/allinfo', resume.allinfo);
+app.post('/resume/desc/add', resume.desc1); //核心技能-add
+app.post('/resume/desc/upd', resume.desc3); //核心技能-update
+app.post('/resume/desc/del', resume.desc2); //核心技能-del
+app.post('/resume/paper/add', resume.paper1); //论文专利-add
+app.post('/resume/paper/del', resume.paper2); //论文专利-del
+app.post('/resume/paper/upd', resume.paper3); //论文专利-update
+app.post('/resume/undergo/add', resume.undergo1); //add
+app.post('/resume/undergo/del', resume.undergo2); //del
+app.post('/resume/undergo/upd', resume.undergo3); //update
+app.post('/resume/works/add', resume.works1); //add
+app.post('/resume/works/del', resume.works2); //del
+app.post('/resume/projects/add', resume.projects1); //add
+app.post('/resume/projects/del', resume.projects2); //del
+app.post('/resume/projects/upd', resume.projects3); //update
+app.post('/resume/certificate/add', resume.certificate1); //add
+app.post('/resume/certificate/del', resume.certificate2); //del
 
 app.post('/resumeInit', resume.resumeInit);
 app.post('/resume/baseinfo', resume.baseinfo); //基本信息
 app.post('/resume/contactinfo', resume.contactinfo); //联系方式
-app.post('/resume/repractice/add', resume.repractice1); //实习经历-add
-app.post('/resume/repractice/change', resume.repractice2); //实习经历-change
-app.post('/resume/repractice/dele', resume.repractice3); //实习经历-dele
-app.post('/resume/repractice/changeType', resume.repractice4); //实习经历-changeType
 app.post('/resume/education/add', resume.education1); //教育经历-add
-app.post('/resume/education/change', resume.education2); //教育经历-change
-app.post('/resume/education/dele', resume.education3); //教育经历-dele
-app.post('/resume/education/changeType', resume.education4); //教育经历-changeType
+app.post('/resume/education/del', resume.education2); //教育经历-del
 app.post('/resume/practice/add', resume.practice1); //工作经历-add
-app.post('/resume/practice/change', resume.practice2); //工作经历-change
-app.post('/resume/practice/dele', resume.practice3); //工作经历-dele
-app.post('/resume/practice/changeType', resume.practice4); //工作经历-changeType
+app.post('/resume/practice/del', resume.practice2); //工作经历-del
+app.post('/resume/repractice/add', resume.repractice1); //re工作经历-add
+app.post('/resume/repractice/del', resume.repractice2); //re工作经历-change
 //纸质简历
 app.get('/pageResume', pageResume.page);
 app.post('/pageResume', pageResume.doPage);

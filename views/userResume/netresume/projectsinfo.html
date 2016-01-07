@@ -6,9 +6,9 @@
 		<div style="font-size:30px;text-align:center;">项目经历</div>
 	</div>
 </div>
-<div class="am-g am-u-lg-10 am-u-md-12  am-u-sm-centered">
 
-	<% for(var i=1,len=14; i<=len; i++) { %>
+<div class="am-g am-u-lg-10 am-u-md-12  am-u-sm-centered">
+	<% for(var i=1,len=rs.projects8.length; i<=len; i++) { %>
 		<% if (i%3==1) { %>
 			<div data-am-widget="tabs" class="am-tabs am-tabs-d2">
 				<ul class="am-tabs-nav am-cf">
@@ -28,64 +28,68 @@
 				</ul>
 				<div class="am-tabs-bd">
 					<div data-tab-panel-<%= i %> class="am-tab-panel am-active">
-						<h3>项目题目：第三发生华盛顿</h3>
+						<h3>项目题目：<%= rs.projects8[i-1].pName %></h3>
 						<p>
-							<font style="font-weight:bold;">时间：</font>2015-09-21
+							<font style="font-weight:bold;">时间：</font>
+							<%= rs.projects8[i-1].pTime %>
 							<font style="font-weight:bold;padding-left:5rem;">部门：</font>前端开发工程师
 							<font style="font-weight:bold;padding-left:5rem;">职位：</font>电子商务部
 						</p>
 						<p>
 							<font style="font-weight:bold">简明介绍：</font><br>
-							多少房间的就多少房间的就是解放大就是就是地方可就是大家发生地方会及时到福建省会计师对回复及时答复和加快第三方地方鬼地方个地方官德国法国豆腐干豆腐官方大哥大法官是解放大就是就是地方可就是大家发生地方会及时到福建省会计师对回复及时答复和加快第三方地方鬼地方个地方官德国法国豆腐干豆腐官方大哥大法官
+							<%= rs.projects8[i-1].addt %>
 						</p>
 					</div>
 		<% }else if(i%3==0){ %>
 				<div data-tab-panel-<%= i %> class="am-tab-panel">
-					<h3>项目题目：第三发生华盛顿</h3>
+					<h3>项目题目：<%= rs.projects8[i-1].pName %></h3>
 					<p>
-						<font style="font-weight:bold;">时间：</font>2015-09-21
+						<font style="font-weight:bold;">时间：</font>
+						<%= rs.projects8[i-1].pTime %>
 						<font style="font-weight:bold;padding-left:5rem;">部门：</font>前端开发工程师
 						<font style="font-weight:bold;padding-left:5rem;">职位：</font>电子商务部
 					</p>
 					<p>
 						<font style="font-weight:bold">简明介绍：</font><br>
-						多少房间的就多少房间的就是解放大就是就是地方可就是大家发生地方会及时到福建省会计师对回复及时答复和加快第三方地方鬼地方个地方官德国法国豆腐干豆腐官方大哥大法官是解放大就是就是地方可就是大家发生地方会及时到福建省会计师对回复及时答复和加快第三方地方鬼地方个地方官德国法国豆腐干豆腐官方大哥大法官
+						<%= rs.projects8[i-1].addt %>
 					</p>
 				</div>
 			</div>
 			</div>
 		<% }else if(i==len){ %>
 				<div data-tab-panel-<%= i %> class="am-tab-panel">
-					<h3>项目题目：第三发生华盛顿</h3>
+					<h3>项目题目：<%= rs.projects8[i-1].pName %></h3>
 					<p>
-						<font style="font-weight:bold;">时间：</font>2015-09-21
+						<font style="font-weight:bold;">时间：</font>
+						<%= rs.projects8[i-1].pTime %>
 						<font style="font-weight:bold;padding-left:5rem;">部门：</font>前端开发工程师
 						<font style="font-weight:bold;padding-left:5rem;">职位：</font>电子商务部
 					</p>
 					<p>
 						<font style="font-weight:bold">简明介绍：</font><br>
-						多少房间的就多少房间的就是解放大就是就是地方可就是大家发生地方会及时到福建省会计师对回复及时答复和加快第三方地方鬼地方个地方官德国法国豆腐干豆腐官方大哥大法官是解放大就是就是地方可就是大家发生地方会及时到福建省会计师对回复及时答复和加快第三方地方鬼地方个地方官德国法国豆腐干豆腐官方大哥大法官
+						<%= rs.projects8[i-1].addt %>
 					</p>
 				</div>
 			</div>
 			</div>
 		<% }else{ %>
 			<div data-tab-panel-<%= i %> class="am-tab-panel">
-				<h3>项目题目：第三发生华盛顿</h3>
+				<h3>项目题目：<%= rs.projects8[i-1].pName %></h3>
 				<p>
-					<font style="font-weight:bold;">时间：</font>2015-09-21
+					<font style="font-weight:bold;">时间：</font>
+					<%= rs.projects8[i-1].pTime %>
 					<font style="font-weight:bold;padding-left:5rem;">部门：</font>前端开发工程师
 					<font style="font-weight:bold;padding-left:5rem;">职位：</font>电子商务部
 				</p>
 				<p>
 					<font style="font-weight:bold">简明介绍：</font><br>
-					多少房间的就多少房间的就是解放大就是就是地方可就是大家发生地方会及时到福建省会计师对回复及时答复和加快第三方地方鬼地方个地方官德国法国豆腐干豆腐官方大哥大法官是解放大就是就是地方可就是大家发生地方会及时到福建省会计师对回复及时答复和加快第三方地方鬼地方个地方官德国法国豆腐干豆腐官方大哥大法官
+					<%= rs.projects8[i-1].addt %>
 				</p>
 			</div>
 		<% } %>
 	<% } %>
-
 </div>
+
 <div class="am-popup" id="my-projects">
 	<div class="am-popup-inner">
 		<div class="am-popup-hd">
@@ -94,28 +98,86 @@
 		</div>
 		<div class="am-popup-bd">
 			<br>
-			<form class="am-form am-form-horizontal" method="post" data-am-validator>
-				<div class="am-form-group">
-					<label class="am-u-sm-3 am-form-label">项目名称：</label>
-					<div class="am-u-sm-9">
-						<input type="text" class="pname" required placeholder="请输入项目名称">
+			<form class="am-form am-form-horizontal" method="post" data-am-validator autocomplete ='off'>
+				<div class="J_operate-sel">
+					<div class="am-form-group">
+						<label class="am-u-sm-3 am-form-label">操作方式：</label>
+						<div class="am-u-sm-9">
+							<select required class="select1">
+								<option value=""  selected = "selected">请选择操作哪项？</option>
+								<option value="1">添加操作</option>
+								<option value="2">删除操作</option>
+								<option value="3">修改操作</option>
+							</select>
+						    <span class="am-form-caret"></span>
+						</div> 
 					</div>
-				</div>
-				<div class="am-form-group">
-					<label class="am-u-sm-3 am-form-label">日期：</label>
-					<div class="am-u-sm-9">
-						<input type="text" class="am-form-field ptime" placeholder="请选择日期" data-am-datepicker readonly />
+	            	<br>
+	    	        <div class="am-form-group J_change-con" style="display:none;">
+	    	            <label class="am-u-sm-3 am-form-label">修改选项：</label>
+	    	            <div class="am-u-sm-9">
+	    	                <select required class="select2">
+	    						<option value="" selected = "selected">请选择修改哪项？</option>
+	    						<% if(rs.projects8) { %>
+	    							<% if(rs.projects8.length>=0) { %>
+										<% for(var i=0; i<rs.projects8.length; i++) { %>
+											<option value="<%= i %>">项目：<%= rs.projects8[i].pName %></option>
+										<% } %>
+									<% } %>	
+	    						<% } %>
+	    	                </select>
+	    	                <span class="am-form-caret"></span>
+	    	            </div>  
+	    	        </div>
+	    	        <br>
+    	        </div>
+
+              	<div class="J_operate-del" style="display:none">
+	                <div class="am-form-group">
+	                    <label class="am-u-sm-3 am-form-label">删除选项：</label>
+	                    <div class="am-u-sm-9">
+	                        <select required>
+								<option value="" selected = "selected">请选择删除哪项？</option>
+								<% if(rs.projects8.length>=0) { %>
+									<% for(var i=0; i<rs.projects8.length; i++) { %>
+										<option value="<%= i %>">项目：<%= rs.projects8[i].pName %></option>
+									<% } %>
+								<% } %>	
+	                        </select>
+	                        <span class="am-form-caret"></span>
+	                    </div>  
+	                </div>
+	                <div class="am-form-group">
+	                    <div class="am-u-sm-9 am-u-sm-offset-3">
+	                        <button type="button" class="am-btn am-btn-primary my-education3-btn"> 确定删除 </button>
+	                    </div>
+	                </div>
+                </div>
+
+                <div class="J_operate-add" style="display:none">
+					<div class="am-form-group">
+						<label class="am-u-sm-3 am-form-label">项目名称：</label>
+						<div class="am-u-sm-9">
+							<input type="text" value="" class="pname" required placeholder="请输入项目名称">
+						</div>
 					</div>
-				</div>
-				<div class="am-form-group">
-					<label class="am-u-sm-3 am-form-label">补充说明：</label>
-					<div class="am-u-sm-9">
-						<textarea rows="3 " class="paddt"></textarea>
+					<div class="am-form-group">
+						<label class="am-u-sm-3 am-form-label">日期：</label>
+						<div class="am-u-sm-9">
+							<input type="text" value="" class="am-form-field ptime" placeholder="请选择日期" data-am-datepicker readonly />
+						</div>
 					</div>
-				</div>
-				<div class="am-form-group">
-					<div class="am-u-sm-9 am-u-sm-offset-3">
-						<button type="button" class="am-btn am-btn-primary my-projects-btn"> 提交信息 </button>
+					<div class="am-form-group">
+						<label class="am-u-sm-3 am-form-label">补充说明：</label>
+						<div class="am-u-sm-9">
+							<textarea rows="3 " value="" class="paddt"></textarea>
+						</div>
+					</div>
+					<input type="hidden"  class="J_hidden-ipt" value="">
+					<div class="am-form-group">
+						<div class="am-u-sm-9 am-u-sm-offset-3">
+							<button type="button" class="am-btn am-btn-primary my-projects-btn"> 提交信息 </button>
+						</div>
 					</div>
 				</div>
 			</form>

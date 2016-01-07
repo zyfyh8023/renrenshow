@@ -9,33 +9,33 @@
 	</div>
 </div>
 
-<div class="am-g am-u-lg-10 am-u-md-12  am-u-sm-centered">
+<div class="am-g am-u-lg-11 am-u-md-12  am-u-sm-centered">
     <div class="col-lg-3 am-u-lg-3">
         <div class="am-panel am-panel-default">
             <div class="am-panel-hd">手机电话</div>
             <div class="am-panel-bd">
-                手机：<%= rs.contact2.mPhone %><br>
-                电话：<%= rs.contact2.phoneNum %>
+                <font style="font-weight:bold;">手机：</font><%= rs.contact2.mPhone %><br>
+                <font style="font-weight:bold;">电话：</font><%= rs.contact2.phoneNum %>
             </div>
         </div>
 	</div>
 
-	<div class="col-lg-6 am-u-lg-6">
+	<div class="col-lg-5 am-u-lg-5">
         <div class="am-panel am-panel-default">
             <div class="am-panel-hd">通信地址</div>
             <div class="am-panel-bd">
-              户口地址：<%= rs.contact2.populationAddr %><br>
-              常住地址：<%= rs.contact2.permanentAddr %>
+              <font style="font-weight:bold;">户口地址：</font><%= rs.contact2.populationAddr %><br>
+              <font style="font-weight:bold;">常住地址：</font><%= rs.contact2.permanentAddr %>
             </div>
         </div>
     </div>
 
-    <div class="col-lg-3 am-u-lg-3">
+    <div class="col-lg-4 am-u-lg-4">
         <div class="am-panel am-panel-default">
             <div class="am-panel-hd">邮箱QQ</div>
             <div class="am-panel-bd">
-              邮箱：<%= rs.contact2.email %><br>
-              QQ：<%= rs.contact2.qqNum %>
+              <font style="font-weight:bold;">邮箱：</font><%= rs.contact2.email %><br>
+              <font style="font-weight:bold;">QQ：</font><%= rs.contact2.qqNum %>
             </div>
         </div>
     </div>
@@ -53,42 +53,42 @@
 				<div class="am-form-group">
 					<label class="am-u-sm-3 am-form-label">手机号码：</label>
 					<div class="am-u-sm-9">
-					  <input type="number" class="mphone" placeholder="请输入您的手机号码" required>
+					  <input type="number" value="<%= rs.contact2.mPhone %>" class="mphone" placeholder="请输入您的手机号码" required>
 					</div>
 				</div>
 
 				<div class="am-form-group">
 					<label class="am-u-sm-3 am-form-label">电话号码：</label>
 					<div class="am-u-sm-9">
-					  <input type="text" class="phone" placeholder="请输入您的电话号码">
+					  <input type="text" value="<%= rs.contact2.phoneNum %>" class="phone" placeholder="请输入您的电话号码">
 					</div>
 				</div>
 
 				<div class="am-form-group">
 					<label class="am-u-sm-3 am-form-label">通信地址：</label>
 					<div class="am-u-sm-9">
-					  <input type="text" class="address" required placeholder="请输入您的通信地址"  >
+					  <input type="text" class="address" value="<%= rs.contact2.permanentAddr %>" required placeholder="请输入您的通信地址"  >
 					</div>
 				</div>
 
 				<div class="am-form-group">
 					<label class="am-u-sm-3 am-form-label">户口地址：</label>
 					<div class="am-u-sm-9">
-					  <input type="text" class="identity" placeholder="请输入您的户口地址">
+					  <input type="text" value="<%= rs.contact2.populationAddr %>" class="identity" placeholder="请输入您的户口地址">
 					</div>
 				</div>
 
 				<div class="am-form-group">
 					<label class="am-u-sm-3 am-form-label">邮箱：</label>
 					<div class="am-u-sm-9">
-					  <input type="email" class="email" placeholder="请输入您的邮箱" required>
+					  <input type="email" value="<%= rs.contact2.email %>" class="email" placeholder="请输入您的邮箱" required>
 					</div>
 				</div>
 
 				<div class="am-form-group">
 					<label class="am-u-sm-3 am-form-label">QQ账号：</label>
 					<div class="am-u-sm-9">
-					  <input type="number" class="qqnum" placeholder="请输入您的QQ账号">
+					  <input type="number" value="<%= rs.contact2.qqNum %>" class="qqnum" placeholder="请输入您的QQ账号">
 					</div>
 				</div>
 

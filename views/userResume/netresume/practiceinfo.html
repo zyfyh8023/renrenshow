@@ -1,11 +1,13 @@
 <br><br><br><br><br><br>
 
 <div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
-	<div class="am-alert am-alert-secondary">
+	<div class="am-alert am-alert-secondary" data-am-alert>
 		<button type="button" class="am-close" data-am-modal="{target: '#my-undergo'}"><i class="am-icon-pencil"></i></button>
 		<div style="font-size:30px;text-align:center;">实践经历</div>
 	</div>
 </div>
+
+
 <div class="am-g am-u-lg-10 am-u-md-12  am-u-sm-centered">
 	<div data-am-widget="tabs" class="am-tabs am-tabs-d2">
 		<ul class="am-tabs-nav am-cf">
@@ -13,7 +15,6 @@
 			<li class=""><a href="[data-tab-panel-1]">社会实践</a></li>
 		</ul>
 		<div class="am-tabs-bd">
-
 			<div data-tab-panel-0 class="am-tab-panel am-active">
 				<section data-am-widget="accordion" class="am-accordion am-accordion-basic" data-am-accordion='{  }'>
 					<% if(rs. trys9.length>=0) { %>
@@ -33,8 +34,8 @@
 										<dd class="am-accordion-bd am-collapse">
 								<% } %>
 										<div class="am-accordion-content">
-											<font style="color:#666;font-weight:bold">发表时间：<%=rs. trys9[i].tType %></font>
-											<br><font style="color:#666;font-weight:bold">简要介绍：</font><br>
+											<font style="color:#666;font-weight:bold">发表时间：<%=rs. trys9[i].tType %></font><br>
+											<font style="color:#666;font-weight:bold">简要介绍：</font><br>
 											<%=rs. trys9[i].addt %>
 										</div>
 									</dd>
@@ -77,6 +78,7 @@
 		</div>
 	</div>
 </div>
+
 <div class="am-popup" id="my-undergo">
 	<div class="am-popup-inner">
 		<div class="am-popup-hd">
@@ -85,39 +87,103 @@
 		</div>
 		<div class="am-popup-bd">
 			<br>
-			<form class="am-form am-form-horizontal" method="post" data-am-validator>
-				<div class="am-form-group">
-					<label class="am-u-sm-3 am-form-label">活动名称：</label>
-					<div class="am-u-sm-9">
-						<input type="text" class="undergoname" required placeholder="请输入名称">
+			<form class="am-form am-form-horizontal" method="post" data-am-validator autocomplete ='off'>
+				<div class="J_operate-sel">
+					<div class="am-form-group">
+						<label class="am-u-sm-3 am-form-label">操作方式：</label>
+						<div class="am-u-sm-9">
+							<select required class="select1">
+								<option value=""  selected = "selected">请选择操作哪项？</option>
+								<option value="1">添加操作</option>
+								<option value="2">删除操作</option>
+								<option value="3">修改操作</option>
+							</select>
+						    <span class="am-form-caret"></span>
+						</div> 
 					</div>
-				</div>
-				<div class="am-form-group">
-					<label class="am-u-sm-3 am-form-label">类型：</label>
-					<div class="am-u-sm-9">
-						<select class="undergotype" name="undergotype" required>
-							<option value="">请选择一项</option>
-							<option value="1">校园经历</option>
-							<option value="2">社会经历</option>
-						</select>
-						<span class="am-form-caret"></span>
+	            	<br>
+	    	        <div class="am-form-group J_change-con" style="display:none;">
+	    	            <label class="am-u-sm-3 am-form-label">修改选项：</label>
+	    	            <div class="am-u-sm-9">
+	    	                <select required class="select2">
+	    						<option value="" selected = "selected">请选择修改哪项？</option>
+	    						<% if(rs.PatentPaper10) { %>
+	    							<% for(var i=0; i<rs.trys9.length; i++) {%>
+	    								<% if(rs.trys9[i].tTime=='1') { %>
+	    									<option value="<%= i %>">校园活动：<%= rs.trys9[i].tName %></option>
+	    								<% }else{ %>
+	    									<option value="<%= i %>">社会活动：<%= rs.trys9[i].tName %></option>
+	    								<% } %>
+	    							<% } %>
+	    						<% } %>
+	    	                </select>
+	    	                <span class="am-form-caret"></span>
+	    	            </div>  
+	    	        </div>
+	    	        <br>
+    	        </div>
+
+              	<div class="J_operate-del" style="display:none">
+	                <div class="am-form-group">
+	                    <label class="am-u-sm-3 am-form-label">删除选项：</label>
+	                    <div class="am-u-sm-9">
+	                        <select required>
+								<option value="" selected = "selected">请选择删除哪项？</option>
+								<% if(rs.trys9.length>=0) { %>
+									<% for(var i=0; i<rs.trys9.length; i++) { %>
+										<% if(rs.trys9[i].tTime=='1') { %>
+											<option value="<%= i %>">校园活动：<%= rs.trys9[i].tName %></option>
+										<% }else{ %>
+											<option value="<%= i %>">社会活动：<%= rs.trys9[i].tName %></option>
+										<% } %>
+									<% } %>
+								<% } %>	
+	                        </select>
+	                        <span class="am-form-caret"></span>
+	                    </div>  
+	                </div>
+	                <div class="am-form-group">
+	                    <div class="am-u-sm-9 am-u-sm-offset-3">
+	                        <button type="button" class="am-btn am-btn-primary my-education3-btn"> 确定删除 </button>
+	                    </div>
+	                </div>
+                </div>
+
+                <div class="J_operate-add" style="display:none">
+	                <div class="am-form-group">
+	                	<label class="am-u-sm-3 am-form-label">类型：</label>
+	                	<div class="am-u-sm-9">
+	                		<select class="undergotype" name="undergotype" required>
+	                			<option value="" selected = "selected">请选择一项</option>
+	                			<option value="1">校园实践</option>
+	                			<option value="2">社会实践</option>
+	                		</select>
+	                		<span class="am-form-caret"></span>
+	                	</div>
+	                </div>
+					<div class="am-form-group">
+						<label class="am-u-sm-3 am-form-label">活动名称：</label>
+						<div class="am-u-sm-9">
+							<input type="text" value="" class="undergoname" required placeholder="请输入名称">
+						</div>
 					</div>
-				</div>
-				<div class="am-form-group">
-					<label class="am-u-sm-3 am-form-label">日期：</label>
-					<div class="am-u-sm-9">
-						<input type="text" class="am-form-field undergotime" placeholder="请输入日期" data-am-datepicker readonly />
+					<div class="am-form-group">
+						<label class="am-u-sm-3 am-form-label">日期：</label>
+						<div class="am-u-sm-9">
+							<input type="text" value="" class="am-form-field undergotime" placeholder="请输入日期" data-am-datepicker readonly />
+						</div>
 					</div>
-				</div>
-				<div class="am-form-group">
-					<label class="am-u-sm-3 am-form-label">补充说明：</label>
-					<div class="am-u-sm-9">
-						<textarea rows="3 " class="undergoinstr"></textarea>
+					<div class="am-form-group">
+						<label class="am-u-sm-3 am-form-label">补充说明：</label>
+						<div class="am-u-sm-9">
+							<textarea rows="3 " value="" class="undergoinstr"></textarea>
+						</div>
 					</div>
-				</div>
-				<div class="am-form-group">
-					<div class="am-u-sm-9 am-u-sm-offset-3">
-						<button type="button" class="am-btn am-btn-primary my-undergo-btn"> 提交信息 </button>
+					<input type="hidden"  class="J_hidden-ipt" value="">
+					<div class="am-form-group">
+						<div class="am-u-sm-9 am-u-sm-offset-3">
+							<button type="button" class="am-btn am-btn-primary my-undergo-btn"> 提交信息 </button>
+						</div>
 					</div>
 				</div>
 			</form>

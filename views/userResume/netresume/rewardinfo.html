@@ -1,9 +1,5 @@
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+<br><br><br><br><br><br>
+
 <div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
 	<div class="am-alert am-alert-secondary">
 		<button type="button" class="am-close" data-am-modal="{target: '#my-certificate'}"><i class="am-icon-pencil"></i></button>
@@ -13,42 +9,17 @@
 <div class="am-g am-u-lg-10 am-u-md-12  am-u-sm-centered">
 	<ul data-am-widget="gallery" class="am-gallery am-avg-sm-2
     am-avg-md-3 am-avg-lg-4 am-gallery-imgbordered" data-am-gallery="{  }">
-		<li>
-			<div class="am-gallery-item">
-				<a href="http://s.amazeui.org/media/i/demos/bing-1.jpg" class="">
-					<img src="http://s.amazeui.org/media/i/demos/bing-1.jpg" alt="" />
-					<h3 class="am-gallery-title">江苏大学一等奖学金</h3>
-					<div class="am-gallery-desc">2375-09-26</div>
-				</a>
-			</div>
-		</li>
-		<li>
-			<div class="am-gallery-item">
-				<a href="http://s.amazeui.org/media/i/demos/bing-2.jpg" class="">
-					<img src="http://s.amazeui.org/media/i/demos/bing-2.jpg" alt="" />
-					<h3 class="am-gallery-title">第一节电子技术设计大赛二等奖</h3>
-					<div class="am-gallery-desc">2375-09-26</div>
-				</a>
-			</div>
-		</li>
-		<li>
-			<div class="am-gallery-item">
-				<a href="http://s.amazeui.org/media/i/demos/bing-3.jpg" class="">
-					<img src="http://s.amazeui.org/media/i/demos/bing-3.jpg" alt="" />
-					<h3 class="am-gallery-title">全国大学生英语六级证书</h3>
-					<div class="am-gallery-desc">2375-09-26</div>
-				</a>
-			</div>
-		</li>
-		<li>
-			<div class="am-gallery-item">
-				<a href="http://s.amazeui.org/media/i/demos/bing-4.jpg" class="">
-					<img src="http://s.amazeui.org/media/i/demos/bing-4.jpg" alt="" />
-					<h3 class="am-gallery-title">全国计算机等级考试三级</h3>
-					<div class="am-gallery-desc">2375-09-26</div>
-				</a>
-			</div>
-		</li>
+    	<% for(var k=0,len=rs.Certificate6.length;k<len;k++) {%>
+			<li>
+				<div class="am-gallery-item">
+					<a href="<%=rs.Certificate6[k].cimages %>" class="">
+						<img src="<%=rs.Certificate6[k].cimages %>" alt="" />
+						<h3 class="am-gallery-title"><%=rs.Certificate6[k].certificatename %></h3>
+						<div class="am-gallery-desc"><%=rs.Certificate6[k].gettime %></div>
+					</a>
+				</div>
+			</li>
+    	<% } %>
 	</ul>
 </div>
 <div class="am-popup" id="my-certificate">
@@ -59,52 +30,92 @@
 		</div>
 		<div class="am-popup-bd">
 			<br>
-			<form class="am-form am-form-horizontal" id="specialInstruc3" enctype='multipart/form-data' action="/resume/certificate" method="post" data-am-validator>
-				<div class="am-form-group">
-					<label class="am-u-sm-3 am-form-label">证书名称：</label>
+			<form class="am-form am-form-horizontal" method="post" data-am-validator>
+				<div class="am-form-group J_operate-sel">
+					<label class="am-u-sm-3 am-form-label">操作方式：</label>
 					<div class="am-u-sm-9">
-						<input type="text" name="certificatename" required placeholder="请输入证书名称">
-					</div>
-				</div>
-				<div class="am-form-group">
-					<label class="am-u-sm-3 am-form-label">获得日期：</label>
-					<div class="am-u-sm-9">
-						<input type="text" name="gettime" class="am-form-field" placeholder="请输入获得日期" data-am-datepicker readonly/>
-					</div>
-				</div>
-				<div class="am-form-group">
-					<label class="am-u-sm-3 am-form-label">证书等级：</label>
-					<div class="am-u-sm-9">
-						<select name="cgrade" required>
-							<option value="">请选择一项</option>
-							<option value="1">班级</option>
-							<option value="2">院级</option>
-							<option value="3">校级</option>
-							<option value="4">市级</option>
-							<option value="5">省级</option>
-							<option value="6">国级</option>
-							<option value="7">国际</option>
+						<select required>
+							<option value=""  selected = "selected">请选择操作哪项？</option>
+							<option value="1">添加操作</option>
+							<option value="2">删除操作</option>
 						</select>
-						<span class="am-form-caret"></span>
-					</div>
+					    <span class="am-form-caret"></span>
+					</div> 
 				</div>
-				<div class="am-form-group">
-					<label class="am-u-sm-3 am-form-label">证书介绍：</label>
-					<div class="am-u-sm-9">
-						<textarea required name="certificateinstr" rows="3"></textarea>
+            	<br><br>
+
+              	<div class="J_operate-del" style="display:none">
+	                <div class="am-form-group">
+	                    <label class="am-u-sm-3 am-form-label">删除选项：</label>
+	                    <div class="am-u-sm-9">
+	                        <select required>
+								<option value="">请选择删除哪项？</option>
+								<% if(rs. Certificate6.length>=0) { %>
+									<% for(var i=0; i<rs. Certificate6.length; i++) { %>
+										<option value="<%= i %>">荣誉：<%= rs. Certificate6[i].certificatename %></option>
+									<% } %>
+								<% } %>	
+	                        </select>
+	                        <span class="am-form-caret"></span>
+	                    </div>  
+	                </div>
+	                <div class="am-form-group">
+	                    <div class="am-u-sm-9 am-u-sm-offset-3">
+	                        <button type="button" class="am-btn am-btn-primary my-education3-btn"> 确定删除 </button>
+	                    </div>
+	                </div>
+                </div>
+            </form>
+
+			<form class="am-form am-form-horizontal" id="specialInstruc3" enctype='multipart/form-data' action="/resume/certificate/add" method="post" data-am-validator>
+				<div class="J_operate-add" style="display:none">
+					<div class="am-form-group">
+						<label class="am-u-sm-3 am-form-label">证书名称：</label>
+						<div class="am-u-sm-9">
+							<input type="text" name="certificatename" required placeholder="请输入证书名称">
+						</div>
 					</div>
-				</div>
-				<div class="am-form-group am-form-file">
-					<label class="am-u-sm-3 am-form-label">证书图片：</label>
-					<div class="am-u-sm-9">
-						<button type="button" class="am-btn am-btn-default am-btn-sm">
-							<i class="am-icon-cloud-upload"></i> 上传图片</button>
-						<input type="file" id="inputFile3" name="inputFile3">
+					<div class="am-form-group">
+						<label class="am-u-sm-3 am-form-label">获得日期：</label>
+						<div class="am-u-sm-9">
+							<input type="text" name="gettime" class="am-form-field" placeholder="请输入获得日期" data-am-datepicker readonly/>
+						</div>
 					</div>
-				</div>
-				<div class="am-form-group">
-					<div class="am-u-sm-9 am-u-sm-offset-3">
-						<button id="upload3" class="am-btn am-btn-warning my-certificate-btn"> 提交信息 </button>
+					<div class="am-form-group">
+						<label class="am-u-sm-3 am-form-label">证书等级：</label>
+						<div class="am-u-sm-9">
+							<select name="cgrade" required>
+								<option value="">请选择一项</option>
+								<option value="1">班级</option>
+								<option value="2">院级</option>
+								<option value="3">校级</option>
+								<option value="4">市级</option>
+								<option value="5">省级</option>
+								<option value="6">国级</option>
+								<option value="7">国际</option>
+							</select>
+							<span class="am-form-caret"></span>
+						</div>
+					</div>
+					<div class="am-form-group">
+						<label class="am-u-sm-3 am-form-label">证书介绍：</label>
+						<div class="am-u-sm-9">
+							<textarea required name="certificateinstr" rows="3"></textarea>
+						</div>
+					</div>
+					<div class="am-form-group am-form-file">
+						<label class="am-u-sm-3 am-form-label">证书图片：</label>
+						<div class="am-u-sm-9">
+							<button type="button" class="am-btn am-btn-default am-btn-sm">
+								<i class="am-icon-cloud-upload"></i> 上传图片</button>
+							<input type="file" id="inputFile3" name="inputFile3">
+							<div class="imgtip"></div>
+						</div>
+					</div>
+					<div class="am-form-group">
+						<div class="am-u-sm-9 am-u-sm-offset-3">
+							<button id="upload3" class="am-btn am-btn-primary my-certificate-btn"> 提交信息 </button>
+						</div>
 					</div>
 				</div>
 			</form>

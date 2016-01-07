@@ -9,71 +9,28 @@
 </div>
 
 <div class="am-g am-u-lg-10 am-u-md-12  am-u-sm-centered">
-    <div class="col-lg-4 am-u-lg-4">
-	    <div data-am-widget="list_news" class="am-list-news am-list-news-default" >
-	        <div class="am-list-news-bd">
-	            <ul class="am-list">
-	                <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-	                   <div class="am-u-sm-4 am-list-thumb">
-		                    <a href="http://www.douban.com/online/11614662/" class="">
-		                       	<img class="am-img-thumbnail am-circle" src="http://img5.douban.com/lpic/o636459.jpg" alt=""/>
-		                    </a>
-	                   </div>
-
-	                   <div class=" am-u-sm-8 am-list-main">
-	                        <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11614662/" class="">宿羊山高级中学</a></h3>
-	                       	<div class="am-list-item-text">囧人囧事囧照，人在囧途，越囧越萌。标记《带你出发，陪我回家》http://book.douban.com/subject/25711202/为“想读”“在读”或“读过”，有机会获得此书本活动进行3个月，每月送出三本书。会有不定期bonus！</div>
-	                   </div>
-	                </li>
-	            </ul>
-	        </div>
+	<% for(var k=0,len=rs.schools3.length; k<len; k++) {%>
+	    <div class="col-lg-4 am-u-lg-4 am-u-end">
+		    <div data-am-widget="list_news" class="am-list-news am-list-news-default" >
+		        <div class="am-list-news-bd">
+		            <ul class="am-list">
+		                <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+		                   <div class="am-u-sm-4 am-list-thumb">
+			                    <a href="http://www.douban.com/online/11614662/" class="">
+			                       	<img class="am-img-thumbnail am-circle" src="http://img5.douban.com/lpic/o636459.jpg" alt=""/>
+			                    </a>
+		                   </div>
+		                   <div class=" am-u-sm-8 am-list-main">
+		                        <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11614662/" class=""><%= rs.schools3[k].school %></a></h3>
+		                       	<div class="am-list-item-text"><%= rs.schools3[k].majorinstr %></div>
+		                   </div>
+		                </li>
+		            </ul>
+		        </div>
+		    </div>
 	    </div>
-    </div>
-
-	<div class="col-lg-4 am-u-lg-4">
-		<div data-am-widget="list_news" class="am-list-news am-list-news-default" >
-			<div class="am-list-news-bd">
-				<ul class="am-list">
-					<li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-						<div class="am-u-sm-4 am-list-thumb">
-							<a href="http://www.douban.com/online/11614662/" class="">
-								<img class="am-img-thumbnail am-circle" src="http://img5.douban.com/lpic/o636459.jpg" alt=" "/>
-							</a>
-						</div>
-
-						<div class=" am-u-sm-8 am-list-main">
-							<h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11614662/" class="">江苏大学</a></h3>
-							<div class="am-list-item-text">囧人囧事囧照，人在囧途，越囧越萌。标记《带你出发，陪我回家》http://book.douban.com/subject/25711202/为“想读”“在读”或“读过”，有机会获得此书本活动进行3个月，每月送出三本书。会有不定期bonus！</div>
-						</div>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-lg-4 am-u-lg-4">
-		<div data-am-widget="list_news" class="am-list-news am-list-news-default" >
-			<div class="am-list-news-bd">
-				<ul class="am-list">
-					<li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-						<div class="am-u-sm-4 am-list-thumb">
-							<a href="http://www.douban.com/online/11614662/" class="">
-								<img class="am-img-thumbnail am-circle" src="http://img5.douban.com/lpic/o636459.jpg" alt=""/>
-							</a>
-						</div>
-
-						<div class=" am-u-sm-8 am-list-main">
-							<h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11614662/" class="">东南大学</a></h3>
-							<div class="am-list-item-text">囧人囧事囧照，人在囧途，越囧越萌。标记《带你出发，陪我回家》http://book.douban.com/subject/257人囧途，越囧越萌。标记《带你出发，陪我回家》http://book.douban.com/subject/25711202/为“想读”“在读”或“读过”，会获得此书本活动进行3个月，每月送出三本书。会有不定期bonus！</div>
-						</div>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
+	<% } %>
 </div>
-
-
 
 <div class="am-popup" id="my-education">
 	<div class="am-popup-inner">
@@ -82,110 +39,57 @@
 			<span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
 		</div>
 
-       	<div class="am-popup-bd"><br>
+       	<div class="am-popup-bd">
+       		<br>
            	<form class="am-form am-form-horizontal" method="post" data-am-validator>
-				<div class="am-form-group">
-					<label class="am-u-sm-3 am-form-label">操作方式选择：</label>
+				<div class="am-form-group J_operate-sel">
+					<label class="am-u-sm-3 am-form-label">操作方式：</label>
 					<div class="am-u-sm-9">
-						<select class="educationtype" name="educationtype" required>
+						<select required>
 							<option value=""  selected = "selected">请选择操作哪项？</option>
 							<option value="1">添加操作</option>
-							<option value="2">修改操作</option>
-							<option value="3">删除操作</option>
+							<option value="2">删除操作</option>
 						</select>
 					    <span class="am-form-caret"></span>
 					</div> 
 				</div>
             	<br><br>
 
-              	<div class="delModule" style="display:none">
+              	<div class="J_operate-del" style="display:none">
 	                <div class="am-form-group">
 	                    <label class="am-u-sm-3 am-form-label">删除选项：</label>
 	                    <div class="am-u-sm-9">
-	                        <select class="educationtype3" name="educationtype3" required>
+	                        <select required>
 								<option value="">请选择删除哪项？</option>
-								<option value="1">高中阶段</option>
-								<option value="2">大专阶段</option>
-								<option value="3">本科阶段</option>
-								<option value="4">硕士阶段</option>
-								<option value="5">博士阶段</option>
+								<% if(rs.schools3.length>=0) { %>
+									<% for(var i=0; i<rs.schools3.length; i++) { %>
+										<option value="<%= i %>"><%= rs.schools3[i].school %></option>
+									<% } %>
+								<% } %>	
 	                        </select>
 	                        <span class="am-form-caret"></span>
 	                    </div>  
 	                </div>
 	                <div class="am-form-group">
 	                    <div class="am-u-sm-9 am-u-sm-offset-3">
-	                        <button type="button" class="am-btn am-btn-warning my-education3-btn"> 确定删除 </button>
+	                        <button type="button" class="am-btn am-btn-primary my-education3-btn"> 确定删除 </button>
 	                    </div>
 	                </div>
                 </div>
+            </form>
 
-                <div class="changeModule" style="display:none">
-	                <div class="am-form-group">
-	                    <label class="am-u-sm-3 am-form-label">修改选项：</label>
-	                    <div class="am-u-sm-9">
-	                        <select class="educationtype21" name="educationtype21" required>
-								<option value="">请选择删除哪项？</option>
-								<option value="1">高中阶段</option>
-								<option value="2">大专阶段</option>
-								<option value="3">本科阶段</option>
-								<option value="4">硕士阶段</option>
-								<option value="5">博士阶段</option>
-	                        </select>
-	                        <span class="am-form-caret"></span>
-	                    </div>  
-	                </div>
-                 	<br>
-                 	<div class="educationPart" style="display:none">
-		                <div class="am-form-group">
-		                    <label class="am-u-sm-3 am-form-label">院校名称：</label>
-		                    <div class="am-u-sm-9">
-		                     	<input type="text" class="school2" required placeholder="请输入您的院校">
-		                   </div>
-		                </div>
-						<div class="am-form-group">
-							<label class="am-u-sm-3 am-form-label">开始日期：</label>
-							<div class="am-u-sm-9">
-								<input type="text" class="am-form-field sdatetime2" placeholder="请输入开始日期" data-am-datepicker readonly/>
-							</div>
-						</div>
-						<div class="am-form-group">
-							<label class="am-u-sm-3 am-form-label">结束日期：</label>
-							<div class="am-u-sm-9">
-								<input type="text" class="am-form-field edatetime2" placeholder="请输入结束日期" data-am-datepicker readonly/>
-							</div>
-						</div>
-						<div class="am-form-group">
-							<label class="am-u-sm-3 am-form-label">所学专业：</label>
-							<div class="am-u-sm-9">
-								<input type="text" required class="am-form-field major2" placeholder="请输入您的专业" />
-							</div>
-						</div>
-						<div class="am-form-group">
-							<label for="majorinstr2" class="am-u-sm-3 am-form-label">专业介绍：</label>
-							<div class="am-u-sm-9">
-								<textarea rows="3" placeholder="所在学校+主修课程+研究方向+专业简介等" required class="majorinstr2" ></textarea>
-							</div>
-						</div>
-						<div class="am-form-group">
-							<div class="am-u-sm-9 am-u-sm-offset-3">
-								<button type="button" class="am-btn am-btn-warning my-education2-btn"> 提交修改 </button>
-							</div>
-						</div>
-					</div>
-				</div> 
-
-                <div class="addModule" style="display:none">
+            <form class="am-form am-form-horizontal" id="specialInstruc3" enctype='multipart/form-data' action="/resume/education/add" method="post" data-am-validator>
+            	<div class="J_operate-add" style="display:none">
                  	<div class="am-form-group">
                    		<label class="am-u-sm-3 am-form-label">院校名称：</label>
 	                   	<div class="am-u-sm-9">
-                     		<input type="text" class="school1" required placeholder="请输入您的院校">
+                     		<input type="text" name="school" class="school" required placeholder="请输入您的院校">
 	                   	</div>
                  	</div>
                  	<div class="am-form-group">
 	                   	<label class="am-u-sm-3 am-form-label">学历：</label>
 	                   	<div class="am-u-sm-9">
-							<select class="educationtype1" name="educationtype1" required>
+							<select class="educationtype" name="educationtype" required>
 								<option value="">请选择一项</option>
 								<option value="1">高中</option>
 								<option value="2">大专</option>
@@ -199,32 +103,41 @@
                  	<div class="am-form-group">
                    		<label class="am-u-sm-3 am-form-label">开始日期：</label>
 	                   	<div class="am-u-sm-9">
-	                       	<input type="text" class="am-form-field sdatetime1" placeholder="请输入开始日期" data-am-datepicker readonly/>
+	                       	<input type="text" name="sdatetime" class="am-form-field sdatetime" placeholder="请输入开始日期" data-am-datepicker readonly/>
 	                   	</div>
                  	</div>
                  	<div class="am-form-group">
                    		<label class="am-u-sm-3 am-form-label">结束日期：</label>
 	                   	<div class="am-u-sm-9">
-	                     	<input type="text" class="am-form-field edatetime1" placeholder="请输入结束日期" data-am-datepicker readonly />
+	                     	<input type="text" name="edatetime" class="am-form-field edatetime" placeholder="请输入结束日期" data-am-datepicker readonly />
 	                   	</div>
                  	</div>
                  	<div class="am-form-group">
                    		<label class="am-u-sm-3 am-form-label">所学专业：</label>
 	                   	<div class="am-u-sm-9">
-	                       	<input type="text" required class="am-form-field major1" placeholder="请输入您的专业" />
+	                       	<input type="text" name="major" required class="am-form-field major" placeholder="请输入您的专业" />
 	                   	</div>
                  	</div>
              		<div class="am-form-group">
                    		<label class="am-u-sm-3 am-form-label">专业介绍：</label>
                    		<div class="am-u-sm-9">
-                       		<textarea rows="3" placeholder="所在学校+主修课程+研究方向+专业简介等" required class="majorinstr1" ></textarea>
+                       		<textarea rows="3" name="majorinstr" placeholder="所在学校+主修课程+研究方向+专业简介等" required class="majorinstr" ></textarea>
                    		</div>
+                 	</div>
+                 	<div class="am-form-group am-form-file">
+                 		<label class="am-u-sm-3 am-form-label">公司logo：</label>
+                 		<div class="am-u-sm-9">
+                 			<button type="button" class="am-btn am-btn-default am-btn-sm">
+                 				<i class="am-icon-cloud-upload"></i> 上传图片</button>
+                 			<input type="file" id="inputFile3" name="inputFile3">
+                 			<div class="imgtip"></div>
+                 		</div>
                  	</div>
                  	<div class="am-form-group">
-                   		<div class="am-u-sm-9 am-u-sm-offset-3">
-                       		<button type="button" class="am-btn am-btn-warning my-education1-btn"> 提交信息 </button>
-                   		</div>
-                 	</div>
+						<div class="am-u-sm-9 am-u-sm-offset-3">
+							<button id="upload3" class="am-btn am-btn-primary"> 提交信息 </button>
+						</div>
+					</div>
            		</div>  
             </form> 
        	</div>

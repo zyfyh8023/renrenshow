@@ -616,206 +616,557 @@ $(document).ready(function() {
 		});
 	});
 
-	//教育经历-添加
-	var $myEducation = $('#my-education');
-	$myEducation.delegate('.my-education1-btn', 'click', function() {
-		var school = $.trim($(".school1", $myEducation).val()),
-			educationtype = $.trim($(".educationtype1", $myEducation).val()),
-			sdatetime = $.trim($(".sdatetime1", $myEducation).val()),
-			edatetime = $.trim($(".edatetime1", $myEducation).val()),
-			major = $.trim($(".major1", $myEducation).val()),
-			majorinstr = $.trim($(".majorinstr1", $myEducation).val());
-		$.ajax({
-			type: 'post',
-			url: '/resume/education/add',
-			data: {
-				school: school,
-				educationtype: educationtype,
-				sdatetime: sdatetime,
-				edatetime: edatetime,
-				major: major,
-				majorinstr: majorinstr
-			},
-			dataType: 'json',
-			success: function(data) {
-				if (data.retCode == 200) {
-					location.reload();
-				} else {
-					warnOpnFn(data.retDesc);
-				}
-			},
-			error: function(err) {
-				alertOpnFn('err');
-			}
-		});
-	});
-	//教育经历-更新
-	$myEducation.delegate('.my-education2-btn', 'click', function() {
-		var educationtypeA = $.trim($(".educationtype21", $myEducation).val()),
-			school = $.trim($(".school2", $myEducation).val()),
-			sdatetime = $.trim($(".sdatetime2", $myEducation).val()),
-			edatetime = $.trim($(".edatetime2", $myEducation).val()),
-			major = $.trim($(".major2", $myEducation).val()),
-			majorinstr = $.trim($(".majorinstr2", $myEducation).val());
-		$.ajax({
-			type: 'post',
-			url: '/resume/education/change',
-			data: {
-				educationtypeA: educationtypeA,
-				school: school,
-				sdatetime: sdatetime,
-				edatetime: edatetime,
-				major: major,
-				majorinstr: majorinstr
-			},
-			dataType: 'json',
-			success: function(data) {
-				if (data.retCode == 200) {
-					location.reload();
-				} else {
-					warnOpnFn(data.retDesc);
-				}
-			},
-			error: function(err) {
-				alertOpnFn('err');
-			}
-		});
-	});
-	//教育经历-删除
-	$myEducation.delegate('.my-education3-btn', 'click', function() {
-		var educationtype = $.trim($(".educationtype", $myEducation).val());
-		$.ajax({
-			type: 'post',
-			url: '/resume/education/dele',
-			data: {
-				educationtype: educationtype
-			},
-			dataType: 'json',
-			success: function(data) {
-				if (data.retCode == 200) {
-					location.reload();
-				} else {
-					warnOpnFn(data.retDesc);
-				}
-			},
-			error: function(err) {
-				alertOpnFn('err');
-			}
-		});
-	});
-	//教育经历-操作类型事件
-	$myEducation.delegate('.educationtype21', 'change', function() {
-		var educationtype = $.trim($(".educationtype21", $myEducation).val());
-		$.ajax({
-			type: 'post',
-			url: '/resume/education/changeType',
-			data: {
-				educationtype: educationtype
-			},
-			dataType: 'json',
-			success: function(data) {
-				$('.educationPart', $myEducation).show();
-				$(".school2", $myEducation).val(data.school);
-				$(".sdatetime2", $myEducation).val(data.sdatetime);
-				$(".edatetime2", $myEducation).val(data.edatetime);
-				$(".major2", $myEducation).val(data.major);
-				$(".majorinstr2", $myEducation).val(data.majorinstr);
-			},
-			error: function(err) {
-				alertOpnFn('err');
-			}
-		});
-	});
-	$('.educationtype', $myEducation).change(function() {
-		if ($(this).children('option:selected').val() == 1) {
-			$('.delModule', $myEducation).hide();
-			$('.changeModule', $myEducation).hide();
-			$('.addModule', $myEducation).show();
+});
+//教育经历-添加
+var $myEducation = $('#my-education'),
+	$myEducationadd=$('.J_operate-add', $myEducation),
+	$myEducationdel=$('.J_operate-del', $myEducation);
+
+$myEducation.delegate('.J_operate-sel select', 'change', function(event) {
+	if ($(this).children('option:selected').val() == 1) {
+			$('.J_operate-del', $myEducation).hide();
+			$('.J_operate-add', $myEducation).show();
 		} else if ($(this).children('option:selected').val() == 2) {
-			$('.delModule', $myEducation).hide();
-			$('.changeModule', $myEducation).show();
-			$('.addModule', $myEducation).hide();
-		} else if ($(this).children('option:selected').val() == 3) {
-			$('.delModule', $myEducation).show();
-			$('.changeModule', $myEducation).hide();
-			$('.addModule', $myEducation).hide();
+			$('.J_operate-del', $myEducation).show();
+			$('.J_operate-add', $myEducation).hide();
 		} else {
-			$('.delModule', $myEducation).hide();
-			$('.changeModule', $myEducation).hide();
-			$('.addModule', $myEducation).hide();
+			$('.J_operate-del', $myEducation).hide();
+			$('.J_operate-add', $myEducation).hide();
+  	}
+});
+$myEducation.delegate('#inputFile3', 'change', function() {
+	$('.imgtip', $myEducation).html($(this).val());
+})
+
+$myEducation.delegate('#upload3', 'click', function(event) {
+	$('#specialInstruc3', $myEducation).ajaxForm({
+		url: $('#specialInstruc3', $myEducation).attr('action'),
+		type: 'POST',
+		success: function(res, status, xhr, $form) {
+			if (res.retCode != 200) {
+				warnOpnFn(res.retDesc);
+			} else {
+				location.reload();
+			}
+			$('#specialInstruc3', $myEducation).clearForm();
+		},
+		error: function(res, status, e) {
+			alertOpnFn('err');
+			$('#specialInstruc3', $myEducation).clearForm();
 		}
 	});
+});
 
-
-	//荣誉证书
-	$myCertificate = $('#my-certificate');
-	$myCertificate.delegate('#inputFile3', 'change', function() {
-		$('.imgtip', $myCertificate).html($(this).val());
-	})
-
-	$myCertificate.delegate('#upload3', 'click', function(event) {
-		$('#specialInstruc3', $myCertificate).ajaxForm({
-			url: $('#specialInstruc3', $myCertificate).attr('action'),
-			type: 'POST',
-			success: function(res, status, xhr, $form) {
-				if (res.retCode != 200) {
-					warnOpnFn(res.retDesc);
-				} else {
-					location.reload();
-				}
-				$('#specialInstruc3', $myCertificate).clearForm();
+$myEducation.delegate('.J_operate-del button', 'click', function(event) {
+	var delnum = $.trim($myEducationdel.find("select").children('option:selected').val());
+	if (delnum) {
+		$.ajax({
+			type: 'post',
+			url: '/resume/education/del',
+			data: {
+				delnum: delnum
 			},
-			error: function(res, status, e) {
+			dataType: 'json',
+			success: function(data) {
+				if (data.retCode == 200) {
+					location.reload();
+				} else {
+					warnOpnFn(data.retDesc);
+				}
+			},
+			error: function(err) {
 				alertOpnFn('err');
-				$('#specialInstruc3', $myCertificate).clearForm();
 			}
 		});
-	});
+	} else {
+		warnOpnFn('请填写完整!');
+	}
+});	
+//re工作
+var $myRepractice = $('#my-repractice'),
+	$myRepracticeadd=$('.J_operate-add', $myRepractice),
+	$myRepracticedel=$('.J_operate-del', $myRepractice);
 
-	//我的作品
-	$myWorks = $('#my-works');
-	$myWorks.delegate('#inputFile2', 'change', function() {
-		var imgStr = "",
-			fileObjs = $('#inputFile2', $myWorks).get(0);
-		for (var j = 0, len = fileObjs.files.length; j < len; j++) {
-			imgStr = imgStr + fileObjs.files[j].name + '<i style="margin-right:20px;"></i>';
+$myRepractice.delegate('.J_operate-sel select', 'change', function(event) {
+	if ($(this).children('option:selected').val() == 1) {
+			$('.J_operate-del', $myRepractice).hide();
+			$('.J_operate-add', $myRepractice).show();
+		} else if ($(this).children('option:selected').val() == 2) {
+			$('.J_operate-del', $myRepractice).show();
+			$('.J_operate-add', $myRepractice).hide();
+		} else {
+			$('.J_operate-del', $myRepractice).hide();
+			$('.J_operate-add', $myRepractice).hide();
+  	}
+});
+$myRepractice.delegate('#inputFile3', 'change', function() {
+	$('.imgtip', $myRepractice).html($(this).val());
+})
+
+$myRepractice.delegate('#upload3', 'click', function(event) {
+	$('#specialInstruc3', $myRepractice).ajaxForm({
+		url: $('#specialInstruc3', $myRepractice).attr('action'),
+		type: 'POST',
+		success: function(res, status, xhr, $form) {
+			if (res.retCode != 200) {
+				warnOpnFn(res.retDesc);
+			} else {
+				location.reload();
+			}
+			$('#specialInstruc3', $myRepractice).clearForm();
+		},
+		error: function(res, status, e) {
+			alertOpnFn('err');
+			$('#specialInstruc3', $myRepractice).clearForm();
 		}
-		$('.imgtip', $myWorks).html(imgStr);
-	})
+	});
+});
 
-	$myWorks.delegate('#upload2', 'click', function(event) {
-		$('#specialInstruc2', $myWorks).ajaxForm({
-			url: $('#specialInstruc2', $myWorks).attr('action'),
-			type: 'POST',
-			success: function(res, status, xhr, $form) {
-				if (res.retCode != 200) {
-					warnOpnFn(res.retDesc);
-				} else {
-					location.reload();
-				}
-				$('#specialInstruc2', $myWorks).clearForm();
+$myRepractice.delegate('.J_operate-del button', 'click', function(event) {
+	var delnum = $.trim($myRepracticedel.find("select").children('option:selected').val());
+	if (delnum) {
+		$.ajax({
+			type: 'post',
+			url: '/resume/repractice/del',
+			data: {
+				delnum: delnum
 			},
-			error: function(res, status, e) {
+			dataType: 'json',
+			success: function(data) {
+				if (data.retCode == 200) {
+					location.reload();
+				} else {
+					warnOpnFn(data.retDesc);
+				}
+			},
+			error: function(err) {
 				alertOpnFn('err');
-				$('#specialInstruc2', $myWorks).clearForm();
 			}
 		});
-	});
+	} else {
+		warnOpnFn('请填写完整!');
+	}
+});	
+//工作
+var $myPractice = $('#my-practice'),
+	$myPracticeadd=$('.J_operate-add', $myPractice),
+	$myPracticedel=$('.J_operate-del', $myPractice);
 
-	//项目经历
-	$myProjects = $('#my-projects');
-	$myProjects.delegate('.my-projects-btn', 'click', function(event) {
-		var pname = $.trim($(".pname", $myProjects).val()),
-			ptime = $.trim($(".ptime", $myProjects).val()),
-			paddt = $.trim($(".paddt", $myProjects).val());
-		if (pname && ptime && paddt) {
+$myPractice.delegate('.J_operate-sel select', 'change', function(event) {
+	if ($(this).children('option:selected').val() == 1) {
+			$('.J_operate-del', $myPractice).hide();
+			$('.J_operate-add', $myPractice).show();
+		} else if ($(this).children('option:selected').val() == 2) {
+			$('.J_operate-del', $myPractice).show();
+			$('.J_operate-add', $myPractice).hide();
+		} else {
+			$('.J_operate-del', $myPractice).hide();
+			$('.J_operate-add', $myPractice).hide();
+  	}
+});
+$myPractice.delegate('#inputFile3', 'change', function() {
+	$('.imgtip', $myPractice).html($(this).val());
+})
+
+$myPractice.delegate('#upload3', 'click', function(event) {
+	$('#specialInstruc3', $myPractice).ajaxForm({
+		url: $('#specialInstruc3', $myPractice).attr('action'),
+		type: 'POST',
+		success: function(res, status, xhr, $form) {
+			if (res.retCode != 200) {
+				warnOpnFn(res.retDesc);
+			} else {
+				location.reload();
+			}
+			$('#specialInstruc3', $myPractice).clearForm();
+		},
+		error: function(res, status, e) {
+			alertOpnFn('err');
+			$('#specialInstruc3', $myPractice).clearForm();
+		}
+	});
+});
+
+$myPractice.delegate('.J_operate-del button', 'click', function(event) {
+	var delnum = $.trim($myPracticedel.find("select").children('option:selected').val());
+	if (delnum) {
+		$.ajax({
+			type: 'post',
+			url: '/resume/practice/del',
+			data: {
+				delnum: delnum
+			},
+			dataType: 'json',
+			success: function(data) {
+				if (data.retCode == 200) {
+					location.reload();
+				} else {
+					warnOpnFn(data.retDesc);
+				}
+			},
+			error: function(err) {
+				alertOpnFn('err');
+			}
+		});
+	} else {
+		warnOpnFn('请填写完整!');
+	}
+});	
+
+//荣誉证书
+var $myCertificate = $('#my-certificate'),
+	$myCertificateadd=$('.J_operate-add', $myCertificate),
+	$myCertificatedel=$('.J_operate-del', $myCertificate);
+
+$myCertificate.delegate('.J_operate-sel select', 'change', function(event) {
+	if ($(this).children('option:selected').val() == 1) {
+			$('.J_operate-del', $myCertificate).hide();
+			$('.J_operate-add', $myCertificate).show();
+		} else if ($(this).children('option:selected').val() == 2) {
+			$('.J_operate-del', $myCertificate).show();
+			$('.J_operate-add', $myCertificate).hide();
+		} else {
+			$('.J_operate-del', $myCertificate).hide();
+			$('.J_operate-add', $myCertificate).hide();
+  	}
+});
+
+$myCertificate.delegate('#inputFile3', 'change', function() {
+	$('.imgtip', $myCertificate).html($(this).val());
+})
+
+$myCertificate.delegate('#upload3', 'click', function(event) {
+	$('#specialInstruc3', $myCertificate).ajaxForm({
+		url: $('#specialInstruc3', $myCertificate).attr('action'),
+		type: 'POST',
+		success: function(res, status, xhr, $form) {
+			if (res.retCode != 200) {
+				warnOpnFn(res.retDesc);
+			} else {
+				location.reload();
+			}
+			$('#specialInstruc3', $myCertificate).clearForm();
+		},
+		error: function(res, status, e) {
+			alertOpnFn('err');
+			$('#specialInstruc3', $myCertificate).clearForm();
+		}
+	});
+});
+$myCertificate.delegate('.J_operate-del button', 'click', function(event) {
+	var delnum = $.trim($myCertificatedel.find("select").children('option:selected').val());
+	if (delnum) {
+		$.ajax({
+			type: 'post',
+			url: '/resume/certificate/del',
+			data: {
+				delnum: delnum
+			},
+			dataType: 'json',
+			success: function(data) {
+				if (data.retCode == 200) {
+					location.reload();
+				} else {
+					warnOpnFn(data.retDesc);
+				}
+			},
+			error: function(err) {
+				alertOpnFn('err');
+			}
+		});
+	} else {
+		warnOpnFn('请填写完整!');
+	}
+});	
+//我的作品
+var $myWorks = $('#my-works'),
+	$myWorksadd=$('.J_operate-add', $myWorks),
+	$myWorksdel=$('.J_operate-del', $myWorks);
+
+$myWorks.delegate('.J_operate-sel select', 'change', function(event) {
+	if ($(this).children('option:selected').val() == 1) {
+			$('.J_operate-del', $myWorks).hide();
+			$('.J_operate-add', $myWorks).show();
+		} else if ($(this).children('option:selected').val() == 2) {
+			$('.J_operate-del', $myWorks).show();
+			$('.J_operate-add', $myWorks).hide();
+		} else {
+			$('.J_operate-del', $myWorks).hide();
+			$('.J_operate-add', $myWorks).hide();
+  	}
+});
+
+$myWorks.delegate('#inputFile2', 'change', function() {
+	var imgStr = "",
+		fileObjs = $('#inputFile2', $myWorks).get(0);
+	for (var j = 0, len = fileObjs.files.length; j < len; j++) {
+		imgStr = imgStr + fileObjs.files[j].name + '<i style="margin-right:20px;"></i>';
+	}
+	$('.imgtip', $myWorks).html(imgStr);
+})
+
+$myWorks.delegate('#upload2', 'click', function(event) {
+	$('#specialInstruc2', $myWorks).ajaxForm({
+		url: $('#specialInstruc2', $myWorks).attr('action'),
+		type: 'POST',
+		success: function(res, status, xhr, $form) {
+			if (res.retCode != 200) {
+				warnOpnFn(res.retDesc);
+			} else {
+				location.reload();
+			}
+			$('#specialInstruc2', $myWorks).clearForm();
+		},
+		error: function(res, status, e) {
+			alertOpnFn('err');
+			$('#specialInstruc2', $myWorks).clearForm();
+		}
+	});
+});
+
+$myWorks.delegate('.J_operate-del button', 'click', function(event) {
+	var delnum = $.trim($myWorksdel.find("select").children('option:selected').val());
+	if (delnum) {
+		$.ajax({
+			type: 'post',
+			url: '/resume/works/del',
+			data: {
+				delnum: delnum
+			},
+			dataType: 'json',
+			success: function(data) {
+				if (data.retCode == 200) {
+					location.reload();
+				} else {
+					warnOpnFn(data.retDesc);
+				}
+			},
+			error: function(err) {
+				alertOpnFn('err');
+			}
+		});
+	} else {
+		warnOpnFn('请填写完整!');
+	}
+});	
+
+
+/**
+ * 
+ *项目
+ *
+ **/
+ //公共变量
+var $myProjects = $('#my-projects'),
+	$myProjectsadd=$('.J_operate-add', $myProjects),
+	$myProjectsdel=$('.J_operate-del', $myProjects);
+
+//操作方式
+$myProjects.delegate('.J_operate-sel .select1', 'change', function(event) {
+    $('.J_operate-add .J_hidden-ipt', $myProjects).val(''); // 动态修改的清空
+    $('.J_operate-add .pname', $myProjects).val(''); // 动态修改的清空
+    $('.J_operate-add .ptime', $myProjects).val(''); // 动态修改的清空
+    $('.J_operate-add .paddt', $myProjects).val(''); // 动态修改的清空
+
+    if ($(this).children('option:selected').val() == 1) {
+        $('.J_operate-del', $myProjects).hide();
+        $('.J_operate-add', $myProjects).show();
+        $(".J_operate-sel", $myProjects).find(".J_change-con").hide();
+    } else if ($(this).children('option:selected').val() == 2) {
+        $('.J_operate-del', $myProjects).show();
+        $('.J_operate-add', $myProjects).hide();
+        $(".J_operate-sel", $myProjects).find(".J_change-con").hide();
+    } else if ($(this).children('option:selected').val() == 3) {
+        $('.J_operate-del', $myProjects).hide();
+        $('.J_operate-add', $myProjects).hide();
+        $(".J_operate-sel", $myProjects).find(".J_change-con").show();
+        var num=$('.J_operate-sel .select2', $myProjects).children('option:selected').val();
+        if(num){
+            projectsAjaxCom(num);
+        }
+    }else {
+        $('.J_operate-del', $myProjects).hide();
+        $('.J_operate-add', $myProjects).hide();
+        $(".J_operate-sel", $myProjects).find(".J_change-con").hide();
+      }
+});
+
+//del
+$myProjects.delegate('.J_operate-del button', 'click', function(event) {
+	var delnum = $.trim($myProjectsdel.find("select").children('option:selected').val());
+	if (delnum) {
+		$.ajax({
+			type: 'post',
+			url: '/resume/projects/del',
+			data: {
+				delnum: delnum
+			},
+			dataType: 'json',
+			success: function(data) {
+				if (data.retCode == 200) {
+					location.reload();
+				} else {
+					warnOpnFn(data.retDesc);
+				}
+			},
+			error: function(err) {
+				alertOpnFn('err');
+			}
+		});
+	} else {
+		warnOpnFn('请填写完整!');
+	}
+});	
+
+//add  update
+$myProjects.delegate('.J_operate-add button', 'click', function(event) {
+	var pname = $.trim($(".pname", $myProjects).val()),
+		ptime = $.trim($(".ptime", $myProjects).val()),
+		paddt = $.trim($(".paddt", $myProjects).val()),
+		hiddenipt = $.trim($myPaperadd.find(".J_hidden-ipt").val());
+
+	if (pname && ptime && paddt) {
+		$.ajax({
+			type: 'post',
+			url: '/resume/projects/add',
+			data: {
+				pname: $(".pname", '#my-projects').val(),
+				ptime: $(".ptime", '#my-projects').val(),
+				paddt: $(".paddt", '#my-projects').val()
+			},
+			dataType: 'json',
+			success: function(data) {
+				if (data.retCode == 200) {
+					location.reload();
+				} else {
+					warnOpnFn(data.retDesc);
+				}
+			},
+			error: function(err) {
+				alertOpnFn('err');
+			}
+		});
+	} else {
+		warnOpnFn('请填写完整!');
+	}
+});
+
+//修改
+$myProjects.delegate('.J_operate-sel .select2', 'change', function(event) {
+    var num=$(this).children('option:selected').val();
+    if(num){
+        projectsAjaxCom(num);
+      }else{
+          $('.J_operate-add', $myProjects).hide();
+      }
+});
+
+//comAjax
+function projectsAjaxCom(num){
+    $('.J_operate-add', $myProjects).show();
+    $.ajax({
+        type: 'post',
+        url: '/resume/allinfo',
+        dataType: 'json',
+        success: function(data) {
+            $('.J_operate-add .J_hidden-ipt', $myProjects).val(num);
+            $('.J_operate-add .pname', $myProjects).val(data.allinfo.projects8[num].tName); 
+            $('.J_operate-add .ptime', $myProjects).val(data.allinfo.projects8[num].tTime); 
+            $('.J_operate-add .paddt', $myProjects).val(data.allinfo.projects8[num].addt); 
+        },
+        error: function(err) {
+            alertOpnFn('err');
+        }
+    });
+}
+
+/**
+ * 
+ *实践活动
+ *
+ **/
+//公共变量
+var $myUndergo = $('#my-undergo'),
+	$myUndergoadd=$('.J_operate-add', $myUndergo),
+	$myUndergodel=$('.J_operate-del', $myUndergo);
+
+//操作方式
+$myUndergo.delegate('.J_operate-sel .select1', 'change', function(event) {
+    $('.J_operate-add .J_hidden-ipt', $myUndergo).val(''); // 动态修改的清空
+    $('.J_operate-add .undergoname', $myUndergo).val(''); // 动态修改的清空
+    $('.J_operate-add .undergotype', $myUndergo).val(''); // 动态修改的清空
+    $('.J_operate-add .undergotime', $myUndergo).val(''); // 动态修改的清空
+    $('.J_operate-add .undergoinstr', $myUndergo).val(''); // 动态修改的清空
+
+    if ($(this).children('option:selected').val() == 1) {
+        $('.J_operate-del', $myUndergo).hide();
+        $('.J_operate-add', $myUndergo).show();
+        $(".J_operate-sel", $myUndergo).find(".J_change-con").hide();
+    } else if ($(this).children('option:selected').val() == 2) {
+        $('.J_operate-del', $myUndergo).show();
+        $('.J_operate-add', $myUndergo).hide();
+        $(".J_operate-sel", $myUndergo).find(".J_change-con").hide();
+    } else if ($(this).children('option:selected').val() == 3) {
+        $('.J_operate-del', $myUndergo).hide();
+        $('.J_operate-add', $myUndergo).hide();
+        $(".J_operate-sel", $myUndergo).find(".J_change-con").show();
+        var num=$('.J_operate-sel .select2', $myUndergo).children('option:selected').val();
+        if(num){
+            undergoAjaxCom(num);
+        }
+    }else {
+        $('.J_operate-del', $myUndergo).hide();
+        $('.J_operate-add', $myUndergo).hide();
+        $(".J_operate-sel", $myUndergo).find(".J_change-con").hide();
+      }
+});
+
+//del
+$myUndergo.delegate('.J_operate-del button', 'click', function(event) {
+	var delnum = $.trim($myUndergodel.find("select").children('option:selected').val());
+	if (delnum) {
+		$.ajax({
+			type: 'post',
+			url: '/resume/undergo/del',
+			data: {
+				delnum: delnum
+			},
+			dataType: 'json',
+			success: function(data) {
+				if (data.retCode == 200) {
+					location.reload();
+				} else {
+					warnOpnFn(data.retDesc);
+				}
+			},
+			error: function(err) {
+				alertOpnFn('err');
+			}
+		});
+	} else {
+		warnOpnFn('请填写完整!');
+	}
+});
+
+//add   update
+$myUndergo.delegate('.J_operate-add button', 'click', function(event) {
+	var undergoname = $.trim($(".undergoname", $myUndergo).val()),
+		undergotype = $.trim($(".undergotype", $myUndergo).val()),
+		undergotime = $.trim($(".undergotime", $myUndergo).val()),
+		undergoinstr = $.trim($(".undergoinstr", $myUndergo).val()),
+		hiddenipt = $.trim($myPaperadd.find(".J_hidden-ipt").val());
+
+	if(hiddenipt){
+		if (undergoname && undergotype && undergotime && undergoinstr) {
 			$.ajax({
 				type: 'post',
-				url: '/resume/projects',
+				url: '/resume/undergo/upd',
 				data: {
-					pname: $(".pname", '#my-projects').val(),
-					ptime: $(".ptime", '#my-projects').val(),
-					paddt: $(".paddt", '#my-projects').val()
+					undergoname: undergoname,
+					undergotype: undergotype,
+					undergotime: undergotime,
+					undergoinstr: undergoinstr,
+					updateid: hiddenipt
 				},
 				dataType: 'json',
 				success: function(data) {
@@ -832,19 +1183,11 @@ $(document).ready(function() {
 		} else {
 			warnOpnFn('请填写完整!');
 		}
-	});
-
-	//实践经历
-	var $myUndergo = $('#my-undergo');
-	$myUndergo.delegate('.my-undergo-btn', 'click', function(event) {
-		var undergoname = $.trim($(".undergoname", $myUndergo).val()),
-			undergotype = $.trim($(".undergotype", $myUndergo).val()),
-			undergotime = $.trim($(".undergotime", $myUndergo).val()),
-			undergoinstr = $.trim($(".undergoinstr", $myUndergo).val());
+	}else{
 		if (undergoname && undergotype && undergotime && undergoinstr) {
 			$.ajax({
 				type: 'post',
-				url: '/resume/undergo',
+				url: '/resume/undergo/add',
 				data: {
 					undergoname: undergoname,
 					undergotype: undergotype,
@@ -866,50 +1209,270 @@ $(document).ready(function() {
 		} else {
 			warnOpnFn('请填写完整!');
 		}
-	});
+	}
+});
 
-	//论文专利
-	var $myPaper = $('#my-paper');
-	$myPaper.delegate('.my-paper-btn', 'click', function(event) {
-		var papername = $.trim($(".papername", $myPaper).val()),
-			papertype = $.trim($(".papertype", $myPaper).val()),
-			papertime = $.trim($(".papertime", $myPaper).val()),
-			paperinstr = $.trim($(".paperinstr", $myPaper).val());
-		if (papername && papertype && papertime && paperinstr) {
-			$.ajax({
-				type: 'post',
-				url: '/resume/paper',
-				data: {
-					papername: papername,
-					papertype: papertype,
-					papertime: papertime,
-					paperinstr: paperinstr
-				},
-				dataType: 'json',
-				success: function(data) {
-					if (data.retCode == 200) {
-						location.reload();
-					} else {
-						warnOpnFn(data.retDesc);
-					}
-				},
-				error: function(err) {
-					alertOpnFn('err');
+//修改
+$myUndergo.delegate('.J_operate-sel .select2', 'change', function(event) {
+    var num=$(this).children('option:selected').val();
+    if(num){
+        undergoAjaxCom(num);
+      }else{
+          $('.J_operate-add', $myUndergo).hide();
+      }
+});
+
+//comAjax
+function undergoAjaxCom(num){
+    $('.J_operate-add', $myUndergo).show();
+    $.ajax({
+        type: 'post',
+        url: '/resume/allinfo',
+        dataType: 'json',
+        success: function(data) {
+            $('.J_operate-add .J_hidden-ipt', $myUndergo).val(num);
+            $('.J_operate-add .undergoname', $myUndergo).val(data.allinfo.trys9[num].tName); 
+            $('.J_operate-add .undergotime', $myUndergo).val(data.allinfo.trys9[num].tType);  
+            $('.J_operate-add .undergotype', $myUndergo).val(data.allinfo.trys9[num].tTime); 
+            $('.J_operate-add .undergoinstr', $myUndergo).val(data.allinfo.trys9[num].addt); 
+        },
+        error: function(err) {
+            alertOpnFn('err');
+        }
+    });
+}
+
+/**
+ * 
+ *论文专利
+ *
+ **/
+//公共变量
+var $myPaper = $('#my-paper'),
+	$myPaperadd=$('.J_operate-add', $myPaper),
+	$myPaperdel=$('.J_operate-del', $myPaper);
+
+$myPaper.delegate('.J_operate-sel .select1', 'change', function(event) {
+	$('.J_operate-add .J_hidden-ipt', $myPaper).val(''); // 动态修改的清空
+	$('.J_operate-add .papertype', $myPaper).val(''); // 动态修改的清空
+	$('.J_operate-add .papername', $myPaper).val(''); // 动态修改的清空
+	$('.J_operate-add .papertime', $myPaper).val(''); // 动态修改的清空
+	$('.J_operate-add .paperinstr', $myPaper).val(''); // 动态修改的清空
+
+	if ($(this).children('option:selected').val() == 1) {
+		$('.J_operate-del', $myPaper).hide();
+		$('.J_operate-add', $myPaper).show();
+		$(".J_operate-sel", $myPaper).find(".J_change-con").hide();
+	} else if ($(this).children('option:selected').val() == 2) {
+		$('.J_operate-del', $myPaper).show();
+		$('.J_operate-add', $myPaper).hide();
+		$(".J_operate-sel", $myPaper).find(".J_change-con").hide();
+	}else if ($(this).children('option:selected').val() == 3) {
+		$('.J_operate-del', $myPaper).hide();
+		$('.J_operate-add', $myPaper).hide();
+		$(".J_operate-sel", $myPaper).find(".J_change-con").show();
+		var num=$('.J_operate-sel .select2', $myPaper).children('option:selected').val();
+       	if(num){
+           paperAjaxCom(num);
+       	}
+	} else {
+		$('.J_operate-del', $myPaper).hide();
+		$('.J_operate-add', $myPaper).hide();
+		$(".J_operate-sel", $myPaper).find(".J_change-con").hide();
+  	}
+});
+
+//del
+$myPaper.delegate('.J_operate-del button', 'click', function(event) {
+	var delnum = $.trim($myPaperdel.find("select").children('option:selected').val());
+	if (delnum) {
+		$.ajax({
+			type: 'post',
+			url: '/resume/paper/del',
+			data: {
+				delnum: delnum
+			},
+			dataType: 'json',
+			success: function(data) {
+				if (data.retCode == 200) {
+					location.reload();
+				} else {
+					warnOpnFn(data.retDesc);
 				}
-			});
-		} else {
-			warnOpnFn('请填写完整!');
-		}
-	});
+			},
+			error: function(err) {
+				alertOpnFn('err');
+			}
+		});
+	} else {
+		warnOpnFn('请填写完整!');
+	}
+});
 
-	//核心技能
-	var $descriptioncon = $('#my-description');
-	$descriptioncon.delegate('.my-description-btn', 'click', function(event) {
-		var descVal = $.trim($descriptioncon.find(".descriptioncon").val());
+//add   update
+$myPaper.delegate('.J_operate-add button', 'click', function(event) {
+	var papername = $.trim($(".papername", $myPaper).val()),
+		papertype = $.trim($(".papertype", $myPaper).val()),
+		papertime = $.trim($(".papertime", $myPaper).val()),
+		paperinstr = $.trim($(".paperinstr", $myPaper).val()),
+        hiddenipt = $.trim($myPaperadd.find(".J_hidden-ipt").val());
+
+    if(hiddenipt){
+    	if (papername && papertype && papertime && paperinstr) {
+    		$.ajax({
+    			type: 'post',
+    			url: '/resume/paper/upd',
+    			data: {
+    				papername: papername,
+    				papertype: papertype,
+    				papertime: papertime,
+    				paperinstr: paperinstr,
+    				updateid: hiddenipt
+    			},
+    			dataType: 'json',
+    			success: function(data) {
+    				if (data.retCode == 200) {
+    					location.reload();
+    				} else {
+    					warnOpnFn(data.retDesc);
+    				}
+    			},
+    			error: function(err) {
+    				alertOpnFn('err');
+    			}
+    		});
+    	} else {
+    		warnOpnFn('请填写完整!');
+    	}
+    }else{
+    	if (papername && papertype && papertime && paperinstr) {
+    		$.ajax({
+    			type: 'post',
+    			url: '/resume/paper/add',
+    			data: {
+    				papername: papername,
+    				papertype: papertype,
+    				papertime: papertime,
+    				paperinstr: paperinstr
+    			},
+    			dataType: 'json',
+    			success: function(data) {
+    				if (data.retCode == 200) {
+    					location.reload();
+    				} else {
+    					warnOpnFn(data.retDesc);
+    				}
+    			},
+    			error: function(err) {
+    				alertOpnFn('err');
+    			}
+    		});
+    	} else {
+    		warnOpnFn('请填写完整!');
+    	}
+    }
+});
+
+//修改
+$myPaper.delegate('.J_operate-sel .select2', 'change', function(event) {
+    var num=$(this).children('option:selected').val();
+    if(num){
+        paperAjaxCom(num);
+      }else{
+          $('.J_operate-add', $myPaper).hide();
+      }
+});
+
+//comAjax
+function paperAjaxCom(num){
+    $('.J_operate-add', $myPaper).show();
+    $.ajax({
+        type: 'post',
+        url: '/resume/allinfo',
+        dataType: 'json',
+        success: function(data) {
+            $('.J_operate-add .J_hidden-ipt', $myPaper).val(num);
+            $('.J_operate-add .papertype', $myPaper).val(data.allinfo.PatentPaper10[num].ppTime); 
+            $('.J_operate-add .papername', $myPaper).val(data.allinfo.PatentPaper10[num].ppName);  
+            $('.J_operate-add .papertime', $myPaper).val(data.allinfo.PatentPaper10[num].ppType); 
+            $('.J_operate-add .paperinstr', $myPaper).val(data.allinfo.PatentPaper10[num].addt); 
+        },
+        error: function(err) {
+            alertOpnFn('err');
+        }
+    });
+}
+
+/**
+ * 
+ *核心技能
+ *
+ **/
+//公共变量
+var $descriptioncon = $('#my-description'),
+	$descadd=$('.J_operate-add', $descriptioncon),
+	$descdel=$('.J_operate-del', $descriptioncon);
+
+//操作方式
+$descriptioncon.delegate('.J_operate-sel .select1', 'change', function(event) {
+	$('.J_operate-add .J_hidden-ipt', $descriptioncon).val(''); // 动态修改的清空
+	$('.J_operate-add .descriptioncon', $descriptioncon).html(''); // 动态修改的清空
+	if ($(this).children('option:selected').val() == 1) {
+		$('.J_operate-del', $descriptioncon).hide();
+		$('.J_operate-add', $descriptioncon).show();
+		$(".J_operate-sel", $descriptioncon).find(".J_change-con").hide();
+	} else if ($(this).children('option:selected').val() == 2) {
+		$('.J_operate-del', $descriptioncon).show();
+		$('.J_operate-add', $descriptioncon).hide();
+		$(".J_operate-sel", $descriptioncon).find(".J_change-con").hide();
+	} else if ($(this).children('option:selected').val() == 3) {
+		$('.J_operate-del', $descriptioncon).hide();
+		$('.J_operate-add', $descriptioncon).hide();
+		$(".J_operate-sel", $descriptioncon).find(".J_change-con").show();
+		var num=$('.J_operate-sel .select2', $descriptioncon).children('option:selected').val();
+		if(num){
+			descAjaxCom(num);
+		}
+	}else {
+		$('.J_operate-del', $descriptioncon).hide();
+		$('.J_operate-add', $descriptioncon).hide();
+		$(".J_operate-sel", $descriptioncon).find(".J_change-con").hide();
+  	}
+});
+
+//添加
+$descriptioncon.delegate('.J_operate-add button', 'click', function(event) {
+	var descVal = $.trim($descadd.find(".descriptioncon").val()),
+		hiddenipt = $.trim($descadd.find(".J_hidden-ipt").val());
+	if(hiddenipt){
+			if (descVal) {
+				$.ajax({
+					type: 'post',
+					url: '/resume/desc/upd',
+					data: {
+						desCon: descVal,
+						updateid: hiddenipt
+					},
+					dataType: 'json',
+					success: function(data) {
+						if (data.retCode == 200) {
+							location.reload();
+						} else {
+							warnOpnFn(data.retDesc);
+						}
+					},
+					error: function(err) {
+						alertOpnFn('err');
+					}
+				});
+			} else {
+				warnOpnFn('请填写完整!');
+			}
+	}else{
 		if (descVal) {
 			$.ajax({
 				type: 'post',
-				url: '/resume/desc',
+				url: '/resume/desc/add',
 				data: {
 					desCon: descVal
 				},
@@ -928,290 +1491,70 @@ $(document).ready(function() {
 		} else {
 			warnOpnFn('请填写完整!');
 		}
-	});
-
-	/*
-	  实习经历相关操作
-	 */
-	//repractice-add
-	var $myRepractice = $('#my-repractice');
-	$myRepractice.delegate('.my-repractice-btn', 'click', function(event) {
-		var practice = $.trim($(".practice", $myRepractice).val()),
-			spracticetime = $.trim($(".spracticetime", $myRepractice).val()),
-			epracticetime = $.trim($(".epracticetime", $myRepractice).val()),
-			practiceposition = $.trim($(".practiceposition", $myRepractice).val()),
-			practiceinstr = $.trim($(".practiceinstr", $myRepractice).val());
-		if (practice && spracticetime && epracticetime && practiceposition && practiceinstr) {
-			$.ajax({
-				type: 'post',
-				url: '/resume/repractice/add',
-				data: {
-					practice: practice,
-					spracticetime: spracticetime,
-					epracticetime: epracticetime,
-					practiceposition: practiceposition,
-					practiceinstr: practiceinstr
-				},
-				dataType: 'json',
-				success: function(data) {
-					if (data.retCode == 200) {
-						location.reload();
-					} else {
-						warnOpnFn(data.retDesc);
-					}
-				},
-				error: function(err) {
-					alertOpnFn('err');
-				}
-			});
-		} else {
-			warnOpnFn('请填写完整!');
-		}
-	});
-	//repractice-change
-	$myRepractice.delegate('.my-repractice2-btn', 'click', function(event) {
-		var compChangeType = $.trim($(".compChangeType", $myRepractice).val()),
-			spracticetime = $.trim($(".spracticetime2", $myRepractice).val()),
-			epracticetime = $.trim($(".epracticetime2", $myRepractice).val()),
-			practiceposition = $.trim($(".practiceposition2", $myRepractice).val()),
-			practiceinstr = $.trim($(".practiceinstr2", $myRepractice).val());
-		if (compChangeType && spracticetime && epracticetime && practiceposition && practiceinstr) {
-			$.ajax({
-				type: 'post',
-				url: '/resume/repractice/change',
-				data: {
-					compChangeType: compChangeType,
-					spracticetime: spracticetime,
-					epracticetime: epracticetime,
-					practiceposition: practiceposition,
-					practiceinstr: practiceinstr
-				},
-				dataType: 'json',
-				success: function(data) {
-					if (data.retCode == 200) {
-						location.reload();
-					} else {
-						warnOpnFn(data.retDesc);
-					}
-				},
-				error: function(err) {
-					alertOpnFn('err');
-				}
-			});
-		} else {
-			warnOpnFn('请填写完整!');
-		}
-	});
-	//repractice-del
-	$myRepractice.delegate('.my-repractice1-btn', 'click', function(event) {
-		var compType = $.trim($(".compType", $myRepractice).val());
-		if (compType) {
-			$.ajax({
-				type: 'post',
-				url: '/resume/repractice/dele',
-				data: {
-					compType: compType
-				},
-				dataType: 'json',
-				success: function(data) {
-					if (data.retCode == 200) {
-						location.reload();
-					} else {
-						warnOpnFn(data.retDesc);
-					}
-				},
-				error: function(err) {
-					alertOpnFn('err');
-				}
-			});
-		} else {
-			warnOpnFn('请填写完整!');
-		}
-	});
-	$('.operaType', $myRepractice).change(function() {
-		if ($(this).children('option:selected').val() == 1) {
-			$('.deleModule', $myRepractice).hide();
-			$('.changeModule', $myRepractice).hide();
-			$('.addModule', $myRepractice).show();
-		} else if ($(this).children('option:selected').val() == 2) {
-			$('.deleModule', $myRepractice).hide();
-			$('.changeModule', $myRepractice).show();
-			$('.addModule', $myRepractice).hide();
-		} else if ($(this).children('option:selected').val() == 3) {
-			$('.deleModule', $myRepractice).show();
-			$('.changeModule', $myRepractice).hide();
-			$('.addModule', $myRepractice).hide();
-		} else {
-			$('.deleModule', $myRepractice).hide();
-			$('.changeModule', $myRepractice).hide();
-			$('.addModule', $myRepractice).hide();
-		}
-	});
-	//repractice-changeType
-	$myRepractice.delegate('.my-repractice', 'change', function(event) {
-		var compChangeType = $.trim($(".compChangeType", $myRepractice).val());
-		$.ajax({
-			type: 'post',
-			url: '/resume/repractice/changeType',
-			data: {
-				compChangeType: compChangeType
-			},
-			dataType: 'json',
-			success: function(data) {
-				$(".spracticetime2", $myRepractice).val(data.spracticetime);
-				$(".epracticetime2", $myRepractice).val(data.epracticetime);
-				$(".practiceposition2", $myRepractice).val(data.practiceposition);
-				$(".practiceinstr2", $myRepractice).val(data.practiceinstr);
-				$('.compPart', $myRepractice).show();
-			},
-			error: function(err) {
-				alertOpnFn('err');
-			}
-		});
-	});
-
-	/*
-	  gz经历相关操作
-	 */
-	//practice-add
-	$myPractice = $('#my-practice');
-	$myPractice.delegate('.my-practice3-btn', 'click', function(event) {
-		var practice = $.trim($(".practice", $myPractice).val()),
-			spracticetime = $.trim($(".spracticetime", $myPractice).val()),
-			epracticetime = $.trim($(".epracticetime", $myPractice).val()),
-			practiceposition = $.trim($(".practiceposition", $myPractice).val()),
-			practiceinstr = $.trim($(".practiceinstr", $myPractice).val());
-		if (practice && spracticetime && epracticetime && practiceposition && practiceinstr) {
-			$.ajax({
-				type: 'post',
-				url: '/resume/practice/add',
-				data: {
-					practice: practice,
-					spracticetime: spracticetime,
-					epracticetime: epracticetime,
-					practiceposition: practiceposition,
-					practiceinstr: practiceinstr
-				},
-				dataType: 'json',
-				success: function(data) {
-					if (data.retCode == 200) {
-						location.reload();
-					} else {
-						warnOpnFn(data.retDesc);
-					}
-				},
-				error: function(err) {
-					alertOpnFn('err');
-				}
-			});
-		} else {
-			warnOpnFn('内容不能为空哦~');
-		}
-	});
-	//practice-change
-	$myPractice.delegate('.my-practice2-btn', 'click', function(event) {
-		var compChangeType = $.trim($(".compChangeType", $myPractice).val()),
-			spracticetime = $.trim($(".spracticetime2", $myPractice).val()),
-			epracticetime = $.trim($(".epracticetime2", $myPractice).val()),
-			practiceposition = $.trim($(".practiceposition2", $myPractice).val()),
-			practiceinstr = $.trim($(".practiceinstr2", $myPractice).val());
-		if (compChangeType && spracticetime && epracticetime && practiceposition && practiceinstr) {
-			$.ajax({
-				type: 'post',
-				url: '/resume/practice/change',
-				data: {
-					compChangeType: compChangeType,
-					spracticetime: spracticetime,
-					epracticetime: epracticetime,
-					practiceposition: practiceposition,
-					practiceinstr: practiceinstr
-				},
-				dataType: 'json',
-				success: function(data) {
-					if (data.retCode == 200) {
-						location.reload();
-					} else {
-						warnOpnFn(data.retDesc);
-					}
-				},
-				error: function(err) {
-					alertOpnFn('err');
-				}
-			});
-		} else {
-			warnOpnFn('内容不能为空哦~');
-		}
-	});
-	//practice-del
-	$myPractice.delegate('.my-practice1-btn', 'click', function(event) {
-		var compType = $.trim($(".compType", $myPractice).val());
-		if (compType) {
-			$.ajax({
-				type: 'post',
-				url: '/resume/practice/dele',
-				data: {
-					compType: compType
-				},
-				dataType: 'json',
-				success: function(data) {
-					if (data.retCode == 200) {
-						location.reload();
-					} else {
-						warnOpnFn(data.retDesc);
-					}
-				},
-				error: function(err) {
-					alertOpnFn('err');
-				}
-			});
-		} else {
-			warnOpnFn('内容不能为空哦~');
-		}
-	});
-	$myPractice.delegate('.operaType', 'change', function(event) {
-		if ($(this).children('option:selected').val() == 1) {
-			$('.deleModule', $myPractice).hide();
-			$('.changeModule', $myPractice).hide();
-			$('.addModule', $myPractice).show();
-		} else if ($(this).children('option:selected').val() == 2) {
-			$('.deleModule', $myPractice).hide();
-			$('.changeModule', $myPractice).show();
-			$('.addModule', $myPractice).hide();
-		} else if ($(this).children('option:selected').val() == 3) {
-			$('.deleModule', $myPractice).show();
-			$('.changeModule', $myPractice).hide();
-			$('.addModule', $myPractice).hide();
-		} else {
-			$('.deleModule', $myPractice).hide();
-			$('.changeModule', $myPractice).hide();
-			$('.addModule', $myPractice).hide();
-		}
-	});
-	//practice-changeType
-	$myPractice.delegate('.compChangeType', 'change', function(event) {
-		$.ajax({
-			type: 'post',
-			url: '/resume/practice/changeType',
-			data: {
-				compChangeType: $(".compChangeType", $myPractice).val()
-			},
-			dataType: 'json',
-			success: function(data) {
-				$(".spracticetime2", $myPractice).val(data.spracticetime);
-				$(".epracticetime2", $myPractice).val(data.epracticetime);
-				$(".practiceposition2", $myPractice).val(data.practiceposition);
-				$(".practiceinstr2", $myPractice).val(data.practiceinstr);
-				$('.compPart', $myPractice).show();
-			},
-			error: function(err) {
-				alertOpnFn('err');
-			}
-		});
-	});
-
-
+	}
+	
 });
 
+//删除
+$descriptioncon.delegate('.J_operate-del button', 'click', function(event) {
+	var delnum = $.trim($descdel.find("select").children('option:selected').val());
+	if (delnum) {
+		$.ajax({
+			type: 'post',
+			url: '/resume/desc/del',
+			data: {
+				delnum: delnum
+			},
+			dataType: 'json',
+			success: function(data) {
+				if (data.retCode == 200) {
+					location.reload();
+				} else {
+					warnOpnFn(data.retDesc);
+				}
+			},
+			error: function(err) {
+				alertOpnFn('err');
+			}
+		});
+	} else {
+		warnOpnFn('请选择要删除的内容!');
+	}
+});
+
+//修改
+$descriptioncon.delegate('.J_operate-sel .select2', 'change', function(event) {
+	var num=$(this).children('option:selected').val();
+	if(num){
+		descAjaxCom(num);
+  	}else{
+  		$('.J_operate-add', $descriptioncon).hide();
+  	}
+});
+
+//comAjax
+function descAjaxCom(num){
+	$('.J_operate-add', $descriptioncon).show();
+	$.ajax({
+		type: 'post',
+		url: '/resume/allinfo',
+		dataType: 'json',
+		success: function(data) {
+			$('.J_operate-add .J_hidden-ipt', $descriptioncon).val(num);
+			$('.J_operate-add .descriptioncon', $descriptioncon).html(data.allinfo.Technology11[num]);
+		},
+		error: function(err) {
+			alertOpnFn('err');
+		}
+	});
+}
+
+
+/**
+ * 
+ *分页模块
+ *
+ **/
 //分页模块
 function pageStep(clickobj){
 	var pagenum;

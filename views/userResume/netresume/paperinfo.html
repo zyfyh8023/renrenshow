@@ -6,6 +6,7 @@
 		<div style="font-size:30px;text-align:center;">论文专利</div>
 	</div>
 </div>
+
 <div class="am-g am-u-lg-10 am-u-md-12  am-u-sm-centered">
 	<div data-am-widget="tabs" class="am-tabs am-tabs-d2">
 		<ul class="am-tabs-nav am-cf">
@@ -77,47 +78,112 @@
 		</div>
 	</div>
 </div>
+
 <div class="am-popup" id="my-paper">
 	<div class="am-popup-inner">
 		<div class="am-popup-hd">
-			<h4 class="am-popup-title">论文专利</h4>
+			<h4 class="am-popup-title">论文专利发表</h4>
 			<span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
 		</div>
 		<div class="am-popup-bd">
 			<br>
-			<form class="am-form am-form-horizontal" method="post" data-am-validator>
-				<div class="am-form-group">
-					<label class="am-u-sm-3 am-form-label">名称：</label>
-					<div class="am-u-sm-9">
-						<input type="text" class="papername" required placeholder="请输入名称">
+			<form class="am-form am-form-horizontal" method="post" data-am-validator autocomplete ='off'>
+				<div class="J_operate-sel">
+					<div class="am-form-group">
+						<label class="am-u-sm-3 am-form-label">操作方式：</label>
+						<div class="am-u-sm-9">
+							<select required class="select1">
+								<option value=""  selected = "selected">请选择操作哪项？</option>
+								<option value="1">添加操作</option>
+								<option value="2">删除操作</option>
+								<option value="3">修改操作</option>
+							</select>
+						    <span class="am-form-caret"></span>
+						</div> 
 					</div>
-				</div>
-				<div class="am-form-group">
-					<label class="am-u-sm-3 am-form-label">类型：</label>
-					<div class="am-u-sm-9">
-						<select class="papertype" name="papertype" required>
-							<option value="">请选择一项</option>
-							<option value="1">论文</option>
-							<option value="2">专利</option>
-						</select>
-						<span class="am-form-caret"></span>
+					<br>
+			        <div class="am-form-group J_change-con" style="display:none;">
+			            <label class="am-u-sm-3 am-form-label">修改选项：</label>
+			            <div class="am-u-sm-9">
+			                <select required class="select2">
+								<option value="" selected = "selected">请选择修改哪项？</option>
+								<% if(rs.PatentPaper10) { %>
+									<% for(var i=0; i<rs.PatentPaper10.length; i++) {%>
+										<% if(rs.PatentPaper10[i].ppTime=='1') { %>
+											<option value="<%= i %>">修改论文：<%= rs.PatentPaper10[i].ppName %></option>
+										<% }else{ %>
+											<option value="<%= i %>">修改专利：<%= rs.PatentPaper10[i].ppName %></option>
+										<% } %>
+									<% } %>
+								<% } %>
+			                </select>
+			                <span class="am-form-caret"></span>
+			            </div>  
+			        </div>
+			        <br>
+        		</div>
+
+              	<div class="J_operate-del" style="display:none">
+	                <div class="am-form-group">
+	                    <label class="am-u-sm-3 am-form-label">删除选项：</label>
+	                    <div class="am-u-sm-9">
+	                        <select required>
+								<option value="" selected = "selected">请选择删除哪项？</option>
+								<% if(rs.PatentPaper10.length>=0) { %>
+									<% for(var i=0; i<rs.PatentPaper10.length; i++) { %>
+										<% if(rs.PatentPaper10[i].ppTime=='1') { %>
+											<option value="<%= i %>">论文：<%= rs.PatentPaper10[i].ppName %></option>
+										<% }else{ %>
+											<option value="<%= i %>">专利：<%= rs.PatentPaper10[i].ppName %></option>
+										<% } %>
+									<% } %>
+								<% } %>	
+	                        </select>
+	                        <span class="am-form-caret"></span>
+	                    </div>  
+	                </div>
+	                <div class="am-form-group">
+	                    <div class="am-u-sm-9 am-u-sm-offset-3">
+	                        <button type="button" class="am-btn am-btn-primary my-education3-btn"> 确定删除 </button>
+	                    </div>
+	                </div>
+                </div>
+
+                <div class="J_operate-add" style="display:none">
+					<div class="am-form-group">
+						<label class="am-u-sm-3 am-form-label">类型：</label>
+						<div class="am-u-sm-9">
+							<select class="papertype" name="papertype" required>
+								<option value="" selected = "selected">请选择一项</option>
+								<option value="1">论文</option>
+								<option value="2">专利</option>
+							</select>
+							<span class="am-form-caret"></span>
+						</div>
 					</div>
-				</div>
-				<div class="am-form-group">
-					<label class="am-u-sm-3 am-form-label">发表日期：</label>
-					<div class="am-u-sm-9">
-						<input type="text" class="papertime am-form-field" placeholder="请输入发表日期" data-am-datepicker readonly/>
+					<div class="am-form-group">
+						<label class="am-u-sm-3 am-form-label">名称：</label>
+						<div class="am-u-sm-9">
+							<input type="text" value="" class="papername" required placeholder="请输入名称">
+						</div>
 					</div>
-				</div>
-				<div class="am-form-group">
-					<label class="am-u-sm-3 am-form-label">补充说明：</label>
-					<div class="am-u-sm-9">
-						<textarea rows="3 " class="paperinstr"></textarea>
+					<div class="am-form-group">
+						<label class="am-u-sm-3 am-form-label">发表日期：</label>
+						<div class="am-u-sm-9">
+							<input type="text" value="" class="papertime am-form-field" placeholder="请输入发表日期" data-am-datepicker readonly/>
+						</div>
 					</div>
-				</div>
-				<div class="am-form-group">
-					<div class="am-u-sm-9 am-u-sm-offset-3">
-						<button type="button" class="am-btn am-btn-primary my-paper-btn"> 提交信息 </button>
+					<div class="am-form-group">
+						<label class="am-u-sm-3 am-form-label">补充说明：</label>
+						<div class="am-u-sm-9">
+							<textarea rows="3 " value="" class="paperinstr" placeholder="发表的详细信息（包括发表的期刊作者顺序及内容摘要等）"></textarea>
+						</div>
+					</div>
+					<input type="hidden"  class="J_hidden-ipt" value="">
+					<div class="am-form-group">
+						<div class="am-u-sm-9 am-u-sm-offset-3">
+							<button type="button" class="am-btn am-btn-primary my-paper-btn"> 提交信息 </button>
+						</div>
 					</div>
 				</div>
 			</form>
