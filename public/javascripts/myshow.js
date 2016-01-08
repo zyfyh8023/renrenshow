@@ -1,3 +1,5 @@
+var jx1=0, jy1=0, jw=0, jh=0;
+
 $(document).ready(function() {
 	/**
 	 * myindex页面的js
@@ -559,13 +561,14 @@ $(document).ready(function() {
 	**/
 	//个人基本信息
 	var $myBaseinfo = $('#my-baseinfo');
-	$myBaseinfo.delegate('#inputFile', 'change', function() {
-		$('.imgtip', $myBaseinfo).html($('#inputFile', $myBaseinfo).val());
+	$myBaseinfo.delegate('#inputFile1', 'change', function() {
+		$('.imgtip', $myBaseinfo).html($('#inputFile1', $myBaseinfo).val());
 	})
 
-	$myBaseinfo.delegate('#upload', 'click', function() {
-		$('#specialInstruc', $myBaseinfo).ajaxForm({
-			url: $('#specialInstruc', $myBaseinfo).attr('action'),
+	$myBaseinfo.delegate('#upload1', 'click', function() {
+		console.log(jx1);
+		$('#specialInstruc1', $myBaseinfo).ajaxForm({
+			url: $('#specialInstruc1', $myBaseinfo).attr('action'),
 			type: 'POST',
 			success: function(res, status, xhr, $form) {
 				if (res.retCode != 200) {
@@ -573,11 +576,11 @@ $(document).ready(function() {
 				} else {
 					location.reload();
 				}
-				$('#specialInstruc', $myBaseinfo).clearForm();
+				$('#specialInstruc1', $myBaseinfo).clearForm();
 			},
 			error: function(res, status, e) {
 				alertOpnFn('err');
-				$('#specialInstruc', $myBaseinfo).clearForm();
+				$('#specialInstruc1', $myBaseinfo).clearForm();
 			}
 		});
 	})

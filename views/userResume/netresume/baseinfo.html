@@ -49,7 +49,7 @@
         </div>
 
         <div class="am-popup-bd"> 
-            <form class="am-form am-form-horizontal" action="/resume/baseinfo" data-am-validator method='post' id="specialInstruc" enctype='multipart/form-data'> 
+            <form class="am-form am-form-horizontal" action="/resume/baseinfo" data-am-validator method='post' id="specialInstruc1" enctype='multipart/form-data' autocomplete ='off'> 
                 <div class="am-form-group">
                     <label class="am-u-sm-3 am-form-label">姓名：</label>
                     <div class="am-u-sm-9">
@@ -84,11 +84,11 @@
                     <div class="am-u-sm-9">
                         <select name="ieducation" required>
                             <option value="">请选择一项</option>
-                            <option value="1">高中</option>
-                            <option value="2">大专</option>
-                            <option value="3">本科</option>
-                            <option value="4">硕士</option>
-                            <option value="5">博士</option>
+                            <option <% if( rs.baseInfo1.education=='1') {%> selected = "selected" <% } %> value="1">高中</option>
+                            <option <% if( rs.baseInfo1.education=='2') {%> selected = "selected" <% } %> value="2">大专</option>
+                            <option <% if( rs.baseInfo1.education=='3') {%> selected = "selected" <% } %> value="3">本科</option>
+                            <option <% if( rs.baseInfo1.education=='4') {%> selected = "selected" <% } %> value="4">硕士</option>
+                            <option <% if( rs.baseInfo1.education=='5') {%> selected = "selected" <% } %> value="5">博士</option>
                         </select>
                         <span class="am-form-caret"></span>
                     </div>
@@ -111,14 +111,21 @@
                         <button type="button" class="am-btn am-btn-default am-btn-sm">
                             <i class="am-icon-cloud-upload"></i> 上传头像
                         </button>
-                        <input type="file" id="inputFile"  name="inputFile">
+                        <input type="file" id="inputFile1"  class="J_uploadimg" name="inputFile1">
                         <div class="imgtip"></div>
                     </div>
                 </div>
-                <br>
+                <div class="J_img-preview" style="display:none;width:580px;margin:0 auto;"> 
+                    <div class="am-form-group am-form-file J_oldimg"></div>
+                    <div class="am-form-group am-form-file J_newimg"></div>
+                    <input type="hidden"  name="J_cor_x1" class="J_cor_x1" />
+                    <input type="hidden"  name="J_cor_y1" class="J_cor_y1" />
+                    <input type="hidden"  name="J_cor_w"  class="J_cor_w" />
+                    <input type="hidden"  name="J_cor_h"  class="J_cor_h" />
+                </div>
                 <div class="am-form-group">
                     <div class="am-u-sm-9 am-u-sm-offset-3">
-                        <button id="upload" class="am-btn am-btn-primary my-baseinfo-btn"> 提交确认</button>
+                        <button id="upload1" class="am-btn am-btn-primary my-baseinfo-btn"> 提交确认</button>
                     </div>  
                 </div>
             </form> 
