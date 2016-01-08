@@ -193,6 +193,96 @@ exports.contactinfo = function(req, res, next) {
 		}
 	});
 };
+
+//edu-update
+exports.education3 = function(req, res, next) {
+	uName = req.session.user.username;
+
+	var form = new multiparty.Form({
+		uploadDir: './public/works/'
+	});
+	form.parse(req, function(err, fields, files) {
+		var filesTmp = JSON.stringify(files, null, 2);
+		if (err) {
+			retDesc = '系统出现故障，请稍后再试哦！';
+			return res.send({
+				retCode: 400,
+				retDesc: retDesc
+			});
+		} else {
+			resume.findByUname(uName, function(err, rs) {
+				if (err) {
+					retDesc = '信息查找失败！';
+					return res.send({
+						retCode: 400,
+						retDesc: retDesc
+					});
+				} else {
+					var inputFile = files.inputFile3[0];
+					var uploadedPath = inputFile.path;
+					var dstPath = './public/works/' + inputFile.originalFilename;
+					var imgSize = inputFile.size;
+					if (imgSize > 2 * 1024 * 1024) {
+						retDesc = '图片的尺寸过大！';
+						return res.send({
+							retCode: 400,
+							retDesc: retDesc
+						});
+					}
+					var imgType = inputFile.headers['content-type'];
+					if (imgType.split('/')[0] != 'image') {
+						retDesc = '只允许上传图片哦~';
+						return res.send({
+							retCode: 400,
+							retDesc: retDesc
+						});
+					}
+					var cTimeStr = new Date().getTime();
+					cTimeStr = cTimeStr.toString();
+					var imgPath = './public/works/' + uName + 'certificateImg' + cTimeStr + '.jpg',
+						imgSrc = '/works/' + uName + 'certificateImg' + cTimeStr + '.jpg';
+					fs.rename(uploadedPath, imgPath, function(err) {
+						if (err) {
+							retDesc = '图片重名了出现问题，请稍后再试！';
+							return res.send({
+								retCode: 400,
+								retDesc: retDesc
+							});
+						} else {
+							var updateid = fields.J_hidden_ipt[0].trim();
+							var newschools3 = {
+								school: fields.school[0],
+								educationtype: fields.educationtype[0],
+								sdatetime: fields.sdatetime[0],
+								edatetime: fields.edatetime[0],
+								major: fields.major[0],
+								majorinstr: fields.majorinstr[0]
+							};
+							rs.schools3[updateid]=newschools3;
+							resume.modify({
+								author: uName
+							}, {
+								schools3: rs.schools3
+							}, function(err) {
+								if (err) {
+									retDesc = '信息更新失败！';
+									return res.send({
+										retCode: 400,
+										retDesc: retDesc
+									});
+								} else {
+									return res.send({
+										retCode: 200
+									});
+								}
+							});
+						}
+					});
+				}
+			});
+		}
+	});
+};
 //edu-add
 exports.education1 = function(req, res, next) {
 	uName = req.session.user.username;

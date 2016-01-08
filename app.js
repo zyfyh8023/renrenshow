@@ -140,6 +140,7 @@ app.post('/resume/baseinfo', resume.baseinfo); //基本信息
 app.post('/resume/contactinfo', resume.contactinfo); //联系方式
 app.post('/resume/education/add', resume.education1); //教育经历-add
 app.post('/resume/education/del', resume.education2); //教育经历-del
+app.post('/resume/education/upd', resume.education3); //教育经历-del
 app.post('/resume/practice/add', resume.practice1); //工作经历-add
 app.post('/resume/practice/del', resume.practice2); //工作经历-del
 app.post('/resume/repractice/add', resume.repractice1); //re工作经历-add

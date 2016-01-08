@@ -620,46 +620,127 @@ $(document).ready(function() {
 	});
 
 });
-//教育经历-添加
+
+
+/**
+ * 
+ *教育经历
+ *
+ **/
+ //公共变量
 var $myEducation = $('#my-education'),
 	$myEducationadd=$('.J_operate-add', $myEducation),
 	$myEducationdel=$('.J_operate-del', $myEducation);
 
-$myEducation.delegate('.J_operate-sel select', 'change', function(event) {
-	if ($(this).children('option:selected').val() == 1) {
-			$('.J_operate-del', $myEducation).hide();
-			$('.J_operate-add', $myEducation).show();
-		} else if ($(this).children('option:selected').val() == 2) {
-			$('.J_operate-del', $myEducation).show();
-			$('.J_operate-add', $myEducation).hide();
-		} else {
-			$('.J_operate-del', $myEducation).hide();
-			$('.J_operate-add', $myEducation).hide();
-  	}
+//操作方式
+$myEducation.delegate('.J_operate-sel .select1', 'change', function(event) {
+    $('.J_operate-add .J_hidden-ipt', $myEducation).val(''); // 动态修改的清空
+    $('.J_operate-add .school', $myEducation).val(''); 
+    $('.J_operate-add .educationtype', $myEducation).val(''); 
+    $('.J_operate-add .sdatetime', $myEducation).val(''); 
+    $('.J_operate-add .edatetime', $myEducation).val(''); 
+    $('.J_operate-add .major', $myEducation).val(''); 
+    $('.J_operate-add .majorinstr', $myEducation).val(''); 
+
+    if ($(this).children('option:selected').val() == 1) {
+        $('.J_operate-del', $myEducation).hide();
+        $('.J_operate-add', $myEducation).show();
+        $(".J_operate-sel", $myEducation).find(".J_change-con").hide();
+    } else if ($(this).children('option:selected').val() == 2) {
+        $('.J_operate-del', $myEducation).show();
+        $('.J_operate-add', $myEducation).hide();
+        $(".J_operate-sel", $myEducation).find(".J_change-con").hide();
+    } else if ($(this).children('option:selected').val() == 3) {
+        $('.J_operate-del', $myEducation).hide();
+        $('.J_operate-add', $myEducation).hide();
+        $(".J_operate-sel", $myEducation).find(".J_change-con").show();
+        var num=$('.J_operate-sel .select2', $myEducation).children('option:selected').val();
+        if(num){
+            educationAjaxCom(num);
+        }
+    }else {
+        $('.J_operate-del', $myEducation).hide();
+        $('.J_operate-add', $myEducation).hide();
+        $(".J_operate-sel", $myEducation).find(".J_change-con").hide();
+      }
 });
+
+
 $myEducation.delegate('#inputFile3', 'change', function() {
 	$('.imgtip', $myEducation).html($(this).val());
 })
 
 $myEducation.delegate('#upload3', 'click', function(event) {
-	$('#specialInstruc3', $myEducation).ajaxForm({
-		url: $('#specialInstruc3', $myEducation).attr('action'),
-		type: 'POST',
-		success: function(res, status, xhr, $form) {
-			if (res.retCode != 200) {
-				warnOpnFn(res.retDesc);
-			} else {
-				location.reload();
+	var hiddenipt = $.trim($myPaperadd.find(".J_hidden-ipt").val());
+	if(hiddenipt){
+		$('#specialInstruc3', $myEducation).ajaxForm({
+			url: $('#specialInstruc3', $myEducation).attr('name'),
+			type: 'POST',
+			success: function(res, status, xhr, $form) {
+				if (res.retCode != 200) {
+					warnOpnFn(res.retDesc);
+				} else {
+					location.reload();
+				}
+				$('#specialInstruc3', $myEducation).clearForm();
+			},
+			error: function(res, status, e) {
+				alertOpnFn('err');
+				$('#specialInstruc3', $myEducation).clearForm();
 			}
-			$('#specialInstruc3', $myEducation).clearForm();
-		},
-		error: function(res, status, e) {
-			alertOpnFn('err');
-			$('#specialInstruc3', $myEducation).clearForm();
-		}
-	});
+		});
+	}else{
+		$('#specialInstruc3', $myEducation).ajaxForm({
+			url: $('#specialInstruc3', $myEducation).attr('action'),
+			type: 'POST',
+			success: function(res, status, xhr, $form) {
+				if (res.retCode != 200) {
+					warnOpnFn(res.retDesc);
+				} else {
+					location.reload();
+				}
+				$('#specialInstruc3', $myEducation).clearForm();
+			},
+			error: function(res, status, e) {
+				alertOpnFn('err');
+				$('#specialInstruc3', $myEducation).clearForm();
+			}
+		});
+	}
 });
 
+//修改
+$myEducation.delegate('.J_operate-sel .select2', 'change', function(event) {
+    var num=$(this).children('option:selected').val();
+    if(num){
+        educationAjaxCom(num);
+      }else{
+          $('.J_operate-add', $myEducation).hide();
+      }
+});
+
+//comAjax
+function educationAjaxCom(num){
+    $('.J_operate-add', $myEducation).show();
+    $.ajax({
+        type: 'post',
+        url: '/resume/allinfo',
+        dataType: 'json',
+        success: function(data) {
+            $('.J_operate-add .J_hidden-ipt', $myEducation).val(num);
+            $('.J_operate-add .school', $myEducation).val(data.allinfo.schools3[num].school); 
+            $('.J_operate-add .educationtype', $myEducation).val(data.allinfo.schools3[num].educationtype); 
+            $('.J_operate-add .sdatetime', $myEducation).val(data.allinfo.schools3[num].sdatetime); 
+            $('.J_operate-add .edatetime', $myEducation).val(data.allinfo.schools3[num].edatetime); 
+            $('.J_operate-add .major', $myEducation).val(data.allinfo.schools3[num].major); 
+            $('.J_operate-add .majorinstr', $myEducation).val(data.allinfo.schools3[num].majorinstr); 
+        },
+        error: function(err) {
+            alertOpnFn('err');
+        }
+    });
+}
+//del
 $myEducation.delegate('.J_operate-del button', 'click', function(event) {
 	var delnum = $.trim($myEducationdel.find("select").children('option:selected').val());
 	if (delnum) {
