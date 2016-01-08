@@ -492,6 +492,94 @@ exports.repractice1 = function(req, res, next) {
 		}
 	});
 };
+//repractice-update
+exports.repractice3 = function(req, res, next) {
+	uName = req.session.user.username;
+
+	var form = new multiparty.Form({
+		uploadDir: './public/works/'
+	});
+	form.parse(req, function(err, fields, files) {
+		var filesTmp = JSON.stringify(files, null, 2);
+		if (err) {
+			retDesc = '系统出现故障，请稍后再试哦！';
+			return res.send({
+				retCode: 400,
+				retDesc: retDesc
+			});
+		} else {
+			resume.findByUname(uName, function(err, rs) {
+				if (err) {
+					retDesc = '信息查找失败！';
+					return res.send({
+						retCode: 400,
+						retDesc: retDesc
+					});
+				} else {
+					var inputFile = files.inputFile3[0];
+					var uploadedPath = inputFile.path;
+					var dstPath = './public/works/' + inputFile.originalFilename;
+					var imgSize = inputFile.size;
+					if (imgSize > 2 * 1024 * 1024) {
+						retDesc = '图片的尺寸过大！';
+						return res.send({
+							retCode: 400,
+							retDesc: retDesc
+						});
+					}
+					var imgType = inputFile.headers['content-type'];
+					if (imgType.split('/')[0] != 'image') {
+						retDesc = '只允许上传图片哦~';
+						return res.send({
+							retCode: 400,
+							retDesc: retDesc
+						});
+					}
+					var cTimeStr = new Date().getTime();
+					cTimeStr = cTimeStr.toString();
+					var imgPath = './public/works/' + uName + 'certificateImg' + cTimeStr + '.jpg',
+						imgSrc = '/works/' + uName + 'certificateImg' + cTimeStr + '.jpg';
+					fs.rename(uploadedPath, imgPath, function(err) {
+						if (err) {
+							retDesc = '图片重名了出现问题，请稍后再试！';
+							return res.send({
+								retCode: 400,
+								retDesc: retDesc
+							});
+						} else {
+							var updateid = fields.J_hidden_ipt[0].trim();
+							var newexperience4 = {
+								practice: fields.practice[0],
+								spracticetime: fields.spracticetime[0],
+								epracticetime: fields.epracticetime[0],
+								practiceposition: fields.practiceposition[0],
+								practiceinstr: fields.practiceinstr[0]
+							};
+							rs.experience4[updateid]=newexperience4;
+							resume.modify({
+								author: uName
+							}, {
+								experience4: rs.experience4
+							}, function(err) {
+								if (err) {
+									retDesc = '信息更新失败！';
+									return res.send({
+										retCode: 400,
+										retDesc: retDesc
+									});
+								} else {
+									return res.send({
+										retCode: 200
+									});
+								}
+							});
+						}
+					});
+				}
+			});
+		}
+	});
+};
 //repractice-del
 exports.repractice2 = function(req, res, next) {
 	var delnum = req.body.delnum.trim();
@@ -589,6 +677,94 @@ exports.practice1 = function(req, res, next) {
 								practiceinstr: fields.practiceinstr[0]
 							};
 							rs.work5.push(newwork5);
+							resume.modify({
+								author: uName
+							}, {
+								work5: rs.work5
+							}, function(err) {
+								if (err) {
+									retDesc = '信息更新失败！';
+									return res.send({
+										retCode: 400,
+										retDesc: retDesc
+									});
+								} else {
+									return res.send({
+										retCode: 200
+									});
+								}
+							});
+						}
+					});
+				}
+			});
+		}
+	});
+};
+//practice-update
+exports.practice3 = function(req, res, next) {
+	uName = req.session.user.username;
+
+	var form = new multiparty.Form({
+		uploadDir: './public/works/'
+	});
+	form.parse(req, function(err, fields, files) {
+		var filesTmp = JSON.stringify(files, null, 2);
+		if (err) {
+			retDesc = '系统出现故障，请稍后再试哦！';
+			return res.send({
+				retCode: 400,
+				retDesc: retDesc
+			});
+		} else {
+			resume.findByUname(uName, function(err, rs) {
+				if (err) {
+					retDesc = '信息查找失败！';
+					return res.send({
+						retCode: 400,
+						retDesc: retDesc
+					});
+				} else {
+					var inputFile = files.inputFile3[0];
+					var uploadedPath = inputFile.path;
+					var dstPath = './public/works/' + inputFile.originalFilename;
+					var imgSize = inputFile.size;
+					if (imgSize > 2 * 1024 * 1024) {
+						retDesc = '图片的尺寸过大！';
+						return res.send({
+							retCode: 400,
+							retDesc: retDesc
+						});
+					}
+					var imgType = inputFile.headers['content-type'];
+					if (imgType.split('/')[0] != 'image') {
+						retDesc = '只允许上传图片哦~';
+						return res.send({
+							retCode: 400,
+							retDesc: retDesc
+						});
+					}
+					var cTimeStr = new Date().getTime();
+					cTimeStr = cTimeStr.toString();
+					var imgPath = './public/works/' + uName + 'certificateImg' + cTimeStr + '.jpg',
+						imgSrc = '/works/' + uName + 'certificateImg' + cTimeStr + '.jpg';
+					fs.rename(uploadedPath, imgPath, function(err) {
+						if (err) {
+							retDesc = '图片重名了出现问题，请稍后再试！';
+							return res.send({
+								retCode: 400,
+								retDesc: retDesc
+							});
+						} else {
+							var updateid = fields.J_hidden_ipt[0].trim();
+							var newwork5 = {
+								practice: fields.practice[0],
+								spracticetime: fields.spracticetime[0],
+								epracticetime: fields.epracticetime[0],
+								practiceposition: fields.practiceposition[0],
+								practiceinstr: fields.practiceinstr[0]
+							};
+							rs.work5[updateid]=newwork5;
 							resume.modify({
 								author: uName
 							}, {
@@ -734,6 +910,94 @@ exports.certificate1 = function(req, res, next) {
 		}
 	});
 };
+//荣誉证书-update
+exports.certificate3 = function(req, res, next) {
+	uName = req.session.user.username;
+
+	var form = new multiparty.Form({
+		uploadDir: './public/works/'
+	});
+	form.parse(req, function(err, fields, files) {
+		var filesTmp = JSON.stringify(files, null, 2);
+		if (err) {
+			retDesc = '系统出现故障，请稍后再试哦！';
+			return res.send({
+				retCode: 400,
+				retDesc: retDesc
+			});
+		} else {
+			resume.findByUname(uName, function(err, rs) {
+				if (err) {
+					retDesc = '信息查找失败！';
+					return res.send({
+						retCode: 400,
+						retDesc: retDesc
+					});
+				} else {
+					var inputFile = files.inputFile3[0];
+					var uploadedPath = inputFile.path;
+					var dstPath = './public/works/' + inputFile.originalFilename;
+					var imgSize = inputFile.size;
+					if (imgSize > 2 * 1024 * 1024) {
+						retDesc = '图片的尺寸过大！';
+						return res.send({
+							retCode: 400,
+							retDesc: retDesc
+						});
+					}
+					var imgType = inputFile.headers['content-type'];
+					if (imgType.split('/')[0] != 'image') {
+						retDesc = '只允许上传图片哦~';
+						return res.send({
+							retCode: 400,
+							retDesc: retDesc
+						});
+					}
+					var cTimeStr = new Date().getTime();
+					cTimeStr = cTimeStr.toString();
+					var imgPath = './public/works/' + uName + 'certificateImg' + cTimeStr + '.jpg',
+						imgSrc = '/works/' + uName + 'certificateImg' + cTimeStr + '.jpg';
+					fs.rename(uploadedPath, imgPath, function(err) {
+						if (err) {
+							retDesc = '图片重名了出现问题，请稍后再试！';
+							return res.send({
+								retCode: 400,
+								retDesc: retDesc
+							});
+						} else {
+							var newCertificate6 = {
+								certificatename: fields.certificatename[0],
+								gettime: fields.gettime[0],
+								cgrade: fields.cgrade[0],
+								certificateinstr: fields.certificateinstr[0],
+								cimages: imgSrc
+							}
+							var updateid = fields.J_hidden_ipt[0].trim();
+							rs.Certificate6[updateid]=newCertificate6;
+							resume.modify({
+								author: uName
+							}, {
+								Certificate6: rs.Certificate6
+							}, function(err) {
+								if (err) {
+									retDesc = '信息更新失败！';
+									return res.send({
+										retCode: 400,
+										retDesc: retDesc
+									});
+								} else {
+									return res.send({
+										retCode: 200
+									});
+								}
+							});
+						}
+					});
+				}
+			});
+		}
+	});
+};
 //荣誉证书-del
 exports.certificate2 = function(req, res, next) {
 	var delnum = req.body.delnum.trim();
@@ -839,6 +1103,104 @@ exports.works1 = function(req, res, next) {
 										workimg: imgArr
 									}
 									rs.pWorks7.push(newpWorks7);
+									resume.modify({
+										author: uName
+									}, {
+										pWorks7: rs.pWorks7
+									}, function(err) {
+										if (err) {
+											retDesc = '信息更新失败！';
+											return res.send({
+												retCode: 400,
+												retDesc: retDesc
+											});
+										} else {
+											return res.send({
+												retCode: 200
+											});
+										}
+									});
+								}
+							}
+						});
+					}
+				}
+			});
+		}
+	});
+};
+//我的作品-update
+exports.works3 = function(req, res, next) {
+	uName = req.session.user.username;
+
+	var form = new multiparty.Form({
+		uploadDir: './public/works/'
+	});
+	form.parse(req, function(err, fields, files) {
+		var filesTmp = JSON.stringify(files, null, 2);
+		if (err) {
+			retDesc = '系统出现故障，请稍后再试哦！';
+			return res.send({
+				retCode: 400,
+				retDesc: retDesc
+			});
+		} else {
+			resume.findByUname(uName, function(err, rs) {
+				if (err) {
+					retDesc = '信息查找失败！';
+					return res.send({
+						retCode: 400,
+						retDesc: retDesc
+					});
+				} else {
+					var imgArr = [];
+					var num = 0;
+					for (var k = 0, len = files.inputFile2.length; k < len; k++) {
+						var inputFile = files.inputFile2[k];
+						var uploadedPath = inputFile.path;
+						var dstPath = './public/works/' + inputFile.originalFilename;
+						var imgSize = inputFile.size;
+						if (imgSize > 2 * 1024 * 1024) {
+							retDesc = '图片的尺寸过大！';
+							return res.send({
+								retCode: 400,
+								retDesc: retDesc
+							});
+						}
+						var imgType = inputFile.headers['content-type'];
+						if (imgType.split('/')[0] != 'image') {
+							retDesc = '只允许上传图片哦~';
+							return res.send({
+								retCode: 400,
+								retDesc: retDesc
+							});
+						}
+						var cTimeStr = new Date().getTime();
+						cTimeStr = cTimeStr.toString();
+						var imgPath = './public/works/' + uName + 'workImg' + cTimeStr + k + '.jpg',
+							imgSrc = '/works/' + uName + 'workImg' + cTimeStr + k + '.jpg';
+						imgArr.push(imgSrc);
+						fs.rename(uploadedPath, imgPath, function(err) {
+							if (err) {
+								retDesc = '图片重名了出现问题，请稍后再试！';
+								return res.send({
+									retCode: 400,
+									retDesc: retDesc
+								});
+							} else {
+								num++;
+								if (num == len) {
+									var newpWorks7 = {
+										workname: fields.workname[0],
+										worktime: fields.worktime[0],
+										workduty: fields.workduty[0],
+										showink: fields.showink[0],
+										codelink: fields.codelink[0],
+										workdes: fields.workdes[0],
+										workimg: imgArr
+									}
+									var updateid = fields.J_hidden_ipt[0].trim();
+									rs.pWorks7[updateid]=newpWorks7;
 									resume.modify({
 										author: uName
 									}, {
