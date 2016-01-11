@@ -34,7 +34,7 @@ exports.doPage = function(req, res, next) {
     uName = req.session.user.username;
     //生成multiparty对象，并配置下载目标路径
     var form = new multiparty.Form({
-        uploadDir: './public/avatar/'
+        uploadDir: './public/upload/userimgs/'
     });
     form.parse(req, function(err, fields, files) {
         var filesTmp = JSON.stringify(files, null, 2);
@@ -47,7 +47,7 @@ exports.doPage = function(req, res, next) {
         } else {
             var inputFile = files.inputFile[0],
                 uploadedPath = inputFile.path,
-                dstPath = './public/avatar/' + inputFile.originalFilename,
+                dstPath = './public/upload/userimgs/' + inputFile.originalFilename,
                 imgSize = inputFile.size;
             if (imgSize > 2 * 1024 * 1024) {
                 retDesc = '图片过大！';
@@ -65,8 +65,8 @@ exports.doPage = function(req, res, next) {
                 });
             }
             //重命名为真实文件名
-            var imgPath = './public/avatar/' + uName + 'specialImg.jpg',
-                imgSrc = '/avatar/' + uName + 'specialImg.jpg';
+            var imgPath = './public/upload/userimgs/' + uName + '_specialImg.jpg',
+                imgSrc = '/upload/userimgs/' + uName + '_specialImg.jpg';
             fs.rename(uploadedPath, imgPath, function(err) {
                 if (err) {
                     retDesc = '重命名错误！';
