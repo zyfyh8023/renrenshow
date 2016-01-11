@@ -566,7 +566,6 @@ $(document).ready(function() {
 	})
 
 	$myBaseinfo.delegate('#upload1', 'click', function() {
-		console.log(jx1);
 		$('#specialInstruc1', $myBaseinfo).ajaxForm({
 			url: $('#specialInstruc1', $myBaseinfo).attr('action'),
 			type: 'POST',
@@ -576,12 +575,8 @@ $(document).ready(function() {
 				} else {
 					location.reload();
 				}
-				$('#specialInstruc1', $myBaseinfo).clearForm();
 			},
-			error: function(res, status, e) {
-				alertOpnFn('err');
-				$('#specialInstruc1', $myBaseinfo).clearForm();
-			}
+			clearForm: true
 		});
 	})
 
