@@ -188,16 +188,6 @@ app.post('/changePassword', changePassword.doPage);
 app.get('/myError', myError.page);
 //测试页面
 app.get('/demo', demo.page);
-app.post('/demo/descriptioncon', demo.descriptionPage);
-app.post('/demo/undergo', demo.undergoPage);
-app.post('/demo/paper', demo.paperPage);
-app.post('/demo/certificate', demo.certificatePage);
-app.post('/demo/works', demo.worksPage);
-app.post('/demo/practice', demo.practicePage);
-app.post('/demo/education', demo.educationPage);
-app.post('/demo/contactinfo', demo.contactinfoPage);
-app.post('/demo/baseinfo', demo.baseinfoPage);
-
 // ejs.filters.dateformat = function(obj, format) {
 //     if (format == undefined) {
 //         format = 'YYYY-MM-DD HH:mm:ss';
