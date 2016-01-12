@@ -1,14 +1,18 @@
-var express = require('express');
-var router = express.Router();
+"use strict";
 
-var retCode, retDesc;
+var retCode, retDesc, uName;
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+exports.page = function(req, res, next) {
+
+	if(req.session.user){
+		uName = req.session.user.username;
+	}else{
+		uName = '';
+	}
 
 	res.render('index', {
-		title: '首页-人人秀'
+		title: '首页-人人秀',
+		uName: uName
 	});
-});
-
-module.exports = router;
+};

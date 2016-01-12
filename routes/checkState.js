@@ -9,7 +9,7 @@ exports.checkLogin = function(req, res, next) {
 
 exports.checkNotLogin = function(req, res, next) {
 	if (req.session.user) {
-		return res.redirect('/');
+		return res.redirect('/myindex');
 	}
 	next();
 }

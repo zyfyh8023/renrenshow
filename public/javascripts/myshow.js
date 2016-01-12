@@ -2,6 +2,12 @@ var jx1=0, jy1=0, jw=0, jh=0;
 
 $(document).ready(function() {
 	/**
+	 * mywebsite的侧边栏显示
+	 */
+	$(document.body).delegate('#zy-slidemenu', 'click', function(event) {
+		$(this).closest('ul').hide();
+	});
+	/**
 	 * myindex页面的js
 	 */
 	var $input = $('#doc-qr-text', "#zy-myindex"),
@@ -17,24 +23,7 @@ $(document).ready(function() {
 	$input.on('focusout', function() {
 		makeCode($input.val());
 	});
-
-	/**
-	 * myheader页面的js
-	 */
-	$('#zy-loginOut').click(function() {
-		$.ajax({
-			type: 'post',
-			url: '/loginOut',
-			dataType: 'json',
-			success: function(data) {
-				location.href = "/login";
-			},
-			error: function(err) {
-				alertOpnFn('err');
-			}
-		});
-	});
-
+	
 	/**
 	 * seting和privateSeting页面的js
 	 */

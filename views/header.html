@@ -39,10 +39,10 @@
 
 			<div class="am-collapse am-topbar-collapse zy-am-topbar-collapse" id="doc-topbar-collapse">
 				<ul class="am-nav am-nav-pills am-topbar-nav zy-am-topbar-nav">
-					<li class="am-active"><a href="/">首页</a></li>
-					<li><a href="/faq">功能介绍</a></li>
-					<li><a href="/resource">资源库</a></li>
-					<li><a href="/talentpool">人才库</a></li>
+					<li class="am-active"><a data-src="/index" href="/index">首页</a></li>
+					<li><a data-src="/faq" href="/faq">功能介绍</a></li>
+					<li><a data-src="/inf" href="/inf">资源库</a></li>
+					<li><a data-src="/res" href="/res">人才库</a></li>
 				</ul>
 				<div class="am-topbar-right">
 					<div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
@@ -50,8 +50,12 @@
 							其他 <span class="am-icon-caret-down"></span>
 						</button>
 						<ul class="am-dropdown-content">
-							<li><a href="/login">登录</a></li>
-							<li><a href="/register">注册</a></li>
+							<% if(uName!=''){%>
+								<li><a id="zy-loginOut" href="javaScript:;">退出登录</a></li>
+							<% }else{ %>
+								<li><a href="/login">去登录</a></li>
+							<% } %>
+							<li><a href="/register">去注册</a></li>
 							<li><a href="/myindex">我的天地</a></li>
 						</ul>
 					</div>

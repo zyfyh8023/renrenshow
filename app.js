@@ -90,18 +90,14 @@ var router = express.Router();
 app.use(router);
 
 //公共页——首页-问答中心-资源中心-人才中心
-app.use('/', routes);
+app.get('/', routes.page);
+app.get('/index', routes.page);
 app.get('/faq', faq.page);
-app.get('/resource', resource.page);
-app.get('/talentpool', talentpool.page);
+app.get('/inf', resource.page);
+app.get('/res', talentpool.page);
 app.get('/allarticle', allarticle.page);
 app.get('/article', article.page);
-
-//登录过了进入登录页面的自动首页跳转
-app.get('/login', checkState.checkNotLogin);
 app.get('/login', login.page);
-//登录过了提交登录的自动首页跳转
-app.post('/login', checkState.checkNotLogin);
 app.post('/login', login.doLogin);
 //没登录的情况下提交退出
 app.post('/loginOut', checkState.checkLogin);
@@ -110,10 +106,12 @@ app.post('/loginOut', login.loginOut);
 app.get('/register', register.page);
 app.post('/register', register.doRegister);
 
+
+
 //个人中心——首页
-app.get('/myindex', myindex.page);
+app.get('/myindex/:priId?/:pubId?', myindex.page);
 //个人中心——个性介绍
-app.get('/introduction', introduction.page);
+app.get('/instrc', introduction.page);
 app.post('/introduction', introduction.doPage);
 //个人中心——网页简历
 app.get('/resume', resume.page);
@@ -153,36 +151,36 @@ app.post('/resume/repractice/upd', resume.repractice3); //re工作经历-update
 app.get('/pageResume', pageResume.page);
 app.post('/pageResume', pageResume.doPage);
 //博文管理
-app.get('/createarticle', createarticle.page);
+app.get('/blogs_art_cre', createarticle.page);
 app.post('/createarticle', createarticle.doPage);
-app.get('/managearticle', managearticle.page);
-app.get('/noPublicBW', managearticle.noPublicBW);
-app.get('/relatedMeBW', managearticle.relatedMeBW);
+app.get('/blogs_art_pub', managearticle.page);
+app.get('/blogs_art_pri', managearticle.noPublicBW);
+app.get('/blogs_art_rea', managearticle.relatedMeBW);
 app.post('/artPageSearch', managearticle.pageSearch);
 //面试经验
-app.get('/createExperience', createExperience.page);
+app.get('/blogs_exp_cre', createExperience.page);
 app.post('/createExperience', createExperience.doPage);
-app.get('/manageExperience', manageExperience.page);
-app.get('/noPublicMJ', manageExperience.noPublicMJ);
-app.get('/relatedMeMJ', manageExperience.relatedMeMJ);
+app.get('/blogs_exp_pub', manageExperience.page);
+app.get('/blogs_exp_pri', manageExperience.noPublicMJ);
+app.get('/blogs_exp_rea', manageExperience.relatedMeMJ);
 app.post('/expPageSearch', manageExperience.pageSearch);
 //资源导航
-app.get('/navigation', navigation.page);
+app.get('/navs', navigation.page);
 app.post('/navigationListInit', navigation.listInit);
 app.post('/navigationListAdd', navigation.listAdd);
 app.post('/navigationListDel', navigation.listDel);
 app.post('/navigationListAddsun', navigation.listAdd2);
 app.post('/navigationListDelsun', navigation.listDel2);
 //公开设置
-app.get('/seting', seting.page);
+app.get('/sets_pub', seting.page);
 app.post('/seting', seting.doPage);
 app.post('/setingInit', seting.createInit);
 //私人设置
-app.get('/privateSeting', privateSeting.page);
+app.get('/sets_pri', privateSeting.page);
 app.post('/privateSeting', privateSeting.doPage);
 app.post('/privateSetingInit', privateSeting.createInit);
 //密码修改
-app.get('/changePassword', changePassword.page);
+app.get('/sets_pwd', changePassword.page);
 app.post('/changePassword', changePassword.doPage);
 //错误页面
 app.get('/myError', myError.page);

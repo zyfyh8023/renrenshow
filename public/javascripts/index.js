@@ -2,19 +2,39 @@ $(document).ready(function() {
 
 	//菜单导航条
 	$('.zy-am-topbar-nav li a').each(function() {
-		if ($($(this))[0].href == String(window.location)) {
+		var str=window.location.pathname;
+		if(str.indexOf($(this).data('src'))!=-1){
 			$('.zy-am-topbar-nav li').removeClass('am-active');
 			$(this).parent().addClass('am-active');
-		} else {
+		}else if(str=='/'){
+			$('.zy-am-topbar-nav li').removeClass('am-active');
+			$($('.zy-am-topbar-nav li')[0]).addClass('am-active');
+		}else{
 			$(this).parent().removeClass('am-active');
 		}
+	});
+
+	/**
+	 * 退出登录
+	 */
+	$('#zy-loginOut').click(function() {
+		$.ajax({
+			type: 'post',
+			url: '/loginOut',
+			dataType: 'json',
+			success: function(data) {
+				location.href = "/login";
+			},
+			error: function(err) {
+				alertOpnFn('err');
+			}
+		});
 	});
 
 	//warning提示框的关闭事件
 	$("#zy-warning .am-close").click(function() {
 		$("#zy-warning").addClass('zy-display-none');
 	});
-
 
 });
 
