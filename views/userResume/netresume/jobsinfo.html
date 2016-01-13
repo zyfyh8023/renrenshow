@@ -39,7 +39,7 @@
 		</div>
 		<div class="am-popup-bd">
 			<br>
-			<form class="am-form am-form-horizontal" method="post" data-am-validator>
+			<form class="am-form am-form-horizontal" method="post" data-am-validator autocomplete ='off'>
 				<div class="J_operate-sel">
 					<div class="am-form-group">
 						<label class="am-u-sm-3 am-form-label">操作方式：</label>
@@ -59,13 +59,11 @@
 	    	            <div class="am-u-sm-9">
 	    	                <select required class="select2">
 	    						<option value="" selected = "selected">请选择修改哪项？</option>
-	    						<% if(rs.schools3) { %>
-	    							<% if(rs.schools3.length>=0) { %>
-										<% for(var i=0; i<rs.schools3.length; i++) { %>
-											<option value="<%= i %>"><%= rs.schools3[i].school %></option>
-										<% } %>
-									<% } %>	
-	    						<% } %>
+	    						<% if(rs.work5.length>=0) { %>
+									<% for(var i=0; i<rs.work5.length; i++) { %>
+										<option value="<%= i %>"><%= rs.work5[i].practice %></option>
+									<% } %>
+								<% } %>	
 	    	                </select>
 	    	                <span class="am-form-caret"></span>
 	    	            </div>  
@@ -96,7 +94,7 @@
                 </div>
             </form>
 
-            <form class="am-form am-form-horizontal" id="specialInstruc3" enctype='multipart/form-data' action="/resume/practice/add" method="post" data-am-validator>
+            <form class="am-form am-form-horizontal" id="specialInstruc5" enctype='multipart/form-data' action="/resume/practice/add" name="/resume/practice/upd" method="post" data-am-validator autocomplete ='off'>
             	<div class="J_operate-add" style="display:none">
 					<div class="am-form-group">
 						<label class="am-u-sm-3 am-form-label">公司名称：</label>
@@ -133,14 +131,14 @@
 						<div class="am-u-sm-9">
 							<button type="button" class="am-btn am-btn-default am-btn-sm">
 								<i class="am-icon-cloud-upload"></i> 上传图片</button>
-							<input type="file" id="inputFile3" value="" name="inputFile3">
+							<input type="file" id="inputFile5" value="" name="inputFile3">
 							<div class="imgtip"></div>
 						</div>
 					</div>
 					<input type="hidden"  class="J_hidden-ipt" name="J_hidden_ipt" value="">
 					<div class="am-form-group">
 						<div class="am-u-sm-9 am-u-sm-offset-3">
-							<button id="upload3" class="am-btn am-btn-primary"> 提交信息 </button>
+							<button id="upload5" class="am-btn am-btn-primary"> 提交信息 </button>
 						</div>
 					</div>
 				</div>

@@ -88,39 +88,115 @@ $(document).ready(function() {
 	 * privateSeting页面的js
 	 */
 	//privateSeting页面保存事件
-	$("#zy-privateSeting").delegate('button', 'click', function(event) {
-		var setingArr = [];
-		$(".zy-change-content").each(function() {
-			var temp = {};
-			temp.modelNam = $(this).prev().children(".titleName").text();
-			temp.sunModels = [];
-			for (var i = 0; i < $(this).children("a").length; i++) {
-				var tempObj = {};
-				if ($($(this).children("a")[i]).hasClass("am-badge-success")) {
-					tempObj.sunNam = $($(this).children("a")[i]).text();
-					tempObj.sunYesNo = 1;
-				} else {
-					tempObj.sunNam = $($(this).children("a")[i]).text();
-					tempObj.sunYesNo = 0;
-				}
-				temp.sunModels.push(tempObj);
-			}
-			setingArr.push(temp);
+	var $privateSeting=$('#zy-privateSeting');
+	$privateSeting.delegate('.saveBtn', 'click', function(event) {
+		$('#zy-priset-name').modal({
+		  	relatedTarget: this,
+		  	onConfirm: function(e) {
+		    	var setingArr = [];
+		    	$(".zy-change-content").each(function() {
+		    		var temp = {};
+		    		temp.modelNam = $(this).prev().children(".titleName").text();
+		    		temp.sunModels = [];
+		    		for (var i = 0; i < $(this).children("a").length; i++) {
+		    			var tempObj = {};
+		    			if ($($(this).children("a")[i]).hasClass("am-badge-success")) {
+		    				tempObj.sunNam = $($(this).children("a")[i]).text();
+		    				tempObj.sunYesNo = 1;
+		    			} else {
+		    				tempObj.sunNam = $($(this).children("a")[i]).text();
+		    				tempObj.sunYesNo = 0;
+		    			}
+		    			temp.sunModels.push(tempObj);
+		    		}
+		    		setingArr.push(temp);
+		    	});
+		    	$.ajax({
+		    		type: 'post',
+		    		url: '/privateSeting/add',
+		    		data: {
+		    			uNameSet: JSON.stringify(setingArr),
+		    			setName: e.data
+		    		},
+		    		dataType: 'json',
+		    		success: function(data) {
+		    			if (data.retCode != 200) {
+		    				warnOpnFn(data.retDesc);
+		    			} else {
+		    				location.reload();
+		    			}
+		    		},
+		    		error: function(data) {
+		    			alertOpnFn('err');
+		    		}
+		    	});
+		  	},
+		  	onCancel: function(e) {
+		    	alert('您最终选择放弃了此次设置!');
+		  	}
 		});
-
+		
+	});
+	
+	$privateSeting.delegate('.zy-del-set-con', 'click', function(event) {
+		var ids=$(this).closest('tr').data('ids');
 		$.ajax({
 			type: 'post',
-			url: '/privateSeting',
+			url: '/privateSeting/del',
 			data: {
-				uNameSet: JSON.stringify(setingArr)
+				ids: ids
 			},
 			dataType: 'json',
 			success: function(data) {
 				if (data.retCode != 200) {
 					warnOpnFn(data.retDesc);
 				} else {
-					alertOpnFn('保存成功！');
+					location.reload();
 				}
+			},
+			error: function(data) {
+				alertOpnFn('err');
+			}
+		});
+	});
+
+	$privateSeting.delegate('.zy-look-set-con', 'click', function(event) {
+		var ids=$(this).closest('tr').data('ids');
+		$.ajax({
+			type: 'post',
+			url: '/privateSeting/see',
+			data: {
+				ids: ids
+			},
+			dataType: 'json',
+			success: function(data) {
+				var strAlls="";
+				for(var k=0; k<data.retData.moduleCon.length; k++){
+					var strEles="";
+					for(var j=0;j<data.retData.moduleCon[k].sunModels.length;j++){
+						if(data.retData.moduleCon[k].modelNam =='个性简介' || data.retData.moduleCon[k].modelNam =='公开时间'){
+							if(data.retData.moduleCon[k].sunModels[j].sunYesNo ==1){
+								strEles+='<a class="zy-div-radio am-badge am-badge-success am-text-lg">'+data.retData.moduleCon[k].sunModels[j].sunNam +'</a> ';
+							}else{
+								strEles+='<a class="zy-div-radio am-badge am-text-lg">'+data.retData.moduleCon[k].sunModels[j].sunNam +'</a> ';
+							}
+						}else{
+							if(data.retData.moduleCon[k].sunModels[j].sunYesNo ==1){
+								strEles+='<a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">'+data.retData.moduleCon[k].sunModels[j].sunNam +'</a> ';
+							}else{
+								strEles+='<a class="zy-div-checkbox  am-badge am-text-lg">'+data.retData.moduleCon[k].sunModels[j].sunNam +'</a> ';
+							}
+						}
+					}
+					strAlls+='<div class="zy-public-title">'+
+                   			'<span class="am-badge am-badge-secondary am-round am-text-xl">'+(k+1)+'</span> <span class="titleName am-badge am-badge-secondary am-text-xl">'+data.retData.moduleCon[k].modelNam+'</span>'+
+               				'</div> <div class="zy-public-content zy-change-content">'+strEles+
+           					'</div>';
+				}
+				strAlls+='<div style="margin-left:4rem;">'+
+						'<button data-ids="'+ids+'" class="saveBtnUpd am-btn am-btn-warning am-text-lg"> 保存更改 </button> </div>';
+
+				$('.zy-set-show').html(strAlls);
 			},
 			error: function(data) {
 				alertOpnFn('err');
@@ -605,7 +681,6 @@ $(document).ready(function() {
 
 });
 
-
 /**
  * 
  *教育经历
@@ -649,13 +724,12 @@ $myEducation.delegate('.J_operate-sel .select1', 'change', function(event) {
       }
 });
 
-
 $myEducation.delegate('#inputFile3', 'change', function() {
 	$('.imgtip', $myEducation).html($(this).val());
 })
 
 $myEducation.delegate('#upload3', 'click', function(event) {
-	var hiddenipt = $.trim($myPaperadd.find(".J_hidden-ipt").val());
+	var hiddenipt = $.trim($myEducation.find(".J_hidden-ipt").val());
 	if(hiddenipt){
 		$('#specialInstruc3', $myEducation).ajaxForm({
 			url: $('#specialInstruc3', $myEducation).attr('name'),
@@ -750,44 +824,124 @@ $myEducation.delegate('.J_operate-del button', 'click', function(event) {
 		warnOpnFn('请填写完整!');
 	}
 });	
-//re工作
+
+
+/**
+ * 
+ *re工作
+ *
+ **/
+ //公共变量
 var $myRepractice = $('#my-repractice'),
 	$myRepracticeadd=$('.J_operate-add', $myRepractice),
 	$myRepracticedel=$('.J_operate-del', $myRepractice);
 
-$myRepractice.delegate('.J_operate-sel select', 'change', function(event) {
-	if ($(this).children('option:selected').val() == 1) {
-			$('.J_operate-del', $myRepractice).hide();
-			$('.J_operate-add', $myRepractice).show();
-		} else if ($(this).children('option:selected').val() == 2) {
-			$('.J_operate-del', $myRepractice).show();
-			$('.J_operate-add', $myRepractice).hide();
-		} else {
-			$('.J_operate-del', $myRepractice).hide();
-			$('.J_operate-add', $myRepractice).hide();
-  	}
+//操作方式
+$myRepractice.delegate('.J_operate-sel .select1', 'change', function(event) {
+    $('.J_operate-add .J_hidden-ipt', $myRepractice).val(''); // 动态修改的清空
+    // $('.J_operate-add .school', $myRepractice).val(''); 
+    // $('.J_operate-add .educationtype', $myRepractice).val(''); 
+    // $('.J_operate-add .sdatetime', $myRepractice).val(''); 
+    // $('.J_operate-add .edatetime', $myRepractice).val(''); 
+    // $('.J_operate-add .major', $myRepractice).val(''); 
+    // $('.J_operate-add .majorinstr', $myRepractice).val(''); 
+
+    if ($(this).children('option:selected').val() == 1) {
+        $('.J_operate-del', $myRepractice).hide();
+        $('.J_operate-add', $myRepractice).show();
+        $(".J_operate-sel", $myRepractice).find(".J_change-con").hide();
+    } else if ($(this).children('option:selected').val() == 2) {
+        $('.J_operate-del', $myRepractice).show();
+        $('.J_operate-add', $myRepractice).hide();
+        $(".J_operate-sel", $myRepractice).find(".J_change-con").hide();
+    } else if ($(this).children('option:selected').val() == 3) {
+        $('.J_operate-del', $myRepractice).hide();
+        $('.J_operate-add', $myRepractice).hide();
+        $(".J_operate-sel", $myRepractice).find(".J_change-con").show();
+        var num=$('.J_operate-sel .select2', $myRepractice).children('option:selected').val();
+        if(num){
+            repracticeAjaxCom(num);
+        }
+    }else {
+        $('.J_operate-del', $myRepractice).hide();
+        $('.J_operate-add', $myRepractice).hide();
+        $(".J_operate-sel", $myRepractice).find(".J_change-con").hide();
+      }
 });
-$myRepractice.delegate('#inputFile3', 'change', function() {
+
+$myRepractice.delegate('#inputFile4', 'change', function() {
 	$('.imgtip', $myRepractice).html($(this).val());
 })
 
-$myRepractice.delegate('#upload3', 'click', function(event) {
-	$('#specialInstruc3', $myRepractice).ajaxForm({
-		url: $('#specialInstruc3', $myRepractice).attr('action'),
-		type: 'POST',
-		success: function(res, status, xhr, $form) {
-			if (res.retCode != 200) {
-				warnOpnFn(res.retDesc);
-			} else {
-				location.reload();
+//修改
+$myRepractice.delegate('.J_operate-sel .select2', 'change', function(event) {
+    var num=$(this).children('option:selected').val();
+    if(num){
+        repracticeAjaxCom(num);
+      }else{
+          $('.J_operate-add', $myRepractice).hide();
+      }
+});
+
+//comAjax
+function repracticeAjaxCom(num){
+    $('.J_operate-add', $myRepractice).show();
+    $.ajax({
+        type: 'post',
+        url: '/resume/allinfo',
+        dataType: 'json',
+        success: function(data) {
+            $('.J_operate-add .J_hidden-ipt', $myRepractice).val(num);
+            // $('.J_operate-add .school', $myRepractice).val(data.allinfo.schools3[num].school); 
+            // $('.J_operate-add .educationtype', $myRepractice).val(data.allinfo.schools3[num].educationtype); 
+            // $('.J_operate-add .sdatetime', $myRepractice).val(data.allinfo.schools3[num].sdatetime); 
+            // $('.J_operate-add .edatetime', $myRepractice).val(data.allinfo.schools3[num].edatetime); 
+            // $('.J_operate-add .major', $myRepractice).val(data.allinfo.schools3[num].major); 
+            // $('.J_operate-add .majorinstr', $myRepractice).val(data.allinfo.schools3[num].majorinstr); 
+        },
+        error: function(err) {
+            alertOpnFn('err');
+        }
+    });
+}
+
+$myRepractice.delegate('#upload4', 'click', function(event) {
+	var hiddenipt = $.trim($myRepractice.find(".J_hidden-ipt").val());
+	if(hiddenipt){
+		$('#specialInstruc4', $myRepractice).ajaxForm({
+			url: $('#specialInstruc4', $myRepractice).attr('name'),
+			type: 'POST',
+			success: function(res, status, xhr, $form) {
+				if (res.retCode != 200) {
+					warnOpnFn(res.retDesc);
+				} else {
+					location.reload();
+				}
+				$('#specialInstruc4', $myRepractice).clearForm();
+			},
+			error: function(res, status, e) {
+				alertOpnFn('err');
+				$('#specialInstruc4', $myRepractice).clearForm();
 			}
-			$('#specialInstruc3', $myRepractice).clearForm();
-		},
-		error: function(res, status, e) {
-			alertOpnFn('err');
-			$('#specialInstruc3', $myRepractice).clearForm();
-		}
-	});
+		});
+	}else{
+		$('#specialInstruc4', $myRepractice).ajaxForm({
+			url: $('#specialInstruc4', $myRepractice).attr('action'),
+			type: 'POST',
+			success: function(res, status, xhr, $form) {
+				if (res.retCode != 200) {
+					warnOpnFn(res.retDesc);
+				} else {
+					location.reload();
+				}
+				$('#specialInstruc4', $myRepractice).clearForm();
+			},
+			error: function(res, status, e) {
+				alertOpnFn('err');
+				$('#specialInstruc4', $myRepractice).clearForm();
+			}
+		});
+	}
 });
 
 $myRepractice.delegate('.J_operate-del button', 'click', function(event) {
@@ -815,45 +969,125 @@ $myRepractice.delegate('.J_operate-del button', 'click', function(event) {
 		warnOpnFn('请填写完整!');
 	}
 });	
-//工作
+
+
+/**
+ * 
+ *工作
+ *
+ **/
+ //公共变量
 var $myPractice = $('#my-practice'),
 	$myPracticeadd=$('.J_operate-add', $myPractice),
 	$myPracticedel=$('.J_operate-del', $myPractice);
 
-$myPractice.delegate('.J_operate-sel select', 'change', function(event) {
-	if ($(this).children('option:selected').val() == 1) {
-			$('.J_operate-del', $myPractice).hide();
-			$('.J_operate-add', $myPractice).show();
-		} else if ($(this).children('option:selected').val() == 2) {
-			$('.J_operate-del', $myPractice).show();
-			$('.J_operate-add', $myPractice).hide();
-		} else {
-			$('.J_operate-del', $myPractice).hide();
-			$('.J_operate-add', $myPractice).hide();
-  	}
+//操作方式
+$myPractice.delegate('.J_operate-sel .select1', 'change', function(event) {
+    $('.J_operate-add .J_hidden-ipt', $myPractice).val(''); // 动态修改的清空
+    // $('.J_operate-add .school', $myPractice).val(''); 
+    // $('.J_operate-add .educationtype', $myPractice).val(''); 
+    // $('.J_operate-add .sdatetime', $myPractice).val(''); 
+    // $('.J_operate-add .edatetime', $myPractice).val(''); 
+    // $('.J_operate-add .major', $myPractice).val(''); 
+    // $('.J_operate-add .majorinstr', $myPractice).val(''); 
+
+    if ($(this).children('option:selected').val() == 1) {
+        $('.J_operate-del', $myPractice).hide();
+        $('.J_operate-add', $myPractice).show();
+        $(".J_operate-sel", $myPractice).find(".J_change-con").hide();
+    } else if ($(this).children('option:selected').val() == 2) {
+        $('.J_operate-del', $myPractice).show();
+        $('.J_operate-add', $myPractice).hide();
+        $(".J_operate-sel", $myPractice).find(".J_change-con").hide();
+    } else if ($(this).children('option:selected').val() == 3) {
+        $('.J_operate-del', $myPractice).hide();
+        $('.J_operate-add', $myPractice).hide();
+        $(".J_operate-sel", $myPractice).find(".J_change-con").show();
+        var num=$('.J_operate-sel .select2', $myPractice).children('option:selected').val();
+        if(num){
+            practiceAjaxCom(num);
+        }
+    }else {
+        $('.J_operate-del', $myPractice).hide();
+        $('.J_operate-add', $myPractice).hide();
+        $(".J_operate-sel", $myPractice).find(".J_change-con").hide();
+      }
 });
-$myPractice.delegate('#inputFile3', 'change', function() {
+
+$myPractice.delegate('#inputFile5', 'change', function() {
 	$('.imgtip', $myPractice).html($(this).val());
 })
 
-$myPractice.delegate('#upload3', 'click', function(event) {
-	$('#specialInstruc3', $myPractice).ajaxForm({
-		url: $('#specialInstruc3', $myPractice).attr('action'),
-		type: 'POST',
-		success: function(res, status, xhr, $form) {
-			if (res.retCode != 200) {
-				warnOpnFn(res.retDesc);
-			} else {
-				location.reload();
+$myPractice.delegate('#upload5', 'click', function(event) {
+	var hiddenipt = $.trim($myPractice.find(".J_hidden-ipt").val());
+	if(hiddenipt){
+		$('#specialInstruc5', $myPractice).ajaxForm({
+			url: $('#specialInstruc5', $myPractice).attr('name'),
+			type: 'POST',
+			success: function(res, status, xhr, $form) {
+				if (res.retCode != 200) {
+					warnOpnFn(res.retDesc);
+				} else {
+					location.reload();
+				}
+				$('#specialInstruc5', $myPractice).clearForm();
+			},
+			error: function(res, status, e) {
+				alertOpnFn('err');
+				$('#specialInstruc5', $myPractice).clearForm();
 			}
-			$('#specialInstruc3', $myPractice).clearForm();
-		},
-		error: function(res, status, e) {
-			alertOpnFn('err');
-			$('#specialInstruc3', $myPractice).clearForm();
-		}
-	});
+		});
+	}else{
+		$('#specialInstruc5', $myPractice).ajaxForm({
+			url: $('#specialInstruc5', $myPractice).attr('action'),
+			type: 'POST',
+			success: function(res, status, xhr, $form) {
+				if (res.retCode != 200) {
+					warnOpnFn(res.retDesc);
+				} else {
+					location.reload();
+				}
+				$('#specialInstruc5', $myPractice).clearForm();
+			},
+			error: function(res, status, e) {
+				alertOpnFn('err');
+				$('#specialInstruc5', $myPractice).clearForm();
+			}
+		});
+	}
 });
+
+//修改
+$myPractice.delegate('.J_operate-sel .select2', 'change', function(event) {
+    var num=$(this).children('option:selected').val();
+    if(num){
+        practiceAjaxCom(num);
+      }else{
+          $('.J_operate-add', $myPractice).hide();
+      }
+});
+
+//comAjax
+function practiceAjaxCom(num){
+    $('.J_operate-add', $myPractice).show();
+    $.ajax({
+        type: 'post',
+        url: '/resume/allinfo',
+        dataType: 'json',
+        success: function(data) {
+            $('.J_operate-add .J_hidden-ipt', $myPractice).val(num);
+            // $('.J_operate-add .school', $myPractice).val(data.allinfo.schools3[num].school); 
+            // $('.J_operate-add .educationtype', $myPractice).val(data.allinfo.schools3[num].educationtype); 
+            // $('.J_operate-add .sdatetime', $myPractice).val(data.allinfo.schools3[num].sdatetime); 
+            // $('.J_operate-add .edatetime', $myPractice).val(data.allinfo.schools3[num].edatetime); 
+            // $('.J_operate-add .major', $myPractice).val(data.allinfo.schools3[num].major); 
+            // $('.J_operate-add .majorinstr', $myPractice).val(data.allinfo.schools3[num].majorinstr); 
+        },
+        error: function(err) {
+            alertOpnFn('err');
+        }
+    });
+}
 
 $myPractice.delegate('.J_operate-del button', 'click', function(event) {
 	var delnum = $.trim($myPracticedel.find("select").children('option:selected').val());
@@ -881,46 +1115,125 @@ $myPractice.delegate('.J_operate-del button', 'click', function(event) {
 	}
 });	
 
-//荣誉证书
+
+/**
+ * 
+ *荣誉证书
+ *
+ **/
+ //公共变量
 var $myCertificate = $('#my-certificate'),
 	$myCertificateadd=$('.J_operate-add', $myCertificate),
 	$myCertificatedel=$('.J_operate-del', $myCertificate);
 
-$myCertificate.delegate('.J_operate-sel select', 'change', function(event) {
-	if ($(this).children('option:selected').val() == 1) {
-			$('.J_operate-del', $myCertificate).hide();
-			$('.J_operate-add', $myCertificate).show();
-		} else if ($(this).children('option:selected').val() == 2) {
-			$('.J_operate-del', $myCertificate).show();
-			$('.J_operate-add', $myCertificate).hide();
-		} else {
-			$('.J_operate-del', $myCertificate).hide();
-			$('.J_operate-add', $myCertificate).hide();
-  	}
+//操作方式
+$myCertificate.delegate('.J_operate-sel .select1', 'change', function(event) {
+    $('.J_operate-add .J_hidden-ipt', $myCertificate).val(''); // 动态修改的清空
+    // $('.J_operate-add .school', $myCertificate).val(''); 
+    // $('.J_operate-add .educationtype', $myCertificate).val(''); 
+    // $('.J_operate-add .sdatetime', $myCertificate).val(''); 
+    // $('.J_operate-add .edatetime', $myCertificate).val(''); 
+    // $('.J_operate-add .major', $myCertificate).val(''); 
+    // $('.J_operate-add .majorinstr', $myCertificate).val(''); 
+
+    if ($(this).children('option:selected').val() == 1) {
+        $('.J_operate-del', $myCertificate).hide();
+        $('.J_operate-add', $myCertificate).show();
+        $(".J_operate-sel", $myCertificate).find(".J_change-con").hide();
+    } else if ($(this).children('option:selected').val() == 2) {
+        $('.J_operate-del', $myCertificate).show();
+        $('.J_operate-add', $myCertificate).hide();
+        $(".J_operate-sel", $myCertificate).find(".J_change-con").hide();
+    } else if ($(this).children('option:selected').val() == 3) {
+        $('.J_operate-del', $myCertificate).hide();
+        $('.J_operate-add', $myCertificate).hide();
+        $(".J_operate-sel", $myCertificate).find(".J_change-con").show();
+        var num=$('.J_operate-sel .select2', $myCertificate).children('option:selected').val();
+        if(num){
+            certificateAjaxCom(num);
+        }
+    }else {
+        $('.J_operate-del', $myCertificate).hide();
+        $('.J_operate-add', $myCertificate).hide();
+        $(".J_operate-sel", $myCertificate).find(".J_change-con").hide();
+      }
 });
 
-$myCertificate.delegate('#inputFile3', 'change', function() {
+$myCertificate.delegate('#inputFile6', 'change', function() {
 	$('.imgtip', $myCertificate).html($(this).val());
 })
 
-$myCertificate.delegate('#upload3', 'click', function(event) {
-	$('#specialInstruc3', $myCertificate).ajaxForm({
-		url: $('#specialInstruc3', $myCertificate).attr('action'),
-		type: 'POST',
-		success: function(res, status, xhr, $form) {
-			if (res.retCode != 200) {
-				warnOpnFn(res.retDesc);
-			} else {
-				location.reload();
+$myCertificate.delegate('#upload6', 'click', function(event) {
+	var hiddenipt = $.trim($myCertificate.find(".J_hidden-ipt").val());
+	if(hiddenipt){
+		$('#specialInstruc6', $myCertificate).ajaxForm({
+			url: $('#specialInstruc6', $myCertificate).attr('name'),
+			type: 'POST',
+			success: function(res, status, xhr, $form) {
+				if (res.retCode != 200) {
+					warnOpnFn(res.retDesc);
+				} else {
+					location.reload();
+				}
+				$('#specialInstruc6', $myCertificate).clearForm();
+			},
+			error: function(res, status, e) {
+				alertOpnFn('err');
+				$('#specialInstruc6', $myCertificate).clearForm();
 			}
-			$('#specialInstruc3', $myCertificate).clearForm();
-		},
-		error: function(res, status, e) {
-			alertOpnFn('err');
-			$('#specialInstruc3', $myCertificate).clearForm();
-		}
-	});
+		});
+	}else{
+		$('#specialInstruc6', $myCertificate).ajaxForm({
+			url: $('#specialInstruc6', $myCertificate).attr('action'),
+			type: 'POST',
+			success: function(res, status, xhr, $form) {
+				if (res.retCode != 200) {
+					warnOpnFn(res.retDesc);
+				} else {
+					location.reload();
+				}
+				$('#specialInstruc6', $myCertificate).clearForm();
+			},
+			error: function(res, status, e) {
+				alertOpnFn('err');
+				$('#specialInstruc6', $myCertificate).clearForm();
+			}
+		});
+	}
 });
+
+//修改
+$myCertificate.delegate('.J_operate-sel .select2', 'change', function(event) {
+    var num=$(this).children('option:selected').val();
+    if(num){
+        certificateAjaxCom(num);
+      }else{
+          $('.J_operate-add', $myCertificate).hide();
+      }
+});
+
+//comAjax
+function certificateAjaxCom(num){
+    $('.J_operate-add', $myCertificate).show();
+    $.ajax({
+        type: 'post',
+        url: '/resume/allinfo',
+        dataType: 'json',
+        success: function(data) {
+            $('.J_operate-add .J_hidden-ipt', $myCertificate).val(num);
+            // $('.J_operate-add .school', $myCertificate).val(data.allinfo.schools3[num].school); 
+            // $('.J_operate-add .educationtype', $myCertificate).val(data.allinfo.schools3[num].educationtype); 
+            // $('.J_operate-add .sdatetime', $myCertificate).val(data.allinfo.schools3[num].sdatetime); 
+            // $('.J_operate-add .edatetime', $myCertificate).val(data.allinfo.schools3[num].edatetime); 
+            // $('.J_operate-add .major', $myCertificate).val(data.allinfo.schools3[num].major); 
+            // $('.J_operate-add .majorinstr', $myCertificate).val(data.allinfo.schools3[num].majorinstr); 
+        },
+        error: function(err) {
+            alertOpnFn('err');
+        }
+    });
+}
+
 $myCertificate.delegate('.J_operate-del button', 'click', function(event) {
 	var delnum = $.trim($myCertificatedel.find("select").children('option:selected').val());
 	if (delnum) {
@@ -946,51 +1259,130 @@ $myCertificate.delegate('.J_operate-del button', 'click', function(event) {
 		warnOpnFn('请填写完整!');
 	}
 });	
-//我的作品
+
+
+/**
+ * 
+ *我的作品
+ *
+ **/
+ //公共变量
 var $myWorks = $('#my-works'),
 	$myWorksadd=$('.J_operate-add', $myWorks),
 	$myWorksdel=$('.J_operate-del', $myWorks);
 
-$myWorks.delegate('.J_operate-sel select', 'change', function(event) {
-	if ($(this).children('option:selected').val() == 1) {
-			$('.J_operate-del', $myWorks).hide();
-			$('.J_operate-add', $myWorks).show();
-		} else if ($(this).children('option:selected').val() == 2) {
-			$('.J_operate-del', $myWorks).show();
-			$('.J_operate-add', $myWorks).hide();
-		} else {
-			$('.J_operate-del', $myWorks).hide();
-			$('.J_operate-add', $myWorks).hide();
-  	}
+//操作方式
+$myWorks.delegate('.J_operate-sel .select1', 'change', function(event) {
+    $('.J_operate-add .J_hidden-ipt', $myWorks).val(''); // 动态修改的清空
+    // $('.J_operate-add .school', $myWorks).val(''); 
+    // $('.J_operate-add .educationtype', $myWorks).val(''); 
+    // $('.J_operate-add .sdatetime', $myWorks).val(''); 
+    // $('.J_operate-add .edatetime', $myWorks).val(''); 
+    // $('.J_operate-add .major', $myWorks).val(''); 
+    // $('.J_operate-add .majorinstr', $myWorks).val(''); 
+
+    if ($(this).children('option:selected').val() == 1) {
+        $('.J_operate-del', $myWorks).hide();
+        $('.J_operate-add', $myWorks).show();
+        $(".J_operate-sel", $myWorks).find(".J_change-con").hide();
+    } else if ($(this).children('option:selected').val() == 2) {
+        $('.J_operate-del', $myWorks).show();
+        $('.J_operate-add', $myWorks).hide();
+        $(".J_operate-sel", $myWorks).find(".J_change-con").hide();
+    } else if ($(this).children('option:selected').val() == 3) {
+        $('.J_operate-del', $myWorks).hide();
+        $('.J_operate-add', $myWorks).hide();
+        $(".J_operate-sel", $myWorks).find(".J_change-con").show();
+        var num=$('.J_operate-sel .select2', $myWorks).children('option:selected').val();
+        if(num){
+            worksAjaxCom(num);
+        }
+    }else {
+        $('.J_operate-del', $myWorks).hide();
+        $('.J_operate-add', $myWorks).hide();
+        $(".J_operate-sel", $myWorks).find(".J_change-con").hide();
+      }
 });
 
-$myWorks.delegate('#inputFile2', 'change', function() {
+$myWorks.delegate('#inputFile7', 'change', function() {
 	var imgStr = "",
-		fileObjs = $('#inputFile2', $myWorks).get(0);
+		fileObjs = $('#inputFile7', $myWorks).get(0);
 	for (var j = 0, len = fileObjs.files.length; j < len; j++) {
 		imgStr = imgStr + fileObjs.files[j].name + '<i style="margin-right:20px;"></i>';
 	}
 	$('.imgtip', $myWorks).html(imgStr);
 })
 
-$myWorks.delegate('#upload2', 'click', function(event) {
-	$('#specialInstruc2', $myWorks).ajaxForm({
-		url: $('#specialInstruc2', $myWorks).attr('action'),
-		type: 'POST',
-		success: function(res, status, xhr, $form) {
-			if (res.retCode != 200) {
-				warnOpnFn(res.retDesc);
-			} else {
-				location.reload();
+$myWorks.delegate('#upload7', 'click', function(event) {
+	var hiddenipt = $.trim($myWorks.find(".J_hidden-ipt").val());
+	if(hiddenipt){
+		$('#specialInstruc7', $myWorks).ajaxForm({
+			url: $('#specialInstruc7', $myWorks).attr('name'),
+			type: 'POST',
+			success: function(res, status, xhr, $form) {
+				if (res.retCode != 200) {
+					warnOpnFn(res.retDesc);
+				} else {
+					location.reload();
+				}
+				$('#specialInstruc7', $myWorks).clearForm();
+			},
+			error: function(res, status, e) {
+				alertOpnFn('err');
+				$('#specialInstruc7', $myWorks).clearForm();
 			}
-			$('#specialInstruc2', $myWorks).clearForm();
-		},
-		error: function(res, status, e) {
-			alertOpnFn('err');
-			$('#specialInstruc2', $myWorks).clearForm();
-		}
-	});
+		});
+	}else{
+		$('#specialInstruc7', $myWorks).ajaxForm({
+			url: $('#specialInstruc7', $myWorks).attr('action'),
+			type: 'POST',
+			success: function(res, status, xhr, $form) {
+				if (res.retCode != 200) {
+					warnOpnFn(res.retDesc);
+				} else {
+					location.reload();
+				}
+				$('#specialInstruc7', $myWorks).clearForm();
+			},
+			error: function(res, status, e) {
+				alertOpnFn('err');
+				$('#specialInstruc7', $myWorks).clearForm();
+			}
+		});
+	}
 });
+
+//修改
+$myWorks.delegate('.J_operate-sel .select2', 'change', function(event) {
+    var num=$(this).children('option:selected').val();
+    if(num){
+        worksAjaxCom(num);
+      }else{
+          $('.J_operate-add', $myWorks).hide();
+      }
+});
+
+//comAjax
+function worksAjaxCom(num){
+    $('.J_operate-add', $myWorks).show();
+    $.ajax({
+        type: 'post',
+        url: '/resume/allinfo',
+        dataType: 'json',
+        success: function(data) {
+            $('.J_operate-add .J_hidden-ipt', $myWorks).val(num);
+            // $('.J_operate-add .school', $myWorks).val(data.allinfo.schools3[num].school); 
+            // $('.J_operate-add .educationtype', $myWorks).val(data.allinfo.schools3[num].educationtype); 
+            // $('.J_operate-add .sdatetime', $myWorks).val(data.allinfo.schools3[num].sdatetime); 
+            // $('.J_operate-add .edatetime', $myWorks).val(data.allinfo.schools3[num].edatetime); 
+            // $('.J_operate-add .major', $myWorks).val(data.allinfo.schools3[num].major); 
+            // $('.J_operate-add .majorinstr', $myWorks).val(data.allinfo.schools3[num].majorinstr); 
+        },
+        error: function(err) {
+            alertOpnFn('err');
+        }
+    });
+}
 
 $myWorks.delegate('.J_operate-del button', 'click', function(event) {
 	var delnum = $.trim($myWorksdel.find("select").children('option:selected').val());

@@ -61,13 +61,11 @@
 	    	            <div class="am-u-sm-9">
 	    	                <select required class="select2">
 	    						<option value="" selected = "selected">请选择修改哪项？</option>
-	    						<% if(rs.experience4) { %>
-	    							<% if(rs.experience4.length>=0) { %>
-	    								<% for(var i=0; i<rs.experience4.length; i++) { %>
-	    									<option value="<%= i %>"><%= rs.experience4[i].practice %></option>
-	    								<% } %>
-	    							<% } %>	
-	    						<% } %>
+    							<% if(rs.experience4.length>=0) { %>
+    								<% for(var i=0; i<rs.experience4.length; i++) { %>
+    									<option value="<%= i %>"><%= rs.experience4[i].practice %></option>
+    								<% } %>
+    							<% } %>	
 	    	                </select>
 	    	                <span class="am-form-caret"></span>
 	    	            </div>  
@@ -98,7 +96,7 @@
                 </div>
             </form>
 
-            <form class="am-form am-form-horizontal" id="specialInstruc3" enctype='multipart/form-data' name="/resume/repractice/upd" action="/resume/repractice/add" method="post" data-am-validator autocomplete ='off'>
+            <form class="am-form am-form-horizontal" id="specialInstruc4" enctype='multipart/form-data' name="/resume/repractice/upd" action="/resume/repractice/add" method="post" data-am-validator autocomplete ='off'>
             	<div class="J_operate-add" style="display:none">
 					<div class="am-form-group">
 						<label class="am-u-sm-3 am-form-label">公司名称：</label>
@@ -135,14 +133,14 @@
 						<div class="am-u-sm-9">
 							<button type="button" class="am-btn am-btn-default am-btn-sm">
 								<i class="am-icon-cloud-upload"></i> 上传图片</button>
-							<input type="file" value="" id="inputFile3" name="inputFile3">
+							<input type="file" value="" id="inputFile4" name="inputFile3">
 							<div class="imgtip"></div>
 						</div>
 					</div>
 					<input type="hidden"  class="J_hidden-ipt" name="J_hidden_ipt" value="">
 					<div class="am-form-group">
 						<div class="am-u-sm-9 am-u-sm-offset-3">
-							<button id="upload3" class="am-btn am-btn-primary"> 提交信息 </button>
+							<button id="upload4" class="am-btn am-btn-primary"> 提交信息 </button>
 						</div>
 					</div>
 				</div>

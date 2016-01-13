@@ -6,9 +6,11 @@ var retCode, retDesc, uName, navTitle, navDesc;
 /* GET navigation page. */
 exports.page = function(req, res, next) {
 	uName = req.session.user.username;
+	
 	navTitle = "私人资源导航定制";
 	navDesc = "资源导航为童鞋们提供学习方向、学习途径、和业界最新消息、最新资料等。编程工具、" +
 		"国外牛人、国内牛人、JS框架、UI框架、JS库、CSS库。每周更新及时。";
+
 	navigations.findByUname(uName, function(err, results) {
 		if (err) {
 			retDesc = "用户的资源导航查找失败!";

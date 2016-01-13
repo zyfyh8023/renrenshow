@@ -3,6 +3,7 @@ var users = require('../models/users');
 var fs = require('fs'),
     multiparty = require('multiparty');
 
+
 var retCode, retDesc, uName, navTitle, navDesc;
 
 exports.page = function(req, res, next) {
@@ -28,6 +29,7 @@ exports.page = function(req, res, next) {
             });
         }
     });
+    
 };
 
 exports.doPage = function(req, res, next) {

@@ -4,47 +4,125 @@
 	<div class="am-g am-u-lg-9 am-u-md-12  am-u-sm-centered">
 		<% include setingNav.html %>
 		<div class="col-lg-9 am-u-lg-9 zy-show-lg-content">
-			<% for(var i=0; i<results.allModels.length; i++) { %>
-				<div class="zy-public-title">
-					<span class="am-badge am-badge-secondary am-round am-text-xl"><%=i+1 %></span> <span class="titleName am-badge am-badge-secondary am-text-xl"><%=results.allModels[i].modelNam %></span>
-				</div>
-				<div class="zy-public-content zy-change-content">
-					<% for(var j=0; j<results.allModels[i].sunModels.length; j++) { %>
-						<% if(results.allModels[i].modelNam =='个性简介' || results.allModels[i].modelNam =='公开时间') { %>
-							<% if(results.allModels[i].sunModels[j].sunYesNo ==1) { %>
-								<a class="zy-div-radio am-badge am-badge-success am-text-lg">
-									<%=results.allModels[i].sunModels[j].sunNam %>
-								</a>
-							<% } else { %>
-								<a class="zy-div-radio am-badge am-text-lg">
-									<%=results.allModels[i].sunModels[j].sunNam %>
-								</a>
-							<% } %>
-						<% } else{ %>
-							<% if(results.allModels[i].sunModels[j].sunYesNo ==1) { %>
-								<a class="zy-div-checkbox am-badge am-badge-success am-text-lg">
-									<%=results.allModels[i].sunModels[j].sunNam %>
-								</a>
-							<% } else { %>
-								<a class="zy-div-checkbox am-badge am-text-lg">
-									<%=results.allModels[i].sunModels[j].sunNam %>
-								</a>
-							<% } %>
-						<% }%>
-					<% }%>
+			<% if(results.allModels.length>0){ %>
+				<div>
+					<div data-am-widget="titlebar" class="am-titlebar am-titlebar-multi" >
+					    <h2 class="am-titlebar-title ">
+					        已拥有的特权设置
+					    </h2>
+					</div>
+					<table class="am-table">
+					    <tbody>
+					    	<% for(var i=0; i<results.allModels.length; i++) { %>
+					    		<tr data-ids="<%= i %>">
+					    			<td class="am-text-middle"><%= results.allModels[i].moduleDesc %></td>
+					    			<td class="am-text-middle">
+					    			<% if(results.allModels[i].status=='1'){ %>
+					    				已开启
+					    			<% }else{ %>
+					    				已关闭
+					    			<% } %>
+					    			<td class="am-text-middle">
+					    				<div class="am-btn-group am-btn-group-xs">
+					    				  	<button type="button" class="am-btn am-btn-secondary am-radius zy-upd-set-con">
+					    				  	<% if(results.allModels[i].status=='1'){ %>
+		  				    					关闭
+		  				    				<% }else{ %>
+		  				    					开启
+		  				    				<% } %>
+					    				  	</button>
+					    				  	<button type="button" class="am-btn am-btn-danger am-radius zy-del-set-con">删除</button>
+					    				  	<button type="button" class="am-btn am-btn-success am-radius zy-look-set-con">查看</button>
+					    				</div>
+					    			</td>
+					    		</tr>
+					    	<% } %>
+					    </tbody>
+					</table>	
 				</div>
 			<% } %>
-			<!-- <div class="zy-public-title">
-				<span class="am-badge am-badge-secondary am-round am-text-xl">6</span> <span class="am-badge am-badge-secondary am-text-xl">公开链接</span>
+				<div class="zy-set-show">
+					<% if(results.allModels.length<=0){ %>
+		                <div class="zy-public-title">
+		                    <span class="am-badge am-badge-secondary am-round am-text-xl">1</span> <span class="titleName am-badge am-badge-secondary am-text-xl">个性简介</span>
+		                </div>
+		                <div class="zy-public-content zy-change-content">
+		                    <a class="zy-div-radio am-badge am-text-lg">公开</a>
+		                    <a class="zy-div-radio am-badge am-badge-success am-text-lg">不公开</a>
+		                </div>
+		                <div class="zy-public-title">
+		                    <span class="am-badge am-badge-secondary am-round am-text-xl">1</span> <span class="titleName am-badge am-badge-secondary am-text-xl">个人简历</span>
+		                </div>
+		                <div class="zy-public-content zy-change-content">
+		                    <a class="zy-div-checkbox  am-badge am-text-lg">基本信息</a>
+		                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">联系方式</a>
+		                    <a class="zy-div-checkbox  am-badge am-text-lg">教育背景</a>
+		                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">实习工作</a>
+		                    <a class="zy-div-checkbox  am-badge am-text-lg">作品模块</a>
+		                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">证书荣誉</a>
+		                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">论文专利</a>
+		                    <a class="zy-div-checkbox  am-badge am-text-lg">校园社会活动</a>
+		                </div>
+		                <div class="zy-public-title">
+		                    <span class="am-badge am-badge-secondary am-round am-text-xl">1</span> <span class="titleName am-badge am-badge-secondary am-text-xl">资源导航</span>
+		                </div>
+		                <div class="zy-public-content zy-change-content">
+		                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">前端资源导航</a>
+		                    <a class="zy-div-checkbox  am-badge am-text-lg">后端资源导航</a>
+		                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">IOS资源导航</a>
+		                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">安卓资源导航</a>
+		                </div>
+		                <div class="zy-public-title">
+		                    <span class="am-badge am-badge-secondary am-round am-text-xl">1</span> <span class="titleName am-badge am-badge-secondary am-text-xl">博文面经</span>
+		                </div>
+		                <div class="zy-public-content zy-change-content">
+		                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">技术博文</a>
+		                    <a class="zy-div-checkbox  am-badge am-text-lg">行业远瞻</a>
+		                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">乱七八糟</a>
+		                    <a class="zy-div-checkbox  am-badge am-text-lg">面试经验</a>
+		                </div>
+		                <div class="zy-public-title">
+		                    <span class="am-badge am-badge-secondary am-round am-text-xl">1</span> <span class="titleName am-badge am-badge-secondary am-text-xl">资源导航</span>
+		                </div>
+		                <div class="zy-public-content zy-change-content">
+		                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">前端资源导航</a>
+		                    <a class="zy-div-checkbox  am-badge am-text-lg">后端资源导航</a>
+		                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">IOS资源导航</a>
+		                    <a class="zy-div-checkbox  am-badge am-text-lg">安卓资源导航</a>
+		                </div>
+		                <div class="zy-public-title">
+		                    <span class="am-badge am-badge-secondary am-round am-text-xl">1</span> <span class="titleName am-badge am-badge-secondary am-text-xl">公开时间</span>
+		                </div>
+		                <div class="zy-public-content zy-change-content">
+		                    <a class="zy-div-radio am-badge am-text-lg">一天</a>
+		                    <a class="zy-div-radio am-badge am-text-lg">一周</a>
+		                    <a class="zy-div-radio am-badge am-text-lg">一个月</a>
+		                    <a class="zy-div-radio am-badge am-text-lg">一年</a>
+		                    <a class="zy-div-radio am-badge am-badge-success am-text-lg">永远</a>
+		                </div>
+			            <div style="margin-left:4rem;">
+			                <button class="saveBtn am-btn am-btn-warning am-text-lg"> 添加设置 </button>
+			            </div>
+		            <% } %>
+	            </div>
+	       
+		</div>
+	</div>
+
+
+	<div class="am-modal am-modal-prompt" tabindex="-1" id="zy-priset-name">
+		<div class="am-modal-dialog">
+			<div class="am-modal-hd">给您的这次设置取个名字吧~</div>
+			<div class="am-modal-bd">
+				<input type="text" class="am-modal-prompt-input">
 			</div>
-			<div class="zy-public-content">
-				<span class="am-badge am-badge-warning am-text-lg">http://localhost:3000/privateSeting</span>
-			</div> -->
-			<div style="margin-left:4rem;">
-				<button class="saveBtn am-btn am-btn-warning am-text-lg"> 保存设置 </button>
+			<div class="am-modal-footer">
+				<span class="am-modal-btn" data-am-modal-cancel>取消</span>
+				<span class="am-modal-btn" data-am-modal-confirm>提交</span>
 			</div>
 		</div>
 	</div>
+
 </section>
 
 <% include ../myfooter.html %>

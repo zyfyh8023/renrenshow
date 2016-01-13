@@ -7,13 +7,25 @@ var privateSetingSchema = new Schema({
         type: String,
         unique: true
     },
-    allModels: [{
-        modelNam: String,
-        sunModels: [{
-            sunNam: String,
-            sunYesNo: Number
-        }]
-    }],
+    allModels: [
+        {   
+            moduleCon:[
+                {
+                    modelNam: String,
+                    sunModels: [{
+                        sunNam: String,
+                        sunYesNo: Number
+                    }]
+                }
+            ],
+            status: {
+                        type: String,
+                        default: '1'
+                    },
+            moduleDesc: String
+        }
+    ],
+    priLinks: [],
     cTime: {
         type: Date,
         default: Date.now

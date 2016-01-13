@@ -49,6 +49,7 @@ function warnOpnFn(message) {
 function warnClsFn() {
 	$("#zy-warning").addClass('zy-display-none');
 }
+
 //alert的opn和cls
 function alertOpnFn(message) {
 	if (message && message == 'err') {

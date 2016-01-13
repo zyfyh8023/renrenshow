@@ -61,13 +61,11 @@
 	    	            <div class="am-u-sm-9">
 	    	                <select required class="select2">
 	    						<option value="" selected = "selected">请选择修改哪项？</option>
-	    						<% if(rs.schools3) { %>
-	    							<% if(rs.schools3.length>=0) { %>
-										<% for(var i=0; i<rs.schools3.length; i++) { %>
-											<option value="<%= i %>"><%= rs.schools3[i].school %></option>
-										<% } %>
-									<% } %>	
-	    						<% } %>
+    							<% if(rs.schools3.length>=0) { %>
+									<% for(var i=0; i<rs.schools3.length; i++) { %>
+										<option value="<%= i %>"><%= rs.schools3[i].school %></option>
+									<% } %>
+								<% } %>	
 	    	                </select>
 	    	                <span class="am-form-caret"></span>
 	    	            </div>  

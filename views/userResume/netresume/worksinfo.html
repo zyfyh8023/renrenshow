@@ -36,24 +36,42 @@
 		</div>
 		<div class="am-popup-bd">
 			<br>
-			<form class="am-form am-form-horizontal" method="post" data-am-validator>
-				<div class="am-form-group J_operate-sel">
-					<label class="am-u-sm-4 am-form-label">操作方式：</label>
-					<div class="am-u-sm-8">
-						<select required>
-							<option value=""  selected = "selected">请选择操作哪项？</option>
-							<option value="1">添加操作</option>
-							<option value="2">删除操作</option>
-						</select>
-					    <span class="am-form-caret"></span>
-					</div> 
-				</div>
-            	<br><br>
+			<form class="am-form am-form-horizontal" method="post" data-am-validator autocomplete ='off'>
+				<div class="J_operate-sel"> 
+					<div class="am-form-group">
+						<label class="am-u-sm-3 am-form-label">操作方式：</label>
+						<div class="am-u-sm-9">
+							<select required class="select1">
+								<option value=""  selected = "selected">请选择操作哪项？</option>
+								<option value="1">添加操作</option>
+								<option value="2">删除操作</option>
+								<option value="3">修改操作</option>
+							</select>
+						    <span class="am-form-caret"></span>
+						</div> 
+					</div>
+	            	<br>
+	        	 	<div class="am-form-group J_change-con" style="display:none;">
+	    	            <label class="am-u-sm-3 am-form-label">修改选项：</label>
+	    	            <div class="am-u-sm-9">
+	    	                <select required class="select2">
+	    						<option value="" selected = "selected">请选择修改哪项？</option>
+	    							<% if(rs.pWorks7.length>=0) { %>
+										<% for(var i=0; i<rs.pWorks7.length; i++) { %>
+											<option value="<%= i %>"><%= rs.pWorks7[i].workname %></option>
+										<% } %>
+									<% } %>	
+	    	                </select>
+	    	                <span class="am-form-caret"></span>
+	    	            </div>  
+	    	        </div>
+	    	        <br>
+    	    	</div>
 
               	<div class="J_operate-del" style="display:none">
 	                <div class="am-form-group">
-	                    <label class="am-u-sm-4 am-form-label">删除选项：</label>
-	                    <div class="am-u-sm-8">
+	                    <label class="am-u-sm-3 am-form-label">删除选项：</label>
+	                    <div class="am-u-sm-9">
 	                        <select required>
 								<option value="">请选择删除哪项？</option>
 								<% if(rs.pWorks7.length>=0) { %>
@@ -66,64 +84,64 @@
 	                    </div>  
 	                </div>
 	                <div class="am-form-group">
-	                    <div class="am-u-sm-8 am-u-sm-offset-4">
+	                    <div class="am-u-sm-9 am-u-sm-offset-3">
 	                        <button type="button" class="am-btn am-btn-primary my-education3-btn"> 确定删除 </button>
 	                    </div>
 	                </div>
                 </div>
             </form>
 
-            <form class="am-form am-form-horizontal" id="specialInstruc2" enctype='multipart/form-data' action="/resume/works/add" method="post" data-am-validator>
+            <form class="am-form am-form-horizontal" id="specialInstruc7" enctype='multipart/form-data' action="/resume/works/add" name="/resume/works/upd" method="post" data-am-validator autocomplete ='off'>
                 <div class="J_operate-add" style="display:none">
 					<div class="am-form-group">
-						<label class="am-u-sm-4 am-form-label">作品名称：</label>
-						<div class="am-u-sm-8">
-							<input type="text" required name="workname" class="workname" placeholder="输入作品名称">
+						<label class="am-u-sm-3 am-form-label">作品名称：</label>
+						<div class="am-u-sm-9">
+							<input type="text" value="" required name="workname" class="workname" placeholder="输入作品名称">
 						</div>
 					</div>
 					<div class="am-form-group">
-						<label class="am-u-sm-4 am-form-label">作品日期：</label>
-						<div class="am-u-sm-8">
-							<input type="text" name="worktime" class="am-form-field worktime" placeholder="请选择作品日期" data-am-datepicker readonly/>
+						<label class="am-u-sm-3 am-form-label">作品日期：</label>
+						<div class="am-u-sm-9">
+							<input type="text" value="" name="worktime" class="am-form-field worktime" placeholder="请选择作品日期" data-am-datepicker readonly/>
 						</div>
 					</div>
 					<div class="am-form-group">
-						<label class="am-u-sm-4 am-form-label">我的职责：</label>
-						<div class="am-u-sm-8">
-							<input type="text" name="workduty" class="workduty" placeholder="输入你的职责">
+						<label class="am-u-sm-3 am-form-label">我的职责：</label>
+						<div class="am-u-sm-9">
+							<input type="text" value="" name="workduty" class="workduty" placeholder="输入你的职责">
 						</div>
 					</div>
 					<div class="am-form-group">
-						<label class="am-u-sm-4 am-form-label">作品展示链接：</label>
-						<div class="am-u-sm-8">
-							<input type="url" name="showink" class="showink" placeholder="输入作品展示链接">
+						<label class="am-u-sm-3 am-form-label">作品展示链接：</label>
+						<div class="am-u-sm-9">
+							<input type="url" value="" name="showink" class="showink" placeholder="输入作品展示链接">
 						</div>
 					</div>
 					<div class="am-form-group">
-						<label class="am-u-sm-4 am-form-label">作品源码链接：</label>
-						<div class="am-u-sm-8">
-							<input type="url" name="codelink" class="codelink" placeholder="输入作品源码链接">
+						<label class="am-u-sm-3 am-form-label">作品源码链接：</label>
+						<div class="am-u-sm-9">
+							<input type="url" value="" name="codelink" class="codelink" placeholder="输入作品源码链接">
 						</div>
 					</div>
 					<div class="am-form-group">
-						<label class="am-u-sm-4 am-form-label">作品介绍：</label>
-						<div class="am-u-sm-8">
-							<textarea rows="5" name="workdes" class="workdes" required></textarea>
+						<label class="am-u-sm-3 am-form-label">作品介绍：</label>
+						<div class="am-u-sm-9">
+							<textarea rows="5" value="" name="workdes" class="workdes" required></textarea>
 						</div>
 					</div>
 					<div class="am-form-group am-form-file">
-						<label class="am-u-sm-4 am-form-label">作品图片：</label>
-						<div class="am-u-sm-8">
+						<label class="am-u-sm-3 am-form-label">作品图片：</label>
+						<div class="am-u-sm-9">
 							<button type="button" class="am-btn am-btn-default am-btn-sm">
 								<i class="am-icon-cloud-upload"></i> 上传作品图片(可同时上传多张)</button>
-							<input type="file" id="inputFile2" name="inputFile2" multiple>
+							<input type="file" id="inputFile7" value="" name="inputFile2" multiple>
 							<div class="imgtip"></div>
 						</div>
 					</div>
-					<br>
+					<input type="hidden"  class="J_hidden-ipt" name="J_hidden_ipt" value="">
 					<div class="am-form-group">
-						<div class="am-u-sm-8 am-u-sm-offset-4">
-							<button id="upload2" class="am-btn am-btn-primary my-works-btn"> 提交信息 </button>
+						<div class="am-u-sm-9 am-u-sm-offset-3">
+							<button id="upload7" class="am-btn am-btn-primary my-works-btn"> 提交信息 </button>
 						</div>
 					</div>
 				</div>

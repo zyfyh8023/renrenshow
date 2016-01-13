@@ -109,7 +109,7 @@ app.post('/register', register.doRegister);
 
 
 //个人中心——首页
-app.get('/myindex/:priId?/:pubId?', myindex.page);
+app.get('/myindex', myindex.page);
 //个人中心——个性介绍
 app.get('/instrc', introduction.page);
 app.post('/introduction', introduction.doPage);
@@ -177,7 +177,9 @@ app.post('/seting', seting.doPage);
 app.post('/setingInit', seting.createInit);
 //私人设置
 app.get('/sets_pri', privateSeting.page);
-app.post('/privateSeting', privateSeting.doPage);
+app.post('/privateSeting/add', privateSeting.doPage);
+app.post('/privateSeting/del', privateSeting.del);
+app.post('/privateSeting/see', privateSeting.see);
 app.post('/privateSetingInit', privateSeting.createInit);
 //密码修改
 app.get('/sets_pwd', changePassword.page);
