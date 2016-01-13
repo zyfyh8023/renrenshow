@@ -61,7 +61,6 @@ exports.findByUname = function(author, callback) {
         if (err) {
             callback(err, null);
         } else {
-            console.log(result);
             callback(null, result);
         }
     });

@@ -73,40 +73,40 @@ exports.baseinfo = function(req, res, next) {
 						y=fields.J_cor_y1[0],
 						W=fields.J_cor_w[0],
 						H=fields.J_cor_h[0];
-					// imageMagick(uploadedPath)
-					// .crop(W,H,x,y)
-					// //.resize(200, 200, '!') //加('!')强行把图片缩放成对应尺寸150*150！
-					// .autoOrient()
-					// .write(imgPath, function(err){
-					// 	if (err) {
-					// 		retDesc = '图片存储失败，请稍后再试！';
-					// 		return res.send({retCode: 400,retDesc: retDesc});
-					// 	}
-					// 	// fs.unlink(uploadedPath, function() {
-					// 		var newResume = new resume.Resume({
-					// 			baseInfo1: {
-					// 				uname: fields.uname[0],
-					// 				gender: fields.sex[0],
-					// 				age: fields.age[0],
-					// 				identity: fields.istatus[0],
-					// 				education: fields.ieducation[0],
-					// 				school: fields.ischool[0],
-					// 				major: fields.imajor[0]
-					// 			}
-					// 		});
-					// 		resume.modify({author: uName}, {
-					// 			headimg: imgSrc,
-					// 			baseInfo1: newResume.baseInfo1
-					// 		}, function(err) {
-					// 			if (err) {
-					// 				retDesc = '信息更新失败！';
-					// 				return res.send({retCode: 400,retDesc: retDesc});
-					// 			} else {
-					// 				return res.send({retCode: 200});
-					// 			}
-					// 		});
-					// 	});
-					// });
+					imageMagick(uploadedPath)
+					.crop(W,H,x,y)
+					//.resize(200, 200, '!') //加('!')强行把图片缩放成对应尺寸150*150！
+					.autoOrient()
+					.write(imgPath, function(err){
+						if (err) {
+							retDesc = '图片存储失败，请稍后再试！';
+							return res.send({retCode: 400,retDesc: retDesc});
+						}
+					    fs.unlink(uploadedPath, function() {
+							var newResume = new resume.Resume({
+								baseInfo1: {
+									uname: fields.uname[0],
+									gender: fields.sex[0],
+									age: fields.age[0],
+									identity: fields.istatus[0],
+									education: fields.ieducation[0],
+									school: fields.ischool[0],
+									major: fields.imajor[0]
+								}
+							});
+							resume.modify({author: uName}, {
+								headimg: imgSrc,
+								baseInfo1: newResume.baseInfo1
+							}, function(err) {
+								if (err) {
+									retDesc = '信息更新失败！';
+									return res.send({retCode: 400,retDesc: retDesc});
+								} else {
+									return res.send({retCode: 200});
+								}
+							});
+						});
+					});
 				// fs.rename(uploadedPath, imgPath, function(err) {
 				// 	if (err) {
 				// 		retDesc = '图片存储失败，请稍后再试！';
