@@ -38,7 +38,8 @@ exports.doPage = function(req, res, next) {
         articleCont = req.body.articleCont.trim() || '',
         articleType = req.body.articleType.trim() || '',
         articleLink = req.body.articleLink.trim() || '',
-        articleTag = req.body.tags || 0;
+        articleTag = req.body.tags || 0,
+        articleImgs = req.body.articleImgs;
 
     var newArticle = new articles.Article({
         author: uName,
@@ -47,7 +48,8 @@ exports.doPage = function(req, res, next) {
         articleCont: articleCont,
         articleType: articleType,
         articleTag: articleTag,
-        articleLink: articleLink
+        articleLink: articleLink,
+        articleImgs: articleImgs
     });
 
     articles.create(newArticle, function(err) {

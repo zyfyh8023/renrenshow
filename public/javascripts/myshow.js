@@ -616,7 +616,7 @@ $(document).ready(function() {
 			}
 		});
 	});
-	
+
 	/**
 	 * Article页面的js
 	 */
@@ -664,7 +664,18 @@ $(document).ready(function() {
 			articleType = $.trim($(".articleType", $createArticle).val()),
 			articleCont = articleCon.getContent(),
 			articleLink = $.trim($(".articleLink", $createArticle).val());
+
 		if (articleTitle != '' && articleKeyword != '' && articleType != '' && articleCont != '' && articleLink != '') {
+			
+			$('#zy-img-con').html(articleCont).hide();
+			var srcArr=[];
+			$('#zy-img-con img').each(function () {
+			     var src = $(this).attr("src");
+			     srcArr.push(src);
+			 });
+			console.log(srcArr);
+			$('#zy-img-con').html('').hide();
+
 			$.ajax({
 				type: 'post',
 				url: '/createarticle',
@@ -674,8 +685,10 @@ $(document).ready(function() {
 					articleKeyword: articleKeyword,
 					articleType: articleType,
 					articleCont: articleCont,
-					articleLink: articleLink
+					articleLink: articleLink,
+					articleImgs: srcArr
 				},
+				traditional: true,
 				dataType: 'json',
 				success: function(data) {
 					if (data.retCode == 200) {

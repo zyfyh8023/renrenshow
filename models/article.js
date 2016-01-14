@@ -9,7 +9,7 @@ var ArticleSchema = new Schema({
     articleKeyword: String,
     articleAbstract: String,
     articleCont: String,
-    articleImgs: String,
+    articleImgs: [],
     articleType: Number,
     articleTag: Number,
     articleLink: String,
