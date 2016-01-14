@@ -180,6 +180,8 @@ app.get('/sets_pri', privateSeting.page);
 app.post('/privateSeting/add', privateSeting.doPage);
 app.post('/privateSeting/del', privateSeting.del);
 app.post('/privateSeting/see', privateSeting.see);
+app.post('/privateSeting/upd', privateSeting.upd);
+app.post('/privateSeting/chg', privateSeting.chg);
 app.post('/privateSetingInit', privateSeting.createInit);
 //密码修改
 app.get('/sets_pwd', changePassword.page);

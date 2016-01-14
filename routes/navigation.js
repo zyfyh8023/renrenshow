@@ -115,7 +115,8 @@ exports.listAdd = function(req, res, next) {
 				var newModel = {
 					modelsName: modelName,
 					sque: k + 1,
-					modelsuns: []
+					modelsuns: [],
+					maoName: Date.now()
 				};
 				results.models.push(newModel);
 				navigations.modify({
@@ -263,6 +264,7 @@ exports.listInit = function(req, res, next) {
 		author: uName,
 		models: [{
 			modelsName: "前端开发资源",
+			maoName: '432423423423',
 			sque: 3,
 			modelsuns: [{
 				sunSque: 4,
@@ -288,6 +290,7 @@ exports.listInit = function(req, res, next) {
 		}, {
 			modelsName: "后端开发资源",
 			sque: 2,
+			maoName: '324234234',
 			modelsuns: [{
 				sunSque: 1,
 				sunDesc: "视频资源大视视频视频资源大汇总3资源大视频资源大汇总3汇总3",
@@ -312,6 +315,7 @@ exports.listInit = function(req, res, next) {
 		}, {
 			modelsName: "客户端开发资源",
 			sque: 1,
+			maoName: '67567856765',
 			modelsuns: [{
 				sunSque: 1,
 				sunDesc: "视频资源大视视频视频资源大汇总3资源大视频资源大汇总3汇总3",

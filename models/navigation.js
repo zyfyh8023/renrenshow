@@ -9,6 +9,7 @@ var NavigationSchema = new Schema({
     },
     models: [{
         modelsName: String,
+        maoName: String,
         createTime: {
             type: Date,
             default: Date.now

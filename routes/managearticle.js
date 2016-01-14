@@ -33,6 +33,7 @@ exports.page = function(req, res, next) {
                         retDesc = "数据查找失败!";
                         res.redirect('myError?retDesc=' + retDesc);
                     } else {
+                        console.log(results);
                         res.render('./userBlog/managearticle', {
                             title: '博文管理',
                             uName: uName,

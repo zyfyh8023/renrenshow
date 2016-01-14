@@ -22,6 +22,7 @@ var privateSetingSchema = new Schema({
                         type: String,
                         default: '1'
                     },
+            vCode: String,
             moduleDesc: String
         }
     ],

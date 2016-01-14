@@ -43,7 +43,8 @@ exports.doPage = function(req, res, next) {
 		} else {
 			var setpri={
 				moduleDesc:setName,
-				moduleCon:setObj
+				moduleCon:setObj,
+				vCode: Date.now()
 			};
 			rs.allModels.push(setpri);
 			privateSetings.modify({
@@ -116,6 +117,79 @@ exports.see = function(req, res, next) {
 			return res.send({
 				retCode: 200,
 				retData:rs.allModels[ids]
+			});
+		}
+	});
+};
+
+exports.upd = function(req, res, next) {
+	uName = req.session.user.username;
+	var ids = req.body.ids;
+	var setObj = JSON.parse(req.body.uNameSet);
+
+	privateSetings.findByUname(uName, function(err, rs) {
+		if (err) {
+			retDesc = '信息查找失败！';
+			return res.send({
+				retCode: 400,
+				retDesc: retDesc
+			});
+		} else {
+			rs.allModels[ids].moduleCon=setObj;
+			privateSetings.modify({
+				author: uName
+			}, {
+				allModels: rs.allModels
+			}, function(err) {
+				if (err) {
+					retDesc = "保存失败,请稍后再试!";
+					return res.send({
+						retCode: 400,
+						retDesc: retDesc
+					});
+				} else {
+					return res.send({
+						retCode: 200
+					});
+				}
+			});
+		}
+	});
+};
+
+exports.chg = function(req, res, next) {
+	uName = req.session.user.username;
+	var ids = req.body.ids;
+
+	privateSetings.findByUname(uName, function(err, rs) {
+		if (err) {
+			retDesc = '信息查找失败！';
+			return res.send({
+				retCode: 400,
+				retDesc: retDesc
+			});
+		} else {
+			if(rs.allModels[ids].status=='1'){
+				rs.allModels[ids].status='0';
+			}else{
+				rs.allModels[ids].status='1';
+			}
+			privateSetings.modify({
+				author: uName
+			}, {
+				allModels: rs.allModels
+			}, function(err) {
+				if (err) {
+					retDesc = "保存失败,请稍后再试!";
+					return res.send({
+						retCode: 400,
+						retDesc: retDesc
+					});
+				} else {
+					return res.send({
+						retCode: 200
+					});
+				}
 			});
 		}
 	});

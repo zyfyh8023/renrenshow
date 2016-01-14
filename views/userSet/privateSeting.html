@@ -15,14 +15,14 @@
 					    <tbody>
 					    	<% for(var i=0; i<results.allModels.length; i++) { %>
 					    		<tr data-ids="<%= i %>">
-					    			<td class="am-text-middle"><%= results.allModels[i].moduleDesc %></td>
+					    			<td class="am-text-middle" style="text-align:left"><%= results.allModels[i].moduleDesc %></td>
 					    			<td class="am-text-middle">
 					    			<% if(results.allModels[i].status=='1'){ %>
 					    				已开启
 					    			<% }else{ %>
 					    				已关闭
 					    			<% } %>
-					    			<td class="am-text-middle">
+					    			<td class="am-text-middle" style="text-align:right;min-width:20rem;">
 					    				<div class="am-btn-group am-btn-group-xs">
 					    				  	<button type="button" class="am-btn am-btn-secondary am-radius zy-upd-set-con">
 					    				  	<% if(results.allModels[i].status=='1'){ %>
@@ -32,7 +32,7 @@
 		  				    				<% } %>
 					    				  	</button>
 					    				  	<button type="button" class="am-btn am-btn-danger am-radius zy-del-set-con">删除</button>
-					    				  	<button type="button" class="am-btn am-btn-success am-radius zy-look-set-con">查看</button>
+					    				  	<button type="button" class="am-btn am-btn-success am-radius zy-look-set-con">修改</button>
 					    				</div>
 					    			</td>
 					    		</tr>
@@ -42,6 +42,11 @@
 				</div>
 			<% } %>
 				<div class="zy-set-show">
+						<div data-am-widget="titlebar" class="am-titlebar am-titlebar-multi" >
+						    <h2 class="am-titlebar-title ">
+						        添加新的特权设置如下所示：
+						    </h2>
+						</div><br>
 		                <div class="zy-public-title">
 		                    <span class="am-badge am-badge-secondary am-round am-text-xl">1</span> <span class="titleName am-badge am-badge-secondary am-text-xl">个性简介</span>
 		                </div>
@@ -99,8 +104,8 @@
 		                    <a class="zy-div-radio am-badge am-text-lg">一年</a>
 		                    <a class="zy-div-radio am-badge am-badge-success am-text-lg">永远</a>
 		                </div>
-			            <div style="margin-left:4rem;">
-			                <button class="saveBtn am-btn am-btn-warning am-text-lg"> 添加设置 </button>
+			            <div style="margin-left:5rem;">
+			                <button class="saveBtn am-btn am-btn-warning am-text-lg"> 添加新的设置 </button>
 			            </div>
 	            </div>
 	       
@@ -112,7 +117,7 @@
 		<div class="am-modal-dialog">
 			<div class="am-modal-hd">给您的这次设置取个名字吧~</div>
 			<div class="am-modal-bd">
-				<input type="text" class="am-modal-prompt-input">
+				<input type="text" placeholder="名字的长度最长为15个字！" class="am-modal-prompt-input" maxlength="15">
 			</div>
 			<div class="am-modal-footer">
 				<span class="am-modal-btn" data-am-modal-cancel>取消</span>

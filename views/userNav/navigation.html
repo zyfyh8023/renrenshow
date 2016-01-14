@@ -11,7 +11,7 @@
 				<ul class="am-list am-list-border zy-navTitle-list">
 					<% if (allNavgition) { %>
 						<% for(var i=0; i<allNavgition.models.length; i++) {%>
-							<li><a href="javascript:;"><span><%= allNavgition.models[i].modelsName %></span>（<%= allNavgition.models[i].modelsuns.length %>）</a></li>
+							<li><a href="#<%= allNavgition.models[i].maoName %>"><span><%= allNavgition.models[i].modelsName %></span>（<%= allNavgition.models[i].modelsuns.length %>）</a></li>
 						<% } %>
 					<% } %>
 				</ul>
@@ -36,9 +36,9 @@
 					<% for(var i=0; i<allNavgition.models.length; i++) {%>
 						<div class="zy-module-container">
 						<div class="col-sm-12 am-u-sm-12 zy-navigation-nav">
-							<button class="am-btn am-btn-primary am-btn-xl">
+							<a name="<%= allNavgition.models[i].maoName %>"><button class="am-btn am-btn-primary am-btn-xl">
 								<%= allNavgition.models[i].modelsName %>
-							</button>
+							</button></a>
 						</div>
 						<% for(var j=0; j<allNavgition.models[i].modelsuns.length; j++) {%>
 							<div class="col-md-4 am-u-md-4 col-sm-6 am-u-sm-6 zy-navigation-item">

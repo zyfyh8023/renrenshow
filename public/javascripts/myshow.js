@@ -2,12 +2,6 @@ var jx1=0, jy1=0, jw=0, jh=0;
 
 $(document).ready(function() {
 	/**
-	 * mywebsite的侧边栏显示
-	 */
-	$(document.body).delegate('#zy-slidemenu', 'click', function(event) {
-		$(this).closest('ul').hide();
-	});
-	/**
 	 * myindex页面的js
 	 */
 	var $input = $('#doc-qr-text', "#zy-myindex"),
@@ -170,7 +164,7 @@ $(document).ready(function() {
     			if (data.retCode != 200) {
     				warnOpnFn(data.retDesc);
     			} else {
-    				location.reload();
+    				alertOpnFn('保存成功！');
     			}
     		},
     		error: function(data) {
@@ -178,6 +172,28 @@ $(document).ready(function() {
     		}
     	});
 		  	
+	}); 
+	
+	$privateSeting.delegate('.zy-upd-set-con', 'click', function(event) {
+		var ids=$(this).closest('tr').data('ids');
+		$.ajax({
+			type: 'post',
+			url: '/privateSeting/chg',
+			data: {
+				ids: ids
+			},
+			dataType: 'json',
+			success: function(data) {
+				if (data.retCode != 200) {
+					warnOpnFn(data.retDesc);
+				} else {
+					location.reload();
+				}
+			},
+			error: function(data) {
+				alertOpnFn('err');
+			}
+		});
 	});
 
 	$privateSeting.delegate('.zy-del-set-con', 'click', function(event) {
@@ -215,7 +231,7 @@ $(document).ready(function() {
 			dataType: 'json',
 			success: function(data) {
 				var strAlls='<div data-am-widget="titlebar" class="am-titlebar am-titlebar-multi" >'+
-					    	'<h2 class="am-titlebar-title ">所选中设置的内容如下所示：</h2></div><br>';
+					    	'<h2 class="am-titlebar-title ">对应选中特权设置的内容如下所示：</h2></div><br>';
 
 				for(var k=0; k<data.retData.moduleCon.length; k++){
 					var strEles="";
@@ -238,8 +254,8 @@ $(document).ready(function() {
                    			'<span class="am-badge am-badge-secondary am-round am-text-xl">'+(k+1)+'</span> <span class="titleName am-badge am-badge-secondary am-text-xl">'+data.retData.moduleCon[k].modelNam+'</span>'+
                				'</div> <div class="zy-public-content zy-change-content">'+strEles+'</div>';
 				}
-				strAlls+='<div style="margin-left:4rem;">'+
-						'<button data-ids="'+ids+'" class="saveBtnUpd am-btn am-btn-warning am-text-lg"> 保存更改 </button> </div>';
+				strAlls+='<div style="margin-left:5rem;">'+
+						'<button data-ids="'+ids+'" class="saveBtnUpd am-btn am-btn-warning am-text-lg"> 保存以上修改 </button> </div>';
 
 				$('.zy-set-show').html(strAlls);
 			},
@@ -487,7 +503,7 @@ $(document).ready(function() {
 	$createExperience.delegate('.experienceFB', 'click', function() {
 		var experienceTitle = $.trim($(".experienceTitle", $createExperience).val()),
 			experienceCompany = $.trim($(".experienceCompany", $createExperience).val()),
-			experienceCont = $.trim($("#experienceCont", $createExperience).html()),
+			experienceCont = experienceCon.getContent(),
 			experienceLink = $.trim($(".experienceLink", $createExperience).val());
 		if (experienceTitle != '' && experienceCompany != '' && experienceCont != '' && experienceLink != '') {
 			$.ajax({
@@ -522,7 +538,7 @@ $(document).ready(function() {
 	$createExperience.delegate('.experienceCG', 'click', function() {
 		var experienceTitle = $.trim($(".experienceTitle", $createExperience).val()),
 			experienceCompany = $.trim($(".experienceCompany", $createExperience).val()),
-			experienceCont = $.trim($("#experienceCont", $createExperience).html()),
+			experienceCont = experienceCon.getContent(),
 			experienceLink = $.trim($(".experienceLink", $createExperience).val());
 		if (experienceTitle != '' && experienceCompany != '' && experienceCont != '' && experienceLink != '') {
 			$.ajax({
@@ -597,7 +613,7 @@ $(document).ready(function() {
 		var articleTitle = $.trim($(".articleTitle", $createArticle).val()),
 			articleKeyword = $.trim($(".articleKeyword", $createArticle).val()),
 			articleType = $.trim($(".articleType", $createArticle).val()),
-			articleCont = $.trim($("#articleCont", $createArticle).html()),
+			articleCont = articleCon.getContent(),
 			articleLink = $.trim($(".articleLink", $createArticle).val());
 		if (articleTitle != '' && articleKeyword != '' && articleType != '' && articleCont != '' && articleLink != '') {
 			$.ajax({
@@ -634,7 +650,7 @@ $(document).ready(function() {
 		var articleTitle = $.trim($(".articleTitle", $createArticle).val()),
 			articleKeyword = $.trim($(".articleKeyword", $createArticle).val()),
 			articleType = $.trim($(".articleType", $createArticle).val()),
-			articleCont = $.trim($(".articleCont", $createArticle).html()),
+			articleCont = articleCon.getContent(),
 			articleLink = $.trim($(".articleLink", $createArticle).val());
 		if (articleTitle != '' && articleKeyword != '' && articleType != '' && articleCont != '' && articleLink != '') {
 			$.ajax({
@@ -665,7 +681,7 @@ $(document).ready(function() {
 		}
 	});
 
-
+	
 	/***
 		简历页面的js代码
 	**/
@@ -739,12 +755,7 @@ var $myEducation = $('#my-education'),
 //操作方式
 $myEducation.delegate('.J_operate-sel .select1', 'change', function(event) {
     $('.J_operate-add .J_hidden-ipt', $myEducation).val(''); // 动态修改的清空
-    $('.J_operate-add .school', $myEducation).val(''); 
-    $('.J_operate-add .educationtype', $myEducation).val(''); 
-    $('.J_operate-add .sdatetime', $myEducation).val(''); 
-    $('.J_operate-add .edatetime', $myEducation).val(''); 
-    $('.J_operate-add .major', $myEducation).val(''); 
-    $('.J_operate-add .majorinstr', $myEducation).val(''); 
+     $('#specialInstruc3', $myEducation).clearForm();
 
     if ($(this).children('option:selected').val() == 1) {
         $('.J_operate-del', $myEducation).hide();
@@ -884,12 +895,7 @@ var $myRepractice = $('#my-repractice'),
 //操作方式
 $myRepractice.delegate('.J_operate-sel .select1', 'change', function(event) {
     $('.J_operate-add .J_hidden-ipt', $myRepractice).val(''); // 动态修改的清空
-    // $('.J_operate-add .school', $myRepractice).val(''); 
-    // $('.J_operate-add .educationtype', $myRepractice).val(''); 
-    // $('.J_operate-add .sdatetime', $myRepractice).val(''); 
-    // $('.J_operate-add .edatetime', $myRepractice).val(''); 
-    // $('.J_operate-add .major', $myRepractice).val(''); 
-    // $('.J_operate-add .majorinstr', $myRepractice).val(''); 
+    $('#specialInstruc4', $myRepractice).clearForm();
 
     if ($(this).children('option:selected').val() == 1) {
         $('.J_operate-del', $myRepractice).hide();
@@ -937,12 +943,11 @@ function repracticeAjaxCom(num){
         dataType: 'json',
         success: function(data) {
             $('.J_operate-add .J_hidden-ipt', $myRepractice).val(num);
-            // $('.J_operate-add .school', $myRepractice).val(data.allinfo.schools3[num].school); 
-            // $('.J_operate-add .educationtype', $myRepractice).val(data.allinfo.schools3[num].educationtype); 
-            // $('.J_operate-add .sdatetime', $myRepractice).val(data.allinfo.schools3[num].sdatetime); 
-            // $('.J_operate-add .edatetime', $myRepractice).val(data.allinfo.schools3[num].edatetime); 
-            // $('.J_operate-add .major', $myRepractice).val(data.allinfo.schools3[num].major); 
-            // $('.J_operate-add .majorinstr', $myRepractice).val(data.allinfo.schools3[num].majorinstr); 
+            $('.J_operate-add .practice', $myRepractice).val(data.allinfo.experience4[num].practice); 
+            $('.J_operate-add .spracticetime', $myRepractice).val(data.allinfo.experience4[num].spracticetime); 
+            $('.J_operate-add .epracticetime', $myRepractice).val(data.allinfo.experience4[num].epracticetime); 
+            $('.J_operate-add .practiceposition', $myRepractice).val(data.allinfo.experience4[num].practiceposition); 
+            $('.J_operate-add .practiceinstr', $myRepractice).val(data.allinfo.experience4[num].practiceinstr); 
         },
         error: function(err) {
             alertOpnFn('err');
@@ -1029,12 +1034,7 @@ var $myPractice = $('#my-practice'),
 //操作方式
 $myPractice.delegate('.J_operate-sel .select1', 'change', function(event) {
     $('.J_operate-add .J_hidden-ipt', $myPractice).val(''); // 动态修改的清空
-    // $('.J_operate-add .school', $myPractice).val(''); 
-    // $('.J_operate-add .educationtype', $myPractice).val(''); 
-    // $('.J_operate-add .sdatetime', $myPractice).val(''); 
-    // $('.J_operate-add .edatetime', $myPractice).val(''); 
-    // $('.J_operate-add .major', $myPractice).val(''); 
-    // $('.J_operate-add .majorinstr', $myPractice).val(''); 
+  	$('#specialInstruc5', $myPractice).clearForm();
 
     if ($(this).children('option:selected').val() == 1) {
         $('.J_operate-del', $myPractice).hide();
@@ -1121,12 +1121,11 @@ function practiceAjaxCom(num){
         dataType: 'json',
         success: function(data) {
             $('.J_operate-add .J_hidden-ipt', $myPractice).val(num);
-            // $('.J_operate-add .school', $myPractice).val(data.allinfo.schools3[num].school); 
-            // $('.J_operate-add .educationtype', $myPractice).val(data.allinfo.schools3[num].educationtype); 
-            // $('.J_operate-add .sdatetime', $myPractice).val(data.allinfo.schools3[num].sdatetime); 
-            // $('.J_operate-add .edatetime', $myPractice).val(data.allinfo.schools3[num].edatetime); 
-            // $('.J_operate-add .major', $myPractice).val(data.allinfo.schools3[num].major); 
-            // $('.J_operate-add .majorinstr', $myPractice).val(data.allinfo.schools3[num].majorinstr); 
+            $('.J_operate-add .practice', $myPractice).val(data.allinfo.work5[num].practice); 
+            $('.J_operate-add .spracticetime', $myPractice).val(data.allinfo.work5[num].spracticetime); 
+            $('.J_operate-add .epracticetime', $myPractice).val(data.allinfo.work5[num].epracticetime); 
+            $('.J_operate-add .practiceposition', $myPractice).val(data.allinfo.work5[num].practiceposition); 
+            $('.J_operate-add .practiceinstr', $myPractice).val(data.allinfo.work5[num].practiceinstr); 
         },
         error: function(err) {
             alertOpnFn('err');
@@ -1174,12 +1173,7 @@ var $myCertificate = $('#my-certificate'),
 //操作方式
 $myCertificate.delegate('.J_operate-sel .select1', 'change', function(event) {
     $('.J_operate-add .J_hidden-ipt', $myCertificate).val(''); // 动态修改的清空
-    // $('.J_operate-add .school', $myCertificate).val(''); 
-    // $('.J_operate-add .educationtype', $myCertificate).val(''); 
-    // $('.J_operate-add .sdatetime', $myCertificate).val(''); 
-    // $('.J_operate-add .edatetime', $myCertificate).val(''); 
-    // $('.J_operate-add .major', $myCertificate).val(''); 
-    // $('.J_operate-add .majorinstr', $myCertificate).val(''); 
+    $('#specialInstruc6', $myCertificate).clearForm();
 
     if ($(this).children('option:selected').val() == 1) {
         $('.J_operate-del', $myCertificate).hide();
@@ -1266,12 +1260,10 @@ function certificateAjaxCom(num){
         dataType: 'json',
         success: function(data) {
             $('.J_operate-add .J_hidden-ipt', $myCertificate).val(num);
-            // $('.J_operate-add .school', $myCertificate).val(data.allinfo.schools3[num].school); 
-            // $('.J_operate-add .educationtype', $myCertificate).val(data.allinfo.schools3[num].educationtype); 
-            // $('.J_operate-add .sdatetime', $myCertificate).val(data.allinfo.schools3[num].sdatetime); 
-            // $('.J_operate-add .edatetime', $myCertificate).val(data.allinfo.schools3[num].edatetime); 
-            // $('.J_operate-add .major', $myCertificate).val(data.allinfo.schools3[num].major); 
-            // $('.J_operate-add .majorinstr', $myCertificate).val(data.allinfo.schools3[num].majorinstr); 
+            $('.J_operate-add .certificatename', $myCertificate).val(data.allinfo.Certificate6[num].certificatename); 
+            $('.J_operate-add .gettime', $myCertificate).val(data.allinfo.Certificate6[num].gettime); 
+            $('.J_operate-add .cgrade', $myCertificate).val(data.allinfo.Certificate6[num].cgrade); 
+            $('.J_operate-add .certificateinstr', $myCertificate).val(data.allinfo.Certificate6[num].certificateinstr); 
         },
         error: function(err) {
             alertOpnFn('err');
@@ -1319,12 +1311,7 @@ var $myWorks = $('#my-works'),
 //操作方式
 $myWorks.delegate('.J_operate-sel .select1', 'change', function(event) {
     $('.J_operate-add .J_hidden-ipt', $myWorks).val(''); // 动态修改的清空
-    // $('.J_operate-add .school', $myWorks).val(''); 
-    // $('.J_operate-add .educationtype', $myWorks).val(''); 
-    // $('.J_operate-add .sdatetime', $myWorks).val(''); 
-    // $('.J_operate-add .edatetime', $myWorks).val(''); 
-    // $('.J_operate-add .major', $myWorks).val(''); 
-    // $('.J_operate-add .majorinstr', $myWorks).val(''); 
+    $('#specialInstruc7', $myWorks).clearForm();
 
     if ($(this).children('option:selected').val() == 1) {
         $('.J_operate-del', $myWorks).hide();
@@ -1416,12 +1403,12 @@ function worksAjaxCom(num){
         dataType: 'json',
         success: function(data) {
             $('.J_operate-add .J_hidden-ipt', $myWorks).val(num);
-            // $('.J_operate-add .school', $myWorks).val(data.allinfo.schools3[num].school); 
-            // $('.J_operate-add .educationtype', $myWorks).val(data.allinfo.schools3[num].educationtype); 
-            // $('.J_operate-add .sdatetime', $myWorks).val(data.allinfo.schools3[num].sdatetime); 
-            // $('.J_operate-add .edatetime', $myWorks).val(data.allinfo.schools3[num].edatetime); 
-            // $('.J_operate-add .major', $myWorks).val(data.allinfo.schools3[num].major); 
-            // $('.J_operate-add .majorinstr', $myWorks).val(data.allinfo.schools3[num].majorinstr); 
+            $('.J_operate-add .workname', $myWorks).val(data.allinfo.pWorks7[num].workname); 
+            $('.J_operate-add .worktime', $myWorks).val(data.allinfo.pWorks7[num].worktime); 
+            $('.J_operate-add .workduty', $myWorks).val(data.allinfo.pWorks7[num].workduty); 
+            $('.J_operate-add .showink', $myWorks).val(data.allinfo.pWorks7[num].showink); 
+            $('.J_operate-add .codelink', $myWorks).val(data.allinfo.pWorks7[num].codelink); 
+            $('.J_operate-add .workdes', $myWorks).val(data.allinfo.pWorks7[num].workdes); 
         },
         error: function(err) {
             alertOpnFn('err');

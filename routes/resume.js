@@ -200,7 +200,7 @@ exports.education3 = function(req, res, next) {
 	uName = req.session.user.username;
 
 	var form = new multiparty.Form({
-		uploadDir: './public/works/'
+		uploadDir: './public/upload/schools/'
 	});
 	form.parse(req, function(err, fields, files) {
 		var filesTmp = JSON.stringify(files, null, 2);
@@ -221,7 +221,7 @@ exports.education3 = function(req, res, next) {
 				} else {
 					var inputFile = files.inputFile3[0];
 					var uploadedPath = inputFile.path;
-					var dstPath = './public/works/' + inputFile.originalFilename;
+					var dstPath = './public/upload/schools/' + inputFile.originalFilename;
 					var imgSize = inputFile.size;
 					if (imgSize > 2 * 1024 * 1024) {
 						retDesc = '图片的尺寸过大！';
@@ -240,8 +240,8 @@ exports.education3 = function(req, res, next) {
 					}
 					var cTimeStr = new Date().getTime();
 					cTimeStr = cTimeStr.toString();
-					var imgPath = './public/works/' + uName + 'certificateImg' + cTimeStr + '.jpg',
-						imgSrc = '/works/' + uName + 'certificateImg' + cTimeStr + '.jpg';
+					var imgPath = './public/upload/schools/' + uName + 'certificateImg' + cTimeStr + '.jpg',
+						imgSrc = '/upload/schools/' + uName + 'certificateImg' + cTimeStr + '.jpg';
 					fs.rename(uploadedPath, imgPath, function(err) {
 						if (err) {
 							retDesc = '图片重名了出现问题，请稍后再试！';
@@ -289,7 +289,7 @@ exports.education1 = function(req, res, next) {
 	uName = req.session.user.username;
 
 	var form = new multiparty.Form({
-		uploadDir: './public/works/'
+		uploadDir: './public/upload/schools/'
 	});
 	form.parse(req, function(err, fields, files) {
 		var filesTmp = JSON.stringify(files, null, 2);
@@ -310,7 +310,7 @@ exports.education1 = function(req, res, next) {
 				} else {
 					var inputFile = files.inputFile3[0];
 					var uploadedPath = inputFile.path;
-					var dstPath = './public/works/' + inputFile.originalFilename;
+					var dstPath = './public/upload/schools/' + inputFile.originalFilename;
 					var imgSize = inputFile.size;
 					if (imgSize > 2 * 1024 * 1024) {
 						retDesc = '图片的尺寸过大！';
@@ -329,8 +329,8 @@ exports.education1 = function(req, res, next) {
 					}
 					var cTimeStr = new Date().getTime();
 					cTimeStr = cTimeStr.toString();
-					var imgPath = './public/works/' + uName + 'certificateImg' + cTimeStr + '.jpg',
-						imgSrc = '/works/' + uName + 'certificateImg' + cTimeStr + '.jpg';
+					var imgPath = './public/upload/schools/' + uName + 'certificateImg' + cTimeStr + '.jpg',
+						imgSrc = '/upload/schools/' + uName + 'certificateImg' + cTimeStr + '.jpg';
 					fs.rename(uploadedPath, imgPath, function(err) {
 						if (err) {
 							retDesc = '图片重名了出现问题，请稍后再试！';
@@ -411,7 +411,7 @@ exports.repractice1 = function(req, res, next) {
 	uName = req.session.user.username;
 
 	var form = new multiparty.Form({
-		uploadDir: './public/works/'
+		uploadDir: './public/upload/companys/'
 	});
 	form.parse(req, function(err, fields, files) {
 		var filesTmp = JSON.stringify(files, null, 2);
@@ -432,7 +432,7 @@ exports.repractice1 = function(req, res, next) {
 				} else {
 					var inputFile = files.inputFile3[0];
 					var uploadedPath = inputFile.path;
-					var dstPath = './public/works/' + inputFile.originalFilename;
+					var dstPath = './public/upload/companys/' + inputFile.originalFilename;
 					var imgSize = inputFile.size;
 					if (imgSize > 2 * 1024 * 1024) {
 						retDesc = '图片的尺寸过大！';
@@ -451,8 +451,8 @@ exports.repractice1 = function(req, res, next) {
 					}
 					var cTimeStr = new Date().getTime();
 					cTimeStr = cTimeStr.toString();
-					var imgPath = './public/works/' + uName + 'certificateImg' + cTimeStr + '.jpg',
-						imgSrc = '/works/' + uName + 'certificateImg' + cTimeStr + '.jpg';
+					var imgPath = './public/upload/companys/' + uName + 'certificateImg' + cTimeStr + '.jpg',
+						imgSrc = '/upload/companys/' + uName + 'certificateImg' + cTimeStr + '.jpg';
 					fs.rename(uploadedPath, imgPath, function(err) {
 						if (err) {
 							retDesc = '图片重名了出现问题，请稍后再试！';
@@ -498,7 +498,7 @@ exports.repractice3 = function(req, res, next) {
 	uName = req.session.user.username;
 
 	var form = new multiparty.Form({
-		uploadDir: './public/works/'
+		uploadDir: './public/upload/companys/'
 	});
 	form.parse(req, function(err, fields, files) {
 		var filesTmp = JSON.stringify(files, null, 2);
@@ -519,7 +519,7 @@ exports.repractice3 = function(req, res, next) {
 				} else {
 					var inputFile = files.inputFile3[0];
 					var uploadedPath = inputFile.path;
-					var dstPath = './public/works/' + inputFile.originalFilename;
+					var dstPath = './public/upload/companys/' + inputFile.originalFilename;
 					var imgSize = inputFile.size;
 					if (imgSize > 2 * 1024 * 1024) {
 						retDesc = '图片的尺寸过大！';
@@ -538,8 +538,8 @@ exports.repractice3 = function(req, res, next) {
 					}
 					var cTimeStr = new Date().getTime();
 					cTimeStr = cTimeStr.toString();
-					var imgPath = './public/works/' + uName + 'certificateImg' + cTimeStr + '.jpg',
-						imgSrc = '/works/' + uName + 'certificateImg' + cTimeStr + '.jpg';
+					var imgPath = './public/upload/companys/' + uName + 'certificateImg' + cTimeStr + '.jpg',
+						imgSrc = '/upload/companys/' + uName + 'certificateImg' + cTimeStr + '.jpg';
 					fs.rename(uploadedPath, imgPath, function(err) {
 						if (err) {
 							retDesc = '图片重名了出现问题，请稍后再试！';
@@ -620,7 +620,7 @@ exports.practice1 = function(req, res, next) {
 	uName = req.session.user.username;
 
 	var form = new multiparty.Form({
-		uploadDir: './public/works/'
+		uploadDir: './public/upload/companys/'
 	});
 	form.parse(req, function(err, fields, files) {
 		var filesTmp = JSON.stringify(files, null, 2);
@@ -641,7 +641,7 @@ exports.practice1 = function(req, res, next) {
 				} else {
 					var inputFile = files.inputFile3[0];
 					var uploadedPath = inputFile.path;
-					var dstPath = './public/works/' + inputFile.originalFilename;
+					var dstPath = './public/upload/companys/' + inputFile.originalFilename;
 					var imgSize = inputFile.size;
 					if (imgSize > 2 * 1024 * 1024) {
 						retDesc = '图片的尺寸过大！';
@@ -660,8 +660,8 @@ exports.practice1 = function(req, res, next) {
 					}
 					var cTimeStr = new Date().getTime();
 					cTimeStr = cTimeStr.toString();
-					var imgPath = './public/works/' + uName + 'certificateImg' + cTimeStr + '.jpg',
-						imgSrc = '/works/' + uName + 'certificateImg' + cTimeStr + '.jpg';
+					var imgPath = './public/upload/companys/' + uName + 'certificateImg' + cTimeStr + '.jpg',
+						imgSrc = '/upload/companys/' + uName + 'certificateImg' + cTimeStr + '.jpg';
 					fs.rename(uploadedPath, imgPath, function(err) {
 						if (err) {
 							retDesc = '图片重名了出现问题，请稍后再试！';
@@ -707,7 +707,7 @@ exports.practice3 = function(req, res, next) {
 	uName = req.session.user.username;
 
 	var form = new multiparty.Form({
-		uploadDir: './public/works/'
+		uploadDir: './public/upload/companys/'
 	});
 	form.parse(req, function(err, fields, files) {
 		var filesTmp = JSON.stringify(files, null, 2);
@@ -728,7 +728,7 @@ exports.practice3 = function(req, res, next) {
 				} else {
 					var inputFile = files.inputFile3[0];
 					var uploadedPath = inputFile.path;
-					var dstPath = './public/works/' + inputFile.originalFilename;
+					var dstPath = './public/upload/companys/' + inputFile.originalFilename;
 					var imgSize = inputFile.size;
 					if (imgSize > 2 * 1024 * 1024) {
 						retDesc = '图片的尺寸过大！';
@@ -747,8 +747,8 @@ exports.practice3 = function(req, res, next) {
 					}
 					var cTimeStr = new Date().getTime();
 					cTimeStr = cTimeStr.toString();
-					var imgPath = './public/works/' + uName + 'certificateImg' + cTimeStr + '.jpg',
-						imgSrc = '/works/' + uName + 'certificateImg' + cTimeStr + '.jpg';
+					var imgPath = './public/upload/companys/' + uName + 'certificateImg' + cTimeStr + '.jpg',
+						imgSrc = '/upload/companys/' + uName + 'certificateImg' + cTimeStr + '.jpg';
 					fs.rename(uploadedPath, imgPath, function(err) {
 						if (err) {
 							retDesc = '图片重名了出现问题，请稍后再试！';
@@ -829,7 +829,7 @@ exports.certificate1 = function(req, res, next) {
 	uName = req.session.user.username;
 
 	var form = new multiparty.Form({
-		uploadDir: './public/works/'
+		uploadDir: './public/upload/awards/'
 	});
 	form.parse(req, function(err, fields, files) {
 		var filesTmp = JSON.stringify(files, null, 2);
@@ -850,7 +850,7 @@ exports.certificate1 = function(req, res, next) {
 				} else {
 					var inputFile = files.inputFile3[0];
 					var uploadedPath = inputFile.path;
-					var dstPath = './public/works/' + inputFile.originalFilename;
+					var dstPath = './public/upload/awards/' + inputFile.originalFilename;
 					var imgSize = inputFile.size;
 					if (imgSize > 2 * 1024 * 1024) {
 						retDesc = '图片的尺寸过大！';
@@ -869,8 +869,8 @@ exports.certificate1 = function(req, res, next) {
 					}
 					var cTimeStr = new Date().getTime();
 					cTimeStr = cTimeStr.toString();
-					var imgPath = './public/works/' + uName + 'certificateImg' + cTimeStr + '.jpg',
-						imgSrc = '/works/' + uName + 'certificateImg' + cTimeStr + '.jpg';
+					var imgPath = './public/upload/awards/' + uName + 'certificateImg' + cTimeStr + '.jpg',
+						imgSrc = '/upload/awards/' + uName + 'certificateImg' + cTimeStr + '.jpg';
 					fs.rename(uploadedPath, imgPath, function(err) {
 						if (err) {
 							retDesc = '图片重名了出现问题，请稍后再试！';
@@ -916,7 +916,7 @@ exports.certificate3 = function(req, res, next) {
 	uName = req.session.user.username;
 
 	var form = new multiparty.Form({
-		uploadDir: './public/works/'
+		uploadDir: './public/upload/awards/'
 	});
 	form.parse(req, function(err, fields, files) {
 		var filesTmp = JSON.stringify(files, null, 2);
@@ -937,7 +937,7 @@ exports.certificate3 = function(req, res, next) {
 				} else {
 					var inputFile = files.inputFile3[0];
 					var uploadedPath = inputFile.path;
-					var dstPath = './public/works/' + inputFile.originalFilename;
+					var dstPath = './public/upload/awards/' + inputFile.originalFilename;
 					var imgSize = inputFile.size;
 					if (imgSize > 2 * 1024 * 1024) {
 						retDesc = '图片的尺寸过大！';
@@ -956,8 +956,8 @@ exports.certificate3 = function(req, res, next) {
 					}
 					var cTimeStr = new Date().getTime();
 					cTimeStr = cTimeStr.toString();
-					var imgPath = './public/works/' + uName + 'certificateImg' + cTimeStr + '.jpg',
-						imgSrc = '/works/' + uName + 'certificateImg' + cTimeStr + '.jpg';
+					var imgPath = './public/upload/awards/' + uName + 'certificateImg' + cTimeStr + '.jpg',
+						imgSrc = '/upload/awards/' + uName + 'certificateImg' + cTimeStr + '.jpg';
 					fs.rename(uploadedPath, imgPath, function(err) {
 						if (err) {
 							retDesc = '图片重名了出现问题，请稍后再试！';
@@ -1038,7 +1038,7 @@ exports.works1 = function(req, res, next) {
 	uName = req.session.user.username;
 
 	var form = new multiparty.Form({
-		uploadDir: './public/works/'
+		uploadDir: './public/upload/works/'
 	});
 	form.parse(req, function(err, fields, files) {
 		var filesTmp = JSON.stringify(files, null, 2);
@@ -1062,7 +1062,7 @@ exports.works1 = function(req, res, next) {
 					for (var k = 0, len = files.inputFile2.length; k < len; k++) {
 						var inputFile = files.inputFile2[k];
 						var uploadedPath = inputFile.path;
-						var dstPath = './public/works/' + inputFile.originalFilename;
+						var dstPath = './public/upload/works/' + inputFile.originalFilename;
 						var imgSize = inputFile.size;
 						if (imgSize > 2 * 1024 * 1024) {
 							retDesc = '图片的尺寸过大！';
@@ -1081,8 +1081,8 @@ exports.works1 = function(req, res, next) {
 						}
 						var cTimeStr = new Date().getTime();
 						cTimeStr = cTimeStr.toString();
-						var imgPath = './public/works/' + uName + 'workImg' + cTimeStr + k + '.jpg',
-							imgSrc = '/works/' + uName + 'workImg' + cTimeStr + k + '.jpg';
+						var imgPath = './public/upload/works/' + uName + 'workImg' + cTimeStr + k + '.jpg',
+							imgSrc = '/upload/works/' + uName + 'workImg' + cTimeStr + k + '.jpg';
 						imgArr.push(imgSrc);
 						fs.rename(uploadedPath, imgPath, function(err) {
 							if (err) {
@@ -1135,7 +1135,7 @@ exports.works3 = function(req, res, next) {
 	uName = req.session.user.username;
 
 	var form = new multiparty.Form({
-		uploadDir: './public/works/'
+		uploadDir: './public/upload/works/'
 	});
 	form.parse(req, function(err, fields, files) {
 		var filesTmp = JSON.stringify(files, null, 2);
@@ -1159,7 +1159,7 @@ exports.works3 = function(req, res, next) {
 					for (var k = 0, len = files.inputFile2.length; k < len; k++) {
 						var inputFile = files.inputFile2[k];
 						var uploadedPath = inputFile.path;
-						var dstPath = './public/works/' + inputFile.originalFilename;
+						var dstPath = './public/upload/works/' + inputFile.originalFilename;
 						var imgSize = inputFile.size;
 						if (imgSize > 2 * 1024 * 1024) {
 							retDesc = '图片的尺寸过大！';
@@ -1178,8 +1178,8 @@ exports.works3 = function(req, res, next) {
 						}
 						var cTimeStr = new Date().getTime();
 						cTimeStr = cTimeStr.toString();
-						var imgPath = './public/works/' + uName + 'workImg' + cTimeStr + k + '.jpg',
-							imgSrc = '/works/' + uName + 'workImg' + cTimeStr + k + '.jpg';
+						var imgPath = './public/upload/works/' + uName + 'workImg' + cTimeStr + k + '.jpg',
+							imgSrc = '/upload/works/' + uName + 'workImg' + cTimeStr + k + '.jpg';
 						imgArr.push(imgSrc);
 						fs.rename(uploadedPath, imgPath, function(err) {
 							if (err) {
