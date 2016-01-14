@@ -17,7 +17,7 @@
 					</thead>
 					<tbody>
 						<% for(var i=0; i<allArticles.length; i++) {%>
-							<tr data-ids="<%= i %>">
+							<tr data-ids="<%= allArticles[i]._id %>">
 								<td class="am-text-middle">
 									<%= i+1 %>
 								</td>
@@ -38,10 +38,8 @@
 								</td>
 								<td class="am-text-middle">
 									<a href="javascript:;" class="zy-del-art">删除</a><br>
-									<a href="/article?aid=123132135">查看</a><br>
-									<% if(allArticles[i].articleTag=='1') { %>
-									<a href="javascript:;" class="zy-upd-art">修改</a>
-									<% }else { %>
+									<a href="/blog_art?aid=<%= allArticles[i]._id %>">查看</a><br>
+									<% if(allArticles[i].articleTag=='2') { %>
 									<a href="javascript:;" class="zy-pub-art">发布</a>
 									<% } %>
 								</td>

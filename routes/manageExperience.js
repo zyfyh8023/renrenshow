@@ -136,6 +136,48 @@ exports.noPublicMJ = function(req, res, next) {
     });
 };
 
+/* GET 删除. */
+exports.delExper = function(req, res, next) {
+    uName = req.session.user.username;
+    var aid=req.body.aid;
+
+    var obj={
+            author: uName,
+            _id: aid
+        }
+
+    experiences.delete(obj,function(err){
+        if(err){
+            retDesc = "系统出现故障，请稍后再试!";
+            return res.send({retCode: 400,retDesc: retDesc}); 
+        }else{
+            return res.send({retCode: 200}); 
+        }
+    });
+};
+
+/* GET public. */
+exports.pubExper = function(req, res, next) {
+    uName = req.session.user.username;
+    var aid=req.body.aid;
+
+    var obj={
+            author: uName,
+            _id: aid
+        }
+
+    experiences.modify(obj,{
+        experienceTag: 1
+    }, function(err){
+        if(err){
+            retDesc = "系统出现故障，请稍后再试!";
+            return res.send({retCode: 400,retDesc: retDesc}); 
+        }else{
+            return res.send({retCode: 200}); 
+        }
+    });
+};
+
 /* GET ManageArticle page. */
 exports.relatedMeMJ = function(req, res, next) {
     uName = req.session.user.username;

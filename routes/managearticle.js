@@ -33,7 +33,6 @@ exports.page = function(req, res, next) {
                         retDesc = "数据查找失败!";
                         res.redirect('myError?retDesc=' + retDesc);
                     } else {
-                        console.log(results);
                         res.render('./userBlog/managearticle', {
                             title: '博文管理',
                             uName: uName,
@@ -134,7 +133,48 @@ exports.noPublicBW = function(req, res, next) {
             }
         }
     });
-    
+};
+
+/* GET 删除. */
+exports.delArticle = function(req, res, next) {
+    uName = req.session.user.username;
+    var aid=req.body.aid;
+
+    var obj={
+            author: uName,
+            _id: aid
+        }
+
+    articles.delete(obj,function(err){
+        if(err){
+            retDesc = "系统出现故障，请稍后再试!";
+            return res.send({retCode: 400,retDesc: retDesc}); 
+        }else{
+            return res.send({retCode: 200}); 
+        }
+    });
+};
+
+/* GET public. */
+exports.pubArticle = function(req, res, next) {
+    uName = req.session.user.username;
+    var aid=req.body.aid;
+
+    var obj={
+            author: uName,
+            _id: aid
+        }
+
+    articles.modify(obj,{
+        articleTag: 1
+    }, function(err){
+        if(err){
+            retDesc = "系统出现故障，请稍后再试!";
+            return res.send({retCode: 400,retDesc: retDesc}); 
+        }else{
+            return res.send({retCode: 200}); 
+        }
+    });
 };
 
 /* GET relatedMeBW page. */

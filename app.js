@@ -24,7 +24,7 @@ var manageExperience = require('./routes/manageExperience');
 var createarticle = require('./routes/createarticle');
 var createExperience = require('./routes/createExperience');
 var allarticle = require('./routes/allarticle');
-var article = require('./routes/article');
+var blogAorE = require('./routes/blogAorE');
 var introduction = require('./routes/introduction');
 var resource = require('./routes/resource');
 var navigation = require('./routes/navigation');
@@ -96,7 +96,6 @@ app.get('/faq', faq.page);
 app.get('/inf', resource.page);
 app.get('/res', talentpool.page);
 app.get('/allarticle', allarticle.page);
-app.get('/article', article.page);
 app.get('/login', login.page);
 app.post('/login', login.doLogin);
 //没登录的情况下提交退出
@@ -107,9 +106,10 @@ app.get('/register', register.page);
 app.post('/register', register.doRegister);
 
 
-
 //个人中心——首页
 app.get('/myindex', myindex.page);
+app.get('/blog_art', blogAorE.artSee);
+app.get('/blog_exp', blogAorE.expSee);
 //个人中心——个性介绍
 app.get('/instrc', introduction.page);
 app.post('/introduction', introduction.doPage);
@@ -157,6 +157,8 @@ app.get('/blogs_art_pub', managearticle.page);
 app.get('/blogs_art_pri', managearticle.noPublicBW);
 app.get('/blogs_art_rea', managearticle.relatedMeBW);
 app.post('/artPageSearch', managearticle.pageSearch);
+app.post('/delArticle', managearticle.delArticle);
+app.post('/pubArticle', managearticle.pubArticle);
 //面试经验
 app.get('/blogs_exp_cre', createExperience.page);
 app.post('/createExperience', createExperience.doPage);
@@ -164,6 +166,8 @@ app.get('/blogs_exp_pub', manageExperience.page);
 app.get('/blogs_exp_pri', manageExperience.noPublicMJ);
 app.get('/blogs_exp_rea', manageExperience.relatedMeMJ);
 app.post('/expPageSearch', manageExperience.pageSearch);
+app.post('/delExper', manageExperience.delExper);
+app.post('/pubExper', manageExperience.pubExper);
 //资源导航
 app.get('/navs', navigation.page);
 app.post('/navigationListInit', navigation.listInit);

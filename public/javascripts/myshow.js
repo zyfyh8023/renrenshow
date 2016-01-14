@@ -568,6 +568,55 @@ $(document).ready(function() {
 		}
 	});
 
+	//experience删除
+	var $manExper = $('#zy-manageExperience');
+	$manExper.delegate('.zy-del-art', 'click', function() {
+		var aid=$(this).closest('tr').data('ids');
+
+		$.ajax({
+			type: 'post',
+			url: '/delExper',
+			data: {
+				aid: aid
+			},
+			dataType: 'json',
+			success: function(data) {
+				if (data.retCode == 200) {
+					location.reload();
+				} else {
+					warnOpnFn(data.retDesc);
+				}
+			},
+			error: function(data) {
+				alertOpnFn('err');
+			}
+		});
+	});
+	
+	//experience草稿改为发布
+	$manExper.delegate('.zy-pub-art', 'click', function() {
+		var aid=$(this).closest('tr').data('ids');
+
+		$.ajax({
+			type: 'post',
+			url: '/pubExper',
+			data: {
+				aid: aid
+			},
+			dataType: 'json',
+			success: function(data) {
+				if (data.retCode == 200) {
+					location.reload();
+				} else {
+					warnOpnFn(data.retDesc);
+				}
+			},
+			error: function(data) {
+				alertOpnFn('err');
+			}
+		});
+	});
+	
 	/**
 	 * Article页面的js
 	 */
@@ -680,8 +729,56 @@ $(document).ready(function() {
 			warnOpnFn('内容不能为空哦~');
 		}
 	});
-
 	
+	//article删除
+	var $manArticle = $('#zy-manageArticle');
+	$manArticle.delegate('.zy-del-art', 'click', function() {
+		var aid=$(this).closest('tr').data('ids');
+
+		$.ajax({
+			type: 'post',
+			url: '/delArticle',
+			data: {
+				aid: aid
+			},
+			dataType: 'json',
+			success: function(data) {
+				if (data.retCode == 200) {
+					location.reload();
+				} else {
+					warnOpnFn(data.retDesc);
+				}
+			},
+			error: function(data) {
+				alertOpnFn('err');
+			}
+		});
+	});
+	
+	//article草稿改为发布
+	$manArticle.delegate('.zy-pub-art', 'click', function() {
+		var aid=$(this).closest('tr').data('ids');
+
+		$.ajax({
+			type: 'post',
+			url: '/pubArticle',
+			data: {
+				aid: aid
+			},
+			dataType: 'json',
+			success: function(data) {
+				if (data.retCode == 200) {
+					location.reload();
+				} else {
+					warnOpnFn(data.retDesc);
+				}
+			},
+			error: function(data) {
+				alertOpnFn('err');
+			}
+		});
+	});
+
 	/***
 		简历页面的js代码
 	**/
