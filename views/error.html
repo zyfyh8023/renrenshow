@@ -1,3 +1,35 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+<% include header.html %>
+
+<style>
+.zy-con-404{
+	width: 100%;
+	text-align: center;
+	margin-top:15rem;
+	margin-bottom:15rem;
+}
+.zy-con404-left{
+	display: inline-block;
+	vertical-align: middle;
+}
+.zy-con404-right{
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 1rem;
+}
+</style>
+
+<div class="zy-con-404">
+	
+	<div class="zy-con404-left">
+		<img src="/images/4041.jpg">
+	</div>
+	<div class="zy-con404-left">
+		<img src="/images/4042.jpg">
+	</div>
+	<!-- <%= error.status %>  -->
+	<!-- <%= message %>  -->
+	<!-- <%= error.stack %> -->
+	
+</div>
+
+<% include footer.html %>
