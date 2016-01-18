@@ -254,8 +254,8 @@ $(document).ready(function() {
                    			'<span class="am-badge am-badge-secondary am-round am-text-xl">'+(k+1)+'</span> <span class="titleName am-badge am-badge-secondary am-text-xl">'+data.retData.moduleCon[k].modelNam+'</span>'+
                				'</div> <div class="zy-public-content zy-change-content">'+strEles+'</div>';
 				}
-				strAlls+='<div style="margin-left:5rem;">'+
-						'<button data-ids="'+ids+'" class="saveBtnUpd am-btn am-btn-warning am-text-lg"> 保存以上修改 </button> </div>';
+				strAlls+='<div style="margin-left:50px;">'+
+						'<button data-ids="'+ids+'" class="saveBtnUpd am-btn am-btn-warning am-text-lg"> 保存以上修改 </button> </div><br>';
 
 				$('.zy-set-show').html(strAlls);
 			},
@@ -319,7 +319,6 @@ $(document).ready(function() {
 			},
 			error: function(res, status, e) {
 				alertOpnFn('err');
-				$('#specialInstruc', '#my-specialinstr').clearForm();
 			}
 		});
 	});
@@ -477,18 +476,33 @@ $(document).ready(function() {
 			    },
 			    dataType:'json',    
 			    success: function(data){
-			    	var htmls=[];
+			    	var htmls="";
 			    	for(var i=0, len=data.allArticles.length;i<len;i++){
-			    		htmls+=[
-			    			'<tr>',
-			    			'<td>'+(((pagenum-1)*10)+(i+1))+'</td>',
-			    			'<td>'+data.allArticles[i].experienceTitle+'</td>',
-			    			'<td>'+data.allArticles[i].experienceCompany+'</td>',
-			    			'<td>'+data.allArticles[i].cTime+'</td>',
-			    			'<td><a href="javascript:;">删除</a>&nbsp&nbsp&nbsp&nbsp<a href="javascript:;">操作</a></td>',
-			    			'</tr>'
-			    		].join('');
-			    	}    
+
+			    		var artTim = new Date(data.allArticles[i].cTime);
+			    		var artTim2 = artTim.getFullYear()+'-'+
+			    					artTim.getMonth()+'-'+
+			    					artTim.getDate()+' '+
+			    					artTim.getHours()+':'+
+			    					artTim.getMinutes()+':'+
+			    					artTim.getSeconds();
+
+			    		var htmlTemp=
+			    			'<tr  data-ids="'+data.allArticles[i]._id+'">'+
+			    			'<td class="am-text-middle">'+(((pagenum-1)*10)+(i+1))+'</td>'+
+			    			'<td class="am-text-middle">'+data.allArticles[i].experienceTitle+'</td>'+
+			    			'<td class="am-text-middle">'+data.allArticles[i].experienceCompany+'</td>'+
+			    			'<td class="am-text-middle">'+artTim2+'</td>'+
+			    			'<td class="am-text-middle">'+
+			    			'<a href="javascript:;" class="zy-del-art">删除</a><br>'+
+			    			'<a href="/blog_exp?aid=123132135">查看</a><br>';
+
+			    		if(data.allArticles[i].experienceTag=='2'){
+			    			htmlTemp+='<a href="javascript:;" class="zy-pub-art">发布</a>';
+			    		}
+			    		htmlTemp+='</td></tr>';
+			    		htmls+=htmlTemp;
+			    	}      
 			        $manageExperience.find("tbody").html(htmls);
 			    },
 			    error : function() {   
@@ -503,9 +517,18 @@ $(document).ready(function() {
 	$createExperience.delegate('.experienceFB', 'click', function() {
 		var experienceTitle = $.trim($(".experienceTitle", $createExperience).val()),
 			experienceCompany = $.trim($(".experienceCompany", $createExperience).val()),
-			experienceCont = experienceCon.getContent(),
-			experienceLink = $.trim($(".experienceLink", $createExperience).val());
-		if (experienceTitle != '' && experienceCompany != '' && experienceCont != '' && experienceLink != '') {
+			experienceCont = experienceCon.getContent();
+
+		if (experienceTitle != '' && experienceCompany != '' && experienceCont != '') {
+			
+			$('#zy-img-con').html(experienceCont).hide();
+			var srcArr=[];
+			$('#zy-img-con img').each(function () {
+			     var src = $(this).attr("src");
+			     srcArr.push(src);
+			 });
+			$('#zy-img-con').html('').hide();
+
 			$.ajax({
 				type: 'post',
 				url: '/createExperience',
@@ -514,12 +537,12 @@ $(document).ready(function() {
 					experienceTitle: experienceTitle,
 					experienceCompany: experienceCompany,
 					experienceCont: experienceCont,
-					experienceLink: experienceLink
+					experienceImgs: srcArr
 				},
 				dataType: 'json',
 				success: function(data) {
 					if (data.retCode == 200) {
-						alertOpnFn('操作成功！');
+						location.href="/blogs_exp_pub";
 					} else {
 						warnOpnFn(data.retDesc);
 					}
@@ -538,9 +561,18 @@ $(document).ready(function() {
 	$createExperience.delegate('.experienceCG', 'click', function() {
 		var experienceTitle = $.trim($(".experienceTitle", $createExperience).val()),
 			experienceCompany = $.trim($(".experienceCompany", $createExperience).val()),
-			experienceCont = experienceCon.getContent(),
-			experienceLink = $.trim($(".experienceLink", $createExperience).val());
-		if (experienceTitle != '' && experienceCompany != '' && experienceCont != '' && experienceLink != '') {
+			experienceCont = experienceCon.getContent();
+
+		if (experienceTitle != '' && experienceCompany != '' && experienceCont != '') {
+			
+			$('#zy-img-con').html(experienceCont).hide();
+			var srcArr=[];
+			$('#zy-img-con img').each(function () {
+			     var src = $(this).attr("src");
+			     srcArr.push(src);
+			 });
+			$('#zy-img-con').html('').hide();
+
 			$.ajax({
 				type: 'post',
 				url: '/createExperience',
@@ -549,12 +581,12 @@ $(document).ready(function() {
 					experienceTitle: experienceTitle,
 					experienceCompany: experienceCompany,
 					experienceCont: experienceCont,
-					experienceLink: experienceLink
+					experienceImgs: srcArr
 				},
 				dataType: 'json',
 				success: function(data) {
 					if (data.retCode == 200) {
-						alertOpnFn('操作成功！');
+						location.href="/blogs_exp_pri";
 					} else {
 						warnOpnFn(data.retDesc);
 					}
@@ -635,17 +667,47 @@ $(document).ready(function() {
 			    },
 			    dataType:'json',    
 			    success: function(data){
-			    	var htmls=[];
+			    	var htmls="";
 			    	for(var i=0, len=data.allArticles.length;i<len;i++){
-			    		htmls+=[
-			    			'<tr>',
-			    			'<td>'+(((pagenum-1)*10)+(i+1))+'</td>',
-			    			'<td>'+data.allArticles[i].articleTitle+'</td>',
-			    			'<td>'+data.allArticles[i].articleType+'</td>',
-			    			'<td>'+data.allArticles[i].cTime+'</td>',
-			    			'<td><a href="javascript:;">删除</a>&nbsp&nbsp&nbsp&nbsp<a href="javascript:;">操作</a></td>',
-			    			'</tr>'
-			    		].join('');
+			    		var artTyp;
+			    		switch(data.allArticles[i].articleType){
+			    			case 1:
+			    				artTyp="技术博客";
+			    				break;
+			    			case 2:
+			    				artTyp="行业远瞻";
+			    				break;
+			    			case 3:
+			    				artTyp="乱七八糟";
+			    				break;
+			    			default:
+			    				artTyp=data.allArticles[i].articleType;
+			    				break;
+			    		}
+			    		
+			    		var artTim = new Date(data.allArticles[i].cTime);
+			    		var artTim2 = artTim.getFullYear()+'-'+
+			    					artTim.getMonth()+'-'+
+			    					artTim.getDate()+' '+
+			    					artTim.getHours()+':'+
+			    					artTim.getMinutes()+':'+
+			    					artTim.getSeconds();
+
+			    		var htmlTemp=
+			    			'<tr data-ids="'+data.allArticles[i]._id+'">'+
+			    			'<td class="am-text-middle">'+(((pagenum-1)*10)+(i+1))+'</td>'+
+			    			'<td class="am-text-middle">'+data.allArticles[i].articleTitle+'</td>'+
+			    			'<td class="am-text-middle">'+artTyp+'</td>'+
+			    			'<td class="am-text-middle">'+artTim2+'</td>'+
+			    			'<td class="am-text-middle">'+
+			    			'<a href="javascript:;" class="zy-del-art">删除</a><br>'+
+			    			'<a href="/blog_art?aid='+data.allArticles[i]._id+'">查看</a><br>';
+
+			    		if(data.allArticles.articleTag=='2'){
+			    			htmlTemp+='<a href="javascript:;" class="zy-pub-art">发布</a>';
+			    		}
+			    		htmlTemp+='</td></tr>';
+			    		htmls+=htmlTemp;
 			    	}    
 			        $manageArticle.find("tbody").html(htmls);
 			    },
@@ -662,10 +724,9 @@ $(document).ready(function() {
 		var articleTitle = $.trim($(".articleTitle", $createArticle).val()),
 			articleKeyword = $.trim($(".articleKeyword", $createArticle).val()),
 			articleType = $.trim($(".articleType", $createArticle).val()),
-			articleCont = articleCon.getContent(),
-			articleLink = $.trim($(".articleLink", $createArticle).val());
+			articleCont = articleCon.getContent();
 
-		if (articleTitle != '' && articleKeyword != '' && articleType != '' && articleCont != '' && articleLink != '') {
+		if (articleTitle != '' && articleKeyword != '' && articleType != '' && articleCont != '') {
 			
 			$('#zy-img-con').html(articleCont).hide();
 			var srcArr=[];
@@ -673,7 +734,6 @@ $(document).ready(function() {
 			     var src = $(this).attr("src");
 			     srcArr.push(src);
 			 });
-			console.log(srcArr);
 			$('#zy-img-con').html('').hide();
 
 			$.ajax({
@@ -685,14 +745,13 @@ $(document).ready(function() {
 					articleKeyword: articleKeyword,
 					articleType: articleType,
 					articleCont: articleCont,
-					articleLink: articleLink,
 					articleImgs: srcArr
 				},
 				traditional: true,
 				dataType: 'json',
 				success: function(data) {
 					if (data.retCode == 200) {
-						alertOpnFn('操作成功！');
+						location.href="/blogs_art_pub";
 					} else {
 						warnOpnFn(data.retDesc);
 					}
@@ -712,9 +771,18 @@ $(document).ready(function() {
 		var articleTitle = $.trim($(".articleTitle", $createArticle).val()),
 			articleKeyword = $.trim($(".articleKeyword", $createArticle).val()),
 			articleType = $.trim($(".articleType", $createArticle).val()),
-			articleCont = articleCon.getContent(),
-			articleLink = $.trim($(".articleLink", $createArticle).val());
-		if (articleTitle != '' && articleKeyword != '' && articleType != '' && articleCont != '' && articleLink != '') {
+			articleCont = articleCon.getContent();
+
+		if (articleTitle != '' && articleKeyword != '' && articleType != '' && articleCont != '') {
+			
+			$('#zy-img-con').html(articleCont).hide();
+			var srcArr=[];
+			$('#zy-img-con img').each(function () {
+			     var src = $(this).attr("src");
+			     srcArr.push(src);
+			 });
+			$('#zy-img-con').html('').hide();
+
 			$.ajax({
 				type: 'post',
 				url: '/createarticle',
@@ -724,12 +792,12 @@ $(document).ready(function() {
 					articleKeyword: articleKeyword,
 					articleType: articleType,
 					articleCont: articleCont,
-					articleLink: articleLink
+					articleImgs: srcArr
 				},
 				dataType: 'json',
 				success: function(data) {
 					if (data.retCode == 200) {
-						alertOpnFn('操作成功！');
+						location.href="/blogs_art_pri";
 					} else {
 						warnOpnFn(data.retDesc);
 					}

@@ -12,7 +12,6 @@ var ArticleSchema = new Schema({
     articleImgs: [],
     articleType: Number,
     articleTag: Number,
-    articleLink: String,
     cTime: {
         type: Date,
         default: Date.now

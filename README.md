@@ -8,3 +8,5 @@
     $("#zy-warning p").html('提示的内容');
     $("#zy-warning").removeClass('zy-display-none');
 ```
+
+									

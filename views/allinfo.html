@@ -1,0 +1,38 @@
+<% include header.html %>
+	<br>
+	<section>
+		<div class="am-g am-g-fixed">
+			<div data-am-widget="list_news" class="am-list-news am-list-news-default">
+				<div class="am-list-news-hd am-cf">
+					<a href="###" class=""><h2>最新校园招聘信息</h2></a>
+				</div>
+				<div class="am-list-news-bd">
+					<ul class="am-list">
+						<% for(var i=0; i<15; i++) { %>
+							<li class="am-g am-list-item-desced">
+							<div class=" am-list-main">
+								<h3 class="am-list-item-hd">
+                    				<a href="http://www.douban.com/online/11645411/" class="">
+                    					<%= i+1 %>、“你的旅行，是什么颜色？” 晒照片，换北欧梦幻极光之旅！
+                    				</a>
+                      			</h3>
+								<div class="am-list-item-text">还在苦恼圣诞礼物再也玩儿不出新意？快来抢2013最炫彩的跨国圣诞礼物！【参与方式】1.关注“UniqueWay无二之旅”豆瓣品牌小站http://brand.douban.com/uniqueway/2.上传一张**本人**在旅行中色彩最浓郁、最丰富的照片（色彩包含取景地、周边事物、服装饰品、女生彩妆等等，发挥你们无穷的创意想象力哦！^^）一定要有本人出现喔！3.在照片下方，附上一句旅行宣言作为照片说明。 成功参与活动！* 听他们刚才说，上传照片的次</div>
+							</div>
+						</li>
+						<% } %>
+					</ul>
+				</div>
+			</div>
+			<br>
+			<ul class="am-pagination am-pagination-right">
+				<li class="am-disabled"><a href="#">&laquo;</a></li>
+				<li class="am-active"><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+				<li><a href="#">&raquo;</a></li>
+			</ul>
+		</div>
+	</section>
+	<% include footer.html %>

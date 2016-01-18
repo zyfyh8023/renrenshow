@@ -16,7 +16,7 @@
 					    	<% for(var i=0; i<results.allModels.length; i++) { %>
 					    		<tr data-ids="<%= i %>">
 					    			<td class="am-text-middle" style="text-align:left"><%= results.allModels[i].moduleDesc %></td>
-					    			<td class="am-text-middle">
+					    			<td class="am-text-middle" style="text-align:right">
 					    			<% if(results.allModels[i].status=='1'){ %>
 					    				已开启
 					    			<% }else{ %>
@@ -55,7 +55,7 @@
 		                    <a class="zy-div-radio am-badge am-badge-success am-text-lg">不公开</a>
 		                </div>
 		                <div class="zy-public-title">
-		                    <span class="am-badge am-badge-secondary am-round am-text-xl">1</span> <span class="titleName am-badge am-badge-secondary am-text-xl">个人简历</span>
+		                    <span class="am-badge am-badge-secondary am-round am-text-xl">2</span> <span class="titleName am-badge am-badge-secondary am-text-xl">个人简历</span>
 		                </div>
 		                <div class="zy-public-content zy-change-content">
 		                    <a class="zy-div-checkbox  am-badge am-text-lg">基本信息</a>
@@ -68,7 +68,7 @@
 		                    <a class="zy-div-checkbox  am-badge am-text-lg">校园社会活动</a>
 		                </div>
 		                <div class="zy-public-title">
-		                    <span class="am-badge am-badge-secondary am-round am-text-xl">1</span> <span class="titleName am-badge am-badge-secondary am-text-xl">资源导航</span>
+		                    <span class="am-badge am-badge-secondary am-round am-text-xl">3</span> <span class="titleName am-badge am-badge-secondary am-text-xl">资源导航</span>
 		                </div>
 		                <div class="zy-public-content zy-change-content">
 		                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">前端资源导航</a>
@@ -77,7 +77,7 @@
 		                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">安卓资源导航</a>
 		                </div>
 		                <div class="zy-public-title">
-		                    <span class="am-badge am-badge-secondary am-round am-text-xl">1</span> <span class="titleName am-badge am-badge-secondary am-text-xl">博文面经</span>
+		                    <span class="am-badge am-badge-secondary am-round am-text-xl">4</span> <span class="titleName am-badge am-badge-secondary am-text-xl">博文面经</span>
 		                </div>
 		                <div class="zy-public-content zy-change-content">
 		                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">技术博文</a>
@@ -86,7 +86,7 @@
 		                    <a class="zy-div-checkbox  am-badge am-text-lg">面试经验</a>
 		                </div>
 		                <div class="zy-public-title">
-		                    <span class="am-badge am-badge-secondary am-round am-text-xl">1</span> <span class="titleName am-badge am-badge-secondary am-text-xl">资源导航</span>
+		                    <span class="am-badge am-badge-secondary am-round am-text-xl">5</span> <span class="titleName am-badge am-badge-secondary am-text-xl">资源导航</span>
 		                </div>
 		                <div class="zy-public-content zy-change-content">
 		                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">前端资源导航</a>
@@ -95,7 +95,7 @@
 		                    <a class="zy-div-checkbox  am-badge am-text-lg">安卓资源导航</a>
 		                </div>
 		                <div class="zy-public-title">
-		                    <span class="am-badge am-badge-secondary am-round am-text-xl">1</span> <span class="titleName am-badge am-badge-secondary am-text-xl">公开时间</span>
+		                    <span class="am-badge am-badge-secondary am-round am-text-xl">6</span> <span class="titleName am-badge am-badge-secondary am-text-xl">公开时间</span>
 		                </div>
 		                <div class="zy-public-content zy-change-content">
 		                    <a class="zy-div-radio am-badge am-text-lg">一天</a>
@@ -104,11 +104,10 @@
 		                    <a class="zy-div-radio am-badge am-text-lg">一年</a>
 		                    <a class="zy-div-radio am-badge am-badge-success am-text-lg">永远</a>
 		                </div>
-			            <div style="margin-left:5rem;">
+			            <div style="margin-left:50px;">
 			                <button class="saveBtn am-btn am-btn-warning am-text-lg"> 添加新的设置 </button>
-			            </div>
+			            </div><br>
 	            </div>
-	       
 		</div>
 	</div>
 

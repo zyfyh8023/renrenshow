@@ -292,6 +292,13 @@
     margin-top: 10px;
 }
 
+.zy-div-checkbox, .zy-div-radio{
+    -ms-user-select: none;  
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -o-user-select:none;
+    user-select:none;
+}
 
 /*人才页面的样式*/
 
@@ -310,11 +317,11 @@
 
 .zy-weblink {
     background: #eee;
-    margin-top: 40px;
-    margin-bottom: 50px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    font-size: 15px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 13px;
 }
 
 
@@ -356,9 +363,9 @@
 }
 
 .zy-navigation-item .am-alert {
-    font-size: 12px;
     color: #aaa;
     padding: 10px;
+    font-size: 13px;
     margin: 6px;
 }
 
@@ -372,18 +379,31 @@
 .zy-navigation-item .am-alert a:hover{
     color: #fd8c84;
     border-bottom-color: #fd8c84;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 .zy-navigation-item {
     padding-left: 0;
     padding-right: 0;
+    cursor: pointer;
 }
 
 .zy-navigation-nav {
     margin-bottom: 10px;
     margin-top: 10px;
     margin-left: -1.0rem;
+}
+
+.zy-module-tip{
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    overflow:hidden;
+    margin-top: 5px;
+    -ms-user-select: none;  
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -o-user-select:none;
+    user-select:none;
 }
 
 /*pageresume*/

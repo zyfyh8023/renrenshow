@@ -1,6 +1,14 @@
 <% include ../myheader.html %>
 <% include ../nav.html %>
 
+<style>
+.am-popover {
+	width: 200px;
+	border-radius: 10px;
+	font-size: 0.9rem;
+}
+</style>
+
 <section id="zy-navgation">
 	<div class="am-g am-u-lg-9 am-u-md-12  am-u-sm-centered">
 		<div class="col-lg-3 am-u-lg-3 am-show-lg-only zy-show-lg-nav">
@@ -36,7 +44,7 @@
 					<% for(var i=0; i<allNavgition.models.length; i++) {%>
 						<div class="zy-module-container">
 						<div class="col-sm-12 am-u-sm-12 zy-navigation-nav">
-							<a name="<%= allNavgition.models[i].maoName %>"><button class="am-btn am-btn-primary am-btn-xl">
+							<a name="<%= allNavgition.models[i].maoName %>"><button class="am-btn am-btn-secondary am-btn-xl">
 								<%= allNavgition.models[i].modelsName %>
 							</button></a>
 						</div>
@@ -46,18 +54,20 @@
 									<button type="button" class="J_zy-module-close am-close">
 										<i class="am-icon-close"></i>
 									</button>
-									<div class="zy-module-con">
+									<div class="zy-module-con" data-am-popover="{theme:'success sm',content:'<%= allNavgition.models[i].modelsuns[j].sunDesc %>',trigger: 'hover focus'}">
 										<a href="<%= allNavgition.models[i].modelsuns[j].sunUrl %>">
 											<%= allNavgition.models[i].modelsuns[j].sunName %>
 										</a><br>
-										<%= allNavgition.models[i].modelsuns[j].sunDesc %>
+										<div class="zy-module-tip">
+											<%= allNavgition.models[i].modelsuns[j].sunDesc %>
+										</div>
 									</div>
 								</div>
 							</div>
 						<% } %>
 							<div class="col-md-4 am-u-md-4 col-sm-6 am-u-sm-6 zy-navigation-item zy-navigation-add-ele am-u-end">
 								<div class="am-alert am-alert-secondary J_zy-datamodal">
-									<div style="padding:1rem 0;font-size:2.3rem;text-align:center;">添加模块</div>
+									<div style="padding:1rem 0;font-size:1.5rem;text-align:center;">添加模块</div>
 								</div>
 							</div>
 						</div>
@@ -152,7 +162,7 @@
 					<div class="am-form-group">
 						<label class="am-u-sm-3 am-form-label">模块说明：</label>
 						<div class="am-u-sm-9">
-							<textarea maxlength="30" placeholder="请输入module的说明信息！" required class="moduleInfo" rows="5"></textarea>
+							<textarea maxlength="50" placeholder="请输入module的说明信息(最大50的字)！" required class="moduleInfo" rows="5"></textarea>
 						</div>
 					</div>
 					<div class="am-form-group">

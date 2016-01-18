@@ -37,7 +37,6 @@ exports.doPage = function(req, res, next) {
         articleKeyword = req.body.articleKeyword.trim() || '',
         articleCont = req.body.articleCont.trim() || '',
         articleType = req.body.articleType.trim() || '',
-        articleLink = req.body.articleLink.trim() || '',
         articleTag = req.body.tags || 0,
         articleImgs = req.body.articleImgs;
 
@@ -48,7 +47,6 @@ exports.doPage = function(req, res, next) {
         articleCont: articleCont,
         articleType: articleType,
         articleTag: articleTag,
-        articleLink: articleLink,
         articleImgs: articleImgs
     });
 

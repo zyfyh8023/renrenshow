@@ -8,8 +8,8 @@ var ExperienceSchema = new Schema({
     experienceTitle: String,
     experienceCompany: String,
     experienceCont: String,
+    experienceImgs: [],
     experienceTag: Number,
-    experienceLink: String,
     cTime: {
         type: Date,
         default: Date.now

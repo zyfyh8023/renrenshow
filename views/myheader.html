@@ -79,7 +79,7 @@
 				<div data-am-widget="tabs" class="am-tabs am-tabs-d2">
 					<ul class="am-tabs-nav am-cf">
 						<li class="am-active">
-							<a href="[data-tab-panel-0]">模块选择</a>
+							<a href="[data-tab-panel-0]">状态选择</a>
 						</li>
 						<li class="">
 							<a href="[data-tab-panel-1]">主题选择</a>
@@ -89,37 +89,46 @@
 						<div data-tab-panel-0 class="am-tab-panel am-active">
 							<form class="am-form">
 								<div class="am-form-group">
-									<h3>简历模块</h3>
-									<label class="am-checkbox">
-										<input type="checkbox" name="cbx" value="ip" data-am-ucheck> iPhone
-									</label>
-									<label class="am-checkbox">
-										<input type="checkbox" name="cbx" value="im" data-am-ucheck> iMac
-									</label>
-									<label class="am-checkbox">
-										<input type="checkbox" name="cbx" value="mbp" data-am-ucheck> Macbook Pro
-									</label>
-									<label class="am-checkbox">
-										<input type="checkbox" name="cbx" value="sf" data-am-ucheck> 苏菲·麻索
-									</label>
-									<label class="am-checkbox">
-										<input type="checkbox" name="cbx" value="sur" data-am-ucheck> Surface
-									</label>
-									<label class="am-checkbox">
-										<input type="checkbox" name="cbx" value="rb" data-am-ucheck> Razer Blade
-									</label>
-									<label class="am-checkbox">
-										<input type="checkbox" name="cbx" value="ip" data-am-ucheck> iPhone
-									</label>
-									<label class="am-checkbox">
-										<input type="checkbox" name="cbx" value="im" data-am-ucheck> iMac
-									</label>
-									<label class="am-checkbox">
-										<input type="checkbox" name="cbx" value="mbp" data-am-ucheck> Macbook Pro
-									</label>
-								</div>
-								<div>
-									<button type="submit" class="am-btn am-btn-xs am-btn-primary">提交</button>
+									<% if(signed=='1') { %>
+										<div>
+											<h4>当前状态：已登录：<%= uName %></h4>
+										</div>
+										<h4>切换为以下状态：</h4>
+										<% for(var i=0; i<5; i++){ %>
+											<label class="am-radio">
+												<input type="radio" checked name="radio1" value="female" data-am-ucheck> 特权身份<%= i+1 %>：活动方式的时间地方很近的数据的数据的数据都是
+											</label>
+										<% } %>
+										<label class="am-radio">
+											<input type="radio" checked name="radio1" value="female" data-am-ucheck> 游客身份
+										</label>
+										<div>
+											<button type="submit" class="am-btn am-btn-xs am-btn-primary">切换</button>
+										</div>
+									<% } %>
+
+									<% if(signed=='2') { %>
+										<div>
+											<h4>当前状态：特权身份</h4>
+										</div>
+										<h4>切换为以下状态吧：</h4>
+										<label class="am-radio">
+											<input type="radio" name="radio1" value="female" data-am-ucheck> 游客身份
+										</label>
+										<div>
+											<button type="submit" class="am-btn am-btn-xs am-btn-primary">切换</button>
+										</div>
+									<% } %>
+
+									<% if(signed=='3') { %>
+										<div>
+											<h4>当前状态：游客身份</h4>
+										</div>
+										<h4>向他/她申请特权</h4>
+										<div>
+											<button type="submit" class="am-btn am-btn-xs am-btn-primary">申请</button>
+										</div>
+									<% } %>
 								</div>
 							</form>
 						</div>
@@ -127,28 +136,28 @@
 							<div class="am-form-group">
 								<form class="am-form">
 									<div class="am-form-group">
-										<h3>主题类型</h3>
+										<h3>主题颜色</h3>
 										<label class="am-radio">
-											<input type="radio" name="radio10" value="male" data-am-ucheck> red
+											<input type="radio" checked name="radio10" value="female" data-am-ucheck> <font style="color:#0a6999">深蓝色</font>
 										</label>
 										<label class="am-radio">
-											<input type="radio" name="radio10" value="female" data-am-ucheck> blue
+											<input type="radio" checked name="radio10" value="female" data-am-ucheck> <font style="color:#3bb4f2">浅蓝色</font>
 										</label>
 										<label class="am-radio">
-											<input type="radio" name="radio10" value="pig" data-am-ucheck> gray
+											<input type="radio" name="radio10" value="pig" data-am-ucheck> <font style="color:#5eb95e">浅绿色</font>
 										</label>
 										<label class="am-radio">
-											<input type="radio" name="radio10" value="male" data-am-ucheck> red
+											<input type="radio" name="radio10" value="pig" data-am-ucheck> <font style="color:#999">灰色</font>
 										</label>
 										<label class="am-radio">
-											<input type="radio" name="radio10" value="female" data-am-ucheck> blue
+											<input type="radio" name="radio10" value="male" data-am-ucheck> <font style="color:#F37B1D">橙色</font>
 										</label>
 										<label class="am-radio">
-											<input type="radio" name="radio10" value="pig" data-am-ucheck> gray
+											<input type="radio" name="radio10" value="male" data-am-ucheck> <font style="color:#dd514c">红色</font>
 										</label>
 									</div>
 									<div>
-										<button type="submit" class="am-btn am-btn-xs am-btn-primary">提交</button>
+										<button type="submit" class="am-btn am-btn-xs am-btn-primary">保存</button>
 									</div>
 								</form>
 							</div>

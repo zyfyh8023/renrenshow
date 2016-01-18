@@ -36,16 +36,17 @@ exports.doPage = function(req, res, next) {
     var experienceTitle = req.body.experienceTitle.trim() || '',
         experienceCompany = req.body.experienceCompany.trim() || '',
         experienceTag = req.body.tags || 0,
-        experienceLink = req.body.experienceLink.trim() || '',
-        experienceCont = req.body.experienceCont.trim() || '';
+        experienceCont = req.body.experienceCont.trim() || '',
+        experienceImgs = req.body.experienceImgs;
+
 
     var newExperience = new experiences.Experience({
         author: uName,
         experienceTitle: experienceTitle,
         experienceCompany: experienceCompany,
         experienceTag: experienceTag,
-        experienceLink: experienceLink,
-        experienceCont: experienceCont
+        experienceCont: experienceCont,
+        experienceImgs: experienceImgs
     });
 
     //如果不存在则新增用户

@@ -24,6 +24,7 @@ var manageExperience = require('./routes/manageExperience');
 var createarticle = require('./routes/createarticle');
 var createExperience = require('./routes/createExperience');
 var allarticle = require('./routes/allarticle');
+var allinfo = require('./routes/allinfo');
 var blogAorE = require('./routes/blogAorE');
 var introduction = require('./routes/introduction');
 var resource = require('./routes/resource');
@@ -96,6 +97,7 @@ app.get('/faq', faq.page);
 app.get('/inf', resource.page);
 app.get('/res', talentpool.page);
 app.get('/allarticle', allarticle.page);
+app.get('/allinfo', allinfo.page);
 app.get('/login', login.page);
 app.post('/login', login.doLogin);
 //没登录的情况下提交退出

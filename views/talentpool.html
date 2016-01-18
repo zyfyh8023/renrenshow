@@ -5,11 +5,9 @@
 .am-input-group-btn > .am-btn {
 	height: 45px;
 }
-
 .am-form-group {
 	margin-bottom: 0.5rem;
 }
-
 .am-icon-sm::before {
 	vertical-align: -3%;
 }
@@ -20,9 +18,9 @@
 			<div class="am-input-group am-input-group-primary">
 				<input type="text" class="am-form-field am-input-lg" placeholder="请输入所要查找内容的特征或条件！">
 				<span class="am-input-group-btn">
-	        <button class="am-btn am-btn-primary" type="button">
-	        <span style="font-weight:bold;font-size:22px;letter-spacing:1px;">Search</span>&nbsp;&nbsp;<span class="am-icon-search am-icon-sm"></span>
-				</button>
+			        <button class="am-btn am-btn-primary" type="button">
+			        	<span style="font-weight:bold;font-size:22px;letter-spacing:1px;">Search</span>
+					</button>
 				</span>
 			</div>
 		</div>
@@ -31,12 +29,9 @@
 	<br>
 	<hr data-am-widget="divider" />
 	<div class="zy-talentpool-result">
-		<!-- <div class="am-u-lg-9 am-u-md-11 am-u-sm-centered">
-			<span style="font-weight:bold;">人才分类查找：</span>
-		</div> -->
 		<div class="am-u-lg-10 am-u-md-11 am-u-sm-centered" style="padding:0 5rem;">
 			<div class="am-form-group">
-				<span style="font-size:14px">人才类型：</span>
+				<span style="font-size:14px;color:#0a6999">人才类型：</span>
 				<label class="am-checkbox-inline">
 					<input type="checkbox" value="" data-am-ucheck> 在校学生
 				</label>
@@ -54,7 +49,7 @@
 				</label>
 			</div>
 			<div class="am-form-group">
-				<span style="font-size:14px">需求类型：</span>
+				<span style="font-size:14px;color:#0a6999">需求类型：</span>
 				<label class="am-checkbox-inline">
 					<input type="checkbox" value="" checked data-am-ucheck> 校园招聘职位
 				</label>
@@ -66,7 +61,7 @@
 				</label>
 			</div>
 			<div class="am-form-group">
-				<span style="font-size:14px">学校类型：</span>
+				<span style="font-size:14px;color:#0a6999">学校类型：</span>
 				<label class="am-checkbox-inline">
 					<input type="checkbox" value="" data-am-ucheck> 985院校
 				</label>
@@ -87,7 +82,7 @@
 				</label>
 			</div>
 			<div class="am-form-group">
-				<span style="font-size:14px">学历水平：</span>
+				<span style="font-size:14px;color:#0a6999">学历水平：</span>
 				<label class="am-checkbox-inline">
 					<input type="checkbox" value="" data-am-ucheck> 博士及以上
 				</label>
@@ -109,20 +104,16 @@
 	<br>
 	<div class="am-g">
 		<div class="am-u-lg-10 am-u-md-11 am-u-sm-centered">
-			<% for(var i=0; i<29; i++) { %>
-				<div class="am-u-lg-2 am-u-md-3 am-u-sm-6">
-					<img src="/images/headimg.jpg" alt="" class="am-img-thumbnail am-circle">
-					<div class="zy-talent-name">
-						<h3>冯燕鸿</h3>
-					</div>
-				</div>
-				<% } %>
+			<% for(var i=0; i<35; i++) { %>
+				<a href="#">
 					<div class="am-u-lg-2 am-u-md-3 am-u-sm-6 am-u-end">
-						<img src="/images/headimg.jpg" alt="" class="am-img-thumbnail am-circle">
+						<img style="width:100%" src="/images/headimg.jpg" alt="" class="am-img-thumbnail am-circle">
 						<div class="zy-talent-name">
 							<h3>冯燕鸿</h3>
 						</div>
 					</div>
+				</a>
+			<% } %>
 		</div>
 	</div>
 	<div class="am-g" style="margin-top:2rem;">
