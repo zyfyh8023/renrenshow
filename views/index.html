@@ -1,14 +1,76 @@
 <% include header.html %>
 
+<style>
+.am-slider-d2 .am-slider-desc{
+    bottom: 25%;
+    color: #fff;
+    left: 5%;
+    position: absolute;
+    right: 40%;
+    z-index: 1000;
+}
+.am-slider-d2 .zy-meng-ceng{
+	position: absolute;
+	top:0;
+	left:0;
+	z-index: 100;
+	width: 100%;
+	height:100%;
+	background: rgba(30, 30, 30, 0.6) none repeat scroll 0 0;
+}
+.am-slider-d2 .am-slider-content {
+    background-color: rgba(0, 0, 0, 0);
+    margin-bottom: 1rem;
+   	padding: 1rem 0;
+}
+</style>
+
 <section>
-	<div data-am-widget="slider" class="am-slider am-slider-a2" data-am-slider='{"directionNav":false}'>
+	<div data-am-widget="slider" class="am-slider am-slider-d2" data-am-slider='{"controlNav":false}'>
 		<ul class="am-slides">
-			<li><img src="/images/pageimg1.jpg"></li>
-			<li><img src="/images/pageimg2.jpg"></li>
-			<li><img src="/images/11d.jpg"></li>
+			<li>
+				<img src="/images/pageimg1.jpg">
+				<div class="am-slider-desc">
+					<div class="am-slider-content">
+						<h2 class="am-slider-title" style="font-size:5.5rem;margin-bottom:1rem;">如果你和我们有一样的梦想、有激情</h2>
+						<div style="font-size:2rem;margin-bottom:2rem;">
+							SegmentFault 正在迅猛发展，我们希望你的加入能让 SegmentFault 有更大的改观和发展。
+							如果你和我们有一样的梦想、有激情，别犹豫，加入我们，一起为中文开发者打造最好的技术交流社区。
+						</div>
+					</div>
+					<a href="/myindex" class="am-slider-more" style="font-size:5rem">先睹为快</a>
+				</div>
+				<i class="zy-meng-ceng"></i>
+			</li>
+			<li>
+				<img src="/images/pageimg2.jpg">
+				<div class="am-slider-desc">
+					<div class="am-slider-content">
+						<h2 class="am-slider-title" style="font-size:5.5rem;margin-bottom:1rem;">一个干净舒适的技术交流平台</h2>
+						<div style="font-size:2rem;margin-bottom:2rem;">
+							SegmentFault 欢迎广大开发者前来交流，我们尽可能地为大家提供一个干净舒适的技术交流平台。在这里，可以与更多的开发者进行深度探讨，帮助你尽可能地为大家提供一个干净更快速地进步
+						</div>
+					</div>
+					<a href="/register" class="am-slider-more" style="font-size:5rem">立马注册</a>
+				</div>
+				<i class="zy-meng-ceng"></i>
+			</li>
+			<li>
+				<img src="/images/11d.jpg">
+				<div class="am-slider-desc">
+					<div class="am-slider-content">
+						<h2 class="am-slider-title" style="font-size:5.5rem;margin-bottom:1rem;">远方 有一个地方 那里种有我们的梦想</h2>
+						<div style="font-size:2rem;margin-bottom:2rem;">
+							SegmentFault 欢迎广大开发者前来交流，我们尽可能地为大家提供一个干净舒适的技术交流平台。在这里，可以与更多的开发者进行深度探讨，帮助你尽可能地为大家提供一个干净更快速地进步
+						</div>
+					</div>
+					<a href="/faq" class="am-slider-more" style="font-size:5rem">了解更多</a>
+				</div>
+				<i class="zy-meng-ceng"></i>
+			</li>
 		</ul>
 	</div>
-		
+
 	<div class="am-g am-u-lg-11 am-u-md-12  am-u-sm-centered zy-section-nav">
 		<div class="col-md-4 am-u-md-4 am-u-sm-4 zy-section-nav-img">
 			<!-- <figure data-am-widget="figure" class="am am-figure am-figure-default " data-am-figure="{ pureview: 'false' }">
