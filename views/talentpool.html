@@ -105,7 +105,7 @@
 	<div class="am-g">
 		<div class="am-u-lg-10 am-u-md-11 am-u-sm-centered">
 			<% for(var i=0; i<results.length; i++) { %>
-				<a href="#">
+				<a href="/myindex?pubId=<%= results[i].username %>">
 					<div class="am-u-lg-2 am-u-md-3 am-u-sm-6 am-u-end">
 						<img style="width:100%" src="<%= results[i].headimg %>" alt="" class="am-img-thumbnail am-circle">
 						<div class="zy-talent-name">
@@ -115,7 +115,7 @@
 				</a>
 			<% } %>
 			<% for(var i=0; i<30; i++) { %>
-				<a href="#">
+				<a href="/myindex?pubId=<%= results[i].username %>">
 					<div class="am-u-lg-2 am-u-md-3 am-u-sm-6 am-u-end">
 						<img style="width:100%" src="/images/girlimg.jpg" alt="" class="am-img-thumbnail am-circle">
 						<div class="zy-talent-name">
