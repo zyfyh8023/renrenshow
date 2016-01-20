@@ -1,114 +1,117 @@
-<br><br><br><br><br><br>
 
-<div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
-	<div class="am-alert am-alert-secondary">
-		<button type="button" class="am-close" data-am-modal="{target: '#my-description'}"><i class="am-icon-pencil"></i></button>
-		<div style="font-size:30px;text-align:center;">核心技能</div>
-	</div>
-</div>
+<section class="zy-resume-module">
 
-<div class="am-g am-u-lg-10 am-u-md-12  am-u-sm-centered">
-	<div class="am-panel am-panel-default">
-		<div class="am-panel-hd">
-			<h3 class="am-panel-title">个人核心技能</h3>
+	<div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
+		<div class="am-alert am-alert-secondary">
+			<button type="button" class="am-close" data-am-modal="{target: '#my-description'}"><i class="am-icon-pencil"></i></button>
+			<div style="font-size:30px;text-align:center;">核心技能</div>
 		</div>
-		<ul class="am-list am-list-static">
-			<% if(rs.Technology11) { %>
-				<% for(var i=0; i<rs.Technology11.length; i++) {%>
-					<li>
-						<a href="javascript:;"><span class="am-badge am-badge-success am-radius"><%=i+1%></span>&nbsp; <%=rs.Technology11[i]%></a>
-					</li>
-				<% } %>
-			<% } %>
-		</ul>
 	</div>
-</div>
 
-<div class="am-modal-actions" id="my-description">
-	<div class="am-modal-actions-group">
-		<ul class="am-list">
-			<li class="am-modal-actions-danger J_operate-sel">
-				<br><br>
-				<div class="am-u-lg-6 am-u-md-9  am-u-sm-centered">
-					<form class="am-form am-form-horizontal" data-am-validator autocomplete ='off'>
-						<div class="am-form-group">
-							<label class="am-u-sm-3 am-form-label">操作方式选择：</label>
-							<div class="am-u-sm-9">
-								<select required class="select1">
-									<option value=""  selected = "selected">请选择操作哪项？</option>
-									<option value="1">添加操作</option>
-									<option value="2">删除操作</option>
-									<option value="3">修改操作</option>
-								</select>
-							    <span class="am-form-caret"></span>
-							</div> 
-						</div>
-				        <div class="am-form-group J_change-con" style="display:none;">
-				            <label class="am-u-sm-3 am-form-label">修改选项：</label>
-				            <div class="am-u-sm-9">
-				                <select required class="select2">
-									<option value="" selected = "selected">请选择修改哪项？</option>
-									<% if(rs.Technology11) { %>
-										<% for(var i=0; i<rs.Technology11.length; i++) {%>
-											<option value="<%= i %>">修改第<%= i+1 %>条</option>
-										<% } %>
-									<% } %>
-				                </select>
-				                <span class="am-form-caret"></span>
-				            </div>  
-				        </div>
-					</form>
-				</div>
-				<br>
-			</li>
-			<li class="am-modal-actions-danger J_operate-del" style="display:none;">
-				<br>
-				<div class="am-u-lg-6 am-u-md-9  am-u-sm-centered">
-					<form class="am-form am-form-horizontal" method="post" data-am-validator autocomplete ='off'>
-				        <div class="am-form-group">
-				            <label class="am-u-sm-3 am-form-label">删除选项：</label>
-				            <div class="am-u-sm-9">
-				                <select required>
-									<option value="" selected = "selected">请选择删除哪项？</option>
-									<% if(rs.Technology11) { %>
-										<% for(var i=0; i<rs.Technology11.length; i++) {%>
-											<option value="<%= i %>">删除第<%= i+1 %>条</option>
-										<% } %>
-									<% } %>
-				                </select>
-				                <span class="am-form-caret"></span>
-				            </div>  
-				        </div>
-				        <div class="am-form-group">
-				            <div class="am-u-sm-9 am-u-sm-offset-3">
-				                <button type="button" class="am-btn am-btn-primary"> 确定删除 </button>
-				            </div>
-				        </div>
-			        </form>
-		        </div>
-			</li>
-			<li class="am-modal-actions-danger J_operate-add" style="display:none;">
-				<br>
-				<div class="am-u-lg-6 am-u-md-9  am-u-sm-centered">
-					<form class="am-form am-form-horizontal" method="post" data-am-validator autocomplete ='off'>
-						<div class="am-form-group">
-							<label class="am-u-sm-3 am-form-label">核心技能：</label>
-							<div class="am-u-sm-9">
-								<textarea value="" class="descriptioncon" rows="4" placeholder="每次添加一条技能"></textarea>
-							</div>
-						</div>
-						<input type="hidden"  class="J_hidden-ipt" value="">
-						<div class="am-form-group">
-							<div class="am-u-sm-9 am-u-sm-offset-3">
-								<button type="button" class="am-btn am-btn-primary"> 提交信息 </button>
-							</div>
-						</div>
-					</form>
-				</div>
-			</li>
-		</ul>
+	<div class="am-g am-u-lg-10 am-u-md-12  am-u-sm-centered">
+		<div class="am-panel am-panel-default">
+			<div class="am-panel-hd">
+				<h3 class="am-panel-title">个人核心技能</h3>
+			</div>
+			<ul class="am-list am-list-static">
+				<% if(rs.Technology11) { %>
+					<% for(var i=0; i<rs.Technology11.length; i++) {%>
+						<li>
+							<a href="javascript:;"><span class="am-badge am-badge-success am-radius"><%=i+1%></span>&nbsp; <%=rs.Technology11[i]%></a>
+						</li>
+					<% } %>
+				<% } %>
+			</ul>
+		</div>
 	</div>
-	<div class="am-modal-actions-group">
-      	<button class="am-btn am-btn-danger am-btn-block" data-am-modal-close>关闭</button>
-    </div>
-</div>
+
+	<div class="am-modal-actions" id="my-description">
+		<div class="am-modal-actions-group">
+			<ul class="am-list">
+				<li class="am-modal-actions-danger J_operate-sel">
+					<br><br>
+					<div class="am-u-lg-6 am-u-md-9  am-u-sm-centered">
+						<form class="am-form am-form-horizontal" data-am-validator autocomplete ='off'>
+							<div class="am-form-group">
+								<label class="am-u-sm-3 am-form-label">操作方式选择：</label>
+								<div class="am-u-sm-9">
+									<select required class="select1">
+										<option value=""  selected = "selected">请选择操作哪项？</option>
+										<option value="1">添加操作</option>
+										<option value="2">删除操作</option>
+										<option value="3">修改操作</option>
+									</select>
+								    <span class="am-form-caret"></span>
+								</div> 
+							</div>
+					        <div class="am-form-group J_change-con" style="display:none;">
+					            <label class="am-u-sm-3 am-form-label">修改选项：</label>
+					            <div class="am-u-sm-9">
+					                <select required class="select2">
+										<option value="" selected = "selected">请选择修改哪项？</option>
+										<% if(rs.Technology11) { %>
+											<% for(var i=0; i<rs.Technology11.length; i++) {%>
+												<option value="<%= i %>">修改第<%= i+1 %>条</option>
+											<% } %>
+										<% } %>
+					                </select>
+					                <span class="am-form-caret"></span>
+					            </div>  
+					        </div>
+						</form>
+					</div>
+					<br>
+				</li>
+				<li class="am-modal-actions-danger J_operate-del" style="display:none;">
+					<br>
+					<div class="am-u-lg-6 am-u-md-9  am-u-sm-centered">
+						<form class="am-form am-form-horizontal" method="post" data-am-validator autocomplete ='off'>
+					        <div class="am-form-group">
+					            <label class="am-u-sm-3 am-form-label">删除选项：</label>
+					            <div class="am-u-sm-9">
+					                <select required>
+										<option value="" selected = "selected">请选择删除哪项？</option>
+										<% if(rs.Technology11) { %>
+											<% for(var i=0; i<rs.Technology11.length; i++) {%>
+												<option value="<%= i %>">删除第<%= i+1 %>条</option>
+											<% } %>
+										<% } %>
+					                </select>
+					                <span class="am-form-caret"></span>
+					            </div>  
+					        </div>
+					        <div class="am-form-group">
+					            <div class="am-u-sm-9 am-u-sm-offset-3">
+					                <button type="button" class="am-btn am-btn-primary"> 确定删除 </button>
+					            </div>
+					        </div>
+				        </form>
+			        </div>
+				</li>
+				<li class="am-modal-actions-danger J_operate-add" style="display:none;">
+					<br>
+					<div class="am-u-lg-6 am-u-md-9  am-u-sm-centered">
+						<form class="am-form am-form-horizontal" method="post" data-am-validator autocomplete ='off'>
+							<div class="am-form-group">
+								<label class="am-u-sm-3 am-form-label">核心技能：</label>
+								<div class="am-u-sm-9">
+									<textarea value="" class="descriptioncon" rows="4" placeholder="每次添加一条技能"></textarea>
+								</div>
+							</div>
+							<input type="hidden"  class="J_hidden-ipt" value="">
+							<div class="am-form-group">
+								<div class="am-u-sm-9 am-u-sm-offset-3">
+									<button type="button" class="am-btn am-btn-primary"> 提交信息 </button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="am-modal-actions-group">
+	      	<button class="am-btn am-btn-danger am-btn-block" data-am-modal-close>关闭</button>
+	    </div>
+	</div>
+
+</section>

@@ -1,148 +1,152 @@
-<br><br><br><br><br><br>
 
-<div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
-	<div class="am-alert am-alert-secondary">
-		<button type="button" class="am-close" data-am-modal="{target: '#my-practice'}"><i class="am-icon-pencil"></i></button>
-		<div style="font-size:30px;text-align:center;">工作经历</div>
+<section class="zy-resume-module">
+
+	<div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
+		<div class="am-alert am-alert-secondary">
+			<button type="button" class="am-close" data-am-modal="{target: '#my-practice'}"><i class="am-icon-pencil"></i></button>
+			<div style="font-size:30px;text-align:center;">工作经历</div>
+		</div>
 	</div>
-</div>
 
-<div class="am-g am-u-lg-10 am-u-md-12  am-u-sm-centered">
-	<% for(var k=0,len=rs.work5.length; k<len; k++) {%>
-		<div class="col-lg-4 am-u-lg-4 am-u-end">
-			<div data-am-widget="list_news" class="am-list-news am-list-news-default">
-				<div class="am-list-news-bd">
-					<ul class="am-list">
-						<li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-							<div class="am-u-sm-4 am-list-thumb">
-								<a href="http://www.douban.com/online/11614662/" class="">
-									<img src="http://img5.douban.com/lpic/o636459.jpg" alt="" />
-								</a>
-							</div>
-							<div class=" am-u-sm-8 am-list-main">
-								<h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11614662/" class=""><%= rs.work5[k].practice %></a></h3>
-								<div class="am-list-item-text"><%= rs.work5[k].practiceinstr %></div>
-							</div>
-						</li>
-					</ul>
+	<div class="am-g am-u-lg-10 am-u-md-12  am-u-sm-centered">
+		<% for(var k=0,len=rs.work5.length; k<len; k++) {%>
+			<div class="col-lg-4 am-u-lg-4 am-u-end">
+				<div data-am-widget="list_news" class="am-list-news am-list-news-default">
+					<div class="am-list-news-bd">
+						<ul class="am-list">
+							<li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+								<div class="am-u-sm-4 am-list-thumb">
+									<a href="#">
+										<img style="width:100%;height:10rem;" src="<%= rs.work5[k].companyLogo %>" />
+									</a>
+								</div>
+								<div class=" am-u-sm-8 am-list-main">
+									<h3 class="am-list-item-hd"><a href="#" class="">
+									<%= rs.work5[k].practice %></a></h3>
+									<div class="am-list-item-text"><%= rs.work5[k].practiceinstr %></div>
+								</div>
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
-		</div>
-	<% } %>
-</div>
+		<% } %>
+	</div>
 
-<div class="am-popup" id="my-practice">
-	<div class="am-popup-inner">
-		<div class="am-popup-hd">
-			<h4 class="am-popup-title">工作经历</h4>
-			<span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
-		</div>
-		<div class="am-popup-bd">
-			<br>
-			<form class="am-form am-form-horizontal" method="post" data-am-validator autocomplete ='off'>
-				<div class="J_operate-sel">
-					<div class="am-form-group">
-						<label class="am-u-sm-3 am-form-label">操作方式：</label>
-						<div class="am-u-sm-9">
-							<select required class="select1">
-								<option value=""  selected = "selected">请选择操作哪项？</option>
-								<option value="1">添加操作</option>
-								<option value="2">删除操作</option>
-								<option value="3">修改操作</option>
-							</select>
-						    <span class="am-form-caret"></span>
-						</div> 
-					</div>
-	            	<br>
-	    	        <div class="am-form-group J_change-con" style="display:none;">
-	    	            <label class="am-u-sm-3 am-form-label">修改选项：</label>
-	    	            <div class="am-u-sm-9">
-	    	                <select required class="select2">
-	    						<option value="" selected = "selected">请选择修改哪项？</option>
-	    						<% if(rs.work5.length>=0) { %>
-									<% for(var i=0; i<rs.work5.length; i++) { %>
-										<option value="<%= i %>"><%= rs.work5[i].practice %></option>
-									<% } %>
-								<% } %>	
-	    	                </select>
-	    	                <span class="am-form-caret"></span>
-	    	            </div>  
-	    	        </div>
-	    	        <br>
-	        	</div>
+	<div class="am-popup" id="my-practice">
+		<div class="am-popup-inner">
+			<div class="am-popup-hd">
+				<h4 class="am-popup-title">工作经历</h4>
+				<span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
+			</div>
+			<div class="am-popup-bd">
+				<br>
+				<form class="am-form am-form-horizontal" method="post" data-am-validator autocomplete ='off'>
+					<div class="J_operate-sel">
+						<div class="am-form-group">
+							<label class="am-u-sm-3 am-form-label">操作方式：</label>
+							<div class="am-u-sm-9">
+								<select required class="select1">
+									<option value=""  selected = "selected">请选择操作哪项？</option>
+									<option value="1">添加操作</option>
+									<option value="2">删除操作</option>
+									<option value="3">修改操作</option>
+								</select>
+							    <span class="am-form-caret"></span>
+							</div> 
+						</div>
+		            	<br>
+		    	        <div class="am-form-group J_change-con" style="display:none;">
+		    	            <label class="am-u-sm-3 am-form-label">修改选项：</label>
+		    	            <div class="am-u-sm-9">
+		    	                <select required class="select2">
+		    						<option value="" selected = "selected">请选择修改哪项？</option>
+		    						<% if(rs.work5.length>=0) { %>
+										<% for(var i=0; i<rs.work5.length; i++) { %>
+											<option value="<%= i %>"><%= rs.work5[i].practice %></option>
+										<% } %>
+									<% } %>	
+		    	                </select>
+		    	                <span class="am-form-caret"></span>
+		    	            </div>  
+		    	        </div>
+		    	        <br>
+		        	</div>
 
-              	<div class="J_operate-del" style="display:none">
-	                <div class="am-form-group">
-	                    <label class="am-u-sm-3 am-form-label">删除选项：</label>
-	                    <div class="am-u-sm-9">
-	                        <select required>
-								<option value="" selected = "selected">请选择删除哪项？</option>
-								<% if(rs.work5.length>=0) { %>
-									<% for(var i=0; i<rs.work5.length; i++) { %>
-										<option value="<%= i %>"><%= rs.work5[i].practice %></option>
-									<% } %>
-								<% } %>	
-	                        </select>
-	                        <span class="am-form-caret"></span>
-	                    </div>  
+	              	<div class="J_operate-del" style="display:none">
+		                <div class="am-form-group">
+		                    <label class="am-u-sm-3 am-form-label">删除选项：</label>
+		                    <div class="am-u-sm-9">
+		                        <select required>
+									<option value="" selected = "selected">请选择删除哪项？</option>
+									<% if(rs.work5.length>=0) { %>
+										<% for(var i=0; i<rs.work5.length; i++) { %>
+											<option value="<%= i %>"><%= rs.work5[i].practice %></option>
+										<% } %>
+									<% } %>	
+		                        </select>
+		                        <span class="am-form-caret"></span>
+		                    </div>  
+		                </div>
+		                <div class="am-form-group">
+		                    <div class="am-u-sm-9 am-u-sm-offset-3">
+		                        <button type="button" class="am-btn am-btn-primary my-education3-btn"> 确定删除 </button>
+		                    </div>
+		                </div>
 	                </div>
-	                <div class="am-form-group">
-	                    <div class="am-u-sm-9 am-u-sm-offset-3">
-	                        <button type="button" class="am-btn am-btn-primary my-education3-btn"> 确定删除 </button>
-	                    </div>
-	                </div>
-                </div>
-            </form>
+	            </form>
 
-            <form class="am-form am-form-horizontal" id="specialInstruc5" enctype='multipart/form-data' action="/resume/practice/add" name="/resume/practice/upd" method="post" data-am-validator autocomplete ='off'>
-            	<div class="J_operate-add" style="display:none">
-					<div class="am-form-group">
-						<label class="am-u-sm-3 am-form-label">公司名称：</label>
-						<div class="am-u-sm-9">
-							<input type="text" value="" name="practice" class="practice" required placeholder="请输入您的院校">
+	            <form class="am-form am-form-horizontal" id="specialInstruc5" enctype='multipart/form-data' action="/resume/practice/add" name="/resume/practice/upd" method="post" data-am-validator autocomplete ='off'>
+	            	<div class="J_operate-add" style="display:none">
+						<div class="am-form-group">
+							<label class="am-u-sm-3 am-form-label">公司名称：</label>
+							<div class="am-u-sm-9">
+								<input type="text" value="" name="practice" class="practice" required placeholder="请输入您的院校">
+							</div>
+						</div>
+						<div class="am-form-group">
+							<label class="am-u-sm-3 am-form-label">开始日期：</label>
+							<div class="am-u-sm-9">
+								<input type="text" value="" name="spracticetime" class="am-form-field spracticetime" placeholder="请输入开始日期" data-am-datepicker readonly/>
+							</div>
+						</div>
+						<div class="am-form-group">
+							<label class="am-u-sm-3 am-form-label">结束日期：</label>
+							<div class="am-u-sm-9">
+								<input type="text" value="" name="epracticetime" class="am-form-field epracticetime" placeholder="请输入结束日期" data-am-datepicker readonly/>
+							</div>
+						</div>
+						<div class="am-form-group">
+							<label class="am-u-sm-3 am-form-label">职位：</label>
+							<div class="am-u-sm-9">
+								<input type="text" value="" required name="practiceposition" class="am-form-field practiceposition" placeholder="请输入您的专业" />
+							</div>
+						</div>
+						<div class="am-form-group">
+							<label class="am-u-sm-3 am-form-label">工作介绍：</label>
+							<div class="am-u-sm-9">
+								<textarea rows="3 " value="" placeholder="所在部门+主要工作+薪资待遇等" required name="practiceinstr" class="practiceinstr"></textarea>
+							</div>
+						</div>
+						<div class="am-form-group am-form-file">
+							<label class="am-u-sm-3 am-form-label">公司logo：</label>
+							<div class="am-u-sm-9">
+								<button type="button" class="am-btn am-btn-default am-btn-sm">
+									<i class="am-icon-cloud-upload"></i> 上传图片</button>
+								<input type="file" id="inputFile5" value="" name="inputFile5">
+								<div class="imgtip"></div>
+							</div>
+						</div>
+						<input type="hidden"  class="J_hidden-ipt" name="J_hidden_ipt" value="">
+						<div class="am-form-group">
+							<div class="am-u-sm-9 am-u-sm-offset-3">
+								<button id="upload5" class="am-btn am-btn-primary"> 提交信息 </button>
+							</div>
 						</div>
 					</div>
-					<div class="am-form-group">
-						<label class="am-u-sm-3 am-form-label">开始日期：</label>
-						<div class="am-u-sm-9">
-							<input type="text" value="" name="spracticetime" class="am-form-field spracticetime" placeholder="请输入开始日期" data-am-datepicker readonly/>
-						</div>
-					</div>
-					<div class="am-form-group">
-						<label class="am-u-sm-3 am-form-label">结束日期：</label>
-						<div class="am-u-sm-9">
-							<input type="text" value="" name="epracticetime" class="am-form-field epracticetime" placeholder="请输入结束日期" data-am-datepicker readonly/>
-						</div>
-					</div>
-					<div class="am-form-group">
-						<label class="am-u-sm-3 am-form-label">职位：</label>
-						<div class="am-u-sm-9">
-							<input type="text" value="" required name="practiceposition" class="am-form-field practiceposition" placeholder="请输入您的专业" />
-						</div>
-					</div>
-					<div class="am-form-group">
-						<label class="am-u-sm-3 am-form-label">工作介绍：</label>
-						<div class="am-u-sm-9">
-							<textarea rows="3 " value="" placeholder="所在部门+主要工作+薪资待遇等" required name="practiceinstr" class="practiceinstr"></textarea>
-						</div>
-					</div>
-					<div class="am-form-group am-form-file">
-						<label class="am-u-sm-3 am-form-label">公司logo：</label>
-						<div class="am-u-sm-9">
-							<button type="button" class="am-btn am-btn-default am-btn-sm">
-								<i class="am-icon-cloud-upload"></i> 上传图片</button>
-							<input type="file" id="inputFile5" value="" name="inputFile3">
-							<div class="imgtip"></div>
-						</div>
-					</div>
-					<input type="hidden"  class="J_hidden-ipt" name="J_hidden_ipt" value="">
-					<div class="am-form-group">
-						<div class="am-u-sm-9 am-u-sm-offset-3">
-							<button id="upload5" class="am-btn am-btn-primary"> 提交信息 </button>
-						</div>
-					</div>
-				</div>
-			</form>
+				</form>
+			</div>
 		</div>
 	</div>
-</div>
+
+</section>

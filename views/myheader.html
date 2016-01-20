@@ -89,46 +89,7 @@
 						<div data-tab-panel-0 class="am-tab-panel am-active">
 							<form class="am-form">
 								<div class="am-form-group">
-									<% if(signed=='1') { %>
-										<div>
-											<h4>当前状态：已登录：<%= uName %></h4>
-										</div>
-										<h4>切换为以下状态：</h4>
-										<% for(var i=0; i<5; i++){ %>
-											<label class="am-radio">
-												<input type="radio" checked name="radio1" value="female" data-am-ucheck> 特权身份<%= i+1 %>：活动方式的时间地方很近的数据的数据的数据都是
-											</label>
-										<% } %>
-										<label class="am-radio">
-											<input type="radio" checked name="radio1" value="female" data-am-ucheck> 游客身份
-										</label>
-										<div>
-											<button type="submit" class="am-btn am-btn-xs am-btn-primary">切换</button>
-										</div>
-									<% } %>
-
-									<% if(signed=='2') { %>
-										<div>
-											<h4>当前状态：特权身份</h4>
-										</div>
-										<h4>切换为以下状态吧：</h4>
-										<label class="am-radio">
-											<input type="radio" name="radio1" value="female" data-am-ucheck> 游客身份
-										</label>
-										<div>
-											<button type="submit" class="am-btn am-btn-xs am-btn-primary">切换</button>
-										</div>
-									<% } %>
-
-									<% if(signed=='3') { %>
-										<div>
-											<h4>当前状态：游客身份</h4>
-										</div>
-										<h4>向他/她申请特权</h4>
-										<div>
-											<button type="submit" class="am-btn am-btn-xs am-btn-primary">申请</button>
-										</div>
-									<% } %>
+									
 								</div>
 							</form>
 						</div>

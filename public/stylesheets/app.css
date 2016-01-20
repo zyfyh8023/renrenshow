@@ -12,7 +12,6 @@
     z-index: 100000;
 }
 
-
 /*header*/
 
 .zy-am-topbar {
@@ -130,6 +129,10 @@
 
 
 /*简历页面*/
+
+.zy-resume-module{
+    margin-top:10rem;    
+}
 
 .zy-resume-img {
     position: fixed;

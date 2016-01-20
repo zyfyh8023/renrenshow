@@ -1,143 +1,146 @@
-<br><br><br><br><br><br>
 
-<div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
-	<div class="am-alert am-alert-secondary">
-		<button type="button" class="am-close" data-am-modal="{target: '#my-certificate'}"><i class="am-icon-pencil"></i></button>
-		<div style="font-size:30px;text-align:center;">荣誉证书</div>
-	</div>
-</div>
-<div class="am-g am-u-lg-10 am-u-md-12  am-u-sm-centered">
-	<ul data-am-widget="gallery" class="am-gallery am-avg-sm-2
-    am-avg-md-3 am-avg-lg-4 am-gallery-imgbordered" data-am-gallery="{  }">
-    	<% for(var k=0,len=rs.Certificate6.length;k<len;k++) {%>
-			<li>
-				<div class="am-gallery-item">
-					<a href="<%=rs.Certificate6[k].cimages %>" class="">
-						<img src="<%=rs.Certificate6[k].cimages %>" alt="" />
-						<h3 class="am-gallery-title"><%=rs.Certificate6[k].certificatename %></h3>
-						<div class="am-gallery-desc"><%=rs.Certificate6[k].gettime %></div>
-					</a>
-				</div>
-			</li>
-    	<% } %>
-	</ul>
-</div>
-<div class="am-popup" id="my-certificate">
-	<div class="am-popup-inner">
-		<div class="am-popup-hd">
-			<h4 class="am-popup-title">荣誉证书</h4>
-			<span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
-		</div>
-		<div class="am-popup-bd">
-			<br>
-			<form class="am-form am-form-horizontal" method="post" data-am-validator autocomplete ='off'>
-				<div class="J_operate-sel">
-					<div class="am-form-group">
-						<label class="am-u-sm-3 am-form-label">操作方式：</label>
-						<div class="am-u-sm-9">
-							<select required class="select1">
-								<option value=""  selected = "selected">请选择操作哪项？</option>
-								<option value="1">添加操作</option>
-								<option value="2">删除操作</option>
-								<option value="3">修改操作</option>
-							</select>
-						    <span class="am-form-caret"></span>
-						</div> 
-					</div>
-	            	<br>
-	            	<div class="am-form-group J_change-con" style="display:none;">
-	    	            <label class="am-u-sm-3 am-form-label">修改选项：</label>
-	    	            <div class="am-u-sm-9">
-	    	                <select required class="select2">
-	    						<option value="" selected = "selected">请选择修改哪项？</option>
-	    						<% if(rs. Certificate6.length>=0) { %>
-									<% for(var i=0; i<rs. Certificate6.length; i++) { %>
-										<option value="<%= i %>"><%= rs. Certificate6[i].certificatename %></option>
-									<% } %>
-								<% } %>
-	    	                </select>
-	    	                <span class="am-form-caret"></span>
-	    	            </div>  
-	    	        </div>
-	    	        <br>
-	    		</div>
+<section class="zy-resume-module">
 
-              	<div class="J_operate-del" style="display:none">
-	                <div class="am-form-group">
-	                    <label class="am-u-sm-3 am-form-label">删除选项：</label>
-	                    <div class="am-u-sm-9">
-	                        <select required>
-								<option value="">请选择删除哪项？</option>
-								<% if(rs. Certificate6.length>=0) { %>
-									<% for(var i=0; i<rs. Certificate6.length; i++) { %>
-										<option value="<%= i %>">荣誉：<%= rs. Certificate6[i].certificatename %></option>
-									<% } %>
-								<% } %>	
-	                        </select>
-	                        <span class="am-form-caret"></span>
-	                    </div>  
-	                </div>
-	                <div class="am-form-group">
-	                    <div class="am-u-sm-9 am-u-sm-offset-3">
-	                        <button type="button" class="am-btn am-btn-primary my-education3-btn"> 确定删除 </button>
-	                    </div>
-	                </div>
-                </div>
-            </form>
-
-			<form class="am-form am-form-horizontal" id="specialInstruc6" enctype='multipart/form-data' action="/resume/certificate/add" name="/resume/certificate/upd" method="post" data-am-validator autocomplete ='off'>
-				<div class="J_operate-add" style="display:none">
-					<div class="am-form-group">
-						<label class="am-u-sm-3 am-form-label">证书名称：</label>
-						<div class="am-u-sm-9">
-							<input type="text" value="" class="certificatename" name="certificatename" required placeholder="请输入证书名称">
-						</div>
-					</div>
-					<div class="am-form-group">
-						<label class="am-u-sm-3 am-form-label">获得日期：</label>
-						<div class="am-u-sm-9">
-							<input type="text" value="" class="gettime" name="gettime" class="am-form-field" placeholder="请输入获得日期" data-am-datepicker readonly/>
-						</div>
-					</div>
-					<div class="am-form-group">
-						<label class="am-u-sm-3 am-form-label">证书等级：</label>
-						<div class="am-u-sm-9">
-							<select name="cgrade" required class="cgrade">
-								<option selected = "selected" value="">请选择一项</option>
-								<option value="1">班级</option>
-								<option value="2">院级</option>
-								<option value="3">校级</option>
-								<option value="4">市级</option>
-								<option value="5">省级</option>
-								<option value="6">国级</option>
-								<option value="7">国际</option>
-							</select>
-							<span class="am-form-caret"></span>
-						</div>
-					</div>
-					<div class="am-form-group">
-						<label class="am-u-sm-3 am-form-label">证书介绍：</label>
-						<div class="am-u-sm-9">
-							<textarea required value="" class="certificateinstr" name="certificateinstr" rows="3"></textarea>
-						</div>
-					</div>
-					<div class="am-form-group am-form-file">
-						<label class="am-u-sm-3 am-form-label">证书图片：</label>
-						<div class="am-u-sm-9">
-							<button type="button" class="am-btn am-btn-default am-btn-sm">
-								<i class="am-icon-cloud-upload"></i> 上传图片</button>
-							<input type="file" value="" id="inputFile6" class="inputFile3" name="inputFile3">
-							<div class="imgtip"></div>
-						</div>
-					</div>
-					<input type="hidden"  class="J_hidden-ipt" name="J_hidden_ipt" value="">
-					<div class="am-form-group">
-						<div class="am-u-sm-9 am-u-sm-offset-3">
-							<button id="upload6" class="am-btn am-btn-primary my-certificate-btn"> 提交信息 </button>
-						</div>
-					</div>
-				</div>
-			</form>
+	<div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
+		<div class="am-alert am-alert-secondary">
+			<button type="button" class="am-close" data-am-modal="{target: '#my-certificate'}"><i class="am-icon-pencil"></i></button>
+			<div style="font-size:30px;text-align:center;">荣誉证书</div>
 		</div>
 	</div>
-</div>
+	<div class="am-g am-u-lg-10 am-u-md-12  am-u-sm-centered">
+		<ul data-am-widget="gallery" class="am-gallery am-avg-sm-2
+	    am-avg-md-3 am-avg-lg-4 am-gallery-imgbordered" data-am-gallery="{  }">
+	    	<% for(var k=0,len=rs.Certificate6.length;k<len;k++) {%>
+				<li>
+					<div class="am-gallery-item">
+						<a href="<%=rs.Certificate6[k].cimages %>" >
+							<img src="<%=rs.Certificate6[k].cimages %>" style="width:100%;height:23rem;" />
+							<h3 class="am-gallery-title"><%=rs.Certificate6[k].certificatename %></h3>
+							<div class="am-gallery-desc"><%=rs.Certificate6[k].gettime %></div>
+						</a>
+					</div>
+				</li>
+	    	<% } %>
+		</ul>
+	</div>
+	<div class="am-popup" id="my-certificate">
+		<div class="am-popup-inner">
+			<div class="am-popup-hd">
+				<h4 class="am-popup-title">荣誉证书</h4>
+				<span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
+			</div>
+			<div class="am-popup-bd">
+				<br>
+				<form class="am-form am-form-horizontal" method="post" data-am-validator autocomplete ='off'>
+					<div class="J_operate-sel">
+						<div class="am-form-group">
+							<label class="am-u-sm-3 am-form-label">操作方式：</label>
+							<div class="am-u-sm-9">
+								<select required class="select1">
+									<option value=""  selected = "selected">请选择操作哪项？</option>
+									<option value="1">添加操作</option>
+									<option value="2">删除操作</option>
+									<option value="3">修改操作</option>
+								</select>
+							    <span class="am-form-caret"></span>
+							</div> 
+						</div>
+		            	<br>
+		            	<div class="am-form-group J_change-con" style="display:none;">
+		    	            <label class="am-u-sm-3 am-form-label">修改选项：</label>
+		    	            <div class="am-u-sm-9">
+		    	                <select required class="select2">
+		    						<option value="" selected = "selected">请选择修改哪项？</option>
+		    						<% if(rs. Certificate6.length>=0) { %>
+										<% for(var i=0; i<rs. Certificate6.length; i++) { %>
+											<option value="<%= i %>"><%= rs. Certificate6[i].certificatename %></option>
+										<% } %>
+									<% } %>
+		    	                </select>
+		    	                <span class="am-form-caret"></span>
+		    	            </div>  
+		    	        </div>
+		    	        <br>
+		    		</div>
+
+	              	<div class="J_operate-del" style="display:none">
+		                <div class="am-form-group">
+		                    <label class="am-u-sm-3 am-form-label">删除选项：</label>
+		                    <div class="am-u-sm-9">
+		                        <select required>
+									<option value="">请选择删除哪项？</option>
+									<% if(rs. Certificate6.length>=0) { %>
+										<% for(var i=0; i<rs. Certificate6.length; i++) { %>
+											<option value="<%= i %>">荣誉：<%= rs. Certificate6[i].certificatename %></option>
+										<% } %>
+									<% } %>	
+		                        </select>
+		                        <span class="am-form-caret"></span>
+		                    </div>  
+		                </div>
+		                <div class="am-form-group">
+		                    <div class="am-u-sm-9 am-u-sm-offset-3">
+		                        <button type="button" class="am-btn am-btn-primary my-education3-btn"> 确定删除 </button>
+		                    </div>
+		                </div>
+	                </div>
+	            </form>
+
+				<form class="am-form am-form-horizontal" id="specialInstruc6" enctype='multipart/form-data' action="/resume/certificate/add" name="/resume/certificate/upd" method="post" data-am-validator autocomplete ='off'>
+					<div class="J_operate-add" style="display:none">
+						<div class="am-form-group">
+							<label class="am-u-sm-3 am-form-label">证书名称：</label>
+							<div class="am-u-sm-9">
+								<input type="text" value="" class="certificatename" name="certificatename" required placeholder="请输入证书名称">
+							</div>
+						</div>
+						<div class="am-form-group">
+							<label class="am-u-sm-3 am-form-label">获得日期：</label>
+							<div class="am-u-sm-9">
+								<input type="text" value="" class="gettime" name="gettime" class="am-form-field" placeholder="请输入获得日期" data-am-datepicker readonly/>
+							</div>
+						</div>
+						<div class="am-form-group">
+							<label class="am-u-sm-3 am-form-label">证书等级：</label>
+							<div class="am-u-sm-9">
+								<select name="cgrade" required class="cgrade">
+									<option selected = "selected" value="">请选择一项</option>
+									<option value="1">班级</option>
+									<option value="2">院级</option>
+									<option value="3">校级</option>
+									<option value="4">市级</option>
+									<option value="5">省级</option>
+									<option value="6">国级</option>
+									<option value="7">国际</option>
+								</select>
+								<span class="am-form-caret"></span>
+							</div>
+						</div>
+						<div class="am-form-group">
+							<label class="am-u-sm-3 am-form-label">证书介绍：</label>
+							<div class="am-u-sm-9">
+								<textarea required value="" class="certificateinstr" name="certificateinstr" rows="3"></textarea>
+							</div>
+						</div>
+						<div class="am-form-group am-form-file">
+							<label class="am-u-sm-3 am-form-label">证书图片：</label>
+							<div class="am-u-sm-9">
+								<button type="button" class="am-btn am-btn-default am-btn-sm">
+									<i class="am-icon-cloud-upload"></i> 上传图片</button>
+								<input type="file" value="" id="inputFile6" class="inputFile6" name="inputFile3">
+								<div class="imgtip"></div>
+							</div>
+						</div>
+						<input type="hidden"  class="J_hidden-ipt" name="J_hidden_ipt" value="">
+						<div class="am-form-group">
+							<div class="am-u-sm-9 am-u-sm-offset-3">
+								<button id="upload6" class="am-btn am-btn-primary my-certificate-btn"> 提交信息 </button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</section>

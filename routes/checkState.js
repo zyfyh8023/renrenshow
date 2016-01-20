@@ -20,7 +20,7 @@ exports.checkNotLogin = function(req, res, next) {
 
 exports.myState = function(req, callbackFn){
 	var urls=url.parse(req.url, true).query;
-
+	
 	var signed=0, uName="", modules=[], objs={};
 
 	async.series(
@@ -93,6 +93,7 @@ exports.myState = function(req, callbackFn){
             if (err2) {
                 callbackFn(err2, null);
             } else {
+            	
                 callbackFn(null, signed2[2]);
             }
         }

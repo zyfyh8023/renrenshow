@@ -1,104 +1,96 @@
 
-<br><br><br><br><br><br>
+<section class="zy-resume-module">
 
-<div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
-	<div class="am-alert am-alert-secondary">
-		<button type="button" class="am-close" data-am-modal="{target: '#my-contactinfo'}">
-		<i class="am-icon-pencil"></i></button>
-		<div style="font-size:30px;text-align:center;">联系方式</div>
-	</div>
-</div>
-
-<div class="am-g am-u-lg-10 am-u-md-12  am-u-sm-centered">
-    <div class="col-lg-3 am-u-lg-3">
-        <div class="am-panel am-panel-default">
-            <div class="am-panel-hd">手机电话</div>
-            <div class="am-panel-bd">
-                <font style="font-weight:bold;">手机：</font><%= rs.contact2.mPhone %><br>
-                <font style="font-weight:bold;">电话：</font><%= rs.contact2.phoneNum %>
-            </div>
-        </div>
-	</div>
-
-	<div class="col-lg-5 am-u-lg-5">
-        <div class="am-panel am-panel-default">
-            <div class="am-panel-hd">通信地址</div>
-            <div class="am-panel-bd">
-              <font style="font-weight:bold;">户口地址：</font><%= rs.contact2.populationAddr %><br>
-              <font style="font-weight:bold;">常住地址：</font><%= rs.contact2.permanentAddr %>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-lg-4 am-u-lg-4">
-        <div class="am-panel am-panel-default">
-            <div class="am-panel-hd">邮箱QQ</div>
-            <div class="am-panel-bd">
-              <font style="font-weight:bold;">邮箱：</font><%= rs.contact2.email %><br>
-              <font style="font-weight:bold;">QQ：</font><%= rs.contact2.qqNum %>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="am-popup" id="my-contactinfo">
-  	<div class="am-popup-inner">
-		<div class="am-popup-hd">
-		  	<h4 class="am-popup-title">联系方式</h4>
-		  	<span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
+	<div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
+		<div class="am-alert am-alert-secondary">
+			<button type="button" class="am-close" data-am-modal="{target: '#my-contactinfo'}">
+			<i class="am-icon-pencil"></i></button>
+			<div style="font-size:30px;text-align:center;">联系方式</div>
 		</div>
+	</div>
+	<div class="am-g am-u-lg-10 am-u-md-12  am-u-sm-centered">
+	    <div class="col-lg-3 am-u-lg-3">
+	        <div class="am-panel am-panel-default">
+	            <div class="am-panel-hd">手机电话</div>
+	            <div class="am-panel-bd">
+	                <font style="font-weight:bold;">手机：</font><%= rs.contact2.mPhone %><br>
+	                <font style="font-weight:bold;">电话：</font><%= rs.contact2.phoneNum %>
+	            </div>
+	        </div>
+		</div>
+		<div class="col-lg-5 am-u-lg-5">
+	        <div class="am-panel am-panel-default">
+	            <div class="am-panel-hd">通信地址</div>
+	            <div class="am-panel-bd">
+	              <font style="font-weight:bold;">户口地址：</font><%= rs.contact2.populationAddr %><br>
+	              <font style="font-weight:bold;">常住地址：</font><%= rs.contact2.permanentAddr %>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="col-lg-4 am-u-lg-4">
+	        <div class="am-panel am-panel-default">
+	            <div class="am-panel-hd">邮箱QQ</div>
+	            <div class="am-panel-bd">
+	              <font style="font-weight:bold;">邮箱：</font><%= rs.contact2.email %><br>
+	              <font style="font-weight:bold;">QQ：</font><%= rs.contact2.qqNum %>
+	            </div>
+	        </div>
+	    </div>
+	</div>
 
-  		<div class="am-popup-bd"><br>
-	        <form class="am-form am-form-horizontal" method="post" data-am-validator>
-				<div class="am-form-group">
-					<label class="am-u-sm-3 am-form-label">手机号码：</label>
-					<div class="am-u-sm-9">
-					  <input type="number" value="<%= rs.contact2.mPhone %>" class="mphone" placeholder="请输入您的手机号码" required>
+	<div class="am-popup" id="my-contactinfo">
+	  	<div class="am-popup-inner">
+			<div class="am-popup-hd">
+			  	<h4 class="am-popup-title">联系方式</h4>
+			  	<span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
+			</div>
+	  		<div class="am-popup-bd"><br>
+		        <form class="am-form am-form-horizontal" method="post" data-am-validator autocomplete ='off'>
+					<div class="am-form-group">
+						<label class="am-u-sm-3 am-form-label">手机号码：</label>
+						<div class="am-u-sm-9">
+						  <input type="number" value="<%= rs.contact2.mPhone %>" class="mphone" placeholder="请输入您的手机号码" required>
+						</div>
 					</div>
-				</div>
+					<div class="am-form-group">
+						<label class="am-u-sm-3 am-form-label">电话号码：</label>
+						<div class="am-u-sm-9">
+						  <input type="text" value="<%= rs.contact2.phoneNum %>" class="phone" placeholder="请输入您的电话号码">
+						</div>
+					</div>
+					<div class="am-form-group">
+						<label class="am-u-sm-3 am-form-label">通信地址：</label>
+						<div class="am-u-sm-9">
+						  <input type="text" class="address" value="<%= rs.contact2.permanentAddr %>" required placeholder="请输入您的通信地址"  >
+						</div>
+					</div>
+					<div class="am-form-group">
+						<label class="am-u-sm-3 am-form-label">户口地址：</label>
+						<div class="am-u-sm-9">
+						  <input type="text" value="<%= rs.contact2.populationAddr %>" class="identity" placeholder="请输入您的户口地址">
+						</div>
+					</div>
+					<div class="am-form-group">
+						<label class="am-u-sm-3 am-form-label">邮箱：</label>
+						<div class="am-u-sm-9">
+						  <input type="email" value="<%= rs.contact2.email %>" class="email" placeholder="请输入您的邮箱" required>
+						</div>
+					</div>
+					<div class="am-form-group">
+						<label class="am-u-sm-3 am-form-label">QQ账号：</label>
+						<div class="am-u-sm-9">
+						  <input type="number" value="<%= rs.contact2.qqNum %>" class="qqnum" placeholder="请输入您的QQ账号">
+						</div>
+					</div>
+					<br>
+					<div class="am-form-group">
+						<div class="am-u-sm-9 am-u-sm-offset-3">
+						  	<button type="button" class="am-btn am-btn-primary my-contactinfo-btn">提交确认</button>
+						</div>
+					</div>
+		      	</form>  
+	      	</div>
+	  	</div>
+	</div>
 
-				<div class="am-form-group">
-					<label class="am-u-sm-3 am-form-label">电话号码：</label>
-					<div class="am-u-sm-9">
-					  <input type="text" value="<%= rs.contact2.phoneNum %>" class="phone" placeholder="请输入您的电话号码">
-					</div>
-				</div>
-
-				<div class="am-form-group">
-					<label class="am-u-sm-3 am-form-label">通信地址：</label>
-					<div class="am-u-sm-9">
-					  <input type="text" class="address" value="<%= rs.contact2.permanentAddr %>" required placeholder="请输入您的通信地址"  >
-					</div>
-				</div>
-
-				<div class="am-form-group">
-					<label class="am-u-sm-3 am-form-label">户口地址：</label>
-					<div class="am-u-sm-9">
-					  <input type="text" value="<%= rs.contact2.populationAddr %>" class="identity" placeholder="请输入您的户口地址">
-					</div>
-				</div>
-
-				<div class="am-form-group">
-					<label class="am-u-sm-3 am-form-label">邮箱：</label>
-					<div class="am-u-sm-9">
-					  <input type="email" value="<%= rs.contact2.email %>" class="email" placeholder="请输入您的邮箱" required>
-					</div>
-				</div>
-
-				<div class="am-form-group">
-					<label class="am-u-sm-3 am-form-label">QQ账号：</label>
-					<div class="am-u-sm-9">
-					  <input type="number" value="<%= rs.contact2.qqNum %>" class="qqnum" placeholder="请输入您的QQ账号">
-					</div>
-				</div>
-
-				<br>
-				<div class="am-form-group">
-					<div class="am-u-sm-9 am-u-sm-offset-3">
-					  	<button type="button" class="am-btn am-btn-primary my-contactinfo-btn">提交确认</button>
-					</div>
-				</div>
-	      	</form>  
-      	</div>
-  	</div>
-</div>
+</section>

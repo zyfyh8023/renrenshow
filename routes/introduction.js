@@ -3,7 +3,6 @@ var users = require('../models/users');
 var fs = require('fs'),
     multiparty = require('multiparty');
 
-
 var retCode, retDesc, uName, navTitle, navDesc;
 
 exports.page = function(req, res, next) {
@@ -14,11 +13,7 @@ exports.page = function(req, res, next) {
 
     users.findByUname(uName, function(err, result) {
         if (err) {
-            retDesc = "用户查找失败！";
-            return res.send({
-                retCode: 400,
-                retDesc: retDesc
-            });
+            return res.send({ retCode: 400,retDesc: '用户查找失败！'});
         } else {
             res.render('./userIntroduc/introduction', {
                 title: '自我介绍',
@@ -34,71 +29,69 @@ exports.page = function(req, res, next) {
 
 exports.doPage = function(req, res, next) {
     uName = req.session.user.username;
-    //生成multiparty对象，并配置下载目标路径
     var form = new multiparty.Form({
         uploadDir: './public/upload/userimgs/'
     });
     form.parse(req, function(err, fields, files) {
         var filesTmp = JSON.stringify(files, null, 2);
         if (err) {
-            retDesc = 'parse error: ' + err;
-            return res.send({
-                retCode: 400,
-                retDesc: retDesc
-            });
+            return res.send({retCode: 400,retDesc: err});
         } else {
-            var inputFile = files.inputFile[0],
-                uploadedPath = inputFile.path,
-                dstPath = './public/upload/userimgs/' + inputFile.originalFilename,
-                imgSize = inputFile.size;
-            if (imgSize > 2 * 1024 * 1024) {
-                retDesc = '图片过大！';
-                return res.send({
-                    retCode: 400,
-                    retDesc: retDesc
-                });
-            }
-            var imgType = inputFile.headers['content-type'];
-            if (imgType.split('/')[0] != 'image') {
-                retDesc = '只允许上传图片哦~';
-                return res.send({
-                    retCode: 400,
-                    retDesc: retDesc
-                });
-            }
-            //重命名为真实文件名
-            var imgPath = './public/upload/userimgs/' + uName + '_specialImg.jpg',
-                imgSrc = '/upload/userimgs/' + uName + '_specialImg.jpg';
-            fs.rename(uploadedPath, imgPath, function(err) {
-                if (err) {
-                    retDesc = '重命名错误！';
-                    return res.send({
-                        retCode: 400,
-                        retDesc: retDesc
+            if(files.inputFile || fields.majorinstr2[0]){
+                if(files.inputFile){
+                    var inputFile = files.inputFile[0],
+                        uploadedPath = inputFile.path,
+                        dstPath = './public/upload/userimgs/' + inputFile.originalFilename,
+                        imgSize = inputFile.size;
+                    if (imgSize > 2 * 1024 * 1024) {
+                        return res.send({retCode: 400,retDesc: '图片过大！'});
+                    }
+                    var imgType = inputFile.headers['content-type'];
+                    if (imgType.split('/')[0] != 'image') {
+                        return res.send({retCode: 400,retDesc: '只允许上传图片哦'});
+                    }
+                    var imgPath = './public/upload/userimgs/' + uName + '_specialImg.jpg',
+                        imgSrc = '/upload/userimgs/' + uName + '_specialImg.jpg';
+                    fs.rename(uploadedPath, imgPath, function(err) {
+                        if (err) {
+                            return res.send({retCode: 400,retDesc: '重命名错误！'});
+                        } else {
+                            var newObj;
+                            if(fields.majorinstr2[0]){
+                                newObj={
+                                    uimg: imgSrc,
+                                    uinstrc: fields.majorinstr2[0]
+                                };
+                            }else{
+                                newObj={
+                                    uimg: imgSrc,
+                                }
+                            }
+                            users.modify({"username": uName}, {
+                                $set: newObj
+                            }, function(err) {
+                                if (err) {
+                                    return res.send({retCode: 400,retDesc: err});
+                                } else {
+                                    return res.send({retCode: 200});
+                                }
+                            });
+                        }
                     });
-                } else {
-                    users.modify({
-                        "username": uName
-                    }, {
+                }else{
+                    users.modify({"username": uName}, {
                         $set: {
-                            uimg: imgSrc,
                             uinstrc: fields.majorinstr2[0]
                         }
                     }, function(err) {
                         if (err) {
-                            retDesc = err;
-                            return res.send({
-                                retCode: 400,
-                                retDesc: retDesc
-                            });
+                            return res.send({retCode: 400,retDesc: err});
                         } else {
-                            return res.send({
-                                retCode: 200
-                            });
+                            return res.send({retCode: 200});
                         }
                     });
                 }
-            });
+            }
         }
     });
 };

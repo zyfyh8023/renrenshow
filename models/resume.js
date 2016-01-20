@@ -32,21 +32,24 @@ var ResumeScheme = new Schema({
         sdatetime: Date,
         edatetime: Date,
         major: String,
-        majorinstr: String
+        majorinstr: String,
+        schoolLogo: String
     }],
     experience4: [{
         practice: String,
         spracticetime: String,
         epracticetime: String,
         practiceposition: String,
-        practiceinstr: String
+        practiceinstr: String,
+        companyLogo: String
     }],
     work5: [{
         practice: String,
         spracticetime: String,
         epracticetime: String,
         practiceposition: String,
-        practiceinstr: String
+        practiceinstr: String,
+        companyLogo: String
     }],
     Certificate6: [{
         certificatename: String,

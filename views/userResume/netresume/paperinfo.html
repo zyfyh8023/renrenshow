@@ -1,192 +1,195 @@
-<br><br><br><br><br><br>
 
-<div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
-	<div class="am-alert am-alert-secondary">
-		<button type="button" class="am-close" data-am-modal="{target: '#my-paper'}"><i class="am-icon-pencil"></i></button>
-		<div style="font-size:30px;text-align:center;">论文专利</div>
-	</div>
-</div>
+<section class="zy-resume-module">
 
-<div class="am-g am-u-lg-10 am-u-md-12  am-u-sm-centered">
-	<div data-am-widget="tabs" class="am-tabs am-tabs-d2">
-		<ul class="am-tabs-nav am-cf">
-			<li class="am-active"><a href="[data-tab-panel-0]">论文发表</a></li>
-			<li class=""><a href="[data-tab-panel-1]">专利申请</a></li>
-		</ul>
-		<div class="am-tabs-bd">
-			<div data-tab-panel-0 class="am-tab-panel am-active">
-				<section data-am-widget="accordion" class="am-accordion am-accordion-basic" data-am-accordion='{  }'>
-					<% if(rs.PatentPaper10.length>=0) { %>
-						<% for(var i=0,k=0; i<rs.PatentPaper10.length; i++) { %>
-							<% if(rs.PatentPaper10[i].ppTime=='1') { k++; %>
-								<% if(k==1){ %>
-									<dl class="am-accordion-item am-active">
-										<dt class="am-accordion-title">
-											<%=rs.PatentPaper10[i].ppName %>
-										</dt>
-										<dd class="am-accordion-bd am-collapse am-in">
-								<% }else{ %>
-									<dl class="am-accordion-item">
-										<dt class="am-accordion-title">
-											<%=rs.PatentPaper10[i].ppName %>
-										</dt>
-										<dd class="am-accordion-bd am-collapse">
-								<% } %>
-										<div class="am-accordion-content">
-											<font style="color:#666;font-weight:bold">发表时间：<%=rs.PatentPaper10[i].ppType %></font>
-											<br><font style="color:#666;font-weight:bold">简要介绍：</font><br>
-											<%=rs.PatentPaper10[i].addt %>
-										</div>
-									</dd>
-								</dl>
-							<% } %>
-						<% } %>
-					<% } %>
-				</section>
-			</div>
-
-			<div data-tab-panel-1 class="am-tab-panel">
-				<section data-am-widget="accordion" class="am-accordion am-accordion-basic" data-am-accordion='{  }'>
-					<% if(rs.PatentPaper10.length>=0) { %>
-						<% for(var i=0,k=0; i<rs.PatentPaper10.length; i++) { %>
-							<% if(rs.PatentPaper10[i].ppTime=='2') { k++; %>
-								<% if(k==1){ %>
-									<dl class="am-accordion-item am-active">
-										<dt class="am-accordion-title">
-											<%=rs.PatentPaper10[i].ppName %>
-										</dt>
-										<dd class="am-accordion-bd am-collapse am-in">
-								<% }else{ %>
-									<dl class="am-accordion-item">
-										<dt class="am-accordion-title">
-											<%=rs.PatentPaper10[i].ppName %>
-										</dt>
-										<dd class="am-accordion-bd am-collapse">
-								<% } %>
-										<div class="am-accordion-content">
-											<font style="color:#666;font-weight:bold">发表时间：<%=rs.PatentPaper10[i].ppType %></font>
-											<br><font style="color:#666;font-weight:bold">简要介绍：</font><br>
-											<%=rs.PatentPaper10[i].addt %>
-										</div>
-									</dd>
-								</dl>
-							<% } %>
-						<% } %>
-					<% } %>
-				</section>
-			</div>
+	<div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
+		<div class="am-alert am-alert-secondary">
+			<button type="button" class="am-close" data-am-modal="{target: '#my-paper'}"><i class="am-icon-pencil"></i></button>
+			<div style="font-size:30px;text-align:center;">论文专利</div>
 		</div>
 	</div>
-</div>
 
-<div class="am-popup" id="my-paper">
-	<div class="am-popup-inner">
-		<div class="am-popup-hd">
-			<h4 class="am-popup-title">论文专利发表</h4>
-			<span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
-		</div>
-		<div class="am-popup-bd">
-			<br>
-			<form class="am-form am-form-horizontal" method="post" data-am-validator autocomplete ='off'>
-				<div class="J_operate-sel">
-					<div class="am-form-group">
-						<label class="am-u-sm-3 am-form-label">操作方式：</label>
-						<div class="am-u-sm-9">
-							<select required class="select1">
-								<option value=""  selected = "selected">请选择操作哪项？</option>
-								<option value="1">添加操作</option>
-								<option value="2">删除操作</option>
-								<option value="3">修改操作</option>
-							</select>
-						    <span class="am-form-caret"></span>
-						</div> 
-					</div>
-					<br>
-			        <div class="am-form-group J_change-con" style="display:none;">
-			            <label class="am-u-sm-3 am-form-label">修改选项：</label>
-			            <div class="am-u-sm-9">
-			                <select required class="select2">
-								<option value="" selected = "selected">请选择修改哪项？</option>
-								<% if(rs.PatentPaper10) { %>
-									<% for(var i=0; i<rs.PatentPaper10.length; i++) {%>
-										<% if(rs.PatentPaper10[i].ppTime=='1') { %>
-											<option value="<%= i %>">修改论文：<%= rs.PatentPaper10[i].ppName %></option>
-										<% }else{ %>
-											<option value="<%= i %>">修改专利：<%= rs.PatentPaper10[i].ppName %></option>
-										<% } %>
+	<div class="am-g am-u-lg-10 am-u-md-12  am-u-sm-centered">
+		<div data-am-widget="tabs" class="am-tabs am-tabs-d2">
+			<ul class="am-tabs-nav am-cf">
+				<li class="am-active"><a href="[data-tab-panel-0]">论文发表</a></li>
+				<li class=""><a href="[data-tab-panel-1]">专利申请</a></li>
+			</ul>
+			<div class="am-tabs-bd">
+				<div data-tab-panel-0 class="am-tab-panel am-active">
+					<section data-am-widget="accordion" class="am-accordion am-accordion-basic" data-am-accordion='{  }'>
+						<% if(rs.PatentPaper10.length>=0) { %>
+							<% for(var i=0,k=0; i<rs.PatentPaper10.length; i++) { %>
+								<% if(rs.PatentPaper10[i].ppTime=='1') { k++; %>
+									<% if(k==1){ %>
+										<dl class="am-accordion-item am-active">
+											<dt class="am-accordion-title">
+												<%=rs.PatentPaper10[i].ppName %>
+											</dt>
+											<dd class="am-accordion-bd am-collapse am-in">
+									<% }else{ %>
+										<dl class="am-accordion-item">
+											<dt class="am-accordion-title">
+												<%=rs.PatentPaper10[i].ppName %>
+											</dt>
+											<dd class="am-accordion-bd am-collapse">
 									<% } %>
+											<div class="am-accordion-content">
+												<font style="color:#666;font-weight:bold">发表时间：<%=rs.PatentPaper10[i].ppType %></font>
+												<br><font style="color:#666;font-weight:bold">简要介绍：</font><br>
+												<%=rs.PatentPaper10[i].addt %>
+											</div>
+										</dd>
+									</dl>
 								<% } %>
-			                </select>
-			                <span class="am-form-caret"></span>
-			            </div>  
-			        </div>
-			        <br>
-        		</div>
-
-              	<div class="J_operate-del" style="display:none">
-	                <div class="am-form-group">
-	                    <label class="am-u-sm-3 am-form-label">删除选项：</label>
-	                    <div class="am-u-sm-9">
-	                        <select required>
-								<option value="" selected = "selected">请选择删除哪项？</option>
-								<% if(rs.PatentPaper10.length>=0) { %>
-									<% for(var i=0; i<rs.PatentPaper10.length; i++) { %>
-										<% if(rs.PatentPaper10[i].ppTime=='1') { %>
-											<option value="<%= i %>">论文：<%= rs.PatentPaper10[i].ppName %></option>
-										<% }else{ %>
-											<option value="<%= i %>">专利：<%= rs.PatentPaper10[i].ppName %></option>
-										<% } %>
-									<% } %>
-								<% } %>	
-	                        </select>
-	                        <span class="am-form-caret"></span>
-	                    </div>  
-	                </div>
-	                <div class="am-form-group">
-	                    <div class="am-u-sm-9 am-u-sm-offset-3">
-	                        <button type="button" class="am-btn am-btn-primary my-education3-btn"> 确定删除 </button>
-	                    </div>
-	                </div>
-                </div>
-
-                <div class="J_operate-add" style="display:none">
-					<div class="am-form-group">
-						<label class="am-u-sm-3 am-form-label">类型：</label>
-						<div class="am-u-sm-9">
-							<select class="papertype" name="papertype" required>
-								<option value="" selected = "selected">请选择一项</option>
-								<option value="1">论文</option>
-								<option value="2">专利</option>
-							</select>
-							<span class="am-form-caret"></span>
-						</div>
-					</div>
-					<div class="am-form-group">
-						<label class="am-u-sm-3 am-form-label">名称：</label>
-						<div class="am-u-sm-9">
-							<input type="text" value="" class="papername" required placeholder="请输入名称">
-						</div>
-					</div>
-					<div class="am-form-group">
-						<label class="am-u-sm-3 am-form-label">发表日期：</label>
-						<div class="am-u-sm-9">
-							<input type="text" value="" class="papertime am-form-field" placeholder="请输入发表日期" data-am-datepicker readonly/>
-						</div>
-					</div>
-					<div class="am-form-group">
-						<label class="am-u-sm-3 am-form-label">补充说明：</label>
-						<div class="am-u-sm-9">
-							<textarea rows="3 " value="" class="paperinstr" placeholder="发表的详细信息（包括发表的期刊作者顺序及内容摘要等）"></textarea>
-						</div>
-					</div>
-					<input type="hidden"  class="J_hidden-ipt" value="">
-					<div class="am-form-group">
-						<div class="am-u-sm-9 am-u-sm-offset-3">
-							<button type="button" class="am-btn am-btn-primary my-paper-btn"> 提交信息 </button>
-						</div>
-					</div>
+							<% } %>
+						<% } %>
+					</section>
 				</div>
-			</form>
+
+				<div data-tab-panel-1 class="am-tab-panel">
+					<section data-am-widget="accordion" class="am-accordion am-accordion-basic" data-am-accordion='{  }'>
+						<% if(rs.PatentPaper10.length>=0) { %>
+							<% for(var i=0,k=0; i<rs.PatentPaper10.length; i++) { %>
+								<% if(rs.PatentPaper10[i].ppTime=='2') { k++; %>
+									<% if(k==1){ %>
+										<dl class="am-accordion-item am-active">
+											<dt class="am-accordion-title">
+												<%=rs.PatentPaper10[i].ppName %>
+											</dt>
+											<dd class="am-accordion-bd am-collapse am-in">
+									<% }else{ %>
+										<dl class="am-accordion-item">
+											<dt class="am-accordion-title">
+												<%=rs.PatentPaper10[i].ppName %>
+											</dt>
+											<dd class="am-accordion-bd am-collapse">
+									<% } %>
+											<div class="am-accordion-content">
+												<font style="color:#666;font-weight:bold">发表时间：<%=rs.PatentPaper10[i].ppType %></font>
+												<br><font style="color:#666;font-weight:bold">简要介绍：</font><br>
+												<%=rs.PatentPaper10[i].addt %>
+											</div>
+										</dd>
+									</dl>
+								<% } %>
+							<% } %>
+						<% } %>
+					</section>
+				</div>
+			</div>
 		</div>
 	</div>
-</div>
+
+	<div class="am-popup" id="my-paper">
+		<div class="am-popup-inner">
+			<div class="am-popup-hd">
+				<h4 class="am-popup-title">论文专利发表</h4>
+				<span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
+			</div>
+			<div class="am-popup-bd">
+				<br>
+				<form class="am-form am-form-horizontal" method="post" data-am-validator autocomplete ='off'>
+					<div class="J_operate-sel">
+						<div class="am-form-group">
+							<label class="am-u-sm-3 am-form-label">操作方式：</label>
+							<div class="am-u-sm-9">
+								<select required class="select1">
+									<option value=""  selected = "selected">请选择操作哪项？</option>
+									<option value="1">添加操作</option>
+									<option value="2">删除操作</option>
+									<option value="3">修改操作</option>
+								</select>
+							    <span class="am-form-caret"></span>
+							</div> 
+						</div>
+						<br>
+				        <div class="am-form-group J_change-con" style="display:none;">
+				            <label class="am-u-sm-3 am-form-label">修改选项：</label>
+				            <div class="am-u-sm-9">
+				                <select required class="select2">
+									<option value="" selected = "selected">请选择修改哪项？</option>
+									<% if(rs.PatentPaper10) { %>
+										<% for(var i=0; i<rs.PatentPaper10.length; i++) {%>
+											<% if(rs.PatentPaper10[i].ppTime=='1') { %>
+												<option value="<%= i %>">修改论文：<%= rs.PatentPaper10[i].ppName %></option>
+											<% }else{ %>
+												<option value="<%= i %>">修改专利：<%= rs.PatentPaper10[i].ppName %></option>
+											<% } %>
+										<% } %>
+									<% } %>
+				                </select>
+				                <span class="am-form-caret"></span>
+				            </div>  
+				        </div>
+				        <br>
+	        		</div>
+
+	              	<div class="J_operate-del" style="display:none">
+		                <div class="am-form-group">
+		                    <label class="am-u-sm-3 am-form-label">删除选项：</label>
+		                    <div class="am-u-sm-9">
+		                        <select required>
+									<option value="" selected = "selected">请选择删除哪项？</option>
+									<% if(rs.PatentPaper10.length>=0) { %>
+										<% for(var i=0; i<rs.PatentPaper10.length; i++) { %>
+											<% if(rs.PatentPaper10[i].ppTime=='1') { %>
+												<option value="<%= i %>">论文：<%= rs.PatentPaper10[i].ppName %></option>
+											<% }else{ %>
+												<option value="<%= i %>">专利：<%= rs.PatentPaper10[i].ppName %></option>
+											<% } %>
+										<% } %>
+									<% } %>	
+		                        </select>
+		                        <span class="am-form-caret"></span>
+		                    </div>  
+		                </div>
+		                <div class="am-form-group">
+		                    <div class="am-u-sm-9 am-u-sm-offset-3">
+		                        <button type="button" class="am-btn am-btn-primary my-education3-btn"> 确定删除 </button>
+		                    </div>
+		                </div>
+	                </div>
+
+	                <div class="J_operate-add" style="display:none">
+						<div class="am-form-group">
+							<label class="am-u-sm-3 am-form-label">类型：</label>
+							<div class="am-u-sm-9">
+								<select class="papertype" name="papertype" required>
+									<option value="" selected = "selected">请选择一项</option>
+									<option value="1">论文</option>
+									<option value="2">专利</option>
+								</select>
+								<span class="am-form-caret"></span>
+							</div>
+						</div>
+						<div class="am-form-group">
+							<label class="am-u-sm-3 am-form-label">名称：</label>
+							<div class="am-u-sm-9">
+								<input type="text" value="" class="papername" required placeholder="请输入名称">
+							</div>
+						</div>
+						<div class="am-form-group">
+							<label class="am-u-sm-3 am-form-label">发表日期：</label>
+							<div class="am-u-sm-9">
+								<input type="text" value="" class="papertime am-form-field" placeholder="请输入发表日期" data-am-datepicker readonly/>
+							</div>
+						</div>
+						<div class="am-form-group">
+							<label class="am-u-sm-3 am-form-label">补充说明：</label>
+							<div class="am-u-sm-9">
+								<textarea rows="3 " value="" class="paperinstr" placeholder="发表的详细信息（包括发表的期刊作者顺序及内容摘要等）"></textarea>
+							</div>
+						</div>
+						<input type="hidden"  class="J_hidden-ipt" value="">
+						<div class="am-form-group">
+							<div class="am-u-sm-9 am-u-sm-offset-3">
+								<button type="button" class="am-btn am-btn-primary my-paper-btn"> 提交信息 </button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</section>

@@ -302,20 +302,24 @@ $(document).ready(function() {
 	/**
 	 * introduction页面的js
 	 */
-	$('#my-specialinstr').delegate('#inputFile', 'change', function(event) {
-		$('.imgtip', '#my-specialinstr').html($('#inputFile', '#my-specialinstr').val());
+	var $specialInstruc=$('#my-specialinstr');
+	$specialInstruc.delegate('#inputFile', 'change', function(event) {
+		$('.imgtip', $specialInstruc).html($('#inputFile', $specialInstruc).val());
 	});
-	$('#my-specialinstr').delegate('#upload', 'click', function(event) {
-		$('#specialInstruc', '#my-specialinstr').ajaxForm({
-			url: $('#specialInstruc', '#my-specialinstr').attr('action'),
+	$specialInstruc.delegate('#upload', 'click', function(event) {
+		$('#specialInstruc', $specialInstruc).ajaxForm({
+			url: $('#specialInstruc', $specialInstruc).attr('action'),
 			type: 'POST',
+			data:{
+				majorinstr2: specialICon.getContent()
+			},
 			success: function(res, status, xhr, $form) {
 				if (res.retCode != 200) {
-					alertOpnFn(rs.retDesc);
+					alertOpnFn(res.retDesc);
 				} else {
 					location.reload();
+					$('#specialInstruc', $specialInstruc).clearForm();
 				}
-				$('#specialInstruc', '#my-specialinstr').clearForm();
 			},
 			error: function(res, status, e) {
 				alertOpnFn('err');
@@ -860,15 +864,16 @@ $(document).ready(function() {
 		});
 	});
 
-	/***
+	/********************************************************
 		简历页面的js代码
-	**/
-	//个人基本信息
+	*********************************************************/
+	/**
+	 *基本信息
+	 **/
 	var $myBaseinfo = $('#my-baseinfo');
 	$myBaseinfo.delegate('#inputFile1', 'change', function() {
 		$('.imgtip', $myBaseinfo).html($('#inputFile1', $myBaseinfo).val());
 	})
-
 	$myBaseinfo.delegate('#upload1', 'click', function() {
 		$('#specialInstruc1', $myBaseinfo).ajaxForm({
 			url: $('#specialInstruc1', $myBaseinfo).attr('action'),
@@ -878,13 +883,18 @@ $(document).ready(function() {
 					warnOpnFn(res.retDesc);
 				} else {
 					location.reload();
+					$('#specialInstruc1', $myBaseinfo).clearForm();
 				}
 			},
-			clearForm: true
+			error: function(err) {
+				alertOpnFn('err');
+			}
 		});
 	})
 
-	//联系方式
+	/**
+	 *联系方式
+	 **/
 	$myContactinfo = $('#my-contactinfo');
 	$myContactinfo.delegate('.my-contactinfo-btn', 'click', function() {
 		var mphone = $.trim($(".mphone", $myContactinfo).val()),
@@ -893,37 +903,38 @@ $(document).ready(function() {
 			identity = $.trim($(".identity", $myContactinfo).val()),
 			email = $.trim($(".email", $myContactinfo).val()),
 			qqnum = $.trim($(".qqnum", $myContactinfo).val());
-		$.ajax({
-			type: 'post',
-			url: '/resume/contactinfo',
-			data: {
-				mphone: mphone,
-				phone: phone,
-				address: address,
-				identity: identity,
-				email: email,
-				qqnum: qqnum
-			},
-			dataType: 'json',
-			success: function(data) {
-				if (data.retCode == 200) {
-					location.reload();
-				} else {
-					warnOpnFn(data.retDesc);
+		if(mphone!="" &&  address!="" && email!=''){
+			$.ajax({
+				type: 'post',
+				url: '/resume/contactinfo',
+				data: {
+					mphone: mphone,
+					phone: phone,
+					address: address,
+					identity: identity,
+					email: email,
+					qqnum: qqnum
+				},
+				dataType: 'json',
+				success: function(data) {
+					if (data.retCode == 200) {
+						location.reload();
+					} else {
+						warnOpnFn(data.retDesc);
+					}
+				},
+				error: function(err) {
+					alertOpnFn('err');
 				}
-			},
-			error: function(err) {
-				alertOpnFn('err');
-			}
-		});
+			});
+		}else{
+			warnOpnFn('请把需要填写的内容填写完整！');
+		}
 	});
-
 });
 
 /**
- * 
  *教育经历
- *
  **/
  //公共变量
 var $myEducation = $('#my-education'),
@@ -932,7 +943,6 @@ var $myEducation = $('#my-education'),
 
 //操作方式
 $myEducation.delegate('.J_operate-sel .select1', 'change', function(event) {
-    $('.J_operate-add .J_hidden-ipt', $myEducation).val(''); // 动态修改的清空
      $('#specialInstruc3', $myEducation).clearForm();
 
     if ($(this).children('option:selected').val() == 1) {
@@ -1253,11 +1263,9 @@ $myPractice.delegate('#upload5', 'click', function(event) {
 				} else {
 					location.reload();
 				}
-				$('#specialInstruc5', $myPractice).clearForm();
 			},
 			error: function(res, status, e) {
 				alertOpnFn('err');
-				$('#specialInstruc5', $myPractice).clearForm();
 			}
 		});
 	}else{
@@ -1270,11 +1278,9 @@ $myPractice.delegate('#upload5', 'click', function(event) {
 				} else {
 					location.reload();
 				}
-				$('#specialInstruc5', $myPractice).clearForm();
 			},
 			error: function(res, status, e) {
 				alertOpnFn('err');
-				$('#specialInstruc5', $myPractice).clearForm();
 			}
 		});
 	}
