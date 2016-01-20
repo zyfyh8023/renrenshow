@@ -17,8 +17,7 @@ exports.page = function(req, res, next) {
             articleTag: 1
         },10,0,function(err, results, nums){
         if(err){
-            retDesc = "系统出现故障，请稍后再试!";
-            res.redirect('myError?retDesc=' + retDesc);
+            res.redirect('/error');
         }else{
             if (results) {
                 var showpagetip, allpage;
@@ -30,8 +29,7 @@ exports.page = function(req, res, next) {
                 }
                  getArtExpNum(uName, function(err, resu) {
                     if (err) {
-                        retDesc = "数据查找失败!";
-                        res.redirect('myError?retDesc=' + retDesc);
+                        res.redirect('/error');
                     } else {
                         res.render('./userBlog/managearticle', {
                             title: '博文管理',
@@ -48,8 +46,7 @@ exports.page = function(req, res, next) {
                     }
                 });
             } else {
-                retDesc = "用户的博文查找失败!";
-                res.redirect('myError?retDesc=' + retDesc);
+                res.redirect('/error');
             }
         }
     });
@@ -97,8 +94,7 @@ exports.noPublicBW = function(req, res, next) {
             articleTag: 2
         },10,0,function(err, results, nums){
         if(err){
-            retDesc = "系统出现故障，请稍后再试!";
-            res.redirect('myError?retDesc=' + retDesc);
+            res.redirect('/error');
         }else{
             if (results) {
                 var showpagetip, allpage;
@@ -110,8 +106,7 @@ exports.noPublicBW = function(req, res, next) {
                 }
                  getArtExpNum(uName, function(err, resu) {
                     if (err) {
-                        retDesc = "数据查找失败!";
-                        res.redirect('myError?retDesc=' + retDesc);
+                        res.redirect('/error');
                     } else {
                         res.render('./userBlog/managearticle', {
                             title: '博文管理',
@@ -128,8 +123,7 @@ exports.noPublicBW = function(req, res, next) {
                     }
                 });
             } else {
-                retDesc = "用户的博文查找失败!";
-                res.redirect('myError?retDesc=' + retDesc);
+                res.redirect('/error');
             }
         }
     });
@@ -188,8 +182,7 @@ exports.relatedMeBW = function(req, res, next) {
             author: uName
         },10,0,function(err, results, nums){
         if(err){
-            retDesc = "系统出现故障，请稍后再试!";
-            res.redirect('myError?retDesc=' + retDesc);
+            res.redirect('/error');
         }else{
             if (results) {
                 var showpagetip, allpage;
@@ -201,8 +194,7 @@ exports.relatedMeBW = function(req, res, next) {
                 }
                  getArtExpNum(uName, function(err, resu) {
                     if (err) {
-                        retDesc = "数据查找失败!";
-                        res.redirect('myError?retDesc=' + retDesc);
+                        res.redirect('/error');
                     } else {
                         res.render('./userBlog/managearticle', {
                             title: '博文管理',
@@ -218,8 +210,7 @@ exports.relatedMeBW = function(req, res, next) {
                     }
                 });
             } else {
-                retDesc = "用户的博文查找失败!";
-                res.redirect('myError?retDesc=' + retDesc);
+                res.redirect('/error');
             }
         }
     });

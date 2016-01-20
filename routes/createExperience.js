@@ -16,8 +16,7 @@ exports.page = function(req, res, next) {
 
     getArtExpNum(uName, function(err, resu) {
         if (err) {
-            retDesc = "数据查找失败!";
-            res.redirect('myError?retDesc=' + retDesc);
+            res.redirect('/error');
         } else {
             res.render('./userBlog/createExperience', {
                 title: '写面经',

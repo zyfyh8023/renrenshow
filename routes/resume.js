@@ -1,5 +1,7 @@
 "use strict";
 var resume = require('../models/resume');
+var users = require('../models/users');
+
 var fs = require('fs'),
 	multiparty = require('multiparty'),
 	gm = require('gm'),
@@ -12,20 +14,25 @@ exports.page = function(req, res, next) {
 	uName = req.session.user.username;
 	resume.findByUname(uName, function(err, rs) {
 		if (err) {
-			retDesc = "个人简历数据加载失败!";
-			res.redirect('myError?retDesc=' + retDesc);
+			res.redirect('/error');
 		} else {
 			if (rs) {
-				console.log(rs);
-				allres=rs;
-				res.render('./userResume/resume', {
-					title: '我的简历',
-					uName: uName,
-					rs: rs
+				users.findByUname(uName, function(err, resu) {
+					if (err) {
+						res.redirect('/error');
+					}else{
+						console.log(rs);
+						allres=rs;
+						res.render('./userResume/resume', {
+							title: '我的简历',
+							uName: uName,
+							rs: rs,
+							headImg: resu.headimg
+						});
+					}
 				});
 			} else {
-				retDesc = "没有数据，数据未初始化!";
-				res.redirect('myError?retDesc=' + retDesc);
+				res.redirect('/error');
 			}
 		}
 	});
@@ -86,13 +93,20 @@ exports.baseinfo = function(req, res, next) {
 								}
 							});
 							resume.modify({author: uName}, {
-								headimg: imgSrc,
 								baseInfo1: newResume.baseInfo1
 							}, function(err) {
 								if (err) {
 									return res.send({retCode: 400,retDesc: '信息更新失败！'});
 								} else {
-									return res.send({retCode: 200});
+									users.modify({username: uName}, {
+										headimg: imgSrc,
+									}, function(err) {
+										if (err) {
+											return res.send({retCode: 400,retDesc: '信息更新失败！'});
+										} else {
+											return res.send({retCode: 200});
+										}
+									});
 								}
 							});
 						});
@@ -1388,35 +1402,15 @@ exports.desc2 = function(req, res, next) {
 };
 
 //初始化
-exports.resumeInit = function(req, res, next) {
-	uName = req.body.uName;
+exports.resumeInit = function(uNames,callback) {
 	var newResume = new resume.Resume({
-		author: uName,
-		headimg: '/images/headimg.jpg',
-		Technology11: [
-			'能运用 javascript，JQuery，Json，Ajax，CSS + Div 布局迚行网站开发',
-			'熟悉 LESS，SASS，HTML5，CSS3，BootStrap 等网站前端开发技术',
-			'掌握面向对象和多线程编程的思想，具有扎实的 JAVA，C++和 MFC 编程功底',
-			'熟练 Eclipse，MyEclipse，visual studio 等开发工具',
-			'掌握常用画图软件，如 PhotoShop、3DMAX、Flash、MicroSoft Visio、Power Designer',
-			'熟练掌握 J2EE、Servlet、JDBC、HTML、XML 等 JSP 网站开发技术',
-			'熟练掌握 Struts2、Hibernate3、Spring2 开源框架，熟悉 MVC 模式下的 JAVA WEB 开发',
-			'具备良好的英语听说读写能力，日语能力良好',
-			'掌握会声会影视频制作软件，幵做过相关视频'
-		]
+		author: uNames,
 	});
-
 	resume.create(newResume, function(err) {
 		if (err) {
-			retDesc = "保存失败,请稍后再试!";
-			return res.send({
-				retCode: 400,
-				retDesc: retDesc
-			});
+			callback(0);
 		} else {
-			return res.send({
-				retCode: 200
-			});
+			callback(1);
 		}
 	});
 };

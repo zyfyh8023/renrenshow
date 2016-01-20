@@ -18,8 +18,7 @@ exports.page = function(req, res, next) {
             experienceTag: 1
         },10,0,function(err, results, nums){
         if(err){
-            retDesc = "系统出现故障，请稍后再试!";
-            res.redirect('myError?retDesc=' + retDesc);
+            res.redirect('/error');
         }else{
             if (results) {
                 var showpagetip, allpage;
@@ -31,8 +30,7 @@ exports.page = function(req, res, next) {
                 }
                  getArtExpNum(uName, function(err, resu) {
                     if (err) {
-                        retDesc = "数据查找失败!";
-                        res.redirect('myError?retDesc=' + retDesc);
+                        res.redirect('/error');
                     } else {
                         res.render('./userBlog/manageExperience', {
                             title: '面经管理',
@@ -49,8 +47,7 @@ exports.page = function(req, res, next) {
                     }
                 });
             } else {
-                retDesc = "用户的面经查找失败!";
-                res.redirect('myError?retDesc=' + retDesc);
+                res.redirect('/error');
             }
         }
     });
@@ -98,8 +95,7 @@ exports.noPublicMJ = function(req, res, next) {
             experienceTag: 2
         },10,0,function(err, results, nums){
         if(err){
-            retDesc = "系统出现故障，请稍后再试!";
-            res.redirect('myError?retDesc=' + retDesc);
+            res.redirect('/error');
         }else{
             if (results) {
                 var showpagetip, allpage;
@@ -111,8 +107,7 @@ exports.noPublicMJ = function(req, res, next) {
                 }
                  getArtExpNum(uName, function(err, resu) {
                     if (err) {
-                        retDesc = "数据查找失败!";
-                        res.redirect('myError?retDesc=' + retDesc);
+                        res.redirect('/error');
                     } else {
                         res.render('./userBlog/manageExperience', {
                             title: '面经管理',
@@ -129,8 +124,7 @@ exports.noPublicMJ = function(req, res, next) {
                     }
                 });
             } else {
-                retDesc = "用户的面经查找失败!";
-                res.redirect('myError?retDesc=' + retDesc);
+                res.redirect('/error');
             }
         }
     });
@@ -190,8 +184,7 @@ exports.relatedMeMJ = function(req, res, next) {
             author: uName
         },10,0,function(err, results, nums){
         if(err){
-            retDesc = "系统出现故障，请稍后再试!";
-            res.redirect('myError?retDesc=' + retDesc);
+            res.redirect('/error');
         }else{
             if (results) {
                 var showpagetip, allpage;
@@ -203,8 +196,7 @@ exports.relatedMeMJ = function(req, res, next) {
                 }
                  getArtExpNum(uName, function(err, resu) {
                     if (err) {
-                        retDesc = "数据查找失败!";
-                        res.redirect('myError?retDesc=' + retDesc);
+                        res.redirect('/error');
                     } else {
                         res.render('./userBlog/manageExperience', {
                             title: '面经管理',
@@ -220,8 +212,7 @@ exports.relatedMeMJ = function(req, res, next) {
                     }
                 });
             } else {
-                retDesc = "用户的面经查找失败!";
-                res.redirect('myError?retDesc=' + retDesc);
+                res.redirect('/error');
             }
         }
     });

@@ -14,8 +14,7 @@ exports.page = function(req, res, next) {
 
 	privateSetings.findByUname(uName, function(err, results) {
 		if (err) {
-			retDesc = "私人设置的数据加载失败!";
-			res.redirect('myError?retDesc=' + retDesc);
+			res.redirect('/error');
 		} else {
 			res.render('./userSet/privateSeting', {
 				title: '私人设置',
@@ -195,6 +194,16 @@ exports.chg = function(req, res, next) {
 	});
 };
 
-exports.createInit = function(req, res, next) {
-	
+exports.createInit = function(uNames,callback) {
+	var newSet = new privateSetings.privateSetting({
+		author: uNames,
+	});
+
+	privateSetings.create(newSet, function(err) {
+		if (err) {
+			callback(0);
+		} else {
+			callback(1);
+		}
+	});
 }

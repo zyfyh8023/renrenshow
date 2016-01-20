@@ -34,7 +34,6 @@ var seting = require('./routes/seting');
 var privateSeting = require('./routes/privateSeting');
 var changePassword = require('./routes/changePassword');
 var checkState = require('./routes/checkState');
-var myError = require('./routes/myError');
 var demo = require('./routes/demo');
 
 
@@ -107,7 +106,6 @@ app.post('/loginOut', login.loginOut);
 app.get('/register', register.page);
 app.post('/register', register.doRegister);
 
-
 //个人中心——首页
 app.get('/myindex', myindex.page);
 app.get('/blog_art', blogAorE.artSee);
@@ -137,7 +135,6 @@ app.post('/resume/certificate/add', resume.certificate1); //add
 app.post('/resume/certificate/del', resume.certificate2); //del
 app.post('/resume/certificate/upd', resume.certificate3); //update
 
-app.post('/resumeInit', resume.resumeInit);
 app.post('/resume/baseinfo', resume.baseinfo); //基本信息
 app.post('/resume/contactinfo', resume.contactinfo); //联系方式
 app.post('/resume/education/add', resume.education1); //教育经历-add
@@ -172,7 +169,6 @@ app.post('/delExper', manageExperience.delExper);
 app.post('/pubExper', manageExperience.pubExper);
 //资源导航
 app.get('/navs', navigation.page);
-app.post('/navigationListInit', navigation.listInit);
 app.post('/navigationListAdd', navigation.listAdd);
 app.post('/navigationListDel', navigation.listDel);
 app.post('/navigationListAddsun', navigation.listAdd2);
@@ -188,12 +184,9 @@ app.post('/privateSeting/del', privateSeting.del);
 app.post('/privateSeting/see', privateSeting.see);
 app.post('/privateSeting/upd', privateSeting.upd);
 app.post('/privateSeting/chg', privateSeting.chg);
-app.post('/privateSetingInit', privateSeting.createInit);
 //密码修改
 app.get('/sets_pwd', changePassword.page);
 app.post('/changePassword', changePassword.doPage);
-//错误页面
-app.get('/myError', myError.page);
 //测试页面
 app.get('/demo', demo.page);
 // ejs.filters.dateformat = function(obj, format) {

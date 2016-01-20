@@ -13,8 +13,7 @@ exports.page = function(req, res, next) {
 
 	navigations.findByUname(uName, function(err, results) {
 		if (err) {
-			retDesc = "用户的资源导航查找失败!";
-			res.redirect('myError?retDesc=' + retDesc);
+			res.redirect('/error');
 		} else {
 			if (results) {
 				for (var k = 0; k < results.models.length; k++) {
@@ -31,8 +30,7 @@ exports.page = function(req, res, next) {
 					allNavgition: results
 				});
 			} else {
-				retDesc = "数据未初始化!";
-				res.redirect('myError?retDesc=' + retDesc);
+				res.redirect('/error');
 			}
 		}
 	});
@@ -258,99 +256,15 @@ exports.listDel2 = function(req, res, next) {
 	});
 }
 
-exports.listInit = function(req, res, next) {
-	uName = req.body.uName;
+exports.listInit = function(uNames,callback) {
 	var newNavigation = new navigations.Navigation({
-		author: uName,
-		models: [{
-			modelsName: "前端开发资源",
-			maoName: '432423423423',
-			sque: 3,
-			modelsuns: [{
-				sunSque: 4,
-				sunDesc: "视频资源大视视频视频资源大汇总3资源大视频资源大汇总3汇总3",
-				sunName: "大前端",
-				sunUrl: "http://www.baidu.com"
-			}, {
-				sunSque: 3,
-				sunDesc: "视频资源大视视频视频资源大汇总3资源大视频资源大汇总3汇总3",
-				sunName: "大前端",
-				sunUrl: "http://www.baidu.com"
-			}, {
-				sunSque: 2,
-				sunDesc: "视频资源大视视频视频资源大汇总3资源大视频资源大汇总3汇总3",
-				sunName: "大前端",
-				sunUrl: "http://www.baidu.com"
-			}, {
-				sunSque: 1,
-				sunDesc: "视频资源大视视频视频资源大汇总3资源大视频资源大汇总3汇总3",
-				sunName: "大前端",
-				sunUrl: "http://www.baidu.com"
-			}]
-		}, {
-			modelsName: "后端开发资源",
-			sque: 2,
-			maoName: '324234234',
-			modelsuns: [{
-				sunSque: 1,
-				sunDesc: "视频资源大视视频视频资源大汇总3资源大视频资源大汇总3汇总3",
-				sunName: "大后端",
-				sunUrl: "http://www.baidu.com"
-			}, {
-				sunSque: 2,
-				sunDesc: "视频资源大视视频视频资源大汇总3资源大视频资源大汇总3汇总3",
-				sunName: "大后端",
-				sunUrl: "http://www.baidu.com"
-			}, {
-				sunSque: 3,
-				sunDesc: "视频资源大视视频视频资源大汇总3资源大视频资源大汇总3汇总3",
-				sunName: "大后端",
-				sunUrl: "http://www.baidu.com"
-			}, {
-				sunSque: 4,
-				sunDesc: "视频资源大视视频视频资源大汇总3资源大视频资源大汇总3汇总3",
-				sunName: "大后端",
-				sunUrl: "http://www.baidu.com"
-			}]
-		}, {
-			modelsName: "客户端开发资源",
-			sque: 1,
-			maoName: '67567856765',
-			modelsuns: [{
-				sunSque: 1,
-				sunDesc: "视频资源大视视频视频资源大汇总3资源大视频资源大汇总3汇总3",
-				sunName: "客户端",
-				sunUrl: "http://www.baidu.com"
-			}, {
-				sunSque: 2,
-				sunDesc: "视频资源大视视频视频资源大汇总3资源大视频资源大汇总3汇总3",
-				sunName: "大后端",
-				sunUrl: "http://www.baidu.com"
-			}, {
-				sunSque: 3,
-				sunDesc: "视频资源大视视频视频资源大汇总3资源大视频资源大汇总3汇总3",
-				sunName: "大后端",
-				sunUrl: "http://www.baidu.com"
-			}, {
-				sunSque: 4,
-				sunDesc: "视频资源大视视频视频资源大汇总3资源大视频资源大汇总3汇总3",
-				sunName: "大后端",
-				sunUrl: "http://www.baidu.com"
-			}]
-		}]
+		author: uNames,
 	});
-
 	navigations.create(newNavigation, function(err) {
 		if (err) {
-			retDesc = '有错误哦~';
-			return res.send({
-				retCode: 400,
-				retDesc: retDesc
-			});
+			callback(0);
 		} else {
-			return res.send({
-				retCode: 200
-			});
+			callback(1);
 		}
 	});
 }

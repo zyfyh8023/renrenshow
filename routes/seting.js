@@ -14,8 +14,7 @@ exports.page = function(req, res, next) {
 
 	setings.findByUname(uName, function(err, results) {
 		if (err) {
-			retDesc = "个人设置的数据加载失败!";
-			res.redirect('myError?retDesc=' + retDesc);
+			res.redirect('/error');
 		} else {
 			if (results) {
 				res.render('./userSet/seting', {
@@ -26,8 +25,7 @@ exports.page = function(req, res, next) {
 					results: results
 				});
 			} else {
-				retDesc = "没有数据，数据未初始化!";
-				res.redirect('myError?retDesc=' + retDesc);
+				res.redirect('/error');
 			}
 		}
 	});
@@ -56,10 +54,9 @@ exports.doPage = function(req, res, next) {
 	});
 }
 
-exports.createInit = function(req, res, next) {
-	uName = req.body.uName;
+exports.createInit = function(uNames,callback) {
 	var newSet = new setings.Setting({
-		author: uName,
+		author: uNames,
 		allModels: [{
 			modelNam: "个性简介",
 			sunModels: [{
@@ -134,15 +131,9 @@ exports.createInit = function(req, res, next) {
 
 	setings.create(newSet, function(err) {
 		if (err) {
-			retDesc = "保存失败,请稍后再试!";
-			return res.send({
-				retCode: 400,
-				retDesc: retDesc
-			});
+			callback(0);
 		} else {
-			return res.send({
-				retCode: 200
-			});
+			callback(1);
 		}
 	});
 }

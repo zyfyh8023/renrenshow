@@ -7,7 +7,6 @@ var ResumeScheme = new Schema({
         type: String,
         unique: true
     },
-    headimg: String,
     baseInfo1: {
         uname: String,
         gender: String,

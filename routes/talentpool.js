@@ -1,4 +1,5 @@
 "use strict";
+var users = require('../models/users');
 
 var retCode, retDesc, uName;
 
@@ -11,8 +12,18 @@ exports.page = function(req, res, next) {
 		uName = '';
 	}
 
-	res.render('talentpool', {
-		title: '人才库-人人秀',
-		uName: uName
+	users.findAll({}, function(err, result) {
+		if (err) {
+			res.redirect('/error');
+		}else{
+			console.log(result);
+			res.render('talentpool', {
+				title: '人才库-人人秀',
+				uName: uName,
+				results: result 
+			});
+		}
 	});
+
+	
 };
