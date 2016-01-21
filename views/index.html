@@ -4,10 +4,18 @@
 .am-slider-d2 .am-slider-desc{
     bottom: 25%;
     color: #fff;
-    left: 5%;
     position: absolute;
-    right: 40%;
     z-index: 1000;
+}
+.am-slider-d2 .am-slider-desc1{
+	left: 5%;
+	right: 40%;
+	text-align: left;
+}
+.am-slider-d2 .am-slider-desc2{
+	right: 5%;
+	left: 40%;
+	text-align: right;
 }
 .am-slider-d2 .zy-meng-ceng{
 	position: absolute;
@@ -16,7 +24,7 @@
 	z-index: 100;
 	width: 100%;
 	height:100%;
-	background: rgba(30, 30, 30, 0.6) none repeat scroll 0 0;
+	background: rgba(30, 30, 30, 0.5) none repeat scroll 0 0;
 }
 .am-slider-d2 .am-slider-content {
     background-color: rgba(0, 0, 0, 0);
@@ -29,10 +37,10 @@
 	<div data-am-widget="slider" class="am-slider am-slider-d2" data-am-slider='{"controlNav":false}'>
 		<ul class="am-slides">
 			<li>
-				<img src="/images/pageimg1.jpg">
-				<div class="am-slider-desc">
+				<img src="/images/11.jpg">
+				<div class="am-slider-desc  am-slider-desc1 am-animation-slide-left">
 					<div class="am-slider-content">
-						<h2 class="am-slider-title" style="font-size:5.5rem;margin-bottom:1rem;">如果你和我们有一样的梦想、有激情</h2>
+						<h2 class="am-slider-title" style="font-size:5.5rem;margin-bottom:1rem;">如果你和我们有一样的梦想...</h2>
 						<div style="font-size:2rem;margin-bottom:2rem;">
 							SegmentFault 正在迅猛发展，我们希望你的加入能让 SegmentFault 有更大的改观和发展。
 							如果你和我们有一样的梦想、有激情，别犹豫，加入我们，一起为中文开发者打造最好的技术交流社区。
@@ -43,8 +51,8 @@
 				<i class="zy-meng-ceng"></i>
 			</li>
 			<li>
-				<img src="/images/pageimg2.jpg">
-				<div class="am-slider-desc">
+				<img src="/images/22.jpg">
+				<div class="am-slider-desc am-slider-desc2 am-animation-slide-right">
 					<div class="am-slider-content">
 						<h2 class="am-slider-title" style="font-size:5.5rem;margin-bottom:1rem;">一个干净舒适的技术交流平台</h2>
 						<div style="font-size:2rem;margin-bottom:2rem;">
@@ -56,10 +64,10 @@
 				<i class="zy-meng-ceng"></i>
 			</li>
 			<li>
-				<img src="/images/11d.jpg">
-				<div class="am-slider-desc">
+				<img src="/images/33.jpg">
+				<div class="am-slider-desc am-slider-desc1 am-animation-slide-left">
 					<div class="am-slider-content">
-						<h2 class="am-slider-title" style="font-size:5.5rem;margin-bottom:1rem;">远方 有一个地方 那里种有我们的梦想</h2>
+						<h2 class="am-slider-title" style="font-size:5.5rem;margin-bottom:1rem;">远方有一个地方叫...</h2>
 						<div style="font-size:2rem;margin-bottom:2rem;">
 							SegmentFault 欢迎广大开发者前来交流，我们尽可能地为大家提供一个干净舒适的技术交流平台。在这里，可以与更多的开发者进行深度探讨，帮助你尽可能地为大家提供一个干净更快速地进步
 						</div>
@@ -92,9 +100,9 @@
 		</div>
 	</div>
 
-	<div class="am-g zy-section-nav" style="background:#eee;">
+	<div class="am-g zy-section-nav" style="background:#eee;padding-top:5rem;padding-bottom:5rem">
 		<div class="am-u-lg-11 am-u-md-12 am-u-sm-centered" class="zy-section-imgs">
-			<div class="col-md-6 am-u-md-6 am-u-sm-6">
+			<div class="col-md-6 am-u-md-6 am-u-sm-6" data-am-scrollspy="{animation:'slide-left',  delay: 300, repeat: false}">
 				<figure class="am am-figure am-figure-default ">
 					<img src="/images/student1.png" alt="" />
 				</figure>
@@ -114,7 +122,7 @@
 					<img src="/images/student22.png" alt="" />
 				</figure>
 			</div>
-			<div class="col-md-6 am-u-md-6 am-u-sm-6">
+			<div class="col-md-6 am-u-md-6 am-u-sm-6" data-am-scrollspy="{animation:'slide-right',  delay: 300, repeat: false}">
 				<figure class="am am-figure am-figure-default ">
 					<img src="/images/student2.png" alt="" />
 				</figure>
@@ -122,9 +130,9 @@
 		</div>
 	</div>
 
-	<div class="am-g zy-section-nav" style="background:#eee;">
+	<div class="am-g zy-section-nav" style="background:#eee;padding-top:5rem;padding-bottom:5rem">
 		<div class="am-u-lg-11 am-u-md-12 am-u-sm-centered " class="zy-section-imgs">
-			<div class="col-md-6 am-u-md-6 am-u-sm-6">
+			<div class="col-md-6 am-u-md-6 am-u-sm-6" data-am-scrollspy="{animation:'slide-left',  delay: 300, repeat: false}">
 				<figure class="am am-figure am-figure-default ">
 					<img src="/images/student3.png" alt="" />
 				</figure>
@@ -141,7 +149,7 @@
 	<div class="am-u-lg-11 am-u-md-12 am-u-sm-centered zy-composotions">
 		<ul data-am-widget="gallery" class="am-gallery am-avg-sm-2 am-avg-md-3 am-avg-lg-4 am-gallery-imgbordered" data-am-gallery="{  }">
 			<li>
-				<div class="am-gallery-item">
+				<div class="am-gallery-item zy-shake-item">
 					<a href="#">
 						<img src="/images/function1.jpg" />
 						<h3 class="am-gallery-title">前端开发工程师优秀模板</h3>
@@ -150,7 +158,7 @@
 				</div>
 			</li>
 			<li>
-				<div class="am-gallery-item">
+				<div class="am-gallery-item zy-shake-item">
 					<a href="#">
 						<img src="/images/function2.jpg" />
 						<h3 class="am-gallery-title">后端开发工程师优秀模板</h3>
@@ -159,7 +167,7 @@
 				</div>
 			</li>
 			<li>
-				<div class="am-gallery-item">
+				<div class="am-gallery-item zy-shake-item">
 					<a href="#">
 						<img src="/images/function1.jpg" />
 						<h3 class="am-gallery-title">客户端开发工程师优秀模板</h3>
@@ -168,7 +176,7 @@
 				</div>
 			</li>
 			<li>
-				<div class="am-gallery-item">
+				<div class="am-gallery-item zy-shake-item">
 					<a href="#">
 						<img src="/images/function2.jpg" />
 						<h3 class="am-gallery-title">产品经理优秀模板</h3>
@@ -180,4 +188,19 @@
 	</div>
 </section>
 
+
+
 <% include footer.html %>
+<!-- 
+<div class="am-panel am-panel-default" data-am-scrollspy="{animation: 'fade'}">...</div>
+
+<div class="am-panel am-panel-default" data-am-scrollspy="{animation: 'fade', delay: 300}">...</div> -->
+
+<script>
+$('.zy-shake-item').hover(function(){
+		$(this).addClass('am-animation-shake');
+	},function(){
+		$(this).removeClass('am-animation-shake')
+	}
+)	
+</script>

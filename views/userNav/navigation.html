@@ -42,11 +42,13 @@
 			<div class="zy-navigation-list">
 				<% if (allNavgition) { %>
 					<% for(var i=0; i<allNavgition.models.length; i++) {%>
-						<div class="zy-module-container">
+						<div class="zy-module-container" data-_id="<%= allNavgition.models[i]._id %>">
 						<div class="col-sm-12 am-u-sm-12 zy-navigation-nav">
-							<a name="<%= allNavgition.models[i].maoName %>"><button class="am-btn am-btn-secondary am-btn-xl">
-								<%= allNavgition.models[i].modelsName %>
-							</button></a>
+							<a name="<%= allNavgition.models[i].maoName %>">
+								<button class="am-btn am-btn-secondary am-btn-xl">
+									<%= allNavgition.models[i].modelsName %>
+								</button>
+							</a>
 						</div>
 						<% for(var j=0; j<allNavgition.models[i].modelsuns.length; j++) {%>
 							<div class="col-md-4 am-u-md-4 col-sm-6 am-u-sm-6 zy-navigation-item">
@@ -54,8 +56,8 @@
 									<button type="button" class="J_zy-module-close am-close">
 										<i class="am-icon-close"></i>
 									</button>
-									<div class="zy-module-con" data-am-popover="{theme:'success sm',content:'<%= allNavgition.models[i].modelsuns[j].sunDesc %>',trigger: 'hover focus'}">
-										<a href="<%= allNavgition.models[i].modelsuns[j].sunUrl %>">
+									<div data-_id="<%= allNavgition.models[i].modelsuns[j]._id %>" class="zy-module-con" data-am-popover="{theme:'success sm',content:'<%= allNavgition.models[i].modelsuns[j].sunDesc %>',trigger: 'hover focus'}">
+										<a href="<%= allNavgition.models[i].modelsuns[j].sunUrl %>" target="_blank">
 											<%= allNavgition.models[i].modelsuns[j].sunName %>
 										</a><br>
 										<div class="zy-module-tip">
@@ -67,7 +69,7 @@
 						<% } %>
 							<div class="col-md-4 am-u-md-4 col-sm-6 am-u-sm-6 zy-navigation-item zy-navigation-add-ele am-u-end">
 								<div class="am-alert am-alert-secondary J_zy-datamodal">
-									<div style="padding:1rem 0;font-size:1.5rem;text-align:center;">添加模块</div>
+									<div style="padding:1.2rem 0;font-size:1.5rem;text-align:center;">添加模块</div>
 								</div>
 							</div>
 						</div>
@@ -83,7 +85,7 @@
 				<li class="am-modal-actions-danger">
 					<br>
 					<div class="am-u-lg-6 am-u-md-8  am-u-sm-centered">
-						<form class="am-form am-form-horizontal">
+						<form class="am-form am-form-horizontal" autocomplete ='off' >
 							<div class="am-form-group">
 								<label class="am-u-sm-2 am-form-label">模块名称：</label>
 								<div class="am-u-sm-10">
@@ -111,14 +113,14 @@
 				<li class="am-modal-actions-danger">
 					<br>
 					<div class="am-u-lg-6 am-u-md-8  am-u-sm-centered">
-						<form class="am-form am-form-horizontal">
+						<form class="am-form am-form-horizontal" autocomplete ='off'>
 							<div class="am-form-group">
 								<label class="am-u-sm-2 am-form-label">模块名称：</label>
 								<div class="am-u-sm-10">
 									<select class="addmodelNameD" required>
 										<% if (allNavgition) { %>
 											<% for(var i=0; i<allNavgition.models.length; i++) {%>
-												<option value="<%= allNavgition.models[i].modelsName %>">
+												<option value="<%= allNavgition.models[i]._id %>">
 													<%= allNavgition.models[i].modelsName %>
 												</option>
 											<% } %>
@@ -149,10 +151,7 @@
 				<span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
 			</div>
 			<div class="am-u-lg-12 am-u-sm-centered am-popup-bd">
-				<br>
-				<br>
-				<br>
-				<form class="am-form am-form-horizontal" data-am-validator>
+				<form class="am-form am-form-horizontal" data-am-validator autocomplete ='off' >
 					<div class="am-form-group">
 						<label class="am-u-sm-3 am-form-label">模块名称：</label>
 						<div class="am-u-sm-9">

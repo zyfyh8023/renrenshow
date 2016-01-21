@@ -7,43 +7,27 @@ var NavigationSchema = new Schema({
         type: String,
         unique: true
     },
-    models: [{
-        modelsName: String,
-        maoName: String,
-        createTime: {
-            type: Date,
-            default: Date.now
-        },
-        updateTime: {
-            type: Date,
-            default: Date.now
-        },
-        sque: {
-            type: Number,
-            default: 0
-        },
-        modelsuns: [{
-            sunSque: {
-                type: Number,
-                default: 0
-            },
-            sunDesc: String,
-            sunName: String,
-            sunUrl: String,
-            cTime: {
+    models: [
+        {
+            modelsName: String,
+            maoName: String,
+            createTime: {
                 type: Date,
                 default: Date.now
             },
-            uTime: {
+            updateTime: {
                 type: Date,
                 default: Date.now
-            }
-        }]
-    }],
-    changeTime: {
-        type: Date,
-        default: Date.now
-    }
+            },
+            modelsuns: [
+                {
+                    sunDesc: String,
+                    sunName: String,
+                    sunUrl: String
+                }
+            ]
+        }
+    ]
 });
 
 //访问User对象模型

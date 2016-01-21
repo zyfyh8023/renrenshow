@@ -99,24 +99,6 @@ function userInit(uNames, callback2){
                         callback('设置初始化失败！', null);
                     }
                 });
-            },
-            function(callback) {
-                privateSeting.createInit(uNames, function(res){
-                    if (res) {
-                        callback(null, 200);
-                    } else {
-                        callback('私人设置初始化失败！', null);
-                    }
-                });
-            },   
-            function(callback) {
-                navgation.listInit(uNames, function(res){
-                    if (res) {
-                        callback(null, 200);
-                    } else {
-                        callback('导航初始化失败！', null);
-                    }
-                });
             }
         ],
         function(err2, sign2) {

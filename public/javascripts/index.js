@@ -64,3 +64,108 @@ function alertOpnFn(message) {
 function alertClsFn() {
 	$("#my-alert").modal("close");
 }
+
+/**
+ * 
+ *分页模块
+ *
+ **/
+//分页模块
+function pageStep(clickobj){
+	var pagenum;
+
+	pagenum = clickPagebtn($(clickobj));
+	if(pagenum != 0){
+		pageChange(pagenum);
+		return pagenum;
+	}else{
+		return 0;
+	}
+}
+
+function pageChange(clickNum){
+	var pagetipHtml='共'+__data.allpage+'页&nbsp;';
+
+	if(__data.allpage != __data.showpagetip){
+		pagetipHtml+='<li class="J_pre-page"><a href="javascript:;">&laquo;</a></li>';
+		pagetipHtml+= pagebtnShow(clickNum);
+		pagetipHtml+='<li class="J_next-page"><a href="javascript:;">&raquo;</a></li>';
+	}else{
+		pagetipHtml+='<li class="J_pre-page"><a href="javascript:;">&laquo;</a></li>';
+		for(var i=1; i<=__data.allpage; i++){
+			pagetipHtml+=comCon(i, clickNum);
+		}
+		pagetipHtml+='<li class="J_next-page"><a href="javascript:;">&raquo;</a></li>';
+	}
+
+	$("#pageShow ul").html(pagetipHtml);
+}
+
+function pagebtnShow(clickNum){
+	var pagetipHtml="";
+	var curNum=clickNum;
+	var	nextNumDeta=__data.allpage-curNum;
+	var	preNumDeta=curNum-4;
+
+	if(nextNumDeta>=4 && preNumDeta>0){
+		for(var i=curNum-4;i<=curNum+4;i++){
+			pagetipHtml+=comCon(i, clickNum);
+		}
+	}else if(preNumDeta<=0){
+		for(var i=1;i<=curNum+5-preNumDeta;i++){
+			pagetipHtml+=comCon(i, clickNum);
+		}
+	}else{
+		for(var i=curNum-4-(4-nextNumDeta);i<=__data.allpage;i++){
+			pagetipHtml+=comCon(i, clickNum);
+		}
+	}
+
+	return pagetipHtml;
+}
+
+function comCon(i, clickNum){
+	var htmlS="";
+	if(i==clickNum){
+		htmlS='<li class="am-active"><a href="javascript:;">'+i+'</a></li>';
+	}else{
+		htmlS='<li><a href="javascript:;">'+i+'</a></li>';
+	}
+
+	return htmlS;
+}
+
+function clickPagebtn(clickobj){
+	var pagenum=0;
+	var contain=$(clickobj).closest("#pageShow");
+	var pagenum=$(contain).find(".am-active").text();
+
+	if(isPrepage(clickobj) || isNextpage(clickobj)){
+		if(isPrepage(clickobj) && parseInt(pagenum) != 1){
+			pagenum = parseInt(pagenum) - 1;
+		}
+		if(isNextpage(clickobj) && parseInt(pagenum) != __data.allpage){
+			pagenum = parseInt(pagenum) + 1;
+		}
+	}else{
+		pagenum = parseInt($(clickobj).find("a").text());
+	}
+
+	return pagenum;
+}
+
+function isPrepage(clickobj){
+	if($(clickobj).hasClass('J_pre-page')){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+function isNextpage(clickobj){
+	if($(clickobj).hasClass('J_next-page')){
+		return true;
+	}else{
+		return false;
+	}
+}

@@ -26,7 +26,6 @@ var privateSetingSchema = new Schema({
             moduleDesc: String
         }
     ],
-    priLinks: [],
     cTime: {
         type: Date,
         default: Date.now

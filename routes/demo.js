@@ -1,10 +1,5 @@
 /* GET demo page. */
 exports.page = function(req, res) {
-	// res.render('demo', {
-	// 	title: 'demo',
-	// 	uName: ''
-	// });
-	
 	
 	// res.render('demo2', {
 	// 	title: 'demo2',
@@ -17,10 +12,15 @@ exports.page = function(req, res) {
 	// 	uName: ''
 	// });
 	
-	res.render('demo4', {
-		title: 'demo4',
+	// res.render('demo', {
+	// 	title: 'demo',
+	// 	uName: ''
+	// });
+	
+	
+	res.render('demo5', {
+		title: 'demo5',
 		uName: ''
 	});
 	
-
 };

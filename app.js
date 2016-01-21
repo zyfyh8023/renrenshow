@@ -18,7 +18,6 @@ var register = require('./routes/register');
 var faq = require('./routes/faq');
 var myindex = require('./routes/myindex');
 var resume = require('./routes/resume');
-var pageResume = require('./routes/pageResume');
 var managearticle = require('./routes/managearticle');
 var manageExperience = require('./routes/manageExperience');
 var createarticle = require('./routes/createarticle');
@@ -34,6 +33,8 @@ var seting = require('./routes/seting');
 var privateSeting = require('./routes/privateSeting');
 var changePassword = require('./routes/changePassword');
 var checkState = require('./routes/checkState');
+var about = require('./routes/about');
+var resumeLook = require('./routes/resumeLook');
 var demo = require('./routes/demo');
 
 
@@ -105,7 +106,7 @@ app.post('/loginOut', login.loginOut);
 //注册页面不需要限制
 app.get('/register', register.page);
 app.post('/register', register.doRegister);
-
+app.get('/about', about.page);
 //个人中心——首页
 app.get('/myindex', myindex.page);
 app.get('/blog_art', blogAorE.artSee);
@@ -146,9 +147,6 @@ app.post('/resume/practice/upd', resume.practice3); //工作经历-update
 app.post('/resume/repractice/add', resume.repractice1); //re工作经历-add
 app.post('/resume/repractice/del', resume.repractice2); //re工作经历-del
 app.post('/resume/repractice/upd', resume.repractice3); //re工作经历-update
-//纸质简历
-app.get('/pageResume', pageResume.page);
-app.post('/pageResume', pageResume.doPage);
 //博文管理
 app.get('/blogs_art_cre', createarticle.page);
 app.post('/createarticle', createarticle.doPage);

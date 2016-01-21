@@ -39,9 +39,10 @@ $(document).ready(function() {
 	 **seting页面的js
 	 *********************/
 	//seting页面保存事件
-	$('#zy-setting').delegate('button', 'click', function(event) {
+	var $setings=$('#zy-setting');
+	$setings.delegate('button', 'click', function(event) {
 		var setingArr = [];
-		$(".zy-change-content", $('#zy-setting')).each(function() {
+		$(".zy-change-content", $setings).each(function() {
 			var temp = {};
 			temp.modelNam = $(this).prev().children(".titleName").text();
 			temp.sunModels = [];
@@ -334,13 +335,13 @@ $(document).ready(function() {
 	var $navgation=$("#zy-navgation");
 	var $removenavmodel = $('#my-removenavmodel', $navgation);
 	$removenavmodel.delegate('button', 'click', function(event) {
-		var navName = $.trim($(".addmodelNameD", $removenavmodel).val());
-		if (navName != '') {
+		var _id = $.trim($(".addmodelNameD", $removenavmodel).val());
+		if (_id != '') {
 			$.ajax({
 				type: 'post',
 				url: '/navigationListDel',
 				data: {
-					navName: navName
+					_id: _id
 				},
 				dataType: 'json',
 				success: function(data) {
@@ -391,8 +392,8 @@ $(document).ready(function() {
 	var navModulePar="";
 	var $navpopup = $('#my-navpopup', $navgation);
 	$navgation.delegate('.J_zy-datamodal', 'click', function(event) {
-		$navpopup.modal();
-		navModulePar=$(this).closest('.zy-module-container').find(".zy-navigation-nav button").text();
+		$navpopup.modal("open");
+		navModulePar=$(this).closest('.zy-module-container').data("_id");
 	});
 	$navpopup.delegate('button', 'click', function(event) {
 		var moduleName = $.trim($(".moduleName", $navpopup).val()),
@@ -428,15 +429,9 @@ $(document).ready(function() {
 	});
 
 	//小链接元素的删除
-	var navModulePar="";
-	var $navpopup = $('#my-navpopup', $navgation);
-	$navgation.delegate('.J_zy-datamodal', 'click', function(event) {
-		$navpopup.modal("open");
-		navModulePar=$(this).closest('.zy-module-container').find(".zy-navigation-nav button").text();
-	});
 	$navgation.delegate('.J_zy-module-close', 'click', function(event) {
-		var moduleName = $.trim($(this).next(".zy-module-con").find("a").text()),
-			moduleParent = $.trim($(this).closest('.zy-module-container').find(".zy-navigation-nav button").text());
+		var moduleName = $.trim($(this).next(".zy-module-con").data('_id')),
+			moduleParent = $.trim($(this).closest('.zy-module-container').data('_id'));
 		if (moduleName!='' && moduleParent!="") {
 			$.ajax({
 				type: 'post',
@@ -2223,110 +2218,4 @@ function descAjaxCom(num){
 			alertOpnFn('err');
 		}
 	});
-}
-
-
-/**
- * 
- *分页模块
- *
- **/
-//分页模块
-function pageStep(clickobj){
-	var pagenum;
-
-	pagenum = clickPagebtn($(clickobj));
-	if(pagenum != 0){
-		pageChange(pagenum);
-		return pagenum;
-	}else{
-		return 0;
-	}
-}
-
-function pageChange(clickNum){
-	var pagetipHtml='共'+__data.allpage+'页&nbsp;';
-
-	if(__data.allpage != __data.showpagetip){
-		pagetipHtml+='<li class="J_pre-page"><a href="javascript:;">&laquo;</a></li>';
-		pagetipHtml+= pagebtnShow(clickNum);
-		pagetipHtml+='<li class="J_next-page"><a href="javascript:;">&raquo;</a></li>';
-	}else{
-		pagetipHtml+='<li class="J_pre-page"><a href="javascript:;">&laquo;</a></li>';
-		for(var i=1; i<=__data.allpage; i++){
-			pagetipHtml+=comCon(i, clickNum);
-		}
-		pagetipHtml+='<li class="J_next-page"><a href="javascript:;">&raquo;</a></li>';
-	}
-
-	$("#pageShow ul").html(pagetipHtml);
-}
-
-function pagebtnShow(clickNum){
-	var pagetipHtml="";
-	var curNum=clickNum;
-	var	nextNumDeta=__data.allpage-curNum;
-	var	preNumDeta=curNum-4;
-
-	if(nextNumDeta>=4 && preNumDeta>0){
-		for(var i=curNum-4;i<=curNum+4;i++){
-			pagetipHtml+=comCon(i, clickNum);
-		}
-	}else if(preNumDeta<=0){
-		for(var i=1;i<=curNum+5-preNumDeta;i++){
-			pagetipHtml+=comCon(i, clickNum);
-		}
-	}else{
-		for(var i=curNum-4-(4-nextNumDeta);i<=__data.allpage;i++){
-			pagetipHtml+=comCon(i, clickNum);
-		}
-	}
-
-	return pagetipHtml;
-}
-
-function comCon(i, clickNum){
-	var htmlS="";
-	if(i==clickNum){
-		htmlS='<li class="am-active"><a href="javascript:;">'+i+'</a></li>';
-	}else{
-		htmlS='<li><a href="javascript:;">'+i+'</a></li>';
-	}
-
-	return htmlS;
-}
-
-function clickPagebtn(clickobj){
-	var pagenum=0;
-	var contain=$(clickobj).closest("#pageShow");
-	var pagenum=$(contain).find(".am-active").text();
-
-	if(isPrepage(clickobj) || isNextpage(clickobj)){
-		if(isPrepage(clickobj) && parseInt(pagenum) != 1){
-			pagenum = parseInt(pagenum) - 1;
-		}
-		if(isNextpage(clickobj) && parseInt(pagenum) != __data.allpage){
-			pagenum = parseInt(pagenum) + 1;
-		}
-	}else{
-		pagenum = parseInt($(clickobj).find("a").text());
-	}
-
-	return pagenum;
-}
-
-function isPrepage(clickobj){
-	if($(clickobj).hasClass('J_pre-page')){
-		return true;
-	}else{
-		return false;
-	}
-}
-
-function isNextpage(clickobj){
-	if($(clickobj).hasClass('J_next-page')){
-		return true;
-	}else{
-		return false;
-	}
 }

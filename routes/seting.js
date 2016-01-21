@@ -35,21 +35,13 @@ exports.doPage = function(req, res, next) {
 	//确定更改
 	uName = req.session.user.username;
 	var setObj = JSON.parse(req.body.uNameSet);
-	setings.modify({
-		author: uName
-	}, {
+	setings.modify({author: uName}, {
 		allModels: setObj
 	}, function(err) {
 		if (err) {
-			retDesc = "保存失败,请稍后再试!";
-			return res.send({
-				retCode: 400,
-				retDesc: retDesc
-			});
+			return res.send({retCode: 400,retDesc: '保存失败,请稍后再试!'});
 		} else {
-			return res.send({
-				retCode: 200
-			});
+			return res.send({retCode: 200});
 		}
 	});
 }

@@ -34,35 +34,38 @@ exports.doPage = function(req, res, next) {
 		setName = req.body.setName;
 	privateSetings.findByUname(uName, function(err, rs) {
 		if (err) {
-			retDesc = '信息查找失败！';
-			return res.send({
-				retCode: 400,
-				retDesc: retDesc
-			});
+			return res.send({retCode: 400,retDesc: '信息查找失败！'});
 		} else {
 			var setpri={
 				moduleDesc:setName,
 				moduleCon:setObj,
 				vCode: Date.now()
 			};
-			rs.allModels.push(setpri);
-			privateSetings.modify({
-				author: uName
-			}, {
-				allModels: rs.allModels
-			}, function(err) {
-				if (err) {
-					retDesc = "保存失败,请稍后再试!";
-					return res.send({
-						retCode: 400,
-						retDesc: retDesc
-					});
-				} else {
-					return res.send({
-						retCode: 200
-					});
-				}
-			});
+			if(rs){
+				rs.allModels.push(setpri);
+				privateSetings.modify({author: uName}, {
+					allModels: rs.allModels
+				}, function(err) {
+					if (err) {
+						return res.send({retCode: 400,retDesc: '保存失败,请稍后再试!'});
+					} else {
+						return res.send({retCode: 200});
+					}
+				});
+			}else{
+				var newSet = new privateSetings.privateSetting({
+					author: uName,
+					allModels: []
+				});
+				newSet.allModels.push(setpri);
+				privateSetings.create(newSet, function(err) {
+					if (err) {
+						return res.send({retCode: 400,retDesc: '保存失败,请稍后再试!'});
+					} else {
+						return res.send({retCode: 200});
+					}
+				});
+			}
 		}
 	});
 };
@@ -73,28 +76,16 @@ exports.del = function(req, res, next) {
 
 	privateSetings.findByUname(uName, function(err, rs) {
 		if (err) {
-			retDesc = '信息查找失败！';
-			return res.send({
-				retCode: 400,
-				retDesc: retDesc
-			});
+			return res.send({retCode: 400,retDesc: '信息查找失败！'});
 		} else {
 			rs.allModels.splice(ids,1);
-			privateSetings.modify({
-				author: uName
-			}, {
+			privateSetings.modify({author: uName}, {
 				allModels: rs.allModels
 			}, function(err) {
 				if (err) {
-					retDesc = "保存失败,请稍后再试!";
-					return res.send({
-						retCode: 400,
-						retDesc: retDesc
-					});
+					return res.send({retCode: 400,retDesc: '保存失败,请稍后再试!'});
 				} else {
-					return res.send({
-						retCode: 200
-					});
+					return res.send({retCode: 200});
 				}
 			});
 		}
@@ -107,16 +98,9 @@ exports.see = function(req, res, next) {
 
 	privateSetings.findByUname(uName, function(err, rs) {
 		if (err) {
-			retDesc = '信息查找失败！';
-			return res.send({
-				retCode: 400,
-				retDesc: retDesc
-			});
+			return res.send({retCode: 400,retDesc: '信息查找失败！'});
 		} else {
-			return res.send({
-				retCode: 200,
-				retData:rs.allModels[ids]
-			});
+			return res.send({retCode: 200,retData:rs.allModels[ids]});
 		}
 	});
 };
@@ -128,28 +112,16 @@ exports.upd = function(req, res, next) {
 
 	privateSetings.findByUname(uName, function(err, rs) {
 		if (err) {
-			retDesc = '信息查找失败！';
-			return res.send({
-				retCode: 400,
-				retDesc: retDesc
-			});
+			return res.send({retCode: 400,retDesc: '信息查找失败！'});
 		} else {
 			rs.allModels[ids].moduleCon=setObj;
-			privateSetings.modify({
-				author: uName
-			}, {
+			privateSetings.modify({author: uName}, {
 				allModels: rs.allModels
 			}, function(err) {
 				if (err) {
-					retDesc = "保存失败,请稍后再试!";
-					return res.send({
-						retCode: 400,
-						retDesc: retDesc
-					});
+					return res.send({retCode: 400,retDesc: '保存失败,请稍后再试!'});
 				} else {
-					return res.send({
-						retCode: 200
-					});
+					return res.send({retCode: 200});
 				}
 			});
 		}
@@ -162,48 +134,23 @@ exports.chg = function(req, res, next) {
 
 	privateSetings.findByUname(uName, function(err, rs) {
 		if (err) {
-			retDesc = '信息查找失败！';
-			return res.send({
-				retCode: 400,
-				retDesc: retDesc
-			});
+			return res.send({retCode: 400,retDesc: '信息查找失败！'});
 		} else {
 			if(rs.allModels[ids].status=='1'){
 				rs.allModels[ids].status='0';
 			}else{
 				rs.allModels[ids].status='1';
 			}
-			privateSetings.modify({
-				author: uName
-			}, {
+			privateSetings.modify({author: uName}, {
 				allModels: rs.allModels
 			}, function(err) {
 				if (err) {
-					retDesc = "保存失败,请稍后再试!";
-					return res.send({
-						retCode: 400,
-						retDesc: retDesc
-					});
+					return res.send({retCode: 400,retDesc: '保存失败,请稍后再试!'});
 				} else {
-					return res.send({
-						retCode: 200
-					});
+					return res.send({retCode: 200});
 				}
 			});
 		}
 	});
 };
 
-exports.createInit = function(uNames,callback) {
-	var newSet = new privateSetings.privateSetting({
-		author: uNames,
-	});
-
-	privateSetings.create(newSet, function(err) {
-		if (err) {
-			callback(0);
-		} else {
-			callback(1);
-		}
-	});
-}
