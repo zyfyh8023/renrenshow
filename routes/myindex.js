@@ -15,8 +15,8 @@ exports.page = function(req, res, next) {
 		if(err){
 			res.redirect('/error');
 		}else{
+			console.log(rs.modules);
 			if(rs.signed=='2' && rs.uName!=""){   //特权身份
-				;console.log(rs.modules);
 				res.render('./userIndex/myindex', {
 					signed: rs.signed,
 					title: rs.uName+'的网站首页-人人秀'
