@@ -1,0 +1,55 @@
+<% include header.html %>
+
+		<link href="http://ask.amazeui.org/static/css/default/login.css?v=20150409" rel="stylesheet" type="text/css" />
+		
+		<link href="http://ask.amazeui.org/static/css/new/new.css" rel="stylesheet" type="text/css" />
+
+</head>
+<noscript unselectable="on" id="noscript">
+	<div class="aw-404 aw-404-wrap container">
+		<img src="http://ask.amazeui.org/static/common/no-js.jpg">
+		<p>你的浏览器禁用了JavaScript, 请开启后刷新浏览器获得更好的体验!</p>
+	</div>
+</noscript>
+<div id="wrapper">
+	<div class="aw-login-box">
+		<div class="mod-body am-cf">
+			<div class="content am-fl">
+				<h1 class="logo"><a href=""></a></h1>
+				<h2>Amaze UI官方社区</h2>
+				<form class="am-form" id="login_form" method="post" onsubmit="return false" action="http://ask.amazeui.org/?/account/ajax/login_process/">
+					<input type="hidden" name="return_url" value="http://ask.amazeui.org/?/account/register/" />
+					<ul>
+						<li>
+							<input type="text" id="aw-login-user-name" class="am-form-field am-radius" placeholder="邮箱 / 用户名" name="user_name" />
+						</li>
+						<li>
+							<input type="password" id="aw-login-user-password" class="am-form-field am-radius" placeholder="密码" name="password" />
+						</li>
+						<li class="am-alert am-alert-danger error_message hide">
+							<i class="icon icon-delete"></i> <em></em>
+						</li>
+						<li class="last">
+							<a href="javascript:;" onclick="AWS.ajax_post($('#login_form'), AWS.ajax_processer, 'error_message');" id="login_submit" class="am-fr am-btn am-btn-secondary am-radius">登录</a>
+							<label>
+								<input type="checkbox" value="1" name="net_auto_login" />
+								记住我							</label>
+							<a href="http://ask.amazeui.org/?/account/find_password/">&nbsp;&nbsp;忘记密码</a>
+						</li>
+					</ul>
+				</form>
+			</div>
+			<div class="side-bar am-fl">
+							</div>
+		</div>
+		<div class="mod-footer">
+			<span>还没有账号?</span>&nbsp;&nbsp;
+			<a href="http://ask.amazeui.org/?/account/register/">立即注册</a>&nbsp;&nbsp;•&nbsp;&nbsp;
+			<a href="">游客访问</a>&nbsp;&nbsp;•&nbsp;&nbsp;
+			<a href="http://ask.amazeui.org/?/reader/">问答阅读</a>
+		</div>
+	</div>
+</div>
+
+
+<% include footer.html %>
