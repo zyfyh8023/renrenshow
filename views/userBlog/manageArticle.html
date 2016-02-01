@@ -34,7 +34,7 @@
 									<% } %>
 								</td>
 								<td class="am-text-middle">
-									<%= allArticles[i].cTime.getFullYear()+'-'+allArticles[i].cTime.getMonth()+'-'+allArticles[i].cTime.getDate()+' '+allArticles[i].cTime.getHours()+':'+allArticles[i].cTime.getMinutes()+':'+allArticles[i].cTime.getSeconds() %>
+									<%= dateformat(allArticles[i].cTime) %>
 								</td>
 								<td class="am-text-middle">
 									<a href="javascript:;" class="zy-del-art">删除</a><br>

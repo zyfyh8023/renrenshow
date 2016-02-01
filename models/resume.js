@@ -27,6 +27,7 @@ var ResumeScheme = new Schema({
     },
     schools3: [{
         school: String,
+        collegeName: String,
         educationtype: String,
         sdatetime: Date,
         edatetime: Date,
@@ -36,6 +37,7 @@ var ResumeScheme = new Schema({
     }],
     experience4: [{
         practice: String,
+        departmentName: String,
         spracticetime: String,
         epracticetime: String,
         practiceposition: String,
@@ -44,6 +46,7 @@ var ResumeScheme = new Schema({
     }],
     work5: [{
         practice: String,
+        departmentName: String,
         spracticetime: String,
         epracticetime: String,
         practiceposition: String,
@@ -59,17 +62,21 @@ var ResumeScheme = new Schema({
     }],
     pWorks7: [{
         workname: String,
+        worktools: String,
         worktime: String,
         workduty: String,
         showink: String,
         codelink: String,
+        myworkdes: String,
         workdes: String,
         workimg: []
     }],
     projects8: [{
         pName: String,
         pTime: String,
-        addt: String
+        addt: String,
+        ppersonnum: String,
+        myPos: String
     }],
     trys9: [{
         tName: String,
@@ -81,6 +88,8 @@ var ResumeScheme = new Schema({
         ppName: String,
         ppTime: String,
         ppType: String,
+        allAuthors: String,
+        ppAddr: String,
         addt: String
     }],
     Technology11: [],

@@ -9,7 +9,6 @@ var ueditor = require("ueditor");
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var moment = require('moment');
-
 var config = require('./config');
 var MongodbAPI = require('./models/dbserver');
 var routes = require('./routes/index');
@@ -35,6 +34,7 @@ var changePassword = require('./routes/changePassword');
 var checkState = require('./routes/checkState');
 var about = require('./routes/about');
 var resumeLook = require('./routes/resumeLook');
+var comment = require('./routes/comment');
 var demo = require('./routes/demo');
 
 
@@ -100,6 +100,7 @@ app.get('/allarticle', allarticle.page);
 app.get('/allinfo', allinfo.page);
 app.get('/login', login.page);
 app.post('/login', login.doLogin);
+app.post('/comment', comment.doPage);
 //没登录的情况下提交退出
 app.post('/loginOut', checkState.checkLogin);
 app.post('/loginOut', login.loginOut);
@@ -187,13 +188,14 @@ app.get('/sets_pwd', changePassword.page);
 app.post('/changePassword', changePassword.doPage);
 //测试页面
 app.get('/demo', demo.page);
-// ejs.filters.dateformat = function(obj, format) {
-//     if (format == undefined) {
-//         format = 'YYYY-MM-DD HH:mm:ss';
-//     }
-//     var ret = moment(obj).format(format);
-//     return ret == 'Invalid date' ? '0000-00-00 00:00:00' : ret;
-// };
+//app的日期格式化
+app.locals.dateformat = function(obj, format) {
+    if (format == undefined) {
+        format = 'YYYY-MM-DD HH:mm:ss';
+    }
+    var ret = moment(obj).format(format);
+    return ret;
+};
 
 MongodbAPI.connect(function(error) {
     if (error) throw error;

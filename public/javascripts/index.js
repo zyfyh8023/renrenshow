@@ -36,6 +36,32 @@ $(document).ready(function() {
 		$("#zy-warning").addClass('zy-display-none');
 	});
 
+
+	//评论模块
+	var $comm=$('#zy-blog-com');
+	$comm.delegate('.zy-button1', 'click', function(event) {
+		$.ajax({
+			type: 'post',
+			url: '/comment',
+			data: {
+				comCon: $('.comment', $comm).val(),
+				comArt: $('.comFrom', $comm).data('artid'),
+				artAuthor: $('.comFrom', $comm).data('authorid')
+			},
+			dataType: 'json',
+			success: function(data) {
+				if (data.retCode != 200) {
+					warnOpnFn(data.retDesc);
+				} else {
+					location.reload();
+				}
+			},
+			error: function(data) {
+				alertOpnFn('err');
+			}
+		});
+	});
+
 });
 
 //warn的opn和cls

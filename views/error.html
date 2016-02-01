@@ -1,23 +1,5 @@
 <% include header.html %>
 
-<style>
-.zy-con-404{
-	width: 100%;
-	text-align: center;
-	margin-top:15rem;
-	margin-bottom:15rem;
-}
-.zy-con404-left{
-	display: inline-block;
-	vertical-align: middle;
-}
-.zy-con404-right{
-	display: inline-block;
-	vertical-align: middle;
-	margin-left: 1rem;
-}
-</style>
-
 <div class="zy-con-404">
 	
 	<div class="zy-con404-left">
@@ -26,65 +8,12 @@
 	<div class="zy-con404-left">
 		<img src="/images/4042.jpg">
 	</div>
-
-	<div>
-		
-	</div>
-	<!-- <pre> -->
-		<!-- <%= error.status %> -->
-		<!-- <%= message %>  -->
-		<!-- <%= error.stack %> -->
-	<!-- </pre> -->
+	<pre>
+		<%= error.status %>
+		<%= message %> 
+		<%= error.stack %>
+	</pre>
+	
 </div>
 
 <% include footer.html %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="am-g">
-      <div class="am-u-sm-12">
-        <h2 class="am-text-center am-text-xxxl am-margin-top-lg">404. Not Found</h2>
-        <p class="am-text-center">没有找到你要的页面</p>
-        <pre class="page-404">
-          .----.
-       _.'__    `.
-   .--($)($$)---/#\
- .' @          /###\
- :         ,   #####
-  `-..__.-' _.-\###/
-        `;_:    `"'
-      .'"""""`.
-     /,  ya ,\\
-    //  404!  \\
-    `-._______.-'
-    ___`. | .'___
-   (______|______)
-        </pre>
-      </div>
-    </div>
-  </div>
-</div>

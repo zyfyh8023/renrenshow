@@ -17,10 +17,10 @@ exports.page = function(req, res) {
 	// 	uName: ''
 	// });
 
-	res.render('demo6', {
-		title: 'demo6',
-		uName: ''
-	});
+	// res.render('demo6', {
+	// 	title: 'demo6',
+	// 	uName: ''
+	// });
 
 
 	// res.render('demo5', {
@@ -28,4 +28,26 @@ exports.page = function(req, res) {
 	// 	uName: ''
 	// });
 	
+
+	// res.render('demo7', {
+	// 	title: 'demo7',
+	// 	uName: ''
+	// });
+
+	res.render('userResume/userSCI/schoolInfo', {
+		title: 'demo8',
+		uName: ''
+	});
+	
+
+	// res.render('userResume/userSCI/companyInfo', {
+	// 	title: 'demo9',
+	// 	uName: ''
+	// });
+
+
+	// res.render('userResume/userSCI/awardInfo', {
+	// 	title: 'demo10',
+	// 	uName: ''
+	// });
 };
