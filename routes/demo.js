@@ -1,3 +1,5 @@
+
+
 /* GET demo page. */
 exports.page = function(req, res) {
 	
@@ -23,31 +25,12 @@ exports.page = function(req, res) {
 	// });
 
 
-	// res.render('demo5', {
-	// 	title: 'demo5',
-	// 	uName: ''
-	// });
-	
-
-	// res.render('demo7', {
-	// 	title: 'demo7',
-	// 	uName: ''
-	// });
-
-	res.render('userResume/userSCI/schoolInfo', {
-		title: 'demo8',
+	res.render('demo7', {
+		title: 'demo7',
 		uName: ''
 	});
 	
 
-	// res.render('userResume/userSCI/companyInfo', {
-	// 	title: 'demo9',
-	// 	uName: ''
-	// });
+	
 
-
-	// res.render('userResume/userSCI/awardInfo', {
-	// 	title: 'demo10',
-	// 	uName: ''
-	// });
 };

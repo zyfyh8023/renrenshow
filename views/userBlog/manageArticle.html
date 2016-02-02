@@ -7,7 +7,7 @@
 			<table class="am-table am-table-striped am-table-hover am-table-centered">
 				<% if (allArticles.length>0) { %>
 					<thead>
-						<tr class="am-primary">
+						<tr>
 							<th style="width:6rem">序号</th>
 							<th style="min-width:10rem">博文名称</th>
 							<th style="width:10rem">博文类型</th>
@@ -26,7 +26,7 @@
 								</td>
 								<td class="am-text-middle">
 									<% if(allArticles[i].articleType=='1') { %>
-										技术博客
+											技术博客
 										<% } else if(allArticles[i].articleType=='2'){ %>
 											行业远瞻
 										<% }else { %>

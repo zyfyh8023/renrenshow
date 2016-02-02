@@ -91,6 +91,42 @@ function alertClsFn() {
 	$("#my-alert").modal("close");
 }
 
+//cutStr
+function cutStr(str, strLen, addStr){
+	var allLen=0,
+	    len=str.length;
+	for(var i=0; i<len; i++){
+	    allLen+=str.charCodeAt(i) > 128 ? 2 : 1; 
+	}
+	if(allLen<=strLen){
+	    return str;
+	}
+	var cutStr='', strNum=0;
+	for(var j=0; j<len; j++){
+	    strNum+=str.charCodeAt(j) > 128 ? 2 : 1; 
+	    cutStr+=str[j];
+	    if(strNum>=strLen){
+	        break;
+	    }
+	}
+	if(addStr){
+	    cutStr+=addStr;
+	}
+	return cutStr;
+}
+
+//dateformat
+function dateformat(timestr){
+	var newTim=new Date(timestr);
+	var newTim2=newTim.getFullYear()+'-'+
+				newTim.getMonth()+'-'+
+				newTim.getDate()+' '+
+				newTim.getHours()+':'+
+				newTim.getMinutes()+':'+
+				newTim.getSeconds();
+	return newTim2;
+}
+
 /**
  * 
  *分页模块

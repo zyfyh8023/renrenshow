@@ -62,12 +62,8 @@ var ResumeScheme = new Schema({
     }],
     pWorks7: [{
         workname: String,
-        worktools: String,
         worktime: String,
-        workduty: String,
-        showink: String,
-        codelink: String,
-        myworkdes: String,
+        relationlink: String,
         workdes: String,
         workimg: []
     }],
@@ -75,8 +71,9 @@ var ResumeScheme = new Schema({
         pName: String,
         pTime: String,
         addt: String,
-        ppersonnum: String,
-        myPos: String
+        pnum: String,
+        myPos: String,
+        myworks: String
     }],
     trys9: [{
         tName: String,

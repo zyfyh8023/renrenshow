@@ -1,0 +1,74 @@
+<% include ../myheader.html %>
+<section id="zy-manageComs">
+	<% include ../nav.html %>
+	<div class="am-g am-u-lg-9 am-u-md-12  am-u-sm-centered zy-manage-article">
+		<% include articleNav.html %>
+		<div class="col-lg-10 am-u-lg-10 zy-show-lg-content">
+			<table class="am-table am-table-striped am-table-hover am-table-centered">
+				<% if (allComments.length>0) { %>
+					<thead>
+						<tr>
+							<th style="width:6rem">序号</th>
+							<th style="min-width:10rem">评论内容</th>
+							<th style="width:10rem">评论作者</th>
+							<th style="width:10rem">评论时间</th>
+							<th style="width:6rem">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% for(var i=0; i<allComments.length; i++) {%>
+							<tr data-ids="<%= allComments[i]._id %>">
+								<td class="am-text-middle">
+									<%= i+1 %>
+								</td>
+								<td class="am-text-middle">
+									<%= cutStr(allComments[i].CommentCont,100,'...') %>
+								</td>
+								<td class="am-text-middle">
+									<a href="#">
+										<img style="width:20%;border-radius:100%;" src="<%= allComments[i].authorImg %>">
+										<br><%= allComments[i].author %>
+									</a>
+								</td>
+								<td class="am-text-middle">
+									<%= dateformat(allComments[i].cTime) %>
+								</td>
+								<td class="am-text-middle">
+									<a href="#">查看</a>
+								</td>
+							</tr>
+						<% } %>
+					</tbody>
+				<% } %>
+			</table>
+			<div id="pageShow" style="<% if(allComments.length<=1) { %>display:none;<% } %>">
+				<ul class="am-pagination am-pagination-right">
+					共<%= allpage %>页&nbsp;
+					<% if(showpagetip > 1) {%>
+						<li class="J_pre-page"><a href="javascript:;">&laquo;</a></li>
+						<% for(var i=1; i<=showpagetip; i++) {%>
+							<% if(i==1) { %>
+								<li class="am-active"><a href="javascript:;">1</a></li>
+							<% }else{ %>
+								<li><a href="javascript:;"><%= i %></a></li>
+							<% } %>
+						<% } %>
+						<li class="J_next-page"><a href="javascript:;">&raquo;</a></li>
+					<% } %>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	window.__data={
+		allpage: <%= allpage %>,
+		showpagetip: <%= showpagetip %>,
+		nums: <%= nums %>,
+		comTyp:'<%= comTyp %>',
+		uName: "<%= uName%>"
+	}
+</script>
+
+<% include ../myfooter.html %>

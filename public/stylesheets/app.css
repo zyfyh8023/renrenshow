@@ -1,3 +1,6 @@
+a,a:hover{
+    outline: none;
+}
 /*
   warn和alert的样式
  */
@@ -128,14 +131,14 @@
 
 /*重定义*/
 
-.am-figure-zoomable::after {
+/*.am-figure-zoomable::after {
     content: "";
-}
+}*/
 
 
 /*重定义部分*/
 
-.zy-am-figure-default img {
+/*.zy-am-figure-default img {
     border: 0;
 }
 
@@ -145,7 +148,7 @@
 
 .am-table > tbody > tr > td {
     border-top: 0;
-}
+}*/
 
 
 /*简历页面*/

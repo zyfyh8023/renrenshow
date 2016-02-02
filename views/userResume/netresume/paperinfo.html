@@ -165,19 +165,31 @@
 						<div class="am-form-group">
 							<label class="am-u-sm-3 am-form-label">名称：</label>
 							<div class="am-u-sm-9">
-								<input type="text" value="" class="papername" required placeholder="请输入名称">
+								<input type="text" value="" class="papername" required placeholder="请输入论文专利的名称">
 							</div>
 						</div>
 						<div class="am-form-group">
 							<label class="am-u-sm-3 am-form-label">发表日期：</label>
 							<div class="am-u-sm-9">
-								<input type="text" value="" class="papertime am-form-field" placeholder="请输入发表日期" data-am-datepicker readonly/>
+								<input type="text" value="" class="papertime am-form-field" placeholder="请选择发表日期" data-am-datepicker readonly/>
 							</div>
 						</div>
 						<div class="am-form-group">
-							<label class="am-u-sm-3 am-form-label">补充说明：</label>
+							<label class="am-u-sm-3 am-form-label">作者排序：</label>
 							<div class="am-u-sm-9">
-								<textarea rows="3 " value="" class="paperinstr" placeholder="发表的详细信息（包括发表的期刊作者顺序及内容摘要等）"></textarea>
+								<input type="text" value="" name="authors" class="authors" required placeholder="请输入所有作者及其排序">
+							</div>
+						</div>
+						<div class="am-form-group">
+							<label class="am-u-sm-3 am-form-label">期刊名称：</label>
+							<div class="am-u-sm-9">
+								<input type="text" value="" name="ppaddr" class="ppaddr" required placeholder="请输入期刊名称">
+							</div>
+						</div>
+						<div class="am-form-group">
+							<label class="am-u-sm-3 am-form-label">摘要介绍：</label>
+							<div class="am-u-sm-9">
+								<textarea rows="3 " value="" class="paperinstr" placeholder="发表内容的主旨说明和摘要等）"></textarea>
 							</div>
 						</div>
 						<input type="hidden"  class="J_hidden-ipt" value="">

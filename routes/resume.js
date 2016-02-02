@@ -21,7 +21,7 @@ exports.page = function(req, res, next) {
 					if (err) {
 						res.redirect('/error');
 					}else{
-						console.log(rs);
+						// console.log(rs);
 						allres=rs;
 						res.render('./userResume/resume', {
 							title: '我的简历',
@@ -62,6 +62,7 @@ exports.baseinfo = function(req, res, next) {
 					return res.send({retCode: 400,retDesc: '图片的尺寸过大！'});
 				}
 				var imgType = inputFile1.headers['content-type'];
+				console.log(imgType);
 				if (imgType.split('/')[0] != 'image') {
 					return res.send({retCode: 400,retDesc: '只允许上传图片哦'});
 				}
@@ -203,6 +204,7 @@ exports.education3 = function(req, res, next) {
 								rs.schools3[updateid].edatetime=fields.edatetime[0];
 								rs.schools3[updateid].major=fields.major[0];
 								rs.schools3[updateid].majorinstr=fields.majorinstr[0];
+								rs.schools3[updateid].collegeName=fields.collegeName[0];
 								rs.schools3[updateid].schoolLogo=imgSrc;
 
 								resume.modify({author: uName}, {
@@ -224,7 +226,7 @@ exports.education3 = function(req, res, next) {
 						rs.schools3[updateid].edatetime=fields.edatetime[0];
 						rs.schools3[updateid].major=fields.major[0];
 						rs.schools3[updateid].majorinstr=fields.majorinstr[0];
-
+						rs.schools3[updateid].collegeName=fields.collegeName[0];
 						resume.modify({author: uName}, {
 							schools3: rs.schools3
 						}, function(err) {
@@ -282,6 +284,7 @@ exports.education1 = function(req, res, next) {
 									edatetime: fields.edatetime[0],
 									major: fields.major[0],
 									majorinstr: fields.majorinstr[0],
+									collegeName: fields.collegeName[0],
 									schoolLogo: imgSrc
 								};
 								rs.schools3.push(newschools3);
@@ -303,6 +306,7 @@ exports.education1 = function(req, res, next) {
 							sdatetime: fields.sdatetime[0],
 							edatetime: fields.edatetime[0],
 							major: fields.major[0],
+							collegeName: fields.collegeName[0],
 							majorinstr: fields.majorinstr[0]
 						};
 						rs.schools3.push(newschools3);
@@ -316,7 +320,6 @@ exports.education1 = function(req, res, next) {
 							}
 						});
 					}
-					
 				}
 			});
 		}
@@ -385,6 +388,7 @@ exports.repractice1 = function(req, res, next) {
 									epracticetime: fields.epracticetime[0],
 									practiceposition: fields.practiceposition[0],
 									practiceinstr: fields.practiceinstr[0],
+									departmentName: fields.departmentName[0],
 									companyLogo: imgSrc
 								};
 								rs.experience4.push(newexperience4);
@@ -405,6 +409,7 @@ exports.repractice1 = function(req, res, next) {
 							spracticetime: fields.spracticetime[0],
 							epracticetime: fields.epracticetime[0],
 							practiceposition: fields.practiceposition[0],
+							departmentName: fields.departmentName[0],
 							practiceinstr: fields.practiceinstr[0]
 						};
 						rs.experience4.push(newexperience4);
@@ -464,6 +469,7 @@ exports.repractice3 = function(req, res, next) {
 								rs.experience4[updateid].epracticetime=fields.epracticetime[0];
 								rs.experience4[updateid].practiceposition=fields.practiceposition[0];
 								rs.experience4[updateid].practiceinstr=fields.practiceinstr[0];
+								rs.experience4[updateid].departmentName=fields.departmentName[0];
 								rs.experience4[updateid].companyLogo=imgSrc;
 
 								resume.modify({author: uName}, {
@@ -484,7 +490,7 @@ exports.repractice3 = function(req, res, next) {
 						rs.experience4[updateid].epracticetime=fields.epracticetime[0];
 						rs.experience4[updateid].practiceposition=fields.practiceposition[0];
 						rs.experience4[updateid].practiceinstr=fields.practiceinstr[0];
-
+						rs.experience4[updateid].departmentName=fields.departmentName[0];
 						resume.modify({author: uName}, {
 							experience4: rs.experience4
 						}, function(err) {
@@ -564,6 +570,7 @@ exports.practice1 = function(req, res, next) {
 									epracticetime: fields.epracticetime[0],
 									practiceposition: fields.practiceposition[0],
 									practiceinstr: fields.practiceinstr[0],
+									departmentName: fields.departmentName[0],
 									companyLogo: imgSrc
 								};
 								rs.work5.push(newwork5);
@@ -584,6 +591,7 @@ exports.practice1 = function(req, res, next) {
 							spracticetime: fields.spracticetime[0],
 							epracticetime: fields.epracticetime[0],
 							practiceposition: fields.practiceposition[0],
+							departmentName: fields.departmentName[0],
 							practiceinstr: fields.practiceinstr[0]
 						};
 						rs.work5.push(newwork5);
@@ -643,6 +651,7 @@ exports.practice3 = function(req, res, next) {
 								rs.work5[updateid].epracticetime=fields.epracticetime[0];
 								rs.work5[updateid].practiceposition=fields.practiceposition[0];
 								rs.work5[updateid].practiceinstr=fields.practiceinstr[0];
+								rs.work5[updateid].departmentName=fields.departmentName[0];
 								rs.work5[updateid].companyLogo=imgSrc;
 
 								resume.modify({author: uName}, {
@@ -663,7 +672,7 @@ exports.practice3 = function(req, res, next) {
 						rs.work5[updateid].epracticetime=fields.epracticetime[0];
 						rs.work5[updateid].practiceposition=fields.practiceposition[0];
 						rs.work5[updateid].practiceinstr=fields.practiceinstr[0];
-
+						rs.work5[updateid].departmentName=fields.departmentName[0];
 						resume.modify({author: uName}, {
 							work5: rs.work5
 						}, function(err) {
@@ -763,7 +772,7 @@ exports.certificate1 = function(req, res, next) {
 							certificatename: fields.certificatename[0],
 							gettime: fields.gettime[0],
 							cgrade: fields.cgrade[0],
-							certificateinstr: fields.certificateinstr[0],
+							certificateinstr: fields.certificateinstr[0]
 						}
 						rs.Certificate6.push(newCertificate6);
 						resume.modify({
@@ -926,9 +935,7 @@ exports.works1 = function(req, res, next) {
 										var newpWorks7 = {
 											workname: fields.workname[0],
 											worktime: fields.worktime[0],
-											workduty: fields.workduty[0],
-											showink: fields.showink[0],
-											codelink: fields.codelink[0],
+											relationlink: fields.showink[0],
 											workdes: fields.workdes[0],
 											workimg: imgArr
 										}
@@ -950,10 +957,8 @@ exports.works1 = function(req, res, next) {
 						var newpWorks7 = {
 							workname: fields.workname[0],
 							worktime: fields.worktime[0],
-							workduty: fields.workduty[0],
-							showink: fields.showink[0],
-							codelink: fields.codelink[0],
-							workdes: fields.workdes[0],
+							relationlink: fields.showink[0],
+							workdes: fields.workdes[0]
 						}
 						rs.pWorks7.push(newpWorks7);
 						resume.modify({author: uName}, {
@@ -1015,9 +1020,7 @@ exports.works3 = function(req, res, next) {
 										var updateid = fields.J_hidden_ipt[0].trim();
 										rs.pWorks7[updateid].workname=fields.workname[0];
 										rs.pWorks7[updateid].worktime=fields.worktime[0];
-										rs.pWorks7[updateid].workduty=fields.workduty[0];
-										rs.pWorks7[updateid].showink=fields.showink[0];
-										rs.pWorks7[updateid].codelink=fields.codelink[0];
+										rs.pWorks7[updateid].relationlink=fields.showink[0];
 										rs.pWorks7[updateid].workdes=fields.workdes[0];
 										rs.pWorks7[updateid].workimg=imgArr;
 
@@ -1038,11 +1041,8 @@ exports.works3 = function(req, res, next) {
 						var updateid = fields.J_hidden_ipt[0].trim();
 						rs.pWorks7[updateid].workname=fields.workname[0];
 						rs.pWorks7[updateid].worktime=fields.worktime[0];
-						rs.pWorks7[updateid].workduty=fields.workduty[0];
-						rs.pWorks7[updateid].showink=fields.showink[0];
-						rs.pWorks7[updateid].codelink=fields.codelink[0];
+						rs.pWorks7[updateid].relationlink=fields.showink[0];
 						rs.pWorks7[updateid].workdes=fields.workdes[0];
-						rs.pWorks7[updateid].workimg=imgArr;
 
 						resume.modify({author: uName}, {
 							pWorks7: rs.pWorks7
@@ -1085,7 +1085,10 @@ exports.works2 = function(req, res, next) {
 exports.projects1 = function(req, res, next) {
 	var pname = req.body.pname.trim(),
 		ptime = req.body.ptime.trim(),
-		paddt = req.body.paddt.trim();
+		paddt = req.body.paddt.trim(),
+		pnum = req.body.pnum.trim(),
+		myPos = req.body.myPos.trim(),
+		myworks = req.body.myworks.trim();
 	uName = req.session.user.username;
 
 	resume.findByUname(uName, function(err, rs) {
@@ -1095,7 +1098,10 @@ exports.projects1 = function(req, res, next) {
 			var newprojects8 = {
 				pName: pname,
 				pTime: ptime,
-				addt: paddt
+				addt: paddt,
+				pnum: pnum,
+				myPos: myPos,
+				myworks: myworks
 			};
 			rs.projects8.push(newprojects8);
 			resume.modify({author: uName}, {
@@ -1115,6 +1121,9 @@ exports.projects3 = function(req, res, next) {
 	var pname = req.body.pname.trim(),
 		ptime = req.body.ptime.trim(),
 		paddt = req.body.paddt.trim(),
+		pnum = req.body.pnum.trim(),
+		myPos = req.body.myPos.trim(),
+		myworks = req.body.myworks.trim();
 		updateid = req.body.updateid.trim();
 	uName = req.session.user.username;
 
@@ -1125,7 +1134,10 @@ exports.projects3 = function(req, res, next) {
 			var newprojects8 = {
 				pName: pname,
 				pTime: ptime,
-				addt: paddt
+				addt: paddt,
+				pnum: pnum,
+				myPos: myPos,
+				myworks: myworks
 			};
 			rs.projects8[updateid]=newprojects8;
 			resume.modify({author: uName}, {
@@ -1252,7 +1264,10 @@ exports.paper1 = function(req, res, next) {
 	var papername = req.body.papername.trim(),
 		papertype = req.body.papertype.trim(),
 		papertime = req.body.papertime.trim(),
+		authors = req.body.authors.trim(),
+		ppaddr = req.body.ppaddr.trim(),
 		paperinstr = req.body.paperinstr.trim();
+
 	uName = req.session.user.username;
 
 	resume.findByUname(uName, function(err, rs) {
@@ -1263,7 +1278,9 @@ exports.paper1 = function(req, res, next) {
 				ppName: papername,
 				ppTime: papertype,
 				ppType: papertime,
-				addt: paperinstr
+				addt: paperinstr,
+				allAuthors: authors,
+				ppAddr: ppaddr
 			};
 			rs.PatentPaper10.push(newPatentPaper10);
 			resume.modify({author: uName}, {
@@ -1284,6 +1301,8 @@ exports.paper3 = function(req, res, next) {
 		papertype = req.body.papertype.trim(),
 		papertime = req.body.papertime.trim(),
 		paperinstr = req.body.paperinstr.trim(),
+		authors = req.body.authors.trim(),
+		ppaddr = req.body.ppaddr.trim(),
 		updateid = req.body.updateid.trim();
 	uName = req.session.user.username;
 
@@ -1295,7 +1314,9 @@ exports.paper3 = function(req, res, next) {
 				ppName: papername,
 				ppTime: papertype,
 				ppType: papertime,
-				addt: paperinstr
+				addt: paperinstr,
+				allAuthors: authors,
+				ppAddr: ppaddr
 			};
 			rs.PatentPaper10[updateid]=newPatentPaper10;
 			resume.modify({author: uName}, {

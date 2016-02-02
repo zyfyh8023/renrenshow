@@ -166,6 +166,10 @@ app.get('/blogs_exp_rea', manageExperience.relatedMeMJ);
 app.post('/expPageSearch', manageExperience.pageSearch);
 app.post('/delExper', manageExperience.delExper);
 app.post('/pubExper', manageExperience.pubExper);
+//comment
+app.get('/blogs_com_mine', comment.minePage);
+app.get('/blogs_com_yours', comment.yoursPage);
+app.post('/comPageSearch', comment.pageSearch);
 //资源导航
 app.get('/navs', navigation.page);
 app.post('/navigationListAdd', navigation.listAdd);
@@ -196,21 +200,42 @@ app.locals.dateformat = function(obj, format) {
     var ret = moment(obj).format(format);
     return ret;
 };
-
+//app的字符串截取
+app.locals.cutStr = function(str, strLen, addStr){
+    var allLen=0,
+        len=str.length;
+    for(var i=0; i<len; i++){
+        allLen+=str.charCodeAt(i) > 128 ? 2 : 1; 
+    }
+    if(allLen<=strLen){
+        return str;
+    }
+    var cutStr='', strNum=0;
+    for(var j=0; j<len; j++){
+        strNum+=str.charCodeAt(j) > 128 ? 2 : 1; 
+        cutStr+=str[j];
+        if(strNum>=strLen){
+            break;
+        }
+    }
+    if(addStr){
+        cutStr+=addStr;
+    }
+    return cutStr;
+}
+//数据库的链接
 MongodbAPI.connect(function(error) {
     if (error) throw error;
 });
 app.on('close', function(errno) {
     MongodbAPI.disconnect(function(err) {});
 });
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('该页面不存在');
     err.status = 404;
     next(err);
 });
-
 // error handlers    mongod --dbpath F:\Mongodb\db
 // development error handler
 // will print stacktrace
@@ -225,7 +250,6 @@ if (app.get('env') === 'development') {
         });
     });
 }
-
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {

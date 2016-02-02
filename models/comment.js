@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var async = require('async');
 var Schema = mongoose.Schema;
 
 //定义Comment对象模型
@@ -92,3 +93,50 @@ exports.modify = function(conditions, updates, options, callback) {
     });
 }
 
+//
+exports.allNum = function(uName, callFn) {
+    async.series([
+            function(callback) {
+                Comment.find({
+                    author: uName,
+                }, function(err, result) {
+                    callback(err, result.length);
+                });
+            },
+            function(callback) {
+                Comment.find({
+                    artAuthor: uName
+                }, function(err, result) {
+                    callback(err, result.length);
+                });
+            }
+        ],
+        function(error, result) {
+            if (error) {
+                callFn(err, null);
+            } else {
+                callFn(null, result);
+            }
+        }
+    );
+}
+
+//分页条件查找所有结果集
+exports.findAllByCon = function(object,pagenum,skipstep,callback) {
+    
+    Comment.count(object,function(err, nums){
+        if(err){
+            callback(err, null, null);
+        }else{
+            var query = Comment.find(object).skip(skipstep).limit(pagenum).sort('-uTime');
+            query.exec(function(err, result) {
+                if(err){
+                    callback(err, null, null);
+                }else{
+                    callback(null, result, nums);
+                }
+            });
+        }
+    });
+    
+}

@@ -458,6 +458,47 @@ $(document).ready(function() {
 	});
 
 	/**
+	 * comments页面的js
+	 */
+	//分页事件
+	var $manageComs=$("#zy-manageComs");
+	$manageComs.delegate('#pageShow li', 'click', function() {
+		var pagenum =pageStep($(this));
+		if(pagenum!=0){
+			$.ajax({    
+			    type:'post',        
+			    url:'/comPageSearch',   
+			    data:{
+			    	curstep: pagenum,
+			    	uName: __data.uName,
+			    	comTyp: __data.comTyp
+			    },
+			    dataType:'json',    
+			    success: function(data){
+			    	var htmls="";
+			    	for(var i=0, len=data.allComments.length;i<len;i++){
+			    		var htmlTemp=
+			    			'<tr  data-ids="'+data.allComments[i]._id+'">'+
+			    			'<td class="am-text-middle">'+(((pagenum-1)*10)+(i+1))+'</td>'+
+			    			'<td class="am-text-middle">'+cutStr(data.allComments[i].CommentCont, 100, '...')+'</td>'+
+			    			'<td class="am-text-middle"><a href="#"><img style="width:20%;border-radius:100%;"src='+ data.allComments[i].authorImg +'><br>'+data.allComments[i].author+'</a></td>'+
+			    			'<td class="am-text-middle">'+dateformat(data.allComments[i].cTime)+'</td>'+
+			    			'<td class="am-text-middle">'+
+			    			'<a href="/blog_exp?aid=123132135">查看</a>';
+
+			    		htmlTemp+='</td></tr>';
+			    		htmls+=htmlTemp;
+			    	}      
+			        $manageComs.find("tbody").html(htmls);
+			    },
+			    error : function() {   
+			        alert('err');    	
+			   }        
+			});  
+		}
+	});
+
+	/**
 	 * experience页面的js
 	 */
 	//分页事件
@@ -478,20 +519,12 @@ $(document).ready(function() {
 			    	var htmls="";
 			    	for(var i=0, len=data.allArticles.length;i<len;i++){
 
-			    		var artTim = new Date(data.allArticles[i].cTime);
-			    		var artTim2 = artTim.getFullYear()+'-'+
-			    					artTim.getMonth()+'-'+
-			    					artTim.getDate()+' '+
-			    					artTim.getHours()+':'+
-			    					artTim.getMinutes()+':'+
-			    					artTim.getSeconds();
-
 			    		var htmlTemp=
 			    			'<tr  data-ids="'+data.allArticles[i]._id+'">'+
 			    			'<td class="am-text-middle">'+(((pagenum-1)*10)+(i+1))+'</td>'+
 			    			'<td class="am-text-middle">'+data.allArticles[i].experienceTitle+'</td>'+
 			    			'<td class="am-text-middle">'+data.allArticles[i].experienceCompany+'</td>'+
-			    			'<td class="am-text-middle">'+artTim2+'</td>'+
+			    			'<td class="am-text-middle">'+dateformat(data.allArticles[i].cTime)+'</td>'+
 			    			'<td class="am-text-middle">'+
 			    			'<a href="javascript:;" class="zy-del-art">删除</a><br>'+
 			    			'<a href="/blog_exp?aid=123132135">查看</a><br>';
@@ -683,21 +716,13 @@ $(document).ready(function() {
 			    				artTyp=data.allArticles[i].articleType;
 			    				break;
 			    		}
-			    		
-			    		var artTim = new Date(data.allArticles[i].cTime);
-			    		var artTim2 = artTim.getFullYear()+'-'+
-			    					artTim.getMonth()+'-'+
-			    					artTim.getDate()+' '+
-			    					artTim.getHours()+':'+
-			    					artTim.getMinutes()+':'+
-			    					artTim.getSeconds();
 
 			    		var htmlTemp=
 			    			'<tr data-ids="'+data.allArticles[i]._id+'">'+
 			    			'<td class="am-text-middle">'+(((pagenum-1)*10)+(i+1))+'</td>'+
 			    			'<td class="am-text-middle">'+data.allArticles[i].articleTitle+'</td>'+
 			    			'<td class="am-text-middle">'+artTyp+'</td>'+
-			    			'<td class="am-text-middle">'+artTim2+'</td>'+
+			    			'<td class="am-text-middle">'+dateformat(data.allArticles[i].cTime)+'</td>'+
 			    			'<td class="am-text-middle">'+
 			    			'<a href="javascript:;" class="zy-del-art">删除</a><br>'+
 			    			'<a href="/blog_art?aid='+data.allArticles[i]._id+'">查看</a><br>';
@@ -1031,6 +1056,7 @@ function educationAjaxCom(num){
             $('.J_operate-add .edatetime', $myEducation).val(data.allinfo.schools3[num].edatetime); 
             $('.J_operate-add .major', $myEducation).val(data.allinfo.schools3[num].major); 
             $('.J_operate-add .majorinstr', $myEducation).val(data.allinfo.schools3[num].majorinstr); 
+        	$('.J_operate-add .collegeName', $myEducation).val(data.allinfo.schools3[num].collegeName);
         },
         error: function(err) {
             alertOpnFn('err');
@@ -1131,6 +1157,7 @@ function repracticeAjaxCom(num){
             $('.J_operate-add .epracticetime', $myRepractice).val(data.allinfo.experience4[num].epracticetime); 
             $('.J_operate-add .practiceposition', $myRepractice).val(data.allinfo.experience4[num].practiceposition); 
             $('.J_operate-add .practiceinstr', $myRepractice).val(data.allinfo.experience4[num].practiceinstr); 
+            $('.J_operate-add .departmentName', $myRepractice).val(data.allinfo.experience4[num].departmentName);
         },
         error: function(err) {
             alertOpnFn('err');
@@ -1305,6 +1332,7 @@ function practiceAjaxCom(num){
             $('.J_operate-add .epracticetime', $myPractice).val(data.allinfo.work5[num].epracticetime); 
             $('.J_operate-add .practiceposition', $myPractice).val(data.allinfo.work5[num].practiceposition); 
             $('.J_operate-add .practiceinstr', $myPractice).val(data.allinfo.work5[num].practiceinstr); 
+            $('.J_operate-add .departmentName', $myPractice).val(data.allinfo.work5[num].departmentName); 
         },
         error: function(err) {
             alertOpnFn('err');
@@ -1584,9 +1612,7 @@ function worksAjaxCom(num){
             $('.J_operate-add .J_hidden-ipt', $myWorks).val(num);
             $('.J_operate-add .workname', $myWorks).val(data.allinfo.pWorks7[num].workname); 
             $('.J_operate-add .worktime', $myWorks).val(data.allinfo.pWorks7[num].worktime); 
-            $('.J_operate-add .workduty', $myWorks).val(data.allinfo.pWorks7[num].workduty); 
-            $('.J_operate-add .showink', $myWorks).val(data.allinfo.pWorks7[num].showink); 
-            $('.J_operate-add .codelink', $myWorks).val(data.allinfo.pWorks7[num].codelink); 
+            $('.J_operate-add .showink', $myWorks).val(data.allinfo.pWorks7[num].relationlink); 
             $('.J_operate-add .workdes', $myWorks).val(data.allinfo.pWorks7[num].workdes); 
         },
         error: function(err) {
@@ -1638,6 +1664,9 @@ $myProjects.delegate('.J_operate-sel .select1', 'change', function(event) {
     $('.J_operate-add .pname', $myProjects).val(''); // 动态修改的清空
     $('.J_operate-add .ptime', $myProjects).val(''); // 动态修改的清空
     $('.J_operate-add .paddt', $myProjects).val(''); // 动态修改的清空
+    $('.J_operate-add .pnum', $myProjects).val(''); // 动态修改的清空
+    $('.J_operate-add .myPos', $myProjects).val(''); // 动态修改的清空
+    $('.J_operate-add .myworks', $myProjects).val(''); // 动态修改的清空
 
     if ($(this).children('option:selected').val() == 1) {
         $('.J_operate-del', $myProjects).hide();
@@ -1694,32 +1723,69 @@ $myProjects.delegate('.J_operate-add button', 'click', function(event) {
 	var pname = $.trim($(".pname", $myProjects).val()),
 		ptime = $.trim($(".ptime", $myProjects).val()),
 		paddt = $.trim($(".paddt", $myProjects).val()),
-		hiddenipt = $.trim($myPaperadd.find(".J_hidden-ipt").val());
-
-	if (pname && ptime && paddt) {
-		$.ajax({
-			type: 'post',
-			url: '/resume/projects/add',
-			data: {
-				pname: $(".pname", '#my-projects').val(),
-				ptime: $(".ptime", '#my-projects').val(),
-				paddt: $(".paddt", '#my-projects').val()
-			},
-			dataType: 'json',
-			success: function(data) {
-				if (data.retCode == 200) {
-					location.reload();
-				} else {
-					warnOpnFn(data.retDesc);
+		pnum = $.trim($(".pnum", $myProjects).val()),
+		myPos = $.trim($(".myPos", $myProjects).val()),
+		myworks = $.trim($(".myworks", $myProjects).val()),
+		hiddenipt = $.trim($myProjectsadd.find(".J_hidden-ipt").val());
+	if(hiddenipt){
+		if (pname && ptime && paddt) {
+			$.ajax({
+				type: 'post',
+				url: '/resume/projects/upd',
+				data: {
+					pname: $(".pname", '#my-projects').val(),
+					ptime: $(".ptime", '#my-projects').val(),
+					paddt: $(".paddt", '#my-projects').val(),
+					pnum: $(".pnum", '#my-projects').val(),
+					myPos: $(".myPos", '#my-projects').val(),
+					myworks: $(".myworks", '#my-projects').val(),
+					updateid: hiddenipt
+				},
+				dataType: 'json',
+				success: function(data) {
+					if (data.retCode == 200) {
+						location.reload();
+					} else {
+						warnOpnFn(data.retDesc);
+					}
+				},
+				error: function(err) {
+					alertOpnFn('err');
 				}
-			},
-			error: function(err) {
-				alertOpnFn('err');
-			}
-		});
-	} else {
-		warnOpnFn('请填写完整!');
+			});
+		} else {
+			warnOpnFn('请填写完整!');
+		}
+	}else{
+		if (pname && ptime && paddt) {
+			$.ajax({
+				type: 'post',
+				url: '/resume/projects/add',
+				data: {
+					pname: $(".pname", '#my-projects').val(),
+					ptime: $(".ptime", '#my-projects').val(),
+					paddt: $(".paddt", '#my-projects').val(),
+					pnum: $(".pnum", '#my-projects').val(),
+					myPos: $(".myPos", '#my-projects').val(),
+					myworks: $(".myworks", '#my-projects').val()
+				},
+				dataType: 'json',
+				success: function(data) {
+					if (data.retCode == 200) {
+						location.reload();
+					} else {
+						warnOpnFn(data.retDesc);
+					}
+				},
+				error: function(err) {
+					alertOpnFn('err');
+				}
+			});
+		} else {
+			warnOpnFn('请填写完整!');
+		}
 	}
+	
 });
 
 //修改
@@ -1741,9 +1807,12 @@ function projectsAjaxCom(num){
         dataType: 'json',
         success: function(data) {
             $('.J_operate-add .J_hidden-ipt', $myProjects).val(num);
-            $('.J_operate-add .pname', $myProjects).val(data.allinfo.projects8[num].tName); 
-            $('.J_operate-add .ptime', $myProjects).val(data.allinfo.projects8[num].tTime); 
+            $('.J_operate-add .pname', $myProjects).val(data.allinfo.projects8[num].pName); 
+            $('.J_operate-add .ptime', $myProjects).val(data.allinfo.projects8[num].pTime); 
             $('.J_operate-add .paddt', $myProjects).val(data.allinfo.projects8[num].addt); 
+            $('.J_operate-add .pnum', $myProjects).val(data.allinfo.projects8[num].pnum); 
+            $('.J_operate-add .myPos', $myProjects).val(data.allinfo.projects8[num].myPos); 
+            $('.J_operate-add .myworks', $myProjects).val(data.allinfo.projects8[num].myworks); 
         },
         error: function(err) {
             alertOpnFn('err');
@@ -1929,6 +1998,8 @@ $myPaper.delegate('.J_operate-sel .select1', 'change', function(event) {
 	$('.J_operate-add .papername', $myPaper).val(''); // 动态修改的清空
 	$('.J_operate-add .papertime', $myPaper).val(''); // 动态修改的清空
 	$('.J_operate-add .paperinstr', $myPaper).val(''); // 动态修改的清空
+	$('.J_operate-add .authors', $myPaper).val(''); // 动态修改的清空
+	$('.J_operate-add .ppaddr', $myPaper).val(''); // 动态修改的清空
 
 	if ($(this).children('option:selected').val() == 1) {
 		$('.J_operate-del', $myPaper).hide();
@@ -1986,6 +2057,8 @@ $myPaper.delegate('.J_operate-add button', 'click', function(event) {
 		papertype = $.trim($(".papertype", $myPaper).val()),
 		papertime = $.trim($(".papertime", $myPaper).val()),
 		paperinstr = $.trim($(".paperinstr", $myPaper).val()),
+		authors = $.trim($(".authors", $myPaper).val()),
+		ppaddr = $.trim($(".ppaddr", $myPaper).val()),
         hiddenipt = $.trim($myPaperadd.find(".J_hidden-ipt").val());
 
     if(hiddenipt){
@@ -1998,7 +2071,9 @@ $myPaper.delegate('.J_operate-add button', 'click', function(event) {
     				papertype: papertype,
     				papertime: papertime,
     				paperinstr: paperinstr,
-    				updateid: hiddenipt
+    				updateid: hiddenipt,
+    				authors: authors,
+    				ppaddr: ppaddr
     			},
     			dataType: 'json',
     			success: function(data) {
@@ -2024,7 +2099,9 @@ $myPaper.delegate('.J_operate-add button', 'click', function(event) {
     				papername: papername,
     				papertype: papertype,
     				papertime: papertime,
-    				paperinstr: paperinstr
+    				paperinstr: paperinstr,
+    				authors: authors,
+    				ppaddr: ppaddr
     			},
     			dataType: 'json',
     			success: function(data) {
@@ -2067,6 +2144,8 @@ function paperAjaxCom(num){
             $('.J_operate-add .papername', $myPaper).val(data.allinfo.PatentPaper10[num].ppName);  
             $('.J_operate-add .papertime', $myPaper).val(data.allinfo.PatentPaper10[num].ppType); 
             $('.J_operate-add .paperinstr', $myPaper).val(data.allinfo.PatentPaper10[num].addt); 
+            $('.J_operate-add .authors', $myPaper).val(data.allinfo.PatentPaper10[num].allAuthors); 
+            $('.J_operate-add .ppaddr', $myPaper).val(data.allinfo.PatentPaper10[num].ppAddr); 
         },
         error: function(err) {
             alertOpnFn('err');
