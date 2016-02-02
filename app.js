@@ -35,6 +35,7 @@ var checkState = require('./routes/checkState');
 var about = require('./routes/about');
 var resumeLook = require('./routes/resumeLook');
 var comment = require('./routes/comment');
+var seeuInfo = require('./routes/seeuInfo');
 var demo = require('./routes/demo');
 
 
@@ -108,6 +109,12 @@ app.post('/loginOut', login.loginOut);
 app.get('/register', register.page);
 app.post('/register', register.doRegister);
 app.get('/about', about.page);
+
+
+//两种情况的访问
+app.get('/seeuInfo', seeuInfo.awards);
+
+
 //个人中心——首页
 app.get('/myindex', myindex.page);
 app.get('/blog_art', blogAorE.artSee);

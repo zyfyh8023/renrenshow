@@ -25,8 +25,8 @@ exports.page = function(req, res) {
 	// });
 
 
-	res.render('demo7', {
-		title: 'demo7',
+	res.render('demo5', {
+		title: 'demo5',
 		uName: ''
 	});
 	
