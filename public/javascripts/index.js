@@ -149,15 +149,15 @@ function pageChange(clickNum){
 	var pagetipHtml='共'+__data.allpage+'页&nbsp;';
 
 	if(__data.allpage != __data.showpagetip){
-		pagetipHtml+='<li class="J_pre-page"><a href="javascript:;">&laquo;</a></li>';
+		pagetipHtml+='<li class="J_pre-page"><a href="javascript:void(0);">&laquo;</a></li>';
 		pagetipHtml+= pagebtnShow(clickNum);
-		pagetipHtml+='<li class="J_next-page"><a href="javascript:;">&raquo;</a></li>';
+		pagetipHtml+='<li class="J_next-page"><a href="javascript:void(0);">&raquo;</a></li>';
 	}else{
-		pagetipHtml+='<li class="J_pre-page"><a href="javascript:;">&laquo;</a></li>';
+		pagetipHtml+='<li class="J_pre-page"><a href="javascript:void(0);">&laquo;</a></li>';
 		for(var i=1; i<=__data.allpage; i++){
 			pagetipHtml+=comCon(i, clickNum);
 		}
-		pagetipHtml+='<li class="J_next-page"><a href="javascript:;">&raquo;</a></li>';
+		pagetipHtml+='<li class="J_next-page"><a href="javascript:void(0);">&raquo;</a></li>';
 	}
 
 	$("#pageShow ul").html(pagetipHtml);
@@ -189,9 +189,9 @@ function pagebtnShow(clickNum){
 function comCon(i, clickNum){
 	var htmlS="";
 	if(i==clickNum){
-		htmlS='<li class="am-active"><a href="javascript:;">'+i+'</a></li>';
+		htmlS='<li class="am-active"><a href="javascript:void(0);">'+i+'</a></li>';
 	}else{
-		htmlS='<li><a href="javascript:;">'+i+'</a></li>';
+		htmlS='<li><a href="javascript:void(0);">'+i+'</a></li>';
 	}
 
 	return htmlS;

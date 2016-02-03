@@ -29,29 +29,37 @@
 					</ul>
 					<div class="am-tabs-bd">
 						<div data-tab-panel-<%= i %> class="am-tab-panel am-active">
-							<h3>项目题目：<%= rs.projects8[i-1].pName %></h3>
+							<h3>项目名称：<%= rs.projects8[i-1].pName %></h3>
 							<p>
 								<font style="font-weight:bold;">时间：</font>
 								<%= rs.projects8[i-1].pTime %>
-								<font style="font-weight:bold;padding-left:5rem;">部门：</font>前端开发工程师
-								<font style="font-weight:bold;padding-left:5rem;">职位：</font>电子商务部
+								<font style="font-weight:bold;padding-left:5rem;">项目人数：</font><%= rs.projects8[i-1].pnum %>
+								<font style="font-weight:bold;padding-left:5rem;">我的职务：</font><%= rs.projects8[i-1].myPos %>
 							</p>
 							<p>
-								<font style="font-weight:bold">简明介绍：</font><br>
+								<font style="font-weight:bold">我的工作：</font>
+								<%= rs.projects8[i-1].myworks %>
+							</p>
+							<p>
+								<font style="font-weight:bold">项目说明：</font>
 								<%= rs.projects8[i-1].addt %>
 							</p>
 						</div>
 			<% }else if(i%3==0){ %>
 					<div data-tab-panel-<%= i %> class="am-tab-panel">
-						<h3>项目题目：<%= rs.projects8[i-1].pName %></h3>
+						<h3>项目名称：<%= rs.projects8[i-1].pName %></h3>
 						<p>
 							<font style="font-weight:bold;">时间：</font>
 							<%= rs.projects8[i-1].pTime %>
-							<font style="font-weight:bold;padding-left:5rem;">部门：</font>前端开发工程师
-							<font style="font-weight:bold;padding-left:5rem;">职位：</font>电子商务部
+							<font style="font-weight:bold;padding-left:5rem;">项目人数：</font><%= rs.projects8[i-1].pnum %>
+							<font style="font-weight:bold;padding-left:5rem;">我的职务：</font><%= rs.projects8[i-1].myPos %>
 						</p>
 						<p>
-							<font style="font-weight:bold">简明介绍：</font><br>
+							<font style="font-weight:bold">我的工作：</font>
+							<%= rs.projects8[i-1].myworks %>
+						</p>
+						<p>
+							<font style="font-weight:bold">项目说明：</font>
 							<%= rs.projects8[i-1].addt %>
 						</p>
 					</div>
@@ -59,15 +67,19 @@
 				</div>
 			<% }else if(i==len){ %>
 					<div data-tab-panel-<%= i %> class="am-tab-panel">
-						<h3>项目题目：<%= rs.projects8[i-1].pName %></h3>
+						<h3>项目名称：<%= rs.projects8[i-1].pName %></h3>
 						<p>
 							<font style="font-weight:bold;">时间：</font>
 							<%= rs.projects8[i-1].pTime %>
-							<font style="font-weight:bold;padding-left:5rem;">部门：</font>前端开发工程师
-							<font style="font-weight:bold;padding-left:5rem;">职位：</font>电子商务部
+							<font style="font-weight:bold;padding-left:5rem;">项目人数：</font><%= rs.projects8[i-1].pnum %>
+							<font style="font-weight:bold;padding-left:5rem;">我的职务：</font><%= rs.projects8[i-1].myPos %>
 						</p>
 						<p>
-							<font style="font-weight:bold">简明介绍：</font><br>
+							<font style="font-weight:bold">我的工作：</font>
+							<%= rs.projects8[i-1].myworks %>
+						</p>
+						<p>
+							<font style="font-weight:bold">项目说明：</font>
 							<%= rs.projects8[i-1].addt %>
 						</p>
 					</div>
@@ -75,15 +87,19 @@
 				</div>
 			<% }else{ %>
 				<div data-tab-panel-<%= i %> class="am-tab-panel">
-					<h3>项目题目：<%= rs.projects8[i-1].pName %></h3>
+					<h3>项目名称：<%= rs.projects8[i-1].pName %></h3>
 					<p>
 						<font style="font-weight:bold;">时间：</font>
 						<%= rs.projects8[i-1].pTime %>
-						<font style="font-weight:bold;padding-left:5rem;">部门：</font>前端开发工程师
-						<font style="font-weight:bold;padding-left:5rem;">职位：</font>电子商务部
+						<font style="font-weight:bold;padding-left:5rem;">项目人数：</font><%= rs.projects8[i-1].pnum %>
+						<font style="font-weight:bold;padding-left:5rem;">我的职务：</font><%= rs.projects8[i-1].myPos %>
 					</p>
 					<p>
-						<font style="font-weight:bold">简明介绍：</font><br>
+						<font style="font-weight:bold">我的工作：</font>
+						<%= rs.projects8[i-1].myworks %>
+					</p>
+					<p>
+						<font style="font-weight:bold">项目说明：</font>
 						<%= rs.projects8[i-1].addt %>
 					</p>
 				</div>
@@ -175,7 +191,7 @@
 							</div>
 						</div>
 						<div class="am-form-group">
-							<label class="am-u-sm-3 am-form-label">我的责任：</label>
+							<label class="am-u-sm-3 am-form-label">我的职务：</label>
 							<div class="am-u-sm-9">
 								<input type="text" value="" name="myPos" class="myPos" required placeholder="请输入期刊名称">
 							</div>

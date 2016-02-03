@@ -16,16 +16,16 @@
 			            <ul class="am-list">
 			                <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
 			                   <div class="am-u-sm-4 am-list-thumb">
-				                    <a href="javascript:;">
+				                    <a href="javascript:void(0);">
 				                       	<img class="am-img-thumbnail am-circle" style="width:100%;height:10rem;" src="<%= rs.schools3[k].schoolLogo %>" />
 				                    </a>
 			                   </div>
 			                   <div class=" am-u-sm-8 am-list-main">
 			                        <h3 class="am-list-item-hd">
-			                        	<a href="javascript:;"><%= rs.schools3[k].school %></a>
+			                        	<a href="/resume_scl?uname=<%= uName %>&ids=<%= k %>">名称：<%= rs.schools3[k].school %></a>
 			                        </h3>
 			                       	<div class="am-list-item-text">
-			                       		<%= rs.schools3[k].majorinstr %>
+			                       		介绍：<%= rs.schools3[k].majorinstr %>
 			                       	</div>
 			                   </div>
 			                </li>
@@ -135,7 +135,7 @@
 		                   	</div>
 	                 	</div>
  	                 	<div class="am-form-group">
- 	                   		<label class="am-u-sm-3 am-form-label">学院：</label>
+ 	                   		<label class="am-u-sm-3 am-form-label">所在学院：</label>
  		                   	<div class="am-u-sm-9">
  		                       	<input type="text" value="" name="collegeName" required class="am-form-field collegeName" placeholder="请输入您所在的学院" />
  		                   	</div>

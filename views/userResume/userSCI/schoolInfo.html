@@ -1,96 +1,169 @@
 <% include ../../myheader.html %>
 
 <style>
-.am-list>li>a.zy-rightside-list{
-	font-size: 1.3rem;
-	padding:0.5rem;
+.blog-sidebar {
+	font-size: 1.4rem;
 }
-.am-panel-hd{
-	padding-left: 0.5rem;
+.blog-main {
+  	padding: 20px 0;
+}
+.blog-title {
+  	margin: 10px 0 20px 0;
+}
+.blog-meta {
+  	font-size: 14px;
+  	margin: 10px 0 20px 0;
+  	color: #222;
+}
+.blog-meta a {
+  	color: #27ae60;
+}
+.blog-pagination a {
+  	font-size: 1.4rem;
+}
+.blog-team li {
+  	padding: 4px;
+}
+.blog-team img {
+  	margin-bottom: 0;
+}
+.blog-content img, .blog-team img {
+  	max-width: 100%;
+  	height: auto;
+}
+.blog-footer {
+  	padding: 10px 0;
+  	text-align: center;
+}
+.am-panel-default {
+    margin-top: 3.5rem;
 }
 </style>
 
-<br><br><br>
 
-<div class="am-g am-u-lg-9 am-u-md-12  am-u-sm-centered">
-	<div class="col-lg-9 am-u-lg-9 am-show-lg-only">
 
-		<div data-am-widget="intro" class="am-intro am-cf am-intro-success">
-		    <div class="am-intro-hd">
-		      	<h2 class="am-intro-title">就会打扫房间房间还是打发还是打发第三方和第三方</h2>
-		    </div>
-		  	<div class="am-g am-intro-bd">
-		      	<div class="am-intro-left am-u-sm-6"><img src="http://www.logodashi.com/Images/logo.jpg" alt="小娜" /></div>
-		      	<div class="am-intro-right am-u-sm-6">
-		      		<p>时间段：2015-09-22至2016-09-14
-		      		<p>部分：</p>
-		      		<p>职位：</p>
-		      		<p>其他：</p>
-	      		</div>
+<div class="am-g am-u-lg-9 am-u-md-12  am-u-sm-centered" style="margin-top:5rem;margin-bottom:7rem;">
+	<div class="am-u-md-8">
+		<article class="blog-main">
+		  	<h3 class="am-article-title blog-title">
+		    	<a href="#"><%= rs.school %></a>
+		  	</h3>
+		  	<h4 class="am-article-meta blog-meta">
+		  		学历：<a href="#"><%= rs.educationtype %></a>
+		  	</h4>
+		 	<div class="am-g blog-content">
+		 		<div class="am-u-lg-5"> 
+		 	  		<img style="display:block;padding:1rem;width:100%" src="<%= rs.schoolLogo %>">
+		 		</div>
+		    	<div class="am-u-lg-7">
+			    	<p>专业：<%= rs.major %></p> 
+			      	<p>学院：<%= rs.collegeName %></p>
+			      	<p>开始时间：<%= dateformat(rs.edatetime, 'YYYY-MM-DD') %></p>
+			      	<p>结束时间：<%= dateformat(rs.sdatetime, 'YYYY-MM-DD') %></p>
+		    	</div>
 		  	</div>
-		</div>
-
-        <br>
-        <div class="am-thumbnail am-thumbnail-caption">
-            <h3>百年孤独选</h3>
-            <p>不存在。深或浅，盖上布，以为不或深或浅，盖或深或浅，盖上布，以为不存在。上布，以为不存在。存在。发生大书法家面板内容或深或浅，盖上布，以为不存在。深或浅，盖上布，以为不或深或浅，盖或深或浅，盖上布，以为不存在。上布，以为不存在。存在。发生大书法家不存在。不存在。深或浅，盖上布，以为不或深或浅，盖或深或浅，盖上布，以为不存在。上布，以为不存在。存在。发生大书法家不存在。深或浅，盖上布，以为不或深或浅，盖或深或浅，盖上布，以为不存在。上布，以为不存在。存在。发生大书法家</p>
-        </div>
-
-        <br>
-        <div class="am-thumbnail am-thumbnail-caption">
-            <h3>百年孤独选</h3>
-            <p>对或深或浅，盖上布，以为不存在。方空间或深或浅，盖上布，以为不存在。或深或浅，盖上布，以为或深或浅，盖上布，以为不存在。不存在。的发生大书法家和对方空间的或或深或浅，盖上布，以为不存在。深或浅，盖上布，以为不或深或浅，盖或深或浅，盖上布，以为不存在。上布，以为不存在。存在。发生大书法家和或深或浅，盖上布，以为不存在。</p>
-        </div>
-
-
-		<br><br><br><br><br>
-        <hr data-am-widget="divider" style="" class="am-divider am-divider-dashed" /><br>
-		<div class="am-panel am-panel-success">
-		  	<div class="am-panel-hd">简明介绍</div>
-            <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2
-            am-avg-md-3 am-avg-lg-6 am-gallery-imgbordered" data-am-gallery="{  }" >
-                <% for(var i=0; i<5;i++){ %>
-                    <li class="am-gallery-item">
-                        <a href="http://file30.mafengwo.net/M00/91/95/wKgBpVW_QEiAaZa9AAg3isT4U_w49.groupinfo.w229.jpeg" class="">
-                            <img src="http://file30.mafengwo.net/M00/91/95/wKgBpVW_QEiAaZa9AAg3isT4U_w49.groupinfo.w229.jpeg"  alt="远方 有一个地方 那里种有我们的梦想"/>
-                        </a>
-                    </li>
-                <% } %>
-    	   	</ul>
-		</div>
-		
+		  	<div class="am-g">
+			    <div class="am-u-sm-12">
+			      	<p><%= rs.majorinstr %></p>
+			    </div>
+		  	</div>
+		</article>
+		<hr class="am-article-divider blog-hr">
+		<ul class="am-pagination blog-pagination">
+		  	<li class="am-pagination-prev"><a href="">&laquo; 上一个</a></li>
+		  	<li class="am-pagination-next"><a href="">下一个 &raquo;</a></li>
+		</ul>
 	</div>
-	<div class="col-lg-3 am-u-lg-3">
-		<div class="am-panel am-panel-default">
-		  	<div class="am-panel-hd">撒打算大家回复</div>
-	    	<ul class="am-list">
-                <% for(var i=0; i<5; i++){ %>
-                    <li><a href="#" class="am-text-truncate zy-rightside-list">每个人都有一个死角， 自己走不出来，别人也闯不进去。</a></li>
-                <% } %>
-	    	</ul>
-		</div>
 
-		<div class="am-panel am-panel-default">
-		  	<div class="am-panel-hd">对方空间的家和</div>
-	    	<ul class="am-list">
-                <% for(var i=0; i<5; i++){ %>
-                    <li><a href="#" class="am-text-truncate zy-rightside-list">每个人都有一个死角， 自己走不出来，别人也闯不进去。</a></li>
-                <% } %>
-	    	</ul>
-		</div>
-
-		<div class="am-panel am-panel-default">
-		  	<div class="am-panel-hd">人都有一个死角</div>
-	    	<ul class="am-list">
-                <% for(var i=0; i<5; i++){ %>
-                    <li><a href="#" class="am-text-truncate zy-rightside-list">每个人都有一道伤口， 或深或浅，盖上布，以为不存在。</a></li>
-                <% } %>
-	    	</ul>
+	<div class="am-u-md-4 blog-sidebar">
+		<div class="am-panel-group">
+	     	<section class="am-panel am-panel-default">
+ 	         	<div class="am-panel-bd">
+     	           	<div class="user-info">
+     	             	<p>教育经历可信度</p>
+     	             	<div class="am-progress am-progress-sm">
+	     	               	<div class="am-progress-bar" style="width: 60%"></div>
+     	             	</div>
+     	             	<p class="user-info-order">优<strong>(8)</strong>; 良<strong>(587)</strong>; 差<strong>(160)</strong></p>
+     	           	</div>
+     	           	<div class="user-info">
+     	             	<p>教育经历关注度</p>
+     	             	<div class="am-progress am-progress-sm">
+	     	               	<div class="am-progress-bar am-progress-bar-success" style="width: 80%"></div>
+     	             	</div>
+     	             	<p class="user-info-order">赞<strong>(80)</strong>; 收藏<strong>(10)</strong>; 举报<strong>(0)</strong></p>
+     	           	</div>
+ 	         	</div>
+ 	       	</section>
+			<section class="am-panel am-panel-default" style="margin-top:3rem;">
+			  	<div class="am-panel-hd">最近浏览用户</div>
+			  	<div class="am-panel-bd">
+				    <ul class="am-avg-sm-5 blog-team">
+				    	<% for(var i=0; i<10; i++){ %>
+				    		<li>
+				    			<a href="#"><img src="http://img4.duitang.com/uploads/blog/201406/15/20140615230220_F5LiM.thumb.224_0.jpeg" class="am-thumbnail"/></a>
+				    		</li>
+				    	<% } %>
+				    </ul>
+			  	</div>
+			</section>
 		</div>
 	</div>
 </div>
 
-<br><br><br>
+<hr data-am-widget="divider" style="" class="am-divider am-divider-dashed" />
 
+<div class="am-g am-u-lg-9 am-u-md-12  am-u-sm-centered">
+    <div class="am-u-sm-12">
+        <% for(var i=0; i<5; i++) {%>
+        	<div class="am-u-sm-12">
+        	    <br>
+        	    <article class="am-comment">
+        	      	<a href="#link-to-user-home">
+        	        	<img src="http://file29.mafengwo.net/M00/C7/8C/wKgBpVWeb6KAKJaTAAjRr7HvVCQ69.groupinfo.w229.jpeg" alt="" class="am-comment-avatar" width="48" height="48"/>
+        	      	</a>
+        	      	<div class="am-comment-main">
+	        	        <header class="am-comment-hd">
+	        	          	<div class="am-comment-meta">
+	        	            	<a href="#link-to-user" class="am-comment-author">zyfyh8023@163.com</a>
+	        	            	评论于 <time datetime="2013-07-27T04:54:29-07:00" title="2013年7月27日 下午7:54 格林尼治标准时间+0800">2014-7-12 15:30</time>
+	        	          	</div>
+	        	        </header>
+	        	        <div class="am-comment-bd">
+	        	          	啥地方时都会经过对双方啥地方时都会经过对双方都会说多少遍是的收到公司都刚好合适的感受到都会说多少遍是的收到公司都刚好合适的感受到
+	        	        </div>
+	        	        <div class="am-comment-footer am-comment-actions">
+	        	        	<a class="am-post-reply" href="javascript:void(0);">
+	        	        		<span class="am-icon am-icon-reply"></span> 回复
+	        	        	</a>
+	        	        	<a class="am-post-likes" href="javascript:void(0);">
+	        	        		<span class="am-icon-anchor"></span> 顶
+	        	        	</a>
+	        	        	<a class="am-post-repost" href="javascript:void(0);">
+	        	        		<span class="am-icon am-icon-share"></span> 转发
+	        	        	</a>
+	        	        	<a class="am-post-report" href="javascript:void(0);">
+	        	        		<span class="am-icon-bolt"></span> 举报
+	        	        	</a>
+	        	        </div>
+        	      </div>
+        	    </article>
+        	</div>
+        <% } %>
+    </div>
+    
+    <div class="am-u-sm-12">
+        <form class="am-form comFrom" style="margin-top:5rem;padding-right:1.5rem;padding-left:1.5rem">
+            <label for="message" class="about-color">我的评论：</label>
+            <textarea class="comment" rows="3"></textarea>
+            <br/>
+            <a class="am-btn am-btn-primary am-btn-sm zy-button1">提交评论</a>
+            <a class="am-btn am-btn-default am-btn-sm" href="/login" target="_blank">去登录</a>
+            <a class="am-btn am-btn-default am-btn-sm" href="/register" target="_blank">去注册</a>
+        </form>
+    </div>
+</div>
+
+<br><br><br>
 
 <% include ../../myfooter.html %>

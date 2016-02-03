@@ -110,15 +110,16 @@ app.get('/register', register.page);
 app.post('/register', register.doRegister);
 app.get('/about', about.page);
 
-
 //两种情况的访问
-app.get('/seeuInfo', seeuInfo.awards);
-
+app.get('/resume_awd', seeuInfo.awards);
+app.get('/resume_cmp', seeuInfo.companys);
+app.get('/resume_scl', seeuInfo.schools);
+app.get('/resume_wok', seeuInfo.works);
 
 //个人中心——首页
 app.get('/myindex', myindex.page);
-app.get('/blog_art', blogAorE.artSee);
-app.get('/blog_exp', blogAorE.expSee);
+app.get('/blogs_art', blogAorE.artSee);
+app.get('/blogs_exp', blogAorE.expSee);
 //个人中心——个性介绍
 app.get('/instrc', introduction.page);
 app.post('/introduction', introduction.doPage);

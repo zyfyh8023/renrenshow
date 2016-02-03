@@ -4,7 +4,7 @@
 	<div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
 		<div class="am-alert am-alert-secondary">
 			<button type="button" class="am-close" data-am-modal="{target: '#my-certificate'}"><i class="am-icon-pencil"></i></button>
-			<div style="font-size:30px;text-align:center;">荣誉证书</div>
+			<div style="font-size:30px;text-align:center;">荣誉奖励</div>
 		</div>
 	</div>
 	<div class="am-g am-u-lg-10 am-u-md-12  am-u-sm-centered">
@@ -15,8 +15,8 @@
 					<div class="am-gallery-item">
 						<a href="<%=rs.Certificate6[k].cimages %>" >
 							<img src="<%=rs.Certificate6[k].cimages %>" style="width:100%;height:23rem;" />
-							<h3 class="am-gallery-title"><%=rs.Certificate6[k].certificatename %></h3>
-							<div class="am-gallery-desc"><%=rs.Certificate6[k].gettime %></div>
+							<h3 class="am-gallery-title">名称：<%=rs.Certificate6[k].certificatename %></h3>
+							<div class="am-gallery-desc">获得时间：<%=rs.Certificate6[k].gettime %></div>
 						</a>
 					</div>
 				</li>
@@ -26,7 +26,7 @@
 	<div class="am-popup" id="my-certificate">
 		<div class="am-popup-inner">
 			<div class="am-popup-hd">
-				<h4 class="am-popup-title">荣誉证书</h4>
+				<h4 class="am-popup-title">荣誉奖励</h4>
 				<span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
 			</div>
 			<div class="am-popup-bd">
@@ -89,7 +89,7 @@
 				<form class="am-form am-form-horizontal" id="specialInstruc6" enctype='multipart/form-data' action="/resume/certificate/add" name="/resume/certificate/upd" method="post" data-am-validator autocomplete ='off'>
 					<div class="J_operate-add" style="display:none">
 						<div class="am-form-group">
-							<label class="am-u-sm-3 am-form-label">证书名称：</label>
+							<label class="am-u-sm-3 am-form-label">荣誉名称：</label>
 							<div class="am-u-sm-9">
 								<input type="text" value="" class="certificatename" name="certificatename" required placeholder="请输入证书名称">
 							</div>
@@ -101,7 +101,7 @@
 							</div>
 						</div>
 						<div class="am-form-group">
-							<label class="am-u-sm-3 am-form-label">证书等级：</label>
+							<label class="am-u-sm-3 am-form-label">荣誉等级：</label>
 							<div class="am-u-sm-9">
 								<select name="cgrade" required class="cgrade">
 									<option selected = "selected" value="">请选择一项</option>
@@ -117,13 +117,13 @@
 							</div>
 						</div>
 						<div class="am-form-group">
-							<label class="am-u-sm-3 am-form-label">证书介绍：</label>
+							<label class="am-u-sm-3 am-form-label">荣誉介绍：</label>
 							<div class="am-u-sm-9">
 								<textarea required value="" class="certificateinstr" name="certificateinstr" rows="3"></textarea>
 							</div>
 						</div>
 						<div class="am-form-group am-form-file">
-							<label class="am-u-sm-3 am-form-label">证书图片：</label>
+							<label class="am-u-sm-3 am-form-label">荣誉图片：</label>
 							<div class="am-u-sm-9">
 								<button type="button" class="am-btn am-btn-default am-btn-sm">
 									<i class="am-icon-cloud-upload"></i> 上传图片</button>

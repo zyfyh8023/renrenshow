@@ -37,10 +37,10 @@
 									<%= dateformat(allArticles[i].cTime) %>
 								</td>
 								<td class="am-text-middle">
-									<a href="javascript:;" class="zy-del-art">删除</a><br>
-									<a href="/blog_art?aid=<%= allArticles[i]._id %>">查看</a><br>
+									<a href="javascript:void(0);" class="zy-del-art">删除</a><br>
+									<a href="/blogs_art?aid=<%= allArticles[i]._id %>">查看</a><br>
 									<% if(allArticles[i].articleTag=='2') { %>
-									<a href="javascript:;" class="zy-pub-art">发布</a>
+									<a href="javascript:void(0);" class="zy-pub-art">发布</a>
 									<% } %>
 								</td>
 							</tr>
@@ -52,15 +52,15 @@
 				<ul class="am-pagination am-pagination-right">
 					共<%= allpage %>页&nbsp;
 					<% if(showpagetip > 1) {%>
-						<li class="J_pre-page"><a href="javascript:;">&laquo;</a></li>
+						<li class="J_pre-page"><a href="javascript:void(0);">&laquo;</a></li>
 						<% for(var i=1; i<=showpagetip; i++) {%>
 							<% if(i==1) { %>
-								<li class="am-active"><a href="javascript:;">1</a></li>
+								<li class="am-active"><a href="javascript:void(0);">1</a></li>
 							<% }else{ %>
-								<li><a href="javascript:;"><%= i %></a></li>
+								<li><a href="javascript:void(0);"><%= i %></a></li>
 							<% } %>
 						<% } %>
-						<li class="J_next-page"><a href="javascript:;">&raquo;</a></li>
+						<li class="J_next-page"><a href="javascript:void(0);">&raquo;</a></li>
 					<% } %>
 				</ul>
 			</div>

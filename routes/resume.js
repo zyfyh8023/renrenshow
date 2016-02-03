@@ -21,7 +21,7 @@ exports.page = function(req, res, next) {
 					if (err) {
 						res.redirect('/error');
 					}else{
-						// console.log(rs);
+						console.log(rs);
 						allres=rs;
 						res.render('./userResume/resume', {
 							title: '我的简历',

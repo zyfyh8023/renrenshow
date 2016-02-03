@@ -526,11 +526,11 @@ $(document).ready(function() {
 			    			'<td class="am-text-middle">'+data.allArticles[i].experienceCompany+'</td>'+
 			    			'<td class="am-text-middle">'+dateformat(data.allArticles[i].cTime)+'</td>'+
 			    			'<td class="am-text-middle">'+
-			    			'<a href="javascript:;" class="zy-del-art">删除</a><br>'+
+			    			'<a href="javascript:void(0);" class="zy-del-art">删除</a><br>'+
 			    			'<a href="/blog_exp?aid=123132135">查看</a><br>';
 
 			    		if(data.allArticles[i].experienceTag=='2'){
-			    			htmlTemp+='<a href="javascript:;" class="zy-pub-art">发布</a>';
+			    			htmlTemp+='<a href="javascript:void(0);" class="zy-pub-art">发布</a>';
 			    		}
 			    		htmlTemp+='</td></tr>';
 			    		htmls+=htmlTemp;
@@ -724,11 +724,11 @@ $(document).ready(function() {
 			    			'<td class="am-text-middle">'+artTyp+'</td>'+
 			    			'<td class="am-text-middle">'+dateformat(data.allArticles[i].cTime)+'</td>'+
 			    			'<td class="am-text-middle">'+
-			    			'<a href="javascript:;" class="zy-del-art">删除</a><br>'+
+			    			'<a href="javascript:void(0);" class="zy-del-art">删除</a><br>'+
 			    			'<a href="/blog_art?aid='+data.allArticles[i]._id+'">查看</a><br>';
 
 			    		if(data.allArticles.articleTag=='2'){
-			    			htmlTemp+='<a href="javascript:;" class="zy-pub-art">发布</a>';
+			    			htmlTemp+='<a href="javascript:void(0);" class="zy-pub-art">发布</a>';
 			    		}
 			    		htmlTemp+='</td></tr>';
 			    		htmls+=htmlTemp;

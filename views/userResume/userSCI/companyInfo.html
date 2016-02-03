@@ -1,221 +1,169 @@
 <% include ../../myheader.html %>
 
-<br><br><br>
+<style>
+.blog-sidebar {
+	font-size: 1.4rem;
+}
+.blog-main {
+  	padding: 20px 0;
+}
+.blog-title {
+  	margin: 10px 0 20px 0;
+}
+.blog-meta {
+  	font-size: 14px;
+  	margin: 10px 0 20px 0;
+  	color: #222;
+}
+.blog-meta a {
+  	color: #27ae60;
+}
+.blog-pagination a {
+  	font-size: 1.4rem;
+}
+.blog-team li {
+  	padding: 4px;
+}
+.blog-team img {
+  	margin-bottom: 0;
+}
+.blog-content img, .blog-team img {
+  	max-width: 100%;
+  	height: auto;
+}
+.blog-footer {
+  	padding: 10px 0;
+  	text-align: center;
+}
+.am-panel-default {
+    margin-top: 3.5rem;
+}
+</style>
 
-<div class="am-g am-u-lg-10 am-u-md-12  am-u-sm-centered">
+
+
+<div class="am-g am-u-lg-9 am-u-md-12  am-u-sm-centered" style="margin-top:5rem;margin-bottom:7rem;">
+	<div class="am-u-md-8">
+		<article class="blog-main">
+		  	<h3 class="am-article-title blog-title">
+		    	<a href="#">光大易创网络科技股份有限公司</a>
+		  	</h3>
+		  	<h4 class="am-article-meta blog-meta">
+		  		工作类型：<a href="#">实习</a>
+		  	</h4>
+		 	<div class="am-g blog-content">
+		 		<div class="am-u-lg-5">
+		 	  		<img style="display:block;padding:1rem;width:100%" src="/images/hw.jpg">
+		 		</div>
+		    	<div class="am-u-lg-7">
+			      	<p>部门：电子商务部</p>
+			      	<p>职位：前端开发工程师</p>
+			      	<p>开始时间：2015-08-12</p>
+			      	<p>结束时间：2015-08-12</p>
+		    	</div>
+		  	</div>
+		  	<div class="am-g">
+			    <div class="am-u-sm-12">
+			      	<p>工作介绍：看著自己的作品，你的喜悅之之情溢於言表，差點就要說出我要感謝我的父母之類的得獎感言。但在你對面的客戶先是一點表情也沒有，又瞬間之情溢於言表，差點就要說出我要感謝我的父母之類的得獎感言。但在你對面的客戶先是一點表情也沒有，又瞬轉為陰沉，抿了抿嘴角冷冷情溢於言表，差點就要說出我要感謝我的父母之類的得獎感言。但在你對面的客戶先是一點表情也沒有，又瞬間轉為陰沉，抿了抿嘴角冷冷的</p>
+			    </div>
+		  	</div>
+		</article>
+		<hr class="am-article-divider blog-hr">
+		<ul class="am-pagination blog-pagination">
+		  	<li class="am-pagination-prev"><a href="">&laquo; 上一个</a></li>
+		  	<li class="am-pagination-next"><a href="">下一个 &raquo;</a></li>
+		</ul>
+	</div>
+
+	<div class="am-u-md-4 blog-sidebar">
+		<div class="am-panel-group">
+	     	<section class="am-panel am-panel-default">
+ 	         	<div class="am-panel-bd">
+     	           	<div class="user-info">
+     	             	<p>工作经历可信度</p>
+     	             	<div class="am-progress am-progress-sm">
+	     	               	<div class="am-progress-bar" style="width: 60%"></div>
+     	             	</div>
+     	             	<p class="user-info-order">优<strong>(8)</strong>; 良<strong>(587)</strong>; 差<strong>(160)</strong></p>
+     	           	</div>
+     	           	<div class="user-info">
+     	             	<p>工作经历关注度</p>
+     	             	<div class="am-progress am-progress-sm">
+	     	               	<div class="am-progress-bar am-progress-bar-success" style="width: 80%"></div>
+     	             	</div>
+     	             	<p class="user-info-order">赞<strong>(80)</strong>; 收藏<strong>(10)</strong>; 举报<strong>(0)</strong></p>
+     	           	</div>
+ 	         	</div>
+ 	       	</section>
+			<section class="am-panel am-panel-default" style="margin-top:3rem;">
+			  	<div class="am-panel-hd">最近浏览用户</div>
+			  	<div class="am-panel-bd">
+			    	<ul class="am-avg-sm-5 blog-team">
+				    	<% for(var i=0; i<10; i++){ %>
+				    		<li>
+				    			<a href="#"><img src="http://img4.duitang.com/uploads/blog/201406/15/20140615230220_F5LiM.thumb.224_0.jpeg" class="am-thumbnail"/></a>
+				    		</li>
+				    	<% } %>
+			    	</ul>
+			  	</div>
+			</section>
+		</div>
+	</div>
+</div>
+
+<hr data-am-widget="divider" style="" class="am-divider am-divider-dashed" />
+
+<div class="am-g am-u-lg-9 am-u-md-12  am-u-sm-centered">
     <div class="am-u-sm-12">
-        <div class="am-u-sm-9">
-            <div class="am-thumbnail am-thumbnail-caption">
-                <h2>连那最坚韧而又狂乱的爱情归根结</h2>
-                <div data-am-widget="slider" class="am-slider am-slider-d3" data-am-slider='{"controlNav":"thumbnails","directionNav":false}' >
-                    <ul class="am-slides">
-                        <li data-thumb="http://file112.mafengwo.net/s9/M00/B2/D7/wKgBs1aKEvuAD-y7AAeZtYhzD8Y23.jpeg?imageMogr2%2Finterlace%2F1">
-                            <img src="http://file112.mafengwo.net/s9/M00/B2/D7/wKgBs1aKEvuAD-y7AAeZtYhzD8Y23.jpeg?imageMogr2%2Finterlace%2F1">
-                        </li>
-                        <li data-thumb="http://file102.mafengwo.net/s9/M00/21/3C/wKgBs1Z6MpaAeAKhAAfOS5QRGK860.jpeg?imageMogr2%2Finterlace%2F1">
-                            <img src="http://file102.mafengwo.net/s9/M00/21/3C/wKgBs1Z6MpaAeAKhAAfOS5QRGK860.jpeg?imageMogr2%2Finterlace%2F1">
-                        </li>
-                        <li data-thumb="http://file106.mafengwo.net/s9/M00/E1/61/wKgBs1Z8xo2AQHPRAAeoKwQEtWg76.jpeg?imageMogr2%2Finterlace%2F1">
-                            <img src="http://file106.mafengwo.net/s9/M00/E1/61/wKgBs1Z8xo2AQHPRAAeoKwQEtWg76.jpeg?imageMogr2%2Finterlace%2F1">
-                        </li>
-                        <li data-thumb="http://file110.mafengwo.net/s9/M00/3A/A1/wKgBs1Z6XuKAYjqGAAe8_w4zvrA85.jpeg?imageMogr2%2Finterlace%2F1">
-                            <img src="http://file110.mafengwo.net/s9/M00/3A/A1/wKgBs1Z6XuKAYjqGAAe8_w4zvrA85.jpeg?imageMogr2%2Finterlace%2F1">
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="am-thumbnail-caption">
-                    <h3>百年孤独选</h3>
-                    <p>无论走到哪里，都应该记住，过去都是假的，回忆是一条没有尽头的路，一切以往的春天都不复存在，就连那最坚韧而又狂乱的爱情归根结底也不过是一种转瞬即逝的现实。无论走到哪里，都应该记住，过去都是假的，回忆是一条没有尽头的路，一切以往的春天都不复存在，就连那最坚韧而又狂乱的爱情归根结底也不过是一种转最坚韧而又狂乱的爱情归根结底也不过是一种转瞬即逝的现实。无论走到哪里，都应该记住，过去都是假的，回忆是一条没有尽头的路，一切以往的春天都不复存在，就连那最坚韧而又狂乱的爱情归根结底也不过是一种瞬即逝的现实。</p>
-                </div>
-
-            </div>
-        </div>
-
-
-        <div class="am-u-sm-3">
-          <div class="am-thumbnail">
-            <div class="am-thumbnail-caption">
-              <h3>百年孤独选</h3>
-              <p>无论走到哪里，都应该记住，过去都是假的，回忆是一条没有尽头的路，就连那最坚韧而又狂乱的爱情归根结底也不过是一种转瞬即逝的现实。</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="am-u-sm-3">
-          <div class="am-thumbnail">
-            <div class="am-thumbnail-caption">
-              <h3>星级评价</h3>
-              <p>无论走到哪里，都应该记住，过去都是假的，回忆是一条没有尽头的路，就连那最坚韧而又狂乱的爱情归根结底也不过是一种转瞬即逝的现实。</p>
-            </div>
-          </div>
-        </div>
-    </div>
-
-    <div class="am-u-sm-12">
-        <br>
-        <div class="am-u-sm-6">
-          <div class="am-thumbnail">
-            <div class="am-thumbnail-caption">
-              <h3>同行评价</h3>
-              <p>无论走到哪里，都应该记住，过去都是假的，回忆是一条没有尽头的路。</p>
-            </div>
-          </div>
-        </div>
-
-      <div class="am-u-sm-6">
-        <div class="am-thumbnail">
-          <div class="am-thumbnail-caption">
-            <h3>公司评价</h3>
-            <p>无论走到哪里，都应该记住，过去都是假的，回忆是一条没有尽头的路。</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="am-u-sm-12">
-        <br><br><br>
-        <hr data-am-widget="divider" style="" class="am-divider am-divider-dashed" />
-        <div style="padding-left:1.5rem;font-size:2rem;font-weight:bold;padding-bottom:0.5rem;padding-top:1rem;">第三方士大夫</div>
-        <div class="am-u-sm-3">
-          <div class="am-thumbnail">
-            <img src="http://file29.mafengwo.net/M00/C7/8C/wKgBpVWeb6KAKJaTAAjRr7HvVCQ69.groupinfo.w229.jpeg" alt=""/>
-            <div class="am-thumbnail-caption">
-              <h3>百年孤独选</h3>
-              <p>无论走到哪里，都应该记住，过去都是假的，回忆是一条没有尽头的路。</p>
-            </div>
-          </div>
-        </div>
-
-      <div class="am-u-sm-3">
-        <div class="am-thumbnail">
-          <img src="http://file29.mafengwo.net/M00/C7/8C/wKgBpVWeb6KAKJaTAAjRr7HvVCQ69.groupinfo.w229.jpeg" alt=""/>
-          <div class="am-thumbnail-caption">
-            <h3>百年孤独选</h3>
-            <p>无论走到哪里，都应该记住，过去都是假的，回忆是一条没有尽头的路。</p>
-          </div>
-        </div>
-      </div>
-
-          <div class="am-u-sm-3">
-            <div class="am-thumbnail">
-              <img src="http://file29.mafengwo.net/M00/C7/8C/wKgBpVWeb6KAKJaTAAjRr7HvVCQ69.groupinfo.w229.jpeg" alt=""/>
-              <div class="am-thumbnail-caption">
-                <h3>百年孤独选</h3>
-                <p>无论走到哪里，都应该记住，过去都是假的，回忆是一逝的现实。</p>
-              </div>
-            </div>
-          </div>
-
-        <div class="am-u-sm-3">
-          <div class="am-thumbnail">
-            <img src="http://file29.mafengwo.net/M00/C7/8C/wKgBpVWeb6KAKJaTAAjRr7HvVCQ69.groupinfo.w229.jpeg" alt=""/>
-            <div class="am-thumbnail-caption">
-              <h3>百年孤独选</h3>
-              <p>无论走到哪里，都应该记住，过去都是假的，回不过是一种转的现实。</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="am-u-sm-3">
-          <div class="am-thumbnail">
-            <img src="http://file29.mafengwo.net/M00/C7/8C/wKgBpVWeb6KAKJaTAAjRr7HvVCQ69.groupinfo.w229.jpeg" alt=""/>
-            <div class="am-thumbnail-caption">
-              <h3>百年孤独选</h3>
-              <p>无论走到哪里，都应该记住，过去都是假的，回不过是一种转的现实。</p>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="am-u-sm-3">
-          <div class="am-thumbnail">
-            <img src="http://file29.mafengwo.net/M00/C7/8C/wKgBpVWeb6KAKJaTAAjRr7HvVCQ69.groupinfo.w229.jpeg" alt=""/>
-            <div class="am-thumbnail-caption">
-              <h3>百年孤独选</h3>
-              <p>无论走到哪里，都应该记住，过去都是假的，回不过是一种转的现实。</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="am-u-sm-3 am-u-end">
-          <div class="am-thumbnail">
-            <img src="http://file29.mafengwo.net/M00/C7/8C/wKgBpVWeb6KAKJaTAAjRr7HvVCQ69.groupinfo.w229.jpeg" alt=""/>
-            <div class="am-thumbnail-caption">
-              <h3>百年孤独选</h3>
-              <p>无论走到哪里，都应该记住，过去都是假的，回不过是一种转的现实。</p>
-            </div>
-          </div>
-        </div>
-    </div>
-
-    <div class="am-u-sm-12">
-        <br><br><br>
-        <hr data-am-widget="divider" style="" class="am-divider am-divider-dashed" />
-        <div class="am-u-sm-12">
-            <br>
-            <article class="am-comment">
-              <a href="#link-to-user-home">
-                <img src="http://file29.mafengwo.net/M00/C7/8C/wKgBpVWeb6KAKJaTAAjRr7HvVCQ69.groupinfo.w229.jpeg" alt="" class="am-comment-avatar" width="48" height="48"/>
-              </a>
-
-              <div class="am-comment-main">
-                <header class="am-comment-hd">
-                  <div class="am-comment-meta">
-                    <a href="#link-to-user" class="am-comment-author">某人</a>
-                    评论于 <time datetime="2013-07-27T04:54:29-07:00" title="2013年7月27日 下午7:54 格林尼治标准时间+0800">2014-7-12 15:30</time>
-                  </div>
-                </header>
-                <div class="am-comment-bd">
-                  啥地方时都会经过对双方都会说多少遍是的收到公司都刚好合适的感受到
-                </div>
-              </div>
-            </article>
-        </div>
-        <div class="am-u-sm-12">
-            <br>
-            <article class="am-comment">
-              <a href="#link-to-user-home">
-                <img src="http://file29.mafengwo.net/M00/C7/8C/wKgBpVWeb6KAKJaTAAjRr7HvVCQ69.groupinfo.w229.jpeg" alt="" class="am-comment-avatar" width="48" height="48"/>
-              </a>
-
-              <div class="am-comment-main">
-                <header class="am-comment-hd">
-                  <div class="am-comment-meta">
-                    <a href="#link-to-user" class="am-comment-author">某人</a>
-                    评论于 <time datetime="2013-07-27T04:54:29-07:00" title="2013年7月27日 下午7:54 格林尼治标准时间+0800">2014-7-12 15:30</time>
-                  </div>
-                </header>
-                <div class="am-comment-bd">
-                  啥地方时都会经过对双方都会说多少遍是的收到公司都刚好合适的感受到
-                </div>
-              </div>
-            </article>
-        </div>
-        <div class="am-u-sm-12">
-            <br>
-            <article class="am-comment">
-              <a href="#link-to-user-home">
-                <img src="http://file29.mafengwo.net/M00/C7/8C/wKgBpVWeb6KAKJaTAAjRr7HvVCQ69.groupinfo.w229.jpeg" alt="" class="am-comment-avatar" width="48" height="48"/>
-              </a>
-
-              <div class="am-comment-main">
-                <header class="am-comment-hd">
-                  <div class="am-comment-meta">
-                    <a href="#link-to-user" class="am-comment-author">某人</a>
-                    评论于 <time datetime="2013-07-27T04:54:29-07:00" title="2013年7月27日 下午7:54 格林尼治标准时间+0800">2014-7-12 15:30</time>
-                  </div>
-                </header>
-                <div class="am-comment-bd">
-                  啥地方时都会经过对双方都会说多少遍是的收到公司都刚好合适的感受到
-                </div>
-              </div>
-            </article>
-        </div>
+        <% for(var i=0; i<5; i++) {%>
+        	<div class="am-u-sm-12">
+        	    <br>
+        	    <article class="am-comment">
+        	      	<a href="#link-to-user-home">
+        	        	<img src="http://file29.mafengwo.net/M00/C7/8C/wKgBpVWeb6KAKJaTAAjRr7HvVCQ69.groupinfo.w229.jpeg" alt="" class="am-comment-avatar" width="48" height="48"/>
+        	      	</a>
+        	      	<div class="am-comment-main">
+	        	        <header class="am-comment-hd">
+	        	          	<div class="am-comment-meta">
+	        	            	<a href="#link-to-user" class="am-comment-author">zyfyh8023@163.com</a>
+	        	            	评论于 <time datetime="2013-07-27T04:54:29-07:00" title="2013年7月27日 下午7:54 格林尼治标准时间+0800">2014-7-12 15:30</time>
+	        	          	</div>
+	        	        </header>
+	        	        <div class="am-comment-bd">
+	        	          	啥地方时都会经过对双方啥地方时都会经过对双方都会说多少遍是的收到公司都刚好合适的感受到都会说多少遍是的收到公司都刚好合适的感受到
+	        	        </div>
+	        	        <div class="am-comment-footer am-comment-actions">
+	        	        	<a class="am-post-reply" href="javascript:void(0);">
+	        	        		<span class="am-icon am-icon-reply"></span> 回复
+	        	        	</a>
+	        	        	<a class="am-post-likes" href="javascript:void(0);">
+	        	        		<span class="am-icon-anchor"></span> 顶
+	        	        	</a>
+	        	        	<a class="am-post-repost" href="javascript:void(0);">
+	        	        		<span class="am-icon am-icon-share"></span> 转发
+	        	        	</a>
+	        	        	<a class="am-post-report" href="javascript:void(0);">
+	        	        		<span class="am-icon-bolt"></span> 举报
+	        	        	</a>
+	        	        </div>
+        	      </div>
+        	    </article>
+        	</div>
+        <% } %>
     </div>
     
-
+    <div class="am-u-sm-12">
+        <form class="am-form comFrom" style="margin-top:5rem;padding-right:1.5rem;padding-left:1.5rem">
+            <label for="message" class="about-color">我的评论：</label>
+            <textarea class="comment" rows="3"></textarea>
+            <br/>
+            <a class="am-btn am-btn-primary am-btn-sm zy-button1">提交评论</a>
+            <a class="am-btn am-btn-default am-btn-sm" href="/login" target="_blank">去登录</a>
+            <a class="am-btn am-btn-default am-btn-sm" href="/register" target="_blank">去注册</a>
+        </form>
+    </div>
 </div>
+
 <br><br><br>
 
 <% include ../../myfooter.html %>

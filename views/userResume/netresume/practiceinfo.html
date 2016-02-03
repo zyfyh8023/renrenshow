@@ -24,20 +24,22 @@
 									<% if(k==1){ %>
 										<dl class="am-accordion-item am-active">
 											<dt class="am-accordion-title">
-												<%=rs. trys9[i].tName %>
+												名称：<%=rs. trys9[i].tName %>
 											</dt>
 											<dd class="am-accordion-bd am-collapse am-in">
 									<% }else{ %>
 										<dl class="am-accordion-item">
 											<dt class="am-accordion-title">
-												<%=rs. trys9[i].tName %>
+												名称：<%=rs. trys9[i].tName %>
 											</dt>
 											<dd class="am-accordion-bd am-collapse">
 									<% } %>
-											<div class="am-accordion-content">
-												<font style="color:#666;font-weight:bold">发表时间：<%=rs. trys9[i].tType %></font><br>
-												<font style="color:#666;font-weight:bold">简要介绍：</font><br>
-												<%=rs. trys9[i].addt %>
+											<div class="am-accordion-content" style="color:#666;">
+												<font style="font-weight:bold">
+													活动时间：<%=rs. trys9[i].tType %></font><br>
+												<font>
+													<font style="font-weight:bold">补充说明：</font>
+													<%=rs. trys9[i].addt %></font>
 											</div>
 										</dd>
 									</dl>
@@ -54,20 +56,22 @@
 									<% if(k==1){ %>
 										<dl class="am-accordion-item am-active">
 											<dt class="am-accordion-title">
-												<%=rs. trys9[i].tName %>
+												名称：<%=rs. trys9[i].tName %>
 											</dt>
 											<dd class="am-accordion-bd am-collapse am-in">
 									<% }else{ %>
 										<dl class="am-accordion-item">
 											<dt class="am-accordion-title">
-												<%=rs. trys9[i].tName %>
+												名称：<%=rs. trys9[i].tName %>
 											</dt>
 											<dd class="am-accordion-bd am-collapse">
 									<% } %>
-											<div class="am-accordion-content">
-												<font style="color:#666;font-weight:bold">发表时间：<%=rs. trys9[i].tType %></font>
-												<br><font style="color:#666;font-weight:bold">简要介绍：</font><br>
-												<%=rs. trys9[i].addt %>
+											<div class="am-accordion-content" style="color:#666;">
+												<font style="font-weight:bold">
+													活动时间：<%=rs. trys9[i].tType %></font><br>
+												<font>
+													<font style="font-weight:bold">补充说明：</font>
+													<%=rs. trys9[i].addt %></font>
 											</div>
 										</dd>
 									</dl>
@@ -169,7 +173,7 @@
 							</div>
 						</div>
 						<div class="am-form-group">
-							<label class="am-u-sm-3 am-form-label">日期：</label>
+							<label class="am-u-sm-3 am-form-label">活动时间：</label>
 							<div class="am-u-sm-9">
 								<input type="text" value="" class="am-form-field undergotime" placeholder="请输入日期" data-am-datepicker readonly />
 							</div>
