@@ -88,12 +88,12 @@ a,a:hover{
 }
 
 .zy-loginright .am-u-sm-centered {
-    margin-left: auto;
-    margin-right: 1px;
-    margin-top: 160px;
-    margin-bottom: 60px;
+    margin-left: 55%;
+    margin-top: 25rem;
+    margin-bottom: 25rem;
+    padding:5rem;
+    background: #fff;
 }
-
 
 /*index*/
 
@@ -360,9 +360,17 @@ a,a:hover{
 /*注册页面的样式*/
 
 .zy-register {
-    margin-top: 15rem;
-    margin-bottom: 10rem;
+    padding-top: 15rem;
+    padding-bottom: 18rem;
+    background: url(/images/loginbg.jpg) no-repeat center;
 }
+
+.zy-register form{
+    background: #fff;
+    padding-top: 13rem;
+    padding-bottom: 10rem;
+}
+
 
 
 /*需要用到的页面都具有的导航标题     其他页面试着使用*/
