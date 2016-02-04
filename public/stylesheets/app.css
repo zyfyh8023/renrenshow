@@ -360,15 +360,15 @@ a,a:hover{
 /*注册页面的样式*/
 
 .zy-register {
-    padding-top: 15rem;
-    padding-bottom: 18rem;
+    padding-top: 18rem;
+    padding-bottom: 20rem;
     background: url(/images/loginbg.jpg) no-repeat center;
 }
 
 .zy-register form{
     background: #fff;
-    padding-top: 13rem;
-    padding-bottom: 10rem;
+    padding-top: 10rem;
+    padding-bottom: 6rem;
 }
 
 
