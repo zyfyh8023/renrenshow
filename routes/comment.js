@@ -9,7 +9,7 @@ var retCode, retDesc, uName, navTitle, navDesc;
 
 exports.minePage = function(req, res, next){
     uName = req.session.user.username;
-    navTitle = "优秀博文积累1";
+    navTitle = "我的评论";
     navDesc = "可以作为自己的个人文集，把自己的写的文章按照一定的时间顺序、目录或者标签发表到自己的博客上" +
         "这是博客最初的最基本的功能，就是发表个人网络日志。";
 
@@ -31,7 +31,7 @@ exports.minePage = function(req, res, next){
                     } else {
                         console.log(results);
                         res.render('./userBlog/manageComments', {
-                            title: '评论管理',
+                            title: '我的评论',
                             uName: uName,
                             navTitle: navTitle,
                             allNum: resu,
@@ -53,7 +53,7 @@ exports.minePage = function(req, res, next){
 
 exports.yoursPage = function(req, res, next){
     uName = req.session.user.username;
-    navTitle = "优秀博文积累1";
+    navTitle = "评论我的";
     navDesc = "可以作为自己的个人文集，把自己的写的文章按照一定的时间顺序、目录或者标签发表到自己的博客上" +
         "这是博客最初的最基本的功能，就是发表个人网络日志。";
 
@@ -75,7 +75,7 @@ exports.yoursPage = function(req, res, next){
                     } else {
                         console.log(results);
                         res.render('./userBlog/manageComments', {
-                            title: '评论管理',
+                            title: '评论我的',
                             uName: uName,
                             navTitle: navTitle,
                             allNum: resu,
@@ -101,6 +101,7 @@ exports.doPage = function(req, res, next) {
     uName = req.session.user.username;
     var comCon = req.body.comCon.trim() || '',
         comArt = req.body.comArt.trim() || '',
+        typ = req.body.typ.trim() || '',
         artAuthor = req.body.artAuthor.trim() || '';
 
     users.findByUname(uName, function(err, result) {
@@ -108,14 +109,24 @@ exports.doPage = function(req, res, next) {
            return res.send({retCode: 400, retDesc: '用户查找失败！'});
         } else {
             if (result) {
-                var newComment = new comment.Comment({
-                    author: uName,
-                    authorImg:result.headimg,
-                    CommentCont: comCon,
-                    CommentArt: comArt,
-                    artAuthor: artAuthor
-                });
-
+                var newComment;
+                if(typ=='1'){
+                    newComment = new comment.Comment({
+                        author: uName,
+                        authorImg:result.headimg,
+                        CommentCont: comCon,
+                        CommentArt: comArt,
+                        artAuthor: artAuthor
+                    });
+                }else{
+                    newComment = new comment.Comment({
+                        author: uName,
+                        authorImg:result.headimg,
+                        CommentCont: comCon,
+                        CommentExp: comArt,
+                        artAuthor: artAuthor
+                    });
+                }
                 comment.create(newComment, function(err) {
                     if (err) {
                         return res.send({retCode: 400, retDesc: '保存失败,请稍后再试!'});
@@ -147,7 +158,6 @@ exports.pageSearch = function(req, res){
                 artAuthor: uName
             };
         }
-        
     comment.findAllByCon(object,pagenum,skipstep,function(err, results, nums){
         if(err){
             console.log('err');

@@ -12,6 +12,7 @@
 							<th style="min-width:10rem">评论内容</th>
 							<th style="width:10rem">评论作者</th>
 							<th style="width:10rem">评论时间</th>
+							<th style="width:10rem">评论类型</th>
 							<th style="width:6rem">操作</th>
 						</tr>
 					</thead>
@@ -34,7 +35,18 @@
 									<%= dateformat(allComments[i].cTime) %>
 								</td>
 								<td class="am-text-middle">
-									<a href="#">查看</a>
+									<% if(allComments[i].CommentArt!='') { %>
+										博文
+									<% }else { %>
+										面经
+									<% } %>
+								</td>
+								<td class="am-text-middle">
+									<% if(allComments[i].CommentArt!='') { %>
+										<a href="/blogs_art?aid=<%= allComments[i].CommentArt %>">查看</a>
+									<% }else{ %>
+										<a href="/blogs_exp?aid=<%= allComments[i].CommentExp %>">查看</a>
+									<% } %>
 								</td>
 							</tr>
 						<% } %>

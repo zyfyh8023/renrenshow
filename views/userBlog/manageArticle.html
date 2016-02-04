@@ -25,13 +25,7 @@
 									<%= allArticles[i].articleTitle %>
 								</td>
 								<td class="am-text-middle">
-									<% if(allArticles[i].articleType=='1') { %>
-											技术博客
-										<% } else if(allArticles[i].articleType=='2'){ %>
-											行业远瞻
-										<% }else { %>
-											乱七八糟
-									<% } %>
+									<%= artTyp(allArticles[i].articleType) %>
 								</td>
 								<td class="am-text-middle">
 									<%= dateformat(allArticles[i].cTime) %>

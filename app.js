@@ -51,8 +51,10 @@ app.set('view engine', 'html');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-    extended: false
+    extended: false,
+    limit:'1000000kb'
 }));
+
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
@@ -112,7 +114,8 @@ app.get('/about', about.page);
 
 //两种情况的访问
 app.get('/resume_awd', seeuInfo.awards);
-app.get('/resume_cmp', seeuInfo.companys);
+app.get('/resume_cmp1', seeuInfo.companys1);
+app.get('/resume_cmp2', seeuInfo.companys2);
 app.get('/resume_scl', seeuInfo.schools);
 app.get('/resume_wok', seeuInfo.works);
 
@@ -200,6 +203,64 @@ app.get('/sets_pwd', changePassword.page);
 app.post('/changePassword', changePassword.doPage);
 //测试页面
 app.get('/demo', demo.page);
+
+//app的artTyp格式化
+app.locals.artTyp = function(dat) {
+    var ret="";
+    switch(dat){
+        case 1:
+            ret='技术博客';break;
+        case 2:
+            ret='行业远瞻';break;
+        case 3:
+            ret='乱七八糟';break;
+        default:
+            ret="";break;
+    }
+    return ret;
+};
+//app的awardTyp格式化
+app.locals.awardTyp = function(dat) {
+    var ret="";
+    switch(dat){
+        case '1':
+            ret='班级';break;
+        case '2':
+            ret='院级';break;
+        case '3':
+            ret='校级';break;
+        case '4':
+            ret='市级';break;
+        case '5':
+            ret='省级';break;
+        case '6':
+            ret='国级';break;
+        case '7':
+            ret='国际';break;
+        default:
+            ret="";break;
+    }
+    return ret;
+};
+//app的学历格式化
+app.locals.eduType = function(dat) {
+    var ret="";
+    switch(dat){
+        case '1':
+            ret='高中';break;
+        case '2':
+            ret='大专';break;
+        case '3':
+            ret='本科';break;
+        case '4':
+            ret='硕士';break;
+        case '5':
+            ret='博士';break;
+        default:
+            ret="";break;
+    }
+    return ret;
+};
 //app的日期格式化
 app.locals.dateformat = function(obj, format) {
     if (format == undefined) {

@@ -1,5 +1,6 @@
 <% include header.html %>
-	<section id="zy-login">
+
+	<section id="zy-login" style="background:#eee;padding-bottom:8rem;">
 		<div class="am-g am-u-lg-7 am-u-md-10 am-u-sm-centered zy-loginright">
 			<div class="am-u-lg-5 am-u-md-5  am-u-md-6 am-u-sm-centered">
 				<form class="am-form am-form-horizontal" method="post" data-am-validator>
@@ -38,46 +39,51 @@
 			</div>
 		</div>
 	</section>
-	<% include footer.html %>
-		<script>
-		$(document).ready(function() {
-			//Dom缓存
-			var $zyLogin = $("#zy-login");
-			//事件绑定1
-			$zyLogin.delegate('#remember-me', 'click', function(event) {
-				if ($('#remember-me', $zyLogin).prop('checked')) {
-					alertOpnFn('别急嘛，这个功能还没来得及做哦~');
-				}
-			});
-			//事件绑定2
-			$zyLogin.delegate('button', 'click', function(event) {
-				warnClsFn();
-				var username = $.trim($('.username', $zyLogin).val()),
-					password = $.trim($('.password', $zyLogin).val());
-				if (username && password) {
-					$.ajax({
-						type: 'post',
-						url: '/login',
-						data: {
-							username: username,
-							password: password
-						},
-						dataType: 'json',
-						success: function(data) {
-							if (data.retCode != 200) {
-								warnOpnFn(data.retDesc);
-							} else {
-								location.href = "/myindex";
-							}
-						},
-						error: function(err) {
-							alertOpnFn('err');
-						}
-					});
-				} else {
-					warnOpnFn('请把表单的内容填写完整哦~');
-				}
-			});
 
-		});
-		</script>
+
+<% include footer.html %>
+
+
+
+<script>
+$(document).ready(function() {
+	//Dom缓存
+	var $zyLogin = $("#zy-login");
+	//事件绑定1
+	$zyLogin.delegate('#remember-me', 'click', function(event) {
+		if ($('#remember-me', $zyLogin).prop('checked')) {
+			alertOpnFn('别急嘛，这个功能还没来得及做哦~');
+		}
+	});
+	//事件绑定2
+	$zyLogin.delegate('button', 'click', function(event) {
+		warnClsFn();
+		var username = $.trim($('.username', $zyLogin).val()),
+			password = $.trim($('.password', $zyLogin).val());
+		if (username && password) {
+			$.ajax({
+				type: 'post',
+				url: '/login',
+				data: {
+					username: username,
+					password: password
+				},
+				dataType: 'json',
+				success: function(data) {
+					if (data.retCode != 200) {
+						warnOpnFn(data.retDesc);
+					} else {
+						location.href = "/myindex";
+					}
+				},
+				error: function(err) {
+					alertOpnFn('err');
+				}
+			});
+		} else {
+			warnOpnFn('请把表单的内容填写完整哦~');
+		}
+	});
+
+});
+</script>

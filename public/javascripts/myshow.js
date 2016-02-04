@@ -477,15 +477,22 @@ $(document).ready(function() {
 			    success: function(data){
 			    	var htmls="";
 			    	for(var i=0, len=data.allComments.length;i<len;i++){
+		    			var txt="", linkstr='';
+		    			if(data.allComments[i].CommentArt!='') { 
+		    				txt='博文';
+		    				linkstr='<a href="/blogs_exp?aid='+data.allComments[i].CommentArt+'"">查看</a>';
+		    			}else {
+		    				txt='面经';
+		    				linkstr='<a href="/blogs_exp?aid='+data.allComments[i].CommentExp+'"">查看</a>';
+		    			}
 			    		var htmlTemp=
 			    			'<tr  data-ids="'+data.allComments[i]._id+'">'+
 			    			'<td class="am-text-middle">'+(((pagenum-1)*10)+(i+1))+'</td>'+
 			    			'<td class="am-text-middle">'+cutStr(data.allComments[i].CommentCont, 100, '...')+'</td>'+
 			    			'<td class="am-text-middle"><a href="#"><img style="width:20%;border-radius:100%;"src='+ data.allComments[i].authorImg +'><br>'+data.allComments[i].author+'</a></td>'+
 			    			'<td class="am-text-middle">'+dateformat(data.allComments[i].cTime)+'</td>'+
-			    			'<td class="am-text-middle">'+
-			    			'<a href="/blog_exp?aid=123132135">查看</a>';
-
+			    			'<td class="am-text-middle">'+txt+'</td>'+
+			    			'<td class="am-text-middle">'+linkstr;
 			    		htmlTemp+='</td></tr>';
 			    		htmls+=htmlTemp;
 			    	}      
@@ -527,7 +534,7 @@ $(document).ready(function() {
 			    			'<td class="am-text-middle">'+dateformat(data.allArticles[i].cTime)+'</td>'+
 			    			'<td class="am-text-middle">'+
 			    			'<a href="javascript:void(0);" class="zy-del-art">删除</a><br>'+
-			    			'<a href="/blog_exp?aid=123132135">查看</a><br>';
+			    			'<a href="/blogs_exp?aid=123132135">查看</a><br>';
 
 			    		if(data.allArticles[i].experienceTag=='2'){
 			    			htmlTemp+='<a href="javascript:void(0);" class="zy-pub-art">发布</a>';
@@ -703,18 +710,10 @@ $(document).ready(function() {
 			    	for(var i=0, len=data.allArticles.length;i<len;i++){
 			    		var artTyp;
 			    		switch(data.allArticles[i].articleType){
-			    			case 1:
-			    				artTyp="技术博客";
-			    				break;
-			    			case 2:
-			    				artTyp="行业远瞻";
-			    				break;
-			    			case 3:
-			    				artTyp="乱七八糟";
-			    				break;
-			    			default:
-			    				artTyp=data.allArticles[i].articleType;
-			    				break;
+			    			case 1:artTyp="技术博客";break;
+			    			case 2:artTyp="行业远瞻";break;
+			    			case 3:artTyp="乱七八糟";break;
+			    			default:artTyp=data.allArticles[i].articleType;break;
 			    		}
 
 			    		var htmlTemp=
@@ -725,8 +724,7 @@ $(document).ready(function() {
 			    			'<td class="am-text-middle">'+dateformat(data.allArticles[i].cTime)+'</td>'+
 			    			'<td class="am-text-middle">'+
 			    			'<a href="javascript:void(0);" class="zy-del-art">删除</a><br>'+
-			    			'<a href="/blog_art?aid='+data.allArticles[i]._id+'">查看</a><br>';
-
+			    			'<a href="/blogs_art?aid='+data.allArticles[i]._id+'">查看</a><br>';
 			    		if(data.allArticles.articleTag=='2'){
 			    			htmlTemp+='<a href="javascript:void(0);" class="zy-pub-art">发布</a>';
 			    		}
@@ -748,7 +746,9 @@ $(document).ready(function() {
 		var articleTitle = $.trim($(".articleTitle", $createArticle).val()),
 			articleKeyword = $.trim($(".articleKeyword", $createArticle).val()),
 			articleType = $.trim($(".articleType", $createArticle).val()),
+			articleAbstract = articleCon.getContentTxt(),
 			articleCont = articleCon.getContent();
+			articleAbstract=cutStr(articleAbstract,350,'...');
 
 		if (articleTitle != '' && articleKeyword != '' && articleType != '' && articleCont != '') {
 			
@@ -767,6 +767,7 @@ $(document).ready(function() {
 					tags: 1,
 					articleTitle: articleTitle,
 					articleKeyword: articleKeyword,
+					articleAbstract: articleAbstract,
 					articleType: articleType,
 					articleCont: articleCont,
 					articleImgs: srcArr
@@ -795,7 +796,9 @@ $(document).ready(function() {
 		var articleTitle = $.trim($(".articleTitle", $createArticle).val()),
 			articleKeyword = $.trim($(".articleKeyword", $createArticle).val()),
 			articleType = $.trim($(".articleType", $createArticle).val()),
+			articleAbstract = articleCon.getContentTxt(),
 			articleCont = articleCon.getContent();
+			articleAbstract=cutStr(articleAbstract,350,'...');
 
 		if (articleTitle != '' && articleKeyword != '' && articleType != '' && articleCont != '') {
 			
@@ -815,6 +818,7 @@ $(document).ready(function() {
 					articleTitle: articleTitle,
 					articleKeyword: articleKeyword,
 					articleType: articleType,
+					articleAbstract: articleAbstract,
 					articleCont: articleCont,
 					articleImgs: srcArr
 				},

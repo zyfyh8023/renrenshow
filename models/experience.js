@@ -127,7 +127,7 @@ exports.findAllByCon = function(object,pagenum,skipstep,callback) {
         if(err){
             callback(err, null, null);
         }else{
-            var query = Experience.find(object).skip(skipstep).limit(pagenum).sort('-uTime');
+            var query = Experience.find(object).skip(skipstep).limit(pagenum).sort('-cTime');
             query.exec(function(err, result) {
                 if(err){
                     callback(err, null, null);

@@ -6,21 +6,21 @@
     <div class="am-u-sm-12">
         <div class="am-u-sm-9">
             <div class="am-thumbnail am-thumbnail-caption">
-                <h2>基于体感网的PD病人运动功能评价系统</h2>
+                <h2><%= rs.workname %></h2>
                 <div data-am-widget="slider" class="am-slider am-slider-d3" data-am-slider='{"controlNav":"thumbnails","directionNav":false}' >
                     <ul class="am-slides">
-                        <% for(var i=0; i<5; i++){ %>
-                          <li data-thumb="http://file112.mafengwo.net/s9/M00/B2/D7/wKgBs1aKEvuAD-y7AAeZtYhzD8Y23.jpeg?imageMogr2%2Finterlace%2F1">
-                              <img src="http://file112.mafengwo.net/s9/M00/B2/D7/wKgBs1aKEvuAD-y7AAeZtYhzD8Y23.jpeg?imageMogr2%2Finterlace%2F1">
+                        <% for(var i=0,len=rs.workimg.length; i<len; i++){ %>
+                          <li data-thumb="<%= rs.workimg[i] %>">
+                              <a href="<%= rs.workimg[i] %>"><img src="<%= rs.workimg[i] %>"></a>
                           </li>
                         <% } %>
                     </ul>
                 </div>
                 <div class="am-thumbnail-caption">
-                    <p>作品日期：2015-09-30</p>
-                    <p>相关链接：https://www.lmlc.com</p>
+                    <p>作品日期：<%= dateformat(rs.worktime,'YYYY-MM-DD') %></p>
+                    <p>相关链接：<%= rs.relationlink %></p>
                     <p>简要介绍：</p>
-                    <p>无论走到哪里，都应该记住，过去都是假的，回忆是一条没有尽头的路，一切以往的春天都不复存在，就连那最坚韧而又狂乱的爱情归根结底也不过是一种转瞬即逝的现实。无论走到哪里，都应该记住，过去都是假的，回忆是一条没有尽头的路，一切以往的春天都不复存在，就连那最坚韧而又狂乱的爱情归根结底也不过是一种转最坚韧而又狂乱的爱情归根结底也不过是一种转瞬即逝的现实。无论走到哪里，都应该记住，过去都是假的，回忆是一条没有尽头的路，一切以往的春天都不复存在，就连那最坚韧而又狂乱的爱情归根结底也不过是一种瞬即逝的现实。</p>
+                    <p><%= rs.workdes %></p>
                 </div>
             </div>
         </div>

@@ -140,7 +140,7 @@ exports.findAllByCon = function(object,pagenum,skipstep,callback) {
         if(err){
             callback(err, null, null);
         }else{
-            var query = Article.find(object).skip(skipstep).limit(pagenum).sort('-uTime');
+            var query = Article.find(object).skip(skipstep).limit(pagenum).sort('-cTime');
             query.exec(function(err, result) {
                 if(err){
                     callback(err, null, null);

@@ -19,16 +19,16 @@ exports.page = function(req, res) {
 	// 	uName: ''
 	// });
 
-	// res.render('demo6', {
-	// 	title: 'demo6',
-	// 	uName: ''
-	// });
-
-
-	res.render('demo5', {
-		title: 'demo5',
+	res.render('demo6', {
+		title: 'demo6',
 		uName: ''
 	});
+
+
+	// res.render('demo5', {
+	// 	title: 'demo5',
+	// 	uName: ''
+	// });
 	
 
 	

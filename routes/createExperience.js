@@ -1,6 +1,7 @@
 "use strict";
 
 var articles = require('../models/article');
+var comment = require('../models/comment');
 var experiences = require('../models/experience');
 var async = require('async');
 
@@ -74,6 +75,11 @@ function getArtExpNum(uName, callFn) {
             },
             function(callback) {
                 experiences.allNum(uName, function(err, results) {
+                    callback(err, results);
+                });
+            },
+            function(callback) {
+                comment.allNum(uName, function(err, results) {
                     callback(err, results);
                 });
             }

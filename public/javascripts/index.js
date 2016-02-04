@@ -37,7 +37,7 @@ $(document).ready(function() {
 	});
 
 
-	//评论模块
+	//博客的评论模块
 	var $comm=$('#zy-blog-com');
 	$comm.delegate('.zy-button1', 'click', function(event) {
 		$.ajax({
@@ -46,7 +46,8 @@ $(document).ready(function() {
 			data: {
 				comCon: $('.comment', $comm).val(),
 				comArt: $('.comFrom', $comm).data('artid'),
-				artAuthor: $('.comFrom', $comm).data('authorid')
+				artAuthor: $('.comFrom', $comm).data('authorid'),
+				typ: '1'
 			},
 			dataType: 'json',
 			success: function(data) {
@@ -62,6 +63,31 @@ $(document).ready(function() {
 		});
 	});
 
+	//面经的评论模块
+	var $comm2=$('#zy-exp-com');
+	$comm2.delegate('.zy-button1', 'click', function(event) {
+		$.ajax({
+			type: 'post',
+			url: '/comment',
+			data: {
+				comCon: $('.comment', $comm2).val(),
+				comArt: $('.comFrom', $comm2).data('expid'),
+				artAuthor: $('.comFrom', $comm2).data('authorid'),
+				typ: '2'
+			},
+			dataType: 'json',
+			success: function(data) {
+				if (data.retCode != 200) {
+					warnOpnFn(data.retDesc);
+				} else {
+					location.reload();
+				}
+			},
+			error: function(data) {
+				alertOpnFn('err');
+			}
+		});
+	});
 });
 
 //warn的opn和cls
@@ -119,7 +145,7 @@ function cutStr(str, strLen, addStr){
 function dateformat(timestr){
 	var newTim=new Date(timestr);
 	var newTim2=newTim.getFullYear()+'-'+
-				newTim.getMonth()+'-'+
+				(parseInt(newTim.getMonth())+1)+'-'+
 				newTim.getDate()+' '+
 				newTim.getHours()+':'+
 				newTim.getMinutes()+':'+

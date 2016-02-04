@@ -46,25 +46,25 @@
 	<div class="am-u-md-8">
 		<article class="blog-main">
 		  	<h3 class="am-article-title blog-title">
-		    	<a href="#">光大易创网络科技股份有限公司</a>
+		    	<a href="#"><%= rs.practice %></a>
 		  	</h3>
 		  	<h4 class="am-article-meta blog-meta">
-		  		工作类型：<a href="#">实习</a>
+		  		工作类型：<a href="#"><%= jobTyp %></a>
 		  	</h4>
 		 	<div class="am-g blog-content">
 		 		<div class="am-u-lg-5">
-		 	  		<img style="display:block;padding:1rem;width:100%" src="/images/hw.jpg">
+		 	  		<img style="display:block;padding:1rem;width:100%" src="<%= rs.companyLogo %>"> 
 		 		</div>
 		    	<div class="am-u-lg-7">
-			      	<p>部门：电子商务部</p>
-			      	<p>职位：前端开发工程师</p>
-			      	<p>开始时间：2015-08-12</p>
-			      	<p>结束时间：2015-08-12</p>
+			      	<p>部门：<%= rs.departmentName %></p>
+			      	<p>职位：<%= rs.practiceposition %></p>
+			      	<p>开始时间：<%= dateformat(rs.spracticetime, 'YYYY-MM-DD') %></p>
+			      	<p>结束时间：<%= dateformat(rs.epracticetime, 'YYYY-MM-DD') %></p>
 		    	</div>
 		  	</div>
 		  	<div class="am-g">
 			    <div class="am-u-sm-12">
-			      	<p>工作介绍：看著自己的作品，你的喜悅之之情溢於言表，差點就要說出我要感謝我的父母之類的得獎感言。但在你對面的客戶先是一點表情也沒有，又瞬間之情溢於言表，差點就要說出我要感謝我的父母之類的得獎感言。但在你對面的客戶先是一點表情也沒有，又瞬轉為陰沉，抿了抿嘴角冷冷情溢於言表，差點就要說出我要感謝我的父母之類的得獎感言。但在你對面的客戶先是一點表情也沒有，又瞬間轉為陰沉，抿了抿嘴角冷冷的</p>
+			      	<p>工作介绍：<%= rs.practiceinstr %></p>
 			    </div>
 		  	</div>
 		</article>

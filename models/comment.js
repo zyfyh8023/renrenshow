@@ -8,8 +8,8 @@ var CommentSchema = new Schema({
     authorImg: String,
     CommentCont: String,
     CommentArt: String,
+    CommentExp: String,
     artAuthor: String,
-    Commentlinks: String,
     CommentTag1: Number,
     CommentTag2: Number,
     CommentTag3: Number,
@@ -128,7 +128,7 @@ exports.findAllByCon = function(object,pagenum,skipstep,callback) {
         if(err){
             callback(err, null, null);
         }else{
-            var query = Comment.find(object).skip(skipstep).limit(pagenum).sort('-uTime');
+            var query = Comment.find(object).skip(skipstep).limit(pagenum).sort('-cTime');
             query.exec(function(err, result) {
                 if(err){
                     callback(err, null, null);

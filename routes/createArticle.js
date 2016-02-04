@@ -1,5 +1,5 @@
 "use strict";
-
+var comment = require('../models/comment');
 var articles = require('../models/article');
 var experiences = require('../models/experience');
 var async = require('async');
@@ -34,6 +34,7 @@ exports.doPage = function(req, res, next) {
     uName = req.session.user.username;
     var articleTitle = req.body.articleTitle.trim() || '',
         articleKeyword = req.body.articleKeyword.trim() || '',
+        articleAbstract = req.body.articleAbstract.trim() || '',
         articleCont = req.body.articleCont.trim() || '',
         articleType = req.body.articleType.trim() || '',
         articleTag = req.body.tags || 0,
@@ -43,12 +44,12 @@ exports.doPage = function(req, res, next) {
         author: uName,
         articleTitle: articleTitle,
         articleKeyword: articleKeyword,
+        articleAbstract: articleAbstract,
         articleCont: articleCont,
         articleType: articleType,
         articleTag: articleTag,
         articleImgs: articleImgs
     });
-
     articles.create(newArticle, function(err) {
         if (err) {
             retDesc = "保存失败,请稍后再试!";
@@ -73,6 +74,11 @@ function getArtExpNum(uName, callFn) {
             },
             function(callback) {
                 experiences.allNum(uName, function(err, results) {
+                    callback(err, results);
+                });
+            },
+            function(callback) {
+                comment.allNum(uName, function(err, results) {
                     callback(err, results);
                 });
             }

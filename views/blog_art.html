@@ -11,13 +11,12 @@
         <div class="am-article-hd">
             <h1 class="am-article-title"><%= resul.articleTitle %></h1>
             <p class="am-article-meta">
-                <%= resul.author %> / 类型：技术博客 / 关键字：<%= resul.articleKeyword %>
+               作者：<%= resul.author %> / 类型：<%= artTyp(resul.articleType) %> / 时间：<%= dateformat(resul.cTime) %> / 关键字：<%= resul.articleKeyword %>
             </p>
         </div>
         <div class="am-article-bd">
             <p class="am-article-lead">
-                <%= resul.articleAbstract %>
-                《永远的蝴蝶》是台湾著名作家陈启佑先生的一篇小小说。这是一篇散文化的微型小说，其语言具有较强的抒情色彩，立意含蓄隽永 。作品情节很简单，写的是一个凄美的爱情故事。在一个雨天，“我”的恋人樱子自愿帮“我”到马路对面去寄信。随着一阵拔尖的刹车声，樱子年轻的生命消逝了。
+                摘要：<%= resul.articleAbstract %>
             </p>
             <%- resul.articleCont %>
         </div>
@@ -26,6 +25,8 @@
 
 <div class="am-g am-g-fixed zy-article-comment">
     <ul class="am-comments-list">
+    <% if(resul2.length>0) { %>
+    <hr data-am-widget="divider" style="" class="am-divider am-divider-dashed" /><br>
         <% for(var j=0; j<resul2.length; j++){ %>
             <li class="am-comment">
                 <a href="#link-to-user-home">
@@ -55,6 +56,7 @@
                     </div>
                 </div>
             </li>  
+        <% } %>
         <% } %>
     </ul>
 </div>

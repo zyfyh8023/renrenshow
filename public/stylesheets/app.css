@@ -342,14 +342,20 @@ a,a:hover{
 /*footer页面的样式*/
 
 .zy-weblink {
-    background: #eee;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    background: #555;
     padding-top: 20px;
     padding-bottom: 20px;
-    font-size: 13px;
+    font-size: 1.5rem;
+    color: #fff;
 }
 
+.zy-weblink a{
+    color: #bbb;
+}
+
+.zy-weblink a:hover{
+    color: #ddd;
+}
 
 /*注册页面的样式*/
 

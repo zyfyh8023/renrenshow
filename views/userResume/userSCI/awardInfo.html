@@ -46,21 +46,21 @@
 	<div class="am-u-md-8">
 		<article class="blog-main">
 		  	<h3 class="am-article-title blog-title">
-		    	<a href="#">2016年全国电子设计大赛</a>
+		    	<a href="#"><%= rs.certificatename %></a>
 		  	</h3>
 		 	<div class="am-g blog-content">
 		    	<div class="am-u-lg-7">
-			      	<p>荣誉等级：国家级</p>
-			      	<p>获得时间：2015-03-29</p>
+			      	<p>荣誉等级：<%= awardTyp(rs.cgrade) %></p>
+			      	<p>获得时间：<%= dateformat(rs.gettime, 'YYYY-MM-DD') %></p>
 			      	<p><< 荣誉介绍 >></p>
 		    	</div>
 		    	<div class="am-u-lg-5">
-		      		<img style="width:100%" src="/images/exp3.jpg">
+		      		<img style="width:100%" src="<%= rs.cimages %>">
 		    	</div>
 		  	</div>
 		  	<div class="am-g">
 			    <div class="am-u-sm-12">
-			      	<p>看著自己的作品，你的喜悅之情溢於言表，差點就要說出我要感謝我的父母之類的得獎感言。但在你對面的客戶先是一點表情也沒有，又瞬間轉為陰沉，抿了抿嘴角冷冷的說。</p>
+			      	<p><%= rs.certificateinstr %></p>
 			    </div>
 		  	</div>
 		</article>

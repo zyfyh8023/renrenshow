@@ -48,14 +48,15 @@
 		  	<h3 class="am-article-title blog-title">
 		    	<a href="#"><%= rs.school %></a>
 		  	</h3>
-		  	<h4 class="am-article-meta blog-meta">
+		  	<!-- <h4 class="am-article-meta blog-meta">
 		  		学历：<a href="#"><%= rs.educationtype %></a>
-		  	</h4>
+		  	</h4> -->
 		 	<div class="am-g blog-content">
 		 		<div class="am-u-lg-5"> 
 		 	  		<img style="display:block;padding:1rem;width:100%" src="<%= rs.schoolLogo %>">
 		 		</div>
 		    	<div class="am-u-lg-7">
+		    		<p>学历：<%= eduType(rs.educationtype) %></p>
 			    	<p>专业：<%= rs.major %></p> 
 			      	<p>学院：<%= rs.collegeName %></p>
 			      	<p>开始时间：<%= dateformat(rs.edatetime, 'YYYY-MM-DD') %></p>
