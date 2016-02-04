@@ -31,6 +31,5 @@ exports.page = function(req, res) {
 	// });
 	
 
-	
 
 };
