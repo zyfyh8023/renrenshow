@@ -24,11 +24,15 @@
 	<!-- Tile icon for Win8 (144x144 + tile color) -->
 	<meta name="msapplication-TileImage" content="/images/website-icon.png">
 	<meta name="msapplication-TileColor" content="#0e90d2">
+	<!--CSS Files -->
 	<link rel="stylesheet" href="/stylesheets/amazeui.min.css">
 	<link rel="stylesheet" href="/stylesheets/jquery.Jcrop.css">
 	<link rel="stylesheet" href="/stylesheets/app.css">
-	<link rel="stylesheet" href="/stylesheets/index.css">
-	<link rel="stylesheet" href="/stylesheets/myshow.css">
+	<% if(locals.cssFils){ %>
+		<% for(var i=0, len=cssFils.length; i<len; i++){ %>
+			<link rel="stylesheet" href="/stylesheets/<%= cssFils[i] %>.css">
+		<% } %>
+	<% } %>
 </head>
 
 <body>
@@ -79,21 +83,14 @@
 				<div data-am-widget="tabs" class="am-tabs am-tabs-d2">
 					<ul class="am-tabs-nav am-cf">
 						<li class="am-active">
-							<a href="[data-tab-panel-0]">状态选择</a>
+							<a href="[data-tab-panel-0]">主题选择</a>
 						</li>
-						<li class="">
-							<a href="[data-tab-panel-1]">主题选择</a>
+						<li>
+							<a href="[data-tab-panel-1]">状态选择</a>
 						</li>
 					</ul>
 					<div class="am-tabs-bd">
 						<div data-tab-panel-0 class="am-tab-panel am-active">
-							<form class="am-form">
-								<div class="am-form-group">
-									
-								</div>
-							</form>
-						</div>
-						<div data-tab-panel-1 class="am-tab-panel ">
 							<div class="am-form-group">
 								<form class="am-form">
 									<div class="am-form-group">
@@ -122,6 +119,13 @@
 									</div>
 								</form>
 							</div>
+						</div>
+						<div data-tab-panel-1 class="am-tab-panel">
+							<form class="am-form">
+								<div class="am-form-group">
+									待定中。。。
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>

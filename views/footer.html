@@ -49,11 +49,10 @@
 			</ul>
 		</div>
 	</div>
-
+	<!--JS Files -->
 	<script type="text/javascript" src="javascripts/jquery-1.11.3.js"></script>
 	<script type="text/javascript" src="javascripts/amazeui.min.js"></script>
 	<script type="text/javascript" src="javascripts/app.js"></script>
-	<!--JS Files -->
 	<% if(locals.jsFils){ %>
 		<% for(var i=0, len=jsFils.length; i<len; i++){ %>
 			<script type="text/javascript" src="javascripts/<%= jsFils[i] %>.js"></script>

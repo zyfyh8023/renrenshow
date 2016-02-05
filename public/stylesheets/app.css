@@ -15,26 +15,6 @@ a,a:hover{
     z-index: 100000;
 }
 
-/*错误页面*/
-
-.zy-con-404{
-    width: 100%;
-    text-align: center;
-    margin-top:12rem;
-    margin-bottom:15rem;
-}
-
-.zy-con404-left{
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.zy-con404-right{
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: 1rem;
-}
-
 /*header*/
 
 .zy-am-topbar {

@@ -2,34 +2,20 @@
 
 /* GET demo page. */
 exports.page = function(req, res) {
+
+	res.render('demo1', {   // 瀑布流
+		title: 'demo1',
+		uName: ''
+	});
 	
-	// res.render('demo2', {
+	// res.render('demo2', {   //简单布局
 	// 	title: 'demo2',
 	// 	uName: ''
 	// });
 
-	// res.render('demo1', {
-	// 	title: 'demo1',
-	// 	uName: ''
-	// });
-	
-	
-	// res.render('demo3', {
+	// res.render('demo3', {    //文章预览的全屏模式
 	// 	title: 'demo3',
 	// 	uName: ''
 	// });
-
-	res.render('demo6', {
-		title: 'demo6',
-		uName: ''
-	});
-
-
-	// res.render('demo5', {
-	// 	title: 'demo5',
-	// 	uName: ''
-	// });
-	
-
 
 };
