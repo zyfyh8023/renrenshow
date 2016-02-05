@@ -114,23 +114,80 @@ exports.doPage = function(req, res, next) {
         } else {
             if (result) {
                 var newComment;
-                if(typ=='1'){
-                    newComment = new comment.Comment({
-                        author: uName,
-                        authorImg:result.headimg,
-                        CommentCont: comCon,
-                        CommentArt: comArt,
-                        artAuthor: artAuthor
-                    });
-                }else{
-                    newComment = new comment.Comment({
-                        author: uName,
-                        authorImg:result.headimg,
-                        CommentCont: comCon,
-                        CommentExp: comArt,
-                        artAuthor: artAuthor
-                    });
+                switch (typ){
+                    case '1':
+                        newComment = new comment.Comment({
+                            author: uName,
+                            authorImg:result.headimg,
+                            CommentCont: comCon,
+                            CommentArt: comArt,
+                            artAuthor: artAuthor
+                        });
+                        break;
+                    case '2':
+                        newComment = new comment.Comment({
+                            author: uName,
+                            authorImg:result.headimg,
+                            CommentCont: comCon,
+                            CommentExp: comArt,
+                            artAuthor: artAuthor
+                        });
+                        break;
+                    case '3':
+                        newComment = new comment.Comment({
+                            author: uName,
+                            authorImg:result.headimg,
+                            CommentCont: comCon,
+                            CommentResumeTyp:'3',
+                            CommentResumeVal: comArt,
+                            artAuthor: artAuthor
+                        });
+                        break;
+                    case '4':
+                        newComment = new comment.Comment({
+                            author: uName,
+                            authorImg:result.headimg,
+                            CommentCont: comCon,
+                            CommentResumeTyp:'4',
+                            CommentResumeVal: comArt,
+                            artAuthor: artAuthor
+                        });
+                        break;
+                    case '5':
+                        newComment = new comment.Comment({
+                            author: uName,
+                            authorImg:result.headimg,
+                            CommentCont: comCon,
+                            CommentResumeTyp:'5',
+                            CommentResumeVal: comArt,
+                            artAuthor: artAuthor
+                        });
+                        break;
+                    case '6':
+                        newComment = new comment.Comment({
+                            author: uName,
+                            authorImg:result.headimg,
+                            CommentCont: comCon,
+                            CommentResumeTyp:'6',
+                            CommentResumeVal: comArt,
+                            artAuthor: artAuthor
+                        });
+                        break;
+                    case '7':
+                        newComment = new comment.Comment({
+                            author: uName,
+                            authorImg:result.headimg,
+                            CommentCont: comCon,
+                            CommentResumeTyp:'7',
+                            CommentResumeVal: comArt,
+                            artAuthor: artAuthor
+                        });
+                        break;
+                    default:
+                        newComment = new comment.Comment({});
+                        break;
                 }
+               
                 comment.create(newComment, function(err) {
                     if (err) {
                         return res.send({retCode: 400, retDesc: '保存失败,请稍后再试!'});

@@ -18,12 +18,14 @@
 					    	<% for(var i=0; i<results.allModels.length; i++) { %>
 					    		<tr data-ids="<%= i %>">
 					    			<td class="am-text-middle" style="text-align:left"><%= results.allModels[i].moduleDesc %></td>
+					    			<td class="am-text-middle" style="text-align:left"><%= results.allModels[i].vCode %></td>
 					    			<td class="am-text-middle" style="text-align:right">
 					    			<% if(results.allModels[i].status=='1'){ %>
 					    				已开启
 					    			<% }else{ %>
 					    				已关闭
 					    			<% } %>
+					    			</td>
 					    			<td class="am-text-middle" style="text-align:right;min-width:20rem;">
 					    				<div class="am-btn-group am-btn-group-xs">
 					    				  	<button type="button" class="am-btn am-btn-secondary am-radius zy-upd-set-con">

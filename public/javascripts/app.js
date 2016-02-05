@@ -85,6 +85,111 @@ $(document).ready(function() {
 		});
 	});
 	
+	//resume的评论部分1
+	var $comm3=$('#zy-comment-awd');
+	$comm3.delegate('.zy-button1', 'click', function(event) {
+		$.ajax({
+			type: 'post',
+			url: '/comment',
+			data: {
+				comCon: $('.comment', $comm3).val(),
+				comArt: $('.comFrom', $comm3).data('resid'),
+				artAuthor: $('.comFrom', $comm3).data('authorid'),
+				typ: '3'
+			},
+			dataType: 'json',
+			success: function(data) {
+				if (data.retCode != 200) {
+					warnOpnFn(data.retDesc);
+				} else {
+					location.reload();
+				}
+			},
+			error: function(data) {
+				alertOpnFn('err');
+			}
+		});
+	});
+
+	//resume的评论部分2
+	var $comm4=$('#zy-comment-cmp');
+	$comm4.delegate('.zy-button1', 'click', function(event) {
+		$.ajax({
+			type: 'post',
+			url: '/comment',
+			data: {
+				comCon: $('.comment', $comm4).val(),
+				comArt: $('.comFrom', $comm4).data('resid'),
+				artAuthor: $('.comFrom', $comm4).data('authorid'),
+				typ: '4'
+			},
+			dataType: 'json',
+			success: function(data) {
+				if (data.retCode != 200) {
+					warnOpnFn(data.retDesc);
+				} else {
+					location.reload();
+				}
+			},
+			error: function(data) {
+				alertOpnFn('err');
+			}
+		});
+	});
+
+	//resume的评论部分3
+	var $comm5=$('#zy-comment-scl');
+	$comm5.delegate('.zy-button1', 'click', function(event) {
+		$.ajax({
+			type: 'post',
+			url: '/comment',
+			data: {
+				comCon: $('.comment', $comm5).val(),
+				comArt: $('.comFrom', $comm5).data('resid'),
+				artAuthor: $('.comFrom', $comm5).data('authorid'),
+				typ: '5'
+			},
+			dataType: 'json',
+			success: function(data) {
+				if (data.retCode != 200) {
+					warnOpnFn(data.retDesc);
+				} else {
+					location.reload();
+				}
+			},
+			error: function(data) {
+				alertOpnFn('err');
+			}
+		});
+	});
+
+	//resume的评论部分4
+	var $comm6=$('#zy-comment-wrk');
+	$comm6.delegate('.zy-button1', 'click', function(event) {
+		$.ajax({
+			type: 'post',
+			url: '/comment',
+			data: {
+				comCon: $('.comment', $comm6).val(),
+				comArt: $('.comFrom', $comm6).data('resid'),
+				artAuthor: $('.comFrom', $comm6).data('authorid'),
+				typ: '6'
+			},
+			dataType: 'json',
+			success: function(data) {
+				if (data.retCode != 200) {
+					warnOpnFn(data.retDesc);
+				} else {
+					location.reload();
+				}
+			},
+			error: function(data) {
+				alertOpnFn('err');
+			}
+		});
+	});
+	
+
 	//warning提示框的关闭事件
 	$("#zy-warning .am-close").click(function() {
 		if(warnTipTim){

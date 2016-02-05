@@ -9,6 +9,8 @@ var CommentSchema = new Schema({
     CommentCont: String,
     CommentArt: String,
     CommentExp: String,
+    CommentResumeTyp: String, //3实习 4工作 5荣誉 6作品
+    CommentResumeVal: String,
     artAuthor: String,
     CommentTag1: Number,
     CommentTag2: Number,
