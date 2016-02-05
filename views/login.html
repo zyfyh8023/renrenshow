@@ -1,89 +1,44 @@
 <% include header.html %>
 
-	<section id="zy-login" style="background:url(./images/loginbg.jpg) no-repeat center;">
-		<div class="am-g am-u-lg-7 am-u-md-10 am-u-sm-centered zy-loginright">
-			<div class="am-u-lg-6 am-u-md-8  am-u-md-10 am-u-sm-centered">
-				<form class="am-form am-form-horizontal" method="post" data-am-validator>
-					<div class=" zy-helloword">
-						<h2>Hi, 欢迎登录人人秀</h2>
+<section id="zy-login" style="background:url(./images/loginbg.jpg) no-repeat center;">
+	<div class="am-g am-u-lg-7 am-u-md-10 am-u-sm-centered zy-loginright">
+		<div class="am-u-lg-6 am-u-md-8  am-u-md-10 am-u-sm-centered">
+			<form class="am-form am-form-horizontal" method="post" data-am-validator>
+				<div class="zy-helloword">
+					<h2>Hi, 欢迎登录人人秀</h2>
+				</div>
+				<div class="am-form-group">
+					<div class="am-input-group am-input-group-lg">
+						<span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
+						<input type="email" class="am-form-field am-radius username" required placeholder="用户名">
 					</div>
-					<div class="am-form-group">
-						<div class="am-input-group am-input-group-lg">
-							<span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
-							<input type="text" class="am-form-field am-radius username" required placeholder="用户名">
-						</div>
+				</div>
+				<div class="am-form-group">
+					<div class="am-input-group am-input-group-lg">
+						<span class="am-input-group-label"><i class="am-icon-lock am-icon-fw"></i></span>
+						<input type="password" class="am-form-field am-radius password" required placeholder="密码">
 					</div>
-					<div class="am-form-group">
-						<div class="am-input-group am-input-group-lg">
-							<span class="am-input-group-label"><i class="am-icon-lock am-icon-fw"></i></span>
-							<input type="password" class="am-form-field am-radius password" required placeholder="密码">
-						</div>
+				</div>
+				<div class="am-form-group">
+					<div class="am-u-sm-5 zy-changepadding">
+						<button type="button" class="am-btn am-btn-primary am-btn-block am-radius">提交登录</button>
 					</div>
-					<div class="am-form-group">
-						<div class="am-u-sm-5 zy-changepadding">
-							<button type="button" class="am-btn am-btn-primary am-btn-block am-radius"> 提交登录 </button>
-						</div>
-						<div class="am-u-sm-2">
-						</div>
-						<div class="am-u-sm-5 zy-changepadding">
-							<a href="/register" class="am-btn am-btn-default am-btn-block am-radius"> 注册账号 </a>
-						</div>
+					<div class="am-u-sm-2">
 					</div>
-					<div class="am-form-group am-form-group-sm am-cf">
-						<label for="remember-me" class="am-fl zy-font">
-							<input id="remember-me" type="checkbox"> 记住登录状态
-						</label>
-						<a href="#" class="am-btn am-btn-link am-fr zy-font">忘记密码 ^_^? </a>
+					<div class="am-u-sm-5 zy-changepadding">
+						<a href="/register" class="am-btn am-btn-default am-btn-block am-radius">注册账号</a>
 					</div>
-				</form>
-			</div>
+				</div>
+				<div class="am-form-group am-form-group-sm am-cf">
+					<label for="remember-me" class="am-fl zy-font">
+						<input id="remember-me" type="checkbox"> 记住账号
+					</label>
+					<a href="javascript:void(0);" class="am-btn am-btn-link am-fr zy-font">忘记密码 ^_^? </a>
+				</div>
+			</form>
 		</div>
-	</section>
-
+	</div>
+</section>
 
 <% include footer.html %>
 
-
-
-<script>
-$(document).ready(function() {
-	//Dom缓存
-	var $zyLogin = $("#zy-login");
-	//事件绑定1
-	$zyLogin.delegate('#remember-me', 'click', function(event) {
-		if ($('#remember-me', $zyLogin).prop('checked')) {
-			alertOpnFn('别急嘛，这个功能还没来得及做哦~');
-		}
-	});
-	//事件绑定2
-	$zyLogin.delegate('button', 'click', function(event) {
-		warnClsFn();
-		var username = $.trim($('.username', $zyLogin).val()),
-			password = $.trim($('.password', $zyLogin).val());
-		if (username && password) {
-			$.ajax({
-				type: 'post',
-				url: '/login',
-				data: {
-					username: username,
-					password: password
-				},
-				dataType: 'json',
-				success: function(data) {
-					if (data.retCode != 200) {
-						warnOpnFn(data.retDesc);
-					} else {
-						location.href = "/myindex";
-					}
-				},
-				error: function(err) {
-					alertOpnFn('err');
-				}
-			});
-		} else {
-			warnOpnFn('请把表单的内容填写完整哦~');
-		}
-	});
-
-});
-</script>

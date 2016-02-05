@@ -1,6 +1,6 @@
 "use strict";
 
-var retCode, retDesc, uName;
+var retCode, retDesc, uName, cssFils, jsFils;
 
 /* GET home page. */
 exports.page = function(req, res, next) {

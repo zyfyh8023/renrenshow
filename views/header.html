@@ -22,8 +22,14 @@
 	<!-- Tile icon for Win8 (144x144 + tile color) -->
 	<meta name="msapplication-TileImage" content="/images/website-icon.png">
 	<meta name="msapplication-TileColor" content="#0e90d2">
+	<!--CSS Files -->
 	<link rel="stylesheet" href="/stylesheets/amazeui.min.css">
 	<link rel="stylesheet" href="/stylesheets/app.css">
+	<% if(locals.cssFils){ %>
+		<% for(var i=0, len=cssFils.length; i<len; i++){ %>
+			<link rel="stylesheet" href="/stylesheets/<%= cssFils[i] %>.css">
+		<% } %>
+	<% } %>
 </head>
 
 <body>

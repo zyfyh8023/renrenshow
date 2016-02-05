@@ -1,0 +1,22 @@
+.zy-talpool-sec{
+	margin-top:8rem;
+	margin-bottom: 10rem;
+}
+.am-input-group .am-form-field,
+.am-input-group-btn > .am-btn {
+	height: 45px;
+}
+.am-form-group {
+	margin-bottom: 0.5rem;
+}
+.am-icon-sm::before {
+	vertical-align: -3%;
+}
+.zy-talentpool-result {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+.zy-talent-name h3 {
+    text-align: center;
+}

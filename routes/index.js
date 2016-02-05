@@ -1,6 +1,6 @@
 "use strict";
 
-var retCode, retDesc, uName;
+var retCode, retDesc, uName, cssFils, jsFils;
 
 /* GET home page. */
 exports.page = function(req, res, next) {
@@ -13,6 +13,8 @@ exports.page = function(req, res, next) {
 
 	res.render('index', {
 		title: '首页-人人秀',
-		uName: uName
+		uName: uName,
+		cssFils:['index'],
+		jsFils:['index']
 	});
 };

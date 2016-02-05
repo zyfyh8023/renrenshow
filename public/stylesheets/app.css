@@ -20,7 +20,7 @@ a,a:hover{
 .zy-con-404{
     width: 100%;
     text-align: center;
-    margin-top:15rem;
+    margin-top:12rem;
     margin-bottom:15rem;
 }
 
@@ -68,7 +68,7 @@ a,a:hover{
 
 /*多处用到login register就用到了*/
 
-.zy-font {
+/*.zy-font {
     padding: 0.5em 0;
     font-size: 80%;
     color: #aaa;
@@ -89,44 +89,44 @@ a,a:hover{
 
 .zy-loginright .am-u-sm-centered {
     margin-left: 55%;
-    margin-top: 25rem;
-    margin-bottom: 25rem;
+    margin-top: 10rem;
+    margin-bottom: 15rem;
     padding:5rem;
     background: #fff;
-}
+}*/
 
 /*index*/
 
-.zy-section-nav {
+/*.zy-section-nav {
     margin-top: 50px;
     margin-bottom: 50px;
     text-align: center;
-}
+}*/
 
-.zy-section-imgs {
+/*.zy-section-imgs {
     padding-top: 200px;
     padding-bottom: 200px;
-}
+}*/
 
-.zy-section-nav .am-figure-default img {
+/*.zy-section-nav .am-figure-default img {
     border: none;
 }
 
 .zy-section-nav-img {
     margin: 10px auto;
-}
+}*/
 
 .zy-changecolor {
     background: #eef1f2;
 }
 
-.zy-composotions {
+/*.zy-composotions {
     padding: 10px;
-}
+}*/
 
-.zy-composotions li {
+/*.zy-composotions li {
     padding: 10px;
-}
+}*/
 
 
 /*重定义*/
@@ -328,7 +328,7 @@ a,a:hover{
 
 /*人才页面的样式*/
 
-.zy-talentpool-result {
+/*.zy-talentpool-result {
     margin-top: 10px;
     margin-bottom: 10px;
     margin-left: 10px;
@@ -336,7 +336,7 @@ a,a:hover{
 
 .zy-talent-name h3 {
     text-align: center;
-}
+}*/
 
 
 /*footer页面的样式*/
@@ -359,17 +359,17 @@ a,a:hover{
 
 /*注册页面的样式*/
 
-.zy-register {
-    padding-top: 18rem;
-    padding-bottom: 20rem;
+/*.zy-register {
+    padding-top: 8rem;
+    padding-bottom: 12rem;
     background: url(/images/loginbg.jpg) no-repeat center;
 }
 
 .zy-register form{
     background: #fff;
-    padding-top: 10rem;
-    padding-bottom: 6rem;
-}
+    padding-top: 5rem;
+    padding-bottom: 3rem;
+}*/
 
 
 
@@ -463,9 +463,9 @@ a,a:hover{
 
 /*faq页面*/
 
-.zy-accordion-content {
+/*.zy-accordion-content {
     padding: 0.8rem 2rem 1.2rem;
-}
+}*/
 
 
 /*my footer 页面*/

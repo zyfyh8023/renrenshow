@@ -1,0 +1,19 @@
+.zy-faq-heagimg{
+	width:100%;
+	margin-bottom:6rem;
+}
+.amz-features {
+    padding: 15px 0;
+}
+.amz-features h2 {
+    margin-top: 10px;
+    text-align: center;
+}
+.amz-features img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}  
+.zy-accordion-content {
+    padding:2rem;
+}

@@ -1,7 +1,7 @@
 "use strict";
 var users = require('../models/users');
 
-var retCode, retDesc, uName;
+var retCode, retDesc, uName, cssFils, jsFils;
 
 /* GET home page. */
 exports.page = function(req, res, next) {
@@ -20,10 +20,10 @@ exports.page = function(req, res, next) {
 			res.render('talentpool', {
 				title: '人才库-人人秀',
 				uName: uName,
-				results: result 
+				results: result ,
+				cssFils:['talentpool']
 			});
 		}
 	});
-
 	
 };

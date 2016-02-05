@@ -1,0 +1,18 @@
+.zy-register {
+    padding-top: 8rem;
+    padding-bottom: 12rem;
+    background: url(/images/loginbg.jpg) no-repeat center;
+}
+.zy-register form{
+    background: #fff;
+    padding-top: 5rem;
+    padding-bottom: 3rem;
+}
+.zy-font {
+    padding: 0.5em 0;
+    font-size: 80%;
+    color: #aaa;
+}
+.zy-font-add {
+    padding-left: 1rem;
+}

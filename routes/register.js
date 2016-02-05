@@ -4,15 +4,12 @@ var crypto = require('crypto');
 var async = require('async');
 var users = require('../models/users');
 var setting = require('./seting');
-var privateSeting = require('./privateSeting');
 var resume = require('./resume');
-var navgation = require('./navigation');
 
-var retDesc, retCode, uName;
+var retDesc, retCode, uName, cssFils, jsFils;
 
 //GET register page. 
 exports.page = function(req, res, next) {
-
     if(req.session.user){
         uName = req.session.user.username;
     }else{
@@ -21,7 +18,9 @@ exports.page = function(req, res, next) {
 
     res.render('register', {
         title: '注册-人人秀',
-        uName: uName
+        uName: uName,
+        cssFils:['register'],
+        jsFils:['register']
     });
 }
 

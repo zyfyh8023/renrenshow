@@ -1,0 +1,19 @@
+.zy-font {
+    padding: 0.5em 0;
+    font-size: 80%;
+    color: #aaa;
+}
+.zy-changepadding {
+    padding-left: 0;
+    padding-right: 0;
+}
+.zy-helloword {
+    text-align: center;
+}
+.zy-loginright .am-u-sm-centered {
+    margin-left: 55%;
+    margin-top: 10rem;
+    margin-bottom: 15rem;
+    padding:5rem;
+    background: #fff;
+}
