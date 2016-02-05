@@ -4,7 +4,7 @@ var articles = require('../models/article');
 var experiences = require('../models/experience');
 var async = require('async');
 
-var retDesc, retCode, uName, navTitle, navDesc;
+var retDesc, retCode, uName, navTitle, navDesc, cssFils, jsFils;
 
 /* GET createarticle page. */
 exports.page = function(req, res, next) {
@@ -23,7 +23,9 @@ exports.page = function(req, res, next) {
                 uName: uName,
                 navTitle: navTitle,
                 allNum: resu,
-                navDesc: navDesc
+                navDesc: navDesc,
+                cssFils:['userBlog/createarticle'],
+                jsFils:['userBlog/createarticle']
             });
         }
     });

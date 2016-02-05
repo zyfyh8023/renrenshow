@@ -4,7 +4,7 @@ var experiences = require('../models/experience');
 var comment = require('../models/comment');
 var async = require('async');
 
-var retCode, retDesc, uName, navTitle, navDesc;
+var retCode, retDesc, uName, navTitle, navDesc, cssFils, jsFils;
 
 /* GET ManageArticle page. */
 exports.page = function(req, res, next) {
@@ -42,7 +42,9 @@ exports.page = function(req, res, next) {
                             allArticles: results,
                             showpagetip: showpagetip, 
                             allpage: allpage,
-                            articleTag:1
+                            articleTag:1,
+                            cssFils:['userBlog/managearticle'],
+                            jsFils:['userBlog/managearticle']
                         });
                     }
                 });
@@ -119,7 +121,9 @@ exports.noPublicBW = function(req, res, next) {
                             allArticles: results,
                             showpagetip: showpagetip, 
                             allpage: allpage,
-                            articleTag:2
+                            articleTag:2,
+                            cssFils:['userBlog/managearticle'],
+                            jsFils:['userBlog/managearticle']
                         });
                     }
                 });
@@ -206,7 +210,9 @@ exports.relatedMeBW = function(req, res, next) {
                             nums: nums,
                             allArticles: results,
                             showpagetip: showpagetip, 
-                            allpage: allpage
+                            allpage: allpage,
+                            cssFils:['userBlog/managearticle'],
+                            jsFils:['userBlog/managearticle']
                         });
                     }
                 });

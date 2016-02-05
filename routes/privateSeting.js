@@ -1,7 +1,7 @@
 "use strict";
 var privateSetings = require('../models/privateSeting');
 
-var retDesc, retCode, uName, navTitle, navDesc;
+var retDesc, retCode, uName, navTitle, navDesc, cssFils, jsFils;
 
 /* GET Seting page. */
 exports.page = function(req, res, next) {
@@ -21,7 +21,9 @@ exports.page = function(req, res, next) {
 				uName: uName,
 				navTitle: navTitle,
 				navDesc: navDesc,
-				results: results
+				results: results,
+				cssFils:['userSet/privateSeting'],
+				jsFils:['userSet/privateSeting']
 			});
 		}
 	});

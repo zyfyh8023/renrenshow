@@ -1,3 +1,5 @@
+var jx1=0, jy1=0, jw=0, jh=0;  //不确定有没有使用到
+
 $(document).ready(function() {
 
 	//菜单导航条

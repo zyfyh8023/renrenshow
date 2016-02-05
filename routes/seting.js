@@ -1,7 +1,7 @@
 "use strict";
 var setings = require('../models/setting');
 
-var uName, retCode, retDesc, navTitle, navDesc;
+var uName, retCode, retDesc, navTitle, navDesc, cssFils, jsFils;
 
 /* GET Seting page. */
 exports.page = function(req, res, next) {
@@ -22,7 +22,9 @@ exports.page = function(req, res, next) {
 					uName: uName,
 					navTitle: navTitle,
 					navDesc: navDesc,
-					results: results
+					results: results,
+					cssFils:['userSet/seting'],
+					jsFils:['userSet/seting']
 				});
 			} else {
 				res.redirect('/error');

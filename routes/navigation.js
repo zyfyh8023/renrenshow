@@ -1,7 +1,7 @@
 "use strict";
 var navigations = require('../models/navigation');
 
-var retCode, retDesc, uName, navTitle, navDesc;
+var retCode, retDesc, uName, navTitle, navDesc, cssFils, jsFils;
 
 /* GET navigation page. */
 exports.page = function(req, res, next) {
@@ -20,7 +20,9 @@ exports.page = function(req, res, next) {
 				uName: uName,
 				navTitle: navTitle,
 				navDesc: navDesc,
-				allNavgition: results
+				allNavgition: results,
+				cssFils:['userNav/navigation'],
+				jsFils:['userNav/navigation']
 			});
 		}
 	});

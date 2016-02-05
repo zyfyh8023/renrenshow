@@ -13,20 +13,7 @@
         <div class="am-progress-bar" style="width: 65%">65%</div>
         <div class="am-progress-bar am-progress-bar-warning" style="width: 35%">35%</div>
     </div> -->
-	<!-- <a data-am-offcanvas="{target: '#doc-oc-demo2',effect: 'push'}">编辑</a>
-    <div id="doc-oc-demo2" class="am-offcanvas">
-        <div class="am-offcanvas-bar">
-            <div class="am-offcanvas-content">
 
-            </div>
-        </div>
-    </div> -->
-
-	<div class="zy-resume-img">
-		 <!-- <img src="/images/title_bg_d.jpg" class="am-img-responsive" alt=""/> -->
-		<i class="zy-resume-img-bg"></i>
-	</div>
-	
 	<div class="am-g am-u-lg-9 am-u-md-12  am-u-sm-centered zy-resume">
 		<div class="zy-resume-myimg-poi">
 			<img style="width:100%" src="<%= headImg %>" />
@@ -48,14 +35,12 @@
 	<% include ./netresume/practiceinfo.html %>
 	<% include ./netresume/paperinfo.html %>
 	<% include ./netresume/skillsinfo.html %>
-
     
 <br><br><br>
     
 <% include ../myfooter.html %>
 
 <script>
-
 var imgw, imgh, $form;
 $(document.body).delegate('.J_uploadimg', 'change', function(event) {
     $form=$(this).closest('form');
@@ -129,6 +114,3 @@ function showPreview(coords)
     }
 }
 </script>
-
-
-<!-- 添加其他，比如其他的网络空间，网站，论坛 -->

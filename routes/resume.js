@@ -7,7 +7,7 @@ var fs = require('fs'),
 	gm = require('gm'),
 	imageMagick = gm.subClass({ imageMagick : true });
 
-var retCode, retDesc, uName, allres;
+var retCode, retDesc, uName, allres, cssFils, jsFils;
 
 /* GET Seting page. */
 exports.page = function(req, res, next) {
@@ -27,7 +27,9 @@ exports.page = function(req, res, next) {
 							title: '我的简历',
 							uName: uName,
 							rs: rs,
-							headImg: resu.headimg
+							headImg: resu.headimg,
+							cssFils:['userResume/resume'],
+							jsFils:['userResume/resume']
 						});
 					}
 				});

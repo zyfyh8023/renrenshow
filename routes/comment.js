@@ -5,7 +5,7 @@ var experiences = require('../models/experience');
 var users = require('../models/users');
 var async = require('async');
 
-var retCode, retDesc, uName, navTitle, navDesc;
+var retCode, retDesc, uName, navTitle, navDesc, cssFils, jsFils;
 
 exports.minePage = function(req, res, next){
     uName = req.session.user.username;
@@ -40,7 +40,9 @@ exports.minePage = function(req, res, next){
                             allComments: results,
                             showpagetip: showpagetip, 
                             allpage: allpage,
-                            comTyp:'author'
+                            comTyp:'author',
+                            cssFils:['userBlog/manageComments'],
+                            jsFils:['userBlog/manageComments']
                         });
                     }
                 });
@@ -84,7 +86,9 @@ exports.yoursPage = function(req, res, next){
                             allComments: results,
                             showpagetip: showpagetip, 
                             allpage: allpage,
-                            comTyp:'artAuthor'
+                            comTyp:'artAuthor',
+                            cssFils:['userBlog/manageComments'],
+                            jsFils:['userBlog/manageComments']
                         });
                     }
                 });

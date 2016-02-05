@@ -3,7 +3,7 @@ var users = require('../models/users');
 var fs = require('fs'),
     multiparty = require('multiparty');
 
-var retCode, retDesc, uName, navTitle, navDesc;
+var retCode, retDesc, uName, navTitle, navDesc, cssFils, jsFils;
 
 exports.page = function(req, res, next) {
     uName = req.session.user.username;
@@ -20,7 +20,9 @@ exports.page = function(req, res, next) {
                 uName: uName,
                 navTitle: navTitle,
                 navDesc: navDesc,
-                rs: result
+                rs: result,
+                cssFils:['userIntroduc/introduction'],
+                jsFils:['userIntroduc/introduction']
             });
         }
     });

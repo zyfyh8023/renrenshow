@@ -1,0 +1,15 @@
+.zy-introduction {
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+.am-intro-title .zy-special-edit {
+    font-size: 16px;
+    font-weight: 100;
+    margin-left: 10px;
+}
+.zy-special-edit:hover {
+    position: relative;
+    top: 1px;
+    left: 1px;
+    text-decoration: underline;
+}

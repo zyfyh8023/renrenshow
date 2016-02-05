@@ -5,7 +5,7 @@ var comment = require('../models/comment');
 var experiences = require('../models/experience');
 var async = require('async');
 
-var retCode, retDesc, uName, navTitle, navDesc;
+var retCode, retDesc, uName, navTitle, navDesc, cssFils, jsFils;
 
 /* GET createExperience page. */
 exports.page = function(req, res, next) {
@@ -24,7 +24,9 @@ exports.page = function(req, res, next) {
                 uName: uName,
                 navTitle: navTitle,
                 allNum: resu,
-                navDesc: navDesc
+                navDesc: navDesc,
+                cssFils:['userBlog/createExperience'],
+                jsFils:['userBlog/createExperience']
             });
         }
     });

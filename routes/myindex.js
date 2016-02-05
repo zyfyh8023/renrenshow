@@ -20,20 +20,23 @@ exports.page = function(req, res, next) {
 				res.render('./userIndex/myindex', {
 					signed: rs.signed,
 					title: rs.uName+'的网站首页-人人秀',
-					cssFils:['userIndex/myindex']
+					cssFils:['userIndex/myindex'],
+					jsFils:['userIndex/myindex']
 				});
 			}else if(rs.signed=='3' && rs.uName!=""){   //游客身份 
 				res.render('./userIndex/myindex', {
 					signed: rs.signed,
 					title: rs.uName+'的网站首页-人人秀',
-					cssFils:['userIndex/myindex']
+					cssFils:['userIndex/myindex'],
+					jsFils:['userIndex/myindex']
 				});
 			}else if(rs.signed=='1' && rs.uName!=""){   //已登录状态
 				res.render('./userIndex/myindex', {
 					uName: rs.uName,
 					signed: rs.signed,
 					title: '我的网站首页-人人秀',
-					cssFils:['userIndex/myindex']
+					cssFils:['userIndex/myindex'],
+					jsFils:['userIndex/myindex']
 				});
 			}else{    //错误页面
 				 res.redirect('/error');

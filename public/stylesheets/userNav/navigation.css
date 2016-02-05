@@ -1,0 +1,46 @@
+.am-popover {
+	width: 200px;
+	border-radius: 10px;
+	font-size: 0.9rem;
+}
+.zy-navigation-add-ele{
+    cursor: pointer;
+}
+.zy-navigation-item .am-alert {
+    color: #aaa;
+    padding: 10px;
+    font-size: 13px;
+    margin: 6px;
+}
+.zy-navigation-item .am-alert a{
+    color:#0e90d2;
+    font-size: 14px;
+    border-bottom: 2px solid transparent;
+    font-weight: bold;
+}
+.zy-navigation-item .am-alert a:hover{
+    color: #fd8c84;
+    border-bottom-color: #fd8c84;
+    text-decoration: none;
+}
+.zy-navigation-item {
+    padding-left: 0;
+    padding-right: 0;
+    cursor: pointer;
+}
+.zy-navigation-nav {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: -1.0rem;
+}
+.zy-module-tip{
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    overflow:hidden;
+    margin-top: 5px;
+    -ms-user-select: none;  
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -o-user-select:none;
+    user-select:none;
+}
