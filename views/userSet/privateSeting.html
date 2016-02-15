@@ -6,7 +6,7 @@
 	<div class="am-g am-u-lg-9 am-u-md-12  am-u-sm-centered">
 		<% include setingNav.html %>
 		<div class="col-lg-9 am-u-lg-9 zy-show-lg-content">
-			<% if(results.allModels.length>0){ %>
+			<% if(locals.results){ %>
 				<div>
 					<div data-am-widget="titlebar" class="am-titlebar am-titlebar-multi" >
 					    <h2 class="am-titlebar-title ">
@@ -46,71 +46,54 @@
 				</div>
 			<% } %>
 				<div class="zy-set-show">
-						<div data-am-widget="titlebar" class="am-titlebar am-titlebar-multi" >
-						    <h2 class="am-titlebar-title ">
-						        添加新的特权设置如下所示：
-						    </h2>
-						</div><br>
-		                <div class="zy-public-title">
-		                    <span class="am-badge am-badge-secondary am-round am-text-xl">1</span> <span class="titleName am-badge am-badge-secondary am-text-xl">个性简介</span>
-		                </div>
-		                <div class="zy-public-content zy-change-content">
-		                    <a class="zy-div-radio am-badge am-text-lg">公开</a>
-		                    <a class="zy-div-radio am-badge am-badge-success am-text-lg">不公开</a>
-		                </div>
-		                <div class="zy-public-title">
-		                    <span class="am-badge am-badge-secondary am-round am-text-xl">2</span> <span class="titleName am-badge am-badge-secondary am-text-xl">个人简历</span>
-		                </div>
-		                <div class="zy-public-content zy-change-content">
-		                    <a class="zy-div-checkbox  am-badge am-text-lg">基本信息</a>
-		                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">联系方式</a>
-		                    <a class="zy-div-checkbox  am-badge am-text-lg">教育背景</a>
-		                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">实习工作</a>
-		                    <a class="zy-div-checkbox  am-badge am-text-lg">作品模块</a>
-		                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">证书荣誉</a>
-		                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">论文专利</a>
-		                    <a class="zy-div-checkbox  am-badge am-text-lg">校园社会活动</a>
-		                </div>
-		                <div class="zy-public-title">
-		                    <span class="am-badge am-badge-secondary am-round am-text-xl">3</span> <span class="titleName am-badge am-badge-secondary am-text-xl">资源导航</span>
-		                </div>
-		                <div class="zy-public-content zy-change-content">
-		                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">前端资源导航</a>
-		                    <a class="zy-div-checkbox  am-badge am-text-lg">后端资源导航</a>
-		                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">IOS资源导航</a>
-		                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">安卓资源导航</a>
-		                </div>
-		                <div class="zy-public-title">
-		                    <span class="am-badge am-badge-secondary am-round am-text-xl">4</span> <span class="titleName am-badge am-badge-secondary am-text-xl">博文面经</span>
-		                </div>
-		                <div class="zy-public-content zy-change-content">
-		                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">技术博文</a>
-		                    <a class="zy-div-checkbox  am-badge am-text-lg">行业远瞻</a>
-		                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">乱七八糟</a>
-		                    <a class="zy-div-checkbox  am-badge am-text-lg">面试经验</a>
-		                </div>
-		                <div class="zy-public-title">
-		                    <span class="am-badge am-badge-secondary am-round am-text-xl">5</span> <span class="titleName am-badge am-badge-secondary am-text-xl">资源导航</span>
-		                </div>
-		                <div class="zy-public-content zy-change-content">
-		                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">前端资源导航</a>
-		                    <a class="zy-div-checkbox  am-badge am-text-lg">后端资源导航</a>
-		                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">IOS资源导航</a>
-		                    <a class="zy-div-checkbox  am-badge am-text-lg">安卓资源导航</a>
-		                </div>
-		                <div class="zy-public-title">
-		                    <span class="am-badge am-badge-secondary am-round am-text-xl">6</span> <span class="titleName am-badge am-badge-secondary am-text-xl">公开时间</span>
-		                </div>
-		                <div class="zy-public-content zy-change-content">
-		                    <a class="zy-div-radio am-badge am-text-lg">一天</a>
-		                    <a class="zy-div-radio am-badge am-text-lg">一周</a>
-		                    <a class="zy-div-radio am-badge am-text-lg">一个月</a>
-		                    <a class="zy-div-radio am-badge am-text-lg">一年</a>
-		                    <a class="zy-div-radio am-badge am-badge-success am-text-lg">永远</a>
-		                </div>
-			            <div style="margin-left:50px;">
-			                <button class="saveBtn am-btn am-btn-warning am-text-lg"> 添加新的设置 </button>
-			            </div><br>
+					<div data-am-widget="titlebar" class="am-titlebar am-titlebar-multi" >
+					    <h2 class="am-titlebar-title ">
+					        添加新的特权设置如下所示：
+					    </h2>
+					</div><br>
+	                <div class="zy-public-title">
+	                    <span class="am-badge am-badge-secondary am-round am-text-xl">1</span> <span class="titleName am-badge am-badge-secondary am-text-xl">个性简介</span>
+	                </div>
+	                <div class="zy-public-content zy-change-content">
+	                    <a class="zy-div-radio am-badge am-badge-success am-text-lg">公开</a>
+	                    <a class="zy-div-radio am-badge am-text-lg">不公开</a>
+	                </div>
+	                <div class="zy-public-title">
+	                    <span class="am-badge am-badge-secondary am-round am-text-xl">2</span> <span class="titleName am-badge am-badge-secondary am-text-xl">个人简历</span>
+	                </div>
+	                <div class="zy-public-content zy-change-content">
+	                    <a class="zy-div-checkbox  am-badge am-text-lg">基本信息</a>
+	                    <a class="zy-div-checkbox  am-badge am-text-lg">联系方式</a>
+	                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">教育经历</a>
+	                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">实习工作</a>
+	                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">工作经历</a>
+	                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">荣誉奖励</a>
+	                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">个人作品</a>
+	                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">项目经历</a>
+	                    <a class="zy-div-checkbox  am-badge am-badge-success am-badge-success am-text-lg">实践经历</a>
+	                    <a class="zy-div-checkbox  am-badge am-badge-success am-badge-success am-text-lg">论文专利</a>
+	                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">核心技能</a>
+	                </div>
+	                <div class="zy-public-title">
+	                    <span class="am-badge am-badge-secondary am-round am-text-xl">3</span> <span class="titleName am-badge am-badge-secondary am-text-xl">资源导航</span>
+	                </div>
+	                <div class="zy-public-content zy-change-content">
+	                	<a class="zy-div-radio am-badge am-badge-success am-text-lg">公开</a>
+	                	<a class="zy-div-radio am-badge am-text-lg">不公开</a>
+	                </div>
+	                <div class="zy-public-title">
+	                    <span class="am-badge am-badge-secondary am-round am-text-xl">4</span> <span class="titleName am-badge am-badge-secondary am-text-xl">博文面经</span>
+	                </div>
+	                <div class="zy-public-content zy-change-content">
+	                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">技术博文</a>
+	                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">行业远瞻</a>
+	                    <a class="zy-div-checkbox  am-badge am-text-lg">生活日志</a>
+	                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">面试经验</a>
+	                    <a class="zy-div-checkbox  am-badge am-badge-success am-text-lg">面试经验</a>
+	                </div>
+		            <div style="margin-left:50px;">
+		                <button class="saveBtn am-btn am-btn-warning am-text-lg"> 添加新的设置 </button>
+		            </div><br>
 	            </div>
 		</div>
 	</div>

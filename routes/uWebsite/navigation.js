@@ -1,30 +1,79 @@
 "use strict";
-var navigations = require('../models/navigation');
+var navigations = require('../../models/navigation');
+var checkState = require('../checkState');
 
 var retCode, retDesc, uName, navTitle, navDesc, cssFils, jsFils;
 
 /* GET navigation page. */
 exports.page = function(req, res, next) {
-	uName = req.session.user.username;
-	
-	navTitle = "私人资源导航定制";
+	navTitle = "资源导航定制";
 	navDesc = "资源导航为童鞋们提供学习方向、学习途径、和业界最新消息、最新资料等。编程工具、" +
 		"国外牛人、国内牛人、JS框架、UI框架、JS库、CSS库。每周更新及时。";
 
-	navigations.findByUname(uName, function(err, results) {
-		if (err) {
-			res.redirect('/error');
-		} else {
-			res.render('./userNav/navigation', {
-				title: '资源导航',
-				uName: uName,
-				navTitle: navTitle,
-				navDesc: navDesc,
-				allNavgition: results,
-				cssFils:['userNav/navigation'],
-				jsFils:['userNav/navigation']
-			});
-		}
+	checkState.myState(req, function(err, rs){
+	    if(err){
+	        res.redirect('/error');
+	    }else{
+	        if(rs.signed=='2' && rs.uName!=""){   
+	            navigations.findByUname(rs.uName, function(err, results) {
+	                if (err) {
+	                    res.redirect('/error');
+	                } else {
+	                    res.render('./userNav/navigation', {
+	                        uName: rs.uName,
+	                        navTitle: navTitle,
+	                        navDesc: navDesc,
+	                        signed: rs.signed,
+	                        vCode: rs.vCode,
+	                        modules: rs.modules,
+	                        title: 'TA的资源导航(特权)',
+	                        allNavgition: results,
+	                        cssFils:['userNav/navigation'],
+	                        jsFils:['userNav/navigation']
+	                    });
+	                }
+	            })
+	        }else if(rs.signed=='3' && rs.uName!=""){    
+	            navigations.findByUname(rs.uName, function(err, results) {
+	                if (err) {
+	                    res.redirect('/error');
+	                } else {
+	                    res.render('./userNav/navigation', {
+	                        uName: rs.uName,
+	                        navTitle: navTitle,
+	                        navDesc: navDesc,
+	                        signed: rs.signed,
+	                        vCode: rs.vCode,
+	                        modules: rs.modules,
+	                        title: 'TA的资源导航(普通)',
+	                        allNavgition: results,
+	                        cssFils:['userNav/navigation'],
+	                        jsFils:['userNav/navigation']
+	                    });
+	                }
+	            })
+	        }else if(rs.signed=='1' && rs.uName!=""){   
+	        	navigations.findByUname(rs.uName, function(err, results) {
+	        	    if (err) {
+	        	        res.redirect('/error');
+	        	    } else {
+	        	        res.render('./userNav/navigation', {
+	        	            uName: rs.uName,
+	        	            navTitle: navTitle,
+	        	            navDesc: navDesc,
+	        	            signed: rs.signed,
+	        	            vCode: rs.vCode,
+	        	            title: '我的资源导航',
+	        	            allNavgition: results,
+	        	            cssFils:['userNav/navigation'],
+	        	            jsFils:['userNav/navigation']
+	        	        });
+	        	    }
+	        	})
+	        }else{    //错误页面
+	             res.redirect('/login');
+	        }
+	    }
 	});
 }
 
@@ -141,7 +190,7 @@ exports.listAdd2 = function(req, res, next) {
 	});
 }
 
-//删除小标题
+//删除小链接元素
 exports.listDel2 = function(req, res, next) {
 	uName = req.session.user.username;
 	var moduleName = req.body.moduleName,

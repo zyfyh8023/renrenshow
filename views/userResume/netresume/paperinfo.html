@@ -3,7 +3,9 @@
 
 	<div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
 		<div class="am-alert am-alert-secondary">
+			<% if(locals.signed && signed=='1'){ %>
 			<button type="button" class="am-close" data-am-modal="{target: '#my-paper'}"><i class="am-icon-pencil"></i></button>
+			<% } %>
 			<div style="font-size:30px;text-align:center;">论文专利</div>
 		</div>
 	</div>
@@ -98,6 +100,7 @@
 		</div>
 	</div>
 
+	<% if(locals.signed && signed=='1'){ %>
 	<div class="am-popup" id="my-paper">
 		<div class="am-popup-inner">
 			<div class="am-popup-hd">
@@ -221,5 +224,5 @@
 			</div>
 		</div>
 	</div>
-
+	<% } %>
 </section>

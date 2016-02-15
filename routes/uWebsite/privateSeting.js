@@ -1,5 +1,5 @@
 "use strict";
-var privateSetings = require('../models/privateSeting');
+var privateSetings = require('../../models/privateSeting');
 
 var retDesc, retCode, uName, navTitle, navDesc, cssFils, jsFils;
 

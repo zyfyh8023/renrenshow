@@ -1,5 +1,5 @@
 "use strict";
-var checkState = require('./checkState');
+var checkState = require('../checkState');
 
 var retCode, retDesc, uName, cssFils, jsFils;
 
@@ -7,34 +7,38 @@ var retCode, retDesc, uName, cssFils, jsFils;
 exports.page = function(req, res, next) {
 
 	checkState.myState(req, function(err, rs){
-
-		//   http://localhost:3000/myindex?pubId=zyfyh8023@163.com
-		//   http://localhost:3000/myindex?priId=zyfyh8023@163.com&vCode=1452912052539
-		//   http://localhost:3000/myindex?priId=zyfyh8023@163.com&vCode=1453186872168
-		
+		//   http://localhost:3000/myindex?pubId=zf@163.com
+		//   http://localhost:3000/myindex?priId=zf@163.com&vCode=1455439672628
 		if(err){
 			res.redirect('/error');
 		}else{
 			console.log(rs.modules);
-			if(rs.signed=='2' && rs.uName!=""){   //特权身份
-				res.render('./userIndex/myindex', {
-					signed: rs.signed,
-					title: rs.uName+'的网站首页-人人秀',
-					cssFils:['userIndex/myindex'],
-					jsFils:['userIndex/myindex']
-				});
-			}else if(rs.signed=='3' && rs.uName!=""){   //游客身份 
-				res.render('./userIndex/myindex', {
-					signed: rs.signed,
-					title: rs.uName+'的网站首页-人人秀',
-					cssFils:['userIndex/myindex'],
-					jsFils:['userIndex/myindex']
-				});
-			}else if(rs.signed=='1' && rs.uName!=""){   //已登录状态
+			if(rs.signed=='2' && rs.uName!=""){   
 				res.render('./userIndex/myindex', {
 					uName: rs.uName,
 					signed: rs.signed,
-					title: '我的网站首页-人人秀',
+					modules: rs.modules,
+					vCode: rs.vCode,
+					title: 'TA的网站首页(特权)',
+					cssFils:['userIndex/myindex'],
+					jsFils:['userIndex/myindex']
+				});
+			}else if(rs.signed=='3' && rs.uName!=""){    
+				res.render('./userIndex/myindex', {
+					uName: rs.uName,
+					signed: rs.signed,
+					modules: rs.modules,
+					vCode: rs.vCode,
+					title: 'TA的网站首页(普通)',
+					cssFils:['userIndex/myindex'],
+					jsFils:['userIndex/myindex']
+				});
+			}else if(rs.signed=='1' && rs.uName!=""){   
+				res.render('./userIndex/myindex', {
+					uName: rs.uName,
+					signed: rs.signed,
+					vCode: rs.vCode,
+					title: '我的网站首页',
 					cssFils:['userIndex/myindex'],
 					jsFils:['userIndex/myindex']
 				});

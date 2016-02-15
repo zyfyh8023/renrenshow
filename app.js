@@ -9,33 +9,37 @@ var ueditor = require("ueditor");
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var moment = require('moment');
+
 var config = require('./config');
 var MongodbAPI = require('./models/dbserver');
-var routes = require('./routes/index');
-var login = require('./routes/login');
-var register = require('./routes/register');
-var faq = require('./routes/faq');
-var myindex = require('./routes/myindex');
-var resume = require('./routes/resume');
-var managearticle = require('./routes/managearticle');
-var manageExperience = require('./routes/manageExperience');
-var createarticle = require('./routes/createarticle');
-var createExperience = require('./routes/createExperience');
-var allarticle = require('./routes/allarticle');
-var allinfo = require('./routes/allinfo');
-var blogAorE = require('./routes/blogAorE');
-var introduction = require('./routes/introduction');
-var resource = require('./routes/resource');
-var navigation = require('./routes/navigation');
-var talentpool = require('./routes/talentpool');
-var seting = require('./routes/seting');
-var privateSeting = require('./routes/privateSeting');
-var changePassword = require('./routes/changePassword');
 var checkState = require('./routes/checkState');
-var about = require('./routes/about');
+
+var routes = require('./routes/mWebsite/index');
+var faq = require('./routes/mWebsite/faq');
+var resource = require('./routes/mWebsite/resource');
+var talentpool = require('./routes/mWebsite/talentpool');
+var about = require('./routes/mWebsite/about');
+var login = require('./routes/mWebsite/login');
+var register = require('./routes/mWebsite/register');
+var allarticle = require('./routes/mWebsite/allarticle');
+var allinfo = require('./routes/mWebsite/allinfo');
+
+var myindex = require('./routes/uWebsite/myindex');
+var introduction = require('./routes/uWebsite/introduction');
+var resume = require('./routes/uWebsite/resume');
+var navigation = require('./routes/uWebsite/navigation');
+var managearticle = require('./routes/uWebsite/managearticle');
+var manageExperience = require('./routes/uWebsite/manageExperience');
+var createarticle = require('./routes/uWebsite/createarticle');
+var createExperience = require('./routes/uWebsite/createExperience');
+var seting = require('./routes/uWebsite/seting');
+var privateSeting = require('./routes/uWebsite/privateSeting');
+var changePassword = require('./routes/uWebsite/changePassword');
+var blogAorE = require('./routes/blogAorE');
 var resumeLook = require('./routes/resumeLook');
 var comment = require('./routes/comment');
 var seeuInfo = require('./routes/seeuInfo');
+
 var demo = require('./routes/demo');
 
 
@@ -111,7 +115,7 @@ app.post('/loginOut', login.loginOut);
 app.get('/register', register.page);
 app.post('/register', register.doRegister);
 app.get('/about', about.page);
-
+app.post('/about', about.doPage);
 //两种情况的访问
 app.get('/resume_awd', seeuInfo.awards);
 app.get('/resume_cmp1', seeuInfo.companys1);
@@ -123,8 +127,9 @@ app.get('/resume_wok', seeuInfo.works);
 app.get('/myindex', myindex.page);
 app.get('/blogs_art', blogAorE.artSee);
 app.get('/blogs_exp', blogAorE.expSee);
-//个人中心——个性介绍
+//个人中心——个性介绍-v1.0
 app.get('/instrc', introduction.page);
+app.post('/introduction', checkState.checkLogin);
 app.post('/introduction', introduction.doPage);
 //个人中心——网页简历
 app.get('/resume', resume.page);
@@ -181,28 +186,118 @@ app.post('/pubExper', manageExperience.pubExper);
 app.get('/blogs_com_mine', comment.minePage);
 app.get('/blogs_com_yours', comment.yoursPage);
 app.post('/comPageSearch', comment.pageSearch);
-//资源导航
+//资源导航 -v1.0
 app.get('/navs', navigation.page);
+app.post('/navigationListAdd', checkState.checkLogin);
 app.post('/navigationListAdd', navigation.listAdd);
+app.post('/navigationListDel', checkState.checkLogin);
 app.post('/navigationListDel', navigation.listDel);
+app.post('/navigationListAddsun', checkState.checkLogin);
 app.post('/navigationListAddsun', navigation.listAdd2);
+app.post('/navigationListDelsun', checkState.checkLogin);
 app.post('/navigationListDelsun', navigation.listDel2);
 //公开设置
+app.get('/sets_pub', checkState.checkLogin);
 app.get('/sets_pub', seting.page);
+app.post('/seting', checkState.checkLogin);
 app.post('/seting', seting.doPage);
+app.post('/setingInit', checkState.checkLogin);
 app.post('/setingInit', seting.createInit);
 //私人设置
+app.get('/sets_pri', checkState.checkLogin);
 app.get('/sets_pri', privateSeting.page);
+app.post('/privateSeting/add', checkState.checkLogin);
 app.post('/privateSeting/add', privateSeting.doPage);
+app.post('/privateSeting/del', checkState.checkLogin);
 app.post('/privateSeting/del', privateSeting.del);
+app.post('/privateSeting/see', checkState.checkLogin);
 app.post('/privateSeting/see', privateSeting.see);
+app.post('/privateSeting/upd', checkState.checkLogin);
 app.post('/privateSeting/upd', privateSeting.upd);
+app.post('/privateSeting/chg', checkState.checkLogin);
 app.post('/privateSeting/chg', privateSeting.chg);
 //密码修改
+app.post('/sets_pwd', checkState.checkLogin);
 app.get('/sets_pwd', changePassword.page);
+app.post('/changePassword', checkState.checkLogin);
 app.post('/changePassword', changePassword.doPage);
 //测试页面
 app.get('/demo', demo.page);
+
+//app的artTyp格式化
+app.locals.ahref = function(signed, uName, vCode, hrefStr) {
+    var ret="";
+    if(signed=='2'){
+        ret=hrefStr+'?vCode='+vCode+'&priId='+uName;
+    }else if(signed=='3'){
+        ret=hrefStr+'?pubId='+uName;
+    }else{
+        ret=hrefStr;
+    }
+    
+    return ret;
+};
+
+//app的artTyp格式化
+app.locals.navs = function(signed, uName, vCode, dat) {
+    var ret="";
+    
+    for(var i=0,len=dat.length; i<len; i++){
+        switch(dat[i].modelNam){
+            case '个性简介':
+                for(var j=0,lenj=dat[i].sunModels.length; j<lenj; j++){
+                    if(dat[i].sunModels[j].sunNam=='公开' && dat[i].sunModels[j].sunYesNo==1){
+                        if(signed=='2'){
+                            ret+='<li><a data-src="/instrc" href="/instrc?priId='+uName+'&vCode='+vCode+'">简介</a></li>';
+                        }else{
+                            ret+='<li><a data-src="/instrc" href="/instrc?pubId='+uName+'">简介</a></li>';
+                        }
+                        break;
+                    }
+                }
+                break;
+            case '个人简历':
+                for(var j=0,lenj=dat[i].sunModels.length; j<lenj; j++){
+                    if(dat[i].sunModels[j].sunYesNo==1){
+                        if(signed=='2'){
+                            ret+='<li><a data-src="/resume" href="/resume?priId='+uName+'&vCode='+vCode+'">简历</a></li>';
+                        }else{
+                            ret+='<li><a data-src="/resume" href="/resume?pubId='+uName+'">简历</a></li>';
+                        }
+                        break;
+                    }
+                }
+                break;
+            case '资源导航':
+                for(var j=0,lenj=dat[i].sunModels.length; j<lenj; j++){
+                    if(dat[i].sunModels[j].sunNam=='公开' && dat[i].sunModels[j].sunYesNo==1){
+                        if(signed=='2'){
+                            ret+='<li><a data-src="/navs" href="/navs?priId='+uName+'&vCode='+vCode+'">资源</a></li>';
+                        }else{
+                            ret+='<li><a data-src="/navs" href="/navs?pubId='+uName+'">资源</a></li>';
+                        }
+                        break;
+                    }
+                }
+                break;
+            case '博文面经':
+                for(var j=0,lenj=dat[i].sunModels.length; j<lenj; j++){
+                    if(dat[i].sunModels[j].sunYesNo==1){
+                        if(signed=='2'){
+                            ret+='<li><a data-src="/blogs_" href="/blogs_art_pub?priId='+uName+'&vCode='+vCode+'">博文</a></li>';
+                        }else{
+                            ret+='<li><a data-src="/blogs_" href="/blogs_art_pub?pubId='+uName+'">博文</a></li>';
+                        }
+                        break;
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+    }
+    return ret;
+};
 
 //app的artTyp格式化
 app.locals.artTyp = function(dat) {
@@ -314,7 +409,7 @@ if (app.get('env') === 'development') {
         res.render('error', {
             message: err.message,
             error: err,
-            title: "错误页面",
+            title: "错误页面-人人秀",
             uName: ""
         });
     });
@@ -326,7 +421,7 @@ app.use(function(err, req, res, next) {
     res.render('error', {
         message: err.message,
         error: {},
-        title: "错误页面",
+        title: "错误页面-人人秀",
         uName: ""
     });
 });

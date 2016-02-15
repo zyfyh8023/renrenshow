@@ -1,7 +1,7 @@
 "use strict";
-var resume = require('../models/resume');
-var users = require('../models/users');
-
+var resume = require('../../models/resume');
+var users = require('../../models/users');
+var checkState = require('../checkState');
 var fs = require('fs'),
 	multiparty = require('multiparty'),
 	gm = require('gm'),
@@ -11,33 +11,103 @@ var retCode, retDesc, uName, allres, cssFils, jsFils;
 
 /* GET Seting page. */
 exports.page = function(req, res, next) {
-	uName = req.session.user.username;
-	resume.findByUname(uName, function(err, rs) {
-		if (err) {
-			res.redirect('/error');
-		} else {
-			if (rs) {
-				users.findByUname(uName, function(err, resu) {
-					if (err) {
-						res.redirect('/error');
-					}else{
-						console.log(rs);
-						allres=rs;
-						res.render('./userResume/resume', {
-							title: '我的简历',
-							uName: uName,
-							rs: rs,
-							headImg: resu.headimg,
-							cssFils:['userResume/resume'],
-							jsFils:['userResume/resume']
-						});
-					}
-				});
-			} else {
-				res.redirect('/error');
-			}
-		}
+	checkState.myState(req, function(err, rs){
+	    if(err){
+	        res.redirect('/error');
+	    }else{
+	        if(rs.signed=='2' && rs.uName!=""){   
+	            resume.findByUname(rs.uName, function(err, result) {
+	                if (err) {
+	                    res.redirect('/error');
+	                } else {
+	                	if (result) {
+	                		users.findByUname(rs.uName, function(err, resu) {
+	                			if (err) {
+	                				res.redirect('/error');
+	                			}else{
+	                				allres=result;
+	                				res.render('./userResume/resume', {
+	                					title: 'TA的简历(特权)',
+	                					uName: rs.uName,
+	                					rs: result,
+	                					signed: rs.signed,
+	                					vCode: rs.vCode,
+	                					modules: rs.modules,
+	                					headImg: resu.headimg,
+	                					cssFils:['userResume/resume'],
+	                					jsFils:['userResume/resume']
+	                				});
+	                			}
+	                		});
+	                	} else {
+	                		res.redirect('/error');
+	                	}
+	                }
+	            })
+	        }else if(rs.signed=='3' && rs.uName!=""){    
+	            resume.findByUname(rs.uName, function(err, result) {
+	                if (err) {
+	                    res.redirect('/error');
+	                } else {
+	                	if (result) {
+	                		users.findByUname(rs.uName, function(err, resu) {
+	                			if (err) {
+	                				res.redirect('/error');
+	                			}else{
+	                				console.log(rs.modules);
+	                				allres=result;
+	                				res.render('./userResume/resume', {
+	                					title: 'TA的简历(普通)',
+	                					uName: rs.uName,
+	                					rs: result,
+	                					signed: rs.signed,
+	                					vCode: rs.vCode,
+	                					modules: rs.modules,
+	                					headImg: resu.headimg,
+	                					cssFils:['userResume/resume'],
+	                					jsFils:['userResume/resume']
+	                				});
+	                			}
+	                		});
+	                	} else {
+	                		res.redirect('/error');
+	                	}
+	                }
+	            })
+	        }else if(rs.signed=='1' && rs.uName!=""){   
+	            resume.findByUname(rs.uName, function(err, result) {
+	                if (err) {
+	                    res.redirect('/error');
+	                } else {
+	                	if (result) {
+	                		users.findByUname(rs.uName, function(err, resu) {
+	                			if (err) {
+	                				res.redirect('/error');
+	                			}else{
+	                				allres=result;
+	                				res.render('./userResume/resume', {
+	                					title: '我的简历',
+	                					uName: rs.uName,
+	                					rs: result,
+	                					signed: rs.signed,
+	                					vCode: rs.vCode,
+	                					headImg: resu.headimg,
+	                					cssFils:['userResume/resume'],
+	                					jsFils:['userResume/resume']
+	                				});
+	                			}
+	                		});
+	                	} else {
+	                		res.redirect('/error');
+	                	}
+	                }
+	            })
+	        }else{    //错误页面
+	             res.redirect('/error');
+	        }
+	    }
 	});
+
 };
 
 exports.allinfo = function(req, res, next) {

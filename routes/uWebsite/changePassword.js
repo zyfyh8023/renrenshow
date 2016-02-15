@@ -1,7 +1,7 @@
 "use strict";
 
 var crypto = require('crypto');
-var users = require('../models/users');
+var users = require('../../models/users');
 
 var retCode, retDesc, uName, navTitle, navDesc, cssFils, jsFils;
 

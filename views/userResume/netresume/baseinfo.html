@@ -3,7 +3,9 @@
 
     <div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
         <div class="am-alert am-alert-secondary">
+            <% if(locals.signed && signed=='1'){ %>
             <button type="button" class="am-close" data-am-modal="{target: '#my-baseinfo'}"><i class="am-icon-pencil"></i></button>
+            <% } %>
             <div style="font-size:30px;text-align:center;">基本信息</div>
         </div>
     </div>
@@ -41,6 +43,7 @@
         </ul>
     </div>
 
+    <% if(locals.signed && signed=='1'){ %>
     <div class="am-popup" id="my-baseinfo">
         <div class="am-popup-inner">
             <div class="am-popup-hd">
@@ -132,5 +135,5 @@
             </div>
         </div>
     </div>
-
+    <% } %>
 </section>

@@ -152,3 +152,4 @@ exports.findAllByCon = function(object,pagenum,skipstep,callback) {
     });
     
 }
+

@@ -1,7 +1,7 @@
 "use strict";
-var experiences = require('../models/experience');
-var articles = require('../models/article');
-var comment = require('../models/comment');
+var experiences = require('../../models/experience');
+var articles = require('../../models/article');
+var comment = require('../../models/comment');
 var async = require('async');
 
 var retCode, retDesc, uName, navTitle, navDesc, cssFils, jsFils;

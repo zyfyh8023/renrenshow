@@ -11,7 +11,7 @@
 				</div>
 				<div class="zy-public-content zy-change-content">
 					<% for(var j=0; j<results.allModels[i].sunModels.length; j++) { %>
-						<% if(results.allModels[i].modelNam =='个性简介') { %>
+						<% if(results.allModels[i].modelNam =='个性简介' || results.allModels[i].modelNam =='资源导航') { %>
 							<% if(results.allModels[i].sunModels[j].sunYesNo ==1) { %>
 								<a class="zy-div-radio am-badge am-badge-success am-text-lg">
 									<%=results.allModels[i].sunModels[j].sunNam %>

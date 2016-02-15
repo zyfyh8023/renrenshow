@@ -2,19 +2,16 @@
 
 var crypto = require('crypto');
 var async = require('async');
-var users = require('../models/users');
-var setting = require('./seting');
-var resume = require('./resume');
+var users = require('../../models/users');
+var setting = require('../uWebsite/seting');
+var resume = require('../uWebsite/resume');
+var checkState = require('../checkState');
 
 var retDesc, retCode, uName, cssFils, jsFils;
 
 //GET register page. 
 exports.page = function(req, res, next) {
-    if(req.session.user){
-        uName = req.session.user.username;
-    }else{
-        uName = '';
-    }
+    uName=checkState.loginState(req);
 
     res.render('register', {
         title: '注册-人人秀',

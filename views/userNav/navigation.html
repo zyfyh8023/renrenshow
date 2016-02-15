@@ -9,30 +9,32 @@
 			</div>
 			<div>
 				<ul class="am-list am-list-border zy-navTitle-list">
-					<% if (allNavgition) { %>
+					<% if (locals.allNavgition) { %>
 						<% for(var i=0; i<allNavgition.models.length; i++) {%>
 							<li><a href="#<%= allNavgition.models[i].maoName %>"><span><%= allNavgition.models[i].modelsName %></span>（<%= allNavgition.models[i].modelsuns.length %>）</a></li>
 						<% } %>
 					<% } %>
 				</ul>
 			</div>
-			<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default zy-titlebar-nomargin">
-				<h2 class="am-titlebar-title">模块编辑</h2>
-			</div>
-			<div>
-				<ul class="am-list am-list-border">
-					<li>
-						<a href="javascript:void(0);" data-am-modal="{target: '#my-addnavmodel'}">添加模块</a>
-					</li>
-					<li>
-						<a href="javascript:void(0);" data-am-modal="{target: '#my-removenavmodel'}">删除模块</a>
-					</li>
-				</ul>
-			</div>
+			<% if(locals.signed && signed=='1'){ %>
+				<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default zy-titlebar-nomargin">
+					<h2 class="am-titlebar-title">模块编辑</h2>
+				</div>
+				<div>
+					<ul class="am-list am-list-border">
+						<li>
+							<a href="javascript:void(0);" data-am-modal="{target: '#my-addnavmodel'}">添加模块</a>
+						</li>
+						<li>
+							<a href="javascript:void(0);" data-am-modal="{target: '#my-removenavmodel'}">删除模块</a>
+						</li>
+					</ul>
+				</div>
+			<% } %>
 		</div>
 		<div class="col-lg-9 am-u-lg-9 zy-show-lg-content">
 			<div class="zy-navigation-list">
-				<% if (allNavgition) { %>
+				<% if (locals.allNavgition) { %>
 					<% for(var i=0; i<allNavgition.models.length; i++) {%>
 						<div class="zy-module-container" data-_id="<%= allNavgition.models[i]._id %>">
 						<div class="col-sm-12 am-u-sm-12 zy-navigation-nav">
@@ -43,11 +45,13 @@
 							</a>
 						</div>
 						<% for(var j=0; j<allNavgition.models[i].modelsuns.length; j++) {%>
-							<div class="col-md-4 am-u-md-4 col-sm-6 am-u-sm-6 zy-navigation-item">
+							<div class="col-md-4 am-u-md-4 col-sm-6 am-u-sm-6 zy-navigation-item am-u-end">
 								<div class="am-alert am-alert-secondary">
-									<button type="button" class="J_zy-module-close am-close">
-										<i class="am-icon-close"></i>
-									</button>
+									<% if(locals.signed && signed=='1'){ %>
+										<button type="button" class="J_zy-module-close am-close">
+											<i class="am-icon-close"></i>
+										</button>
+									<% } %>
 									<div data-_id="<%= allNavgition.models[i].modelsuns[j]._id %>" class="zy-module-con" data-am-popover="{theme:'success sm',content:'<%= allNavgition.models[i].modelsuns[j].sunDesc %>',trigger: 'hover focus'}">
 										<a href="<%= allNavgition.models[i].modelsuns[j].sunUrl %>" target="_blank">
 											<%= allNavgition.models[i].modelsuns[j].sunName %>
@@ -59,17 +63,21 @@
 								</div>
 							</div>
 						<% } %>
-							<div class="col-md-4 am-u-md-4 col-sm-6 am-u-sm-6 zy-navigation-item zy-navigation-add-ele am-u-end">
-								<div class="am-alert am-alert-secondary J_zy-datamodal">
-									<div style="padding:1.2rem 0;font-size:1.5rem;text-align:center;">添加模块</div>
-								</div>
-							</div>
+							<% if(locals.signed && signed=='1'){ %>
+								<div class="col-md-4 am-u-md-4 col-sm-6 am-u-sm-6 zy-navigation-item zy-navigation-add-ele am-u-end">
+									<div class="am-alert am-alert-secondary J_zy-datamodal">
+										<div style="padding:1.2rem 0;font-size:1.5rem;text-align:center;">添加模块</div>
+									</div>
+								</div>	
+							<% } %>
 						</div>
 					<% } %>
 				<% } %>
 			</div>
 		</div>
 	</div>
+
+	<% if(locals.signed && signed=='1'){ %>
 	<!-- 添加模块 -->
 	<div class="am-modal-actions" id="my-addnavmodel">
 		<div class="am-modal-actions-group">
@@ -110,7 +118,7 @@
 								<label class="am-u-sm-2 am-form-label">模块名称：</label>
 								<div class="am-u-sm-10">
 									<select class="addmodelNameD" required>
-										<% if (allNavgition) { %>
+										<% if (locals.allNavgition) { %>
 											<% for(var i=0; i<allNavgition.models.length; i++) {%>
 												<option value="<%= allNavgition.models[i]._id %>">
 													<%= allNavgition.models[i].modelsName %>
@@ -171,7 +179,8 @@
 				</form>
 			</div>
 		</div>
-	</div>	
+	</div>
+	<% } %>	
 </section>
 
 <br><br><br>

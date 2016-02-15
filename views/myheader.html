@@ -44,23 +44,21 @@
 			<button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-primary  am-show-sm-only" data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
 			<div class="am-collapse am-topbar-collapse zy-am-topbar-collapse" id="doc-topbar-collapse">
 				<ul class="am-nav am-nav-pills am-topbar-nav zy-am-topbar-nav">
-					<li><a data-src="myindex" href="/myindex">首页</a></li>
-					<li><a data-src="/instrc" href="/instrc">简介</a></li>
-					<li><a data-src="/resume" href="/resume">简历</a></li>
-					<!--  <li class="am-dropdown" data-am-dropdown>
-            <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:void(0);">
-              简历<span class="am-icon-caret-down"></span>
-            </a>
-            <ul class="am-dropdown-content">
-              <li class="am-dropdown-header">简历分类操作</li>
-              <li class="am-active"><a href="/resume">1. 网页版简历编辑</a></li>
-              <li class="am-divider"></li>
-              <li class="am-disabled"><a href="/pageResume">2. 纸质版简历编辑</a></li>
-            </ul>
-          </li> -->
-					<li><a data-src="/navs" href="/navs">资源</a></li>
-					<li><a data-src="/blogs_" href="/blogs_art_pub">博文</a></li>
-					<li><a data-src="/sets_" href="/sets_pub">设置</a></li>
+					<% if(locals.signed){ %>
+						<li><a data-src="myindex" href="<%= ahref(signed, uName, vCode, '/myindex') %>">首页</a></li>
+					<% }else{ %>
+						<li><a data-src="myindex" href="/myindex">首页</a></li>
+					<% } %>
+					
+					<% if(locals.modules){ %>
+						<%- navs(signed, uName, vCode, modules) %>
+					<% }else{ %>
+						<li><a data-src="/instrc" href="/instrc">简介</a></li>
+						<li><a data-src="/resume" href="/resume">简历</a></li>
+						<li><a data-src="/navs" href="/navs">资源</a></li>
+						<li><a data-src="/blogs_" href="/blogs_art_pub">博文</a></li>
+						<li><a data-src="/sets_" href="/sets_pub">设置</a></li>
+					<% } %>
 				</ul>
 				<div class="am-topbar-right">
 					<div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
@@ -68,7 +66,9 @@
 						<ul class="am-dropdown-content">
 							<li><a href="/inf">去资源库</a></li>
 							<li><a href="/res">去人才库</a></li>
+							<% if(locals.signed && signed=='1'){ %>
 							<li id="zy-slidemenu" data-am-offcanvas="{target: '#doc-oc-demo2'}"><a href="javascript:void(0);">侧边栏</a></li>
+							<% } %>
 						</ul>
 					</div>
 				</div>
@@ -76,6 +76,7 @@
 		</div>
 	</header>
 
+	<% if(locals.signed && signed=='1'){ %>
 	<!-- 侧边栏内容 -->
 	<div id="doc-oc-demo2" class="am-offcanvas">
 		<div class="am-offcanvas-bar am-offcanvas-bar-flip">
@@ -124,6 +125,7 @@
 							<form class="am-form">
 								<div class="am-form-group">
 									待定中。。。
+									<%= uName %>
 								</div>
 							</form>
 						</div>
@@ -132,3 +134,4 @@
 			</div>
 		</div>
 	</div>
+	<% } %>

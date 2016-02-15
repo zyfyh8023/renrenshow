@@ -1,18 +1,15 @@
 "use strict";
 
 var crypto = require('crypto'); //crypto是Node.js 的一个核心模块，用它生成散列值来加密密码。
-var users = require('../models/users');
+var users = require('../../models/users');
+var checkState = require('../checkState');
 
 var retCode, retDesc, uName, cssFils, jsFils;
 
 /* GET login page. */
 exports.page = function(req, res, next) {
 
-	if(req.session.user){
-		uName = req.session.user.username;
-	}else{
-		uName = '';
-	}
+	uName=checkState.loginState(req);
 
 	res.render('login', {
 		title: '登录-人人秀',

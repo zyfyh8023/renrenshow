@@ -57,13 +57,13 @@
 							更多 <span class="am-icon-caret-down"></span>
 						</button>
 						<ul class="am-dropdown-content">
-							<% if(uName!=''){%>
-								<li><a id="zy-loginOut" href="javascript:void(0);">退出登录</a></li>
+							<% if(locals.uName && uName!=''){%>
+								<li alt="<%= uName %>" title="<%= uName %>"><a id="zy-loginOut" href="javascript:void(0);">注销 (<%= cutStr(uName, 6, '...') %>)</a></li>
 							<% }else{ %>
-								<li><a href="/login">去登录</a></li>
+								<li><a href="/login">登录</a></li>
 							<% } %>
-							<li><a href="/register">去注册</a></li>
-							<li><a href="/myindex">我的天地</a></li>
+							<li><a href="/register">注册</a></li>
+							<li><a href="/myindex">我的网站</a></li>
 						</ul>
 					</div>
 				</div>

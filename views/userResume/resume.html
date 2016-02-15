@@ -24,17 +24,50 @@
 		</div>
 	</div>
 
-	<% include ./netresume/baseinfo.html %>
-	<% include ./netresume/linkinfo.html %>
-	<% include ./netresume/educationinfo.html %>
-	<% include ./netresume/internshipinfo.html %>
-	<% include ./netresume/jobsinfo.html %>
-	<% include ./netresume/rewardinfo.html %>
-	<% include ./netresume/worksinfo.html %>
-	<% include ./netresume/projectsinfo.html %>
-	<% include ./netresume/practiceinfo.html %>
-	<% include ./netresume/paperinfo.html %>
-	<% include ./netresume/skillsinfo.html %>
+    <% if(locals.modules){ %>
+        <% for(var i=0,len=modules.length; i<len; i++){ %>
+            <% if(modules[i].modelNam=='个人简历'){ %>
+                <% for(var j=0,lenj=modules[i].sunModels.length; j<lenj; j++){ %>
+                    <% if(modules[i].sunModels[j].sunNam=='基本信息' && modules[i].sunModels[j].sunYesNo==1){ %>
+                        <% include ./netresume/baseinfo.html %>
+                    <% }else if(modules[i].sunModels[j].sunNam=='联系方式' && modules[i].sunModels[j].sunYesNo==1){ %>
+                        <% include ./netresume/linkinfo.html %>
+                    <% }else if(modules[i].sunModels[j].sunNam=='教育经历' && modules[i].sunModels[j].sunYesNo==1){ %>
+                        <% include ./netresume/educationinfo.html %>
+                    <% }else if(modules[i].sunModels[j].sunNam=='实习经历' && modules[i].sunModels[j].sunYesNo==1){ %>
+                        <% include ./netresume/internshipinfo.html %>
+                    <% }else if(modules[i].sunModels[j].sunNam=='工作经历' && modules[i].sunModels[j].sunYesNo==1){ %>
+                        <% include ./netresume/jobsinfo.html %>
+                    <% }else if(modules[i].sunModels[j].sunNam=='荣誉奖励' && modules[i].sunModels[j].sunYesNo==1){ %>
+                        <% include ./netresume/rewardinfo.html %>
+                    <% }else if(modules[i].sunModels[j].sunNam=='个人作品' && modules[i].sunModels[j].sunYesNo==1){ %>
+                       <% include ./netresume/worksinfo.html %>
+                    <% }else if(modules[i].sunModels[j].sunNam=='项目经历' && modules[i].sunModels[j].sunYesNo==1){ %>
+                        <% include ./netresume/projectsinfo.html %>
+                    <% }else if(modules[i].sunModels[j].sunNam=='实践经历' && modules[i].sunModels[j].sunYesNo==1){ %>
+                        <% include ./netresume/practiceinfo.html %>
+                    <% }else if(modules[i].sunModels[j].sunNam=='论文专利' && modules[i].sunModels[j].sunYesNo==1){ %>
+                        <% include ./netresume/paperinfo.html %>
+                    <% }else if(modules[i].sunModels[j].sunNam=='核心技能' && modules[i].sunModels[j].sunYesNo==1){ %>
+                        <% include ./netresume/skillsinfo.html %>
+                    <% } %>
+                <% } %>
+            <% } %>
+        <% } %>
+    <% }else{ %>
+        <% include ./netresume/baseinfo.html %>
+        <% include ./netresume/linkinfo.html %>
+        <% include ./netresume/educationinfo.html %>
+        <% include ./netresume/internshipinfo.html %>
+        <% include ./netresume/jobsinfo.html %>
+        <% include ./netresume/rewardinfo.html %>
+        <% include ./netresume/worksinfo.html %>
+        <% include ./netresume/worksinfo.html %>
+        <% include ./netresume/projectsinfo.html %>
+        <% include ./netresume/practiceinfo.html %>
+        <% include ./netresume/paperinfo.html %>
+        <% include ./netresume/skillsinfo.html %>
+    <% } %>
     
 <br><br><br>
     

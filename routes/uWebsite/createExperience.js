@@ -1,15 +1,16 @@
 "use strict";
-var comment = require('../models/comment');
-var articles = require('../models/article');
-var experiences = require('../models/experience');
+
+var articles = require('../../models/article');
+var comment = require('../../models/comment');
+var experiences = require('../../models/experience');
 var async = require('async');
 
-var retDesc, retCode, uName, navTitle, navDesc, cssFils, jsFils;
+var retCode, retDesc, uName, navTitle, navDesc, cssFils, jsFils;
 
-/* GET createarticle page. */
+/* GET createExperience page. */
 exports.page = function(req, res, next) {
     uName = req.session.user.username;
-    navTitle = "个人设置中心";
+    navTitle = "写面经";
     navDesc = "个人中心是一个全面的信息中心，在这里能够看到与个人相关的所有待办工作和参" +
         "与的项目的动态，方便对工作的全局掌握。个人中心是系统个性化的设置入口，支持" +
         "设置与个人相关的个性化配置，帮助用户更好的制定一个符合自己使用习惯的系统环境。";
@@ -18,41 +19,40 @@ exports.page = function(req, res, next) {
         if (err) {
             res.redirect('/error');
         } else {
-            res.render('./userBlog/createarticle', {
-                title: '新建博文',
+            res.render('./userBlog/createExperience', {
+                title: '写面经',
                 uName: uName,
                 navTitle: navTitle,
                 allNum: resu,
                 navDesc: navDesc,
-                cssFils:['userBlog/createarticle'],
-                jsFils:['userBlog/createarticle']
+                cssFils:['userBlog/createExperience'],
+                jsFils:['userBlog/createExperience']
             });
         }
     });
 };
 
-/* POST createarticle page. */
+/* POST createExperience page. */
 exports.doPage = function(req, res, next) {
-    uName = req.session.user.username;
-    var articleTitle = req.body.articleTitle.trim() || '',
-        articleKeyword = req.body.articleKeyword.trim() || '',
-        articleAbstract = req.body.articleAbstract.trim() || '',
-        articleCont = req.body.articleCont.trim() || '',
-        articleType = req.body.articleType.trim() || '',
-        articleTag = req.body.tags || 0,
-        articleImgs = req.body.articleImgs;
+    uName = req.session.user.username; //session的时间问题
+    var experienceTitle = req.body.experienceTitle.trim() || '',
+        experienceCompany = req.body.experienceCompany.trim() || '',
+        experienceTag = req.body.tags || 0,
+        experienceCont = req.body.experienceCont.trim() || '',
+        experienceImgs = req.body.experienceImgs;
 
-    var newArticle = new articles.Article({
+
+    var newExperience = new experiences.Experience({
         author: uName,
-        articleTitle: articleTitle,
-        articleKeyword: articleKeyword,
-        articleAbstract: articleAbstract,
-        articleCont: articleCont,
-        articleType: articleType,
-        articleTag: articleTag,
-        articleImgs: articleImgs
+        experienceTitle: experienceTitle,
+        experienceCompany: experienceCompany,
+        experienceTag: experienceTag,
+        experienceCont: experienceCont,
+        experienceImgs: experienceImgs
     });
-    articles.create(newArticle, function(err) {
+
+    //如果不存在则新增用户
+    experiences.create(newExperience, function(err) {
         if (err) {
             retDesc = "保存失败,请稍后再试!";
             return res.send({
@@ -65,6 +65,7 @@ exports.doPage = function(req, res, next) {
             });
         }
     });
+
 }
 
 function getArtExpNum(uName, callFn) {

@@ -1,5 +1,5 @@
 "use strict";
-var setings = require('../models/setting');
+var setings = require('../../models/setting');
 
 var uName, retCode, retDesc, navTitle, navDesc, cssFils, jsFils;
 
@@ -64,46 +64,46 @@ exports.createInit = function(uNames,callback) {
 			modelNam: "个人简历",
 			sunModels: [{
 				sunNam: "基本信息",
-				sunYesNo: 1
+				sunYesNo: 0
 			}, {
 				sunNam: "联系方式",
 				sunYesNo: 0
 			}, {
-				sunNam: "教育背景",
+				sunNam: "教育经历",
 				sunYesNo: 1
 			}, {
-				sunNam: "实习工作",
-				sunYesNo: 0
-			}, {
-				sunNam: "作品模块",
+				sunNam: "实习经历",
 				sunYesNo: 1
 			}, {
-				sunNam: "证书荣誉",
+				sunNam: "工作经历",
+				sunYesNo: 1
+			}, {
+				sunNam: "荣誉奖励",
+				sunYesNo: 1
+			}, {
+				sunNam: "个人作品",
+				sunYesNo: 1
+			}, {
+				sunNam: "项目经历",
+				sunYesNo: 1
+			}, {
+				sunNam: "实践经历",
 				sunYesNo: 1
 			}, {
 				sunNam: "论文专利",
-				sunYesNo: 0
-			}, {
-				sunNam: "校园社会活动",
 				sunYesNo: 1
 			}, {
-				sunNam: "补充模块",
-				sunYesNo: 0
+				sunNam: "核心技能",
+				sunYesNo: 1
 			}]
 		}, {
 			modelNam: "资源导航",
 			sunModels: [{
-				sunNam: "前端资源导航",
+				sunNam: "公开",
 				sunYesNo: 1
 			}, {
-				sunNam: "后端资源导航",
-				sunYesNo: 1
-			}, {
-				sunNam: "IOS资源导航",
+				sunNam: "不公开",
 				sunYesNo: 0
-			}, {
-				sunNam: "安卓资源导航",
-				sunYesNo: 1
 			}]
 		}, {
 			modelNam: "博文面经",
@@ -112,13 +112,16 @@ exports.createInit = function(uNames,callback) {
 				sunYesNo: 1
 			}, {
 				sunNam: "行业远瞻",
-				sunYesNo: 0
-			}, {
-				sunNam: "乱七八糟",
 				sunYesNo: 1
 			}, {
-				sunNam: "面试经验",
+				sunNam: "生活日志",
 				sunYesNo: 0
+			}, {
+				sunNam: "面试经验",
+				sunYesNo: 1
+			}, {
+				sunNam: "随便写写",
+				sunYesNo: 1
 			}]
 		}]
 	});
