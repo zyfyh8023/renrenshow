@@ -1,5 +1,6 @@
 "use strict";
 var checkState = require('../checkState');
+var resume = require('../../models/resume');
 
 var retCode, retDesc, uName, cssFils, jsFils;
 
@@ -34,6 +35,17 @@ exports.page = function(req, res, next) {
 					jsFils:['userIndex/myindex']
 				});
 			}else if(rs.signed=='1' && rs.uName!=""){   
+				resume.findByUname(rs.uName, function(err, result) {
+				    if (err) {
+				        res.redirect('/error');
+				    } else {
+				    	if (result) {
+				    		console.log(result.Certificate6.length);
+				    		var num1=result.Certificate6.length>0 ? (result.Certificate6.length>=4 ? 4 : result.Certificate6.length) : 0;
+				    		console.log(num1);
+				    	}
+				    }
+				});
 				res.render('./userIndex/myindex', {
 					uName: rs.uName,
 					signed: rs.signed,

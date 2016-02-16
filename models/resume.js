@@ -14,8 +14,7 @@ var ResumeScheme = new Schema({
         identity: String,
         education: String,
         school: String,
-        major: String,
-        headImg: String
+        major: String
     },
     contact2: {
         mPhone: String,
@@ -33,7 +32,10 @@ var ResumeScheme = new Schema({
         edatetime: Date,
         major: String,
         majorinstr: String,
-        schoolLogo: String
+        schoolLogo: {
+            type: String,
+            default: '/images/school.jpg'
+        }
     }],
     experience4: [{
         practice: String,
@@ -42,7 +44,10 @@ var ResumeScheme = new Schema({
         epracticetime: String,
         practiceposition: String,
         practiceinstr: String,
-        companyLogo: String
+        companyLogo: {
+            type: String,
+            default: '/images/hw.jpg'
+        }
     }],
     work5: [{
         practice: String,
@@ -51,21 +56,30 @@ var ResumeScheme = new Schema({
         epracticetime: String,
         practiceposition: String,
         practiceinstr: String,
-        companyLogo: String
+        companyLogo: {
+            type: String,
+            default: '/images/hw.jpg'
+        }
     }],
     Certificate6: [{
         certificatename: String,
         gettime: String,
         cgrade: String,
         certificateinstr: String,
-        cimages: String
+        cimages: {
+            type: String,
+            default: '/images/exp1.jpg'
+        }
     }],
     pWorks7: [{
         workname: String,
         worktime: String,
         relationlink: String,
         workdes: String,
-        workimg: []
+        workimg: {
+            type:[],
+            default:['/images/exp3.jpg', '/images/exp4.jpg']
+        }
     }],
     projects8: [{
         pName: String,

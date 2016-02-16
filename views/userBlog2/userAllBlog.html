@@ -5,15 +5,22 @@
 	<div class="am-g am-u-lg-9 am-u-md-12  am-u-sm-centered zy-manage-article">
 		<div class="col-lg-2 am-u-lg-2 am-show-lg-only zy-show-lg-nav">
 			<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default zy-titlebar-nomargin">
-				<h2 class="am-titlebar-title ">博文面经</h2>
+				<h2 class="am-titlebar-title ">原创博文</h2>
 			</div>
 			<div>
 				<ul class="am-list am-list-border">
-					<li><a href="/blogs_art_pub">技术博文<span class="am-nav-en">(<%= allNum[0][0] %>)</span></a></li>
-					<li><a href="/blogs_art_pri">行业远瞻<span class="am-nav-en">(<%= allNum[0][0] %>)</span></a></li>
-					<li><a href="/blogs_art_pri">生活日志<span class="am-nav-en">(<%= allNum[0][0] %>)</span></a></li>
-					<li><a href="/blogs_art_pri">随便写写<span class="am-nav-en">(<%= allNum[0][0] %>)</span></a></li>
-					<li><a href="/blogs_art_rea">面试经验<span class="am-nav-en">(<%= allNum[0][0] %>)</span></a></li>
+					<li><a href="/blogs_art_pub">技术博文<span class="am-nav-en">(<%= resul[0].length %>)</span></a></li>
+					<li><a href="/blogs_art_pri">行业远瞻<span class="am-nav-en">(<%= resul[1].length %>)</span></a></li>
+					<li><a href="/blogs_art_pri">生活日志<span class="am-nav-en">(<%= resul[2].length %>)</span></a></li>
+					<li><a href="/blogs_art_pri">随便写写<span class="am-nav-en">(<%= resul[3].length %>)</span></a></li>
+				</ul>
+			</div>
+			<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default zy-titlebar-nomargin">
+				<h2 class="am-titlebar-title ">面试经验</h2>
+			</div>
+			<div>
+				<ul class="am-list am-list-border">
+					<li><a href="/blogs_art_rea">面试经验<span class="am-nav-en">(<%= resul[4].length %>)</span></a></li>
 				</ul>
 			</div>
 		</div>
@@ -45,51 +52,20 @@
 									<%= dateformat(allArticles[i].cTime) %>
 								</td>
 								<td class="am-text-middle">
-									<a href="javascript:void(0);" class="zy-del-art">删除</a><br>
 									<a href="/blogs_art?aid=<%= allArticles[i]._id %>">查看</a><br>
-									<% if(allArticles[i].articleTag=='2') { %>
-									<a href="javascript:void(0);" class="zy-pub-art">发布</a>
-									<% } %>
 								</td>
 							</tr>
 						<% } %>
 					</tbody>
 				<% } %>
 			</table>
-			<div id="pageShow" style="<% if(allArticles.length<=1) { %>display:none;<% } %>">
-				<ul class="am-pagination am-pagination-right">
-					共<%= allpage %>页&nbsp;
-					<% if(showpagetip > 1) {%>
-						<li class="J_pre-page"><a href="javascript:void(0);">&laquo;</a></li>
-						<% for(var i=1; i<=showpagetip; i++) {%>
-							<% if(i==1) { %>
-								<li class="am-active"><a href="javascript:void(0);">1</a></li>
-							<% }else{ %>
-								<li><a href="javascript:void(0);"><%= i %></a></li>
-							<% } %>
-						<% } %>
-						<li class="J_next-page"><a href="javascript:void(0);">&raquo;</a></li>
-					<% } %>
-				</ul>
-			</div>
+			
 		</div>
 	</div>
 </section>
 
 <br><br><br>
 
-<script>
-	window.__data={
-		allpage: <%= allpage %>,
-		showpagetip: <%= showpagetip %>,
-		nums: <%= nums %>,
-		uName: "<%= uName%>",
-		<% if(locals.articleTag) { %>
-			articleTag: <%= articleTag%>
-		<% }else{ %>
-			articleTag: 11
-		<% } %>
-	}
-</script>
+
 
 <% include ../myfooter.html %>

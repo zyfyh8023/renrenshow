@@ -85,15 +85,16 @@ exports.page = function(req, res, next) {
 	                				res.redirect('/error');
 	                			}else{
 	                				allres=result;
+                					console.log(result);
 	                				res.render('./userResume/resume', {
-	                					title: '我的简历',
-	                					uName: rs.uName,
-	                					rs: result,
-	                					signed: rs.signed,
-	                					vCode: rs.vCode,
-	                					headImg: resu.headimg,
-	                					cssFils:['userResume/resume'],
-	                					jsFils:['userResume/resume']
+                					title: '我的简历',
+                					uName: rs.uName,
+                					rs: result,
+                					signed: rs.signed,
+                					vCode: rs.vCode,
+                					headImg: resu.headimg,
+                					cssFils:['userResume/resume'],
+                					jsFils:['userResume/resume']
 	                				});
 	                			}
 	                		});
@@ -103,7 +104,7 @@ exports.page = function(req, res, next) {
 	                }
 	            })
 	        }else{    //错误页面
-	             res.redirect('/error');
+	             res.redirect('/login');
 	        }
 	    }
 	});

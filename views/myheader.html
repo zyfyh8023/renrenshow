@@ -68,6 +68,8 @@
 							<li><a href="/res">去人才库</a></li>
 							<% if(locals.signed && signed=='1'){ %>
 							<li id="zy-slidemenu" data-am-offcanvas="{target: '#doc-oc-demo2'}"><a href="javascript:void(0);">侧边栏</a></li>
+							<% }else{ %>
+							<li id="zy-slidemenu" data-am-offcanvas="{target: '#doc-oc-demo2'}"><a href="javascript:void(0);">侧边栏</a></li>
 							<% } %>
 						</ul>
 					</div>
@@ -76,7 +78,6 @@
 		</div>
 	</header>
 
-	<% if(locals.signed && signed=='1'){ %>
 	<!-- 侧边栏内容 -->
 	<div id="doc-oc-demo2" class="am-offcanvas">
 		<div class="am-offcanvas-bar am-offcanvas-bar-flip">
@@ -134,4 +135,3 @@
 			</div>
 		</div>
 	</div>
-	<% } %>

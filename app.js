@@ -40,8 +40,8 @@ var resumeLook = require('./routes/resumeLook');
 var comment = require('./routes/comment');
 var seeuInfo = require('./routes/seeuInfo');
 
+var allblogs = require('./routes/allblogs');
 var demo = require('./routes/demo');
-
 
 var app = express();
 // view engine setup
@@ -131,60 +131,108 @@ app.get('/blogs_exp', blogAorE.expSee);
 app.get('/instrc', introduction.page);
 app.post('/introduction', checkState.checkLogin);
 app.post('/introduction', introduction.doPage);
-//个人中心——网页简历
+//个人中心——网页简历 -v1.0
 app.get('/resume', resume.page);
+app.post('/resume/allinfo', checkState.checkLogin);
 app.post('/resume/allinfo', resume.allinfo);
+app.post('/resume/desc/add', checkState.checkLogin);
 app.post('/resume/desc/add', resume.desc1); //核心技能-add
+app.post('/resume/desc/upd', checkState.checkLogin);
 app.post('/resume/desc/upd', resume.desc3); //核心技能-update
+app.post('/resume/desc/del', checkState.checkLogin);
 app.post('/resume/desc/del', resume.desc2); //核心技能-del
+app.post('/resume/paper/add', checkState.checkLogin);
 app.post('/resume/paper/add', resume.paper1); //论文专利-add
+app.post('/resume/paper/del', checkState.checkLogin);
 app.post('/resume/paper/del', resume.paper2); //论文专利-del
+app.post('/resume/paper/upd', checkState.checkLogin);
 app.post('/resume/paper/upd', resume.paper3); //论文专利-update
+app.post('/resume/undergo/add', checkState.checkLogin);
 app.post('/resume/undergo/add', resume.undergo1); //add
+app.post('/resume/undergo/del', checkState.checkLogin);
 app.post('/resume/undergo/del', resume.undergo2); //del
+app.post('/resume/undergo/upd', checkState.checkLogin);
 app.post('/resume/undergo/upd', resume.undergo3); //update
+app.post('/resume/works/add', checkState.checkLogin);
 app.post('/resume/works/add', resume.works1); //add
+app.post('/resume/works/del', checkState.checkLogin);
 app.post('/resume/works/del', resume.works2); //del
+app.post('/resume/works/upd', checkState.checkLogin);
 app.post('/resume/works/upd', resume.works3); //update
+app.post('/resume/projects/add', checkState.checkLogin);
 app.post('/resume/projects/add', resume.projects1); //add
+app.post('/resume/projects/del', checkState.checkLogin);
 app.post('/resume/projects/del', resume.projects2); //del
+app.post('/resume/projects/upd', checkState.checkLogin);
 app.post('/resume/projects/upd', resume.projects3); //update
+app.post('/resume/certificate/add', checkState.checkLogin);
 app.post('/resume/certificate/add', resume.certificate1); //add
+app.post('/resume/certificate/del', checkState.checkLogin);
 app.post('/resume/certificate/del', resume.certificate2); //del
+app.post('/resume/certificate/upd', checkState.checkLogin);
 app.post('/resume/certificate/upd', resume.certificate3); //update
-
+app.post('/resume/baseinfo', checkState.checkLogin);
 app.post('/resume/baseinfo', resume.baseinfo); //基本信息
+app.post('/resume/contactinfo', checkState.checkLogin);
 app.post('/resume/contactinfo', resume.contactinfo); //联系方式
+app.post('/resume/education/add', checkState.checkLogin);
 app.post('/resume/education/add', resume.education1); //教育经历-add
+app.post('/resume/education/del', checkState.checkLogin);
 app.post('/resume/education/del', resume.education2); //教育经历-del
+app.post('/resume/education/upd', checkState.checkLogin);
 app.post('/resume/education/upd', resume.education3); //教育经历-update
+app.post('/resume/practice/add', checkState.checkLogin);
 app.post('/resume/practice/add', resume.practice1); //工作经历-add
+app.post('/resume/practice/del', checkState.checkLogin);
 app.post('/resume/practice/del', resume.practice2); //工作经历-del
+app.post('/resume/practice/upd', checkState.checkLogin);
 app.post('/resume/practice/upd', resume.practice3); //工作经历-update
+app.post('/resume/repractice/add', checkState.checkLogin);
 app.post('/resume/repractice/add', resume.repractice1); //re工作经历-add
+app.post('/resume/repractice/del', checkState.checkLogin);
 app.post('/resume/repractice/del', resume.repractice2); //re工作经历-del
+app.post('/resume/repractice/upd', checkState.checkLogin);
 app.post('/resume/repractice/upd', resume.repractice3); //re工作经历-update
-//博文管理
+//博文管理 -v1.0
+app.get('/blogs_art_cre', checkState.checkLogin);
 app.get('/blogs_art_cre', createarticle.page);
+app.post('/createarticle', checkState.checkLogin);
 app.post('/createarticle', createarticle.doPage);
+app.get('/blogs_art_pub', checkState.checkLogin);
 app.get('/blogs_art_pub', managearticle.page);
+app.get('/blogs_art_pri', checkState.checkLogin);
 app.get('/blogs_art_pri', managearticle.noPublicBW);
+app.get('/blogs_art_rea', checkState.checkLogin);
 app.get('/blogs_art_rea', managearticle.relatedMeBW);
+app.post('/artPageSearch', checkState.checkLogin);
 app.post('/artPageSearch', managearticle.pageSearch);
+app.post('/delArticle', checkState.checkLogin);
 app.post('/delArticle', managearticle.delArticle);
+app.post('/pubArticle', checkState.checkLogin);
 app.post('/pubArticle', managearticle.pubArticle);
-//面试经验
+//面试经验 -v1.0
+app.get('/blogs_exp_cre', checkState.checkLogin);
 app.get('/blogs_exp_cre', createExperience.page);
+app.post('/createExperience', checkState.checkLogin);
 app.post('/createExperience', createExperience.doPage);
+app.get('/blogs_exp_pub', checkState.checkLogin);
 app.get('/blogs_exp_pub', manageExperience.page);
+app.get('/blogs_exp_pri', checkState.checkLogin);
 app.get('/blogs_exp_pri', manageExperience.noPublicMJ);
+app.get('/blogs_exp_rea', checkState.checkLogin);
 app.get('/blogs_exp_rea', manageExperience.relatedMeMJ);
+app.post('/expPageSearch', checkState.checkLogin);
 app.post('/expPageSearch', manageExperience.pageSearch);
+app.post('/delExper', checkState.checkLogin);
 app.post('/delExper', manageExperience.delExper);
+app.post('/pubExper', checkState.checkLogin);
 app.post('/pubExper', manageExperience.pubExper);
-//comment
+//comment -v1.0
+app.get('/blogs_com_mine', checkState.checkLogin);
 app.get('/blogs_com_mine', comment.minePage);
+app.get('/blogs_com_yours', checkState.checkLogin);
 app.get('/blogs_com_yours', comment.yoursPage);
+app.post('/comPageSearch', checkState.checkLogin);
 app.post('/comPageSearch', comment.pageSearch);
 //资源导航 -v1.0
 app.get('/navs', navigation.page);
@@ -196,14 +244,14 @@ app.post('/navigationListAddsun', checkState.checkLogin);
 app.post('/navigationListAddsun', navigation.listAdd2);
 app.post('/navigationListDelsun', checkState.checkLogin);
 app.post('/navigationListDelsun', navigation.listDel2);
-//公开设置
+//公开设置 -v1.0
 app.get('/sets_pub', checkState.checkLogin);
 app.get('/sets_pub', seting.page);
 app.post('/seting', checkState.checkLogin);
 app.post('/seting', seting.doPage);
 app.post('/setingInit', checkState.checkLogin);
 app.post('/setingInit', seting.createInit);
-//私人设置
+//私人设置 -v1.0
 app.get('/sets_pri', checkState.checkLogin);
 app.get('/sets_pri', privateSeting.page);
 app.post('/privateSeting/add', checkState.checkLogin);
@@ -216,11 +264,15 @@ app.post('/privateSeting/upd', checkState.checkLogin);
 app.post('/privateSeting/upd', privateSeting.upd);
 app.post('/privateSeting/chg', checkState.checkLogin);
 app.post('/privateSeting/chg', privateSeting.chg);
-//密码修改
-app.post('/sets_pwd', checkState.checkLogin);
+//密码修改 -v1.0
+app.get('/sets_pwd', checkState.checkLogin);
 app.get('/sets_pwd', changePassword.page);
 app.post('/changePassword', checkState.checkLogin);
 app.post('/changePassword', changePassword.doPage);
+
+//第三方的访问页面
+app.get('/blogs_aart', allblogs.artSee);
+app.get('/blogs_aexp', allblogs.expSee);
 //测试页面
 app.get('/demo', demo.page);
 
@@ -308,7 +360,9 @@ app.locals.artTyp = function(dat) {
         case 2:
             ret='行业远瞻';break;
         case 3:
-            ret='乱七八糟';break;
+            ret='随便写写';break;
+        case 4:
+            ret='生活日志';break;
         default:
             ret="";break;
     }
