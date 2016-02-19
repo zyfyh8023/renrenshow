@@ -1,0 +1,46 @@
+<% include ../myheader.html %>
+
+<section style="margin-top:6rem;margin-bottom:8rem;">
+	<div class="am-g am-g-fixed">
+		<div data-am-widget="list_news" class="am-list-news am-list-news-default">
+			<div class="am-list-news-hd am-cf">
+				<a href="javascript:void(0);" class=""><h2>原创博文汇总</h2></a>
+			</div>
+			<div class="am-list-news-bd">
+				<ul class="am-list">
+					<% for(var i=0; i<resul.length; i++){ %>
+						<li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+							<div class="am-u-sm-2 am-list-thumb">
+								<a href="javascript:void(0);" class="">
+									<% if(resul[i].articleImgs.length>0){ %>
+										<img src="<%= resul[i].articleImgs[0] %>" alt="<%= resul[i].articleTitle %>" />
+									<% }else{ %>
+										<img src="/images/default.png" alt="本篇文章中没有图片哦~" />
+									<% } %>
+								</a>
+							</div>
+							<div class=" am-u-sm-10 am-list-main">
+								<h3 class="am-list-item-hd">
+	                    			<a target="_blank" href="/blogs_art?aid=<%= resul[i]._id %><%= ahref2(signed, uName, vCode) %>" ><%= resul[i].articleTitle %></a>
+	                      		</h3>
+								<div class="am-list-item-text"><%= resul[i].articleAbstract %></div>
+							</div>
+						</li>
+					<% } %>
+				</ul>
+			</div>
+		</div>
+		<br>
+		<ul class="am-pagination am-pagination-right">
+			<li class="am-disabled"><a href="#">&laquo;</a></li>
+			<li class="am-active"><a href="#">1</a></li>
+			<li><a href="#">2</a></li>
+			<li><a href="#">3</a></li>
+			<li><a href="#">4</a></li>
+			<li><a href="#">5</a></li>
+			<li><a href="#">&raquo;</a></li>
+		</ul>
+	</div>
+</section>
+
+<% include ../myfooter.html %>

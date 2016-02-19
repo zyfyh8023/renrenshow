@@ -1,8 +1,8 @@
 "use strict";
-var comment = require('../models/comment');
-var articles = require('../models/article');
-var experiences = require('../models/experience');
-var users = require('../models/users');
+var comment = require('../../models/comment');
+var articles = require('../../models/article');
+var experiences = require('../../models/experience');
+var users = require('../../models/users');
 var async = require('async');
 
 var retCode, retDesc, uName, navTitle, navDesc, cssFils, jsFils;

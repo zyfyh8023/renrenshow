@@ -1,4 +1,5 @@
-var resume = require('../models/resume');
+var resume = require('../../models/resume');
+var checkState = require('../checkState');
 var url = require('url');
 
 /* GET demo page. */
@@ -96,22 +97,56 @@ exports.schools = function(req, res) {
 exports.works = function(req, res) {
 	var urls=url.parse(req.url, true).query;
 
-	resume.findByUname(urls.uname, function(err, rs) {
-		if (err) {
-			res.redirect('/error');
-		} else {
-			if (rs) {
-				console.log(rs.pWorks7[urls.ids]);
-				allres=rs;
-				res.render('./userResume/userSCI/worksInfo', {
-					title: '作品展示',
-					uName: urls.uname,
-					rs: rs.pWorks7[urls.ids]
-				});
-			} else {
-				res.redirect('/error');
-			}
-		}
+	checkState.myState(req, function(err, rs){
+	    if(err){
+	        res.redirect('/error');
+	    }else{
+	    	resume.findByUname(rs.uName, function(err, result) {
+	    		if (err) {
+	    			res.redirect('/error');
+	    		} else {
+	    			if (result) {
+	    				allres=result;
+	    				if(rs.signed=='2' && rs.uName!=""){
+	    				    res.render('./userResume/userSCI/worksInfo', {
+	    				    	title: 'TA的作品查看(特权)',
+	    				    	uName: rs.uname,
+	    				    	rs: result.pWorks7[urls.ids],
+	    				    	uName: rs.uName,
+	    				    	signed: rs.signed,	
+	    				    	vCode: rs.vCode,
+	    				    	modules: rs.modules
+	    				    });
+	    				}else if(rs.signed=='3' && rs.uName!=""){
+	    					res.render('./userResume/userSCI/worksInfo', {
+	    						title: 'TA的作品查看(普通)',
+	    						uName: rs.uname,
+	    						rs: result.pWorks7[urls.ids],
+	    						uName: rs.uName,
+	    						signed: rs.signed,
+	    						vCode: rs.vCode,
+	    						modules: rs.modules
+	    					});
+	    				}else if(rs.signed=='1' && rs.uName!=""){
+	    					res.render('./userResume/userSCI/worksInfo', {
+	    						title: '我的作品查看',
+	    						uName: rs.uname,
+	    						rs: result.pWorks7[urls.ids],
+	    						uName: rs.uName,
+	    						signed: rs.signed,
+	    						vCode: rs.vCode
+	    					});
+	    				}else{
+	    					res.redirect('/login');
+	    				}
+	    			} else {
+	    				res.redirect('/error');
+	    			}
+	    		}
+	    	});
+	    }
 	});
+
+	
 
 };

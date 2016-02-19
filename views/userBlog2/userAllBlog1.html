@@ -1,59 +1,44 @@
 <% include ../myheader.html %>
-<section id="zy-manageComs">
+<section id="zy-userAllBlog1">
 	<% include ../nav.html %>
 	<div class="am-g am-u-lg-9 am-u-md-12  am-u-sm-centered zy-manage-article">
-		<% include articleNav.html %>
+		<% include ./userAllBlogNav.html %>
 		<div class="col-lg-10 am-u-lg-10 zy-show-lg-content">
 			<table class="am-table am-table-striped am-table-hover am-table-centered">
-				<% if (allComments.length>0) { %>
+				<% if (allArticles.length>0) { %>
 					<thead>
 						<tr>
 							<th style="width:6rem">序号</th>
-							<th style="min-width:10rem">评论内容</th>
-							<th style="width:10rem">评论作者</th>
-							<th style="width:10rem">评论时间</th>
-							<th style="width:10rem">评论类型</th>
+							<th style="min-width:10rem">博文名称</th>
+							<th style="width:10rem">博文类型</th>
+							<th style="width:10rem">创建时间</th>
 							<th style="width:6rem">操作</th>
 						</tr>
 					</thead>
 					<tbody>
-						<% for(var i=0; i<allComments.length; i++) {%>
-							<tr data-ids="<%= allComments[i]._id %>">
+						<% for(var i=0; i<allArticles.length; i++) {%>
+							<tr data-ids="<%= allArticles[i]._id %>">
 								<td class="am-text-middle">
 									<%= i+1 %>
 								</td>
 								<td class="am-text-middle">
-									<%= cutStr(allComments[i].CommentCont,100,'...') %>
+									<%= allArticles[i].articleTitle %>
 								</td>
 								<td class="am-text-middle">
-									<a href="#">
-										<img style="width:20%;border-radius:100%;" src="<%= allComments[i].authorImg %>">
-										<br><%= allComments[i].author %>
-									</a>
+									<%= artTypsChg(allArticles[i].articleType) %>
 								</td>
 								<td class="am-text-middle">
-									<%= dateformat(allComments[i].cTime) %>
+									<%= dateformat(allArticles[i].cTime) %>
 								</td>
 								<td class="am-text-middle">
-									<% if(allComments[i].CommentArt!='') { %>
-										博文
-									<% }else { %>
-										面经
-									<% } %>
-								</td>
-								<td class="am-text-middle">
-									<% if(allComments[i].CommentArt!='') { %>
-										<a target="_blank" href="/blogs_art?aid=<%= allComments[i].CommentArt %>">查看</a>
-									<% }else{ %>
-										<a target="_blank" href="/blogs_exp?aid=<%= allComments[i].CommentExp %>">查看</a>
-									<% } %>
+									<a target="_blank" href="/blogs_art?aid=<%= allArticles[i]._id %><%= ahref2(signed, uName, vCode) %>">查看</a>
 								</td>
 							</tr>
 						<% } %>
 					</tbody>
 				<% } %>
 			</table>
-			<div id="pageShow" style="<% if(allComments.length<1) { %>display:none;<% } %>">
+			<div id="pageShow" style="<% if(allArticles.length<1) { %>display:none;<% } %>">
 				<ul class="am-pagination am-pagination-right">
 					共<%= allpage %>页&nbsp;
 					<% if(showpagetip > 1) {%>
@@ -69,6 +54,7 @@
 					<% } %>
 				</ul>
 			</div>
+
 		</div>
 	</div>
 </section>
@@ -80,8 +66,10 @@
 		allpage: <%= allpage %>,
 		showpagetip: <%= showpagetip %>,
 		nums: <%= nums %>,
-		comTyp:'<%= comTyp %>',
-		uName: "<%= uName%>"
+		artTyp: <%= artTyp %>,
+		uName: "<%= uName %>",
+		signed: "<%= signed %>",
+		vCode: "<%= vCode %>"
 	}
 </script>
 

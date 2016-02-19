@@ -7,29 +7,21 @@
 		<div class="col-lg-9 am-u-lg-9 zy-show-lg-content">
 			<% for(var i=0; i<results.allModels.length; i++) { %>
 				<div class="zy-public-title">
-					<span class="am-badge am-badge-secondary am-round am-text-xl"><%=i+1 %></span> <span class="titleName am-badge am-badge-secondary am-text-xl"><%=results.allModels[i].modelNam %></span>
+					<span class="am-badge am-badge-secondary am-round am-text-xl"><%=i+1 %></span><span class="titleName am-badge am-badge-secondary am-text-xl"><%=results.allModels[i].modelNam %></span>
 				</div>
 				<div class="zy-public-content zy-change-content">
 					<% for(var j=0; j<results.allModels[i].sunModels.length; j++) { %>
 						<% if(results.allModels[i].modelNam =='个性简介' || results.allModels[i].modelNam =='资源导航') { %>
 							<% if(results.allModels[i].sunModels[j].sunYesNo ==1) { %>
-								<a class="zy-div-radio am-badge am-badge-success am-text-lg">
-									<%=results.allModels[i].sunModels[j].sunNam %>
-								</a>
+								<a class="zy-div-radio am-badge am-badge-success am-text-lg"><%=results.allModels[i].sunModels[j].sunNam %></a>
 							<% } else { %>
-								<a class="zy-div-radio am-badge am-text-lg">
-									<%=results.allModels[i].sunModels[j].sunNam %>
-								</a>
+								<a class="zy-div-radio am-badge am-text-lg"><%=results.allModels[i].sunModels[j].sunNam %></a>
 							<% } %>
 						<% } else{ %>
 								<% if(results.allModels[i].sunModels[j].sunYesNo ==1) { %>
-									<a class="zy-div-checkbox am-badge am-badge-success am-text-lg">
-										<%=results.allModels[i].sunModels[j].sunNam %>
-									</a>
+									<a class="zy-div-checkbox am-badge am-badge-success am-text-lg"><%=results.allModels[i].sunModels[j].sunNam %></a>
 								<% } else { %>
-									<a class="zy-div-checkbox am-badge am-text-lg">
-										<%=results.allModels[i].sunModels[j].sunNam %>
-									</a>
+									<a class="zy-div-checkbox am-badge am-text-lg"><%=results.allModels[i].sunModels[j].sunNam %></a>
 								<% } %>
 						<% }%>
 					<% }%>

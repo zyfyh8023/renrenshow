@@ -35,12 +35,13 @@ var createExperience = require('./routes/uWebsite/createExperience');
 var seting = require('./routes/uWebsite/seting');
 var privateSeting = require('./routes/uWebsite/privateSeting');
 var changePassword = require('./routes/uWebsite/changePassword');
-var blogAorE = require('./routes/blogAorE');
-var resumeLook = require('./routes/resumeLook');
-var comment = require('./routes/comment');
-var seeuInfo = require('./routes/seeuInfo');
+var blogAorE = require('./routes/uWebsite/blogAorE');
+var comment = require('./routes/uWebsite/comment');
+var seeuInfo = require('./routes/uWebsite/seeuInfo');
 
-var allblogs = require('./routes/allblogs');
+var allblogs = require('./routes/uWebsite/allblogs');
+var alluArts = require('./routes/uWebsite/alluArts');
+var alluExps = require('./routes/uWebsite/alluExps');
 var demo = require('./routes/demo');
 
 var app = express();
@@ -273,24 +274,42 @@ app.post('/changePassword', changePassword.doPage);
 //第三方的访问页面
 app.get('/blogs_aart', allblogs.artSee);
 app.get('/blogs_aexp', allblogs.expSee);
+app.post('/pageSearchExp', allblogs.pageSearchExp);   //pageSearch不需要拦截登录
+app.post('/pageSearchArt', allblogs.pageSearchArt);
+
+
+app.get('/blogs_alluArts', alluArts.page);
+app.get('/blogs_alluExps', alluExps.page);
 //测试页面
 app.get('/demo', demo.page);
 
-//app的artTyp格式化
-app.locals.ahref = function(signed, uName, vCode, hrefStr) {
+//app的ahref格式化
+app.locals.ahref2 = function(signed, uName, vCode) {
     var ret="";
-    if(signed=='2'){
-        ret=hrefStr+'?vCode='+vCode+'&priId='+uName;
-    }else if(signed=='3'){
-        ret=hrefStr+'?pubId='+uName;
-    }else{
-        ret=hrefStr;
-    }
+        if(signed=='2'){
+            ret='&vCode='+vCode+'&priId='+uName;
+        }else{
+            ret='&pubId='+uName;
+        }
     
     return ret;
 };
 
-//app的artTyp格式化
+//app的ahref格式化
+app.locals.ahref = function(signed, uName, vCode, hrefStr) {
+    var ret="";
+        if(signed=='2'){
+            ret=hrefStr+'?vCode='+vCode+'&priId='+uName;
+        }else if(signed=='3'){
+            ret=hrefStr+'?pubId='+uName;
+        }else{
+            ret=hrefStr;
+        }
+    
+    return ret;
+};
+
+//app的navs格式化
 app.locals.navs = function(signed, uName, vCode, dat) {
     var ret="";
     
@@ -336,9 +355,9 @@ app.locals.navs = function(signed, uName, vCode, dat) {
                 for(var j=0,lenj=dat[i].sunModels.length; j<lenj; j++){
                     if(dat[i].sunModels[j].sunYesNo==1){
                         if(signed=='2'){
-                            ret+='<li><a data-src="/blogs_" href="/blogs_art_pub?priId='+uName+'&vCode='+vCode+'">博文</a></li>';
+                            ret+='<li><a data-src="/blogs_" href="/blogs_aart?typ=0&priId='+uName+'&vCode='+vCode+'">博文</a></li>';
                         }else{
-                            ret+='<li><a data-src="/blogs_" href="/blogs_art_pub?pubId='+uName+'">博文</a></li>';
+                            ret+='<li><a data-src="/blogs_" href="/blogs_aart?typ=0&pubId='+uName+'">博文</a></li>';
                         }
                         break;
                     }
@@ -352,7 +371,7 @@ app.locals.navs = function(signed, uName, vCode, dat) {
 };
 
 //app的artTyp格式化
-app.locals.artTyp = function(dat) {
+app.locals.artTypsChg = function(dat) {
     var ret="";
     switch(dat){
         case 1:

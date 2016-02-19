@@ -104,12 +104,12 @@
 				</div>
 				<div class="am-list-news-bd">
 					<ul class="am-list zy-titleList">
-						<% for(var i=0; i<8;i++){ %>
+						<% for(var i=0; i<artsnum;i++){ %>
 							<li class="am-g am-list-item-dated">
 								<a target="_blank" href="/inf_allarticle" class="am-list-item-hd ">
-				          			我很囧，你保重....晒晒旅行中的那些囧！
+				          			<%= arts[i].articleTitle %>
 				          		</a>
-								<span class="am-list-date">2013-09-18</span>
+								<span class="am-list-date"><%= dateformat(arts[i].cTime, 'YYYY-MM-DD') %></span>
 							</li>
 						<% } %>
 					</ul>
@@ -126,12 +126,12 @@
 				</div>
 				<div class="am-list-news-bd">
 					<ul class="am-list zy-titleList">
-						<% for(var i=0; i<8;i++){ %>
+						<% for(var i=0; i<expsnum;i++){ %>
 							<li class="am-g am-list-item-dated">
 								<a target="_blank" href="/inf_allarticle" class="am-list-item-hd ">
-				          			我很囧，你保重....晒晒旅行中的那些囧！
+				          			<%= exps[i].experienceTitle %>
 				          		</a>
-								<span class="am-list-date">2013-09-18</span>
+								<span class="am-list-date"><%= dateformat(exps[i].cTime, 'YYYY-MM-DD') %></span>
 							</li>
 						<% } %>
 					</ul>
