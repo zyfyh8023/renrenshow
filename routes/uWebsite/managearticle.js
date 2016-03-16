@@ -20,37 +20,36 @@ exports.page = function(req, res, next) {
         if(err){
             res.redirect('/error');
         }else{
-            if (results) {
-                var showpagetip, allpage;
-                allpage=Math.ceil(nums/10);
-                if(allpage>9){
-                    showpagetip=9;
-                }else{
-                    showpagetip=allpage;
-                }
-                 getArtExpNum(uName, function(err, resu) {
-                    if (err) {
-                        res.redirect('/error');
-                    } else {
-                        res.render('./userBlog/managearticle', {
-                            title: '博文管理',
-                            uName: uName,
-                            navTitle: navTitle,
-                            allNum: resu,
-                            navDesc: navDesc,
-                            nums: nums,
-                            allArticles: results,
-                            showpagetip: showpagetip, 
-                            allpage: allpage,
-                            articleTag:1,
-                            cssFils:['userBlog/managearticle'],
-                            jsFils:['userBlog/managearticle']
-                        });
-                    }
-                });
-            } else {
-                res.redirect('/error');
+            var showpagetip, allpage;
+            allpage=Math.ceil(nums/10);
+            if(allpage>9){
+                showpagetip=9;
+            }else{
+                showpagetip=allpage;
             }
+             getArtExpNum(uName, function(err, resu) {
+                if (err) {
+                    res.redirect('/error');
+                } else {
+                    res.render('./userBlog/managearticle', {
+                        navTitle: navTitle,
+                        navDesc: navDesc,
+                        uName: uName,
+                        signed: '1',
+                        vCode: '',
+                        modules: [],
+                        title: '博文管理',
+                        allNum: resu,
+                        nums: nums,
+                        allArticles: results,
+                        showpagetip: showpagetip, 
+                        allpage: allpage,
+                        articleTag:1,
+                        cssFils:['userBlog/managearticle'],
+                        jsFils:['userBlog/managearticle']
+                    });
+                }
+            });
         }
     });
     
@@ -99,37 +98,36 @@ exports.noPublicBW = function(req, res, next) {
         if(err){
             res.redirect('/error');
         }else{
-            if (results) {
-                var showpagetip, allpage;
-                allpage=Math.ceil(nums/10);
-                if(allpage>9){
-                    showpagetip=9;
-                }else{
-                    showpagetip=allpage;
-                }
-                 getArtExpNum(uName, function(err, resu) {
-                    if (err) {
-                        res.redirect('/error');
-                    } else {
-                        res.render('./userBlog/managearticle', {
-                            title: '博文管理',
-                            uName: uName,
-                            navTitle: navTitle,
-                            allNum: resu,
-                            navDesc: navDesc,
-                            nums: nums,
-                            allArticles: results,
-                            showpagetip: showpagetip, 
-                            allpage: allpage,
-                            articleTag:2,
-                            cssFils:['userBlog/managearticle'],
-                            jsFils:['userBlog/managearticle']
-                        });
-                    }
-                });
-            } else {
-                res.redirect('/error');
+            var showpagetip, allpage;
+            allpage=Math.ceil(nums/10);
+            if(allpage>9){
+                showpagetip=9;
+            }else{
+                showpagetip=allpage;
             }
+             getArtExpNum(uName, function(err, resu) {
+                if (err) {
+                    res.redirect('/error');
+                } else {
+                    res.render('./userBlog/managearticle', {
+                        navTitle: navTitle,
+                        navDesc: navDesc,
+                        uName: uName,
+                        signed: '1',
+                        vCode: '',
+                        modules: [],
+                        title: '博文管理',
+                        allNum: resu,
+                        nums: nums,
+                        allArticles: results,
+                        showpagetip: showpagetip, 
+                        allpage: allpage,
+                        articleTag:2,
+                        cssFils:['userBlog/managearticle'],
+                        jsFils:['userBlog/managearticle']
+                    });
+                }
+            });
         }
     });
 };
@@ -189,36 +187,35 @@ exports.relatedMeBW = function(req, res, next) {
         if(err){
             res.redirect('/error');
         }else{
-            if (results) {
-                var showpagetip, allpage;
-                allpage=Math.ceil(nums/10);
-                if(allpage>9){
-                    showpagetip=9;
-                }else{
-                    showpagetip=allpage;
-                }
-                 getArtExpNum(uName, function(err, resu) {
-                    if (err) {
-                        res.redirect('/error');
-                    } else {
-                        res.render('./userBlog/managearticle', {
-                            title: '博文管理',
-                            uName: uName,
-                            navTitle: navTitle,
-                            allNum: resu,
-                            navDesc: navDesc,
-                            nums: nums,
-                            allArticles: results,
-                            showpagetip: showpagetip, 
-                            allpage: allpage,
-                            cssFils:['userBlog/managearticle'],
-                            jsFils:['userBlog/managearticle']
-                        });
-                    }
-                });
-            } else {
-                res.redirect('/error');
+            var showpagetip, allpage;
+            allpage=Math.ceil(nums/10);
+            if(allpage>9){
+                showpagetip=9;
+            }else{
+                showpagetip=allpage;
             }
+             getArtExpNum(uName, function(err, resu) {
+                if (err) {
+                    res.redirect('/error');
+                } else {
+                    res.render('./userBlog/managearticle', {
+                        navTitle: navTitle,
+                        navDesc: navDesc,
+                        uName: uName,
+                        signed: '1',
+                        vCode: '',
+                        modules: [],
+                        title: '博文管理',
+                        allNum: resu,
+                        nums: nums,
+                        allArticles: results,
+                        showpagetip: showpagetip, 
+                        allpage: allpage,
+                        cssFils:['userBlog/managearticle'],
+                        jsFils:['userBlog/managearticle']
+                    });
+                }
+            });
         }
     });
     

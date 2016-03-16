@@ -3,8 +3,10 @@
 
 	<div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
 		<div class="am-alert am-alert-secondary" data-am-alert>
-			<% if(locals.signed && signed=='1'){ %>
-			<button type="button" class="am-close" data-am-modal="{target: '#my-undergo'}"><i class="am-icon-pencil"></i></button>
+			<% if(signed=='1'){ %>
+				<button type="button" class="am-close" data-am-modal="{target: '#my-undergo'}">
+					<i class="am-icon-pencil"></i>
+				</button>
 			<% } %>
 			<div style="font-size:30px;text-align:center;">实践经历</div>
 		</div>
@@ -20,28 +22,28 @@
 			<div class="am-tabs-bd">
 				<div data-tab-panel-0 class="am-tab-panel am-active">
 					<section data-am-widget="accordion" class="am-accordion am-accordion-basic" data-am-accordion='{  }'>
-						<% if(rs. trys9.length>=0) { %>
-							<% for(var i=0,k=0; i<rs. trys9.length; i++) { %>
-								<% if(rs. trys9[i].tTime=='1') { k++; %>
+						<% if(rs.trys9.length>=0) { %>
+							<% for(var i=0,k=0; i<rs.trys9.length; i++) { %>
+								<% if(rs.trys9[i].tTime=='1') { k++; %>
 									<% if(k==1){ %>
 										<dl class="am-accordion-item am-active">
 											<dt class="am-accordion-title">
-												名称：<%=rs. trys9[i].tName %>
+												名称：<%=rs.trys9[i].tName %>
 											</dt>
 											<dd class="am-accordion-bd am-collapse am-in">
 									<% }else{ %>
 										<dl class="am-accordion-item">
 											<dt class="am-accordion-title">
-												名称：<%=rs. trys9[i].tName %>
+												名称：<%=rs.trys9[i].tName %>
 											</dt>
 											<dd class="am-accordion-bd am-collapse">
 									<% } %>
 											<div class="am-accordion-content" style="color:#666;">
 												<font style="font-weight:bold">
-													活动时间：<%=rs. trys9[i].tType %></font><br>
+													活动时间：<%=rs.trys9[i].tType %></font><br>
 												<font>
 													<font style="font-weight:bold">补充说明：</font>
-													<%=rs. trys9[i].addt %></font>
+													<%=rs.trys9[i].addt %></font>
 											</div>
 										</dd>
 									</dl>
@@ -52,28 +54,28 @@
 				</div>
 				<div data-tab-panel-1 class="am-tab-panel ">
 					<section data-am-widget="accordion" class="am-accordion am-accordion-basic" data-am-accordion='{  }'>
-						<% if(rs. trys9.length>=0) { %>
-							<% for(var i=0,k=0; i<rs. trys9.length; i++) { %>
-								<% if(rs. trys9[i].tTime=='2') { k++; %>
+						<% if(rs.trys9.length>=0) { %>
+							<% for(var i=0,k=0; i<rs.trys9.length; i++) { %>
+								<% if(rs.trys9[i].tTime=='2') { k++; %>
 									<% if(k==1){ %>
 										<dl class="am-accordion-item am-active">
 											<dt class="am-accordion-title">
-												名称：<%=rs. trys9[i].tName %>
+												名称：<%=rs.trys9[i].tName %>
 											</dt>
 											<dd class="am-accordion-bd am-collapse am-in">
 									<% }else{ %>
 										<dl class="am-accordion-item">
 											<dt class="am-accordion-title">
-												名称：<%=rs. trys9[i].tName %>
+												名称：<%=rs.trys9[i].tName %>
 											</dt>
 											<dd class="am-accordion-bd am-collapse">
 									<% } %>
 											<div class="am-accordion-content" style="color:#666;">
 												<font style="font-weight:bold">
-													活动时间：<%=rs. trys9[i].tType %></font><br>
+													活动时间：<%=rs.trys9[i].tType %></font><br>
 												<font>
 													<font style="font-weight:bold">补充说明：</font>
-													<%=rs. trys9[i].addt %></font>
+													<%=rs.trys9[i].addt %></font>
 											</div>
 										</dd>
 									</dl>
@@ -86,7 +88,7 @@
 		</div>
 	</div>
 
-	<% if(locals.signed && signed=='1'){ %>
+	<% if(signed=='1'){ %>
 	<div class="am-popup" id="my-undergo">
 		<div class="am-popup-inner">
 			<div class="am-popup-hd">
@@ -115,7 +117,7 @@
 		    	            <div class="am-u-sm-9">
 		    	                <select required class="select2">
 		    						<option value="" selected = "selected">请选择修改哪项？</option>
-		    						<% if(rs.PatentPaper10) { %>
+		    						<% if(rs.trys9) { %>
 		    							<% for(var i=0; i<rs.trys9.length; i++) {%>
 		    								<% if(rs.trys9[i].tTime=='1') { %>
 		    									<option value="<%= i %>">校园活动：<%= rs.trys9[i].tName %></option>

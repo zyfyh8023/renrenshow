@@ -17,10 +17,13 @@ exports.page = function(req, res, next) {
 			res.redirect('/error');
 		} else {
 			res.render('./userSet/privateSeting', {
-				title: '私人设置',
-				uName: uName,
 				navTitle: navTitle,
 				navDesc: navDesc,
+				uName: uName,
+				signed: '1',
+				vCode: '',
+				modules: [],
+				title: '私人设置',
 				results: results,
 				cssFils:['userSet/privateSeting'],
 				jsFils:['userSet/privateSeting']

@@ -15,7 +15,7 @@
 				<li>	
 					<div class="am-gallery-item">
 						<a href="#" class="">
-							<img src="/images/exp1.jpg" />
+							<img style="height:15rem" src="<%= comAwards[i].cimages %>" />
 							<h3 class="am-gallery-title"><a href="#"><%= comAwards[i].certificatename %></a></h3>
 							<div class="am-gallery-desc"><%= comAwards[i].gettime %></div>
 						</a>
@@ -28,7 +28,7 @@
 					<li>
 						<div class="am-gallery-item">
 							<a href="<% if(signed=='1'){ %>/resume#reward<% }else{ %>javascript:void(0);<% } %>" class="">
-								<img src="/images/exp2.jpg" alt="" />
+								<img style="height:15rem" src="/images/exp2.jpg" />
 								<h3 class="am-gallery-title"><a href="<% if(signed=='1'){ %>/resume#reward<% }else{ %>javascript:void(0);<% } %>">暂无，期待你的出现！</a></h3>
 								<div class="am-gallery-desc">xxxx-xx-xx</div>
 							</a>
@@ -45,12 +45,12 @@
 			</div>
 			<div data-am-widget="list_news" class="am-list-news am-list-news-default">
 				<div class="am-list-news-hd am-cf">
-					<a style="outline:none;" target="_blank" href="/blogs_alluArts?typ=1<%= ahref2(signed, uName, vCode) %>">
-						<h2>技术博文</h2>
-						<% if(comArt2.length>num3){ %>
+					<h2>技术博文</h2>
+					<% if(comArt2.length>num3){ %>
+						<a style="outline:none;" target="_blank" href="/<%= uName %>/blogs_alluArts?typ=1">
 							<span class="am-list-news-more am-fr">更多 &raquo;</span>
-						<% } %>
-					</a>
+						</a>
+					<% } %>
 				</div>
 				<div class="am-list-news-bd">
 					<ul class="am-list">
@@ -70,7 +70,7 @@
 									</div>
 									<div class=" am-u-sm-10 am-list-main">
 										<h3 class="am-list-item-hd">
-					            			<a target="_blank" href="/blogs_art?aid=<%= comArt2[k]._id %><%= ahref2(signed, uName, vCode) %>"><%= comArt2[k].articleTitle %></a>
+					            			<a target="_blank" href="/<%= uName %>/blogs_art?aid=<%= comArt2[k]._id %>"><%= comArt2[k].articleTitle %></a>
 					          			</h3>
 										<div class="am-list-item-text"><%= comArt2[k].articleAbstract %></div>
 									</div>
@@ -82,12 +82,12 @@
 			</div>
 			<div data-am-widget="list_news" class="am-list-news am-list-news-default">
 				<div class="am-list-news-hd am-cf">
-					<a href="/blogs_alluArts?typ=2<%= ahref2(signed, uName, vCode) %>" target="_blank">
-						<h2>行业远瞻</h2>
-						<% if(comArt3.length>num4){ %>
+					<h2>行业远瞻</h2>
+					<% if(comArt3.length>num4){ %>
+						<a href="/<%= uName %>/blogs_alluArts?typ=2" target="_blank">
 							<span class="am-list-news-more am-fr">更多 &raquo;</span>
-						<% } %>
-					</a>
+						</a>
+					<% } %>
 				</div>
 				<div class="am-list-news-bd">
 					<ul class="am-list">
@@ -107,7 +107,7 @@
 									</div>
 									<div class=" am-u-sm-10 am-list-main">
 										<h3 class="am-list-item-hd">
-					            			<a target="_blank" href="/blogs_art?aid=<%= comArt3[k]._id %><%= ahref2(signed, uName, vCode) %>"><%= comArt3[k].articleTitle %></a>
+					            			<a target="_blank" href="/<%= uName %>/blogs_art?aid=<%= comArt3[k]._id %>"><%= comArt3[k].articleTitle %></a>
 					          			</h3>
 										<div class="am-list-item-text"><%= comArt3[k].articleAbstract %></div>
 									</div>
@@ -119,12 +119,12 @@
 			</div>
 			<div data-am-widget="list_news" class="am-list-news am-list-news-default">
 				<div class="am-list-news-hd am-cf">
-					<a href="/blogs_alluArts?typ=4<%= ahref2(signed, uName, vCode) %>" target="_blank">
-						<h2>随便写写</h2>
-						<% if(comArt4.length>num5){ %>
+					<h2>随便写写</h2>
+					<% if(comArt4.length>num5){ %>
+						<a href="/<%= uName %>/blogs_alluArts?typ=4" target="_blank">
 							<span class="am-list-news-more am-fr">更多 &raquo;</span>
-						<% } %>
-					</a>
+						</a>
+					<% } %>
 				</div>
 				<div class="am-list-news-bd">
 					<ul class="am-list">
@@ -144,7 +144,7 @@
 									</div>
 									<div class=" am-u-sm-10 am-list-main">
 										<h3 class="am-list-item-hd">
-					            			<a target="_blank" href="/blogs_art?aid=<%= comArt4[k]._id %><%= ahref2(signed, uName, vCode) %>"><%= comArt4[k].articleTitle %></a>
+					            			<a target="_blank" href="/<%= uName %>/blogs_art?aid=<%= comArt4[k]._id %>"><%= comArt4[k].articleTitle %></a>
 					          			</h3>
 										<div class="am-list-item-text"><%= comArt4[k].articleAbstract %></div>
 									</div>
@@ -161,12 +161,12 @@
 			</div>
 			<div data-am-widget="list_news" class="am-list-news am-list-news-default">
 				<div class="am-list-news-hd am-cf">
-					<a href="/blogs_alluExps?<%= ahref2(signed, uName, vCode) %>" target="_blank">
-						<h2>我的面经</h2>
-						<% if(comExps.length>num1){ %>
+					<h2>我的面经</h2>
+					<% if(comExps.length>num1){ %>
+						<a href="/<%= uName %>/blogs_alluExps" target="_blank">
 							<span class="am-list-news-more am-fr">更多 &raquo;</span>
-						<% } %>
-					</a>
+						</a>
+					<% } %>
 				</div>
 				<div class="am-list-news-bd">
 					<ul class="am-list zy-titleList">
@@ -175,7 +175,7 @@
 						<% }else{ %>
 							<% for(var k=0; k<num1; k++){ %>
 								<li class="am-g am-list-item-dated">
-									<a target="_blank" href="/blogs_exp?aid=<%= comExps[k]._id %><%= ahref2(signed, uName, vCode) %>" class="am-list-item-hd "><%= comExps[k].experienceTitle %></a>
+									<a target="_blank" href="/<%= uName %>/blogs_exp?aid=<%= comExps[k]._id %>" class="am-list-item-hd "><%= comExps[k].experienceTitle %></a>
 									<span class="am-list-date"><%= dateformat(comExps[k].cTime, 'YYYY-MM-DD') %></span>
 								</li>
 							<% } %>
@@ -185,12 +185,12 @@
 			</div>
 			<div data-am-widget="list_news" class="am-list-news am-list-news-default">
 				<div class="am-list-news-hd am-cf">
-					<a href="/blogs_alluArts?typ=4<%= ahref2(signed, uName, vCode) %>" target="_blank">
-						<h2>我的日志</h2>
-						<% if(comArt1.length>num2){ %>
-						<span class="am-list-news-more am-fr">更多 &raquo;</span>
-						<% } %>
-					</a>
+					<h2>我的日志</h2>
+					<% if(comArt1.length>num2){ %>
+						<a href="/<%= uName %>/blogs_alluArts?typ=4" target="_blank">
+							<span class="am-list-news-more am-fr">更多 &raquo;</span>
+						</a>
+					<% } %>
 				</div>
 				<div class="am-list-news-bd">
 					<ul class="am-list zy-titleList">
@@ -199,7 +199,7 @@
 						<% }else{ %>
 							<% for(var k=0; k<num2; k++){ %>
 								<li class="am-g am-list-item-dated">
-									<a target="_blank" href="/blogs_art?aid=<%= comArt1[k]._id %><%= ahref2(signed, uName, vCode) %>" class="am-list-item-hd "><%= comArt1[k].articleTitle %></a>
+									<a target="_blank" href="/<%= uName %>/blogs_art?aid=<%= comArt1[k]._id %>" class="am-list-item-hd "><%= comArt1[k].articleTitle %></a>
 									<span class="am-list-date"><%= dateformat(comArt1[k].cTime, 'YYYY-MM-DD') %></span>
 								</li>
 							<% } %>
@@ -209,7 +209,8 @@
 			</div>
 			<section class="am-panel am-panel-default admin-sidebar-panel" style="margin-left:1rem;margin-right:1rem;">
 		        <div class="am-panel-bd">
-		          	<p style="color:#0e90d2;font-size:1.6rem;font-weight:bold;"><span class="am-icon-bookmark"></span> 今日寄语</p>
+		          	<p style="color:#0e90d2;font-size:1.6rem;font-weight:bold;">
+		          		<span class="am-icon-bookmark"></span> 今日寄语</p>
 		          	<p>时光静好，与君语；细水流年，与君同。—— 人人秀</p>
 		        </div>
 	     	</section>
@@ -228,8 +229,6 @@
 	</div>
 </section>
 
-
 <br><br><br>
-
 
 <% include ../myfooter.html %>

@@ -9,27 +9,27 @@
 					<% for(var j=0, lenj=modules[i].sunModels.length; j<lenj; j++){ %>
 						<% if(modules[i].sunModels[j].sunYesNo==1 && modules[i].sunModels[j].sunNam=='技术博文'){ %>
 							<% if(signed=='2'){ %>
-								<li><a href="/blogs_aart?typ=0&vCode=<%= vCode %>&priId=<%= uName %>">技术博文<span class="am-nav-en">(<%= resul[0].length %>)</span></a></li>
+								<li><a href="/<%= uName %>/blogs_aart?typ=0&vCode=<%= vCode %>">技术博文<span class="am-nav-en">(<%= resul[0].length %>)</span></a></li>
 							<% }else{ %>
-								<li><a href="/blogs_aart?typ=0&pubId=<%= uName %>">技术博文<span class="am-nav-en">(<%= resul[0].length %>)</span></a></li>
+								<li><a href="/<%= uName %>/blogs_aart?typ=0">技术博文<span class="am-nav-en">(<%= resul[0].length %>)</span></a></li>
 							<% } %>
 						<% }else if(modules[i].sunModels[j].sunYesNo==1 && modules[i].sunModels[j].sunNam=='行业远瞻'){ %>
 							<% if(signed=='2'){ %>
-								<li><a href="/blogs_aart?typ=1&vCode=<%= vCode %>&priId=<%= uName %>">行业远瞻<span class="am-nav-en">(<%= resul[1].length %>)</span></a></li>
+								<li><a href="/<%= uName %>/blogs_aart?typ=1&vCode=<%= vCode %>">行业远瞻<span class="am-nav-en">(<%= resul[1].length %>)</span></a></li>
 							<% }else{ %>
-								<li><a href="/blogs_aart?typ=1&pubId=<%= uName %>">行业远瞻<span class="am-nav-en">(<%= resul[1].length %>)</span></a></li>
+								<li><a href="/<%= uName %>/blogs_aart?typ=1">行业远瞻<span class="am-nav-en">(<%= resul[1].length %>)</span></a></li>
 							<% } %>
 						<% }else if(modules[i].sunModels[j].sunYesNo==1 && modules[i].sunModels[j].sunNam=='生活日志'){ %>
 							<% if(signed=='2'){ %>
-								<li><a href="/blogs_aart?typ=2&vCode=<%= vCode %>&priId=<%= uName %>">生活日志<span class="am-nav-en">(<%= resul[2].length %>)</span></a></li>
+								<li><a href="/<%= uName %>/blogs_aart?typ=2&vCode=<%= vCode %>">生活日志<span class="am-nav-en">(<%= resul[2].length %>)</span></a></li>
 							<% }else{ %>
-								<li><a href="/blogs_aart?typ=2&pubId=<%= uName %>">生活日志<span class="am-nav-en">(<%= resul[2].length %>)</span></a></li>
+								<li><a href="/<%= uName %>/blogs_aart?typ=2">生活日志<span class="am-nav-en">(<%= resul[2].length %>)</span></a></li>
 							<% } %>
 						<% }else if(modules[i].sunModels[j].sunYesNo==1 && modules[i].sunModels[j].sunNam=='随便写写'){ %>
 							<% if(signed=='2'){ %>
-								<li><a href="/blogs_aart?typ=3&vCode=<%= vCode %>&priId=<%= uName %>">随便写写<span class="am-nav-en">(<%= resul[3].length %>)</span></a></li>
+								<li><a href="/<%= uName %>/blogs_aart?typ=3&vCode=<%= vCode %>">随便写写<span class="am-nav-en">(<%= resul[3].length %>)</span></a></li>
 							<% }else{ %>
-								<li><a href="/blogs_aart?typ=3&pubId=<%= uName %>">随便写写<span class="am-nav-en">(<%= resul[3].length %>)</span></a></li>
+								<li><a href="/<%= uName %>/blogs_aart?typ=3">随便写写<span class="am-nav-en">(<%= resul[3].length %>)</span></a></li>
 							<% } %>
 						<% } %>
 					<% } %>
@@ -48,9 +48,9 @@
 					<div>
 						<ul class="am-list am-list-border">
 					<% if(signed=='2'){ %>
-						<li><a href="/blogs_aexp?vCode=<%= vCode %>&priId=<%= uName %>">面试经验<span class="am-nav-en">(<%= resul[4].length %>)</span></a></li>
+						<li><a href="/<%= uName %>/blogs_aexp?vCode=<%= vCode %>">面试经验<span class="am-nav-en">(<%= resul[4].length %>)</span></a></li>
 					<% }else{ %>
-						<li><a href="/blogs_aexp?pubId=<%= uName %>">面试经验<span class="am-nav-en">(<%= resul[4].length %>)</span></a></li>
+						<li><a href="/<%= uName %>/blogs_aexp">面试经验<span class="am-nav-en">(<%= resul[4].length %>)</span></a></li>
 					<% } %>
 						</ul>
 					</div>

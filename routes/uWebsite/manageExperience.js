@@ -21,37 +21,36 @@ exports.page = function(req, res, next) {
         if(err){
             res.redirect('/error');
         }else{
-            if (results) {
-                var showpagetip, allpage;
-                allpage=Math.ceil(nums/10);
-                if(allpage>9){
-                    showpagetip=9;
-                }else{
-                    showpagetip=allpage;
-                }
-                 getArtExpNum(uName, function(err, resu) {
-                    if (err) {
-                        res.redirect('/error');
-                    } else {
-                        res.render('./userBlog/manageExperience', {
-                            title: '面经管理',
-                            uName: uName,
-                            navTitle: navTitle,
-                            allNum: resu,
-                            navDesc: navDesc,
-                            nums: nums,
-                            allArticles: results,
-                            showpagetip: showpagetip, 
-                            allpage: allpage,
-                            experienceTag:1,
-                            cssFils:['userBlog/manageExperience'],
-                            jsFils:['userBlog/manageExperience']
-                        });
-                    }
-                });
-            } else {
-                res.redirect('/error');
+            var showpagetip, allpage;
+            allpage=Math.ceil(nums/10);
+            if(allpage>9){
+                showpagetip=9;
+            }else{
+                showpagetip=allpage;
             }
+             getArtExpNum(uName, function(err, resu) {
+                if (err) {
+                    res.redirect('/error');
+                } else {
+                    res.render('./userBlog/manageExperience', {
+                        navTitle: navTitle,
+                        navDesc: navDesc,
+                        uName: uName,
+                        signed: '1',
+                        vCode: '',
+                        modules: [],
+                        title: '面经管理',
+                        allNum: resu,
+                        nums: nums,
+                        allArticles: results,
+                        showpagetip: showpagetip, 
+                        allpage: allpage,
+                        experienceTag:1,
+                        cssFils:['userBlog/manageExperience'],
+                        jsFils:['userBlog/manageExperience']
+                    });
+                }
+            });
         }
     });
 };
@@ -100,37 +99,36 @@ exports.noPublicMJ = function(req, res, next) {
         if(err){
             res.redirect('/error');
         }else{
-            if (results) {
-                var showpagetip, allpage;
-                allpage=Math.ceil(nums/10);
-                if(allpage>9){
-                    showpagetip=9;
-                }else{
-                    showpagetip=allpage;
-                }
-                 getArtExpNum(uName, function(err, resu) {
-                    if (err) {
-                        res.redirect('/error');
-                    } else {
-                        res.render('./userBlog/manageExperience', {
-                            title: '面经管理',
-                            uName: uName,
-                            navTitle: navTitle,
-                            allNum: resu,
-                            navDesc: navDesc,
-                            nums: nums,
-                            allArticles: results,
-                            showpagetip: showpagetip, 
-                            allpage: allpage,
-                            experienceTag:2,
-                            cssFils:['userBlog/manageExperience'],
-                            jsFils:['userBlog/manageExperience']
-                        });
-                    }
-                });
-            } else {
-                res.redirect('/error');
+            var showpagetip, allpage;
+            allpage=Math.ceil(nums/10);
+            if(allpage>9){
+                showpagetip=9;
+            }else{
+                showpagetip=allpage;
             }
+             getArtExpNum(uName, function(err, resu) {
+                if (err) {
+                    res.redirect('/error');
+                } else {
+                    res.render('./userBlog/manageExperience', {
+                        navTitle: navTitle,
+                        navDesc: navDesc,
+                        uName: uName,
+                        signed: '1',
+                        vCode: '',
+                        modules: [],
+                        title: '面经管理',
+                        allNum: resu,
+                        nums: nums,
+                        allArticles: results,
+                        showpagetip: showpagetip, 
+                        allpage: allpage,
+                        experienceTag:2,
+                        cssFils:['userBlog/manageExperience'],
+                        jsFils:['userBlog/manageExperience']
+                    });
+                }
+            });
         }
     });
 };
@@ -191,36 +189,35 @@ exports.relatedMeMJ = function(req, res, next) {
         if(err){
             res.redirect('/error');
         }else{
-            if (results) {
-                var showpagetip, allpage;
-                allpage=Math.ceil(nums/10);
-                if(allpage>9){
-                    showpagetip=9;
-                }else{
-                    showpagetip=allpage;
-                }
-                 getArtExpNum(uName, function(err, resu) {
-                    if (err) {
-                        res.redirect('/error');
-                    } else {
-                        res.render('./userBlog/manageExperience', {
-                            title: '面经管理',
-                            uName: uName,
-                            navTitle: navTitle,
-                            allNum: resu,
-                            navDesc: navDesc,
-                            nums: nums,
-                            allArticles: results,
-                            showpagetip: showpagetip, 
-                            allpage: allpage,
-                            cssFils:['userBlog/manageExperience'],
-                            jsFils:['userBlog/manageExperience']
-                        });
-                    }
-                });
-            } else {
-                res.redirect('/error');
+            var showpagetip, allpage;
+            allpage=Math.ceil(nums/10);
+            if(allpage>9){
+                showpagetip=9;
+            }else{
+                showpagetip=allpage;
             }
+             getArtExpNum(uName, function(err, resu) {
+                if (err) {
+                    res.redirect('/error');
+                } else {
+                    res.render('./userBlog/manageExperience', {
+                        navTitle: navTitle,
+                        navDesc: navDesc,
+                        uName: uName,
+                        signed: '1',
+                        vCode: '',
+                        modules: [],
+                        title: '面经管理',
+                        allNum: resu,
+                        nums: nums,
+                        allArticles: results,
+                        showpagetip: showpagetip, 
+                        allpage: allpage,
+                        cssFils:['userBlog/manageExperience'],
+                        jsFils:['userBlog/manageExperience']
+                    });
+                }
+            });
         }
     });
 

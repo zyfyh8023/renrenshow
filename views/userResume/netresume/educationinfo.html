@@ -3,8 +3,10 @@
 
 	<div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
 		<div class="am-alert am-alert-secondary">
-			<% if(locals.signed && signed=='1'){ %>
-			<button type="button" class="am-close" data-am-modal="{target: '#my-education'}"><i class="am-icon-pencil"></i></button>
+			<% if(signed=='1'){ %>
+				<button type="button" class="am-close" data-am-modal="{target: '#my-education'}">
+					<i class="am-icon-pencil"></i>
+				</button>
 			<% } %>
 			<div style="font-size:30px;text-align:center;">教育经历</div>
 		</div>
@@ -24,7 +26,7 @@
 			                   </div>
 			                   <div class=" am-u-sm-8 am-list-main">
 			                        <h3 class="am-list-item-hd">
-			                        	<a href="/resume_scl?uname=<%= uName %>&ids=<%= k %>">名称：<%= rs.schools3[k].school %></a>
+			                        	<a href="/<%= uName %>/resume_scl?ids=<%= k %>">名称：<%= rs.schools3[k].school %></a>
 			                        </h3>
 			                       	<div class="am-list-item-text">
 			                       		介绍：<%= rs.schools3[k].majorinstr %>
@@ -38,7 +40,7 @@
 		<% } %>
 	</div>
 
-	<% if(locals.signed && signed=='1'){ %>
+	<% if(signed=='1'){ %>
 	<div class="am-popup" id="my-education">
 		<div class="am-popup-inner">
 			<div class="am-popup-hd">

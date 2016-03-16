@@ -20,11 +20,14 @@ exports.page = function(req, res, next) {
             res.redirect('/error');
         } else {
             res.render('./userBlog/createExperience', {
-                title: '写面经',
-                uName: uName,
                 navTitle: navTitle,
-                allNum: resu,
                 navDesc: navDesc,
+                uName: uName,
+                signed: '1',
+                vCode: '',
+                modules: [],
+                title: '新建面经',
+                allNum: resu,
                 cssFils:['userBlog/createExperience'],
                 jsFils:['userBlog/createExperience']
             });

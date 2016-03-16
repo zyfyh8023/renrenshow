@@ -3,8 +3,10 @@
 
 	<div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
 		<div class="am-alert am-alert-secondary">
-			<% if(locals.signed && signed=='1'){ %>
-			<button type="button" class="am-close" data-am-modal="{target: '#my-practice'}"><i class="am-icon-pencil"></i></button>
+			<% if(signed=='1'){ %>
+				<button type="button" class="am-close" data-am-modal="{target: '#my-practice'}">
+					<i class="am-icon-pencil"></i>
+				</button>
 			<% } %>
 			<div style="font-size:30px;text-align:center;">工作经历</div>
 		</div>
@@ -18,12 +20,12 @@
 						<ul class="am-list">
 							<li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
 								<div class="am-u-sm-4 am-list-thumb">
-									<a href="#">
+									<a href="/<%= uName %>/resume_cmp2?ids=<%= k %>">
 										<img style="width:100%;height:10rem;" src="<%= rs.work5[k].companyLogo %>" />
 									</a>
 								</div>
 								<div class=" am-u-sm-8 am-list-main">
-									<h3 class="am-list-item-hd"><a href="/resume_cmp2?uname=<%= uName %>&ids=<%= k %>">
+									<h3 class="am-list-item-hd"><a href="/<%= uName %>/resume_cmp2?ids=<%= k %>">
 									名称：<%= rs.work5[k].practice %></a></h3>
 									<div class="am-list-item-text">介绍：<%= rs.work5[k].practiceinstr %></div>
 								</div>
@@ -35,7 +37,7 @@
 		<% } %>
 	</div>
 
-	<% if(locals.signed && signed=='1'){ %>
+	<% if(signed=='1'){ %>
 	<div class="am-popup" id="my-practice">
 		<div class="am-popup-inner">
 			<div class="am-popup-hd">

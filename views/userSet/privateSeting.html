@@ -8,11 +8,13 @@
 		<div class="col-lg-9 am-u-lg-9 zy-show-lg-content">
 			<% if(locals.results){ %>
 				<div>
-					<div data-am-widget="titlebar" class="am-titlebar am-titlebar-multi" >
-					    <h2 class="am-titlebar-title ">
-					        已拥有的特权设置
-					    </h2>
-					</div>
+					<% if(results.allModels.length>0){ %>
+						<div data-am-widget="titlebar" class="am-titlebar am-titlebar-multi" >
+						    <h2 class="am-titlebar-title ">
+						        已拥有的特权设置
+						    </h2>
+						</div>
+					<% } %>
 					<table class="am-table">
 					    <tbody>
 					    	<% for(var i=0; i<results.allModels.length; i++) { %>

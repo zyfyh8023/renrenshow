@@ -13,88 +13,83 @@ exports.artSee = function(req, res, next) {
     navTitle = "资源导航定制1";
     navDesc = "资源导航为童鞋们提供学习方向、学习途径、和业界最新消息、最新资料等。编程工具、" +
         "国外牛人、国内牛人、JS框架、UI框架、JS库、CSS库。每周更新及时。";
-
     var urls=url.parse(req.url, true).query;
     var artTyp=parseInt(urls.typ);
+    
+    checkState.myState(req, res, function(rs){
 
-    checkState.myState(req, function(err, rs){
-        if(err){
-            res.redirect('/error');
+        if(rs.signed=='2'){
+            getBlogComs(rs.uName, function(err, results){
+                if(err){
+                    res.redirect('/error');
+                }else{
+                    if(results && artTyp>=0 && artTyp<=3){
+                        var showpagetip, allpage;
+                        allpage=Math.ceil(results[artTyp].length/10);
+                        if(allpage>9){
+                            showpagetip=9;
+                        }else{
+                            showpagetip=allpage;
+                        }
+                        res.render('./userBlog2/userAllBlog1', {
+                            navTitle: navTitle,
+                            navDesc: navDesc,
+                            uName:rs.uName,
+                            signed: rs.signed,
+                            vCode: rs.vCode,
+                            modules: rs.modules,
+                            title: 'TA的博文查看(特权)',
+                            resul: results,
+                            allArticles:results[artTyp],
+                            nums: results[artTyp].length,
+                            showpagetip: showpagetip, 
+                            allpage: allpage,
+                            artTyp:artTyp+1,
+                            jsFils:['userBlog2/userAllBlog1']
+                        });
+                    }else{
+                        res.redirect('/error');
+                    }
+                }
+            });
+        }else if(rs.signed=='3'){
+            getBlogComs(rs.uName, function(err, results){
+                if(err){
+                    res.redirect('/error');
+                }else{
+                    if(results && artTyp>=0 && artTyp<=3){
+                        var showpagetip, allpage;
+                        allpage=Math.ceil(results[artTyp].length/10);
+                        if(allpage>9){
+                            showpagetip=9;
+                        }else{
+                            showpagetip=allpage;
+                        }
+                        res.render('./userBlog2/userAllBlog1', {
+                            navTitle: navTitle,
+                            navDesc: navDesc,
+                            uName:rs.uName,
+                            signed: rs.signed,
+                            vCode: rs.vCode,
+                            modules: rs.modules,
+                            title: 'TA的博文查看(普通)',
+                            resul: results,
+                            allArticles:results[artTyp],
+                            nums: results[artTyp].length,
+                            showpagetip: showpagetip, 
+                            allpage: allpage,
+                            artTyp:artTyp+1,
+                            jsFils:['userBlog2/userAllBlog1']
+                        });
+                    }else{
+                        res.redirect('/error');
+                    }
+                }
+            });
         }else{
-            if(rs.signed=='2' && rs.uName!=""){
-                getBlogComs(rs.uName, function(err, results){
-                    if(err){
-                        res.redirect('/error');
-                    }else{
-                        if(results && artTyp>=0 && artTyp<=3){
-                            var showpagetip, allpage;
-                            allpage=Math.ceil(results[artTyp].length/10);
-                            if(allpage>9){
-                                showpagetip=9;
-                            }else{
-                                showpagetip=allpage;
-                            }
-                            res.render('./userBlog2/userAllBlog1', {
-                                title: 'TA的博文查看(特权)',
-                                resul: results,
-                                uName:rs.uName,
-                                navTitle: navTitle,
-                                navDesc: navDesc,
-                                allArticles:results[artTyp],
-                                nums: results[artTyp].length,
-                                showpagetip: showpagetip, 
-                                allpage: allpage,
-                                signed: rs.signed,
-                                vCode: rs.vCode,
-                                modules: rs.modules,
-                                artTyp:artTyp+1,
-                                jsFils:['userBlog2/userAllBlog1']
-                            });
-                        }else{
-                            res.redirect('/error');
-                        }
-                    }
-                });
-            }else if(rs.signed=='3' && rs.uName!=""){
-                getBlogComs(rs.uName, function(err, results){
-                    if(err){
-                        res.redirect('/error');
-                    }else{
-                        if(results && artTyp>=0 && artTyp<=3){
-                            var showpagetip, allpage;
-                            allpage=Math.ceil(results[artTyp].length/10);
-                            if(allpage>9){
-                                showpagetip=9;
-                            }else{
-                                showpagetip=allpage;
-                            }
-                            res.render('./userBlog2/userAllBlog1', {
-                                title: 'TA的博文查看(普通)',
-                                resul: results,
-                                uName:rs.uName,
-                                navTitle: navTitle,
-                                navDesc: navDesc,
-                                allArticles:results[artTyp],
-                                nums: results[artTyp].length,
-                                showpagetip: showpagetip, 
-                                allpage: allpage,
-                                signed: rs.signed,
-                                vCode: rs.vCode,
-                                modules: rs.modules,
-                                artTyp:artTyp+1,
-                                jsFils:['userBlog2/userAllBlog1']
-                            });
-                        }else{
-                            res.redirect('/error');
-                        }
-                    }
-                });
-            }else{
-                res.redirect('/error');
-            }
+            res.redirect('/error');
         }
     });
-
 
 };
 
@@ -104,82 +99,77 @@ exports.expSee = function(req, res, next) {
     navDesc = "资源导航为童鞋们提供学习方向、学习途径、和业界最新消息、最新资料等。编程工具、" +
         "国外牛人、国内牛人、JS框架、UI框架、JS库、CSS库。每周更新及时。";
 
-    checkState.myState(req, function(err, rs){
-        if(err){
-            res.redirect('/error');
+    checkState.myState(req, res, function(rs){
+        if(rs.signed=='2'){
+            getBlogComs(rs.uName, function(err, results){
+                if(err){
+                    res.redirect('/error');
+                }else{
+                    if(results){
+                        var showpagetip, allpage;
+                        allpage=Math.ceil(results[4].length/10);
+                        if(allpage>9){
+                            showpagetip=9;
+                        }else{
+                            showpagetip=allpage;
+                        }
+                        res.render('./userBlog2/userAllBlog2', {
+                            navTitle: navTitle,
+                            navDesc: navDesc,
+                            uName:rs.uName,
+                            signed: rs.signed,
+                            vCode: rs.vCode,
+                            modules: rs.modules,
+                            title: 'TA的博文查看(特权)',
+                            resul: results,
+                            allArticles:results[4],
+                            nums: results[4].length,
+                            showpagetip: showpagetip, 
+                            allpage: allpage,
+                            jsFils:['userBlog2/userAllBlog2']
+                        });
+                    }else{
+                        res.redirect('/error');  
+                    }
+                }
+            });
+        }else if(rs.signed=='3'){
+            getBlogComs(rs.uName, function(err, results){
+                if(err){
+                    res.redirect('/error');
+                }else{
+                    if(results){
+                        var showpagetip, allpage;
+                        allpage=Math.ceil(results[4].length/10);
+                        if(allpage>9){
+                            showpagetip=9;
+                        }else{
+                            showpagetip=allpage;
+                        }
+                        res.render('./userBlog2/userAllBlog2', {
+                            navTitle: navTitle,
+                            navDesc: navDesc,
+                            uName:rs.uName,
+                            signed: rs.signed,
+                            vCode: rs.vCode,
+                            modules: rs.modules,
+                            title: 'TA的博文查看(普通)',
+                            resul: results,
+                            allArticles:results[4],
+                            nums: results[4].length,
+                            showpagetip: showpagetip, 
+                            allpage: allpage,
+                            jsFils:['userBlog2/userAllBlog2']
+                        });
+                    }else{
+                        res.redirect('/error');  
+                    }
+                }
+            });
         }else{
-            if(rs.signed=='2' && rs.uName!=""){
-                getBlogComs(rs.uName, function(err, results){
-                    if(err){
-                        res.redirect('/error');
-                    }else{
-                        if(results){
-                            var showpagetip, allpage;
-                            allpage=Math.ceil(results[4].length/10);
-                            if(allpage>9){
-                                showpagetip=9;
-                            }else{
-                                showpagetip=allpage;
-                            }
-                            res.render('./userBlog2/userAllBlog2', {
-                                title: 'TA的博文查看(特权)',
-                                resul: results,
-                                uName:rs.uName,
-                                navTitle: navTitle,
-                                navDesc: navDesc,
-                                allArticles:results[4],
-                                nums: results[4].length,
-                                showpagetip: showpagetip, 
-                                allpage: allpage,
-                                signed: rs.signed,
-                                vCode: rs.vCode,
-                                modules: rs.modules,
-                                jsFils:['userBlog2/userAllBlog2']
-                            });
-                        }else{
-                            res.redirect('/error');  
-                        }
-                    }
-                });
-            }else if(rs.signed=='3' && rs.uName!=""){
-                getBlogComs(rs.uName, function(err, results){
-                    if(err){
-                        res.redirect('/error');
-                    }else{
-                        if(results){
-                            var showpagetip, allpage;
-                            allpage=Math.ceil(results[4].length/10);
-                            if(allpage>9){
-                                showpagetip=9;
-                            }else{
-                                showpagetip=allpage;
-                            }
-                            res.render('./userBlog2/userAllBlog2', {
-                                title: 'TA的博文查看(普通)',
-                                resul: results,
-                                uName:rs.uName,
-                                navTitle: navTitle,
-                                navDesc: navDesc,
-                                allArticles:results[4],
-                                nums: results[4].length,
-                                showpagetip: showpagetip, 
-                                allpage: allpage,
-                                signed: rs.signed,
-                                vCode: rs.vCode,
-                                modules: rs.modules,
-                                jsFils:['userBlog2/userAllBlog2']
-                            });
-                        }else{
-                            res.redirect('/error');  
-                        }
-                    }
-                });
-            }else{
-                res.redirect('/error');
-            }
+            res.redirect('/error');
         }
     });
-
 
 };
 

@@ -16,19 +16,18 @@ exports.page = function(req, res, next) {
 		if (err) {
 			res.redirect('/error');
 		} else {
-			if (results) {
-				res.render('./userSet/seting', {
-					title: '个人设置',
-					uName: uName,
-					navTitle: navTitle,
-					navDesc: navDesc,
-					results: results,
-					cssFils:['userSet/seting'],
-					jsFils:['userSet/seting']
-				});
-			} else {
-				res.redirect('/error');
-			}
+			res.render('./userSet/seting', {
+				navTitle: navTitle,
+				navDesc: navDesc,
+				uName: uName,
+				signed: '1',
+				vCode: '',
+				modules: [],
+				title: '个人设置',
+				results: results,
+				cssFils:['userSet/seting'],
+				jsFils:['userSet/seting']
+			});
 		}
 	});
 };

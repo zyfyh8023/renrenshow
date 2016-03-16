@@ -14,9 +14,12 @@ exports.page = function(req, res, next) {
 		"设置与个人相关的个性化配置，帮助用户更好的制定一个符合自己使用习惯的系统环境。";
 
 	res.render('./userSet/changePassword', {
-		uName: uName,
 		navTitle: navTitle,
 		navDesc: navDesc,
+		uName: uName,
+		signed: '1',
+		vCode: '',
+		modules: [],
 		title: '密码修改',
 		cssFils:['userSet/changePassword'],
 		jsFils:['userSet/changePassword']

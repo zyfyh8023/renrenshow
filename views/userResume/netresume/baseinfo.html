@@ -3,8 +3,10 @@
 
     <div class="am-g am-u-lg-3 am-u-md-12  am-u-sm-centered">
         <div class="am-alert am-alert-secondary">
-            <% if(locals.signed && signed=='1'){ %>
-            <button type="button" class="am-close" data-am-modal="{target: '#my-baseinfo'}"><i class="am-icon-pencil"></i></button>
+            <% if(signed=='1'){ %>
+                <button type="button" class="am-close" data-am-modal="{target: '#my-baseinfo'}">
+                    <i class="am-icon-pencil"></i>
+                </button>
             <% } %>
             <div style="font-size:30px;text-align:center;">基本信息</div>
         </div>
@@ -16,8 +18,7 @@
                 <a href="javascript:void(0);"><i style="display:inline-block;margin-right:30px;" class="am-icon-user am-icon-sm am-icon-fw"></i>姓名：<%= rs.baseInfo1.uname %></a>
             </li>
             <li>
-                <a  href="javascript:void(0);"> <i style="display:inline-block;margin-right:30px;" class="am-icon-transgender am-icon-sm am-icon-fw"></i>性别：<% if (rs.baseInfo1.gender == '1') { %>男<% }
-                    else if(rs.baseInfo1.gender == '2'){ %>女<% } %></a>
+                <a  href="javascript:void(0);"> <i style="display:inline-block;margin-right:30px;" class="am-icon-transgender am-icon-sm am-icon-fw"></i>性别：<%= sexType(rs.baseInfo1.gender) %></a>
             </li>
             <li>
                 <a href="javascript:void(0);"><i style="display:inline-block;margin-right:30px;" class="am-icon-user-secret am-icon-sm am-icon-fw"></i>年龄：<% if (rs.baseInfo1.age) { %><%= rs.baseInfo1.age %>岁<% } %></a>
@@ -26,13 +27,7 @@
                 <a href="javascript:void(0);"><i style="display:inline-block;margin-right:30px;" class="am-icon-flag-checkered am-icon-sm am-icon-fw"></i>政治面貌：<%= rs.baseInfo1.identity %></a>
             </li>
             <li>
-                <a href="javascript:void(0);"><i style="display:inline-block;margin-right:30px;" class="am-icon-mortar-board am-icon-sm am-icon-fw"></i>学历：<% if(rs.baseInfo1.education=='1'){ %>高中
-                      <% }else if(rs.baseInfo1.education=='2'){ %>大专
-                      <% }else if(rs.baseInfo1.education=='3'){ %>本科
-                      <% }else if(rs.baseInfo1.education=='4'){ %>硕士
-                      <% }else if(rs.baseInfo1.education== '5'){ %>博士
-                      <% } %>
-                </a>
+                <a href="javascript:void(0);"><i style="display:inline-block;margin-right:30px;" class="am-icon-mortar-board am-icon-sm am-icon-fw"></i>学历：<%= eduType(rs.baseInfo1.education) %> </a>
             </li>
             <li>
                 <a href="javascript:void(0);"><i style="display:inline-block;margin-right:30px;" class="am-icon-university am-icon-sm am-icon-fw"></i>毕业院校：<%= rs.baseInfo1.school %></a>
@@ -43,7 +38,7 @@
         </ul>
     </div>
 
-    <% if(locals.signed && signed=='1'){ %>
+    <% if(signed=='1'){ %>
     <div class="am-popup" id="my-baseinfo">
         <div class="am-popup-inner">
             <div class="am-popup-hd">
@@ -128,7 +123,7 @@
                     </div>
                     <div class="am-form-group">
                         <div class="am-u-sm-9 am-u-sm-offset-3">
-                            <button id="upload1" class="am-btn am-btn-primary my-baseinfo-btn"> 提交确认</button>
+                            <button id="upload1" type="button" class="am-btn am-btn-primary my-baseinfo-btn"> 提交确认</button>
                         </div>  
                     </div>
                 </form> 

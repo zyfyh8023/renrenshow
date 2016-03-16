@@ -10,70 +10,65 @@ exports.page = function(req, res, next) {
 	navDesc = "资源导航为童鞋们提供学习方向、学习途径、和业界最新消息、最新资料等。编程工具、" +
 		"国外牛人、国内牛人、JS框架、UI框架、JS库、CSS库。每周更新及时。";
 
-	checkState.myState(req, function(err, rs){
-	    if(err){
-	        res.redirect('/error');
-	    }else{
-	        if(rs.signed=='2' && rs.uName!=""){   
-	            navigations.findByUname(rs.uName, function(err, results) {
-	                if (err) {
-	                    res.redirect('/error');
-	                } else {
-	                    res.render('./userNav/navigation', {
-	                        uName: rs.uName,
-	                        navTitle: navTitle,
-	                        navDesc: navDesc,
-	                        signed: rs.signed,
-	                        vCode: rs.vCode,
-	                        modules: rs.modules,
-	                        title: 'TA的资源导航(特权)',
-	                        allNavgition: results,
-	                        cssFils:['userNav/navigation'],
-	                        jsFils:['userNav/navigation']
-	                    });
-	                }
-	            })
-	        }else if(rs.signed=='3' && rs.uName!=""){    
-	            navigations.findByUname(rs.uName, function(err, results) {
-	                if (err) {
-	                    res.redirect('/error');
-	                } else {
-	                    res.render('./userNav/navigation', {
-	                        uName: rs.uName,
-	                        navTitle: navTitle,
-	                        navDesc: navDesc,
-	                        signed: rs.signed,
-	                        vCode: rs.vCode,
-	                        modules: rs.modules,
-	                        title: 'TA的资源导航(普通)',
-	                        allNavgition: results,
-	                        cssFils:['userNav/navigation'],
-	                        jsFils:['userNav/navigation']
-	                    });
-	                }
-	            })
-	        }else if(rs.signed=='1' && rs.uName!=""){   
-	        	navigations.findByUname(rs.uName, function(err, results) {
-	        	    if (err) {
-	        	        res.redirect('/error');
-	        	    } else {
-	        	        res.render('./userNav/navigation', {
-	        	            uName: rs.uName,
-	        	            navTitle: navTitle,
-	        	            navDesc: navDesc,
-	        	            signed: rs.signed,
-	        	            vCode: rs.vCode,
-	        	            title: '我的资源导航',
-	        	            allNavgition: results,
-	        	            cssFils:['userNav/navigation'],
-	        	            jsFils:['userNav/navigation']
-	        	        });
-	        	    }
-	        	})
-	        }else{    //错误页面
-	             res.redirect('/login');
-	        }
-	    }
+	checkState.myState(req, res, function(rs){
+        if(rs.signed=='1'){   
+            navigations.findByUname(rs.uName, function(err, results) {
+                if (err) {
+                    res.redirect('/error');
+                } else {
+                    res.render('./userNav/navigation', {
+                        navTitle: navTitle,
+                        navDesc: navDesc,
+                        uName: rs.uName,
+                        signed: rs.signed,
+                        vCode: rs.vCode,
+                        modules: rs.modules,
+                        title: '我的资源导航',
+                        allNavgition: results,
+                        cssFils:['userNav/navigation'],
+                        jsFils:['userNav/navigation']
+                    });
+                }
+            })
+        }else if(rs.signed=='2'){    
+            navigations.findByUname(rs.uName, function(err, results) {
+                if (err) {
+                    res.redirect('/error');
+                } else {
+                    res.render('./userNav/navigation', {
+                        navTitle: navTitle,
+                        navDesc: navDesc,
+                        uName: rs.uName,
+                        signed: rs.signed,
+                        vCode: rs.vCode,
+                        modules: rs.modules,
+                        title: 'TA的资源导航(特权)',
+                        allNavgition: results,
+                        cssFils:['userNav/navigation'],
+                        jsFils:['userNav/navigation']
+                    });
+                }
+            })
+        }else{   
+        	navigations.findByUname(rs.uName, function(err, results) {
+        	    if (err) {
+        	        res.redirect('/error');
+        	    } else {
+        	        res.render('./userNav/navigation', {
+        	            navTitle: navTitle,
+        	            navDesc: navDesc,
+        	            uName: rs.uName,
+        	            signed: rs.signed,
+        	            vCode: rs.vCode,
+        	            modules: rs.modules,
+        	            title: 'TA的资源导航(普通)',
+        	            allNavgition: results,
+        	            cssFils:['userNav/navigation'],
+        	            jsFils:['userNav/navigation']
+        	        });
+        	    }
+        	})
+        }
 	});
 }
 

@@ -44,33 +44,21 @@
 			<button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-primary  am-show-sm-only" data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
 			<div class="am-collapse am-topbar-collapse zy-am-topbar-collapse" id="doc-topbar-collapse">
 				<ul class="am-nav am-nav-pills am-topbar-nav zy-am-topbar-nav">
-					<% if(locals.signed){ %>
-						<li><a data-src="myindex" href="<%= ahref(signed, uName, vCode, '/myindex') %>">首页</a></li>
-					<% }else{ %>
-						<li><a data-src="myindex" href="/myindex">首页</a></li>
-					<% } %>
-					
-					<% if(locals.modules){ %>
-						<%- navs(signed, uName, vCode, modules) %>
-					<% }else{ %>
-						<li><a data-src="/instrc" href="/instrc">简介</a></li>
-						<li><a data-src="/resume" href="/resume">简历</a></li>
-						<li><a data-src="/navs" href="/navs">资源</a></li>
-						<li><a data-src="/blogs_" href="/blogs_art_pub">博文</a></li>
-						<li><a data-src="/sets_" href="/sets_pub">设置</a></li>
-					<% } %>
+					<%- navs(signed, uName, vCode, modules) %>
 				</ul>
 				<div class="am-topbar-right">
 					<div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
 						<button class="am-btn am-btn-primary  am-topbar-btn am-btn-sm am-dropdown-toggle am-radius" data-am-dropdown-toggle>更多 <span class="am-icon-caret-down"></span></button>
 						<ul class="am-dropdown-content">
-							<li><a href="/inf">去资源库</a></li>
-							<li><a href="/res">去人才库</a></li>
-							<% if(locals.signed && signed=='1'){ %>
-							<li id="zy-slidemenu" data-am-offcanvas="{target: '#doc-oc-demo2'}"><a href="javascript:void(0);">侧边栏</a></li>
-							<% }else{ %>
-							<li id="zy-slidemenu" data-am-offcanvas="{target: '#doc-oc-demo2'}"><a href="javascript:void(0);">侧边栏</a></li>
-							<% } %>
+							<li>
+								<a href="/inf">去资源库</a>
+							</li>
+							<li>
+								<a href="/res">去人才库</a>
+							</li>
+							<li id="zy-slidemenu" data-am-offcanvas="{target: '#doc-oc-demo2'}">
+								<a href="javascript:void(0);">侧边栏</a>
+							</li>
 						</ul>
 					</div>
 				</div>

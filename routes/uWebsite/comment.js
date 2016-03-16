@@ -17,38 +17,37 @@ exports.minePage = function(req, res, next){
         if (err) {
             res.redirect('/error');
         } else {
-            if (results) {
-                var showpagetip, allpage;
-                allpage=Math.ceil(nums/10);
-                if(allpage>9){
-                    showpagetip=9;
-                }else{
-                    showpagetip=allpage;
-                }
-                getArtExpNum(uName, function(err, resu) {
-                    if (err) {
-                        res.redirect('/error');
-                    } else {
-                        console.log(results);
-                        res.render('./userBlog/manageComments', {
-                            title: '我的评论',
-                            uName: uName,
-                            navTitle: navTitle,
-                            allNum: resu,
-                            navDesc: navDesc,
-                            nums: nums,
-                            allComments: results,
-                            showpagetip: showpagetip, 
-                            allpage: allpage,
-                            comTyp:'author',
-                            cssFils:['userBlog/manageComments'],
-                            jsFils:['userBlog/manageComments']
-                        });
-                    }
-                });
-            }else {
-                res.redirect('/error');
+            var showpagetip, allpage;
+            allpage=Math.ceil(nums/10);
+            if(allpage>9){
+                showpagetip=9;
+            }else{
+                showpagetip=allpage;
             }
+            getArtExpNum(uName, function(err, resu) {
+                if (err) {
+                    res.redirect('/error');
+                } else {
+                    console.log(results);
+                    res.render('./userBlog/manageComments', {
+                        navTitle: navTitle,
+                        navDesc: navDesc,
+                        uName: uName,
+                        signed: '1',
+                        vCode: '',
+                        modules: [],
+                        title: '我的评论',
+                        allNum: resu,
+                        nums: nums,
+                        allComments: results,
+                        showpagetip: showpagetip, 
+                        allpage: allpage,
+                        comTyp:'author',
+                        cssFils:['userBlog/manageComments'],
+                        jsFils:['userBlog/manageComments']
+                    });
+                }
+            });
         }
     });
 }
@@ -63,38 +62,37 @@ exports.yoursPage = function(req, res, next){
         if (err) {
             res.redirect('/error');
         } else {
-            if (results) {
-                var showpagetip, allpage;
-                allpage=Math.ceil(nums/10);
-                if(allpage>9){
-                    showpagetip=9;
-                }else{
-                    showpagetip=allpage;
-                }
-                getArtExpNum(uName, function(err, resu) {
-                    if (err) {
-                        res.redirect('/error');
-                    } else {
-                        console.log(results);
-                        res.render('./userBlog/manageComments', {
-                            title: '评论我的',
-                            uName: uName,
-                            navTitle: navTitle,
-                            allNum: resu,
-                            navDesc: navDesc,
-                            nums: nums,
-                            allComments: results,
-                            showpagetip: showpagetip, 
-                            allpage: allpage,
-                            comTyp:'artAuthor',
-                            cssFils:['userBlog/manageComments'],
-                            jsFils:['userBlog/manageComments']
-                        });
-                    }
-                });
-            }else {
-                res.redirect('/error');
+            var showpagetip, allpage;
+            allpage=Math.ceil(nums/10);
+            if(allpage>9){
+                showpagetip=9;
+            }else{
+                showpagetip=allpage;
             }
+            getArtExpNum(uName, function(err, resu) {
+                if (err) {
+                    res.redirect('/error');
+                } else {
+                    console.log(results);
+                    res.render('./userBlog/manageComments', {
+                        navTitle: navTitle,
+                        navDesc: navDesc,
+                        uName: uName,
+                        signed: '1',
+                        vCode: '',
+                        modules: [],
+                        title: '评论我的',
+                        allNum: resu,
+                        nums: nums,
+                        allComments: results,
+                        showpagetip: showpagetip, 
+                        allpage: allpage,
+                        comTyp:'artAuthor',
+                        cssFils:['userBlog/manageComments'],
+                        jsFils:['userBlog/manageComments']
+                    });
+                }
+            });
         }
     });
     

@@ -118,22 +118,22 @@ app.post('/register', register.doRegister);
 app.get('/about', about.page);
 app.post('/about', about.doPage);
 //两种情况的访问
-app.get('/resume_awd', seeuInfo.awards);
-app.get('/resume_cmp1', seeuInfo.companys1);
-app.get('/resume_cmp2', seeuInfo.companys2);
-app.get('/resume_scl', seeuInfo.schools);
-app.get('/resume_wok', seeuInfo.works);
+app.get('/:uid/resume_awd', seeuInfo.awards);
+app.get('/:uid/resume_cmp1', seeuInfo.companys1);
+app.get('/:uid/resume_cmp2', seeuInfo.companys2);
+app.get('/:uid/resume_scl', seeuInfo.schools);
+app.get('/:uid/resume_wok', seeuInfo.works);
 
 //个人中心——首页
-app.get('/myindex', myindex.page);
-app.get('/blogs_art', blogAorE.artSee);
-app.get('/blogs_exp', blogAorE.expSee);
+app.get('/:uid/index', myindex.page);
+app.get('/:uid/blogs_art', blogAorE.artSee);
+app.get('/:uid/blogs_exp', blogAorE.expSee);
 //个人中心——个性介绍-v1.0
-app.get('/instrc', introduction.page);
+app.get('/:uid/instrc', introduction.page);
 app.post('/introduction', checkState.checkLogin);
 app.post('/introduction', introduction.doPage);
 //个人中心——网页简历 -v1.0
-app.get('/resume', resume.page);
+app.get('/:uid/resume', resume.page);
 app.post('/resume/allinfo', checkState.checkLogin);
 app.post('/resume/allinfo', resume.allinfo);
 app.post('/resume/desc/add', checkState.checkLogin);
@@ -194,49 +194,49 @@ app.post('/resume/repractice/del', checkState.checkLogin);
 app.post('/resume/repractice/del', resume.repractice2); //re工作经历-del
 app.post('/resume/repractice/upd', checkState.checkLogin);
 app.post('/resume/repractice/upd', resume.repractice3); //re工作经历-update
-//博文管理 -v1.0
+//博文管理 -v1.0  只有登陆才可以访问的页面
 app.get('/blogs_art_cre', checkState.checkLogin);
-app.get('/blogs_art_cre', createarticle.page);
+app.get('/blogs_art_cre', createarticle.page);      //创建的博文
 app.post('/createarticle', checkState.checkLogin);
 app.post('/createarticle', createarticle.doPage);
-app.get('/blogs_art_pub', checkState.checkLogin);
+app.get('/blogs_art_pub', checkState.checkLogin);   //发布的博文
 app.get('/blogs_art_pub', managearticle.page);
 app.get('/blogs_art_pri', checkState.checkLogin);
-app.get('/blogs_art_pri', managearticle.noPublicBW);
+app.get('/blogs_art_pri', managearticle.noPublicBW); //未发布的博文
 app.get('/blogs_art_rea', checkState.checkLogin);
-app.get('/blogs_art_rea', managearticle.relatedMeBW);
+app.get('/blogs_art_rea', managearticle.relatedMeBW); //与我相关的博文
 app.post('/artPageSearch', checkState.checkLogin);
 app.post('/artPageSearch', managearticle.pageSearch);
 app.post('/delArticle', checkState.checkLogin);
 app.post('/delArticle', managearticle.delArticle);
 app.post('/pubArticle', checkState.checkLogin);
 app.post('/pubArticle', managearticle.pubArticle);
-//面试经验 -v1.0
-app.get('/blogs_exp_cre', checkState.checkLogin);
-app.get('/blogs_exp_cre', createExperience.page);
+//面试经验 -v1.0  只有登陆才可以访问的页面
+app.get('/blogs_exp_cre', checkState.checkLogin);  
+app.get('/blogs_exp_cre', createExperience.page);  //创建的面经
 app.post('/createExperience', checkState.checkLogin);
 app.post('/createExperience', createExperience.doPage);
-app.get('/blogs_exp_pub', checkState.checkLogin);
-app.get('/blogs_exp_pub', manageExperience.page);
-app.get('/blogs_exp_pri', checkState.checkLogin);
-app.get('/blogs_exp_pri', manageExperience.noPublicMJ);
+app.get('/blogs_exp_pub', checkState.checkLogin);  
+app.get('/blogs_exp_pub', manageExperience.page);  //发布的面经
+app.get('/blogs_exp_pri', checkState.checkLogin);  
+app.get('/blogs_exp_pri', manageExperience.noPublicMJ);  //未发布的面经
 app.get('/blogs_exp_rea', checkState.checkLogin);
-app.get('/blogs_exp_rea', manageExperience.relatedMeMJ);
+app.get('/blogs_exp_rea', manageExperience.relatedMeMJ); //与我相关的面经
 app.post('/expPageSearch', checkState.checkLogin);
 app.post('/expPageSearch', manageExperience.pageSearch);
 app.post('/delExper', checkState.checkLogin);
 app.post('/delExper', manageExperience.delExper);
 app.post('/pubExper', checkState.checkLogin);
 app.post('/pubExper', manageExperience.pubExper);
-//comment -v1.0
+//comment -v1.0   只有登陆才可以访问的页面
 app.get('/blogs_com_mine', checkState.checkLogin);
-app.get('/blogs_com_mine', comment.minePage);
+app.get('/blogs_com_mine', comment.minePage);   //我的评论
 app.get('/blogs_com_yours', checkState.checkLogin);
-app.get('/blogs_com_yours', comment.yoursPage);
+app.get('/blogs_com_yours', comment.yoursPage);  //评论我的
 app.post('/comPageSearch', checkState.checkLogin);
 app.post('/comPageSearch', comment.pageSearch);
 //资源导航 -v1.0
-app.get('/navs', navigation.page);
+app.get('/:uid/navs', navigation.page);
 app.post('/navigationListAdd', checkState.checkLogin);
 app.post('/navigationListAdd', navigation.listAdd);
 app.post('/navigationListDel', checkState.checkLogin);
@@ -245,14 +245,14 @@ app.post('/navigationListAddsun', checkState.checkLogin);
 app.post('/navigationListAddsun', navigation.listAdd2);
 app.post('/navigationListDelsun', checkState.checkLogin);
 app.post('/navigationListDelsun', navigation.listDel2);
-//公开设置 -v1.0
+//公开设置 -v1.0  只有登陆才可以访问的页面
 app.get('/sets_pub', checkState.checkLogin);
 app.get('/sets_pub', seting.page);
 app.post('/seting', checkState.checkLogin);
 app.post('/seting', seting.doPage);
 app.post('/setingInit', checkState.checkLogin);
 app.post('/setingInit', seting.createInit);
-//私人设置 -v1.0
+//私人设置 -v1.0  只有登陆才可以访问的页面
 app.get('/sets_pri', checkState.checkLogin);
 app.get('/sets_pri', privateSeting.page);
 app.post('/privateSeting/add', checkState.checkLogin);
@@ -265,63 +265,36 @@ app.post('/privateSeting/upd', checkState.checkLogin);
 app.post('/privateSeting/upd', privateSeting.upd);
 app.post('/privateSeting/chg', checkState.checkLogin);
 app.post('/privateSeting/chg', privateSeting.chg);
-//密码修改 -v1.0
+//密码修改 -v1.0  只有登陆才可以访问的页面
 app.get('/sets_pwd', checkState.checkLogin);
 app.get('/sets_pwd', changePassword.page);
 app.post('/changePassword', checkState.checkLogin);
 app.post('/changePassword', changePassword.doPage);
 
 //第三方的访问页面
-app.get('/blogs_aart', allblogs.artSee);
-app.get('/blogs_aexp', allblogs.expSee);
+app.get('/:uid/blogs_aart', allblogs.artSee);
+app.get('/:uid/blogs_aexp', allblogs.expSee);
 app.post('/pageSearchExp', allblogs.pageSearchExp);   //pageSearch不需要拦截登录
 app.post('/pageSearchArt', allblogs.pageSearchArt);
 
+app.get('/:uid/blogs_alluArts', alluArts.page);
+app.get('/:uid/blogs_alluExps', alluExps.page);
 
-app.get('/blogs_alluArts', alluArts.page);
-app.get('/blogs_alluExps', alluExps.page);
 //测试页面
 app.get('/demo', demo.page);
 
-//app的ahref格式化
-app.locals.ahref2 = function(signed, uName, vCode) {
-    var ret="";
-        if(signed=='2'){
-            ret='&vCode='+vCode+'&priId='+uName;
-        }else{
-            ret='&pubId='+uName;
-        }
-    
-    return ret;
-};
-
-//app的ahref格式化
-app.locals.ahref = function(signed, uName, vCode, hrefStr) {
-    var ret="";
-        if(signed=='2'){
-            ret=hrefStr+'?vCode='+vCode+'&priId='+uName;
-        }else if(signed=='3'){
-            ret=hrefStr+'?pubId='+uName;
-        }else{
-            ret=hrefStr;
-        }
-    
-    return ret;
-};
-
 //app的navs格式化
 app.locals.navs = function(signed, uName, vCode, dat) {
-    var ret="";
-    
+    var ret='<li><a data-src="/'+uName+'/index" href="/'+uName+'/index">首页</a></li>';
     for(var i=0,len=dat.length; i<len; i++){
         switch(dat[i].modelNam){
             case '个性简介':
                 for(var j=0,lenj=dat[i].sunModels.length; j<lenj; j++){
                     if(dat[i].sunModels[j].sunNam=='公开' && dat[i].sunModels[j].sunYesNo==1){
                         if(signed=='2'){
-                            ret+='<li><a data-src="/instrc" href="/instrc?priId='+uName+'&vCode='+vCode+'">简介</a></li>';
+                            ret+='<li><a data-src="/'+uName+'/instrc" href="/'+uName+'/instrc?vCode='+vCode+'">简介</a></li>';
                         }else{
-                            ret+='<li><a data-src="/instrc" href="/instrc?pubId='+uName+'">简介</a></li>';
+                            ret+='<li><a data-src="/'+uName+'/instrc" href="/'+uName+'/instrc">简介</a></li>';
                         }
                         break;
                     }
@@ -331,9 +304,9 @@ app.locals.navs = function(signed, uName, vCode, dat) {
                 for(var j=0,lenj=dat[i].sunModels.length; j<lenj; j++){
                     if(dat[i].sunModels[j].sunYesNo==1){
                         if(signed=='2'){
-                            ret+='<li><a data-src="/resume" href="/resume?priId='+uName+'&vCode='+vCode+'">简历</a></li>';
+                            ret+='<li><a data-src="/'+uName+'/resume" href="/'+uName+'/resume?vCode='+vCode+'">简历</a></li>';
                         }else{
-                            ret+='<li><a data-src="/resume" href="/resume?pubId='+uName+'">简历</a></li>';
+                            ret+='<li><a data-src="/'+uName+'/resume" href="/'+uName+'/resume">简历</a></li>';
                         }
                         break;
                     }
@@ -343,9 +316,9 @@ app.locals.navs = function(signed, uName, vCode, dat) {
                 for(var j=0,lenj=dat[i].sunModels.length; j<lenj; j++){
                     if(dat[i].sunModels[j].sunNam=='公开' && dat[i].sunModels[j].sunYesNo==1){
                         if(signed=='2'){
-                            ret+='<li><a data-src="/navs" href="/navs?priId='+uName+'&vCode='+vCode+'">资源</a></li>';
+                            ret+='<li><a data-src="/'+uName+'/navs" href="/'+uName+'/navs?vCode='+vCode+'">资源</a></li>';
                         }else{
-                            ret+='<li><a data-src="/navs" href="/navs?pubId='+uName+'">资源</a></li>';
+                            ret+='<li><a data-src="/'+uName+'/navs" href="/'+uName+'/navs">资源</a></li>';
                         }
                         break;
                     }
@@ -355,9 +328,9 @@ app.locals.navs = function(signed, uName, vCode, dat) {
                 for(var j=0,lenj=dat[i].sunModels.length; j<lenj; j++){
                     if(dat[i].sunModels[j].sunYesNo==1){
                         if(signed=='2'){
-                            ret+='<li><a data-src="/blogs_" href="/blogs_aart?typ=0&priId='+uName+'&vCode='+vCode+'">博文</a></li>';
+                            ret+='<li><a data-src="/'+uName+'/blogs_" href="/'+uName+'/blogs_aart?vCode='+vCode+'&typ=0">博文</a></li>';
                         }else{
-                            ret+='<li><a data-src="/blogs_" href="/blogs_aart?typ=0&pubId='+uName+'">博文</a></li>';
+                            ret+='<li><a data-src="/'+uName+'/blogs_" href="/'+uName+'/blogs_aart?typ=0">博文</a></li>';
                         }
                         break;
                     }
@@ -366,6 +339,13 @@ app.locals.navs = function(signed, uName, vCode, dat) {
             default:
                 break;
         }
+    }
+    if(signed=='1'){
+        ret+='<li><a data-src="/'+uName+'/instrc" href="/'+uName+'/instrc">简介</a></li>';
+        ret+='<li><a data-src="/'+uName+'/resume" href="/'+uName+'/resume">简历</a></li>';
+        ret+='<li><a data-src="/'+uName+'/navs" href="/'+uName+'/navs">资源</a></li>';
+        ret+='<li><a data-src="/blogs_" href="/blogs_art_pub">博文</a></li>';
+        ret+='<li><a data-src="/sets_" href="/sets_pub">设置</a></li>';
     }
     return ret;
 };
@@ -424,6 +404,19 @@ app.locals.eduType = function(dat) {
             ret='硕士';break;
         case '5':
             ret='博士';break;
+        default:
+            ret="";break;
+    }
+    return ret;
+};
+//app的性别格式化
+app.locals.sexType = function(dat) {
+    var ret="";
+    switch(dat){
+        case '1':
+            ret='男';break;
+        case '2':
+            ret='女';break;
         default:
             ret="";break;
     }

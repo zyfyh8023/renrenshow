@@ -43,9 +43,9 @@
 								</td>
 								<td class="am-text-middle">
 									<% if(allComments[i].CommentArt!='') { %>
-										<a target="_blank" href="/blogs_art?aid=<%= allComments[i].CommentArt %>">查看</a>
+										<a target="_blank" href="/<%= uName %>/blogs_art?aid=<%= allComments[i].CommentArt %>">查看</a>
 									<% }else{ %>
-										<a target="_blank" href="/blogs_exp?aid=<%= allComments[i].CommentExp %>">查看</a>
+										<a target="_blank" href="/<%= uName %>/blogs_exp?aid=<%= allComments[i].CommentExp %>">查看</a>
 									<% } %>
 								</td>
 							</tr>

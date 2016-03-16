@@ -1,6 +1,7 @@
 "use strict";
 var url = require('url');
 var async = require('async');
+var users = require('../models/users');
 var nodemailer = require("nodemailer");
 var setings = require('../models/setting');
 var privateSetings = require('../models/privateSeting');
@@ -68,86 +69,104 @@ exports.emailSend = function(typ, toEmails, emailSub, emailTxt, emailHtml, callb
 	});
 }
 
-exports.myState = function(req, callbackFn){
+exports.myState = function(req, res, callbackFn){
 	var urls=url.parse(req.url, true).query;
-	var signed=0, uName="", modules=[], objs={};
+	var objs={};
+	
+	//首先判断是否登录
+	if(req.session.user){
+		objs={
+			signed: 1,
+			uName: req.session.user.username,
+			modules: [],
+			vCode: ''
+		};
+		callbackFn(objs);
+	}else{  //没有登陆的情况
+		if(req.params.uid){
+			//检查用户名是否已经存在 
+			users.findByUname(req.params.uid, function(err, result) {
+			    if(err){
+			    	res.redirect('/error');
+			    }else{
+			    	if(result){
 
-	async.series(
-		[	
-			function(callback) {
-            	if(req.session.user){
-					uName = req.session.user.username;
-					signed=1;
-					objs={
-						signed: signed,
-						uName: uName,
-						modules: modules,
-						vCode: '000000'
-					};
-				}
-				callback(null, objs);
-            },
-            function(callback) {
-            	if(urls.pubId){
-					setings.findByUname(urls.pubId, function(err, results) {
-						if (err) {
-							callback(err, null);
-						} else {
-							if (results) {
-								signed=3; 
-								uName=urls.pubId;
-								modules=results.allModels;
-								objs={
-									signed: signed,
-									uName: uName,
-									modules: modules,
-									vCode: '000000'
-								};
-							} 
-							callback(null, objs);
-						}
-					});
-				}else{
-					callback(null, objs);
-				}
-            },
-            function(callback) {
-            	if(urls.priId && urls.vCode){
-					privateSetings.findByUname(urls.priId, function(err, results) {
-						if (err) {
-							callback(err, null);
-						} else {
-							if (results) {
-								for(var i=0,k=results.allModels.length; i<k; i++){
-									if(results.allModels[i].status=='1' && results.allModels[i].vCode==urls.vCode){
-										modules=results.allModels[i].moduleCon;
-										signed=2;
-										uName=urls.priId;
-										objs={
-											signed: signed,
-											uName: uName,
-											modules: modules,
-											vCode: urls.vCode
-										};
-										break;
-									}
-								}
-							}
-							callback(null, objs);
-						}
-					});
-				}else{
-					callback(null, objs);
-				}
-            }
-        ],
-        function(err2, signed2) {
-            if (err2) {
-                callbackFn(err2, null);
-            } else {
-                callbackFn(null, signed2[2]);
-            }
-        }
-    );
+			    		if(urls.vCode){
+			    			privateSetings.findByUname(req.params.uid, function(err, results) {
+			    				if (err) {
+			    					res.redirect('/error');
+			    				} else {
+			    					if (results) {
+			    						var sifn=0;
+			    						for(var i=0,k=results.allModels.length; i<k; i++){
+			    							if(results.allModels[i].status=='1' && results.allModels[i].vCode==urls.vCode){
+			    								objs={
+			    									signed: 2,
+			    									uName: req.params.uid,
+			    									modules: results.allModels[i].moduleCon,
+			    									vCode: urls.vCode
+			    								};
+			    								sifn=1;
+			    								break;
+			    							}
+			    						}
+			    						if(sifn){
+			    							callbackFn(objs);
+			    						}else{ //用户输入的vCode过时，或者不正确的情况
+			    							setings.findByUname(req.params.uid, function(err, results) {
+			    								if(err){
+			    									res.redirect('/error');
+			    								}else{
+		    										objs={
+		    											signed: 3,
+		    											uName: req.params.uid,
+		    											modules: results.allModels,
+		    											vCode:''
+		    										};
+		    										callbackFn(objs);
+			    								}
+			    							})
+			    						}
+			    					}else{ //存在vCode但是联合查找失败的情况，继续找单个条件的用户名
+			    						setings.findByUname(req.params.uid, function(err, results) {
+			    							if(err){
+			    								res.redirect('/error');
+			    							}else{
+		    									objs={
+		    										signed: 3,
+		    										uName: req.params.uid,
+		    										modules: results.allModels,
+		    										vCode:''
+		    									};
+		    									callbackFn(objs);
+			    							}
+			    						})
+			    					}
+			    				}
+			    			});
+			    		}else{ //vCode不存在的情况
+			    			setings.findByUname(req.params.uid, function(err, results) {
+			    				if(err){
+			    					res.redirect('/error');
+			    				}else{ //seting表格是默认添加的，既然用户名已经存在了，所以seting查找必然可以找到
+		    						objs={
+		    							signed: 3,
+		    							uName: req.params.uid,
+		    							modules: results.allModels,
+		    							vCode:''
+		    						};
+		    						callbackFn(objs);
+			    				}
+			    			})
+			    		}
+			    	}else{ //输入的用户名不存在的情况，跳转到首页或者登录页面
+			    		res.redirect('/login');	
+			    	}
+			    }
+			})
+		}else{ //没有输入用户名的情况，跳转首页或者登录页面
+			res.redirect('/login');
+		}
+	}
 	
 }

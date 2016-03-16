@@ -9,7 +9,7 @@
 	<div data-am-widget="intro" class="am-intro am-cf am-intro-default">
 		<div class="am-intro-hd">
 			<span class="am-intro-title">Just about me！
-			<% if(locals.signed && signed=='1'){ %>
+			<% if(signed=='1'){ %>
     			<a href="javascript:void(0);" class="zy-special-edit" data-am-modal="{target: '#my-specialinstr'}">点我编辑吧</a>
   			<% } %>
   			</span>
@@ -25,7 +25,7 @@
 	</div>
 </div>
 
-<% if(locals.signed && signed=='1'){ %>
+<% if(signed=='1'){ %>
 	<div class="am-popup" id="my-specialinstr">
 		<div class="am-popup-inner">
 			<div class="am-popup-hd">
@@ -34,7 +34,7 @@
 			</div>
 			<div class="am-popup-bd">
 				<br>
-				<form class="am-form am-form-horizontal" action="introduction" data-am-validator method='post' id="specialInstruc" enctype='multipart/form-data'>
+				<form class="am-form am-form-horizontal" action="/introduction" data-am-validator method='post' id="specialInstruc" enctype='multipart/form-data'>
 					<div class="am-form-group">
 						<label class="am-u-sm-2 am-form-label">介绍</label>
 						<div class="am-u-sm-10">

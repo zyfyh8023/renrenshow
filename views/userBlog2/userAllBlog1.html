@@ -31,7 +31,7 @@
 									<%= dateformat(allArticles[i].cTime) %>
 								</td>
 								<td class="am-text-middle">
-									<a target="_blank" href="/blogs_art?aid=<%= allArticles[i]._id %><%= ahref2(signed, uName, vCode) %>">查看</a>
+									<a target="_blank" href="/<%= uName %>/blogs_art?aid=<%= allArticles[i]._id %>">查看</a>
 								</td>
 							</tr>
 						<% } %>

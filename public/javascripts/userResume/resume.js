@@ -7,7 +7,7 @@ $(document).ready(function() {
 		$('.imgtip', $myBaseinfo).html($('#inputFile1', $myBaseinfo).val());
 	})
 	$myBaseinfo.delegate('#upload1', 'click', function() {
-		$('#specialInstruc1', $myBaseinfo).ajaxForm({
+		$('#specialInstruc1', $myBaseinfo).ajaxSubmit({
 			url: $('#specialInstruc1', $myBaseinfo).attr('action'),
 			type: 'POST',
 			success: function(res, status, xhr, $form) {
@@ -1005,7 +1005,7 @@ $(document).ready(function() {
 			undergotype = $.trim($(".undergotype", $myUndergo).val()),
 			undergotime = $.trim($(".undergotime", $myUndergo).val()),
 			undergoinstr = $.trim($(".undergoinstr", $myUndergo).val()),
-			hiddenipt = $.trim($myPaperadd.find(".J_hidden-ipt").val());
+			hiddenipt = $.trim($myUndergoadd.find(".J_hidden-ipt").val());
 
 		if(hiddenipt){
 			if (undergoname && undergotype && undergotime && undergoinstr) {
