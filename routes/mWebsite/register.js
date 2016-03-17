@@ -11,7 +11,7 @@ var retDesc, retCode, uName, cssFils, jsFils;
 
 //GET register page. 
 exports.page = function(req, res, next) {
-    uName=checkState.loginState(req);
+    uName=checkState.loginState(req, res, false);
 
     res.render('register', {
         title: '注册-人人秀',

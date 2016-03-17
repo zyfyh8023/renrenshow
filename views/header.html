@@ -63,7 +63,7 @@
 								<li><a href="/login">登录</a></li>
 							<% } %>
 							<li><a href="/register">注册</a></li>
-							<li><a href="/myindex">我的网站</a></li>
+							<li><a href="<% if(locals.uName && uName!=''){%>/<%= uName %>/index<% }else{ %>/login<% } %>">我的网站</a></li>
 						</ul>
 					</div>
 				</div>

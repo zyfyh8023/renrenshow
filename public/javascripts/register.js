@@ -24,7 +24,7 @@ $(document).ready(function() {
 	        			if (data.retCode != 200) {
 	        				warnOpnFn(data.retDesc);
 	        			} else {
-	        				location.href="/myindex";
+	        				location.href="/"+username+"/index";
 	        			}
 	        		},
 	        		error: function(err) {

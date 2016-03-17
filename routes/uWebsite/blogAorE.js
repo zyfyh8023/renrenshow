@@ -19,7 +19,7 @@ exports.artSee = function(req, res, next) {
                 res.redirect('/error');
             }else{
                 if(rs.signed=='1'){
-                    res.render('blog_art', {
+                    res.render('./userBlog2/blog_art', {
                         uName: rs.uName,
                         signed: rs.signed,
                         vCode: rs.vCode,
@@ -29,7 +29,7 @@ exports.artSee = function(req, res, next) {
                         resul2: results.artComs
                     });
                 }else if(rs.signed=='2'){
-                    res.render('blog_art', {
+                    res.render('./userBlog2/blog_art', {
                         uName: rs.uName,
                         signed: rs.signed,
                         vCode: rs.vCode,
@@ -39,7 +39,7 @@ exports.artSee = function(req, res, next) {
                         resul2: results.artComs
                     });
                 }else{
-                    res.render('blog_art', {
+                    res.render('./userBlog2/blog_art', {
                         uName: rs.uName,
                         signed: rs.signed,
                         vCode: rs.vCode,
@@ -66,7 +66,7 @@ exports.expSee = function(req, res, next) {
                 if(err){
                     res.redirect('/error');
                 }else{
-                    res.render('blog_exper', {
+                    res.render('./userBlog2/blog_exper', {
                         uName: rs.uName,
                         signed: rs.signed,
                         vCode: rs.vCode,
@@ -82,7 +82,7 @@ exports.expSee = function(req, res, next) {
                 if(err){
                     res.redirect('/error');
                 }else{
-                    res.render('blog_exper', {
+                    res.render('./userBlog2/blog_exper', {
                         uName: rs.uName,
                         signed: rs.signed,
                         vCode: rs.vCode,
@@ -98,7 +98,7 @@ exports.expSee = function(req, res, next) {
                 if(err){
                     res.redirect('/error');
                 }else{
-                    res.render('blog_exper', {
+                    res.render('./userBlog2/blog_exper', {
                         uName: rs.uName,
                         signed: rs.signed,
                         vCode: rs.vCode,
@@ -114,7 +114,6 @@ exports.expSee = function(req, res, next) {
 
 
 };
-
 
 
 function getArtComs(aid, callFn) {

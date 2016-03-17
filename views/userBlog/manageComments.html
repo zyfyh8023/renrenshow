@@ -35,14 +35,14 @@
 									<%= dateformat(allComments[i].cTime) %>
 								</td>
 								<td class="am-text-middle">
-									<% if(allComments[i].CommentArt!='') { %>
-										博文
+									<% if(allComments[i].CommentArt) { %>
+										博文 
 									<% }else { %>
 										面经
 									<% } %>
 								</td>
 								<td class="am-text-middle">
-									<% if(allComments[i].CommentArt!='') { %>
+									<% if(allComments[i].CommentArt) { %>
 										<a target="_blank" href="/<%= uName %>/blogs_art?aid=<%= allComments[i].CommentArt %>">查看</a>
 									<% }else{ %>
 										<a target="_blank" href="/<%= uName %>/blogs_exp?aid=<%= allComments[i].CommentExp %>">查看</a>

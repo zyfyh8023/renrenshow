@@ -1,5 +1,6 @@
 $(document).ready(function() {
-
+	
+	//发送邮件的操作
 	var $sendEmailFrm = $('#zy-sendEmailForm');
 	$sendEmailFrm.delegate('button', 'click', function(event) {
 		var emailname = $.trim($('.name', $sendEmailFrm).val()),
@@ -34,4 +35,5 @@ $(document).ready(function() {
 			warnOpnFn('请把表单的内容填写完整哦~');
 		}
 	});
+
 })

@@ -6,12 +6,12 @@ var Schema = mongoose.Schema;
 var CommentSchema = new Schema({
     author: String,
     authorImg: String,
-    CommentCont: String,
-    CommentArt: String,
-    CommentExp: String,
-    CommentResumeTyp: String, //3实习 4工作 5荣誉 6作品
-    CommentResumeVal: String,
-    artAuthor: String,
+    CommentCont: String,      //评论的具体内容
+    CommentArt: String,       //文章的评论
+    CommentExp: String,       //面经的评论
+    CommentResumeTyp: String, //简历：3实习 4工作 5荣誉 6作品
+    CommentResumeVal: String, //简历：
+    artAuthor: String,        //原作者
     CommentTag1: Number,
     CommentTag2: Number,
     CommentTag3: Number,

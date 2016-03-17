@@ -22,6 +22,7 @@ exports.page = function(req, res, next) {
             				res.redirect('/error');
             			}else{
             				allres=result;
+            				console.log(result);
             				res.render('./userResume/resume', {
             					uName: rs.uName,
             					signed: rs.signed,

@@ -26,7 +26,7 @@ $(document).ready(function() {
 			    			'<td class="am-text-middle">'+dateformat(data.allArticles[i].cTime)+'</td>'+
 			    			'<td class="am-text-middle">'+
 			    			'<a href="javascript:void(0);" class="zy-del-art">删除</a><br>'+
-			    			'<a href="/blogs_exp?aid=123132135">查看</a><br>';
+			    			'<a href="/'+__data.uName+'/blogs_exp?aid='+data.allArticles[i]._id+'">查看</a><br>';
 
 			    		if(data.allArticles[i].experienceTag=='2'){
 			    			htmlTemp+='<a href="javascript:void(0);" class="zy-pub-art">发布</a>';

@@ -36,159 +36,212 @@ $(document).ready(function() {
 	//博客的评论模块
 	var $comm=$('#zy-blog-com');
 	$comm.delegate('.zy-button1', 'click', function(event) {
-		$.ajax({
-			type: 'post',
-			url: '/comment',
-			data: {
-				comCon: $('.comment', $comm).val(),
-				comArt: $('.comFrom', $comm).data('artid'),
-				artAuthor: $('.comFrom', $comm).data('authorid'),
-				typ: '1'
-			},
-			dataType: 'json',
-			success: function(data) {
-				if (data.retCode != 200) {
-					warnOpnFn(data.retDesc);
-				} else {
-					location.reload();
+		var comCon=$('.comment', $comm).val(),
+			comArt=$('.comFrom', $comm).data('artid'),
+			artAuthor=$('.comFrom', $comm).data('authorid');
+		if(comCon && (comArt+1) && artAuthor){
+			$.ajax({
+				type: 'post',
+				url: '/comment',
+				data: {
+					comCon: comCon,
+					comArt: comArt,
+					artAuthor: artAuthor,
+					typ: '1'
+				},
+				dataType: 'json',
+				success: function(data) {
+					if (data.retCode != 200) {
+						warnOpnFn(data.retDesc);
+					} else {
+						location.reload();
+					}
+				},
+				error: function(data) {
+					alertOpnFn('err');
 				}
-			},
-			error: function(data) {
-				alertOpnFn('err');
-			}
-		});
+			});
+		}else{
+			warnOpnFn('请把表单的内容填写完整哦~');
+		}
+		
 	});
 
 	//面经的评论模块
 	var $comm2=$('#zy-exp-com');
 	$comm2.delegate('.zy-button1', 'click', function(event) {
-		$.ajax({
-			type: 'post',
-			url: '/comment',
-			data: {
-				comCon: $('.comment', $comm2).val(),
-				comArt: $('.comFrom', $comm2).data('expid'),
-				artAuthor: $('.comFrom', $comm2).data('authorid'),
-				typ: '2'
-			},
-			dataType: 'json',
-			success: function(data) {
-				if (data.retCode != 200) {
-					warnOpnFn(data.retDesc);
-				} else {
-					location.reload();
+		var comCon=$('.comment', $comm2).val(),
+			comArt=$('.comFrom', $comm2).data('expid'),
+			artAuthor=$('.comFrom', $comm2).data('authorid');
+		if(comCon && (comArt+1) && artAuthor){
+			$.ajax({
+				type: 'post',
+				url: '/comment',
+				data: {
+					comCon: $('.comment', $comm2).val(),
+					comArt: $('.comFrom', $comm2).data('expid'),
+					artAuthor: $('.comFrom', $comm2).data('authorid'),
+					typ: '2'
+				},
+				dataType: 'json',
+				success: function(data) {
+					if (data.retCode != 200) {
+						warnOpnFn(data.retDesc);
+					} else {
+						location.reload();
+					}
+				},
+				error: function(data) {
+					alertOpnFn('err');
 				}
-			},
-			error: function(data) {
-				alertOpnFn('err');
-			}
-		});
+			});
+		}else{
+			warnOpnFn('请把表单的内容填写完整哦~');
+		}
+		
 	});
 	
 	//resume的评论部分1
 	var $comm3=$('#zy-comment-awd');
 	$comm3.delegate('.zy-button1', 'click', function(event) {
-		$.ajax({
-			type: 'post',
-			url: '/comment',
-			data: {
-				comCon: $('.comment', $comm3).val(),
-				comArt: $('.comFrom', $comm3).data('resid'),
-				artAuthor: $('.comFrom', $comm3).data('authorid'),
-				typ: '3'
-			},
-			dataType: 'json',
-			success: function(data) {
-				if (data.retCode != 200) {
-					warnOpnFn(data.retDesc);
-				} else {
-					location.reload();
+		var comCon=$('.comment', $comm3).val(),
+			comArt=$('.comFrom', $comm3).data('resid'),
+			artAuthor=$('.comFrom', $comm3).data('authorid');
+		if(comCon && (comArt+1) && artAuthor){
+			$.ajax({
+				type: 'post',
+				url: '/comment',
+				data: {
+					comCon: $('.comment', $comm3).val(),
+					comArt: $('.comFrom', $comm3).data('resid'),
+					artAuthor: $('.comFrom', $comm3).data('authorid'),
+					typ: '3'
+				},
+				dataType: 'json',
+				success: function(data) {
+					if (data.retCode != 200) {
+						warnOpnFn(data.retDesc);
+					} else {
+						location.reload();
+					}
+				},
+				error: function(data) {
+					alertOpnFn('err');
 				}
-			},
-			error: function(data) {
-				alertOpnFn('err');
-			}
-		});
+			});
+		}else{
+			warnOpnFn('请把表单的内容填写完整哦~');
+		}
+		
 	});
 
 	//resume的评论部分2
 	var $comm4=$('#zy-comment-cmp');
 	$comm4.delegate('.zy-button1', 'click', function(event) {
-		$.ajax({
-			type: 'post',
-			url: '/comment',
-			data: {
-				comCon: $('.comment', $comm4).val(),
-				comArt: $('.comFrom', $comm4).data('resid'),
-				artAuthor: $('.comFrom', $comm4).data('authorid'),
-				typ: '4'
-			},
-			dataType: 'json',
-			success: function(data) {
-				if (data.retCode != 200) {
-					warnOpnFn(data.retDesc);
-				} else {
-					location.reload();
+		var comCon=$('.comment', $comm4).val(),
+			comArt=$('.comFrom', $comm4).data('resid'),
+			artAuthor=$('.comFrom', $comm4).data('authorid');
+		var typ;
+		if(__data.jobTyp=='实习'){
+			typ='7';
+		}else{
+			typ='4';
+		}
+		if(comCon && (comArt+1) && artAuthor){
+			$.ajax({
+				type: 'post',
+				url: '/comment',
+				data: {
+					comCon: $('.comment', $comm4).val(),
+					comArt: $('.comFrom', $comm4).data('resid'),
+					artAuthor: $('.comFrom', $comm4).data('authorid'),
+					typ: typ
+				},
+				dataType: 'json',
+				success: function(data) {
+					if (data.retCode != 200) {
+						warnOpnFn(data.retDesc);
+					} else {
+						location.reload();
+					}
+				},
+				error: function(data) {
+					alertOpnFn('err');
 				}
-			},
-			error: function(data) {
-				alertOpnFn('err');
-			}
-		});
+			});
+		}else{
+			warnOpnFn('请把表单的内容填写完整哦~');
+		}
+		
 	});
 
-	//resume的评论部分3
+	//resume的评论部分
 	var $comm5=$('#zy-comment-scl');
 	$comm5.delegate('.zy-button1', 'click', function(event) {
-		$.ajax({
-			type: 'post',
-			url: '/comment',
-			data: {
-				comCon: $('.comment', $comm5).val(),
-				comArt: $('.comFrom', $comm5).data('resid'),
-				artAuthor: $('.comFrom', $comm5).data('authorid'),
-				typ: '5'
-			},
-			dataType: 'json',
-			success: function(data) {
-				if (data.retCode != 200) {
-					warnOpnFn(data.retDesc);
-				} else {
-					location.reload();
+		var comCon=$('.comment', $comm5).val(),
+			comArt=$('.comFrom', $comm5).data('resid'),
+			artAuthor=$('.comFrom', $comm5).data('authorid');
+		if(comCon && (comArt+1) && artAuthor){
+			$.ajax({
+				type: 'post',
+				url: '/comment',
+				data: {
+					comCon: $('.comment', $comm5).val(),
+					comArt: $('.comFrom', $comm5).data('resid'),
+					artAuthor: $('.comFrom', $comm5).data('authorid'),
+					typ: '5'
+				},
+				dataType: 'json',
+				success: function(data) {
+					if (data.retCode != 200) {
+						warnOpnFn(data.retDesc);
+					} else {
+						location.reload();
+					}
+				},
+				error: function(data) {
+					alertOpnFn('err');
 				}
-			},
-			error: function(data) {
-				alertOpnFn('err');
-			}
-		});
+			});
+		}else{
+			warnOpnFn('请把表单的内容填写完整哦~');
+		}
+		
 	});
 
-	//resume的评论部分4
+	//resume的评论部分
 	var $comm6=$('#zy-comment-wrk');
 	$comm6.delegate('.zy-button1', 'click', function(event) {
-		$.ajax({
-			type: 'post',
-			url: '/comment',
-			data: {
-				comCon: $('.comment', $comm6).val(),
-				comArt: $('.comFrom', $comm6).data('resid'),
-				artAuthor: $('.comFrom', $comm6).data('authorid'),
-				typ: '6'
-			},
-			dataType: 'json',
-			success: function(data) {
-				if (data.retCode != 200) {
-					warnOpnFn(data.retDesc);
-				} else {
-					location.reload();
+		var comCon=$('.comment', $comm6).val(),
+			comArt=$('.comFrom', $comm6).data('resid'),
+			artAuthor=$('.comFrom', $comm6).data('authorid');
+		if(comCon && (comArt+1) && artAuthor){
+			$.ajax({
+				type: 'post',
+				url: '/comment',
+				data: {
+					comCon: $('.comment', $comm6).val(),
+					comArt: $('.comFrom', $comm6).data('resid'),
+					artAuthor: $('.comFrom', $comm6).data('authorid'),
+					typ: '6'
+				},
+				dataType: 'json',
+				success: function(data) {
+					if (data.retCode != 200) {
+						warnOpnFn(data.retDesc);
+					} else {
+						location.reload();
+					}
+				},
+				error: function(data) {
+					alertOpnFn('err');
 				}
-			},
-			error: function(data) {
-				alertOpnFn('err');
-			}
-		});
+			});
+		}else{
+			warnOpnFn('请把表单的内容填写完整哦~');
+		}
+		
 	});
-	
 
 	//warning提示框的关闭事件
 	$("#zy-warning .am-close").click(function() {

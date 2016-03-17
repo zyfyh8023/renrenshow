@@ -100,6 +100,10 @@ exports.yoursPage = function(req, res, next){
 
 /* POST createarticle page. */
 exports.doPage = function(req, res, next) {
+    //拦截登录
+    if(!req.session.user){
+        return res.send({retCode: 401, retDesc: '需要先登录，才可以评论哦~'});
+    }
     uName = req.session.user.username;
     var comCon = req.body.comCon.trim() || '',
         comArt = req.body.comArt.trim() || '',
@@ -118,7 +122,7 @@ exports.doPage = function(req, res, next) {
                             author: uName,
                             authorImg:result.headimg,
                             CommentCont: comCon,
-                            CommentArt: comArt,
+                            CommentArt: comArt,    //文章
                             artAuthor: artAuthor
                         });
                         break;
@@ -127,7 +131,7 @@ exports.doPage = function(req, res, next) {
                             author: uName,
                             authorImg:result.headimg,
                             CommentCont: comCon,
-                            CommentExp: comArt,
+                            CommentExp: comArt,   //面经
                             artAuthor: artAuthor
                         });
                         break;
@@ -136,7 +140,7 @@ exports.doPage = function(req, res, next) {
                             author: uName,
                             authorImg:result.headimg,
                             CommentCont: comCon,
-                            CommentResumeTyp:'3',
+                            CommentResumeTyp:'3', //荣誉
                             CommentResumeVal: comArt,
                             artAuthor: artAuthor
                         });
@@ -146,7 +150,7 @@ exports.doPage = function(req, res, next) {
                             author: uName,
                             authorImg:result.headimg,
                             CommentCont: comCon,
-                            CommentResumeTyp:'4',
+                            CommentResumeTyp:'4',  //工作
                             CommentResumeVal: comArt,
                             artAuthor: artAuthor
                         });
@@ -156,7 +160,7 @@ exports.doPage = function(req, res, next) {
                             author: uName,
                             authorImg:result.headimg,
                             CommentCont: comCon,
-                            CommentResumeTyp:'5',
+                            CommentResumeTyp:'5',   //教育
                             CommentResumeVal: comArt,
                             artAuthor: artAuthor
                         });
@@ -166,7 +170,7 @@ exports.doPage = function(req, res, next) {
                             author: uName,
                             authorImg:result.headimg,
                             CommentCont: comCon,
-                            CommentResumeTyp:'6',
+                            CommentResumeTyp:'6',  //作品
                             CommentResumeVal: comArt,
                             artAuthor: artAuthor
                         });
@@ -176,13 +180,13 @@ exports.doPage = function(req, res, next) {
                             author: uName,
                             authorImg:result.headimg,
                             CommentCont: comCon,
-                            CommentResumeTyp:'7',
+                            CommentResumeTyp:'7',  //实习
                             CommentResumeVal: comArt,
                             artAuthor: artAuthor
                         });
                         break;
                     default:
-                        newComment = new comment.Comment({});
+                        return res.send({retCode: 400, retDesc: '评论失败，稍后再试!'});
                         break;
                 }
                

@@ -29,7 +29,7 @@ $(document).ready(function() {
 	        			if (data.retCode != 200) {
 	        				warnOpnFn(data.retDesc);
 	        			} else {
-	        				location.href = "/myindex";
+	        				history.go(-1);
 	        			}
 	        		},
 	        		error: function(err) {

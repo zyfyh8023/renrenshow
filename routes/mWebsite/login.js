@@ -8,8 +8,7 @@ var retCode, retDesc, uName, cssFils, jsFils;
 
 /* GET login page. */
 exports.page = function(req, res, next) {
-
-	uName=checkState.loginState(req);
+	uName=checkState.loginState(req, res, false);
 
 	res.render('login', {
 		title: '登录-人人秀',

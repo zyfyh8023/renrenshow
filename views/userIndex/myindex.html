@@ -27,9 +27,9 @@
 				<% for(var j=num0; j<4; j++){ %>
 					<li>
 						<div class="am-gallery-item">
-							<a href="<% if(signed=='1'){ %>/resume#reward<% }else{ %>javascript:void(0);<% } %>" class="">
+							<a href="<% if(signed=='1'){ %>/<%= uName %>/resume#reward<% }else{ %>javascript:void(0);<% } %>" class="">
 								<img style="height:15rem" src="/images/exp2.jpg" />
-								<h3 class="am-gallery-title"><a href="<% if(signed=='1'){ %>/resume#reward<% }else{ %>javascript:void(0);<% } %>">暂无，期待你的出现！</a></h3>
+								<h3 class="am-gallery-title"><a href="<% if(signed=='1'){ %>/<%= uName %>/resume#reward<% }else{ %>javascript:void(0);<% } %>"><% if(signed=='1'){ %>暂无，期待你的出现！<% }else{ %>楼主很懒，暂未添加<% } %></a></h3>
 								<div class="am-gallery-desc">xxxx-xx-xx</div>
 							</a>
 						</div>
@@ -45,7 +45,7 @@
 			</div>
 			<div data-am-widget="list_news" class="am-list-news am-list-news-default">
 				<div class="am-list-news-hd am-cf">
-					<h2>技术博文</h2>
+					<h2 style="color:#0e90d2">技术博文</h2>
 					<% if(comArt2.length>num3){ %>
 						<a style="outline:none;" target="_blank" href="/<%= uName %>/blogs_alluArts?typ=1">
 							<span class="am-list-news-more am-fr">更多 &raquo;</span>
@@ -82,7 +82,7 @@
 			</div>
 			<div data-am-widget="list_news" class="am-list-news am-list-news-default">
 				<div class="am-list-news-hd am-cf">
-					<h2>行业远瞻</h2>
+					<h2 style="color:#0e90d2">行业远瞻</h2>
 					<% if(comArt3.length>num4){ %>
 						<a href="/<%= uName %>/blogs_alluArts?typ=2" target="_blank">
 							<span class="am-list-news-more am-fr">更多 &raquo;</span>
@@ -119,7 +119,7 @@
 			</div>
 			<div data-am-widget="list_news" class="am-list-news am-list-news-default">
 				<div class="am-list-news-hd am-cf">
-					<h2>随便写写</h2>
+					<h2 style="color:#0e90d2">随便写写</h2>
 					<% if(comArt4.length>num5){ %>
 						<a href="/<%= uName %>/blogs_alluArts?typ=4" target="_blank">
 							<span class="am-list-news-more am-fr">更多 &raquo;</span>
@@ -161,7 +161,7 @@
 			</div>
 			<div data-am-widget="list_news" class="am-list-news am-list-news-default">
 				<div class="am-list-news-hd am-cf">
-					<h2>我的面经</h2>
+					<h2 style="color:#0e90d2">我的面经</h2>
 					<% if(comExps.length>num1){ %>
 						<a href="/<%= uName %>/blogs_alluExps" target="_blank">
 							<span class="am-list-news-more am-fr">更多 &raquo;</span>
@@ -185,7 +185,7 @@
 			</div>
 			<div data-am-widget="list_news" class="am-list-news am-list-news-default">
 				<div class="am-list-news-hd am-cf">
-					<h2>我的日志</h2>
+					<h2 style="color:#0e90d2">我的日志</h2>
 					<% if(comArt1.length>num2){ %>
 						<a href="/<%= uName %>/blogs_alluArts?typ=4" target="_blank">
 							<span class="am-list-news-more am-fr">更多 &raquo;</span>

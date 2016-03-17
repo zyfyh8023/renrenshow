@@ -18,12 +18,12 @@ $(document).ready(function() {
 			    	var htmls="";
 			    	for(var i=0, len=data.allComments.length;i<len;i++){
 		    			var txt="", linkstr='';
-		    			if(data.allComments[i].CommentArt!='') { 
+		    			if(data.allComments[i].CommentArt) { 
 		    				txt='博文';
-		    				linkstr='<a href="/blogs_exp?aid='+data.allComments[i].CommentArt+'"">查看</a>';
+		    				linkstr='<a href="/'+__data.uName+'/blogs_art?aid='+data.allComments[i].CommentArt+'"">查看</a>';
 		    			}else {
 		    				txt='面经';
-		    				linkstr='<a href="/blogs_exp?aid='+data.allComments[i].CommentExp+'"">查看</a>';
+		    				linkstr='<a href="/'+__data.uName+'/blogs_exp?aid='+data.allComments[i].CommentExp+'"">查看</a>';
 		    			}
 			    		var htmlTemp=
 			    			'<tr  data-ids="'+data.allComments[i]._id+'">'+

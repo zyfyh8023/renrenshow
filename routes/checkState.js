@@ -6,24 +6,14 @@ var nodemailer = require("nodemailer");
 var setings = require('../models/setting');
 var privateSetings = require('../models/privateSeting');
 
-exports.checkLogin = function(req, res, next) {
-	if (!req.session.user) {
-		return res.redirect('/login');
-	}
-	next();
-}
-
-exports.checkNotLogin = function(req, res, next) {
-	if (req.session.user) {
-		return res.redirect('/myindex');
-	}
-	next();
-}
-
-exports.loginState = function(req){
+exports.loginState = function(req, res, isLogin){
 	var uName='';
 	if(req.session.user){
 		uName = req.session.user.username;
+	}else{
+		if(isLogin){
+			return res.redirect('/login');
+		}
 	}
 	return uName;
 }
@@ -74,7 +64,7 @@ exports.myState = function(req, res, callbackFn){
 	var objs={};
 	
 	//首先判断是否登录
-	if(req.session.user){
+	if(req.session.user && req.params.uid==req.session.user.username){
 		objs={
 			signed: 1,
 			uName: req.session.user.username,
