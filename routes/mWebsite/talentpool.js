@@ -10,18 +10,45 @@ exports.page = function(req, res, next) {
 
 	uName=checkState.loginState(req, res, false);
 
-	users.findAll({}, function(err, result) {
-		if (err) {
-			res.redirect('/error');
-		}else{
-			console.log(result);
+	users.findAllByCon({},36,0,function(err, result, nums){
+	    if(err){
+	        res.redirect('/error');
+	    }else{
+	        var showpagetip, allpage;
+	        allpage=Math.ceil(nums/36);
+	        if(allpage>35){
+	            showpagetip=35;
+	        }else{
+	            showpagetip=allpage;
+	        }
 			res.render('talentpool', {
 				title: '人才库-人人秀',
 				uName: uName,
 				results: result ,
-				cssFils:['talentpool']
+				nums: nums,
+				showpagetip: showpagetip, 
+				allpage: allpage,
+				cssFils:['talentpool'],
+				jsFils:['talentpool']
 			});
 		}
 	});
 	
+};
+
+
+exports.allUserPS = function(req, res){
+    var curstep=req.body.curstep-1,
+        pagenum=36,
+        skipstep=curstep*pagenum,
+        object={};
+   
+    users.findAllByCon(object,pagenum,skipstep,function(err, results, nums){
+        if(err){
+            console.log('err');
+        }else{
+            res.send({allArticles: results, nums: nums}); 
+        }
+    })
+    
 };

@@ -1,6 +1,6 @@
 <% include header.html %>
 
-<section class="zy-talpool-sec">
+<section class="zy-talpool-sec" id="zy-users-div">
 	<div class="am-g">
 		<div class="am-u-lg-6 am-u-md-9 am-u-sm-centered">
 			<div class="am-input-group am-input-group-primary">
@@ -90,7 +90,7 @@
 	</div>
 	<br>
 	<div class="am-g">
-		<div class="am-u-lg-9 am-u-md-11 am-u-sm-centered">
+		<div class="am-u-lg-9 am-u-md-11 am-u-sm-centered" id="zy-all-users">
 			<% for(var i=0; i<results.length; i++) { %>
 				<a target="_blank" href="/<%= results[i].username %>/index">
 					<div class="am-u-lg-2 am-u-md-3 am-u-sm-6 am-u-end">
@@ -104,22 +104,34 @@
 		</div>
 	</div>
 	<div class="am-g" style="margin-top:2rem;">
-		<div class="am-u-lg-9 am-u-md-11 am-u-sm-centered">
+		<div class="am-u-lg-9 am-u-md-11 am-u-sm-centered" id="pageShow" style="<% if(results.length<1) { %>display:none;<% } %>">
 			<ul class="am-pagination am-pagination-right">
-				<li class="am-disabled"><a href="#">&laquo;</a></li>
-				<li class="am-active"><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">6</a></li>
-				<li><a href="#">7</a></li>
-				<li><a href="#">8</a></li>
-				<li><a href="#">9</a></li>
-				<li><a href="#">&raquo;</a></li>
+				共<%= allpage %>页&nbsp;
+				<% if(showpagetip > 1) {%>
+					<li class="J_pre-page"><a href="javascript:void(0);">&laquo;</a></li>
+					<% for(var i=1; i<=showpagetip; i++) {%>
+						<% if(i==1) { %>
+							<li class="am-active"><a href="javascript:void(0);">1</a></li>
+						<% }else{ %>
+							<li><a href="javascript:void(0);"><%= i %></a></li>
+						<% } %>
+					<% } %>
+					<li class="J_next-page"><a href="javascript:void(0);">&raquo;</a></li>
+				<% } %>
 			</ul>
 		</div>
 	</div>
 </section>	
+
+
+<script>
+	window.__data={
+		allpage: <%= allpage %>,
+		showpagetip: <%= showpagetip %>,
+		nums: <%= nums %>,
+		uName: "<%= uName %>"
+	}
+</script>
+
 
 <% include footer.html %>
