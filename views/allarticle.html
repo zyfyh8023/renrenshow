@@ -8,123 +8,53 @@
 			</div>
 			<div class="am-list-news-bd">
 				<ul class="am-list">
-					<li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-						<div class="am-u-sm-2 am-list-thumb">
-							<a href="http://www.douban.com/online/11614662/" class="">
-								<img src="http://img5.douban.com/lpic/o636459.jpg" alt="" />
-							</a>
-						</div>
-						<div class=" am-u-sm-10 am-list-main">
-							<h3 class="am-list-item-hd">
-                    <a href="http://www.douban.com/online/11614662/" class="">我很囧，你保重....晒晒旅行中的那些囧！</a>
-                      </h3>
-							<div class="am-list-item-text">囧人囧事囧照，人在囧途，越囧越萌。标记《带你出发，陪我回家》http://book.douban.com/subject/25711202/为“想读”“在读”或“读过”，有机会获得此书本活动进行3个月，每月送出三本书。会有不定期bonus！</div>
-						</div>
-					</li>
-					<li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-						<div class="am-u-sm-2 am-list-thumb">
-							<a href="http://www.douban.com/online/11624755/" class="">
-								<img src="http://img3.douban.com/lpic/o637240.jpg" alt="" />
-							</a>
-						</div>
-						<div class=" am-u-sm-10 am-list-main">
-							<h3 class="am-list-item-hd">
-                    <a href="http://www.douban.com/online/11624755/" class="">我最喜欢的一张画</a>
-                  </h3>
-							<div class="am-list-item-text">你最喜欢的艺术作品，告诉大家它们的------名图画，色彩，交织，撞色，线条雕塑装置当代古代现代作品的照片美我最喜欢的画群296795413进群发画，少说多发图，</div>
-						</div>
-					</li>
-					<li class="am-g am-list-item-desced">
-						<div class=" am-list-main">
-							<h3 class="am-list-item-hd">
-                			<a href="http://www.douban.com/online/11645411/" class="">“你的旅行，是什么颜色？” 晒照片，换北欧梦幻极光之旅！</a>
-                  			</h3>
-							<div class="am-list-item-text">	还在苦恼圣诞礼物再也玩儿不出新意？快来抢2013最炫彩的跨国圣诞礼物！【参与方式】1.关注“UniqueWay无二之旅”豆瓣品牌小站http://brand.douban.com/uniqueway/2.上传一张**本人**在旅行中色彩最浓郁、最丰富的照片（色彩包含取景地、周边事物、服装饰品、女生彩妆等等，发挥你们无穷的创意想象力哦！^^）一定要有本人出现喔！3.在照片下方，附上一句旅行宣言作为照片说明。 成功参与活动！* 听他们刚才说，上传照片的次
+					<%for (var i=0, len=resul.length; i<len; i++){ %>
+						<li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+							<div class="am-u-sm-2 am-list-thumb">
+								<a href="http://www.douban.com/online/11624755/" class="">
+									<img src="http://img3.douban.com/lpic/o637240.jpg" alt="" />
+								</a>
 							</div>
-						</div>
-					</li>
-					<li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-						<div class="am-u-sm-2 am-list-thumb">
-							<a href="http://www.douban.com/online/11614662/" class="">
-								<img src="http://img5.douban.com/lpic/o636459.jpg" alt="" />
-							</a>
-						</div>
-						<div class=" am-u-sm-10 am-list-main">
-							<h3 class="am-list-item-hd">
-                      <a href="http://www.douban.com/online/11614662/" class="">我很囧，你保重....晒晒旅行中的那些囧！</a>
-                        </h3>
-							<div class="am-list-item-text">囧人囧事囧照，人在囧途，越囧越萌。标记《带你出发，陪我回家》http://book.douban.com/subject/25711202/为“想读”“在读”或“读过”，有机会获得此书本活动进行3个月，每月送出三本书。会有不定期bonus！</div>
-						</div>
-					</li>
-					<li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-						<div class="am-u-sm-2 am-list-thumb">
-							<a href="http://www.douban.com/online/11624755/" class="">
-								<img src="http://img3.douban.com/lpic/o637240.jpg" alt="" />
-							</a>
-						</div>
-						<div class=" am-u-sm-10 am-list-main">
-							<h3 class="am-list-item-hd">
-                      <a href="http://www.douban.com/online/11624755/" class="">我最喜欢的一张画</a>
-                    </h3>
-							<div class="am-list-item-text">你最喜欢的艺术作品，告诉大家它们的------名图画，色彩，交织，撞色，线条雕塑装置当代古代现代作品的照片美我最喜欢的画群296795413进群发画，少说多发图，</div>
-						</div>
-					</li>
-					<li class="am-g am-list-item-desced">
-						<div class=" am-list-main">
-							<h3 class="am-list-item-hd">
-                  <a href="http://www.douban.com/online/11645411/" class="">“你的旅行，是什么颜色？” 晒照片，换北欧梦幻极光之旅！</a>
-                    </h3>
-							<div class="am-list-item-text">还在苦恼圣诞礼物再也玩儿不出新意？快来抢2013最炫彩的跨国圣诞礼物！【参与方式】1.关注“UniqueWay无二之旅”豆瓣品牌小站http://brand.douban.com/uniqueway/2.上传一张**本人**在旅行中色彩最浓郁、最丰富的照片（色彩包含取景地、周边事物、服装饰品、女生彩妆等等，发挥你们无穷的创意想象力哦！^^）一定要有本人出现喔！3.在照片下方，附上一句旅行宣言作为照片说明。 成功参与活动！* 听他们刚才说，上传照片的次</div>
-						</div>
-					</li>
-					<li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-						<div class="am-u-sm-2 am-list-thumb">
-							<a href="http://www.douban.com/online/11614662/" class="">
-								<img src="http://img5.douban.com/lpic/o636459.jpg" alt="" />
-							</a>
-						</div>
-						<div class=" am-u-sm-10 am-list-main">
-							<h3 class="am-list-item-hd">
-                      <a href="http://www.douban.com/online/11614662/" class="">我很囧，你保重....晒晒旅行中的那些囧！</a>
-                        </h3>
-							<div class="am-list-item-text">囧人囧事囧照，人在囧途，越囧越萌。标记《带你出发，陪我回家》http://book.douban.com/subject/25711202/为“想读”“在读”或“读过”，有机会获得此书本活动进行3个月，每月送出三本书。会有不定期bonus！</div>
-						</div>
-					</li>
-					<li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-						<div class="am-u-sm-2 am-list-thumb">
-							<a href="http://www.douban.com/online/11624755/" class="">
-								<img src="http://img3.douban.com/lpic/o637240.jpg" alt="" />
-							</a>
-						</div>
-						<div class=" am-u-sm-10 am-list-main">
-							<h3 class="am-list-item-hd">
-                      <a href="http://www.douban.com/online/11624755/" class="">我最喜欢的一张画</a>
-                    </h3>
-							<div class="am-list-item-text">你最喜欢的艺术作品，告诉大家它们的------名图画，色彩，交织，撞色，线条雕塑装置当代古代现代作品的照片美我最喜欢的画群296795413进群发画，少说多发图，</div>
-						</div>
-					</li>
-					<li class="am-g am-list-item-desced">
-						<div class=" am-list-main">
-							<h3 class="am-list-item-hd">
-                  <a href="http://www.douban.com/online/11645411/" class="">“你的旅行，是什么颜色？” 晒照片，换北欧梦幻极光之旅！</a>
-                    </h3>
-							<div class="am-list-item-text">还在苦恼圣诞礼物再也玩儿不出新意？快来抢2013最炫彩的跨国圣诞礼物！【参与方式】1.关注“UniqueWay无二之旅”豆瓣品牌小站http://brand.douban.com/uniqueway/2.上传一张**本人**在旅行中色彩最浓郁、最丰富的照片（色彩包含取景地、周边事物、服装饰品、女生彩妆等等，发挥你们无穷的创意想象力哦！^^）一定要有本人出现喔！3.在照片下方，附上一句旅行宣言作为照片说明。 成功参与活动！* 听他们刚才说，上传照片的次</div>
-						</div>
-					</li>
+							<div class=" am-u-sm-10 am-list-main">
+								<h3 class="am-list-item-hd">
+	                    			<a href="http://www.douban.com/online/11624755/" class="">1我最喜欢的一张画</a>
+	                  			</h3>
+								<div class="am-list-item-text">
+									苦恼圣诞礼物再也玩儿不出新意？快来抢2013最炫彩的跨国圣诞礼物！【参与方式】1.关注“UniqueWay无二之旅”豆瓣品牌小站http://brand.douban.com/uniqueway/2.上传一张**本人**在旅行中色彩最浓郁、最丰富的照片（色彩包含取景地、周边事物、服装饰品、女生彩妆等等，发挥你们无穷的创意想象力哦！^^）一定要有本人出现喔！3.在照片下方，附上一句旅行宣言作为照片说明。 成功参与活动！* 听他们刚才说，上传照片的------名图画，色彩，交织，撞色，线条雕塑装置当代古代现代作品的照片美我最喜欢的画群296795413进群发画，少说多发图，
+								</div>
+							</div>
+						</li>
+					<% } %>
 				</ul>
 			</div>
 		</div>
 		<br>
-		<ul class="am-pagination am-pagination-right">
-			<li class="am-disabled"><a href="#">&laquo;</a></li>
-			<li class="am-active"><a href="#">1</a></li>
-			<li><a href="#">2</a></li>
-			<li><a href="#">3</a></li>
-			<li><a href="#">4</a></li>
-			<li><a href="#">5</a></li>
-			<li><a href="#">&raquo;</a></li>
-		</ul>
+		<div id="pageShow" style="<% if(resul.length<1) { %>display:none;<% } %>">
+			<ul class="am-pagination am-pagination-right">
+				共<%= allpage %>页&nbsp;
+				<% if(showpagetip > 1) {%>
+					<li class="J_pre-page"><a href="javascript:void(0);">&laquo;</a></li>
+					<% for(var i=1; i<=showpagetip; i++) {%>
+						<% if(i==1) { %>
+							<li class="am-active"><a href="javascript:void(0);">1</a></li>
+						<% }else{ %>
+							<li><a href="javascript:void(0);"><%= i %></a></li>
+						<% } %>
+					<% } %>
+					<li class="J_next-page"><a href="javascript:void(0);">&raquo;</a></li>
+				<% } %>
+			</ul>
+		</div>
 	</div>
 </section>
+
+<script>
+	window.__data={
+		allpage: <%= allpage %>,
+		showpagetip: <%= showpagetip %>,
+		nums: <%= nums %>,
+		typ: "<%= typ %>"
+	}
+</script>
 
 <% include footer.html %>

@@ -117,6 +117,8 @@ app.post('/register', register.doRegister);  //注册操作
 app.post('/loginOut', login.loginOut);      //注销操作
 app.post('/about', about.doPage);       //帮助操作
 app.post('/allUserPS', talentpool.allUserPS);  //人才列表分页
+app.post('/allArts', allarticle.allartPS);    //文章列表分页
+
 
 
 //个人主站  --GET请求
