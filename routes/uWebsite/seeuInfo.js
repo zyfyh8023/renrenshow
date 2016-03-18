@@ -14,6 +14,7 @@ exports.awards = function(req, res) {
 			    res.redirect('/error');
 			}else{
 				allres=results;
+				console.log(results);
 				if(rs.signed=='1'){
 					res.render('./userResume/userSCI/awardInfo', {
 						uName: rs.uName,
@@ -62,7 +63,7 @@ function getAwdComs(ids, uName, callFn) {
             	if(err){
             		callback(err,null);
             	}else{
-            		callback(null,resul1[0]['schools3'][ids]);
+            		callback(null,resul1[0]['Certificate6'][ids]);
             	}
             });
         },
@@ -154,7 +155,7 @@ function getCmp1Coms(ids, uName, callFn) {
             	if(err){
             		callback(err,null);
             	}else{
-            		callback(null,resul1[0]['schools3'][ids]);
+            		callback(null,resul1[0]['experience4'][ids]);
             	}
             });
         },
@@ -247,7 +248,7 @@ function getCmp2Coms(ids, uName, callFn) {
             	if(err){
             		callback(err,null);
             	}else{
-            		callback(null,resul1[0]['schools3'][ids]);
+            		callback(null,resul1[0]['work5'][ids]);
             	}
             });
         },
@@ -424,7 +425,7 @@ function getWrkComs(ids, uName, callFn) {
             	if(err){
             		callback(err,null);
             	}else{
-            		callback(null,resul1[0]['schools3'][ids]);
+            		callback(null,resul1[0]['pWorks7'][ids]);
             	}
             });
         },

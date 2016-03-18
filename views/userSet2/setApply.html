@@ -1,0 +1,41 @@
+<% include ../myheader.html %>
+
+<section id="zy-setApply">
+	<% include ../nav.html %>
+	<div class="am-g am-u-lg-9 am-u-md-12  am-u-sm-centered">
+		<% include setNavs.html %>
+		<div class="col-lg-10 am-u-lg-10 zy-show-lg-content">
+			<div class="apply-container">
+				<form autocomplete ='off' class="am-form" id="zy-sendEmailForm" data-am-validator>
+					<label for="apply-email" class="about-color">您的邮箱</label>
+					<input class="apply-email" type="email" value="" required placeholder="您的邮箱">
+					<br/>
+	  				<label for="apply-name" class="about-color">您的姓名</label>
+	  				<input class="apply-name" type="text" value="" required placeholder="您的姓名">
+	  				<br/>
+	  				<label for="apply-link" class="about-color">联系方式</label>
+	  				<input class="apply-link" type="text" value="" required placeholder="联系方式">
+	 				<br/>
+	  				<label for="apply-mes" class="about-color">申请理由</label>
+	  				<textarea class="apply-mes" rows="5" value="" required placeholder="申请理由"></textarea>
+	  				<br/>
+	  				<button type="button" class="am-btn am-btn-primary">
+	  					<i class="am-icon-check"></i>提交申请
+	  				</button>
+	  				<br/>
+	  				<br/>
+				</form>
+			</div>
+		</div>
+	</div>	
+</section>	
+	
+<br><br><br>
+	
+<script>
+	window.__data={
+		uName:'<%= uName %>'
+}	
+</script>
+
+<% include ../myfooter.html %>

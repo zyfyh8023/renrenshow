@@ -1,6 +1,6 @@
 <% include ../myheader.html %>
 
-<section style="margin-top:6rem;margin-bottom:8rem;">
+<section id="zy-all-exps" style="margin-top:6rem;margin-bottom:8rem;">
 	<div class="am-g am-g-fixed">
 		<div data-am-widget="list_news" class="am-list-news am-list-news-default">
 			<div class="am-list-news-hd am-cf">
@@ -24,16 +24,32 @@
 			</div>
 		</div>
 		<br>
-		<ul class="am-pagination am-pagination-right">
-			<li class="am-disabled"><a href="#">&laquo;</a></li>
-			<li class="am-active"><a href="#">1</a></li>
-			<li><a href="#">2</a></li>
-			<li><a href="#">3</a></li>
-			<li><a href="#">4</a></li>
-			<li><a href="#">5</a></li>
-			<li><a href="#">&raquo;</a></li>
-		</ul>
+		<div id="pageShow" style="<% if(resul.length<1) { %>display:none;<% } %>">
+			<ul class="am-pagination am-pagination-right">
+				共<%= allpage %>页&nbsp;
+				<% if(showpagetip > 1) {%>
+					<li class="J_pre-page"><a href="javascript:void(0);">&laquo;</a></li>
+					<% for(var i=1; i<=showpagetip; i++) {%>
+						<% if(i==1) { %>
+							<li class="am-active"><a href="javascript:void(0);">1</a></li>
+						<% }else{ %>
+							<li><a href="javascript:void(0);"><%= i %></a></li>
+						<% } %>
+					<% } %>
+					<li class="J_next-page"><a href="javascript:void(0);">&raquo;</a></li>
+				<% } %>
+			</ul>
+		</div>
 	</div>
 </section>
+
+<script>
+	window.__data={
+		allpage: <%= allpage %>,
+		showpagetip: <%= showpagetip %>,
+		nums: <%= nums %>,
+		uName: "<%= uName %>",
+	}
+</script>
 
 <% include ../myfooter.html %>

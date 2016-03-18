@@ -80,7 +80,6 @@ exports.myState = function(req, res, callbackFn){
 			    	res.redirect('/error');
 			    }else{
 			    	if(result){
-
 			    		if(urls.vCode){
 			    			privateSetings.findByUname(req.params.uid, function(err, results) {
 			    				if (err) {

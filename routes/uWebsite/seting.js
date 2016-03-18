@@ -36,6 +36,8 @@ exports.doPage = function(req, res, next) {
 	//确定更改
 	uName = req.session.user.username;
 	var setObj = JSON.parse(req.body.uNameSet);
+	setObj[3]['sunModels'][0]['sunYesNo']='2';   //避免违规的修改
+	setObj[3]['sunModels'][1]['sunYesNo']='2';	 //避免违规的修改
 	setings.modify({author: uName}, {
 		allModels: setObj
 	}, function(err) {
@@ -108,10 +110,10 @@ exports.createInit = function(uNames,callback) {
 			modelNam: "博文面经",
 			sunModels: [{
 				sunNam: "技术博文",
-				sunYesNo: 1
+				sunYesNo: 2
 			}, {
 				sunNam: "行业远瞻",
-				sunYesNo: 1
+				sunYesNo: 2
 			}, {
 				sunNam: "生活日志",
 				sunYesNo: 0

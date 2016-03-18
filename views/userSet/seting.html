@@ -4,7 +4,7 @@
 	<% include ../nav.html %>
 	<div class="am-g am-u-lg-9 am-u-md-12  am-u-sm-centered">
 		<% include setingNav.html %>
-		<div class="col-lg-9 am-u-lg-9 zy-show-lg-content">
+		<div class="col-lg-10 am-u-lg-10 zy-show-lg-content">
 			<% for(var i=0; i<results.allModels.length; i++) { %>
 				<div class="zy-public-title">
 					<span class="am-badge am-badge-secondary am-round am-text-xl"><%=i+1 %></span><span class="titleName am-badge am-badge-secondary am-text-xl"><%=results.allModels[i].modelNam %></span>
@@ -20,7 +20,9 @@
 						<% } else{ %>
 								<% if(results.allModels[i].sunModels[j].sunYesNo ==1) { %>
 									<a class="zy-div-checkbox am-badge am-badge-success am-text-lg"><%=results.allModels[i].sunModels[j].sunNam %></a>
-								<% } else { %>
+								<% } else if(results.allModels[i].sunModels[j].sunYesNo ==2) { %>
+									<a class="am-badge am-badge-warning am-text-lg"><%=results.allModels[i].sunModels[j].sunNam %></a>
+								<% }else{ %>
 									<a class="zy-div-checkbox am-badge am-text-lg"><%=results.allModels[i].sunModels[j].sunNam %></a>
 								<% } %>
 						<% }%>
@@ -33,8 +35,8 @@
 			<div class="zy-public-content">
 				<span class="am-badge am-badge-warning am-text-lg">http://localhost:3000/seting</span>
 			</div> -->
-			<div style="margin-left:50px;">
-				<button class="am-btn am-btn-warning am-text-lg"> 保存设置 </button>
+			<div style="margin-left:45px">
+				<button class="am-btn am-btn-secondary am-text-lg"> 保存设置 </button>
 			</div>
 			<br>
 		</div>

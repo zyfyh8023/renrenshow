@@ -16,10 +16,18 @@ exports.page = function(req, res, next) {
             articleTag: 1,
             articleType: typ
         }
-        articles.findAll(obj,function(err,result){
+
+        articles.findAllByCon(obj,10,0,function(err, results, nums){
             if(err){
                 res.redirect('/error');
             }else{
+                var showpagetip, allpage;
+                allpage=Math.ceil(nums/10);
+                if(allpage>9){
+                    showpagetip=9;
+                }else{
+                    showpagetip=allpage;
+                }
                 if(rs.signed=='1'){
                     res.render('./userBlog2/alluArts', {
                         uName: rs.uName,
@@ -27,7 +35,12 @@ exports.page = function(req, res, next) {
                         vCode: rs.vCode,
                         modules: rs.modules,
                         title: '我的博文查看',
-                        resul: result
+                        nums: nums,
+                        showpagetip: showpagetip, 
+                        allpage: allpage,
+                        resul: results,
+                        typ: typ,
+                        jsFils:['userBlog2/allArts']
                     });
                 }else if(rs.signed=='2'){
                     res.render('./userBlog2/alluArts', {
@@ -36,7 +49,12 @@ exports.page = function(req, res, next) {
                         vCode: rs.vCode,
                         modules: rs.modules,
                         title: 'TA的博文查看(特权)',
-                        resul: result
+                        nums: nums,
+                        showpagetip: showpagetip, 
+                        allpage: allpage,
+                        resul: results,
+                        typ: typ,
+                        jsFils:['userBlog2/allArts']
                     });
                 }else{
                     res.render('./userBlog2/alluArts', {
@@ -45,11 +63,42 @@ exports.page = function(req, res, next) {
                         vCode: rs.vCode,
                         modules: rs.modules,
                         title: 'TA的博文查看(普通)',
-                        resul: result
+                        nums: nums,
+                        showpagetip: showpagetip, 
+                        allpage: allpage,
+                        resul: results,
+                        typ: typ,
+                        jsFils:['userBlog2/allArts']
                     });
                 }
             }
         });
-    });
-	
+	});
+
+};
+
+
+exports.allartPS = function(req, res){
+    var curstep=req.body.curstep-1,
+        pagenum=10,
+        skipstep=curstep*pagenum,
+        articleTag='1',
+        typ=req.body.typ,
+        uName=req.body.uName,
+        object={};
+   
+        object={
+            articleTag: articleTag,
+            author: uName,
+            articleType: typ
+        };
+    
+    articles.findAllByCon(object,pagenum,skipstep,function(err, results, nums){
+        if(err){
+            console.log('err');
+        }else{
+            res.send({allArticles: results, nums: nums}); 
+        }
+    })
+    
 };

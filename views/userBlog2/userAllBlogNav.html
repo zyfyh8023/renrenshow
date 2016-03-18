@@ -7,13 +7,13 @@
 			<% for(var i=0,len=modules.length; i<len; i++){ %>
 				<% if(modules[i].modelNam=='博文面经'){ %>
 					<% for(var j=0, lenj=modules[i].sunModels.length; j<lenj; j++){ %>
-						<% if(modules[i].sunModels[j].sunYesNo==1 && modules[i].sunModels[j].sunNam=='技术博文'){ %>
+						<% if(modules[i].sunModels[j].sunNam=='技术博文'){ %>
 							<% if(signed=='2'){ %>
 								<li><a href="/<%= uName %>/blogs_aart?typ=0&vCode=<%= vCode %>">技术博文<span class="am-nav-en">(<%= resul[0].length %>)</span></a></li>
 							<% }else{ %>
 								<li><a href="/<%= uName %>/blogs_aart?typ=0">技术博文<span class="am-nav-en">(<%= resul[0].length %>)</span></a></li>
 							<% } %>
-						<% }else if(modules[i].sunModels[j].sunYesNo==1 && modules[i].sunModels[j].sunNam=='行业远瞻'){ %>
+						<% }else if(modules[i].sunModels[j].sunNam=='行业远瞻'){ %>
 							<% if(signed=='2'){ %>
 								<li><a href="/<%= uName %>/blogs_aart?typ=1&vCode=<%= vCode %>">行业远瞻<span class="am-nav-en">(<%= resul[1].length %>)</span></a></li>
 							<% }else{ %>

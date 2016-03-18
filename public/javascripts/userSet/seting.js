@@ -27,7 +27,10 @@ $(document).ready(function() {
 				if ($($(this).children("a")[i]).hasClass("am-badge-success")) {
 					tempObj.sunNam = $($(this).children("a")[i]).text();
 					tempObj.sunYesNo = 1;
-				} else {
+				} else if($($(this).children("a")[i]).hasClass("am-badge-warning")){
+					tempObj.sunNam = $($(this).children("a")[i]).text();
+					tempObj.sunYesNo = 2;
+				}else{
 					tempObj.sunNam = $($(this).children("a")[i]).text();
 					tempObj.sunYesNo = 0;
 				}

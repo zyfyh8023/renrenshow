@@ -1,0 +1,33 @@
+<% include ../myheader.html %>
+
+<section id="zy-setting">
+	<% include ../nav.html %>
+	<div class="am-g am-u-lg-9 am-u-md-12  am-u-sm-centered">
+		<% include setNavs.html %>
+		<div class="col-lg-10 am-u-lg-10 zy-show-lg-content">
+			<% for(var i=0; i<results.allModels.length; i++) { %>
+				<div class="zy-public-title">
+					<span class="am-badge am-badge-secondary am-round am-text-xl"><%=i+1 %></span><span class="titleName am-badge am-badge-secondary am-text-xl"><%=results.allModels[i].modelNam %></span>
+				</div>
+				<div class="zy-public-content zy-change-content">
+					<% for(var j=0; j<results.allModels[i].sunModels.length; j++) { %>
+						<% if(results.allModels[i].sunModels[j].sunYesNo ==1) { %>
+							<a class="am-badge am-badge-success am-text-lg"><%=results.allModels[i].sunModels[j].sunNam %></a>
+						<% } else if(results.allModels[i].sunModels[j].sunYesNo ==2) { %>
+							<a class="am-badge am-badge-warning am-text-lg"><%=results.allModels[i].sunModels[j].sunNam %></a>
+						<% }else{ %>
+							<a class="am-badge am-text-lg"><%=results.allModels[i].sunModels[j].sunNam %></a>
+						<% } %>
+					<% }%>
+				</div>
+			<% } %>
+			<div style="margin-left:45px">
+				<a class="am-btn am-btn-secondary am-text-lg" href="/<%= uName %>/sets_apply"> 申请特权 </a>
+			</div>
+		</div>
+	</div>	
+</section>	
+	
+<br><br><br>
+	
+<% include ../myfooter.html %>

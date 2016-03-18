@@ -1,5 +1,5 @@
 a,a:hover{
-    outline: none;
+    outline: none !important;
 }
 /*
   warn和alert的样式

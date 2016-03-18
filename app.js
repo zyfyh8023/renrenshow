@@ -33,6 +33,7 @@ var manageExperience = require('./routes/uWebsite/manageExperience');
 var createarticle = require('./routes/uWebsite/createarticle');
 var createExperience = require('./routes/uWebsite/createExperience');
 var seting = require('./routes/uWebsite/seting');
+var seting2 = require('./routes/uWebsite/seting2');
 var privateSeting = require('./routes/uWebsite/privateSeting');
 var changePassword = require('./routes/uWebsite/changePassword');
 var blogAorE = require('./routes/uWebsite/blogAorE');
@@ -123,6 +124,8 @@ app.get('/:uid/instrc', introduction.page);    //自我介绍
 app.get('/:uid/resume', resume.page);          //简历
 app.get('/:uid/navs', navigation.page);        //资源导航
 app.get('/sets_pub', seting.page);             //公开设置
+app.get('/:uid/sets_pub2', seting2.page);      //公开设置2
+app.get('/:uid/sets_apply', seting2.apply);    //申请特权
 app.get('/sets_pri', privateSeting.page);      //半公开设置
 app.get('/sets_pwd', changePassword.page);     //密码修改
 app.get('/:uid/blogs_art', blogAorE.artSee);       //具体文章查看
@@ -148,6 +151,8 @@ app.get('/blogs_com_mine', comment.minePage);            //我的评论------（
 app.get('/blogs_com_yours', comment.yoursPage);          //评论我的------（自己看到的）
 
 //个人主站  --AJAx请求
+app.post('/allartPS', alluArts.allartPS);             //所有文章
+app.post('/allexpPS', alluExps.allexpPS);             //所有面经
 app.post('/introduction', introduction.doPage);       //自我介绍
 app.post('/resume/allinfo', resume.allinfo);                 //简历
 app.post('/resume/baseinfo', resume.baseinfo);               //基本信息
@@ -197,6 +202,7 @@ app.post('/navigationListAddsun', navigation.listAdd2);       //导航添加子�
 app.post('/navigationListDelsun', navigation.listDel2);       //导航添加子元素
 app.post('/seting', seting.doPage);             //公开设置
 app.post('/setingInit', seting.createInit);     //公开设置初始化
+app.post('/doApply', seting2.doApply);          //申请特权
 app.post('/privateSeting/add', privateSeting.doPage);     //私有设置添加
 app.post('/privateSeting/del', privateSeting.del);        //私有设置删除
 app.post('/privateSeting/see', privateSeting.see);        //私有设置查看
@@ -270,6 +276,8 @@ app.locals.navs = function(signed, uName, vCode, dat) {
         ret+='<li><a data-src="/'+uName+'/navs" href="/'+uName+'/navs">资源</a></li>';
         ret+='<li><a data-src="/blogs_" href="/blogs_art_pub">博文</a></li>';
         ret+='<li><a data-src="/sets_" href="/sets_pub">设置</a></li>';
+    }else{
+        ret+='<li><a data-src="/'+uName+'/sets_" href="/'+uName+'/sets_pub2">设置</a></li>';
     }
     return ret;
 };
