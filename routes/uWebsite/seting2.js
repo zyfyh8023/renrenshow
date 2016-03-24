@@ -7,7 +7,6 @@ var uName, retCode, retDesc, navTitle, navDesc, cssFils, jsFils;
 /* GET Seting page. */
 exports.page = function(req, res, next) {
 	//初始化列表
-	uName = req.session.user.username;
 	navTitle = "个人设置中心";
 	navDesc = "个人中心是一个全面的信息中心，在这里能够看到与个人相关的所有待办工作和参" +
 		"与的项目的动态，方便对工作的全局掌握。个人中心是系统个性化的设置入口，支持" +
@@ -61,7 +60,6 @@ exports.page = function(req, res, next) {
 /* GET Seting page. */
 exports.apply = function(req, res, next) {
 	//初始化列表
-	uName = req.session.user.username;
 	navTitle = "特权申请";
 	navDesc = "个人中心是一个全面的信息中心，在这里能够看到与个人相关的所有待办工作和参" +
 		"与的项目的动态，方便对工作的全局掌握。个人中心是系统个性化的设置入口，支持" +

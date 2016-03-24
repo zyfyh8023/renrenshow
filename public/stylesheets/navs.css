@@ -1,0 +1,36 @@
+.zy-resource-sec{
+	margin-top:4rem;
+	margin-bottom: 8rem;
+}
+.zy-titleList a {
+	font-size: 15px;
+	color: #444;
+}
+.zy-titleList a:hover {
+	color: #0e90d2;
+}
+li{
+	border:none !important;
+}
+.am-alert a{
+    color:#0e90d2;
+    font-size: 14px;
+    border-bottom: 2px solid transparent;
+    font-weight: bold;
+}
+.am-alert a:hover{
+    color: #fd8c84;
+    border-bottom-color: #fd8c84;
+    text-decoration: none;
+}
+.zy-module-tip{
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	overflow:hidden;
+	margin-top: 5px;
+}
+.am-popover {
+	width: 200px;
+	border-radius: 10px;
+	font-size: 0.9rem;
+}

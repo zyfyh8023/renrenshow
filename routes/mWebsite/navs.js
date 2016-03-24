@@ -12,6 +12,6 @@ exports.page = function(req, res, next) {
 	res.render('navs', {
 		title: '导航-人人秀',
 		uName: uName,
-		cssFils:['resource']
+		cssFils:['navs']
 	});
 };
