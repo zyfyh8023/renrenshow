@@ -31,5 +31,22 @@ $(document).ready(function() {
 		}
 	});
 
-	
+	$allUsers.delegate('#zy-search-btn', 'click', function(event) {
+		console.log($('.J_zy-ipt', $allUsers).val());
+		var vals=$('.J_zy-ipt', $allUsers).val();
+		$.ajax({    
+		    type:'post',        
+		    url:'/userSearch',   
+		    data:{
+		    	val: vals
+		    },
+		    dataType:'json',    
+		    success: function(data){
+		    	console.log(data);
+		    },
+		    error : function() {   
+		        alert('err');    	
+		   }        
+		});  
+	});
 })

@@ -52,3 +52,21 @@ exports.allUserPS = function(req, res){
     })
     
 };
+
+
+exports.userSearch = function(req, res){
+    var curstep=req.body.val,
+   		object={
+   			// username:/fyh/,
+   			username:{$in : [ "zyfyh8023@163.com", "zy@163.com" ] }
+   		};
+
+    users.findAll(object,function(err, results){
+        if(err){
+            console.log('err');
+        }else{
+            res.send(results); 
+        }
+    })
+    
+};
