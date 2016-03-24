@@ -2,7 +2,6 @@
 
 var checkState = require('../checkState');
 var articles = require('../../models/article');
-var experiences = require('../../models/experience');
 var async = require('async');
 
 var retCode, retDesc, uName, cssFils, jsFils;
@@ -16,20 +15,20 @@ exports.page = function(req, res, next) {
 		if(err){
 			res.redirect('/error');
 		}else{
-			var artsnum=resul[0].length>0 ? (resul[0].length>=8 ? 8 : resul[0].length) : 0;
-			var expsnum=resul[1].length>0 ? (resul[1].length>=8 ? 8 : resul[1].length) : 0;
-			res.render('resource', {
-				title: '资源库-人人秀',
+			var artsnum1=resul[0].length>0 ? (resul[0].length>=20 ? 20 : resul[0].length) : 0;
+            var artsnum2=resul[1].length>0 ? (resul[1].length>=20 ? 20 : resul[1].length) : 0;
+			res.render('blog', {
+				title: '博文-人人秀',
 				uName: uName,
 				cssFils:['resource'],
-				arts: resul[0],
-				artsnum: artsnum,
-				exps: resul[1],
-				expsnum: expsnum
+				arts1: resul[0],
+                arts2: resul[1],
+				artsnum1: artsnum1,
+                artsnum2: artsnum2
 			});
 		}
 	})
-	
+
 };
 
 
@@ -38,13 +37,15 @@ function getBlogComs(callFn) {
             function(callback) {
                 articles.findAll({
                     articleTag:1,
+                    articleType: '1'
                 }, function(err, results) {
                     callback(err, results);
                 });
             },
             function(callback) {
-                experiences.findAll({
-                    experienceTag: 1,
+                articles.findAll({
+                    articleTag:1,
+                    articleType: '2'
                 }, function(err, results) {
                     callback(err, results);
                 });

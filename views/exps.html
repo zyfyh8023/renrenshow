@@ -1,33 +1,26 @@
 <% include header.html %>
 
-<section style="margin-top:6rem;margin-bottom:8rem;" id="zy-main-allarts">
+<section style="margin-top:6rem;margin-bottom:8rem;" id="zy-main-allinfos">
 	<div class="am-g am-g-fixed">
 		<div data-am-widget="list_news" class="am-list-news am-list-news-default">
 			<div class="am-list-news-hd am-cf">
-				<a href="###" class=""><h2>博文汇总</h2></a>
+				<a href="###" class=""><h2>面经汇总</h2></a>
 			</div>
 			<div class="am-list-news-bd">
 				<ul class="am-list zy-list-ul">
-					<%for (var i=0, len=resul.length; i<len; i++){ %>
-						<li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-							<div class="am-u-sm-2 am-list-thumb">
-								<a target="_blank" href="/<%= resul[i].author %>/blogs_art?aid=<%= resul[i]._id %>">
-									<% if(resul[i].articleImgs.length>0){ %>
-										<img src="<%= resul[i].articleImgs[0] %>" />
-									<% }else{ %>
-										<img src="/images/default.png" />
-									<% } %>
-								</a>
+					<% for(var i=0,len=resul.length; i<len; i++) { %>
+					<li class="am-g am-list-item-desced">
+						<div class=" am-list-main">
+							<h3 class="am-list-item-hd">
+                				<a href="/<%= resul[i].author %>/blogs_exp?aid=<%= resul[i]._id %>">
+                					<%= resul[i].experienceTitle %>
+                				</a>
+                  			</h3>
+							<div class="am-list-item-text">
+								<%- resul[i].experienceCont %>
 							</div>
-							<div class=" am-u-sm-10 am-list-main">
-								<h3 class="am-list-item-hd">
-	                    			<a target="_blank" href="/<%= resul[i].author %>/blogs_art?aid=<%= resul[i]._id %>"><%= resul[i].articleTitle %></a>
-	                  			</h3>
-								<div class="am-list-item-text">
-									<%- resul[i].articleAbstract %>
-								</div>
-							</div>
-						</li>
+						</div>
+					</li>
 					<% } %>
 				</ul>
 			</div>
@@ -51,13 +44,12 @@
 		</div>
 	</div>
 </section>
-
+	
 <script>
 	window.__data={
 		allpage: <%= allpage %>,
 		showpagetip: <%= showpagetip %>,
-		nums: <%= nums %>,
-		typ: "<%= typ %>"
+		nums: <%= nums %>
 	}
 </script>
 

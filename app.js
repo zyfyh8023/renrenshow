@@ -16,13 +16,15 @@ var checkState = require('./routes/checkState');
 
 var routes = require('./routes/mWebsite/index');
 var faq = require('./routes/mWebsite/faq');
-var resource = require('./routes/mWebsite/resource');
+var blog = require('./routes/mWebsite/blog');
+var navs = require('./routes/mWebsite/navs');
+var jobs = require('./routes/mWebsite/jobs');
+var exps = require('./routes/mWebsite/exps');
 var talentpool = require('./routes/mWebsite/talentpool');
 var about = require('./routes/mWebsite/about');
 var login = require('./routes/mWebsite/login');
 var register = require('./routes/mWebsite/register');
 var allarticle = require('./routes/mWebsite/allarticle');
-var allinfo = require('./routes/mWebsite/allinfo');
 
 var myindex = require('./routes/uWebsite/myindex');
 var introduction = require('./routes/uWebsite/introduction');
@@ -102,14 +104,16 @@ app.use(router);
 //主站 --GET请求
 app.get('/', routes.page);   //首页
 app.get('/index', routes.page);   //首页
-app.get('/faq', faq.page);   //问答中中
-app.get('/inf', resource.page);   //信息页面
-app.get('/res', talentpool.page);  //人才中心
-app.get('/inf_allarticle', allarticle.page);   //所有文章页面
-app.get('/inf_allinfo', allinfo.page);   //所有信息页面
-app.get('/login', login.page);   //登录页面
-app.get('/register', register.page);   //注册页面
-app.get('/about', about.page);     //帮助页面
+app.get('/blog', blog.page);   //博文
+app.get('/exps', exps.page);   //面经
+app.get('/jobs', jobs.page);   //工作
+app.get('/navs', navs.page);   //导航
+app.get('/res', talentpool.page);  //人才
+app.get('/inf_allarticle', allarticle.page);   //所有文章
+app.get('/login', login.page);   //登录
+app.get('/register', register.page);   //注册
+app.get('/faq', faq.page);      //介绍
+app.get('/about', about.page);     //帮助
 
 //主站  --AJAX请求
 app.post('/login', login.doLogin);   //登录操作  
@@ -117,8 +121,8 @@ app.post('/register', register.doRegister);  //注册操作
 app.post('/loginOut', login.loginOut);      //注销操作
 app.post('/about', about.doPage);       //帮助操作
 app.post('/allUserPS', talentpool.allUserPS);  //人才列表分页
-app.post('/allArts', allarticle.allartPS);    //文章列表分页
-
+app.post('/allArts', allarticle.allartPS);     //文章列表分页
+app.post('/allExps', exps.allexpPS);        //面经列表分页
 
 
 //个人主站  --GET请求

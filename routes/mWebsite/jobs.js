@@ -9,8 +9,9 @@ exports.page = function(req, res, next) {
 
 	uName=checkState.loginState(req, res, false);
 
-	res.render('allinfo', {
-		title: '信息汇总-人人秀',
-		uName: uName
+	res.render('jobs', {
+		title: '工作-人人秀',
+		uName: uName,
+		cssFils:['resource']
 	});
 };

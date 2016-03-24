@@ -18,7 +18,6 @@ exports.page = function(req, res, next) {
 		        articleTag: 1,
 		        articleType: typ
 	    	}
-
 	    articles.findAllByCon(obj,10,0,function(err, results, nums){
 	        if(err){
 	            res.redirect('/error');
@@ -30,7 +29,7 @@ exports.page = function(req, res, next) {
 	            }else{
 	                showpagetip=allpage;
 	            }
-
+	            console.log(results);
 	            res.render('allarticle', {
 	            	title: '博文汇总-人人秀',
 	            	nums: nums,
@@ -38,7 +37,8 @@ exports.page = function(req, res, next) {
 	            	allpage: allpage,
 	            	uName: uName,
 	            	resul: results,
-	            	typ: urls.typ
+	            	typ: urls.typ,
+	            	jsFils:['allarticle']
 	            });
 	        }
 	    });
