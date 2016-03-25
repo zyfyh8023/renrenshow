@@ -31,8 +31,8 @@ exports.page = function(req, res, next) {
             					title: '我的简历',
             					rs: result,
             					headImg: resu.headimg,
-            					cssFils:['userResume/resume'],
-            					jsFils:['userResume/resume']
+            					cssFils:['userResume/jquery.Jcrop', 'userResume/resume'],
+            					jsFils:['userResume/jquery.Jcrop', 'userResume/resume']
             				});
             			}
             		});
@@ -57,8 +57,8 @@ exports.page = function(req, res, next) {
             					title: 'TA的简历(特权)',
             					rs: result,
             					headImg: resu.headimg,
-            					cssFils:['userResume/resume'],
-            					jsFils:['userResume/resume']
+            					cssFils:['userResume/jquery.Jcrop', 'userResume/resume'],
+            					jsFils:['userResume/jquery.Jcrop', 'userResume/resume']
             				});
             			}
             		});
@@ -83,8 +83,8 @@ exports.page = function(req, res, next) {
 	        					title: 'TA的简历(普通)',
 	        					rs: result,
 	        					headImg: resu.headimg,
-	        					cssFils:['userResume/resume'],
-	        					jsFils:['userResume/resume']
+	        					cssFils:['userResume/jquery.Jcrop', 'userResume/resume'],
+	        					jsFils:['userResume/jquery.Jcrop', 'userResume/resume']
             				});
             			}
             		});

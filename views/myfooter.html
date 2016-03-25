@@ -1,21 +1,18 @@
-	<!--JS Files -->
-	<script type="text/javascript" src="/javascripts/jquery-1.11.3.js"></script>
-	<script type="text/javascript" src="/javascripts/amazeui.min.js"></script>
-	<script type="text/javascript" src="/javascripts/jquery.Jcrop.js"></script>
-	<script type="text/javascript" src="/javascripts/jquery.form.js"></script>
-	<script type="text/javascript" src="/javascripts/app.js"></script>
-	<% if(locals.jsFils){ %>
-		<% for(var i=0, len=jsFils.length; i<len; i++){ %>
-			<script type="text/javascript" src="/javascripts/<%= jsFils[i] %>.js"></script>
+	
+		<% include alert.html %>
+
+		<!--JS Files -->
+		<script type="text/javascript" src="/javascripts/com/jquery-1.11.3.js"></script>
+		<script type="text/javascript" src="/javascripts/com/amazeui.min.js"></script>
+		<script type="text/javascript" src="/javascripts/com/jquery.form.js"></script>
+		<script type="text/javascript" src="/javascripts/com/baiduTemplate.js"></script>
+		<script type="text/javascript" src="/javascripts/com/app.js"></script>
+		
+		<% if(locals.jsFils){ %>
+			<% for(var i=0, len=jsFils.length; i<len; i++){ %>
+				<script type="text/javascript" src="/javascripts/<%= jsFils[i] %>.js"></script>
+			<% } %>
 		<% } %>
-	<% } %>
-	
-	<% include alert.html %>
-	
-<!-- 	<footer class="footer">
-	  <p>© 2014 <a href="http://www.yunshipei.com" target="_blank">AllMobilize, Inc.</a> Licensed under <a
-	      href="http://opensource.org/licenses/MIT" target="_blank">MIT license</a>. by the AmazeUI Team.</p>
-	</footer> -->
 	
 	</body>
 </html>

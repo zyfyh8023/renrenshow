@@ -53,7 +53,7 @@ exports.page5 = function(req, res, next) {
 	uName=checkState.loginState(req, res, false);
 
 	res.render('navs_5', {
-		title: '软件测试-助聘网',
+		title: '产品运营-助聘网',
 		uName: uName,
 		cssFils:['navs']
 	});
@@ -64,7 +64,7 @@ exports.page6 = function(req, res, next) {
 	uName=checkState.loginState(req, res, false);
 
 	res.render('navs_6', {
-		title: '产品运营-助聘网',
+		title: 'UI设计-助聘网',
 		uName: uName,
 		cssFils:['navs']
 	});
@@ -75,7 +75,7 @@ exports.page7 = function(req, res, next) {
 	uName=checkState.loginState(req, res, false);
 
 	res.render('navs_7', {
-		title: 'UI设计-助聘网',
+		title: '综合性资源-助聘网',
 		uName: uName,
 		cssFils:['navs']
 	});
