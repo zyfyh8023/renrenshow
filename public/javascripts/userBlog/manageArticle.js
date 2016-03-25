@@ -19,9 +19,15 @@ $(document).ready(function() {
 			    	for(var i=0, len=data.allArticles.length;i<len;i++){
 			    		var artTyp;
 			    		switch(data.allArticles[i].articleType){
-			    			case 1:artTyp="技术博客";break;
-			    			case 2:artTyp="行业远瞻";break;
-			    			case 3:artTyp="乱七八糟";break;
+			    			case '01':artTyp="前端开发相关";break;
+			    			case '02':artTyp="后端开发相关";break;
+			    			case '03':artTyp="客户端开发相关";break;
+			    			case '04':artTyp="数据库开发相关";break;
+			    			case '05':artTyp="产品运营相关";break;
+			    			case '06':artTyp="UI设计相关";break;
+			    			case '11':artTyp="行业远瞻";break;
+			    			case '21':artTyp="生活日志";break;
+			    			case '91':artTyp="随便写写";break;
 			    			default:artTyp=data.allArticles[i].articleType;break;
 			    		}
 
@@ -34,7 +40,7 @@ $(document).ready(function() {
 			    			'<td class="am-text-middle">'+
 			    			'<a href="javascript:void(0);" class="zy-del-art">删除</a><br>'+
 			    			'<a href="/'+__data.uName+'/blogs_art?aid='+data.allArticles[i]._id+'">查看</a><br>';
-			    		if(data.allArticles.articleTag=='2'){
+			    		if(data.allArticles.articleTag=='0'){
 			    			htmlTemp+='<a href="javascript:void(0);" class="zy-pub-art">发布</a>';
 			    		}
 			    		htmlTemp+='</td></tr>';

@@ -6,29 +6,28 @@ var async = require('async');
 
 var retCode, retDesc, uName, navTitle, navDesc, cssFils, jsFils;
 
+var PAGE_NUM=10;
+var PAGE_NUM_JIAN1=9;
 /* GET ManageArticle page. */
 exports.page = function(req, res, next) {
     uName = req.session.user.username;
-    navTitle = "面经管理中心";
+    navTitle = "已发表面经";
     navDesc = "个人中心是一个全面的信息中心，在这里能够看到与个人相关的所有待办工作和参" +
         "与的项目的动态，方便对工作的全局掌握。个人中心是系统个性化的设置入口，支持" +
         "设置与个人相关的个性化配置，帮助用户更好的制定一个符合自己使用习惯的系统环境。";
 
-    experiences.findAllByCon({
-            author: uName,
-            experienceTag: 1
-        },10,0,function(err, results, nums){
+    experiences.findAllByCon({author: uName, experienceTag: 1},PAGE_NUM,0,function(err, results, nums){
         if(err){
             res.redirect('/error');
         }else{
             var showpagetip, allpage;
-            allpage=Math.ceil(nums/10);
-            if(allpage>9){
-                showpagetip=9;
+            allpage=Math.ceil(nums/PAGE_NUM);
+            if(allpage>PAGE_NUM_JIAN1){
+                showpagetip=PAGE_NUM_JIAN1;
             }else{
                 showpagetip=allpage;
             }
-             getArtExpNum(uName, function(err, resu) {
+            getArtExpNum(uName, function(err, resu) {
                 if (err) {
                     res.redirect('/error');
                 } else {
@@ -39,7 +38,7 @@ exports.page = function(req, res, next) {
                         signed: '1',
                         vCode: '',
                         modules: [],
-                        title: '面经管理',
+                        title: '已发表面经',
                         allNum: resu,
                         nums: nums,
                         allArticles: results,
@@ -57,26 +56,21 @@ exports.page = function(req, res, next) {
 
 exports.pageSearch = function(req, res){
     var curstep=req.body.curstep-1,
-        pagenum=10,
+        pagenum=PAGE_NUM,
         skipstep=curstep*pagenum,
         experienceTag=req.body.experienceTag,
         uName=req.body.uName,
         object={};
-    if(experienceTag == 11)
+    if(experienceTag == 111)
     {
-        object={
-            author: uName
-        };
+        object={author: uName};
     }else{
-        object={
-            experienceTag: experienceTag,
-            author: uName
-        };
+        object={experienceTag: experienceTag,author: uName};
     }
     
     experiences.findAllByCon(object,pagenum,skipstep,function(err, results, nums){
         if(err){
-            console.log('err');
+            res.redirect('/error');
         }else{
             res.send({allArticles: results, nums: nums}); 
         }
@@ -92,21 +86,18 @@ exports.noPublicMJ = function(req, res, next) {
         "与的项目的动态，方便对工作的全局掌握。个人中心是系统个性化的设置入口，支持" +
         "设置与个人相关的个性化配置，帮助用户更好的制定一个符合自己使用习惯的系统环境。";
     
-    experiences.findAllByCon({
-            author: uName,
-            experienceTag: 2
-        },10,0,function(err, results, nums){
+    experiences.findAllByCon({author: uName,experienceTag: 0},PAGE_NUM,0,function(err, results, nums){
         if(err){
             res.redirect('/error');
         }else{
             var showpagetip, allpage;
-            allpage=Math.ceil(nums/10);
-            if(allpage>9){
-                showpagetip=9;
+            allpage=Math.ceil(nums/PAGE_NUM);
+            if(allpage>PAGE_NUM_JIAN1){
+                showpagetip=PAGE_NUM_JIAN1;
             }else{
                 showpagetip=allpage;
             }
-             getArtExpNum(uName, function(err, resu) {
+            getArtExpNum(uName, function(err, resu) {
                 if (err) {
                     res.redirect('/error');
                 } else {
@@ -117,13 +108,13 @@ exports.noPublicMJ = function(req, res, next) {
                         signed: '1',
                         vCode: '',
                         modules: [],
-                        title: '面经管理',
+                        title: '未发表面经',
                         allNum: resu,
                         nums: nums,
                         allArticles: results,
                         showpagetip: showpagetip, 
                         allpage: allpage,
-                        experienceTag:2,
+                        experienceTag:0,
                         cssFils:['userBlog/manageExperience'],
                         jsFils:['userBlog/manageExperience']
                     });
@@ -133,42 +124,30 @@ exports.noPublicMJ = function(req, res, next) {
     });
 };
 
-/* GET 删除. */
+/* 删除. */
 exports.delExper = function(req, res, next) {
     uName = req.session.user.username;
     var aid=req.body.aid;
-
-    var obj={
-            author: uName,
-            _id: aid
-        }
+    var obj={author: uName,_id: aid}
 
     experiences.delete(obj,function(err){
         if(err){
-            retDesc = "系统出现故障，请稍后再试!";
-            return res.send({retCode: 400,retDesc: retDesc}); 
+            return res.send({retCode: 400,retDesc: '系统出现故障，请稍后再试!'}); 
         }else{
             return res.send({retCode: 200}); 
         }
     });
 };
 
-/* GET public. */
+/* 发布 */
 exports.pubExper = function(req, res, next) {
     uName = req.session.user.username;
     var aid=req.body.aid;
+    var obj={author: uName,_id: aid}
 
-    var obj={
-            author: uName,
-            _id: aid
-        }
-
-    experiences.modify(obj,{
-        experienceTag: 1
-    }, function(err){
+    experiences.modify(obj,{experienceTag: 1}, function(err){
         if(err){
-            retDesc = "系统出现故障，请稍后再试!";
-            return res.send({retCode: 400,retDesc: retDesc}); 
+            return res.send({retCode: 400,retDesc: '系统出现故障，请稍后再试!'}); 
         }else{
             return res.send({retCode: 200}); 
         }
@@ -178,21 +157,19 @@ exports.pubExper = function(req, res, next) {
 /* GET ManageArticle page. */
 exports.relatedMeMJ = function(req, res, next) {
     uName = req.session.user.username;
-    navTitle = "与我相关面经";
+    navTitle = "所有面经";
     navDesc = "个人中心是一个全面的信息中心，在这里能够看到与个人相关的所有待办工作和参" +
         "与的项目的动态，方便对工作的全局掌握。个人中心是系统个性化的设置入口，支持" +
         "设置与个人相关的个性化配置，帮助用户更好的制定一个符合自己使用习惯的系统环境。";
 
-    experiences.findAllByCon({
-            author: uName
-        },10,0,function(err, results, nums){
+    experiences.findAllByCon({author: uName},PAGE_NUM,0,function(err, results, nums){
         if(err){
             res.redirect('/error');
         }else{
             var showpagetip, allpage;
-            allpage=Math.ceil(nums/10);
-            if(allpage>9){
-                showpagetip=9;
+            allpage=Math.ceil(nums/PAGE_NUM);
+            if(allpage>PAGE_NUM_JIAN1){
+                showpagetip=PAGE_NUM_JIAN1;
             }else{
                 showpagetip=allpage;
             }
@@ -207,7 +184,7 @@ exports.relatedMeMJ = function(req, res, next) {
                         signed: '1',
                         vCode: '',
                         modules: [],
-                        title: '面经管理',
+                        title: '所有面经',
                         allNum: resu,
                         nums: nums,
                         allArticles: results,

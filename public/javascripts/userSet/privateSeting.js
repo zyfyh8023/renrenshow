@@ -187,8 +187,8 @@ $(document).ready(function() {
                    			'<span class="am-badge am-badge-secondary am-round am-text-xl">'+(k+1)+'</span> <span class="titleName am-badge am-badge-secondary am-text-xl">'+data.retData.moduleCon[k].modelNam+'</span>'+
                				'</div> <div class="zy-public-content zy-change-content">'+strEles+'</div>';
 				}
-				strAlls+='<div style="margin-left:50px;">'+
-						'<button data-ids="'+ids+'" class="saveBtnUpd am-btn am-btn-warning am-text-lg"> 保存以上修改 </button> </div><br>';
+				strAlls+='<div style="margin-left:45px;">'+
+						'<button data-ids="'+ids+'" class="saveBtnUpd am-btn am-btn-secondary am-text-lg"> 保存以上修改 </button> </div><br>';
 
 				$('.zy-set-show').html(strAlls);
 			},

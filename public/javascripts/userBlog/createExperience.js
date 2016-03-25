@@ -1,14 +1,16 @@
 $(document).ready(function() {
-
+	//缓存
+	var $createExperience = $('#zy-createExperience'),
+		$expTitle=$(".experienceTitle", $createExperience),
+		$expCmp=$(".experienceCompany", $createExperience);
+		
 	//experience发布
-	var $createExperience = $('#zy-createExperience');
 	$createExperience.delegate('.experienceFB', 'click', function() {
-		var experienceTitle = $.trim($(".experienceTitle", $createExperience).val()),
-			experienceCompany = $.trim($(".experienceCompany", $createExperience).val()),
+		var experienceTitle = $.trim($expTitle.val()),
+			experienceCompany = $.trim($expCmp.val()),
 			experienceCont = experienceCon.getContent();
 
 		if (experienceTitle != '' && experienceCompany != '' && experienceCont != '') {
-			
 			$('#zy-img-con').html(experienceCont).hide();
 			var srcArr=[];
 			$('#zy-img-con img').each(function () {
@@ -45,14 +47,12 @@ $(document).ready(function() {
 	});
 
 	//experience存草稿
-	var $createExperience = $('#zy-createExperience');
 	$createExperience.delegate('.experienceCG', 'click', function() {
-		var experienceTitle = $.trim($(".experienceTitle", $createExperience).val()),
-			experienceCompany = $.trim($(".experienceCompany", $createExperience).val()),
+		var experienceTitle = $.trim($expTitle.val()),
+			experienceCompany = $.trim($expCmp.val()),
 			experienceCont = experienceCon.getContent();
 
 		if (experienceTitle != '' && experienceCompany != '' && experienceCont != '') {
-			
 			$('#zy-img-con').html(experienceCont).hide();
 			var srcArr=[];
 			$('#zy-img-con img').each(function () {
@@ -65,7 +65,7 @@ $(document).ready(function() {
 				type: 'post',
 				url: '/createExperience',
 				data: {
-					tags: 2,
+					tags: 0,
 					experienceTitle: experienceTitle,
 					experienceCompany: experienceCompany,
 					experienceCont: experienceCont,

@@ -54,20 +54,18 @@ exports.doPage = function(req, res, next) {
         experienceImgs: experienceImgs
     });
 
-    //如果不存在则新增用户
-    experiences.create(newExperience, function(err) {
-        if (err) {
-            retDesc = "保存失败,请稍后再试!";
-            return res.send({
-                retCode: 400,
-                retDesc: retDesc
-            });
-        } else {
-            return res.send({
-                retCode: 200
-            });
-        }
-    });
+    if(experienceTag<=1){          //拦截不合法请求，不经过审核操作
+        //如果不存在则新增用户
+        experiences.create(newExperience, function(err) {
+            if (err) {
+                return res.send({retCode: 400,retDesc: '保存失败,请稍后再试!'});
+            } else {
+                return res.send({ retCode: 200});
+            }
+        });
+    }else{
+         return res.send({retCode: 400,retDesc: '您的请求不合法！'});
+    }
 
 }
 

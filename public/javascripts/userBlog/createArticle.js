@@ -1,11 +1,16 @@
 $(document).ready(function() {
 
+	//缓存
+	var $createArticle = $('#zy-createArticle'),
+		$artTicle= $(".articleTitle", $createArticle),
+		$artKeys=$(".articleKeyword", $createArticle),
+		$artTyp=$(".articleType", $createArticle);
+
 	//article发布
-	var $createArticle = $('#zy-createArticle');
 	$createArticle.delegate('.articleFB', 'click', function() {
-		var articleTitle = $.trim($(".articleTitle", $createArticle).val()),
-			articleKeyword = $.trim($(".articleKeyword", $createArticle).val()),
-			articleType = $.trim($(".articleType", $createArticle).val()),
+		var articleTitle = $.trim($artTicle.val()),
+			articleKeyword = $.trim($artKeys.val()),
+			articleType = $.trim($artTyp.val()),
 			articleAbstract = articleCon.getContentTxt(),
 			articleCont = articleCon.getContent();
 			articleAbstract=cutStr(articleAbstract,350,'...');
@@ -51,11 +56,10 @@ $(document).ready(function() {
 	});
 
 	//article存草稿
-	var $createArticle = $('#zy-createArticle');
 	$createArticle.delegate('.articleCG', 'click', function() {
-		var articleTitle = $.trim($(".articleTitle", $createArticle).val()),
-			articleKeyword = $.trim($(".articleKeyword", $createArticle).val()),
-			articleType = $.trim($(".articleType", $createArticle).val()),
+		var articleTitle = $.trim($artTicle.val()),
+			articleKeyword = $.trim($artKeys.val()),
+			articleType = $.trim($artTyp.val()),
 			articleAbstract = articleCon.getContentTxt(),
 			articleCont = articleCon.getContent();
 			articleAbstract=cutStr(articleAbstract,350,'...');
@@ -74,7 +78,7 @@ $(document).ready(function() {
 				type: 'post',
 				url: '/createarticle',
 				data: {
-					tags: 2,
+					tags: 0,
 					articleTitle: articleTitle,
 					articleKeyword: articleKeyword,
 					articleType: articleType,

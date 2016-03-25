@@ -9,7 +9,7 @@ var ExperienceSchema = new Schema({
     experienceCompany: String,
     experienceCont: String,
     experienceImgs: [],
-    experienceTag: {      //0:草稿中  1发布中   2审核中   3已删除
+    experienceTag: {      //0:草稿  1发布  2审核
         type: Number,
         default: 0
     },
@@ -100,7 +100,7 @@ exports.allNum = function(uName, callFn) {
             function(callback) {
                 Experience.find({
                     author: uName,
-                    experienceTag: 2
+                    experienceTag: 0
                 }, function(err, result) {
                     callback(err, result.length);
                 });

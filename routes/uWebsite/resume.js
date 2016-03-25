@@ -22,7 +22,7 @@ exports.page = function(req, res, next) {
             				res.redirect('/error');
             			}else{
             				allres=result;
-            				console.log(result);
+            				// console.log(result);
             				res.render('./userResume/resume', {
             					uName: rs.uName,
             					signed: rs.signed,
@@ -47,7 +47,7 @@ exports.page = function(req, res, next) {
             			if (err) {
             				res.redirect('/error');
             			}else{
-            				console.log(rs.modules);
+            				// console.log(rs.modules);
             				allres=result;
             				res.render('./userResume/resume', {
             					uName: rs.uName,
@@ -74,7 +74,7 @@ exports.page = function(req, res, next) {
             				res.redirect('/error');
             			}else{
             				allres=result;
-        					console.log(result);
+        					// console.log(result);
             				res.render('./userResume/resume', {
             					uName: rs.uName,
             					signed: rs.signed,

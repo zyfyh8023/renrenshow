@@ -55,19 +55,19 @@ exports.doPage = function(req, res, next) {
         articleTag: articleTag,
         articleImgs: articleImgs
     });
-    articles.create(newArticle, function(err) {
-        if (err) {
-            retDesc = "保存失败,请稍后再试!";
-            return res.send({
-                retCode: 400,
-                retDesc: retDesc
-            });
-        } else {
-            return res.send({
-                retCode: 200
-            });
-        }
-    });
+
+    if(articleTag<=1){
+        articles.create(newArticle, function(err) {
+            if (err) {
+                return res.send({retCode: 400,retDesc: '保存失败,请稍后再试!'});
+            } else {
+                return res.send({retCode: 200});
+            }
+        });
+    }else{
+        return res.send({retCode: 400,retDesc: '您的请求不合法！'});
+    }
+    
 }
 
 function getArtExpNum(uName, callFn) {

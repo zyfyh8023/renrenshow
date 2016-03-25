@@ -28,7 +28,7 @@ $(document).ready(function() {
 			    			'<a href="javascript:void(0);" class="zy-del-art">删除</a><br>'+
 			    			'<a href="/'+__data.uName+'/blogs_exp?aid='+data.allArticles[i]._id+'">查看</a><br>';
 
-			    		if(data.allArticles[i].experienceTag=='2'){
+			    		if(data.allArticles[i].experienceTag=='0'){
 			    			htmlTemp+='<a href="javascript:void(0);" class="zy-pub-art">发布</a>';
 			    		}
 			    		htmlTemp+='</td></tr>';

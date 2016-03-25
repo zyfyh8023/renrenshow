@@ -6,24 +6,23 @@ var async = require('async');
 
 var retCode, retDesc, uName, navTitle, navDesc, cssFils, jsFils;
 
+var PAGE_NUM=10;
+var PAGE_NUM_JIAN1=9;
 /* GET ManageArticle page. */
 exports.page = function(req, res, next) {
     uName = req.session.user.username;
-    navTitle = "优秀博文积累1";
+    navTitle = "已发表博文";
     navDesc = "可以作为自己的个人文集，把自己的写的文章按照一定的时间顺序、目录或者标签发表到自己的博客上" +
         "这是博客最初的最基本的功能，就是发表个人网络日志。";
 
-    articles.findAllByCon({
-            author: uName,
-            articleTag: 1
-        },10,0,function(err, results, nums){
+    articles.findAllByCon({author: uName,articleTag: 1},PAGE_NUM,0,function(err, results, nums){
         if(err){
             res.redirect('/error');
         }else{
             var showpagetip, allpage;
-            allpage=Math.ceil(nums/10);
-            if(allpage>9){
-                showpagetip=9;
+            allpage=Math.ceil(nums/PAGE_NUM);
+            if(allpage>PAGE_NUM_JIAN1){
+                showpagetip=PAGE_NUM_JIAN1;
             }else{
                 showpagetip=allpage;
             }
@@ -38,7 +37,7 @@ exports.page = function(req, res, next) {
                         signed: '1',
                         vCode: '',
                         modules: [],
-                        title: '博文管理',
+                        title: '已发表博文',
                         allNum: resu,
                         nums: nums,
                         allArticles: results,
@@ -57,21 +56,16 @@ exports.page = function(req, res, next) {
 
 exports.pageSearch = function(req, res){
     var curstep=req.body.curstep-1,
-        pagenum=10,
+        pagenum=PAGE_NUM,
         skipstep=curstep*pagenum,
         articleTag=req.body.articleTag,
         uName=req.body.uName,
         object={};
-    if(articleTag == 11)
+    if(articleTag == 111)
     {
-        object={
-            author: uName
-        };
+        object={author: uName};
     }else{
-        object={
-            articleTag: articleTag,
-            author: uName
-        };
+        object={articleTag: articleTag,author: uName};
     }
     
     articles.findAllByCon(object,pagenum,skipstep,function(err, results, nums){
@@ -87,21 +81,18 @@ exports.pageSearch = function(req, res){
 /* GET noPublicBW page. */
 exports.noPublicBW = function(req, res, next) {
     uName = req.session.user.username;
-    navTitle = "优秀博文积累2";
+    navTitle = "未发表博文";
     navDesc = "可以作为自己的个人文集，把自己的写的文章按照一定的时间顺序、目录或者标签发表到自己的博客上" +
         "这是博客最初的最基本的功能，就是发表个人网络日志。";
 
-    articles.findAllByCon({
-            author: uName,
-            articleTag: 2
-        },10,0,function(err, results, nums){
+    articles.findAllByCon({author: uName,articleTag: 0},PAGE_NUM,0,function(err, results, nums){
         if(err){
             res.redirect('/error');
         }else{
             var showpagetip, allpage;
-            allpage=Math.ceil(nums/10);
-            if(allpage>9){
-                showpagetip=9;
+            allpage=Math.ceil(nums/PAGE_NUM);
+            if(allpage>PAGE_NUM_JIAN1){
+                showpagetip=PAGE_NUM_JIAN1;
             }else{
                 showpagetip=allpage;
             }
@@ -116,13 +107,13 @@ exports.noPublicBW = function(req, res, next) {
                         signed: '1',
                         vCode: '',
                         modules: [],
-                        title: '博文管理',
+                        title: '未发表博文',
                         allNum: resu,
                         nums: nums,
                         allArticles: results,
                         showpagetip: showpagetip, 
                         allpage: allpage,
-                        articleTag:2,
+                        articleTag:0,
                         cssFils:['userBlog/managearticle'],
                         jsFils:['userBlog/managearticle']
                     });
@@ -132,15 +123,12 @@ exports.noPublicBW = function(req, res, next) {
     });
 };
 
-/* GET 删除. */
+/* 删除. */
 exports.delArticle = function(req, res, next) {
     uName = req.session.user.username;
     var aid=req.body.aid;
 
-    var obj={
-            author: uName,
-            _id: aid
-        }
+    var obj={author: uName,_id: aid}
 
     articles.delete(obj,function(err){
         if(err){
@@ -152,19 +140,14 @@ exports.delArticle = function(req, res, next) {
     });
 };
 
-/* GET public. */
+/* 发布 */
 exports.pubArticle = function(req, res, next) {
     uName = req.session.user.username;
     var aid=req.body.aid;
 
-    var obj={
-            author: uName,
-            _id: aid
-        }
+    var obj={author: uName,_id: aid}
 
-    articles.modify(obj,{
-        articleTag: 1
-    }, function(err){
+    articles.modify(obj,{articleTag: 1}, function(err){
         if(err){
             retDesc = "系统出现故障，请稍后再试!";
             return res.send({retCode: 400,retDesc: retDesc}); 
@@ -177,20 +160,18 @@ exports.pubArticle = function(req, res, next) {
 /* GET relatedMeBW page. */
 exports.relatedMeBW = function(req, res, next) {
     uName = req.session.user.username;
-    navTitle = "优秀博文积累3";
+    navTitle = "所有博文";
     navDesc = "可以作为自己的个人文集，把自己的写的文章按照一定的时间顺序、目录或者标签发表到自己的博客上" +
         "这是博客最初的最基本的功能，就是发表个人网络日志。";
 
-    articles.findAllByCon({
-            author: uName
-        },10,0,function(err, results, nums){
+    articles.findAllByCon({author: uName},PAGE_NUM,0,function(err, results, nums){
         if(err){
             res.redirect('/error');
         }else{
             var showpagetip, allpage;
-            allpage=Math.ceil(nums/10);
-            if(allpage>9){
-                showpagetip=9;
+            allpage=Math.ceil(nums/PAGE_NUM);
+            if(allpage>PAGE_NUM_JIAN1){
+                showpagetip=PAGE_NUM_JIAN1;
             }else{
                 showpagetip=allpage;
             }
@@ -205,7 +186,7 @@ exports.relatedMeBW = function(req, res, next) {
                         signed: '1',
                         vCode: '',
                         modules: [],
-                        title: '博文管理',
+                        title: '所有博文',
                         allNum: resu,
                         nums: nums,
                         allArticles: results,

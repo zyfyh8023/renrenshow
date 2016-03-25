@@ -33,7 +33,7 @@
 								<td class="am-text-middle">
 									<a href="javascript:void(0);" class="zy-del-art">删除</a><br>
 									<a target="_blank" href="/<%= uName %>/blogs_art?aid=<%= allArticles[i]._id %>">查看</a><br>
-									<% if(allArticles[i].articleTag=='2') { %>
+									<% if(allArticles[i].articleTag=='0') { %>
 									<a href="javascript:void(0);" class="zy-pub-art">发布</a>
 									<% } %>
 								</td>
@@ -73,7 +73,7 @@
 		<% if(locals.articleTag) { %>
 			articleTag: <%= articleTag%>
 		<% }else{ %>
-			articleTag: 11
+			articleTag: 111
 		<% } %>
 	}
 </script>
