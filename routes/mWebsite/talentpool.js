@@ -5,24 +5,26 @@ var users = require('../../models/users');
 
 var retCode, retDesc, uName, cssFils, jsFils;
 
+var PAGE_NUM=10,
+	PAGE_NUM_JIAN1=9;
 /* GET home page. */
 exports.page = function(req, res, next) {
 
 	uName=checkState.loginState(req, res, false);
 
-	users.findAllByCon({},36,0,function(err, result, nums){
+	users.findAllByCon({},PAGE_NUM,0,function(err, result, nums){
 	    if(err){
 	        res.redirect('/error');
 	    }else{
 	        var showpagetip, allpage;
-	        allpage=Math.ceil(nums/36);
-	        if(allpage>35){
-	            showpagetip=35;
+	        allpage=Math.ceil(nums/PAGE_NUM);
+	        if(allpage>PAGE_NUM_JIAN1){
+	            showpagetip=PAGE_NUM_JIAN1;
 	        }else{
 	            showpagetip=allpage;
 	        }
 			res.render('talentpool', {
-				title: '人才库-人人秀',
+				title: '人才-助聘网',
 				uName: uName,
 				results: result ,
 				nums: nums,
@@ -38,34 +40,45 @@ exports.page = function(req, res, next) {
 
 
 exports.allUserPS = function(req, res){
-    var curstep=req.body.curstep-1,
-        pagenum=36,
-        skipstep=curstep*pagenum,
-        object={};
-   
+    var pagenum=PAGE_NUM,
+        worktime=req.body.worktime.trim(),
+        education=req.body.education.trim(),
+        val=req.body.iptVal.trim(),
+        object={},
+        curstep=0,
+        skipstep=0;
+
+    if(req.body.curstep!='xxx'){
+    	curstep=req.body.curstep-1;
+    	skipstep=curstep*pagenum;
+    }
+
+   	if(val){
+   		object.username=eval("/"+val+"/i") ;
+   	}
+
+   	if(worktime!=''){
+   		worktime=worktime.split(',');
+   		object.workTime={$in : worktime };
+   	}
+
+   	if(education!=''){
+   		education=education.split(',');
+   		object.education={$in : education };
+   	}
+
     users.findAllByCon(object,pagenum,skipstep,function(err, results, nums){
         if(err){
-            console.log('err');
+            res.redirect('/error');
         }else{
-            res.send({allArticles: results, nums: nums}); 
-        }
-    })
-    
-};
-
-
-exports.userSearch = function(req, res){
-    var curstep=req.body.val,
-   		object={
-   			// username:/fyh/,
-   			username:{$in : [ "zyfyh8023@163.com", "zy@163.com" ] }
-   		};
-
-    users.findAll(object,function(err, results){
-        if(err){
-            console.log('err');
-        }else{
-            res.send(results); 
+        	var showpagetip, allpage;
+        	allpage=Math.ceil(nums/PAGE_NUM);
+        	if(allpage>PAGE_NUM_JIAN1){
+        	    showpagetip=PAGE_NUM_JIAN1;
+        	}else{
+        	    showpagetip=allpage;
+        	}
+          res.send({allArticles: results, nums: nums, allpage: allpage, showpagetip: showpagetip}); 
         }
     })
     

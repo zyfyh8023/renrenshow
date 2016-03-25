@@ -117,7 +117,7 @@ exports.doApply = function(req, res, next) {
 			'；网站账号：'+req.session.user.username+
 			'；申请理由：'+applymes;
 
-	checkState.emailSend(1, uName, applyname+'向您申请访问人人秀网站的特权', temp, '', function(err, resu){
+	checkState.emailSend(1, uName, applyname+'向您申请访问助聘网的特权', temp, '', function(err, resu){
 		if(err){
 			return res.send({retCode: 400,retDesc: err});
 		}else{

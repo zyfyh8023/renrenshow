@@ -48,8 +48,10 @@ var alluExps = require('./routes/uWebsite/alluExps');
 var demo = require('./routes/demo');
 
 var app = express();
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+
 //app.set('view engine', 'ejs');
 app.engine('.html', ejs.__express);
 app.set('view engine', 'html');
@@ -107,7 +109,13 @@ app.get('/index', routes.page);   //首页
 app.get('/blog', blog.page);   //博文
 app.get('/exps', exps.page);   //面经
 app.get('/jobs', jobs.page);   //工作
-app.get('/navs', navs.page);   //导航
+app.get('/navs1', navs.page1);   //导航1
+app.get('/navs2', navs.page2);   //导航2
+app.get('/navs3', navs.page3);   //导航3
+app.get('/navs4', navs.page4);   //导航4
+app.get('/navs5', navs.page5);   //导航5
+app.get('/navs6', navs.page6);   //导航6
+app.get('/navs7', navs.page7);   //导航6
 app.get('/res', talentpool.page);  //人才
 app.get('/inf_allarticle', allarticle.page);   //所有文章
 app.get('/login', login.page);   //登录
@@ -121,10 +129,8 @@ app.post('/register', register.doRegister);  //注册操作
 app.post('/loginOut', login.loginOut);      //注销操作
 app.post('/about', about.doPage);       //帮助操作
 app.post('/allUserPS', talentpool.allUserPS);  //人才列表分页
-app.post('/userSearch', talentpool.userSearch);  //
 app.post('/allArts', allarticle.allartPS);     //文章列表分页
 app.post('/allExps', exps.allexpPS);        //面经列表分页
-
 
 
 //个人主站  --GET请求
@@ -295,19 +301,30 @@ app.locals.navs = function(signed, uName, vCode, dat) {
 app.locals.artTypsChg = function(dat) {
     var ret="";
     switch(dat){
-        case 1:
-            ret='技术博客';break;
-        case 2:
+        case '01':
+            ret='前端开发相关';break;
+        case '02':
+            ret='后端开发相关';break;
+        case '03':
+            ret='客户端开发相关';break;
+        case '04':
+            ret='数据库开发相关';break;
+        case '05':
+            ret='产品运营相关';break;
+        case '06':
+             ret='UI设计相关';break;   
+        case '11':
             ret='行业远瞻';break;
-        case 3:
-            ret='随便写写';break;
-        case 4:
+        case '21':
             ret='生活日志';break;
+        case '91':
+            ret='随便写写';break;
         default:
             ret="";break;
     }
     return ret;
 };
+
 //app的awardTyp格式化
 app.locals.awardTyp = function(dat) {
     var ret="";
@@ -331,6 +348,7 @@ app.locals.awardTyp = function(dat) {
     }
     return ret;
 };
+
 //app的学历格式化
 app.locals.eduType = function(dat) {
     var ret="";
@@ -350,6 +368,7 @@ app.locals.eduType = function(dat) {
     }
     return ret;
 };
+
 //app的性别格式化
 app.locals.sexType = function(dat) {
     var ret="";
@@ -363,6 +382,7 @@ app.locals.sexType = function(dat) {
     }
     return ret;
 };
+
 //app的日期格式化
 app.locals.dateformat = function(obj, format) {
     if (format == undefined) {
@@ -371,6 +391,7 @@ app.locals.dateformat = function(obj, format) {
     var ret = moment(obj).format(format);
     return ret;
 };
+
 //app的字符串截取
 app.locals.cutStr = function(str, strLen, addStr){
     var allLen=0,
@@ -402,20 +423,22 @@ app.locals.uNameChg = function(str) {
     return reStr;
 };
 
-
 //数据库的链接
 MongodbAPI.connect(function(error) {
     if (error) throw error;
 });
+
 app.on('close', function(errno) {
     MongodbAPI.disconnect(function(err) {});
 });
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('该页面不存在');
     err.status = 404;
     next(err);
 });
+
 // error handlers    mongod --dbpath F:\Mongodb\db
 // development error handler
 // will print stacktrace
@@ -425,11 +448,12 @@ if (app.get('env') === 'development') {
         res.render('error', {
             message: err.message,
             error: err,
-            title: "错误页面-人人秀",
+            title: "错误页面-助聘网",
             uName: ""
         });
     });
 }
+
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
@@ -437,7 +461,7 @@ app.use(function(err, req, res, next) {
     res.render('error', {
         message: err.message,
         error: {},
-        title: "错误页面-人人秀",
+        title: "错误页面-助聘网",
         uName: ""
     });
 });

@@ -25,15 +25,15 @@ exports.emailSend = function(typ, toEmails, emailSub, emailTxt, emailHtml, callb
 	  	secureConnection: true, // 使用 SSL
 	  	port: 465, // SMTP 端口
 	  	auth: {
-	    	user: "zyfyh8023@163.com", 
-	    	pass: "8023zyfyh" 
+	    	user: "izhupin@163.com", 
+	    	pass: "8023zyfyhzhupin" 
 	  	}
 	});
 
 	if(typ==1){
 		// 设置邮件内容
 		var mailOptions = {
-		  	from: "人人秀网站<zyfyh8023@163.com>", // 发件地址
+		  	from: "助聘网<izhupin@163.com>", // 发件地址
 		  	to: toEmails, // 收件列表 "646039894@qq.com, zyfyh8023@163.com"
 		  	subject: emailSub, // 标题 "邮件主题"
 		  	text: emailTxt, // plaintext body  'Hello world'
@@ -41,7 +41,7 @@ exports.emailSend = function(typ, toEmails, emailSub, emailTxt, emailHtml, callb
 	}else{
 		// 设置邮件内容
 		var mailOptions = {
-		  	from: "人人秀网站<zyfyh8023@163.com>", // 发件地址
+		  	from: "助聘网<izhupin@163.com>", // 发件地址
 		  	to: toEmails, // 收件列表 "646039894@qq.com, zyfyh8023@163.com"
 		  	subject: emailSub, // 标题 "邮件主题"
 		  	html: emailHtml // html 内容  "<a href='https://www.lmlc.com'><img src='https://www.lmlc.com/cdn/product/1454306939811.jpg'></a>"

@@ -32,6 +32,14 @@ var UserSchema = new Schema({
             '他不仅仅支持我的事业作为我有力的经济后盾，还毫无怨言的包容我所有工作、生活当中有理无理的坏脾气，曾经我是多么有自己原则的一个人，' +
             '但是遇到他，打破了我自己毕生坚持的原则，喜欢一句话“冥冥中该来则来，无处可逃”。</p>'
     },
+    workTime: {
+        type: String,
+        default: '0'
+    },
+    education: {
+        type: String,
+        default: '0'
+    },
     create_date: {
         type: Date,
         default: Date.now

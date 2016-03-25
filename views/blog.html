@@ -6,7 +6,7 @@
 			<div data-am-widget="list_news" class="am-list-news am-list-news-default">
 				<div class="am-list-news-hd am-cf">
 					<a target="_blank" href="/inf_allarticle?typ=1">
-						<h2>热门博文推荐</h2>
+						<h2>前端开发技术博文</h2>
 						<span class="am-list-news-more am-fr">更多 &raquo;</span>
 					</a>
 				</div>
@@ -26,7 +26,91 @@
 			<div data-am-widget="list_news" class="am-list-news am-list-news-default">
 				<div class="am-list-news-hd am-cf">
 					<a target="_blank" href="/inf_allarticle?typ=2">
-						<h2>行业资讯推荐</h2>
+						<h2>后端开发开发技术博文</h2>
+						<span class="am-list-news-more am-fr">更多 &raquo;</span>
+					</a>
+				</div>
+				<div class="am-list-news-bd">
+					<ul class="am-list zy-titleList">
+						<% for(var i=0; i<artsnum2;i++){ %>
+							<li class="am-g am-list-item-dated">
+								<a target="_blank" href="/<%= arts2[i].author %>/blogs_art?aid=<%= arts2[i]._id %>" class="am-list-item-hd "><%= arts2[i].articleTitle %></a>
+								<span class="am-list-date"><%= dateformat(arts2[i].cTime, 'YYYY-MM-DD') %></span>
+							</li>
+						<% } %>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="am-g am-u-lg-9 am-u-md-12  am-u-sm-centered">
+		<div class="col-lg-6 am-u-lg-6">
+			<div data-am-widget="list_news" class="am-list-news am-list-news-default">
+				<div class="am-list-news-hd am-cf">
+					<a target="_blank" href="/inf_allarticle?typ=1">
+						<h2>客户端开发技术博文</h2>
+						<span class="am-list-news-more am-fr">更多 &raquo;</span>
+					</a>
+				</div>
+				<div class="am-list-news-bd">
+					<ul class="am-list zy-titleList">
+						<% for(var i=0; i<artsnum1;i++){ %>
+							<li class="am-g am-list-item-dated">
+								<a target="_blank" href="/<%= arts1[i].author %>/blogs_art?aid=<%= arts1[i]._id %>" class="am-list-item-hd "><%= arts1[i].articleTitle %></a>
+								<span class="am-list-date"><%= dateformat(arts1[i].cTime, 'YYYY-MM-DD') %></span>
+							</li>
+						<% } %>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-6 am-u-lg-6">
+			<div data-am-widget="list_news" class="am-list-news am-list-news-default">
+				<div class="am-list-news-hd am-cf">
+					<a target="_blank" href="/inf_allarticle?typ=2">
+						<h2>数据库开发开发技术博文</h2>
+						<span class="am-list-news-more am-fr">更多 &raquo;</span>
+					</a>
+				</div>
+				<div class="am-list-news-bd">
+					<ul class="am-list zy-titleList">
+						<% for(var i=0; i<artsnum2;i++){ %>
+							<li class="am-g am-list-item-dated">
+								<a target="_blank" href="/<%= arts2[i].author %>/blogs_art?aid=<%= arts2[i]._id %>" class="am-list-item-hd "><%= arts2[i].articleTitle %></a>
+								<span class="am-list-date"><%= dateformat(arts2[i].cTime, 'YYYY-MM-DD') %></span>
+							</li>
+						<% } %>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="am-g am-u-lg-9 am-u-md-12  am-u-sm-centered">
+		<div class="col-lg-6 am-u-lg-6">
+			<div data-am-widget="list_news" class="am-list-news am-list-news-default">
+				<div class="am-list-news-hd am-cf">
+					<a target="_blank" href="/inf_allarticle?typ=1">
+						<h2>行业远瞻资讯</h2>
+						<span class="am-list-news-more am-fr">更多 &raquo;</span>
+					</a>
+				</div>
+				<div class="am-list-news-bd">
+					<ul class="am-list zy-titleList">
+						<% for(var i=0; i<artsnum1;i++){ %>
+							<li class="am-g am-list-item-dated">
+								<a target="_blank" href="/<%= arts1[i].author %>/blogs_art?aid=<%= arts1[i]._id %>" class="am-list-item-hd "><%= arts1[i].articleTitle %></a>
+								<span class="am-list-date"><%= dateformat(arts1[i].cTime, 'YYYY-MM-DD') %></span>
+							</li>
+						<% } %>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-6 am-u-lg-6">
+			<div data-am-widget="list_news" class="am-list-news am-list-news-default">
+				<div class="am-list-news-hd am-cf">
+					<a target="_blank" href="/inf_allarticle?typ=2">
+						<h2>生活日志分享</h2>
 						<span class="am-list-news-more am-fr">更多 &raquo;</span>
 					</a>
 				</div>

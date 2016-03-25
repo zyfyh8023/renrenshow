@@ -11,7 +11,7 @@ exports.page = function(req, res, next) {
 	uName=checkState.loginState(req, res, false);
 
 	res.render('login', {
-		title: '登录-人人秀',
+		title: '登录-助聘网',
 		uName: uName,
 		cssFils:['login'],
 		jsFils:['login']

@@ -9,7 +9,10 @@ var ExperienceSchema = new Schema({
     experienceCompany: String,
     experienceCont: String,
     experienceImgs: [],
-    experienceTag: Number,
+    experienceTag: {      //0:草稿中  1发布中   2审核中   3已删除
+        type: Number,
+        default: 0
+    },
     cTime: {
         type: Date,
         default: Date.now

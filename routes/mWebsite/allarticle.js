@@ -31,7 +31,7 @@ exports.page = function(req, res, next) {
 	            }
 	            console.log(results);
 	            res.render('allarticle', {
-	            	title: '博文汇总-人人秀',
+	            	title: '博文汇总-助聘网',
 	            	nums: nums,
 	            	showpagetip: showpagetip, 
 	            	allpage: allpage,

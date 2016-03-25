@@ -10,7 +10,7 @@ exports.page = function(req, res, next) {
 	uName=checkState.loginState(req, res, false);
 
 	res.render('index', {
-		title: '首页-人人秀',
+		title: '首页-助聘网',
 		uName: uName,
 		cssFils:['index'],
 		jsFils:['index']

@@ -25,7 +25,7 @@ exports.page = function(req, res, next) {
 	            showpagetip=allpage;
 	        }
 			res.render('exps', {
-				title: '信息汇总-人人秀',
+				title: '信息汇总-助聘网',
 				uName: uName,
 				nums: nums,
 				showpagetip: showpagetip, 

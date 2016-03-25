@@ -15,10 +15,10 @@ exports.page = function(req, res, next) {
 		if(err){
 			res.redirect('/error');
 		}else{
-			var artsnum1=resul[0].length>0 ? (resul[0].length>=20 ? 20 : resul[0].length) : 0;
-            var artsnum2=resul[1].length>0 ? (resul[1].length>=20 ? 20 : resul[1].length) : 0;
+			var artsnum1=resul[0].length>0 ? (resul[0].length>=10 ? 10 : resul[0].length) : 0;
+            var artsnum2=resul[1].length>0 ? (resul[1].length>=10 ? 10 : resul[1].length) : 0;
 			res.render('blog', {
-				title: '博文-人人秀',
+				title: '博文-助聘网',
 				uName: uName,
 				cssFils:['resource'],
 				arts1: resul[0],

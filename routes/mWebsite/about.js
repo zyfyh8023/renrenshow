@@ -10,7 +10,7 @@ exports.page = function(req, res, next) {
 	uName=checkState.loginState(req, res, false);
 
 	res.render('about', {
-		title: '关于我们-人人秀',
+		title: '关于我们-助聘网',
 		uName: uName,
 		cssFils:['about'],
 		jsFils:['about']
@@ -28,7 +28,7 @@ exports.doPage = function(req, res, next) {
 		email = req.body.email,
 		mes = req.body.mes;
 
-	checkState.emailSend(1, email, req.session.user.username+'对人人秀网站的使用反馈'+name, mes, '', function(err, resu){
+	checkState.emailSend(1, email, req.session.user.username+'对助聘网站的使用反馈'+name, mes, '', function(err, resu){
 		if(err){
 			return res.send({retCode: 400,retDesc: err});
 		}else{
