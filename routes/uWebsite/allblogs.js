@@ -10,7 +10,7 @@ var retCode, retDesc, uName, navTitle, navDesc, cssFils, jsFils;
 
 /* GET home page. */
 exports.artSee = function(req, res, next) {
-    navTitle = "资源导航定制1";
+    navTitle = "博客文章";
     navDesc = "资源导航为童鞋们提供学习方向、学习途径、和业界最新消息、最新资料等。编程工具、" +
         "国外牛人、国内牛人、JS框架、UI框架、JS库、CSS库。每周更新及时。";
     var urls=url.parse(req.url, true).query;
@@ -23,7 +23,7 @@ exports.artSee = function(req, res, next) {
                 if(err){
                     res.redirect('/error');
                 }else{
-                    if(results && artTyp>=0 && artTyp<=3){
+                    if(results){
                         var showpagetip, allpage;
                         allpage=Math.ceil(results[artTyp].length/10);
                         if(allpage>9){
@@ -38,7 +38,7 @@ exports.artSee = function(req, res, next) {
                             signed: rs.signed,
                             vCode: rs.vCode,
                             modules: rs.modules,
-                            title: 'TA的博文查看(特权)',
+                            title: 'TA的博客文章(特权)',
                             resul: results,
                             allArticles:results[artTyp],
                             nums: results[artTyp].length,
@@ -57,7 +57,7 @@ exports.artSee = function(req, res, next) {
                 if(err){
                     res.redirect('/error');
                 }else{
-                    if(results && artTyp>=0 && artTyp<=3){
+                    if(results){
                         var showpagetip, allpage;
                         allpage=Math.ceil(results[artTyp].length/10);
                         if(allpage>9){
@@ -72,7 +72,7 @@ exports.artSee = function(req, res, next) {
                             signed: rs.signed,
                             vCode: rs.vCode,
                             modules: rs.modules,
-                            title: 'TA的博文查看(普通)',
+                            title: 'TA的博客文章(普通)',
                             resul: results,
                             allArticles:results[artTyp],
                             nums: results[artTyp].length,
@@ -95,7 +95,7 @@ exports.artSee = function(req, res, next) {
 
 /* GET home page. */
 exports.expSee = function(req, res, next) {
-    navTitle = "资源导航定制";
+    navTitle = "面试经验";
     navDesc = "资源导航为童鞋们提供学习方向、学习途径、和业界最新消息、最新资料等。编程工具、" +
         "国外牛人、国内牛人、JS框架、UI框架、JS库、CSS库。每周更新及时。";
 
@@ -120,7 +120,7 @@ exports.expSee = function(req, res, next) {
                             signed: rs.signed,
                             vCode: rs.vCode,
                             modules: rs.modules,
-                            title: 'TA的博文查看(特权)',
+                            title: 'TA的面试经验(特权)',
                             resul: results,
                             allArticles:results[4],
                             nums: results[4].length,
@@ -153,7 +153,7 @@ exports.expSee = function(req, res, next) {
                             signed: rs.signed,
                             vCode: rs.vCode,
                             modules: rs.modules,
-                            title: 'TA的博文查看(普通)',
+                            title: 'TA的面试经验(普通)',
                             resul: results,
                             allArticles:results[4],
                             nums: results[4].length,
@@ -229,7 +229,7 @@ function getBlogComs(uName, callFn) {
     async.series([
             function(callback) {
                 articles.findAll({
-                    articleType:1,
+                    articleType:{$in : ['01', '02', '03', '04', '05', '06']},
                     articleTag:1,
                     author:uName
                 }, function(err, results) {
@@ -238,7 +238,7 @@ function getBlogComs(uName, callFn) {
             },
             function(callback) {
                 articles.findAll({
-                    articleType:2,
+                    articleType:'11',
                     articleTag:1,
                     author:uName
                 }, function(err, results) {
@@ -247,7 +247,7 @@ function getBlogComs(uName, callFn) {
             },
             function(callback) {
                 articles.findAll({
-                    articleType:3,
+                    articleType:'21',
                     articleTag:1,
                     author:uName
                 }, function(err, results) {
@@ -256,7 +256,7 @@ function getBlogComs(uName, callFn) {
             },
             function(callback) {
                 articles.findAll({
-                    articleType:4,
+                    articleType:'91',
                     articleTag:1,
                     author:uName
                 }, function(err, results) {

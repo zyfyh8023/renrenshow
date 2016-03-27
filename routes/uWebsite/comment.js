@@ -7,20 +7,23 @@ var async = require('async');
 
 var retCode, retDesc, uName, navTitle, navDesc, cssFils, jsFils;
 
+var PAGE_NUM=10;
+var PAGE_NUM_JIAN1=9;
+
 exports.minePage = function(req, res, next){
     uName = req.session.user.username;
-    navTitle = "我的评论";
+    navTitle = "我评论的";
     navDesc = "可以作为自己的个人文集，把自己的写的文章按照一定的时间顺序、目录或者标签发表到自己的博客上" +
         "这是博客最初的最基本的功能，就是发表个人网络日志。";
 
-    comment.findAllByCon({author:uName}, 10, 0, function(err, results, nums) {
+    comment.findAllByCon({author:uName}, PAGE_NUM, 0, function(err, results, nums) {
         if (err) {
             res.redirect('/error');
         } else {
             var showpagetip, allpage;
-            allpage=Math.ceil(nums/10);
-            if(allpage>9){
-                showpagetip=9;
+            allpage=Math.ceil(nums/PAGE_NUM);
+            if(allpage>PAGE_NUM_JIAN1){
+                showpagetip=PAGE_NUM_JIAN1;
             }else{
                 showpagetip=allpage;
             }
@@ -28,7 +31,7 @@ exports.minePage = function(req, res, next){
                 if (err) {
                     res.redirect('/error');
                 } else {
-                    console.log(results);
+                    // console.log(results);
                     res.render('./userBlog/manageComments', {
                         navTitle: navTitle,
                         navDesc: navDesc,
@@ -36,7 +39,7 @@ exports.minePage = function(req, res, next){
                         signed: '1',
                         vCode: '',
                         modules: [],
-                        title: '我的评论',
+                        title: '我评论的',
                         allNum: resu,
                         nums: nums,
                         allComments: results,
@@ -54,18 +57,18 @@ exports.minePage = function(req, res, next){
 
 exports.yoursPage = function(req, res, next){
     uName = req.session.user.username;
-    navTitle = "评论我的";
+    navTitle = "被评论的";
     navDesc = "可以作为自己的个人文集，把自己的写的文章按照一定的时间顺序、目录或者标签发表到自己的博客上" +
         "这是博客最初的最基本的功能，就是发表个人网络日志。";
 
-    comment.findAllByCon({artAuthor:uName}, 10, 0, function(err, results, nums) {
+    comment.findAllByCon({artAuthor:uName}, PAGE_NUM, 0, function(err, results, nums) {
         if (err) {
             res.redirect('/error');
         } else {
             var showpagetip, allpage;
-            allpage=Math.ceil(nums/10);
-            if(allpage>9){
-                showpagetip=9;
+            allpage=Math.ceil(nums/PAGE_NUM);
+            if(allpage>PAGE_NUM_JIAN1){
+                showpagetip=PAGE_NUM_JIAN1;
             }else{
                 showpagetip=allpage;
             }
@@ -73,7 +76,7 @@ exports.yoursPage = function(req, res, next){
                 if (err) {
                     res.redirect('/error');
                 } else {
-                    console.log(results);
+                    // console.log(results);
                     res.render('./userBlog/manageComments', {
                         navTitle: navTitle,
                         navDesc: navDesc,
@@ -81,7 +84,7 @@ exports.yoursPage = function(req, res, next){
                         signed: '1',
                         vCode: '',
                         modules: [],
-                        title: '评论我的',
+                        title: '被评论的',
                         allNum: resu,
                         nums: nums,
                         allComments: results,
@@ -114,92 +117,88 @@ exports.doPage = function(req, res, next) {
         if (err) {
            return res.send({retCode: 400, retDesc: '用户查找失败！'});
         } else {
-            if (result) {
-                var newComment;
-                switch (typ){
-                    case '1':
-                        newComment = new comment.Comment({
-                            author: uName,
-                            authorImg:result.headimg,
-                            CommentCont: comCon,
-                            CommentArt: comArt,    //文章
-                            artAuthor: artAuthor
-                        });
-                        break;
-                    case '2':
-                        newComment = new comment.Comment({
-                            author: uName,
-                            authorImg:result.headimg,
-                            CommentCont: comCon,
-                            CommentExp: comArt,   //面经
-                            artAuthor: artAuthor
-                        });
-                        break;
-                    case '3':
-                        newComment = new comment.Comment({
-                            author: uName,
-                            authorImg:result.headimg,
-                            CommentCont: comCon,
-                            CommentResumeTyp:'3', //荣誉
-                            CommentResumeVal: comArt,
-                            artAuthor: artAuthor
-                        });
-                        break;
-                    case '4':
-                        newComment = new comment.Comment({
-                            author: uName,
-                            authorImg:result.headimg,
-                            CommentCont: comCon,
-                            CommentResumeTyp:'4',  //工作
-                            CommentResumeVal: comArt,
-                            artAuthor: artAuthor
-                        });
-                        break;
-                    case '5':
-                        newComment = new comment.Comment({
-                            author: uName,
-                            authorImg:result.headimg,
-                            CommentCont: comCon,
-                            CommentResumeTyp:'5',   //教育
-                            CommentResumeVal: comArt,
-                            artAuthor: artAuthor
-                        });
-                        break;
-                    case '6':
-                        newComment = new comment.Comment({
-                            author: uName,
-                            authorImg:result.headimg,
-                            CommentCont: comCon,
-                            CommentResumeTyp:'6',  //作品
-                            CommentResumeVal: comArt,
-                            artAuthor: artAuthor
-                        });
-                        break;
-                    case '7':
-                        newComment = new comment.Comment({
-                            author: uName,
-                            authorImg:result.headimg,
-                            CommentCont: comCon,
-                            CommentResumeTyp:'7',  //实习
-                            CommentResumeVal: comArt,
-                            artAuthor: artAuthor
-                        });
-                        break;
-                    default:
-                        return res.send({retCode: 400, retDesc: '评论失败，稍后再试!'});
-                        break;
-                }
-               
-                comment.create(newComment, function(err) {
-                    if (err) {
-                        return res.send({retCode: 400, retDesc: '保存失败,请稍后再试!'});
-                    } else {
-                        return res.send({retCode: 200});
-                    }
-                });
-            }else{
-                return res.send({retCode: 400,retDesc: '用户名查找出现故障，请稍后再试！'});
+            var newComment;
+            switch (typ){
+                case '1':
+                    newComment = new comment.Comment({
+                        author: uName,
+                        authorImg:result.headimg,
+                        CommentCont: comCon,
+                        CommentArt: comArt,    //文章
+                        artAuthor: artAuthor
+                    });
+                    break;
+                case '2':
+                    newComment = new comment.Comment({
+                        author: uName,
+                        authorImg:result.headimg,
+                        CommentCont: comCon,
+                        CommentExp: comArt,   //面经
+                        artAuthor: artAuthor
+                    });
+                    break;
+                case '3':
+                    newComment = new comment.Comment({
+                        author: uName,
+                        authorImg:result.headimg,
+                        CommentCont: comCon,
+                        CommentResumeTyp:'3', //荣誉
+                        CommentResumeVal: comArt,
+                        artAuthor: artAuthor
+                    });
+                    break;
+                case '4':
+                    newComment = new comment.Comment({
+                        author: uName,
+                        authorImg:result.headimg,
+                        CommentCont: comCon,
+                        CommentResumeTyp:'4',  //工作
+                        CommentResumeVal: comArt,
+                        artAuthor: artAuthor
+                    });
+                    break;
+                case '5':
+                    newComment = new comment.Comment({
+                        author: uName,
+                        authorImg:result.headimg,
+                        CommentCont: comCon,
+                        CommentResumeTyp:'5',   //教育
+                        CommentResumeVal: comArt,
+                        artAuthor: artAuthor
+                    });
+                    break;
+                case '6':
+                    newComment = new comment.Comment({
+                        author: uName,
+                        authorImg:result.headimg,
+                        CommentCont: comCon,
+                        CommentResumeTyp:'6',  //作品
+                        CommentResumeVal: comArt,
+                        artAuthor: artAuthor
+                    });
+                    break;
+                case '7':
+                    newComment = new comment.Comment({
+                        author: uName,
+                        authorImg:result.headimg,
+                        CommentCont: comCon,
+                        CommentResumeTyp:'7',  //实习
+                        CommentResumeVal: comArt,
+                        artAuthor: artAuthor
+                    });
+                    break;
+                default:
+                    return res.send({retCode: 400, retDesc: '评论失败，稍后再试!'});
+                    break;
             }
+           
+            comment.create(newComment, function(err) {
+                if (err) {
+                    return res.send({retCode: 400, retDesc: '保存失败,请稍后再试!'});
+                } else {
+                    return res.send({retCode: 200});
+                }
+            });
         }
     });
     
@@ -207,23 +206,19 @@ exports.doPage = function(req, res, next) {
 
 exports.pageSearch = function(req, res){
     var curstep=req.body.curstep-1,
-        pagenum=10,
+        pagenum=PAGE_NUM,
         skipstep=curstep*pagenum,
         comTyp=req.body.comTyp,
         uName=req.body.uName,
         object={};
         if(comTyp=='author'){
-            object={
-                author: uName
-            };
+            object={author: uName};
         }else{
-            object={
-                artAuthor: uName
-            };
+            object={artAuthor: uName};
         }
     comment.findAllByCon(object,pagenum,skipstep,function(err, results, nums){
         if(err){
-            console.log('err');
+            res.redirect('/error');
         }else{
             res.send({allComments: results, nums: nums}); 
         }

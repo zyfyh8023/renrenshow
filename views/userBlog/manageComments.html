@@ -12,7 +12,7 @@
 							<th style="min-width:10rem">评论内容</th>
 							<th style="width:10rem">评论作者</th>
 							<th style="width:10rem">评论时间</th>
-							<th style="width:10rem">评论类型</th>
+							<th style="width:10rem">文章类型</th>
 							<th style="width:6rem">操作</th>
 						</tr>
 					</thead>
@@ -37,15 +37,39 @@
 								<td class="am-text-middle">
 									<% if(allComments[i].CommentArt) { %>
 										博文 
-									<% }else { %>
+									<% }else if(allComments[i].CommentExp){ %>
 										面经
+									<% } else { %>
+										<% if(allComments[i].CommentResumeTyp=='3'){ %>
+											简历-荣誉
+										<% }else if(allComments[i].CommentResumeTyp=='4'){ %>
+											简历-工作
+										<% }else if(allComments[i].CommentResumeTyp=='5'){ %>
+											简历-教育
+										<% }else if(allComments[i].CommentResumeTyp=='6'){ %>
+											简历-作品
+										<% }else{ %>
+											简历-实习
+										<% } %>
 									<% } %>
 								</td>
 								<td class="am-text-middle">
 									<% if(allComments[i].CommentArt) { %>
 										<a target="_blank" href="/<%= uName %>/blogs_art?aid=<%= allComments[i].CommentArt %>">查看</a>
-									<% }else{ %>
+									<% }else if(allComments[i].CommentExp){ %>
 										<a target="_blank" href="/<%= uName %>/blogs_exp?aid=<%= allComments[i].CommentExp %>">查看</a>
+									<% }else{ %>
+										<% if(allComments[i].CommentResumeTyp=='3'){ %>
+											<a target="_blank" href="/<%= uName %>/resume_awd?ids=<%= allComments[i].CommentResumeVal %>">查看</a>
+										<% }else if(allComments[i].CommentResumeTyp=='4'){ %>
+											<a target="_blank" href="/<%= uName %>/resume_cmp2?ids=<%= allComments[i].CommentResumeVal %>">查看</a>
+										<% }else if(allComments[i].CommentResumeTyp=='5'){ %>
+											<a target="_blank" href="/<%= uName %>/resume_scl?ids=<%= allComments[i].CommentResumeVal %>">查看</a>
+										<% }else if(allComments[i].CommentResumeTyp=='6'){ %>
+											<a target="_blank" href="/<%= uName %>/resume_wok?ids=<%= allComments[i].CommentResumeVal %>">查看</a>
+										<% }else{ %>
+											<a target="_blank" href="/<%= uName %>/resume_cmp1?ids=<%= allComments[i].CommentResumeVal %>">查看</a>
+										<% } %>
 									<% } %>
 								</td>
 							</tr>

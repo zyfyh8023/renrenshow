@@ -6,15 +6,12 @@ var Schema = mongoose.Schema;
 var CommentSchema = new Schema({
     author: String,
     authorImg: String,
-    CommentCont: String,      //评论的具体内容
-    CommentArt: String,       //文章的评论
-    CommentExp: String,       //面经的评论
-    CommentResumeTyp: String, //简历：3实习 4工作 5荣誉 6作品
-    CommentResumeVal: String, //简历：
+    CommentCont: String,      //评论的内容
+    CommentArt: String,       //被评论的文章的_id   非文章的评论此处为空
+    CommentExp: String,       //被评论的面经的_id   非面经的评论此处为空
+    CommentResumeTyp: String, //简历中的评论模块区分：3荣誉 4工作 5教育 6作品 7实习
+    CommentResumeVal: String, //简历中被评论模块的i值：不是简历中模块的评论，CommentResumeTyp和CommentResumeVal均为空
     artAuthor: String,        //原作者
-    CommentTag1: Number,
-    CommentTag2: Number,
-    CommentTag3: Number,
     cTime: {
         type: Date,
         default: Date.now

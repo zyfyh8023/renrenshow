@@ -230,7 +230,7 @@ app.get('/demo', demo.page);
 
 //app的navs格式化
 app.locals.navs = function(signed, uName, vCode, dat) {
-    var ret='<li><a data-src="/'+uName+'/index" href="/'+uName+'/index">首页</a></li>';
+    var ret='<li><a data-src="/'+uName+'/index" href="/'+uName+'/index">我的首页</a></li>';
     for(var i=0,len=dat.length; i<len; i++){
         switch(dat[i].modelNam){
             case '个性简介':
@@ -239,7 +239,7 @@ app.locals.navs = function(signed, uName, vCode, dat) {
                         if(signed=='2'){
                             ret+='<li><a data-src="/'+uName+'/instrc" href="/'+uName+'/instrc?vCode='+vCode+'">简介</a></li>';
                         }else{
-                            ret+='<li><a data-src="/'+uName+'/instrc" href="/'+uName+'/instrc">简介</a></li>';
+                            ret+='<li><a data-src="/'+uName+'/instrc" href="/'+uName+'/instrc">自我介绍</a></li>';
                         }
                         break;
                     }
@@ -251,7 +251,7 @@ app.locals.navs = function(signed, uName, vCode, dat) {
                         if(signed=='2'){
                             ret+='<li><a data-src="/'+uName+'/resume" href="/'+uName+'/resume?vCode='+vCode+'">简历</a></li>';
                         }else{
-                            ret+='<li><a data-src="/'+uName+'/resume" href="/'+uName+'/resume">简历</a></li>';
+                            ret+='<li><a data-src="/'+uName+'/resume" href="/'+uName+'/resume">个人简历</a></li>';
                         }
                         break;
                     }
@@ -263,7 +263,7 @@ app.locals.navs = function(signed, uName, vCode, dat) {
                         if(signed=='2'){
                             ret+='<li><a data-src="/'+uName+'/navs" href="/'+uName+'/navs?vCode='+vCode+'">资源</a></li>';
                         }else{
-                            ret+='<li><a data-src="/'+uName+'/navs" href="/'+uName+'/navs">资源</a></li>';
+                            ret+='<li><a data-src="/'+uName+'/navs" href="/'+uName+'/navs">资源导航</a></li>';
                         }
                         break;
                     }
@@ -275,7 +275,7 @@ app.locals.navs = function(signed, uName, vCode, dat) {
                         if(signed=='2'){
                             ret+='<li><a data-src="/'+uName+'/blogs_" href="/'+uName+'/blogs_aart?vCode='+vCode+'&typ=0">博文</a></li>';
                         }else{
-                            ret+='<li><a data-src="/'+uName+'/blogs_" href="/'+uName+'/blogs_aart?typ=0">博文</a></li>';
+                            ret+='<li><a data-src="/'+uName+'/blogs_" href="/'+uName+'/blogs_aart?typ=0">博文面经</a></li>';
                         }
                         break;
                     }
@@ -286,13 +286,13 @@ app.locals.navs = function(signed, uName, vCode, dat) {
         }
     }
     if(signed=='1'){
-        ret+='<li><a data-src="/'+uName+'/instrc" href="/'+uName+'/instrc">简介</a></li>';
-        ret+='<li><a data-src="/'+uName+'/resume" href="/'+uName+'/resume">简历</a></li>';
-        ret+='<li><a data-src="/'+uName+'/navs" href="/'+uName+'/navs">资源</a></li>';
-        ret+='<li><a data-src="/blogs_" href="/blogs_art_pub">博文</a></li>';
-        ret+='<li><a data-src="/sets_" href="/sets_pub">设置</a></li>';
+        ret+='<li><a data-src="/'+uName+'/instrc" href="/'+uName+'/instrc">自我介绍</a></li>';
+        ret+='<li><a data-src="/'+uName+'/resume" href="/'+uName+'/resume">个人简历</a></li>';
+        ret+='<li><a data-src="/'+uName+'/navs" href="/'+uName+'/navs">资源导航</a></li>';
+        ret+='<li><a data-src="/blogs_" href="/blogs_art_pub">博文面经</a></li>';
+        ret+='<li><a data-src="/sets_" href="/sets_pub">设置中心</a></li>';
     }else{
-        ret+='<li><a data-src="/'+uName+'/sets_" href="/'+uName+'/sets_pub2">设置</a></li>';
+        ret+='<li><a data-src="/'+uName+'/sets_" href="/'+uName+'/sets_pub2">设置中心</a></li>';
     }
     return ret;
 };
@@ -302,17 +302,17 @@ app.locals.artTypsChg = function(dat) {
     var ret="";
     switch(dat){
         case '01':
-            ret='前端开发相关';break;
+            ret='前端开发';break;
         case '02':
-            ret='后端开发相关';break;
+            ret='后端开发';break;
         case '03':
-            ret='客户端开发相关';break;
+            ret='客户端开发';break;
         case '04':
-            ret='数据库开发相关';break;
+            ret='数据库开发';break;
         case '05':
-            ret='产品运营相关';break;
+            ret='产品运营';break;
         case '06':
-             ret='UI设计相关';break;   
+             ret='UI设计';break;   
         case '11':
             ret='行业远瞻';break;
         case '21':

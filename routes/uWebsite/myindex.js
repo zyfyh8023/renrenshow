@@ -135,7 +135,7 @@ function getindexCon(uName, callFn) {
             },
             function(callback) {
                 article.findAll({
-                    articleType: 4,
+                    articleType: '21',
                     articleTag: 1,
                     author: uName
                 }, function(err, results) {
@@ -144,7 +144,7 @@ function getindexCon(uName, callFn) {
             },
             function(callback) {
                 article.findAll({
-                    articleType: 1,
+                    articleType: {$in: ['01','02','03','04','05','06']},
                     articleTag: 1,
                     author: uName
                 }, function(err, results) {
@@ -153,7 +153,7 @@ function getindexCon(uName, callFn) {
             },
             function(callback) {
                 article.findAll({
-                    articleType: 2,
+                    articleType: '11',
                     articleTag: 1,
                     author: uName
                 }, function(err, results) {
@@ -162,7 +162,7 @@ function getindexCon(uName, callFn) {
             },
             function(callback) {
                 article.findAll({
-                    articleType: 3,
+                    articleType: '91',
                     articleTag: 1,
                     author: uName
                 }, function(err, results) {

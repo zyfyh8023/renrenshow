@@ -74,7 +74,6 @@ exports.doRegister = function(req, res, next) {
 
 // http://www.tuicool.com/articles/YRrYvqm
 // http://www.cnblogs.com/yupeng/p/3482271.html
-
 function userInit(uNames, callback2){
     async.series(
         [   

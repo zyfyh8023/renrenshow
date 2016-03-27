@@ -21,9 +21,26 @@ $(document).ready(function() {
 		    			if(data.allComments[i].CommentArt) { 
 		    				txt='博文';
 		    				linkstr='<a href="/'+__data.uName+'/blogs_art?aid='+data.allComments[i].CommentArt+'"">查看</a>';
-		    			}else {
+		    			}else if(data.allComments[i].CommentExp){
 		    				txt='面经';
 		    				linkstr='<a href="/'+__data.uName+'/blogs_exp?aid='+data.allComments[i].CommentExp+'"">查看</a>';
+		    			}else{
+		    				if(data.allComments[i].CommentResumeTyp=='3'){
+		    					txt='简历-荣誉';
+		    				linkstr='<a href="/'+__data.uName+'/resume_awd?ids='+data.allComments[i].CommentResumeVal+'"">查看</a>';
+		    				}else if(data.allComments[i].CommentResumeTyp=='4'){
+		    					txt='简历-工作';
+		    				linkstr='<a href="/'+__data.uName+'/resume_cmp2?ids='+data.allComments[i].CommentResumeVal+'"">查看</a>';
+		    				}else if(data.allComments[i].CommentResumeTyp=='5'){
+		    					txt='简历-教育';
+		    				linkstr='<a href="/'+__data.uName+'/resume_scl?ids='+data.allComments[i].CommentResumeVal+'"">查看</a>';
+		    				}else if(data.allComments[i].CommentResumeTyp=='6'){
+		    					txt='简历-作品';
+		    				linkstr='<a href="/'+__data.uName+'/resume_wok?ids='+data.allComments[i].CommentResumeVal+'"">查看</a>';
+		    				}else{
+		    					txt='简历-实习';
+		    				linkstr='<a href="/'+__data.uName+'/resume_cmp1?ids='+data.allComments[i].CommentResumeVal+'"">查看</a>';
+		    				}
 		    			}
 			    		var htmlTemp=
 			    			'<tr  data-ids="'+data.allComments[i]._id+'">'+

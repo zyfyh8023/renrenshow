@@ -30,6 +30,7 @@ exports.page = function(req, res, next) {
                 if (err) {
                     res.redirect('/error');
                 } else {
+                    console.log(results);
                     res.render('./userBlog/managearticle', {
                         navTitle: navTitle,
                         navDesc: navDesc,
