@@ -184,11 +184,18 @@ exports.pageSearchArt = function(req, res){
 
     artTyp=parseInt(artTyp);
     if(artTyp>=1 && artTyp<=4){
-        object={
-            articleType:artTyp,
-            articleTag:1,
-            author:uName
-        };
+        if(artTyp==1){
+            object.articleType={$in: ['01','02','03','04','05','06']};
+        }else if(artTyp==2){
+            object.articleType='11';
+        }else if(artTyp==3){
+            object.articleType='21';
+        }else{
+            object.articleType='91';
+        }
+        
+        object.articleTag=1;
+        object.author=uName;
         articles.findAllByCon(object,pagenum,skipstep,function(err, results, nums){
             if(err){
                 return res.send({retCode: 400,retDesc: '信息查找失败！'});

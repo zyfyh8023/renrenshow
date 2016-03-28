@@ -32,43 +32,48 @@ exports.page = function(req, res, next) {
                 }
             })
         }else if(rs.signed=='2'){    
-            users.findByUname(rs.uName, function(err, result) {
-                if (err) {
-                    res.redirect('/error');
-                } else {
-                    res.render('./userIntroduc/introduction', {
-                        navTitle: navTitle,
-                        navDesc: navDesc,
-                        uName: rs.uName,
-                        signed: rs.signed,
-                        vCode: rs.vCode,
-                        modules: rs.modules,
-                        title: 'TA的自我介绍(特权)',
-                        rs: result,
-                        cssFils:['userIntroduc/introduction'],
-                        jsFils:['userIntroduc/introduction']
-                    });
-                }
+            checkState.yesOrNo(res, rs, 0, 0, 1, function(){
+                users.findByUname(rs.uName, function(err, result) {
+                    if (err) {
+                        res.redirect('/error');
+                    } else {
+                        res.render('./userIntroduc/introduction', {
+                            navTitle: navTitle,
+                            navDesc: navDesc,
+                            uName: rs.uName,
+                            signed: rs.signed,
+                            vCode: rs.vCode,
+                            modules: rs.modules,
+                            title: 'TA的自我介绍(特权)',
+                            rs: result,
+                            cssFils:['userIntroduc/introduction'],
+                            jsFils:['userIntroduc/introduction']
+                        });
+                    }
+                })
             })
-        }else{   
-            users.findByUname(rs.uName, function(err, result) {
-                if (err) {
-                    res.redirect('/error');
-                } else {
-                    res.render('./userIntroduc/introduction', {
-                        navTitle: navTitle,
-                        navDesc: navDesc,
-                        uName: rs.uName,
-                        signed: rs.signed,
-                        vCode: rs.vCode,
-                        modules: rs.modules,
-                        title: 'TA的自我介绍(普通)',
-                        rs: result,
-                        cssFils:['userIntroduc/introduction'],
-                        jsFils:['userIntroduc/introduction']
-                    });
-                }
-            })
+        }else{  
+            checkState.yesOrNo(res, rs, 0, 0, 1, function(){
+                users.findByUname(rs.uName, function(err, result) {
+                    if (err) {
+                        res.redirect('/error');
+                    } else {
+                        
+                        res.render('./userIntroduc/introduction', {
+                            navTitle: navTitle,
+                            navDesc: navDesc,
+                            uName: rs.uName,
+                            signed: rs.signed,
+                            vCode: rs.vCode,
+                            modules: rs.modules,
+                            title: 'TA的自我介绍(普通)',
+                            rs: result,
+                            cssFils:['userIntroduc/introduction'],
+                            jsFils:['userIntroduc/introduction']
+                        });
+                    }
+                })
+            });
         }
     });
 

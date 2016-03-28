@@ -39,18 +39,20 @@ exports.page = function(req, res, next) {
                         jsFils:['userBlog2/allExps']
                     });
                 }else if(rs.signed=='2'){
-                    res.render('./userBlog2/alluExps', {
-                        uName: rs.uName,
-                        signed: rs.signed,
-                        vCode: rs.vCode,
-                        modules: rs.modules,
-                        title: 'TA的面经查看(特权)',
-                        nums: nums,
-                        showpagetip: showpagetip, 
-                        allpage: allpage,
-                        resul: results,
-                        jsFils:['userBlog2/allExps']
-                    });
+                    checkState.yesOrNo(res, rs, 3, 3, 1, function(){
+                        res.render('./userBlog2/alluExps', {
+                            uName: rs.uName,
+                            signed: rs.signed,
+                            vCode: rs.vCode,
+                            modules: rs.modules,
+                            title: 'TA的面经查看(特权)',
+                            nums: nums,
+                            showpagetip: showpagetip, 
+                            allpage: allpage,
+                            resul: results,
+                            jsFils:['userBlog2/allExps']
+                        });
+                    })
                 }else{
                     res.render('./userBlog2/alluExps', {
                         uName: rs.uName,

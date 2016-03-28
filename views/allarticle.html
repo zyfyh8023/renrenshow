@@ -13,7 +13,7 @@
 							<div class="am-u-sm-2 am-list-thumb">
 								<a target="_blank" href="/<%= resul[i].author %>/blogs_art?aid=<%= resul[i]._id %>">
 									<% if(resul[i].articleImgs.length>0){ %>
-										<img src="<%= resul[i].articleImgs[0] %>" />
+										<img src="<%= imgUrl(resul[i].articleImgs[0]) %>" />
 									<% }else{ %>
 										<img src="/images/default.png" />
 									<% } %>

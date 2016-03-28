@@ -59,6 +59,14 @@ exports.emailSend = function(typ, toEmails, emailSub, emailTxt, emailHtml, callb
 	});
 }
 
+exports.yesOrNo = function(res, rs, modulesId, sunModelsId, sunYesNoVal, callback){
+	if(rs.modules[modulesId].sunModels[sunModelsId].sunYesNo==sunYesNoVal){
+		callback();
+	}else{
+		res.redirect('/'+rs.uName+'/sets_apply');
+	}	
+}
+
 exports.myState = function(req, res, callbackFn){
 	var urls=url.parse(req.url, true).query;
 	var objs={};

@@ -18,7 +18,8 @@ $(document).ready(function() {
 			    	for(var i=0, len=data.allArticles.length;i<len;i++){
     			    	htmls+='<li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left"><div class="am-u-sm-2 am-list-thumb"><a href="javascript:void(0);">';
     			    	if(data.allArticles[i].articleImgs.length>0){
-    			    		htmls+='<img src="'+data.allArticles[i].articleImgs[0]+'" />';
+    			    		var curl=data.allArticles[i].articleImgs[0].split('..'); 
+    			    		htmls+='<img src="'+curl[1]+'" />';
     			    	}else{
     			    		htmls+='<img src="/images/default.png" />';
     			    	}

@@ -55,6 +55,11 @@
 							<li>
 								<a href="/res">招人才</a>
 							</li>
+							<% if(signed=='1'){ %>
+								<li title="<%= uName %>">
+									<a id="zy-loginOut" href="javascript:void(0);">注销 (<%= cutStr(uName, 6, '...') %>)</a>
+								</li>
+							<% } %>
 							<li id="zy-slidemenu" data-am-offcanvas="{target: '#doc-oc-demo2'}">
 								<a href="javascript:void(0);">侧边栏</a>
 							</li>
@@ -112,8 +117,15 @@
 						<div data-tab-panel-1 class="am-tab-panel">
 							<form class="am-form">
 								<div class="am-form-group">
-									待定中。。。
-									<%= uName %>
+									<% if(signed=='1'){ %>
+										<div style="color:#fff">当前访问访问：已登录</div>
+										<div>友情提示：<br>切换普通方式或任何特权方式预览，首先要注销您的登录哦~</div>
+									<% }else if(signed=='2'){ %>
+										<div>当前访问方式：特权</div>
+									<% }else{ %>
+										<div>当前访问方式：普通</div>
+										<div><a style="color:#0e90d2" href="/<%= uName %>/sets_apply">去申请特权</a></div>
+									<% } %>
 								</div>
 							</form>
 						</div>

@@ -41,7 +41,7 @@
 	<% for(var i=0,len=modules.length; i<len; i++){ %>
 		<% if(modules[i].modelNam=='博文面经'){ %>
 			<% for(var j=0, lenj=modules[i].sunModels.length; j<lenj; j++){ %>
-				<% if(modules[i].sunModels[j].sunYesNo==1 && modules[i].sunModels[j].sunNam=='面试经验'){ %>
+				<% if((modules[i].sunModels[j].sunYesNo==1 || modules[i].sunModels[j].sunYesNo==2) && modules[i].sunModels[j].sunNam=='面试经验'){ %>
 					<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default zy-titlebar-nomargin">
 						<h2 class="am-titlebar-title ">面试经验</h2>
 					</div>

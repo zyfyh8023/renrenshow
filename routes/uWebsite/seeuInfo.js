@@ -27,27 +27,31 @@ exports.awards = function(req, res) {
 						ids: urls.ids
 					});
 				}else if(rs.signed=='2'){
-					res.render('./userResume/userSCI/awardInfo', {
-						uName: rs.uName,
-						signed: rs.signed,
-						vCode: rs.vCode,
-						modules: rs.modules,
-						title: 'TA的荣誉奖励(特权)',
-						rs: results.awdObj,
-						rs2: results.awdComs,
-						ids: urls.ids
-					});
+					checkState.yesOrNo(res, rs, 1, 5, 1, function(){
+						res.render('./userResume/userSCI/awardInfo', {
+							uName: rs.uName,
+							signed: rs.signed,
+							vCode: rs.vCode,
+							modules: rs.modules,
+							title: 'TA的荣誉奖励(特权)',
+							rs: results.awdObj,
+							rs2: results.awdComs,
+							ids: urls.ids
+						});
+					})
 				}else{
-					res.render('./userResume/userSCI/awardInfo', {
-						uName: rs.uName,
-						signed: rs.signed,
-						vCode: rs.vCode,
-						modules: rs.modules,
-						title: 'TA的荣誉奖励(普通)',
-						rs: results.awdObj,
-						rs2: results.awdComs,
-						ids: urls.ids
-					});
+					checkState.yesOrNo(res, rs, 1, 5, 1, function(){
+						res.render('./userResume/userSCI/awardInfo', {
+							uName: rs.uName,
+							signed: rs.signed,
+							vCode: rs.vCode,
+							modules: rs.modules,
+							title: 'TA的荣誉奖励(普通)',
+							rs: results.awdObj,
+							rs2: results.awdComs,
+							ids: urls.ids
+						});
+					})
 				}
 			}
 		})
@@ -117,29 +121,33 @@ exports.companys1 = function(req, res) {
 						ids: urls.ids
 					});
 				}else if(rs.signed=='2'){
-					res.render('./userResume/userSCI/companyInfo', {
-						uName: rs.uName,
-						signed: rs.signed,
-						vCode: rs.vCode,
-						modules: rs.modules,
-						title: 'TA的实习经历(特权)',
-						jobTyp: '实习',
-						rs: results.cmp1Obj,
-						rs2: results.cmp1Coms,
-						ids: urls.ids
-					});
+					checkState.yesOrNo(res, rs, 1, 3, 1, function(){
+						res.render('./userResume/userSCI/companyInfo', {
+							uName: rs.uName,
+							signed: rs.signed,
+							vCode: rs.vCode,
+							modules: rs.modules,
+							title: 'TA的实习经历(特权)',
+							jobTyp: '实习',
+							rs: results.cmp1Obj,
+							rs2: results.cmp1Coms,
+							ids: urls.ids
+						});
+					})
 				}else{
-					res.render('./userResume/userSCI/companyInfo', {
-						uName: rs.uName,
-						signed: rs.signed,
-						vCode: rs.vCode,
-						modules: rs.modules,
-						title: 'TA的实习经历(普通)',
-						jobTyp: '实习',
-						rs: results.cmp1Obj,
-						rs2: results.cmp1Coms,
-						ids: urls.ids
-					});
+					checkState.yesOrNo(res, rs, 1, 3, 1, function(){
+						res.render('./userResume/userSCI/companyInfo', {
+							uName: rs.uName,
+							signed: rs.signed,
+							vCode: rs.vCode,
+							modules: rs.modules,
+							title: 'TA的实习经历(普通)',
+							jobTyp: '实习',
+							rs: results.cmp1Obj,
+							rs2: results.cmp1Coms,
+							ids: urls.ids
+						});
+					})
 				}
 			}
 		});
@@ -210,29 +218,33 @@ exports.companys2 = function(req, res) {
 						ids: urls.ids
 					});
 				}else if(rs.signed=='2'){
-					res.render('./userResume/userSCI/companyInfo', {
-						uName: rs.uName,
-						signed: rs.signed,
-						vCode: rs.vCode,
-						modules: rs.modules,
-						title: 'TA的工作经历(特权)',
-						jobTyp: '正式工作',
-						rs: results.cmp2Obj,
-						rs2: results.cmp2Coms,
-						ids: urls.ids
-					});
+					checkState.yesOrNo(res, rs, 1, 4, 1, function(){
+						res.render('./userResume/userSCI/companyInfo', {
+							uName: rs.uName,
+							signed: rs.signed,
+							vCode: rs.vCode,
+							modules: rs.modules,
+							title: 'TA的工作经历(特权)',
+							jobTyp: '正式工作',
+							rs: results.cmp2Obj,
+							rs2: results.cmp2Coms,
+							ids: urls.ids
+						});
+					})
 				}else{
-					res.render('./userResume/userSCI/companyInfo', {
-						uName: rs.uName,
-						signed: rs.signed,
-						vCode: rs.vCode,
-						modules: rs.modules,
-						title: 'TA的工作经历(普通)',
-						jobTyp: '正式工作',
-						rs: results.cmp2Obj,
-						rs2: results.cmp2Coms,
-						ids: urls.ids
-					});
+					checkState.yesOrNo(res, rs, 1, 4, 1, function(){
+						res.render('./userResume/userSCI/companyInfo', {
+							uName: rs.uName,
+							signed: rs.signed,
+							vCode: rs.vCode,
+							modules: rs.modules,
+							title: 'TA的工作经历(普通)',
+							jobTyp: '正式工作',
+							rs: results.cmp2Obj,
+							rs2: results.cmp2Coms,
+							ids: urls.ids
+						});
+					})
 				}
 			}
 		})
@@ -302,27 +314,31 @@ exports.schools = function(req, res) {
 						ids: urls.ids
 					});
 				}else if(rs.signed=='2'){
-					res.render('./userResume/userSCI/schoolInfo', {
-						uName: rs.uName,
-						signed: rs.signed,
-						vCode: rs.vCode,
-						modules: rs.modules,
-						title: 'TA的教育经历(特权)',
-						rs: results.eduObj,
-						rs2: results.eduComs,
-						ids: urls.ids
-					});
+					checkState.yesOrNo(res, rs, 1, 2, 1, function(){
+						res.render('./userResume/userSCI/schoolInfo', {
+							uName: rs.uName,
+							signed: rs.signed,
+							vCode: rs.vCode,
+							modules: rs.modules,
+							title: 'TA的教育经历(特权)',
+							rs: results.eduObj,
+							rs2: results.eduComs,
+							ids: urls.ids
+						});
+					})
 				}else{
-					res.render('./userResume/userSCI/schoolInfo', {
-						uName: rs.uName,
-						signed: rs.signed,
-						vCode: rs.vCode,
-						modules: rs.modules,
-						title: 'TA的教育经历(普通)',
-						rs: results.eduObj,
-						rs2: results.eduComs,
-						ids: urls.ids
-					});
+					checkState.yesOrNo(res, rs, 1, 2, 1, function(){
+						res.render('./userResume/userSCI/schoolInfo', {
+							uName: rs.uName,
+							signed: rs.signed,
+							vCode: rs.vCode,
+							modules: rs.modules,
+							title: 'TA的教育经历(普通)',
+							rs: results.eduObj,
+							rs2: results.eduComs,
+							ids: urls.ids
+						});
+					})
 				}
 			}
 		})
@@ -390,27 +406,31 @@ exports.works = function(req, res) {
 				    	ids: urls.ids
 				    });
 				}else if(rs.signed=='2'){
-					res.render('./userResume/userSCI/worksInfo', {
-						uName: rs.uName,
-						signed: rs.signed,
-						vCode: rs.vCode,
-						modules: rs.modules,
-						title: 'TA的作品查看(特权)',
-						rs: results.wrkObj,
-						rs2: results.wrkComs,
-						ids: urls.ids
-					});
+					checkState.yesOrNo(res, rs, 1, 6, 1, function(){
+						res.render('./userResume/userSCI/worksInfo', {
+							uName: rs.uName,
+							signed: rs.signed,
+							vCode: rs.vCode,
+							modules: rs.modules,
+							title: 'TA的作品查看(特权)',
+							rs: results.wrkObj,
+							rs2: results.wrkComs,
+							ids: urls.ids
+						});
+					})
 				}else{
-					res.render('./userResume/userSCI/worksInfo', {
-						uName: rs.uName,
-						signed: rs.signed,
-						vCode: rs.vCode,
-						modules: rs.modules,
-						title: 'TA的作品查看(普通)',
-						rs: results.wrkObj,
-						rs2: results.wrkComs,
-						ids: urls.ids
-					});
+					checkState.yesOrNo(res, rs, 1, 6, 1, function(){
+						res.render('./userResume/userSCI/worksInfo', {
+							uName: rs.uName,
+							signed: rs.signed,
+							vCode: rs.vCode,
+							modules: rs.modules,
+							title: 'TA的作品查看(普通)',
+							rs: results.wrkObj,
+							rs2: results.wrkComs,
+							ids: urls.ids
+						});
+					})
 				}
 			}
 		});

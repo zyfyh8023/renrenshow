@@ -29,25 +29,77 @@ exports.artSee = function(req, res, next) {
                         resul2: results.artComs
                     });
                 }else if(rs.signed=='2'){
-                    res.render('./userBlog2/blog_art', {
-                        uName: rs.uName,
-                        signed: rs.signed,
-                        vCode: rs.vCode,
-                        modules: rs.modules,
-                        title: 'TA的博文查看(特权)',
-                        resul: results.artObj,
-                        resul2: results.artComs
-                    });
+                   if(results.artObj.articleType=='91'){
+                        checkState.yesOrNo(res, rs, 3, 4, 1, function(){
+                            res.render('./userBlog2/blog_art', {
+                                uName: rs.uName,
+                                signed: rs.signed,
+                                vCode: rs.vCode,
+                                modules: rs.modules,
+                                title: 'TA的博文查看(特权)',
+                                resul: results.artObj,
+                                resul2: results.artComs
+                            });
+                        })
+                   }else if(results.artObj.articleType=='21'){
+                        checkState.yesOrNo(res, rs, 3, 2, 1, function(){
+                            res.render('./userBlog2/blog_art', {
+                                uName: rs.uName,
+                                signed: rs.signed,
+                                vCode: rs.vCode,
+                                modules: rs.modules,
+                                title: 'TA的博文查看(特权)',
+                                resul: results.artObj,
+                                resul2: results.artComs
+                            });
+                        })
+                   }else{
+                        res.render('./userBlog2/blog_art', {
+                            uName: rs.uName,
+                            signed: rs.signed,
+                            vCode: rs.vCode,
+                            modules: rs.modules,
+                            title: 'TA的博文查看(特权)',
+                            resul: results.artObj,
+                            resul2: results.artComs
+                        });
+                   }
                 }else{
-                    res.render('./userBlog2/blog_art', {
-                        uName: rs.uName,
-                        signed: rs.signed,
-                        vCode: rs.vCode,
-                        modules: rs.modules,
-                        title: 'TA的博文查看(普通)',
-                        resul: results.artObj,
-                        resul2: results.artComs
-                    });
+                    if(results.artObj.articleType=='91'){
+                        checkState.yesOrNo(res, rs, 3, 4, 1, function(){
+                            res.render('./userBlog2/blog_art', {
+                                uName: rs.uName,
+                                signed: rs.signed,
+                                vCode: rs.vCode,
+                                modules: rs.modules,
+                                title: 'TA的博文查看(普通)',
+                                resul: results.artObj,
+                                resul2: results.artComs
+                            });
+                        })
+                    }else if(results.artObj.articleType=='21'){
+                        checkState.yesOrNo(res, rs, 3, 2, 1, function(){
+                            res.render('./userBlog2/blog_art', {
+                                uName: rs.uName,
+                                signed: rs.signed,
+                                vCode: rs.vCode,
+                                modules: rs.modules,
+                                title: 'TA的博文查看(普通)',
+                                resul: results.artObj,
+                                resul2: results.artComs
+                            });
+                        })
+                    }else{
+                        res.render('./userBlog2/blog_art', {
+                            uName: rs.uName,
+                            signed: rs.signed,
+                            vCode: rs.vCode,
+                            modules: rs.modules,
+                            title: 'TA的博文查看(普通)',
+                            resul: results.artObj,
+                            resul2: results.artComs
+                        });
+                    }
                 }
             }
         }); 
@@ -78,21 +130,23 @@ exports.expSee = function(req, res, next) {
                 }
             });
         }else if(rs.signed=='2'){
-            getExpComs(aid, function(err, results){
-                if(err){
-                    res.redirect('/error');
-                }else{
-                    res.render('./userBlog2/blog_exper', {
-                        uName: rs.uName,
-                        signed: rs.signed,
-                        vCode: rs.vCode,
-                        modules: rs.modules,
-                        title: 'TA的面经查看(特权)',
-                        resul: results.artObj,
-                        resul2: results.artComs
-                    });
-                }
-            });
+            checkState.yesOrNo(res, rs, 3, 3, 1, function(){
+                getExpComs(aid, function(err, results){
+                    if(err){
+                        res.redirect('/error');
+                    }else{
+                        res.render('./userBlog2/blog_exper', {
+                            uName: rs.uName,
+                            signed: rs.signed,
+                            vCode: rs.vCode,
+                            modules: rs.modules,
+                            title: 'TA的面经查看(特权)',
+                            resul: results.artObj,
+                            resul2: results.artComs
+                        });
+                    }
+                });  
+            })
         }else{
             getExpComs(aid, function(err, results){
                 if(err){

@@ -25,43 +25,41 @@
 	</div>
 </div>
 
-<% if(signed=='1'){ %>
-	<div class="am-popup" id="my-specialinstr">
-		<div class="am-popup-inner">
-			<div class="am-popup-hd">
-				<h4 class="am-popup-title">个性自我介绍</h4>
-				<span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
-			</div>
-			<div class="am-popup-bd">
+<div class="am-popup" id="my-specialinstr">
+	<div class="am-popup-inner">
+		<div class="am-popup-hd">
+			<h4 class="am-popup-title">个性自我介绍</h4>
+			<span data-am-modal-close class="am-close am-close-alt am-close-spin am-icon-times"></span>
+		</div>
+		<div class="am-popup-bd">
+			<br>
+			<form class="am-form am-form-horizontal" action="/introduction" data-am-validator method='post' id="specialInstruc" enctype='multipart/form-data'>
+				<div class="am-form-group">
+					<label class="am-u-sm-2 am-form-label">介绍</label>
+					<div class="am-u-sm-10">
+						<script class="specialICon" id="specialICon" type="text/plain" style="width:100%;height:50rem">
+						</script>
+					</div>
+				</div>
+				<div class="am-form-group am-form-file">
+					<label class="am-u-sm-2 am-form-label">图片：</label>
+					<div class="am-u-sm-10">
+						<button type="button" class="am-btn am-btn-default am-btn-sm">
+							<i class="am-icon-cloud-upload"></i> 上传图片
+						</button>
+						<input type="file" id="inputFile" name="inputFile">
+						<div class="imgtip"></div>
+					</div>
+				</div>
 				<br>
-				<form class="am-form am-form-horizontal" action="/introduction" data-am-validator method='post' id="specialInstruc" enctype='multipart/form-data'>
-					<div class="am-form-group">
-						<label class="am-u-sm-2 am-form-label">介绍</label>
-						<div class="am-u-sm-10">
-							<script class="specialICon" id="specialICon" type="text/plain" style="width:100%;height:50rem">
-							</script>
-						</div>
+				<div class="am-form-group">
+					<div class="am-u-sm-10 am-u-sm-offset-2">
+						<button id="upload" class="am-btn am-btn-primary"> 提交信息 </button>
 					</div>
-					<div class="am-form-group am-form-file">
-						<label class="am-u-sm-2 am-form-label">图片：</label>
-						<div class="am-u-sm-10">
-							<button type="button" class="am-btn am-btn-default am-btn-sm">
-								<i class="am-icon-cloud-upload"></i> 上传图片
-							</button>
-							<input type="file" id="inputFile" name="inputFile">
-							<div class="imgtip"></div>
-						</div>
-					</div>
-					<br>
-					<div class="am-form-group">
-						<div class="am-u-sm-10 am-u-sm-offset-2">
-							<button id="upload" class="am-btn am-btn-primary"> 提交信息 </button>
-						</div>
-					</div>
-				</form>
-			</div>
+				</div>
+			</form>
 		</div>
 	</div>
-<% } %>
+</div>
 
 <% include ../myfooter.html %>

@@ -9,7 +9,7 @@ var ArticleSchema = new Schema({
     articleKeyword: String,
     articleAbstract: String,
     articleCont: String,
-    articleImgs: [],
+    articleImgs: [],        //在文章的分类查找中， 技术博文typ=1   行业远瞻typ=2    生活日志typ=3   随便写写typ=4
     articleType: String,   //01:前端开发相关  02:后端开发相关  03:客户端开发相关  04:数据库开发相关  05:产品运营相关 06:UI设计相关  11:行业远瞻   21:生活日志   91:随便写写
     articleTag: Number,   //0:草稿中  1发布中   2审核中
     cTime: {

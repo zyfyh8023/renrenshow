@@ -79,7 +79,6 @@ app.use(session({
     })
 }));
 
-
 app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), function(req, res, next) {
     // ueditor 客户发起上传图片请求
     if (req.query.action === 'uploadimage') {
@@ -117,7 +116,7 @@ app.get('/navs5', navs.page5);   //导航5
 app.get('/navs6', navs.page6);   //导航6
 app.get('/navs7', navs.page7);   //导航6
 app.get('/res', talentpool.page);  //人才
-app.get('/inf_allarticle', allarticle.page);   //所有文章
+app.get('/blog_typ', allarticle.page);   //所有文章
 app.get('/login', login.page);   //登录
 app.get('/register', register.page);   //注册
 app.get('/faq', faq.page);      //介绍
@@ -131,7 +130,6 @@ app.post('/about', about.doPage);       //帮助操作
 app.post('/allUserPS', talentpool.allUserPS);  //人才列表分页
 app.post('/allArts', allarticle.allartPS);     //文章列表分页
 app.post('/allExps', exps.allexpPS);        //面经列表分页
-
 
 //个人主站  --GET请求
 app.get('/:uid/index', myindex.page);          //首页
@@ -237,7 +235,7 @@ app.locals.navs = function(signed, uName, vCode, dat) {
                 for(var j=0,lenj=dat[i].sunModels.length; j<lenj; j++){
                     if(dat[i].sunModels[j].sunNam=='公开' && dat[i].sunModels[j].sunYesNo==1){
                         if(signed=='2'){
-                            ret+='<li><a data-src="/'+uName+'/instrc" href="/'+uName+'/instrc?vCode='+vCode+'">简介</a></li>';
+                            ret+='<li><a data-src="/'+uName+'/instrc" href="/'+uName+'/instrc?vCode='+vCode+'">自我介绍</a></li>';
                         }else{
                             ret+='<li><a data-src="/'+uName+'/instrc" href="/'+uName+'/instrc">自我介绍</a></li>';
                         }
@@ -249,7 +247,7 @@ app.locals.navs = function(signed, uName, vCode, dat) {
                 for(var j=0,lenj=dat[i].sunModels.length; j<lenj; j++){
                     if(dat[i].sunModels[j].sunYesNo==1){
                         if(signed=='2'){
-                            ret+='<li><a data-src="/'+uName+'/resume" href="/'+uName+'/resume?vCode='+vCode+'">简历</a></li>';
+                            ret+='<li><a data-src="/'+uName+'/resume" href="/'+uName+'/resume?vCode='+vCode+'">个人简历</a></li>';
                         }else{
                             ret+='<li><a data-src="/'+uName+'/resume" href="/'+uName+'/resume">个人简历</a></li>';
                         }
@@ -261,7 +259,7 @@ app.locals.navs = function(signed, uName, vCode, dat) {
                 for(var j=0,lenj=dat[i].sunModels.length; j<lenj; j++){
                     if(dat[i].sunModels[j].sunNam=='公开' && dat[i].sunModels[j].sunYesNo==1){
                         if(signed=='2'){
-                            ret+='<li><a data-src="/'+uName+'/navs" href="/'+uName+'/navs?vCode='+vCode+'">资源</a></li>';
+                            ret+='<li><a data-src="/'+uName+'/navs" href="/'+uName+'/navs?vCode='+vCode+'">资源导航</a></li>';
                         }else{
                             ret+='<li><a data-src="/'+uName+'/navs" href="/'+uName+'/navs">资源导航</a></li>';
                         }
@@ -271,9 +269,9 @@ app.locals.navs = function(signed, uName, vCode, dat) {
                 break;
             case '博文面经':
                 for(var j=0,lenj=dat[i].sunModels.length; j<lenj; j++){
-                    if(dat[i].sunModels[j].sunYesNo==1){
+                    if(dat[i].sunModels[j].sunYesNo==1 || dat[i].sunModels[j].sunYesNo==2){
                         if(signed=='2'){
-                            ret+='<li><a data-src="/'+uName+'/blogs_" href="/'+uName+'/blogs_aart?vCode='+vCode+'&typ=0">博文</a></li>';
+                            ret+='<li><a data-src="/'+uName+'/blogs_" href="/'+uName+'/blogs_aart?vCode='+vCode+'&typ=0">博文面经</a></li>';
                         }else{
                             ret+='<li><a data-src="/'+uName+'/blogs_" href="/'+uName+'/blogs_aart?typ=0">博文面经</a></li>';
                         }
@@ -390,6 +388,12 @@ app.locals.dateformat = function(obj, format) {
     }
     var ret = moment(obj).format(format);
     return ret;
+};
+
+//app的富文本图片自动获取img的路径
+app.locals.imgUrl = function(utls) {
+    var curl=utls.split('..'); 
+    return curl[1];
 };
 
 //app的字符串截取

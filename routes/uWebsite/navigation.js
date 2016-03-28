@@ -31,42 +31,46 @@ exports.page = function(req, res, next) {
                 }
             })
         }else if(rs.signed=='2'){    
-            navigations.findByUname(rs.uName, function(err, results) {
-                if (err) {
-                    res.redirect('/error');
-                } else {
-                    res.render('./userNav/navigation', {
-                        navTitle: navTitle,
-                        navDesc: navDesc,
-                        uName: rs.uName,
-                        signed: rs.signed,
-                        vCode: rs.vCode,
-                        modules: rs.modules,
-                        title: 'TA的资源导航(特权)',
-                        allNavgition: results,
-                        cssFils:['userNav/navigation'],
-                        jsFils:['userNav/navigation']
-                    });
-                }
-            })
+        	checkState.yesOrNo(res, rs, 2, 0, 1, function(){
+        		navigations.findByUname(rs.uName, function(err, results) {
+        		    if (err) {
+        		        res.redirect('/error');
+        		    } else {
+        		        res.render('./userNav/navigation', {
+        		            navTitle: navTitle,
+        		            navDesc: navDesc,
+        		            uName: rs.uName,
+        		            signed: rs.signed,
+        		            vCode: rs.vCode,
+        		            modules: rs.modules,
+        		            title: 'TA的资源导航(特权)',
+        		            allNavgition: results,
+        		            cssFils:['userNav/navigation'],
+        		            jsFils:['userNav/navigation']
+        		        });
+        		    }
+        		})
+        	})
         }else{   
-        	navigations.findByUname(rs.uName, function(err, results) {
-        	    if (err) {
-        	        res.redirect('/error');
-        	    } else {
-        	        res.render('./userNav/navigation', {
-        	            navTitle: navTitle,
-        	            navDesc: navDesc,
-        	            uName: rs.uName,
-        	            signed: rs.signed,
-        	            vCode: rs.vCode,
-        	            modules: rs.modules,
-        	            title: 'TA的资源导航(普通)',
-        	            allNavgition: results,
-        	            cssFils:['userNav/navigation'],
-        	            jsFils:['userNav/navigation']
-        	        });
-        	    }
+        	checkState.yesOrNo(res, rs, 2, 0, 1, function(){
+    			navigations.findByUname(rs.uName, function(err, results) {
+    			    if (err) {
+    			        res.redirect('/error');
+    			    } else {
+    			        res.render('./userNav/navigation', {
+    			            navTitle: navTitle,
+    			            navDesc: navDesc,
+    			            uName: rs.uName,
+    			            signed: rs.signed,
+    			            vCode: rs.vCode,
+    			            modules: rs.modules,
+    			            title: 'TA的资源导航(普通)',
+    			            allNavgition: results,
+    			            cssFils:['userNav/navigation'],
+    			            jsFils:['userNav/navigation']
+    			        });
+    			    }
+    			})
         	})
         }
 	});
