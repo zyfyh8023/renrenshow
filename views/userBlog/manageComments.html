@@ -99,6 +99,32 @@
 
 <br><br><br>
 
+<script id='allComments' type="text/template">
+	<tr data-ids="{{= _id }}">
+		<td class="am-text-middle">
+			{{= _idTmp }}
+		</td>
+		<td class="am-text-middle">
+			{{= CommentCont }}
+		</td>
+		<td class="am-text-middle">
+			<a href="#">
+				<img style="width:20%;border-radius:100%;" src="{{= authorImg }}">
+				<br>{{= author }}
+			</a>
+		</td>
+		<td class="am-text-middle">
+			{{= cTime }}
+		</td>
+		<td class="am-text-middle">
+			{{= _txt }}
+		</td>
+		<td class="am-text-middle">
+			{{- _linkstr }}
+		</td>
+	</tr>
+</script>
+
 <script>
 	window.__data={
 		allpage: <%= allpage %>,

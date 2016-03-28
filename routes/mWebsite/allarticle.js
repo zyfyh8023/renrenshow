@@ -39,7 +39,7 @@ exports.page = function(req, res, next) {
             }else{
                 showpagetip=allpage;
             }
-            console.log(results);
+            // console.log(results);
             res.render('allarticle', {
             	title: '博文汇总-助聘网',
             	nums: nums,
@@ -81,7 +81,7 @@ exports.allartPS = function(req, res){
 
 	articles.findAllByCon(object,pagenum,skipstep,function(err, results, nums){
 	    if(err){
-	        console.log('err');
+	        res.redirect('/error');
 	    }else{
 	        res.send({allArticles: results, nums: nums}); 
 	    }

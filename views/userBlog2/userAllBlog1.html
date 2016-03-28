@@ -61,6 +61,27 @@
 
 <br><br><br>
 
+
+<script id='userAllBlog1' type="text/template">
+	<tr data-ids="{{= _id }}">
+		<td class="am-text-middle">
+			{{= _idTmp }}
+		</td>
+		<td class="am-text-middle">
+			{{= articleTitle }}
+		</td>
+		<td class="am-text-middle">
+			{{= articleType }}
+		</td>
+		<td class="am-text-middle">
+			{{= cTime }}
+		</td>
+		<td class="am-text-middle">
+			<a target="_blank" href="/<%= uName %>/blogs_art?aid={{= _id }}">查看</a>
+		</td>
+	</tr>
+</script>
+
 <script>
 	window.__data={
 		allpage: <%= allpage %>,

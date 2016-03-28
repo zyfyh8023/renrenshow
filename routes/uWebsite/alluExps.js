@@ -88,7 +88,7 @@ exports.allexpPS = function(req, res){
     
     experiences.findAllByCon(object,pagenum,skipstep,function(err, results, nums){
         if(err){
-            console.log('err');
+            res.redirect('/error');
         }else{
             res.send({allArticles: results, nums: nums}); 
         }

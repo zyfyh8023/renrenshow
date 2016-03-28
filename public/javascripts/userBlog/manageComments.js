@@ -42,16 +42,13 @@ $(document).ready(function() {
 		    				linkstr='<a href="/'+__data.uName+'/resume_cmp1?ids='+data.allComments[i].CommentResumeVal+'"">查看</a>';
 		    				}
 		    			}
-			    		var htmlTemp=
-			    			'<tr  data-ids="'+data.allComments[i]._id+'">'+
-			    			'<td class="am-text-middle">'+(((pagenum-1)*10)+(i+1))+'</td>'+
-			    			'<td class="am-text-middle">'+cutStr(data.allComments[i].CommentCont, 100, '...')+'</td>'+
-			    			'<td class="am-text-middle"><a href="#"><img style="width:20%;border-radius:100%;"src='+ data.allComments[i].authorImg +'><br>'+data.allComments[i].author+'</a></td>'+
-			    			'<td class="am-text-middle">'+dateformat(data.allComments[i].cTime)+'</td>'+
-			    			'<td class="am-text-middle">'+txt+'</td>'+
-			    			'<td class="am-text-middle">'+linkstr;
-			    		htmlTemp+='</td></tr>';
-			    		htmls+=htmlTemp;
+		    			data.allComments[i]._idTmp=(((pagenum-1)*10)+(i+1));
+		    			data.allComments[i].CommentCont=cutStr(data.allComments[i].CommentCont, 100, '...');
+		    			data.allComments[i].cTime=dateformat(data.allComments[i].cTime);
+		    			data.allComments[i]._txt=txt;
+		    			data.allComments[i]._linkstr=linkstr;
+		    			var htmlsTmp= baidu.template('allComments',data.allComments[i]); 
+		    			htmls+= htmlsTmp;
 			    	}      
 			        $manageComs.find("tbody").html(htmls);
 			    },

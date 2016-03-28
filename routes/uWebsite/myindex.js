@@ -16,7 +16,7 @@ exports.page = function(req, res, next) {
                 if (err) {
                     res.redirect('/error');
                 } else {
-                    console.log(results[0].Certificate6);
+                    // console.log(results[0].Certificate6);
                     var num0 = results[0].Certificate6.length > 0 ? (results[0].Certificate6.length >= 4 ? 4 : results[0].Certificate6.length) : 0;
                     var num1 = results[1].length > 0 ? (results[1].length >= 6 ? 6 : results[1].length) : 0;
                     var num2 = results[2].length > 0 ? (results[2].length >= 6 ? 6 : results[2].length) : 0;

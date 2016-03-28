@@ -14,7 +14,7 @@ exports.awards = function(req, res) {
 			    res.redirect('/error');
 			}else{
 				allres=results;
-				console.log(results);
+				// console.log(results);
 				if(rs.signed=='1'){
 					res.render('./userResume/userSCI/awardInfo', {
 						uName: rs.uName,

@@ -49,7 +49,6 @@ function getAjax(btnSign, iptVal){
 	    },
 	    dataType:'json',    
 	    success: function(data){
-	    	console.log(data);
 	    	var htmls="<div style='margin:6rem auto;color:#666;font-size:15px;width:100%;text-align:center'>没有查找到符合条件的信息</div>", htmls2='';
 	    	if(data.allArticles.length>0){
 	    		htmls='';

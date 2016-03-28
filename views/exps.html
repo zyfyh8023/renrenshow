@@ -17,7 +17,7 @@
                 				</a>
                   			</h3>
 							<div class="am-list-item-text">
-								<%- resul[i].experienceCont %>
+								<%= resul[i].experienceCont %>
 							</div>
 						</div>
 					</li>
@@ -44,7 +44,22 @@
 		</div>
 	</div>
 </section>
-	
+
+<script id='allExps' type="text/template">
+	<li class="am-g am-list-item-desced">
+		<div class=" am-list-main">
+			<h3 class="am-list-item-hd">
+				<a href="/{{= author }}/blogs_exp?aid={{= _id }}">
+					{{= experienceTitle }}
+				</a>
+  			</h3>
+			<div class="am-list-item-text">
+				{{= experienceCont }}
+			</div>
+		</div>
+	</li>
+</script>
+
 <script>
 	window.__data={
 		allpage: <%= allpage %>,

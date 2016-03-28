@@ -30,7 +30,7 @@ exports.page = function(req, res, next) {
                 if (err) {
                     res.redirect('/error');
                 } else {
-                    console.log(results);
+                    // console.log(results);
                     res.render('./userBlog/managearticle', {
                         navTitle: navTitle,
                         navDesc: navDesc,
@@ -71,7 +71,7 @@ exports.pageSearch = function(req, res){
     
     articles.findAllByCon(object,pagenum,skipstep,function(err, results, nums){
         if(err){
-            console.log('err');
+            res.redirect('/error');
         }else{
             res.send({allArticles: results, nums: nums}); 
         }

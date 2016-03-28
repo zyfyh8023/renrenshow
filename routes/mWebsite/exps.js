@@ -25,7 +25,7 @@ exports.page = function(req, res, next) {
 	            showpagetip=allpage;
 	        }
 			res.render('exps', {
-				title: '信息汇总-助聘网',
+				title: '面经-助聘网',
 				uName: uName,
 				nums: nums,
 				showpagetip: showpagetip, 
@@ -51,7 +51,7 @@ exports.allexpPS = function(req, res){
     
     experiences.findAllByCon(object,pagenum,skipstep,function(err, results, nums){
         if(err){
-            console.log('err');
+            res.redirect('/error');
         }else{
             res.send({allArticles: results, nums: nums}); 
         }

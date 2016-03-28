@@ -1,7 +1,11 @@
 var jx1=0, jy1=0, jw=0, jh=0;  //不确定有没有使用到
 
 $(document).ready(function() {
-
+	//设置左分隔符为 <!
+	baidu.template.LEFT_DELIMITER='{{';
+	//设置右分隔符为 <!  
+	baidu.template.RIGHT_DELIMITER='}}';
+	
 	//菜单导航条
 	$('.zy-am-topbar-nav li a').each(function() {
 		var str=window.location.pathname;

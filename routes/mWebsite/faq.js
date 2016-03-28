@@ -10,7 +10,7 @@ exports.page = function(req, res, next) {
 	uName=checkState.loginState(req, res, false);
 
 	res.render('faq', {
-		title: '功能介绍-助聘网',
+		title: '帮助中心-助聘网',
 		uName: uName,
 		cssFils:['faq']
 	});

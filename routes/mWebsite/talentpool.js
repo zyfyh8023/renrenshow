@@ -24,7 +24,7 @@ exports.page = function(req, res, next) {
 	            showpagetip=allpage;
 	        }
 			res.render('talentpool', {
-				title: '人才-助聘网',
+				title: '招人才-助聘网',
 				uName: uName,
 				results: result ,
 				nums: nums,

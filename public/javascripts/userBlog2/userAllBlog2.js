@@ -16,15 +16,10 @@ $(document).ready(function() {
 			    success: function(data){
 			    	var htmls="";
 			    	for(var i=0, len=data.allArticles.length;i<len;i++){
-			    		var htmlTemp=
-			    			'<tr  data-ids="'+data.allArticles[i]._id+'">'+
-			    			'<td class="am-text-middle">'+(((pagenum-1)*10)+(i+1))+'</td>'+
-			    			'<td class="am-text-middle">'+data.allArticles[i].experienceTitle+'</td>'+
-			    			'<td class="am-text-middle">'+data.allArticles[i].experienceCompany+'</td>'+
-			    			'<td class="am-text-middle">'+dateformat(data.allArticles[i].cTime)+'</td>'+
-			    			'<td class="am-text-middle">'+
-			    			'<a target="_blank" href="/'+__data.uName+'/blogs_exp?aid='+data.allArticles[i]._id+'">查看</a></td></tr>';
-			    		htmls+=htmlTemp;
+			    		data.allArticles[i]._idTmp=(((pagenum-1)*10)+(i+1));
+			    		data.allArticles[i].cTime=dateformat(data.allArticles[i].cTime);
+			    		var htmlsTmp= baidu.template('userAllBlog2',data.allArticles[i]); 
+			    		htmls+= htmlsTmp;
 			    	}      
 			        $userAllBlog2.find("tbody").html(htmls);
 			    },
