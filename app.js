@@ -448,12 +448,16 @@ app.use(function(req, res, next) {
 // will print stacktrace
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
+        var uName='';
+        if(req.session.user.username){
+            uName=req.session.user.username;
+        }
         res.status(err.status || 500);
         res.render('error', {
             message: err.message,
             error: err,
             title: "错误页面-助聘网",
-            uName: ""
+            uName: uName
         });
     });
 }
@@ -461,12 +465,16 @@ if (app.get('env') === 'development') {
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
+    var uName='';
+    if(req.session.user.username){
+        uName=req.session.user.username;
+    }
     res.status(err.status || 500);
     res.render('error', {
         message: err.message,
         error: {},
         title: "错误页面-助聘网",
-        uName: ""
+        uName: uName
     });
 });
 
