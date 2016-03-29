@@ -34,7 +34,7 @@ var ResumeScheme = new Schema({
         majorinstr: String,
         schoolLogo: {
             type: String,
-            default: '/images/school.jpg'
+            default: '/images/scl_d.jpg'
         }
     }],
     experience4: [{
@@ -46,7 +46,7 @@ var ResumeScheme = new Schema({
         practiceinstr: String,
         companyLogo: {
             type: String,
-            default: '/images/hw.jpg'
+            default: '/images/cmp_d.jpg'
         }
     }],
     work5: [{
@@ -58,7 +58,7 @@ var ResumeScheme = new Schema({
         practiceinstr: String,
         companyLogo: {
             type: String,
-            default: '/images/hw.jpg'
+            default: '/images/cmp_d.jpg'
         }
     }],
     Certificate6: [{
@@ -78,7 +78,7 @@ var ResumeScheme = new Schema({
         workdes: String,
         workimg: {
             type:[],
-            default:['/images/exp3.jpg', '/images/exp4.jpg']
+            default:['/images/wrk_d.jpg']
         }
     }],
     projects8: [{
